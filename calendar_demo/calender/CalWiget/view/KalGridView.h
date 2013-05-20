@@ -18,9 +18,20 @@
  *  (it is managed by KalView).
  *
  */
+
+@protocol KalGridViewDelegate <NSObject>
+@required
+
+- (void)showPreviousMonth;
+- (void)showFollowingMonth;
+- (void)didSelectDate:(KalDate *)date;
+- (KalDate *)selectedDate;
+@end
+
+
 @interface KalGridView : UIView
 {
-  id<KalViewDelegate> delegate;  // Assigned.
+  id<KalGridViewDelegate> delegate;  // Assigned.
   KalLogic *logic;
   KalMonthView *frontMonthView;
   KalMonthView *backMonthView;
@@ -30,16 +41,15 @@
 }
 
 @property (nonatomic, readonly) BOOL transitioning;
-@property (nonatomic, readonly) KalDate *selectedDate;
 
-- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalViewDelegate>)delegate;
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate;
 - (void)selectDate:(KalDate *)date;
 - (void)markTilesForDates:(NSArray *)dates;
 
 // These 3 methods should be called *after* the KalLogic
 // has moved to the previous or following month.
-- (void)slideUp;
-- (void)slideDown;
+- (void)slideRight;
+- (void)slideLeft;
 - (void)jumpToSelectedMonth;    // see comment on KalView
 
 @end

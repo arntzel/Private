@@ -38,7 +38,7 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
 @implementation KalWeekGridView
 @synthesize selectedTile, highlightedTile, transitioning;
 
-- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalViewDelegate>)theDelegate
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalWeekGridViewDelegate>)theDelegate
 {
     frame.size.width = 7 * kTileSize.width;
     
@@ -84,11 +84,9 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
     transitioning = YES;
     
     [logic moveToWeekForDate:logic.weekBaseDate];
-    [backWeekView showDates:logic.daysInSelectedWeek];
+    [backWeekView showDates:logic.daysInSelectedWeek selectedDate:[delegate selectedDate]];
     
     [self swapMonthsAndSlide:direction];
-    
-    self.selectedTile = [frontWeekView firstTileOfWeek];
 }
 
 - (void)swapMonthsAndSlide:(int)direction
@@ -135,15 +133,6 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
 
 
 -(void)addUISwipGestureRecognizer:(UIView *)view {
-//    oneFingerSwipeDown = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeDown:)] autorelease];
-//    [oneFingerSwipeDown setDelegate:self];
-//    [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-//    [view addGestureRecognizer:oneFingerSwipeDown];
-//    
-//    oneFingerSwipUP = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipUP:)] autorelease];
-//    [oneFingerSwipUP setDelegate:self];
-//    [oneFingerSwipUP setDirection:UISwipeGestureRecognizerDirectionUp];
-//    [view addGestureRecognizer:oneFingerSwipUP];
     
     oneFingerSwipeLeft = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeLeft:)] autorelease];
     [oneFingerSwipeLeft setDelegate:self];
@@ -156,13 +145,6 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
     [view addGestureRecognizer:oneFingerSwipeRight];
 }
 
-//- (void)oneFingerSwipeDown:(UISwipeGestureRecognizer *)recognizer
-//{
-//}
-//
-//- (void)oneFingerSwipUP:(UISwipeGestureRecognizer *)recognizer
-//{
-//}
 
 - (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer *)recognizer
 {
@@ -217,34 +199,13 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
     }
 }
 
-- (void)receivedTouches:(NSSet *)touches withEvent:event
-{
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:self];
-    UIView *hitView = [self hitTest:location withEvent:event];
-    
-    if (!hitView)
-        return;
-    
-    if ([hitView isKindOfClass:[KalTileView class]]) {
-        KalTileView *tile = (KalTileView*)hitView;
-        if (tile.belongsToAdjacentMonth) {
-            self.highlightedTile = tile;
-        } else {
-            self.highlightedTile = nil;
-            self.selectedTile = tile;
-        }
-    }
-}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self receivedTouches:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self receivedTouches:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -264,6 +225,11 @@ static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
 - (void)selectDate:(KalDate *)date
 {
     self.selectedTile = [frontWeekView tileForDate:date];
+}
+
+- (KalDate *)selectedDate
+{
+    return [delegate selectedDate];
 }
 
 - (void)markTilesForDates:(NSArray *)dates

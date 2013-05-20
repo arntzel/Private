@@ -29,7 +29,7 @@ extern const CGSize kTileSize;
     return self;
 }
 
-- (void)showDates:(NSArray *)mainDates
+- (void)showDates:(NSArray *)mainDates selectedDate:(KalDate *)_selectedDate
 {    
     for (int tileNum = 0; tileNum < 7; tileNum++) {
         KalDate *d = [mainDates objectAtIndex:tileNum];
@@ -37,6 +37,9 @@ extern const CGSize kTileSize;
         [tile resetState];
         tile.date = d;
         tile.type = [d isToday] ? KalTileTypeToday : KalTileTypeRegular;
+        if ([tile.date isEqual:_selectedDate]) {
+            tile.selected = YES;
+        }
     }
     
     [self sizeToFit];

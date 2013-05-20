@@ -12,7 +12,7 @@
 
 @interface KalWeekView : UIView
 - (id)initWithFrame:(CGRect)rect; // designated initializer
-- (void)showDates:(NSArray *)mainDates;
+- (void)showDates:(NSArray *)mainDates selectedDate:(KalDate *)_selectedDate;
 
 
 - (KalTileView *)firstTileOfWeek;

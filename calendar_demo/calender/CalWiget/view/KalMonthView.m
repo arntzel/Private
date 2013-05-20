@@ -31,7 +31,7 @@ extern const CGSize kTileSize;
   return self;
 }
 
-- (void)showDates:(NSArray *)mainDates leadingAdjacentDates:(NSArray *)leadingAdjacentDates trailingAdjacentDates:(NSArray *)trailingAdjacentDates
+- (void)showDates:(NSArray *)mainDates leadingAdjacentDates:(NSArray *)leadingAdjacentDates trailingAdjacentDates:(NSArray *)trailingAdjacentDates selectedDate:(KalDate *)_selectedDate
 {
   int tileNum = 0;
   NSArray *dates[] = { leadingAdjacentDates, mainDates, trailingAdjacentDates };
@@ -42,8 +42,10 @@ extern const CGSize kTileSize;
       [tile resetState];
       tile.date = d;
       tile.type = dates[i] != mainDates
-                    ? KalTileTypeAdjacent
-                    : [d isToday] ? KalTileTypeToday : KalTileTypeRegular;
+                    ? KalTileTypeAdjacent: KalTileTypeRegular;
+        if ([tile.date isEqual:_selectedDate] && (tile.type == KalTileTypeRegular)) {
+            tile.selected = YES;
+        }
       tileNum++;
     }
   }
@@ -53,11 +55,6 @@ extern const CGSize kTileSize;
   [self setNeedsDisplay];
 }
 
-//- (void)drawRect:(CGRect)rect
-//{
-//  CGContextRef ctx = UIGraphicsGetCurrentContext();
-//  CGContextDrawTiledImage(ctx, (CGRect){CGPointZero,kTileSize}, [[UIImage imageNamed:@"Kal.bundle/kal_tile.png"] CGImage]);
-//}
 
 - (KalTileView *)firstTileOfMonth
 {

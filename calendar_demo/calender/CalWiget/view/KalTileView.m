@@ -128,7 +128,16 @@ const CGSize kTileSize = { 46.f, 44.f };
   const char *day = [dayText cStringUsingEncoding:NSUTF8StringEncoding];
   CGSize textSize = [dayText sizeWithFont:font];
   CGFloat textX, textY;
-  textX = roundf(0.5f * (kTileSize.width - textSize.width));
+    
+    CGFloat radio = 0.0f;
+    if (n < 10) {
+        radio = 0.5f;
+    }
+    else
+    {
+        radio = 0.4f;
+    }
+  textX = roundf(radio * (kTileSize.width - textSize.width));
   textY = 6.f + roundf(0.5f * (kTileSize.height - textSize.height));
 //  if (shadowColor) {
 //    [shadowColor setFill];

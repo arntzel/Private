@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KalWeekGridView.h"
-
+#import "CalendarIntegrationView.h"
 @class KalGridView, KalLogic, KalDate;
 @protocol KalViewDelegate, KalDataSourceCallbacks;
 
@@ -45,18 +45,19 @@
 }
 
 @property (nonatomic, assign) id<KalViewDelegate> delegate;
-@property (nonatomic, readonly) KalDate *selectedDate;
+@property (nonatomic, retain) KalDate *selectedDate;
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)delegate logic:(KalLogic *)logic;
+
+
+- (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate;
 - (BOOL)isSliding;
-- (void)selectDate:(KalDate *)date;
 - (void)markTilesForDates:(NSArray *)dates;
 - (void)redrawEntireMonth;
 
 // These 3 methods are exposed for the delegate. They should be called 
 // *after* the KalLogic has moved to the month specified by the user.
-- (void)slideDown;
-- (void)slideUp;
+- (void)slideLeft;
+- (void)slideRight;
 - (void)jumpToSelectedMonth;    // change months without animation (i.e. when directly switching to "Today")
 
 @end
@@ -67,6 +68,9 @@
 
 @protocol KalViewDelegate
 @optional
+- (void)monthModeToEventMode;
+- (void)eventModeToMontMode;
+
 - (void)showPreviousWeek;
 - (void)showFollowingWeek;
 

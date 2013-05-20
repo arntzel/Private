@@ -38,7 +38,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 
 @synthesize selectedTile, highlightedTile, transitioning;
 
-- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalViewDelegate>)theDelegate
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
   // MobileCal uses 46px wide tiles, with a 2px inner stroke 
   // along the top and right edges. Since there are 7 columns,
@@ -64,22 +64,12 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 
     [self jumpToSelectedMonth];
       
-      [self addUISwipGestureRecognizer:self];
+    [self addUISwipGestureRecognizer:self];
   }
   return self;
 }
 
--(void)addUISwipGestureRecognizer:(UIView *)view {
-//    oneFingerSwipeDown = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeDown:)] autorelease];
-//    [oneFingerSwipeDown setDelegate:self];
-//    [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-//    [view addGestureRecognizer:oneFingerSwipeDown];
-//    
-//    oneFingerSwipUP = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipUP:)] autorelease];
-//    [oneFingerSwipUP setDelegate:self];
-//    [oneFingerSwipUP setDirection:UISwipeGestureRecognizerDirectionUp];
-//    [view addGestureRecognizer:oneFingerSwipUP];
-    
+-(void)addUISwipGestureRecognizer:(UIView *)view {    
     oneFingerSwipeLeft = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeLeft:)] autorelease];
     [oneFingerSwipeLeft setDelegate:self];
     [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
@@ -89,7 +79,6 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
     [oneFingerSwipeRight setDelegate:self];
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [view addGestureRecognizer:oneFingerSwipeRight];
-    
 }
 
 - (void)oneFingerSwipeDown:(UISwipeGestureRecognizer *)recognizer
@@ -148,34 +137,12 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
   }
 }
 
-- (void)receivedTouches:(NSSet *)touches withEvent:event
-{
-  UITouch *touch = [touches anyObject];
-  CGPoint location = [touch locationInView:self];
-  UIView *hitView = [self hitTest:location withEvent:event];
-  
-  if (!hitView)
-    return;
-  
-  if ([hitView isKindOfClass:[KalTileView class]]) {
-    KalTileView *tile = (KalTileView*)hitView;
-    if (tile.belongsToAdjacentMonth) {
-      self.highlightedTile = tile;
-    } else {
-      self.highlightedTile = nil;
-      self.selectedTile = tile;
-    }
-  }
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  [self receivedTouches:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  [self receivedTouches:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -205,21 +172,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 
 - (void)swapMonthsAndSlide:(int)direction keepOneRow:(BOOL)keepOneRow
 {
-  backMonthView.hidden = NO;
-  
-    /*
-  // set initial positions before the slide
-  if (direction == SLIDE_LEFT) {
-    backMonthView.top = keepOneRow
-      ? frontMonthView.bottom - kTileSize.height
-      : frontMonthView.bottom;
-  } else if (direction == SLIDE_RIGHT) {
-    NSUInteger numWeeksToKeep = keepOneRow ? 1 : 0;
-    NSInteger numWeeksToSlide = [backMonthView numWeeks] - numWeeksToKeep;
-    backMonthView.top = -numWeeksToSlide * kTileSize.height;
-  } else {
-    backMonthView.top = 0.f;
-  }*/
+    backMonthView.hidden = NO;
     if (direction == SLIDE_LEFT) {
         backMonthView.left = frontMonthView.width;
     }
@@ -234,14 +187,6 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-
-      /*
-    frontMonthView.top = -backMonthView.top;
-    backMonthView.top = 0.f;
-       
-       frontMonthView.alpha = 0.f;
-       backMonthView.alpha = 1.f;
-       */
       
       if (direction == SLIDE_LEFT) {
           frontMonthView.left = -frontMonthView.width;
@@ -265,7 +210,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
     [logic moveToMonthForDate:logic.baseDate];
   [backMonthView showDates:logic.daysInSelectedMonth
       leadingAdjacentDates:logic.daysInFinalWeekOfPreviousMonth
-     trailingAdjacentDates:logic.daysInFirstWeekOfFollowingMonth];
+     trailingAdjacentDates:logic.daysInFirstWeekOfFollowingMonth selectedDate:[delegate selectedDate]];
   
   // At this point, the calendar logic has already been advanced or retreated to the
   // following/previous month, so in order to determine whether there are 
@@ -276,12 +221,10 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
                  || (direction == SLIDE_RIGHT && [logic.daysInFirstWeekOfFollowingMonth count] > 0);
   
   [self swapMonthsAndSlide:direction keepOneRow:keepOneRow];
-  
-  self.selectedTile = [frontMonthView firstTileOfMonth];
 }
 
-- (void)slideUp { [self slide:SLIDE_LEFT]; }
-- (void)slideDown { [self slide:SLIDE_RIGHT]; }
+- (void)slideLeft { [self slide:SLIDE_LEFT]; }
+- (void)slideRight { [self slide:SLIDE_RIGHT]; }
 
 - (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
@@ -290,6 +233,11 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 }
 
 #pragma mark -
+
+- (KalDate *)selectedDate
+{
+    return [delegate selectedDate];
+}
 
 - (void)selectDate:(KalDate *)date
 {
@@ -310,8 +258,6 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 }
 
 - (void)markTilesForDates:(NSArray *)dates { [frontMonthView markTilesForDates:dates]; }
-
-- (KalDate *)selectedDate { return selectedTile.date; }
 
 #pragma mark -
 

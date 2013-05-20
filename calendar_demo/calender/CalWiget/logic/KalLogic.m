@@ -37,7 +37,7 @@
     monthAndYearFormatter = [[NSDateFormatter alloc] init];
     [monthAndYearFormatter setDateFormat:@"LLLL yyyy"];
     [self moveToMonthForDate:date];
-      [self moveToWeekForDate:date];
+    [self moveToWeekForDate:date];
   }
   return self;
 }

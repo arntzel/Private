@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Event.h"
 
 @interface Utils : NSObject
 
-
+//"HH:mm:ss"
 +(NSString *) formateTime:(NSDate *) time;
+
++(NSString *) formateDay:(NSDate *) time;
+
++(NSMutableArray *) getEventSectionArray: (NSArray*)events;
+
+//NSString -> NSMutableArray<Event>
++(NSMutableDictionary *) getEventSectionDict: (NSArray*)events;
+
 
 @end

@@ -13,11 +13,23 @@
 #import "KalWeekView.h"
 
 @class KalTileView, KalLogic, KalDate;
-@protocol KalViewDelegate;
+
+
+@protocol KalWeekGridViewDelegate <NSObject>
+@required
+
+- (void)showPreviousWeek;
+- (void)showFollowingWeek;
+
+- (void)didSelectDate:(KalDate *)date;
+
+- (KalDate *)selectedDate;
+@end
+
 
 @interface KalWeekGridView : UIView
 {
-    id<KalViewDelegate> delegate;  // Assigned.
+    id<KalWeekGridViewDelegate> delegate;  // Assigned.
     KalLogic *logic;
     KalWeekView *frontWeekView;
     KalWeekView *backWeekView;
@@ -29,7 +41,7 @@
 @property (nonatomic, readonly) BOOL transitioning;
 @property (nonatomic, readonly) KalDate *selectedDate;
 
-- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalViewDelegate>)delegate;
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalWeekGridViewDelegate>)delegate;
 - (void)selectDate:(KalDate *)date;
 - (void)markTilesForDates:(NSArray *)dates;
 
