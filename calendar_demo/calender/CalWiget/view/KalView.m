@@ -259,29 +259,44 @@ static const CGFloat kMonthLabelHeight = 17.f;
 }
 
 
+
+
 #pragma mark -
 #pragma mark recall
 - (void)showPreviousMonth
 {
     if (!gridView.transitioning)
-        [delegate showPreviousMonth];
+    {
+        [logic retreatToPreviousMonth];
+        [self slideRight];
+    }
 }
 
 - (void)showFollowingMonth
 {
     if (!gridView.transitioning)
-        [delegate showFollowingMonth];
+    {
+        [logic advanceToFollowingMonth];
+        [self slideLeft];
+    }
 }
 
 - (void)showPreviousWeek
 {
     if (!gridView.transitioning)
-        [self.delegate showPreviousWeek];
+    {
+        [logic retreatToPreviousWeek];
+        [self slideRight];
+    }
 }
+
 - (void)showFollowingWeek
 {
     if (!gridView.transitioning)
-        [self.delegate showFollowingWeek];
+    {
+        [logic advanceToFollowingWeek];
+        [self slideLeft];
+    }
 }
 
 - (void)didSelectDate:(KalDate *)date

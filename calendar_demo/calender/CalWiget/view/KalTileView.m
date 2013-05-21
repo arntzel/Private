@@ -59,57 +59,16 @@ const CGSize kTileSize = { 46.f, 44.f };
     CGContextSetStrokeColor(ref, lineColor4);
     CGContextStrokePath(ref);
     
-    
-    CGContextStrokePath(ref);
-    
+        
     
     
     
   CGContextRef ctx = UIGraphicsGetCurrentContext();
-  CGFloat fontSize = 24.f;
+  CGFloat fontSize = 15.f;
   UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-  UIColor *shadowColor = nil;
-  UIColor *textColor = nil;
-  UIImage *markerImage = nil;
-  CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
-      
-  CGContextTranslateCTM(ctx, 0, kTileSize.height);
-  CGContextScaleCTM(ctx, 1, -1);
-  
-    /*
-  if ([self isToday] && self.selected) {
-    [[[UIImage imageNamed:@"Kal.bundle/kal_tile_today_selected.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:0] drawInRect:CGRectMake(0, -1, kTileSize.width+1, kTileSize.height+1)];
-    textColor = [UIColor whiteColor];
-    shadowColor = [UIColor blackColor];
-    markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker_today.png"];
-  } else if ([self isToday] && !self.selected) {
-    [[[UIImage imageNamed:@"Kal.bundle/kal_tile_today.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:0] drawInRect:CGRectMake(0, -1, kTileSize.width+1, kTileSize.height+1)];
-    textColor = [UIColor whiteColor];
-    shadowColor = [UIColor blackColor];
-    markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker_today.png"];
-  } else if (self.selected) {
-    [[[UIImage imageNamed:@"Kal.bundle/kal_tile_selected.png"] stretchableImageWithLeftCapWidth:1 topCapHeight:0] drawInRect:CGRectMake(0, -1, kTileSize.width+1, kTileSize.height+1)];
-    textColor = [UIColor whiteColor];
-    shadowColor = [UIColor blackColor];
-    markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker_selected.png"];
-  } else if (self.belongsToAdjacentMonth) {
-    textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Kal.bundle/kal_tile_dim_text_fill.png"]];
-    shadowColor = nil;
-    markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker_dim.png"];
-  } else {
-    textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Kal.bundle/kal_tile_text_fill.png"]];
-    shadowColor = [UIColor whiteColor];
-    markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker.png"];
-  }
-  */
-    
+    UIColor *textColor = nil;
     if (self.selected) {
-        [[[UIImage imageNamed:@"Kal.bundle/kal_tile_today_selected.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:0] drawInRect:CGRectMake(0, -1, kTileSize.width+1, kTileSize.height+1)];
         textColor = [UIColor whiteColor];
-        shadowColor = [UIColor blackColor];
-        markerImage = [UIImage imageNamed:@"Kal.bundle/kal_marker_today.png"];
-        if (flags.marked)
-            [markerImage drawInRect:CGRectMake(21.f, 5.f, 4.f, 5.f)];
     }
     else if(self.belongsToAdjacentMonth)
     {
@@ -120,9 +79,12 @@ const CGSize kTileSize = { 46.f, 44.f };
         textColor = [UIColor colorWithRed:140.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0];
     }
     
+    CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
+    CGContextTranslateCTM(ctx, 0, kTileSize.height);
+    CGContextScaleCTM(ctx, 1, -1);
     
-
   
+    //draw day
   NSUInteger n = [self.date day];
   NSString *dayText = [NSString stringWithFormat:@"%lu", (unsigned long)n];
   const char *day = [dayText cStringUsingEncoding:NSUTF8StringEncoding];
@@ -137,22 +99,33 @@ const CGSize kTileSize = { 46.f, 44.f };
     {
         radio = 0.4f;
     }
-  textX = roundf(radio * (kTileSize.width - textSize.width));
-  textY = 6.f + roundf(0.5f * (kTileSize.height - textSize.height));
-//  if (shadowColor) {
-//    [shadowColor setFill];
-//    CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
-//    textY += 1.f;
-//  }
+  textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 2;
+  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
+
+    
   [textColor setFill];
   CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
-  
+
+    //draw month
+    if (n == 1) {
+        NSArray *monthArray = [NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"April",@"May",@"Jun",@"July",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec",nil];
+        NSString *monthName = [monthArray objectAtIndex:date.month - 1];
+        
+        
+        
+        const char *cMonthName = [monthName cStringUsingEncoding:NSUTF8StringEncoding];
+        CGSize textSize = [monthName sizeWithFont:font];
+        CGFloat textX, textY;
+
+        textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 2;
+        textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 16;
+        
+        
+        [textColor setFill];
+        CGContextShowTextAtPoint(ctx, textX, textY, cMonthName, [monthName length]);
+    }
     
-    
-//  if (self.highlighted) {
-//    [[UIColor colorWithWhite:0.25f alpha:0.3f] setFill];
-//    CGContextFillRect(ctx, CGRectMake(0.f, 0.f, kTileSize.width, kTileSize.height));
-//  }
+
 }
 
 - (void)resetState
