@@ -224,30 +224,6 @@
     NSLog(@"didSelectDate:%@", date);
 }
 
-- (void)showPreviousMonth
-{
-    [logic retreatToPreviousMonth];
-    [[self calendarView] slideRight];
-}
-
-- (void)showFollowingMonth
-{
-    [logic advanceToFollowingMonth];
-    [[self calendarView] slideLeft];
-}
-
-- (void)showPreviousWeek
-{
-    [logic retreatToPreviousWeek];
-    [[self calendarView] slideRight];
-}
-
-- (void)showFollowingWeek
-{
-    [logic advanceToFollowingWeek];
-    [[self calendarView] slideLeft];
-}
-
 - (void)monthModeToEventMode
 {
     CGRect frame = navigation.frame;
