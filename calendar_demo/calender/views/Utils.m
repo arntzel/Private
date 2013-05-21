@@ -10,6 +10,32 @@
 
 @implementation Utils
 
++(NSDate *) parseNSDate:(NSString*) strDate
+{
+    strDate = [Utils formateStringDate:strDate];
+
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate * date =[format dateFromString:strDate];
+    return date;
+}
+
+
+
++(NSString *) formateStringDate:(NSString *) strDate
+{
+    strDate = [strDate substringToIndex:19];
+
+    NSMutableString * sDate = [NSMutableString stringWithString:strDate];
+    NSRange range;
+    range.location = 10;
+    range.length = 1;
+
+    [sDate replaceCharactersInRange:range withString:@" "];
+    return sDate;
+}
+
+
 
 +(NSString *) formateTime:(NSDate *) time
 {
@@ -39,7 +65,7 @@
     for(int i=0;i<events.count;i++) {
         Event * event = [events objectAtIndex:i];
 
-        NSString * day = [Utils formateDay:event.startTime];
+        NSString * day = [Utils formateDay:event.created_on];
 
         if(![array containsObject:day]) {
             [array addObject:day];
@@ -57,7 +83,7 @@
      for(int i=0;i<events.count;i++) {
          Event * event = [events objectAtIndex:i];
 
-         NSString * day = [Utils formateDay:event.startTime];
+         NSString * day = [Utils formateDay:event.created_on];
 
          NSMutableArray * array = [dict objectForKey:day];
 

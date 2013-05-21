@@ -8,19 +8,40 @@
 
 @property int id;
 
-@property NSString * eventImageUrl;
+@property BOOL allow_attendee_invite;
+@property BOOL allow_new_dt;
+@property BOOL allow_new_location;
+@property BOOL archived;
+@property BOOL is_all_day;
+@property BOOL published;
 
-@property NSString * eventTitle;
+@property NSDate * created_on;
 
-@property NSString * attenedees;
+@property User * creator;
 
-@property User * host;
+@property NSString * description;
 
-@property BOOL isAllDay;
+@property int duration_days;
+@property int duration_hours;
+@property int duration_minutes;
 
-@property NSDate * startTime;
+@property NSString * start_type;
+@property NSDate * start;
 
-@property int duration;
+@property NSDate * end;
+
+@property Location * location;
+
+
+@property NSDictionary * status;
+
+
+@property NSString * thumbnail_url;
+@property NSString * title;
+@property NSString * userstatus;
+
+@property NSArray * attendees;
+
 
 //Allow suggest new datetime  0
 //Allow suggest new location  1
@@ -38,6 +59,6 @@
 @property int eventType;
 
 
-@property Location * location;
++(Event *) parseEvent:(NSDictionary *) json;
 
 @end

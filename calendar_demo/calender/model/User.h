@@ -11,7 +11,18 @@
 @interface User : NSObject
 
 @property int id;
+
 @property NSString * username;
-@property NSString * pictureUrl;
+
+@property NSString * email;
+
+@property NSString * avatar_url;
+
+@property NSString * apikey;
+
+
+
++(User *) parseUser:(NSDictionary *) jsonData;
+
 
 @end

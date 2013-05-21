@@ -83,7 +83,23 @@
     
 
 
-    [self loadData];
+    [self login];
+}
+
+-(void) login {
+
+    NSString * user = @"fx.fangxiang@gmail.com";
+    NSString * pwd = @"fangxiang";
+
+    [[Model getInstance] login:user withPassword:pwd andCallback:^(NSInteger error, User *user) {
+
+        if(error == 0) {
+            [self loadData];
+        } else {
+            //TOOD:: show error;
+        }
+
+    }];
 }
 
 -(void) loadData
@@ -205,7 +221,7 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
-
+    NSLog(@"didSelectDate:%@", date);
 }
 
 - (void)showPreviousMonth

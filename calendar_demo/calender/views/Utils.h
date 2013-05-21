@@ -11,6 +11,12 @@
 
 @interface Utils : NSObject
 
++(NSDate *) parseNSDate:(NSString*) strDate;
+
+
++(NSString *) formateStringDate:(NSString *) strDate;
+
+
 //"HH:mm:ss"
 +(NSString *) formateTime:(NSDate *) time;
 

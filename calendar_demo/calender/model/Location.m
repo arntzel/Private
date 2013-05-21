@@ -11,4 +11,15 @@
 @implementation Location
 
 
++(Location *) parseLocation:(NSDictionary *) json
+{
+    Location * location = [[Location alloc] init];
+
+    location.id = [[json objectForKey:@"id"] intValue];
+    location.location = [json objectForKey:@"location"];
+    location.photo = [json objectForKey:@"photo"];
+
+    
+    return location;
+}
 @end

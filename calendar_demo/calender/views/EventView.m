@@ -22,11 +22,11 @@
 
 -(void) refreshView:(Event *) event
 {
-    self.labTitle.text = event.eventTitle;
-    self.labAttendees.text = event.attenedees;
-    self.labLocation.text = event.location.locationName;
+    self.labTitle.text = event.title;
+    //self.labAttendees.text = event.attenedees;
+    self.labLocation.text = event.location.location;
 
-    self.labTime.text = [Utils formateTime:event.startTime];
+    self.labTime.text = [Utils formateTime:event.start];
 
     if(event.eventType == 0) {
         self.imgStatus.image = [UIImage imageNamed:@"circle2"];

@@ -11,8 +11,9 @@
 @interface Location : NSObject
 
 @property int id;
-@property NSString * locationName;
-@property NSNumber * longitude;
-@property NSNumber * dimension;
+@property NSString * location;
+@property NSString * photo;
+
++(Location *) parseLocation:(NSDictionary *) json;
 
 @end
