@@ -28,4 +28,11 @@
 +(NSMutableDictionary *) getEventSectionDict: (NSArray*)events;
 
 
++ (NSString *) convertObj2Json:(id)classInstance;
+
++(NSString *) dictionary2String:(NSDictionary *) dict;
+
++(NSMutableURLRequest *) createHttpRequest:(NSString *) url andMethod:(NSString *) methood;
+
+
 @end

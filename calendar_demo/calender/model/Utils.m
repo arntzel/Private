@@ -8,6 +8,9 @@
 
 #import "Utils.h"
 
+#import <Foundation/NSObjCRuntime.h>
+#import <objc/runtime.h>
+
 @implementation Utils
 
 +(NSDate *) parseNSDate:(NSString*) strDate
@@ -96,6 +99,56 @@
      }
 
     return dict;
+}
+
++ (NSString *) convertObj2Json:(id) classInstance
+{
+
+    Class clazz = [classInstance class];
+    u_int count;
+
+    objc_property_t * properties = class_copyPropertyList(clazz, &count);
+    NSMutableArray* propertyArray = [NSMutableArray arrayWithCapacity:count];
+    NSMutableArray* valueArray = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i < count ; i++)
+    {
+        objc_property_t prop=properties[i];
+        const char* propertyName = property_getName(prop);
+        [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+        id value =  [classInstance performSelector:NSSelectorFromString([NSString stringWithUTF8String:propertyName])];
+        if(value ==nil)
+            [valueArray addObject:@""];
+        else {
+            [valueArray addObject:value];
+        }
+    }
+    
+    free(properties);
+
+    NSDictionary* dtoDic = [NSDictionary dictionaryWithObjects:valueArray forKeys:propertyArray];
+
+    return [Utils dictionary2String:dtoDic];
+}
+
++(NSString *) dictionary2String:(NSDictionary *) dict
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    return json;
+}
+
++(NSMutableURLRequest *) createHttpRequest:(NSString *) strurl andMethod:(NSString *) methood
+{
+    NSURL * url = [NSURL URLWithString:strurl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval:20];
+
+    [request setHTTPMethod:methood];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    return request;
 }
 
 @end

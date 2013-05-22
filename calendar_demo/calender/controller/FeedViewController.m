@@ -17,6 +17,8 @@
 #import "KalLogic.h"
 #import "KalDate.h"
 #import "NSDateAdditions.h"
+
+#import "UserModel.h"
 #import "Model.h"
 #import "Utils.h"
 
@@ -91,7 +93,7 @@
     NSString * user = @"fx.fangxiang@gmail.com";
     NSString * pwd = @"fangxiang";
 
-    [[Model getInstance] login:user withPassword:pwd andCallback:^(NSInteger error, User *user) {
+    [[UserModel getInstance] login:user withPassword:pwd andCallback:^(NSInteger error, User *user) {
 
         if(error == 0) {
             [self loadData];
