@@ -29,46 +29,15 @@ const CGSize kTileSize = { 46.f, 44.f };
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef ref=UIGraphicsGetCurrentContext();
+    CGContextRef ctx=UIGraphicsGetCurrentContext();
     
-    CGContextBeginPath(ref);
-    CGContextMoveToPoint(ref, 0,0);
-    CGContextAddLineToPoint(ref, self.frame.size.width,0);
-    CGFloat lineColor1[4]={1.0,1.0,1.0,1.0};
-    CGContextSetStrokeColor(ref, lineColor1);
-    CGContextStrokePath(ref);
-    
-    CGContextBeginPath(ref);
-    CGContextMoveToPoint(ref, 0,1);
-    CGContextAddLineToPoint(ref, self.frame.size.width,1);
-    CGFloat lineColor2[4]={210/255.0,210/255.0,210/255.0,1.0};
-    CGContextSetStrokeColor(ref, lineColor2);
-    CGContextStrokePath(ref);
-    
-    CGContextBeginPath(ref);
-    CGContextMoveToPoint(ref, self.frame.size.width - 1,0);
-    CGContextAddLineToPoint(ref, self.frame.size.width - 1,self.frame.size.height);
-    CGFloat lineColor3[4]={242/255.0,242/255.0,242/255.0,1.0};
-    CGContextSetStrokeColor(ref, lineColor3);
-    CGContextStrokePath(ref);
-    
-    CGContextBeginPath(ref);
-    CGContextMoveToPoint(ref, self.frame.size.width - 2,1);
-    CGContextAddLineToPoint(ref, self.frame.size.width - 2,self.frame.size.height);
-    CGFloat lineColor4[4]={210/255.0,210/255.0,210/255.0,1.0};
-    CGContextSetStrokeColor(ref, lineColor4);
-    CGContextStrokePath(ref);
-    
-        
-    
-    
-    
-  CGContextRef ctx = UIGraphicsGetCurrentContext();
-  CGFloat fontSize = 15.f;
-  UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
     UIColor *textColor = nil;
     if (self.selected) {
         textColor = [UIColor whiteColor];
+        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
+        CGContextSetLineWidth(ctx, 1.0f);
+        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
+        CGContextFillPath(ctx);
     }
     else if(self.belongsToAdjacentMonth)
     {
@@ -79,6 +48,43 @@ const CGSize kTileSize = { 46.f, 44.f };
         textColor = [UIColor colorWithRed:140.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0];
     }
     
+    
+    
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, 0,0);
+    CGContextAddLineToPoint(ctx, self.frame.size.width,0);
+    CGFloat lineColor1[4]={1.0,1.0,1.0,1.0};
+    CGContextSetStrokeColor(ctx, lineColor1);
+    CGContextStrokePath(ctx);
+    
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, 0,1);
+    CGContextAddLineToPoint(ctx, self.frame.size.width,1);
+    CGFloat lineColor2[4]={210/255.0,210/255.0,210/255.0,1.0};
+    CGContextSetStrokeColor(ctx, lineColor2);
+    CGContextStrokePath(ctx);
+    
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, self.frame.size.width - 1,0);
+    CGContextAddLineToPoint(ctx, self.frame.size.width - 1,self.frame.size.height);
+    CGFloat lineColor3[4]={242/255.0,242/255.0,242/255.0,1.0};
+    CGContextSetStrokeColor(ctx, lineColor3);
+    CGContextStrokePath(ctx);
+    
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, self.frame.size.width - 2,1);
+    CGContextAddLineToPoint(ctx, self.frame.size.width - 2,self.frame.size.height);
+    CGFloat lineColor4[4]={210/255.0,210/255.0,210/255.0,1.0};
+    CGContextSetStrokeColor(ctx, lineColor4);
+    CGContextStrokePath(ctx);
+    
+        
+    
+    
+    
+//  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGFloat fontSize = 17.f;
+  UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
     CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
     CGContextTranslateCTM(ctx, 0, kTileSize.height);
     CGContextScaleCTM(ctx, 1, -1);
@@ -91,41 +97,76 @@ const CGSize kTileSize = { 46.f, 44.f };
   CGSize textSize = [dayText sizeWithFont:font];
   CGFloat textX, textY;
     
-    CGFloat radio = 0.0f;
-    if (n < 10) {
-        radio = 0.5f;
+  textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
+//  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
+    if (n == 1) {
+        textY = 14.0f;
     }
     else
     {
-        radio = 0.4f;
+        textY = 17.0f;
     }
-  textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 2;
-  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
-
-    
   [textColor setFill];
   CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
 
     //draw month
     if (n == 1) {
+        fontSize = 10.0f;
+        UIFont *monthFont = [UIFont boldSystemFontOfSize:fontSize];
+        
+        CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
+        CGContextTranslateCTM(ctx, 0, 0);
         NSArray *monthArray = [NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"April",@"May",@"Jun",@"July",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec",nil];
         NSString *monthName = [monthArray objectAtIndex:date.month - 1];
-        
-        
-        
         const char *cMonthName = [monthName cStringUsingEncoding:NSUTF8StringEncoding];
-        CGSize textSize = [monthName sizeWithFont:font];
-        CGFloat textX, textY;
-
-        textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 2;
-        textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 16;
+        textSize = [monthName sizeWithFont:monthFont];
         
+        textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
+        textY = 30;
         
         [textColor setFill];
         CGContextShowTextAtPoint(ctx, textX, textY, cMonthName, [monthName length]);
     }
     
+    //draw event
+    
+    NSInteger count = rand()%4;
+    if (count == 0) {
+        return;
+    }
+    
+    CGFloat dotLength = 10 * count - 5;
+    CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
+    
+    
 
+    CGFloat OffsetY = 8.0f;
+    if (n == 1) {
+        OffsetY = 5.0f;
+    }
+    
+    if (count > 2) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 255, 1);
+        CGContextSetLineWidth(ctx, 1.0f);
+        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
+        CGContextFillPath(ctx);
+        OffsetX += 10.0f;
+    }
+    if(count > 1)
+    {
+        CGContextSetRGBFillColor(ctx, 255, 0, 0, 1);
+        CGContextSetLineWidth(ctx, 1.0f);
+        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
+        CGContextFillPath(ctx);
+        OffsetX += 10.0f;
+    }
+    if(count > 0)
+    {
+        CGContextSetRGBFillColor(ctx, 0, 255, 0, 1);
+        CGContextSetLineWidth(ctx, 1.0f);
+        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
+        CGContextFillPath(ctx);
+    }
 }
 
 - (void)resetState
