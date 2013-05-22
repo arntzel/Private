@@ -96,13 +96,7 @@ static Model * instance;
         } else {
             callback(-1, nil);
         }
-
-        //Mock up
-        NSArray * events = [self createMockupEvents];
-        callback(0, events);
     }];
-
-    
 }
 
 -(NSArray *) createMockupEvents {

@@ -21,11 +21,22 @@
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
     event.description = [json objectForKey:@"description"];
-    
-    event.duration_days = [[json objectForKey:@"duration_days"] intValue];
-    event.duration_hours = [[json objectForKey:@"duration_hours"] intValue];
-    event.duration_minutes = [[json objectForKey:@"duration_minutes"] intValue];
 
+    id obj = [json objectForKey:@"duration_days"];
+    if(![obj isKindOfClass:[NSNull class]]) {
+       event.duration_days = [obj intValue];
+    }
+
+    obj = [json objectForKey:@"duration_hours"];
+    if(![obj isKindOfClass:[NSNull class]]) {
+        event.duration_hours = [obj intValue];
+    }
+
+    obj = [json objectForKey:@"duration_minutes"];
+    if(![obj isKindOfClass:[NSNull class]]) {
+        event.duration_minutes = [obj intValue];
+    }
+    
     event.start_type = [json objectForKey:@"start_type"];
     event.start = [Utils parseNSDate:[json objectForKey:@"start"]];
     event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
