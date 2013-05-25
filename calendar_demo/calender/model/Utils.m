@@ -15,6 +15,10 @@
 
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
+    if(![strDate isKindOfClass:[NSNull class]]) {
+       return nil;
+    }
+
     strDate = [Utils formateStringDate:strDate];
 
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -59,6 +63,15 @@
 
 
     return [dateFormatter stringFromDate:time];
+}
+
++(NSString *) formateDate:(NSDate *) time
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yyyy:MM:dd HH:mm:ss"];
+
+    return [dateFormatter stringFromDate:time];    
 }
 
 +(NSMutableArray *) getEventSectionArray: (NSArray*)events

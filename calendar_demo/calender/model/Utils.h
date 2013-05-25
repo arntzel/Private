@@ -22,6 +22,9 @@
 
 +(NSString *) formateDay:(NSDate *) time;
 
++(NSString *) formateDate:(NSDate *) time;
+
+
 +(NSMutableArray *) getEventSectionArray: (NSArray*)events;
 
 //NSString -> NSMutableArray<Event>
