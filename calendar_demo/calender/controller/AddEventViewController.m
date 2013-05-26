@@ -8,6 +8,7 @@
 
 #import "AddEventViewController.h"
 #import <UIKit/UIImagePickerController.h>
+#import "AddLocationViewController.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *eventPhotoView;
@@ -76,10 +77,15 @@
     [picker dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)btnInvitePeople:(id)sender {
-}
+#pragma mark -
+#pragma mark AddLocation
 
 - (IBAction)btnAddLocation:(id)sender {
+    AddLocationViewController *addLocation = [[AddLocationViewController alloc] initWithNibName:@"AddLocationViewController" bundle:nil];
+    [self.navigationController pushViewController:addLocation animated:YES];
+}
+
+- (IBAction)btnInvitePeople:(id)sender {
 }
 
 - (IBAction)btnAddEventTitle:(id)sender {
@@ -93,9 +99,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-- (void)viewDidUnload {
+- (void)dealloc
+{
     [self setEventPhotoView:nil];
-    [super viewDidUnload];
 }
+
 @end
