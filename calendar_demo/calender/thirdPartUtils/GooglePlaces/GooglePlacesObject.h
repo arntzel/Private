@@ -17,6 +17,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "googleAPIKey.h"
 
 #define	kAccounting	@"accounting"
 #define	kAirport	@"airport"
@@ -116,7 +117,7 @@
 #define	kVeterinaryCare	@"veterinary_care"
 #define	kZoo	@"zoo"
 
-#define kGOOGLE_API_KEY @"AIzaSyCnIMUg0rkv2pQ3OnOeAPmJ5bVDi2jajYQ"
+#define kGOOGLE_API_KEY googleAPIKey
 
 @interface GooglePlacesObject : NSObject
 {

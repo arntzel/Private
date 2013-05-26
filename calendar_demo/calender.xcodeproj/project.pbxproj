@@ -182,6 +182,7 @@
 		764404F01752510C00B11BDE /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		764404F11752510C00B11BDE /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		764404F21752510C00B11BDE /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		76440502175254EF00B11BDE /* googleAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = googleAPIKey.h; sourceTree = "<group>"; };
 		76C22D66173FCD3000AC7519 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
@@ -391,6 +392,7 @@
 		764404CE1752510C00B11BDE /* thirdPartUtils */ = {
 			isa = PBXGroup;
 			children = (
+				76440502175254EF00B11BDE /* googleAPIKey.h */,
 				764404CF1752510C00B11BDE /* GooglePlaces */,
 				764404D41752510C00B11BDE /* GTM */,
 				764404D91752510C00B11BDE /* SBJSON */,
