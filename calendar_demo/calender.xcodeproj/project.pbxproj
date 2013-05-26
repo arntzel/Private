@@ -29,6 +29,9 @@
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
 		3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */; };
+		764404781751F06000B11BDE /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764404761751F06000B11BDE /* AddEventViewController.m */; };
+		764404791751F06000B11BDE /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764404771751F06000B11BDE /* AddEventViewController.xib */; };
+		7644047C1751F8E300B11BDE /* RootNavContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7644047B1751F8E300B11BDE /* RootNavContrller.m */; };
 		76C22D7E173FCD3000AC7519 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76C22D66173FCD3000AC7519 /* Kal.bundle */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -95,6 +98,11 @@
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
 		3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarIntegrationView.h; sourceTree = "<group>"; };
 		3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarIntegrationView.m; sourceTree = "<group>"; };
+		764404751751F06000B11BDE /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		764404761751F06000B11BDE /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		764404771751F06000B11BDE /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
+		7644047A1751F8E300B11BDE /* RootNavContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavContrller.h; sourceTree = "<group>"; };
+		7644047B1751F8E300B11BDE /* RootNavContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavContrller.m; sourceTree = "<group>"; };
 		76C22D66173FCD3000AC7519 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
@@ -261,8 +269,13 @@
 		3DB9780B174A2814005B462E /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				7644047A1751F8E300B11BDE /* RootNavContrller.h */,
+				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
 				3DB9780C174A2832005B462E /* FeedViewController.h */,
 				3DB9780D174A2832005B462E /* FeedViewController.m */,
+				764404751751F06000B11BDE /* AddEventViewController.h */,
+				764404761751F06000B11BDE /* AddEventViewController.m */,
+				764404771751F06000B11BDE /* AddEventViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -407,6 +420,7 @@
 				3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */,
 				3D9AD89C1740B4AE0017B69E /* Default-568h@2x.png in Resources */,
 				3DB97809174A1424005B462E /* EventView.xib in Resources */,
+				764404791751F06000B11BDE /* AddEventViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +456,8 @@
 				9402B06F174D0B0F00E1C9FD /* UserProfile.m in Sources */,
 				9402B0721750A02600E1C9FD /* Message.m in Sources */,
 				9402B0751750A95E00E1C9FD /* Buddy.m in Sources */,
+				764404781751F06000B11BDE /* AddEventViewController.m in Sources */,
+				7644047C1751F8E300B11BDE /* RootNavContrller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
