@@ -7,6 +7,8 @@
 //
 
 #import "FeedViewController.h"
+#import "AddEventViewController.h"
+
 #import "Navigation.h"
 
 #import "EventView.h"
@@ -52,6 +54,8 @@
     
     navigation = [Navigation createNavigationView];
     [self.view addSubview:navigation];
+    [navigation.leftBtn addTarget:self action:@selector(btnManu:) forControlEvents:UIControlEventTouchUpInside];
+    [navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = navigation.frame.size.height;
     
@@ -73,10 +77,9 @@
     [self.view addSubview:tableView];
     
 
+    
     NSDate *date = [NSDate date];
-    
     logic = [[KalLogic alloc] initForDate:date];
-    
     KalView *kalView = [[KalView alloc] initWithFrame:[self.view bounds] delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [kalView setUserInteractionEnabled:YES];
     [kalView setMultipleTouchEnabled:YES];
@@ -85,7 +88,13 @@
     
 
 
-    [self login];
+//    [self login];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void) login {
@@ -124,6 +133,22 @@
 }
 
 
+#pragma mark -
+#pragma mark btnEvent
+
+- (void)btnManu:(id)sender
+{
+    
+}
+
+- (void)btnAddEvent:(id)sender
+{
+    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
+    [self.navigationController pushViewController:addEvent animated:YES];
+}
+
+#pragma mark -
+#pragma mark tableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     NSLog(@"numberOfRowsInSection:%d", section);
@@ -218,7 +243,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark -
 #pragma mark kalViewDelegate
 
 - (void)didSelectDate:(KalDate *)date

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "FeedViewController.h"
+#import "RootNavContrller.h"
 
 @implementation AppDelegate
 
@@ -16,8 +17,14 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[FeedViewController alloc] init];
-    self.window.rootViewController = self.viewController;
+    
+    FeedViewController *viewController = [[FeedViewController alloc] init];
+    RootNavContrller *navController = [[RootNavContrller alloc] initWithRootViewController:viewController];
+
+
+    
+    
+    [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
     return YES;
 }
