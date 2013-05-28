@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "googleAPIKey.h"
 
-
+@class GPlaceApi;
 @protocol GPlaceApiDelegate
 
-- (void)upDateWithArray:(NSArray *)array;
+- (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi*)api;
 
 @end
 
 @interface GPlaceApi : NSObject
-- (void)startRequestWithStringQuery:(NSString *)query;
+- (void)startRequestWithTxtSearchQuery:(NSString *)query;
+
+- (void)startRequestWithNearBySearchQuery:(CGPoint)place Radius:(NSInteger)radius;
 
 @property(nonatomic,weak) id<GPlaceApiDelegate> delegate;
 @end

@@ -11,13 +11,18 @@
 #import "GPlaceApi.h"
 #import "GPlaceDataSource.h"
 
+#define NearBySearchRadius 5000
+
 @interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate>
 {
     BOOL firstLocationUpdate_;
     CLLocationCoordinate2D currentCoordinate;
     
-    GPlaceApi *GPApi;
+    GPlaceApi *GPTxtSearchApi;
+    GPlaceApi *GPNearByApi;
+    
     GPlaceDataSource *txtSearchDataSource;
+    GPlaceDataSource *nearByDataSource;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
 @end
@@ -29,11 +34,17 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        GPApi = [[GPlaceApi alloc] init];
-        GPApi.delegate = self;
+        GPTxtSearchApi = [[GPlaceApi alloc] init];
+        GPTxtSearchApi.delegate = self;
+        
+        GPNearByApi = [[GPlaceApi alloc] init];
+        GPNearByApi.delegate = self;
         
         txtSearchDataSource = [[GPlaceDataSource alloc] init];
         txtSearchDataSource.delegate = self;
+        
+        nearByDataSource = [[GPlaceDataSource alloc] init];
+        nearByDataSource.delegate = self;
     }
     return self;
 }
@@ -61,33 +72,53 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.mapView.myLocationEnabled = YES;
     });
-    
-    
-    
+
     self.locationSearchBar.delegate = self;
+    
     self.txtSearchTabView.dataSource = txtSearchDataSource;
     self.txtSearchTabView.delegate = txtSearchDataSource;
     self.txtSearchTabView.hidden = YES;
+    
+    self.nearBySearchTabView.dataSource = nearByDataSource;
+    self.nearBySearchTabView.delegate = nearByDataSource;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [GPApi startRequestWithStringQuery:searchText];
+    [GPTxtSearchApi startRequestWithTxtSearchQuery:searchText];
 }
 
-- (void)upDateWithArray:(NSArray *)array
+- (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
-    [txtSearchDataSource setData:array];
-    [self.txtSearchTabView reloadData];
-    self.txtSearchTabView.hidden = NO;
+    if (api == GPTxtSearchApi) {
+        [txtSearchDataSource setData:array];
+        [self.txtSearchTabView reloadData];
+        self.txtSearchTabView.hidden = NO;
+    }
+    else if (api == GPNearByApi)
+    {
+        [nearByDataSource setData:array];
+        [self.nearBySearchTabView reloadData];
+    }
+
 }
 
-- (void)didSelectPlace:(CGPoint)place
+- (void)didSelectPlace:(CGPoint)place GPlaceDataSource:(GPlaceDataSource *)dataSource
 {
-    self.txtSearchTabView.hidden = YES;
-    currentCoordinate = CLLocationCoordinate2DMake(place.x, place.y);
-    self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                         zoom:14];
+    if (dataSource == txtSearchDataSource) {
+        self.txtSearchTabView.hidden = YES;
+        currentCoordinate = CLLocationCoordinate2DMake(place.x, place.y);
+        self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
+                                                             zoom:14];
+        
+        
+        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
+        [self.locationSearchBar resignFirstResponder];
+    }
+    else if (dataSource == nearByDataSource)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
@@ -113,6 +144,8 @@
         firstLocationUpdate_ = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         currentCoordinate = location.coordinate;
+        
+        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
                                                          zoom:14];
     }

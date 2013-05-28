@@ -27,11 +27,24 @@
     return self;
 }
 
-- (void)startRequestWithStringQuery:(NSString *)query
+- (void)startRequestWithTxtSearchQuery:(NSString *)query
 {
     [queryConnect cancel];
     
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&sensor=true&key=%@",query,googleAPIKey];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    
+    queryConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
+- (void)startRequestWithNearBySearchQuery:(CGPoint)place Radius:(NSInteger)radius
+{
+    [queryConnect cancel];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%d&sensor=false&key=%@",place.x,place.y,radius,googleAPIKey];
     
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -49,7 +62,7 @@
     }
     NSArray *resultArray = [json objectForKey:@"results"];
 
-    [self.delegate upDateWithArray:resultArray];
+    [self.delegate upDateWithArray:resultArray GPlaceApi:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {    

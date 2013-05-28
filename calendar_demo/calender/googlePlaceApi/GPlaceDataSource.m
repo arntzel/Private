@@ -49,6 +49,6 @@
     NSNumber *lat = [location objectForKey:@"lat"];
     NSNumber *lng = [location objectForKey:@"lng"];
     
-    [self.delegate didSelectPlace:CGPointMake([lat floatValue], [lng floatValue])];
+    [self.delegate didSelectPlace:CGPointMake([lat floatValue], [lng floatValue]) GPlaceDataSource:self];
 }
 @end

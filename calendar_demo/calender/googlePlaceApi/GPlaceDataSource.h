@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class GPlaceDataSource;
+
 @protocol GPlaceDataSourceDelegate <NSObject>
 
-- (void)didSelectPlace:(CGPoint)place;
+- (void)didSelectPlace:(CGPoint)place GPlaceDataSource:(GPlaceDataSource*)dataSource;
 
 @end
 
