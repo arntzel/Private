@@ -29,6 +29,8 @@
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
 		3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */; };
+		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
+		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
 		764404781751F06000B11BDE /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764404761751F06000B11BDE /* AddEventViewController.m */; };
 		764404791751F06000B11BDE /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764404771751F06000B11BDE /* AddEventViewController.xib */; };
 		7644047C1751F8E300B11BDE /* RootNavContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7644047B1751F8E300B11BDE /* RootNavContrller.m */; };
@@ -128,6 +130,10 @@
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
 		3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarIntegrationView.h; sourceTree = "<group>"; };
 		3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarIntegrationView.m; sourceTree = "<group>"; };
+		761F0D1A1754E031009650F4 /* GPlaceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceApi.h; sourceTree = "<group>"; };
+		761F0D1B1754E031009650F4 /* GPlaceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceApi.m; sourceTree = "<group>"; };
+		761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceDataSource.h; sourceTree = "<group>"; };
+		761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceDataSource.m; sourceTree = "<group>"; };
 		764404751751F06000B11BDE /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		764404761751F06000B11BDE /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		764404771751F06000B11BDE /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
@@ -262,6 +268,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				761F0D191754E002009650F4 /* googlePlaceApi */,
 				3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */,
 				3D6151A91734A391003D72B0 /* calender */,
 				3D6151A21734A391003D72B0 /* Frameworks */,
@@ -387,6 +394,18 @@
 				764404CB17523DF100B11BDE /* AddLocationViewController.xib */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		761F0D191754E002009650F4 /* googlePlaceApi */ = {
+			isa = PBXGroup;
+			children = (
+				761F0D1A1754E031009650F4 /* GPlaceApi.h */,
+				761F0D1B1754E031009650F4 /* GPlaceApi.m */,
+				761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */,
+				761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */,
+			);
+			name = googlePlaceApi;
+			path = calender/googlePlaceApi;
 			sourceTree = "<group>";
 		};
 		764404CE1752510C00B11BDE /* thirdPartUtils */ = {
@@ -650,6 +669,8 @@
 				764404FF1752510C00B11BDE /* SBJsonTokeniser.m in Sources */,
 				764405001752510C00B11BDE /* SBJsonUTF8Stream.m in Sources */,
 				764405011752510C00B11BDE /* SBJsonWriter.m in Sources */,
+				761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */,
+				761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

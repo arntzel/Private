@@ -8,12 +8,18 @@
 
 #import "AddLocationViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "GPlaceApi.h"
+#import "GPlaceDataSource.h"
 
-@interface AddLocationViewController (){
+@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate>
+{
     BOOL firstLocationUpdate_;
+    CLLocationCoordinate2D currentCoordinate;
+    
+    GPlaceApi *GPApi;
+    GPlaceDataSource *txtSearchDataSource;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
-
 @end
 
 @implementation AddLocationViewController
@@ -23,6 +29,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        GPApi = [[GPlaceApi alloc] init];
+        GPApi.delegate = self;
+        
+        txtSearchDataSource = [[GPlaceDataSource alloc] init];
+        txtSearchDataSource.delegate = self;
     }
     return self;
 }
@@ -36,7 +47,7 @@
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 44, 320, 200) camera:camera];
     self.mapView.settings.compassButton = YES;
     self.mapView.settings.myLocationButton = YES;
-    [self.view addSubview:self.mapView];
+    [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
     
     
     // Listen to the myLocation property of GMSMapView.
@@ -50,7 +61,35 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.mapView.myLocationEnabled = YES;
     });
+    
+    
+    
+    self.locationSearchBar.delegate = self;
+    self.txtSearchTabView.dataSource = txtSearchDataSource;
+    self.txtSearchTabView.delegate = txtSearchDataSource;
+    self.txtSearchTabView.hidden = YES;
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [GPApi startRequestWithStringQuery:searchText];
+}
+
+- (void)upDateWithArray:(NSArray *)array
+{
+    [txtSearchDataSource setData:array];
+    [self.txtSearchTabView reloadData];
+    self.txtSearchTabView.hidden = NO;
+}
+
+- (void)didSelectPlace:(CGPoint)place
+{
+    self.txtSearchTabView.hidden = YES;
+    currentCoordinate = CLLocationCoordinate2DMake(place.x, place.y);
+    self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
+                                                         zoom:14];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,9 +112,16 @@
         // location.
         firstLocationUpdate_ = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
+        currentCoordinate = location.coordinate;
+        self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
                                                          zoom:14];
     }
 }
 
+- (void)viewDidUnload {
+    [self setLocationSearchBar:nil];
+    [self setTxtSearchTabView:nil];
+    [self setNearBySearchTabView:nil];
+    [super viewDidUnload];
+}
 @end
