@@ -1,18 +1,19 @@
-//
-//  Navigation.h
-//  calender
-//
-//  Created by xiangfang on 13-5-11.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 
+/*
+ The Customer Navigation View, contain a left button , right button and a title lable
+ */
 @interface Navigation : UIView
 
 @property IBOutlet UIButton * leftBtn;
 @property IBOutlet UIButton * rightBtn;
 
+/*
+ Create a default Navigation View
+ Please set the title, left btn and right btn style after the view created.
+ */
 +(Navigation *) createNavigationView;
 
 @end

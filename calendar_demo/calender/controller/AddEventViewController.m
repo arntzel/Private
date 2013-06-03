@@ -1,10 +1,4 @@
-//
-//  ViewController.m
-//  calender
-//
-//  Created by zyax86 on 13-5-26.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "AddEventViewController.h"
 #import <UIKit/UIImagePickerController.h>

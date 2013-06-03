@@ -1,16 +1,13 @@
-//
-//  PlanView.h
-//  calender
-//
-//  Created by fang xiang on 13-5-4.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
 
 #define PlanView_HEIGHT 105
 
+
+/*
+ A EventView in the FeedViewController
+ */
 @interface EventView : UIView
 
 @property IBOutlet UILabel * labTitle;
@@ -21,8 +18,14 @@
 @property IBOutlet UIImageView * imgStatus;
 
 
+/*
+ Update the date in the View
+ */
 -(void) refreshView:(Event *) event;
 
+/*
+ Create a EventView object with default data
+ */
 +(EventView *) createEventView;
 
 @end
