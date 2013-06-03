@@ -1,10 +1,4 @@
-//
-//  Buddy.h
-//  calender
-//
-//  Created by xiangfang on 13-5-25.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 
@@ -21,6 +15,9 @@
 @property NSDate * last_login;
 
 
+/*
+ Parse Buddy object from json data.
+ */
 +(Buddy*) parseBuddy:(NSDictionary *) json;
 
 @end

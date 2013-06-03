@@ -11,6 +11,9 @@
 
 @interface UserModel : NSObject
 
+/*
+ Get the single instance of UserModel object
+ */
 +(UserModel *) getInstance;
 
 /**
@@ -36,7 +39,7 @@
 
 
 /**
- Login
+ Login with usernam and password.
  */
 -(void) login:(NSString *) username withPassword:(NSString *) pwd andCallback: (void (^)(NSInteger error, User * user))callback;
 

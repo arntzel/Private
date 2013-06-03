@@ -39,6 +39,10 @@
 
 @property NSDate * sent_at;
 
+
+/*
+ Parse Message object from json data.
+ */
 +(Message *) parseMSeesage:(NSDictionary *) json;
 
 @end

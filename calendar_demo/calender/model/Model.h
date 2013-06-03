@@ -62,6 +62,9 @@
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback;
 
 
+/*
+ Get the single instance of Model object
+ */
 +(Model *) getInstance;
 
 

@@ -1,10 +1,4 @@
-//
-//  Buddy.m
-//  calender
-//
-//  Created by xiangfang on 13-5-25.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "Buddy.h"
 #import "Utils.h"

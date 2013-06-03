@@ -59,6 +59,9 @@
 @property int eventType;
 
 
+/*
+ Parse Event object from json data.
+ */
 +(Event *) parseEvent:(NSDictionary *) json;
 
 @end
