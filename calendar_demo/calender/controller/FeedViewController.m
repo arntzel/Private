@@ -1,5 +1,4 @@
 
-
 #import "FeedViewController.h"
 #import "AddEventViewController.h"
 
@@ -18,6 +17,9 @@
 #import "Model.h"
 #import "Utils.h"
 
+/*
+ FeedViewController show the event list and a calender wiget
+ */
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate,KalViewDelegate>
 {
     KalLogic *logic;

@@ -4,6 +4,9 @@
 #import "User.h"
 #import "Location.h"
 
+/*
+
+ */
 @interface Event : NSObject
 
 @property int id;

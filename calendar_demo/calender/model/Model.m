@@ -267,7 +267,7 @@ static Model * instance;
 
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback
 {
-
+//TODO
 }
 
 

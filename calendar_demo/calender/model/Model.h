@@ -5,11 +5,16 @@
 #import "Message.h"
 #import "Buddy.h"
 
+/*
+ All methods are called by UI thread, and return immediately.
+ UI thread may received a notification though callback object when the asynchronous task done.
+ */
 @interface Model : NSObject
 
 
 /**
  Call WebService API to get the lastest events.s
+ NSArray* events: The Event object array
  */
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback;
 
@@ -28,6 +33,7 @@
 
 /**
  Call WebService API to get messages with apikey
+  NSArray* messages: The Message object array
  */
 -(void) getMessages:(void (^)(NSInteger error, NSArray* messages))callback;
 
@@ -46,6 +52,7 @@
 
 /**
  Call WebService API to get buddy with apikey
+  NSArray* buddies: the Buddy object array
  */
 -(void) getBuddies:(void (^)(NSInteger error, NSArray* buddies))callback;
 
