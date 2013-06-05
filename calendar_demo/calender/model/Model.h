@@ -5,6 +5,15 @@
 #import "Message.h"
 #import "Buddy.h"
 
+
+typedef NS_ENUM(NSInteger, ERROCODE) {
+    ERROCODE_OK = 0,   //OK
+    ERROCODE_NETWORK,  //network error
+    ERROCODE_SERVER,   //server errir
+    ERROCODE_UNAUTHORIZED, //unauthorized
+};
+
+
 /*
  All methods are called by UI thread, and return immediately.
  UI thread may received a notification though callback object when the asynchronous task done.

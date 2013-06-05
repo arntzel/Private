@@ -1,7 +1,7 @@
 
 #import "UserModel.h"
 #import "Utils.h"
-
+#import "Model.h"
 
 static UserModel * instance;
 
@@ -39,7 +39,7 @@ static UserModel * instance;
         int status = httpResp.statusCode;
 
         if(status == 201) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
@@ -164,7 +164,7 @@ static UserModel * instance;
         int status = httpResp.statusCode;
 
         if(status == 200) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             //TODO:: parse error type
             //401: UNAUTHORIZED

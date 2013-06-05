@@ -38,10 +38,10 @@ static Model * instance;
                 [events addObject:e];
             }
 
-            callback(0, events);
+            callback(ERROCODE_OK, events);
 
         } else {
-            callback(-1, nil);
+            callback(ERROCODE_SERVER, nil);
         }
     }];
 }
@@ -72,7 +72,7 @@ static Model * instance;
         int status = httpResp.statusCode;
 
         if(status == 202) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
@@ -96,7 +96,7 @@ static Model * instance;
         int status = httpResp.statusCode;
 
         if(status == 204) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
@@ -176,7 +176,7 @@ static Model * instance;
         int status = httpResp.statusCode;
 
         if(status == 202) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
@@ -198,7 +198,7 @@ static Model * instance;
         int status = httpResp.statusCode;
 
         if(status == 204) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
@@ -235,7 +235,7 @@ static Model * instance;
                 [buddies addObject:e];
             }
 
-            callback(0, buddies);
+            callback(ERROCODE_OK, buddies);
             
         } else {
             callback(-1, nil);
@@ -258,7 +258,7 @@ static Model * instance;
         int status = httpResp.statusCode;
 
         if(status == 204) {
-            callback(0);
+            callback(ERROCODE_OK);
         } else {
             callback(-1);
         }
