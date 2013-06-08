@@ -5,6 +5,7 @@
 #import "RootNavContrller.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "googleAPIKey.h"
+#import "SignupViewController.h"
 
 @implementation AppDelegate
 
@@ -12,10 +13,15 @@
 {
     [GMSServices provideAPIKey:(NSString *)googleAPIKey];
     
+    [application setStatusBarHidden:NO withAnimation:NO];
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    FeedViewController *viewController = [[FeedViewController alloc] init];
+    SignupViewController *viewController = [[SignupViewController alloc] init];
+    //FeedViewController * viewController = [[FeedViewController alloc] init];
+    
     RootNavContrller *navController = [[RootNavContrller alloc] initWithRootViewController:viewController];
 
 

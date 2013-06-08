@@ -13,6 +13,7 @@
 		3D046E231762C091008EE2DA /* login_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E1F1762C091008EE2DA /* login_background@2x.png */; };
 		3D046E261762C0D8008EE2DA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D046E251762C0D8008EE2DA /* LoginView.m */; };
 		3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E271762C0EB008EE2DA /* LoginView.xib */; };
+		3D046E301763022F008EE2DA /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D046E2F1763022F008EE2DA /* SignupViewController.m */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -95,6 +96,8 @@
 		3D046E241762C0D8008EE2DA /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		3D046E251762C0D8008EE2DA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		3D046E271762C0EB008EE2DA /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		3D046E2E1763022F008EE2DA /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		3D046E2F1763022F008EE2DA /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -359,6 +362,8 @@
 				764404C917523DF100B11BDE /* AddLocationViewController.h */,
 				764404CA17523DF100B11BDE /* AddLocationViewController.m */,
 				764404CB17523DF100B11BDE /* AddLocationViewController.xib */,
+				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
+				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */,
 				761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */,
 				3D046E261762C0D8008EE2DA /* LoginView.m in Sources */,
+				3D046E301763022F008EE2DA /* SignupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

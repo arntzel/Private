@@ -1,0 +1,64 @@
+//
+//  SignupViewController.m
+//  calender
+//
+//  Created by fang xiang on 13-6-8.
+//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//
+
+#import "SignupViewController.h"
+#import "LoginView.h"
+
+#import "FeedViewController.h"
+
+@interface SignupViewController ()
+
+@end
+
+@implementation SignupViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    CGRect frame = self.view.frame;
+    LoginView * view = [LoginView createView];
+    
+    [view.signupEmail addTarget:self action:@selector(signupEmail) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    CGRect frame2 = view.frame;
+    frame2.origin.y  = (frame.size.height - frame2.size.height)/2;
+    view.frame = frame2;
+    
+    [self.view addSubview: view ];
+    
+    
+}
+
+-(void) signupEmail {
+    
+    FeedViewController * fdController = [[FeedViewController alloc] init];
+    [self.navigationController pushViewController:fdController animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+@end
