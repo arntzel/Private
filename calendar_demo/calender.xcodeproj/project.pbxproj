@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D046E201762C091008EE2DA /* btn_login_fb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E1C1762C091008EE2DA /* btn_login_fb@2x.png */; };
+		3D046E211762C091008EE2DA /* btn_login_google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E1D1762C091008EE2DA /* btn_login_google@2x.png */; };
+		3D046E221762C091008EE2DA /* btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E1E1762C091008EE2DA /* btn_login@2x.png */; };
+		3D046E231762C091008EE2DA /* login_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E1F1762C091008EE2DA /* login_background@2x.png */; };
+		3D046E261762C0D8008EE2DA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D046E251762C0D8008EE2DA /* LoginView.m */; };
+		3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E271762C0EB008EE2DA /* LoginView.xib */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -82,6 +88,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D046E1C1762C091008EE2DA /* btn_login_fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_login_fb@2x.png"; sourceTree = "<group>"; };
+		3D046E1D1762C091008EE2DA /* btn_login_google@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_login_google@2x.png"; sourceTree = "<group>"; };
+		3D046E1E1762C091008EE2DA /* btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_login@2x.png"; sourceTree = "<group>"; };
+		3D046E1F1762C091008EE2DA /* login_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_background@2x.png"; sourceTree = "<group>"; };
+		3D046E241762C0D8008EE2DA /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		3D046E251762C0D8008EE2DA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		3D046E271762C0EB008EE2DA /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -326,6 +339,9 @@
 				3DE06C8C174083F40071B8EE /* CalendarIntegrationView.xib */,
 				3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */,
 				3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */,
+				3D046E241762C0D8008EE2DA /* LoginView.h */,
+				3D046E251762C0D8008EE2DA /* LoginView.m */,
+				3D046E271762C0EB008EE2DA /* LoginView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -408,6 +424,10 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3D046E1C1762C091008EE2DA /* btn_login_fb@2x.png */,
+				3D046E1D1762C091008EE2DA /* btn_login_google@2x.png */,
+				3D046E1E1762C091008EE2DA /* btn_login@2x.png */,
+				3D046E1F1762C091008EE2DA /* login_background@2x.png */,
 				3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */,
 				3DE06C8E174086310071B8EE /* bg_line1@2x.png */,
 				3DE06C8F174086310071B8EE /* btn_ok@2x.png */,
@@ -503,6 +523,11 @@
 				764404791751F06000B11BDE /* AddEventViewController.xib in Resources */,
 				764404BC17523BF500B11BDE /* GoogleMaps.bundle in Resources */,
 				764404CD17523DF100B11BDE /* AddLocationViewController.xib in Resources */,
+				3D046E201762C091008EE2DA /* btn_login_fb@2x.png in Resources */,
+				3D046E211762C091008EE2DA /* btn_login_google@2x.png in Resources */,
+				3D046E221762C091008EE2DA /* btn_login@2x.png in Resources */,
+				3D046E231762C091008EE2DA /* login_background@2x.png in Resources */,
+				3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +568,7 @@
 				764404CC17523DF100B11BDE /* AddLocationViewController.m in Sources */,
 				761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */,
 				761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */,
+				3D046E261762C0D8008EE2DA /* LoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
