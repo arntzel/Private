@@ -45,8 +45,14 @@
 
 -(void) signupEmail {
     
+    [self finish];
+    
     FeedViewController * fdController = [[FeedViewController alloc] init];
     [self.navigationController pushViewController:fdController animated:YES];
+}
+
+-(void) finish {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)didReceiveMemoryWarning
