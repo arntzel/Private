@@ -10,6 +10,8 @@
 #import "LoginView.h"
 
 #import "FeedViewController.h"
+#import "menuNavigation.h"
+#import "DDMenuController.h"
 
 @interface SignupViewController ()
 
@@ -47,8 +49,16 @@
     
     [self finish];
     
+    
+    menuNavigation *leftController = [[menuNavigation alloc] init];
     FeedViewController * fdController = [[FeedViewController alloc] init];
-    [self.navigationController pushViewController:fdController animated:YES];
+    
+    
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
+    rootController.leftViewController = leftController;
+    
+
+    [self.navigationController pushViewController:rootController animated:YES];
 }
 
 -(void) finish {

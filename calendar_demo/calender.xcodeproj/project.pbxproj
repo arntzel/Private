@@ -68,6 +68,8 @@
 		76C22D87173FCD3000AC7519 /* KalWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7B173FCD3000AC7519 /* KalWeekView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D88173FCD3000AC7519 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
+		76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D31764AF7100B183B7 /* DDMenuController.m */; };
+		76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D51764AF7100B183B7 /* menuNavigation.m */; };
 		9402B069174BB5D400E1C9FD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B068174BB5D400E1C9FD /* Utils.m */; };
 		9402B06C174CFBBB00E1C9FD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B06B174CFBBA00E1C9FD /* UserModel.m */; };
 		9402B06F174D0B0F00E1C9FD /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B06E174D0B0F00E1C9FD /* UserProfile.m */; };
@@ -180,6 +182,10 @@
 		76C22D7C173FCD3000AC7519 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		76C22D89173FCD6700AC7519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		76DFD0D21764AF7100B183B7 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
+		76DFD0D31764AF7100B183B7 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
+		76DFD0D41764AF7100B183B7 /* menuNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuNavigation.h; sourceTree = "<group>"; };
+		76DFD0D51764AF7100B183B7 /* menuNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuNavigation.m; sourceTree = "<group>"; };
 		9402B067174BB5D400E1C9FD /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		9402B068174BB5D400E1C9FD /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		9402B06A174CFBBA00E1C9FD /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				76DFD0D11764AF7100B183B7 /* Navigation */,
 				761F0D191754E002009650F4 /* googlePlaceApi */,
 				3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */,
 				3D6151A91734A391003D72B0 /* calender */,
@@ -426,6 +433,18 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		76DFD0D11764AF7100B183B7 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				76DFD0D21764AF7100B183B7 /* DDMenuController.h */,
+				76DFD0D31764AF7100B183B7 /* DDMenuController.m */,
+				76DFD0D41764AF7100B183B7 /* menuNavigation.h */,
+				76DFD0D51764AF7100B183B7 /* menuNavigation.m */,
+			);
+			name = Navigation;
+			path = calender/Navigation;
+			sourceTree = "<group>";
+		};
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +594,8 @@
 				761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */,
 				3D046E261762C0D8008EE2DA /* LoginView.m in Sources */,
 				3D046E301763022F008EE2DA /* SignupViewController.m in Sources */,
+				76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */,
+				76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
