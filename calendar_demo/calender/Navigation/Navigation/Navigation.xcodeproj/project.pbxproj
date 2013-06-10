@@ -29,6 +29,8 @@
 		76A5E4BC17660E530058CCE4 /* manuNavSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4B917660E530058CCE4 /* manuNavSetting.png */; };
 		76A5E4BE17660F7E0058CCE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A5E4BD17660F7E0058CCE4 /* QuartzCore.framework */; };
 		76A5E4C0176614290058CCE4 /* manuHeadImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4BF176614290058CCE4 /* manuHeadImage.jpg */; };
+		76A5E4C3176627210058CCE4 /* navigationNotifyCellBg.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A5E4C2176627210058CCE4 /* navigationNotifyCellBg.m */; };
+		76A5E4C6176627540058CCE4 /* navigationMenuCellBg.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A5E4C5176627540058CCE4 /* navigationMenuCellBg.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,10 @@
 		76A5E4B917660E530058CCE4 /* manuNavSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavSetting.png; sourceTree = "<group>"; };
 		76A5E4BD17660F7E0058CCE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		76A5E4BF176614290058CCE4 /* manuHeadImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manuHeadImage.jpg; sourceTree = "<group>"; };
+		76A5E4C1176627210058CCE4 /* navigationNotifyCellBg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifyCellBg.h; sourceTree = "<group>"; };
+		76A5E4C2176627210058CCE4 /* navigationNotifyCellBg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifyCellBg.m; sourceTree = "<group>"; };
+		76A5E4C4176627540058CCE4 /* navigationMenuCellBg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationMenuCellBg.h; sourceTree = "<group>"; };
+		76A5E4C5176627540058CCE4 /* navigationMenuCellBg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationMenuCellBg.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +96,13 @@
 				76002AB41765536D007A3F5D /* navigationNotifyCell.h */,
 				76002AB51765536D007A3F5D /* navigationNotifyCell.m */,
 				76002AB217655357007A3F5D /* navigationNotifyCell.xib */,
+				76A5E4C1176627210058CCE4 /* navigationNotifyCellBg.h */,
+				76A5E4C2176627210058CCE4 /* navigationNotifyCellBg.m */,
 				76002AAF17655277007A3F5D /* navigationMenuCell.h */,
 				76002AB017655277007A3F5D /* navigationMenuCell.m */,
 				76002AAD176550E5007A3F5D /* navigationMenuCell.xib */,
+				76A5E4C4176627540058CCE4 /* navigationMenuCellBg.h */,
+				76A5E4C5176627540058CCE4 /* navigationMenuCellBg.m */,
 				76002A8B17654DB8007A3F5D /* Navigation */,
 				76002A8417654DB8007A3F5D /* Frameworks */,
 				76002A8317654DB8007A3F5D /* Products */,
@@ -235,6 +245,8 @@
 				76002AB117655277007A3F5D /* navigationMenuCell.m in Sources */,
 				76002AB61765536D007A3F5D /* navigationNotifyCell.m in Sources */,
 				76002ABB17656248007A3F5D /* navigationNotifySectionHeader.m in Sources */,
+				76A5E4C3176627210058CCE4 /* navigationNotifyCellBg.m in Sources */,
+				76A5E4C6176627540058CCE4 /* navigationMenuCellBg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

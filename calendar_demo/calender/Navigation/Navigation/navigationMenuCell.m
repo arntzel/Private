@@ -15,7 +15,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    [self.contentView setBackgroundColor:[UIColor colorWithRed:60.0f/255.0f green:65.0f/255.0f blue:70.0f/255.0f alpha:1.0f]];
+    [self.contentView setBackgroundColor:[UIColor colorWithRed:65.0f/255.0f green:70.0f/255.0f blue:75.0f/255.0f alpha:1.0f]];
     
     return self;
 }
