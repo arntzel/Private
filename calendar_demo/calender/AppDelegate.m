@@ -24,8 +24,7 @@
     
     RootNavContrller *navController = [[RootNavContrller alloc] initWithRootViewController:viewController];
 
-
-    
+    [UIApplication sharedApplication].statusBarHidden = YES;
     
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];

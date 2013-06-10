@@ -12,6 +12,7 @@
 #import "FeedViewController.h"
 #import "menuNavigation.h"
 #import "DDMenuController.h"
+#import "LoginNowController.h"
 
 @interface SignupViewController ()
 
@@ -34,15 +35,25 @@
     LoginView * view = [LoginView createView];
     
     [view.signupEmail addTarget:self action:@selector(signupEmail) forControlEvents:UIControlEventTouchUpInside];
-    
+
+    view.loginnow.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(login)];
+    [view.loginnow addGestureRecognizer:tapGes];
+                                                                                                          
     
     CGRect frame2 = view.frame;
     frame2.origin.y  = (frame.size.height - frame2.size.height)/2;
     view.frame = frame2;
     
     [self.view addSubview: view ];
-    
-    
+
+}
+
+-(void)login {
+
+    LoginNowController * ctrl = [[LoginNowController alloc] initWithNibName:@"LoginNowController" bundle:nil];
+    [self.navigationController pushViewController:ctrl animated:YES];
+
 }
 
 -(void) signupEmail {

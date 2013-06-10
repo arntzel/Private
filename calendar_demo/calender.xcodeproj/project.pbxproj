@@ -88,6 +88,8 @@
 		940EBBD4173E7EC8001C3B44 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD0173E7EC8001C3B44 /* location.png */; };
 		940EBBD7173E8033001C3B44 /* header_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD5173E8033001C3B44 /* header_mask.png */; };
 		940EBBD8173E8033001C3B44 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD6173E8033001C3B44 /* header.png */; };
+		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
+		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +212,9 @@
 		940EBBD0173E7EC8001C3B44 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		940EBBD5173E8033001C3B44 /* header_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_mask.png; sourceTree = "<group>"; };
 		940EBBD6173E8033001C3B44 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
+		94F4A6A21765DA0F009F0094 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
+		94F4A6A31765DA0F009F0094 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +376,9 @@
 				764404CB17523DF100B11BDE /* AddLocationViewController.xib */,
 				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
 				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
+				94F4A6A11765DA0F009F0094 /* LoginNowController.h */,
+				94F4A6A21765DA0F009F0094 /* LoginNowController.m */,
+				94F4A6A31765DA0F009F0094 /* LoginNowController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -552,6 +560,7 @@
 				3D046E221762C091008EE2DA /* btn_login@2x.png in Resources */,
 				3D046E231762C091008EE2DA /* login_background@2x.png in Resources */,
 				3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */,
+				94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +605,7 @@
 				3D046E301763022F008EE2DA /* SignupViewController.m in Sources */,
 				76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */,
 				76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */,
+				94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
