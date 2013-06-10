@@ -26,6 +26,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.bounces = NO;
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -56,6 +58,16 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
         }
+        if (indexPath.row == 0) {
+            cell.iconImageView.image = [UIImage imageNamed:@"manuNavCal.png"];
+        }
+        else if (indexPath.row == 1) {
+            cell.iconImageView.image = [UIImage imageNamed:@"manuNavQuestion.png"];
+        }
+        else if (indexPath.row == 2) {
+            cell.detailImageView.image = [UIImage imageNamed:@"manuNavSetting.png"];
+        }
+        
         
         return cell;
     }
@@ -63,10 +75,11 @@
     {
         static NSString *CellIdentifier2 = @"navigationNotifyCell";
         
-        navigationMenuCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+        navigationNotifyCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
         if (cell == nil) {
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
+            cell.headerIcon.image = [UIImage imageNamed:@"manuHeadImage.jpg"];
         }
         
         return cell;
@@ -74,10 +87,21 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 55.0f;
+    }
+    else
+    {
+        return 66.0f;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
-        return 44;
+        return 23;
     }
     return 0;
 }

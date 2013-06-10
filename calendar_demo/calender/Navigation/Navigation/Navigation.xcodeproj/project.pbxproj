@@ -24,6 +24,11 @@
 		76002AB61765536D007A3F5D /* navigationNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76002AB51765536D007A3F5D /* navigationNotifyCell.m */; };
 		76002AB817655E72007A3F5D /* navigationNotifySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76002AB717655E72007A3F5D /* navigationNotifySectionHeader.xib */; };
 		76002ABB17656248007A3F5D /* navigationNotifySectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 76002ABA17656248007A3F5D /* navigationNotifySectionHeader.m */; };
+		76A5E4BA17660E530058CCE4 /* manuNavCal.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4B717660E530058CCE4 /* manuNavCal.png */; };
+		76A5E4BB17660E530058CCE4 /* manuNavQuestion.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4B817660E530058CCE4 /* manuNavQuestion.png */; };
+		76A5E4BC17660E530058CCE4 /* manuNavSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4B917660E530058CCE4 /* manuNavSetting.png */; };
+		76A5E4BE17660F7E0058CCE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A5E4BD17660F7E0058CCE4 /* QuartzCore.framework */; };
+		76A5E4C0176614290058CCE4 /* manuHeadImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76A5E4BF176614290058CCE4 /* manuHeadImage.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +57,11 @@
 		76002AB717655E72007A3F5D /* navigationNotifySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = navigationNotifySectionHeader.xib; sourceTree = "<group>"; };
 		76002AB917656247007A3F5D /* navigationNotifySectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifySectionHeader.h; sourceTree = "<group>"; };
 		76002ABA17656248007A3F5D /* navigationNotifySectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifySectionHeader.m; sourceTree = "<group>"; };
+		76A5E4B717660E530058CCE4 /* manuNavCal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavCal.png; sourceTree = "<group>"; };
+		76A5E4B817660E530058CCE4 /* manuNavQuestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavQuestion.png; sourceTree = "<group>"; };
+		76A5E4B917660E530058CCE4 /* manuNavSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavSetting.png; sourceTree = "<group>"; };
+		76A5E4BD17660F7E0058CCE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		76A5E4BF176614290058CCE4 /* manuHeadImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manuHeadImage.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76A5E4BE17660F7E0058CCE4 /* QuartzCore.framework in Frameworks */,
 				76002A8617654DB8007A3F5D /* UIKit.framework in Frameworks */,
 				76002A8817654DB8007A3F5D /* Foundation.framework in Frameworks */,
 				76002A8A17654DB8007A3F5D /* CoreGraphics.framework in Frameworks */,
@@ -71,6 +82,8 @@
 		76002A7917654DB8007A3F5D = {
 			isa = PBXGroup;
 			children = (
+				76A5E4BD17660F7E0058CCE4 /* QuartzCore.framework */,
+				76A5E4B617660E530058CCE4 /* resource */,
 				76002AB917656247007A3F5D /* navigationNotifySectionHeader.h */,
 				76002ABA17656248007A3F5D /* navigationNotifySectionHeader.m */,
 				76002AB717655E72007A3F5D /* navigationNotifySectionHeader.xib */,
@@ -129,6 +142,17 @@
 				76002A9B17654DB8007A3F5D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		76A5E4B617660E530058CCE4 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				76A5E4BF176614290058CCE4 /* manuHeadImage.jpg */,
+				76A5E4B717660E530058CCE4 /* manuNavCal.png */,
+				76A5E4B817660E530058CCE4 /* manuNavQuestion.png */,
+				76A5E4B917660E530058CCE4 /* manuNavSetting.png */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +215,10 @@
 				76002AAE176550E5007A3F5D /* navigationMenuCell.xib in Resources */,
 				76002AB317655357007A3F5D /* navigationNotifyCell.xib in Resources */,
 				76002AB817655E72007A3F5D /* navigationNotifySectionHeader.xib in Resources */,
+				76A5E4BA17660E530058CCE4 /* manuNavCal.png in Resources */,
+				76A5E4BB17660E530058CCE4 /* manuNavQuestion.png in Resources */,
+				76A5E4BC17660E530058CCE4 /* manuNavSetting.png in Resources */,
+				76A5E4C0176614290058CCE4 /* manuHeadImage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +357,7 @@
 				76002AAA17654DB8007A3F5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
