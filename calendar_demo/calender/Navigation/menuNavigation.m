@@ -1,9 +1,18 @@
 #import "menuNavigation.h"
 #import "DDMenuController.h"
 
+#import "navigationMenuCell.h"
+#import "navigationNotifyCell.h"
+#import "navigationNotifySectionHeader.h"
 
-@interface menuNavigation()
+#import "navigationMenuDataSource.h"
+#import "navigationNotifyDataSource.h"
 
+@interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
+{
+    navigationMenuDataSource *menuDataSource;
+    navigationNotifyDataSource *notifyDataSource;
+}
 @end
 
 
@@ -41,101 +50,121 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    menuDataSource = [[navigationMenuDataSource alloc] init];
+    notifyDataSource = [[navigationNotifyDataSource alloc] init];
+    
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        tableView.delegate = (id<UITableViewDelegate>)self;
-        tableView.dataSource = (id<UITableViewDataSource>)self;
+        tableView.bounces = NO;
+        [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        
+        
         [self.view addSubview:tableView];
+
         self.tableView = tableView;
     }
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    self.tableView = nil;
-}
-
-
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return [menuDataSource numberOfObjects];
+    }
+    else if(section == 1)
+    {
+        return [notifyDataSource numberOfObjects];
+    }
+    return 0;
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    /* 
-     * Content in this cell should be inset the size of kMenuOverlayWidth
-     */
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"Calendar";
-    }
-    else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Pending";
-    }
-    else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Profile & Friends";
-    }
-    
-    return cell;
-    
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
 }
 
-- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        
+        navigationMenuCell *cell = nil;
+        if (cell == nil) {
+            NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
+            cell = [nib objectAtIndex:0];
+        }
+        cell.iconImageView.image = [UIImage imageNamed:[menuDataSource iconImageAtIndex:indexPath.row]];
+        cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
+        cell.titleLabel.text = [menuDataSource titleAtIndex:indexPath.row];
+        
+        [cell setNeedsDisplay];
+        
+        return cell;
+    }
+    else if(indexPath.section == 1)
+    {
+        navigationNotifyCell *cell = nil;
+        
+        if (cell == nil) {
+            NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
+            cell = [nib objectAtIndex:0];
+            cell.headerIcon.image = [UIImage imageNamed:[notifyDataSource iconImageAtIndex:indexPath.row]];
+            cell.NotifyDetailLabel.text = [notifyDataSource titleAtIndex:indexPath.row];
+        }
+        [cell setNeedsDisplay];
+        return cell;
+    }
+    
     return nil;
 }
 
-
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // set the root controller
-    /*
-    DDMenuController *menuController = (DDMenuController*)((SingleViewAppDelegate*)[[UIApplication sharedApplication] delegate]).menuController;
-
-    if ([indexPath row] == 0) {
-        [menuController setRootController:[self localAlbumController] animated:YES];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return [menuDataSource heightForCellAtIndex:indexPath.row];
     }
-    else if ([indexPath row] == 1) {
-        ShareLoginQQZone *sharelogin = [[ShareLoginQQZone alloc] init];
-        if([sharelogin isShareLogin])
-        {
-            [self goToCloudAlbum];
-        }
-        else
-        {
-            ShareLoginQQZone *sharelogin = [[ShareLoginQQZone alloc] init];
-            sharelogin.delegate = self;
-            [sharelogin shareLogin];
-        }
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    else
+    {
+        return [notifyDataSource heightForCellAtIndex:indexPath.row];
     }
-    else if ([indexPath row] == 2) {
-        ShareLoginQQZone *sharelogin = [[ShareLoginQQZone alloc] init];
-        sharelogin.delegate = self;
-        [sharelogin shareLoginOut];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-
-     */
 }
 
-- (void)goToCloudAlbum
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    /*
-    DDMenuController *menuController = (DDMenuController*)((SingleViewAppDelegate*)[[UIApplication sharedApplication] delegate]).menuController;
-    [menuController setRootController:[self cloudAlbumController] animated:YES];
-     */
+    if (section == 1) {
+        return 23;
+    }
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifySectionHeader" owner:self options:nil] ;
+        navigationNotifySectionHeader *header = [nib objectAtIndex:0];
+        [header.title setText:@"NOTIFICATIONS"];
+        [header setNeedsDisplay];
+        return header;
+    }
+    else
+    {
+        return nil;
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
