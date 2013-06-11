@@ -4,7 +4,14 @@
 #import "navigationNotifyCell.h"
 #import "navigationNotifySectionHeader.h"
 
+#import "navigationMenuDataSource.h"
+#import "navigationNotifyDataSource.h"
+
 @interface menuViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    navigationMenuDataSource *menuDataSource;
+    navigationNotifyDataSource *notifyDataSource;
+}
 
 @end
 
@@ -14,7 +21,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-
+        
     }
     return self;
 }
@@ -23,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    menuDataSource = [[navigationMenuDataSource alloc] init];
+    notifyDataSource = [[navigationNotifyDataSource alloc] init];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -34,11 +44,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 3;
+        return [menuDataSource numberOfObjects];
     }
     else if(section == 1)
     {
-        return 10;
+        return [notifyDataSource numberOfObjects];
     }
     return 0;
 }
@@ -51,50 +61,45 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        static NSString *CellIdentifier1 = @"navigationMenuCell";
         
-        navigationMenuCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        navigationMenuCell *cell = nil;
         if (cell == nil) {
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
         }
-        if (indexPath.row == 0) {
-            cell.iconImageView.image = [UIImage imageNamed:@"manuNavCal.png"];
-        }
-        else if (indexPath.row == 1) {
-            cell.iconImageView.image = [UIImage imageNamed:@"manuNavQuestion.png"];
-        }
-        else if (indexPath.row == 2) {
-            cell.detailImageView.image = [UIImage imageNamed:@"manuNavSetting.png"];
-        }
-        
+        cell.iconImageView.image = [UIImage imageNamed:[menuDataSource iconImageAtIndex:indexPath.row]];
+        cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
+        cell.titleLabel.text = [menuDataSource titleAtIndex:indexPath.row];
+
+        [cell setNeedsDisplay];
         
         return cell;
     }
     else if(indexPath.section == 1)
     {
-        static NSString *CellIdentifier2 = @"navigationNotifyCell";
-        
-        navigationNotifyCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+        navigationNotifyCell *cell = nil;
+
         if (cell == nil) {
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
-            cell.headerIcon.image = [UIImage imageNamed:@"manuHeadImage.jpg"];
+            cell.headerIcon.image = [UIImage imageNamed:[notifyDataSource iconImageAtIndex:indexPath.row]];
+            cell.NotifyDetailLabel.text = [notifyDataSource titleAtIndex:indexPath.row];
         }
-        
+        [cell setNeedsDisplay];
         return cell;
     }
+    
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 55.0f;
+        return [menuDataSource heightForCellAtIndex:indexPath.row];
     }
     else
     {
-        return 66.0f;
+        return [notifyDataSource heightForCellAtIndex:indexPath.row];
     }
 }
 
@@ -116,6 +121,7 @@
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifySectionHeader" owner:self options:nil] ;
         navigationNotifySectionHeader *header = [nib objectAtIndex:0];
         [header.title setText:@"NOTIFICATIONS"];
+        [header setNeedsDisplay];
         return header;
     }
     else
@@ -125,10 +131,10 @@
     
 }
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//    return [NSArray arrayWithObjects:@"", @"NOTIFICATIONS", nil];
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -137,6 +143,10 @@
 }
 
 - (void)dealloc {
+    [menuDataSource release];
+    [notifyDataSource release];
+
+    
     [_tableView release];
     [super dealloc];
 }
