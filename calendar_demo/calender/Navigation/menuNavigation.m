@@ -114,7 +114,13 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
             cell.headerIcon.image = [UIImage imageNamed:[notifyDataSource iconImageAtIndex:indexPath.row]];
-            cell.NotifyDetailLabel.text = [notifyDataSource titleAtIndex:indexPath.row];
+            NSString *tempString = [notifyDataSource titleAtIndex:indexPath.row];
+            cell.NotifyDetailLabel.text = tempString;
+            
+            [cell.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:tempString.length];
+            [cell.NotifyDetailLabel setFont:[UIFont systemFontOfSize:12] fromIndex:0 length:tempString.length];
+            [cell.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
+            [cell.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
         }
         [cell setNeedsDisplay];
         return cell;

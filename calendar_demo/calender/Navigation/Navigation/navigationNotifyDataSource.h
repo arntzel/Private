@@ -9,4 +9,6 @@
 - (NSInteger )numberOfObjects;
 
 - (NSInteger )heightForCellAtIndex:(NSInteger)index;
+
+- (NSMutableArray *)boldFontRange;
 @end

@@ -68,6 +68,21 @@
 		76C22D87173FCD3000AC7519 /* KalWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7B173FCD3000AC7519 /* KalWeekView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D88173FCD3000AC7519 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
+		76D20BBA1766C51F00CCC21F /* navigationMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20B9C1766C51F00CCC21F /* navigationMenuCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BBB1766C51F00CCC21F /* navigationMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D20B9D1766C51F00CCC21F /* navigationMenuCell.xib */; };
+		76D20BBC1766C51F00CCC21F /* navigationMenuCellBg.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20B9F1766C51F00CCC21F /* navigationMenuCellBg.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BBD1766C51F00CCC21F /* navigationMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20BA11766C51F00CCC21F /* navigationMenuDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BBE1766C51F00CCC21F /* navigationNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20BA31766C51F00CCC21F /* navigationNotifyCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BBF1766C51F00CCC21F /* navigationNotifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BA41766C51F00CCC21F /* navigationNotifyCell.xib */; };
+		76D20BC01766C51F00CCC21F /* navigationNotifyCellBg.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20BA61766C51F00CCC21F /* navigationNotifyCellBg.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BC11766C51F00CCC21F /* navigationNotifyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20BA81766C51F00CCC21F /* navigationNotifyDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BC21766C51F00CCC21F /* navigationNotifySectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20BAA1766C51F00CCC21F /* navigationNotifySectionHeader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76D20BC31766C51F00CCC21F /* navigationNotifySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BAB1766C51F00CCC21F /* navigationNotifySectionHeader.xib */; };
+		76D20BC41766C51F00CCC21F /* manuHeadImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BAD1766C51F00CCC21F /* manuHeadImage.jpg */; };
+		76D20BC51766C51F00CCC21F /* manuNavCal.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BAE1766C51F00CCC21F /* manuNavCal.png */; };
+		76D20BC61766C51F00CCC21F /* manuNavQuestion.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BAF1766C51F00CCC21F /* manuNavQuestion.png */; };
+		76D20BC71766C51F00CCC21F /* manuNavSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D20BB01766C51F00CCC21F /* manuNavSetting.png */; };
+		76DD62B31768AEF900C8F6AF /* AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD62B21768AEF900C8F6AF /* AttributedLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D31764AF7100B183B7 /* DDMenuController.m */; };
 		76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D51764AF7100B183B7 /* menuNavigation.m */; };
 		9402B069174BB5D400E1C9FD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B068174BB5D400E1C9FD /* Utils.m */; };
@@ -184,6 +199,29 @@
 		76C22D7C173FCD3000AC7519 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		76C22D89173FCD6700AC7519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		76D20B9B1766C51F00CCC21F /* navigationMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationMenuCell.h; sourceTree = "<group>"; };
+		76D20B9C1766C51F00CCC21F /* navigationMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationMenuCell.m; sourceTree = "<group>"; };
+		76D20B9D1766C51F00CCC21F /* navigationMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = navigationMenuCell.xib; sourceTree = "<group>"; };
+		76D20B9E1766C51F00CCC21F /* navigationMenuCellBg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationMenuCellBg.h; sourceTree = "<group>"; };
+		76D20B9F1766C51F00CCC21F /* navigationMenuCellBg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationMenuCellBg.m; sourceTree = "<group>"; };
+		76D20BA01766C51F00CCC21F /* navigationMenuDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationMenuDataSource.h; sourceTree = "<group>"; };
+		76D20BA11766C51F00CCC21F /* navigationMenuDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationMenuDataSource.m; sourceTree = "<group>"; };
+		76D20BA21766C51F00CCC21F /* navigationNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifyCell.h; sourceTree = "<group>"; };
+		76D20BA31766C51F00CCC21F /* navigationNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifyCell.m; sourceTree = "<group>"; };
+		76D20BA41766C51F00CCC21F /* navigationNotifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = navigationNotifyCell.xib; sourceTree = "<group>"; };
+		76D20BA51766C51F00CCC21F /* navigationNotifyCellBg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifyCellBg.h; sourceTree = "<group>"; };
+		76D20BA61766C51F00CCC21F /* navigationNotifyCellBg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifyCellBg.m; sourceTree = "<group>"; };
+		76D20BA71766C51F00CCC21F /* navigationNotifyDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifyDataSource.h; sourceTree = "<group>"; };
+		76D20BA81766C51F00CCC21F /* navigationNotifyDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifyDataSource.m; sourceTree = "<group>"; };
+		76D20BA91766C51F00CCC21F /* navigationNotifySectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationNotifySectionHeader.h; sourceTree = "<group>"; };
+		76D20BAA1766C51F00CCC21F /* navigationNotifySectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationNotifySectionHeader.m; sourceTree = "<group>"; };
+		76D20BAB1766C51F00CCC21F /* navigationNotifySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = navigationNotifySectionHeader.xib; sourceTree = "<group>"; };
+		76D20BAD1766C51F00CCC21F /* manuHeadImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manuHeadImage.jpg; sourceTree = "<group>"; };
+		76D20BAE1766C51F00CCC21F /* manuNavCal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavCal.png; sourceTree = "<group>"; };
+		76D20BAF1766C51F00CCC21F /* manuNavQuestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavQuestion.png; sourceTree = "<group>"; };
+		76D20BB01766C51F00CCC21F /* manuNavSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manuNavSetting.png; sourceTree = "<group>"; };
+		76DD62B11768AEF900C8F6AF /* AttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedLabel.h; sourceTree = "<group>"; };
+		76DD62B21768AEF900C8F6AF /* AttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedLabel.m; sourceTree = "<group>"; };
 		76DFD0D21764AF7100B183B7 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
 		76DFD0D31764AF7100B183B7 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		76DFD0D41764AF7100B183B7 /* menuNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuNavigation.h; sourceTree = "<group>"; };
@@ -247,6 +285,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				76DD62B01768AEF900C8F6AF /* Utils */,
 				76DFD0D11764AF7100B183B7 /* Navigation */,
 				761F0D191754E002009650F4 /* googlePlaceApi */,
 				3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */,
@@ -441,9 +480,56 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		76D20B881766C51F00CCC21F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				76D20B9B1766C51F00CCC21F /* navigationMenuCell.h */,
+				76D20B9C1766C51F00CCC21F /* navigationMenuCell.m */,
+				76D20B9D1766C51F00CCC21F /* navigationMenuCell.xib */,
+				76D20B9E1766C51F00CCC21F /* navigationMenuCellBg.h */,
+				76D20B9F1766C51F00CCC21F /* navigationMenuCellBg.m */,
+				76D20BA01766C51F00CCC21F /* navigationMenuDataSource.h */,
+				76D20BA11766C51F00CCC21F /* navigationMenuDataSource.m */,
+				76D20BA21766C51F00CCC21F /* navigationNotifyCell.h */,
+				76D20BA31766C51F00CCC21F /* navigationNotifyCell.m */,
+				76D20BA41766C51F00CCC21F /* navigationNotifyCell.xib */,
+				76D20BA51766C51F00CCC21F /* navigationNotifyCellBg.h */,
+				76D20BA61766C51F00CCC21F /* navigationNotifyCellBg.m */,
+				76D20BA71766C51F00CCC21F /* navigationNotifyDataSource.h */,
+				76D20BA81766C51F00CCC21F /* navigationNotifyDataSource.m */,
+				76D20BA91766C51F00CCC21F /* navigationNotifySectionHeader.h */,
+				76D20BAA1766C51F00CCC21F /* navigationNotifySectionHeader.m */,
+				76D20BAB1766C51F00CCC21F /* navigationNotifySectionHeader.xib */,
+				76D20BAC1766C51F00CCC21F /* resource */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		76D20BAC1766C51F00CCC21F /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				76D20BAD1766C51F00CCC21F /* manuHeadImage.jpg */,
+				76D20BAE1766C51F00CCC21F /* manuNavCal.png */,
+				76D20BAF1766C51F00CCC21F /* manuNavQuestion.png */,
+				76D20BB01766C51F00CCC21F /* manuNavSetting.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		76DD62B01768AEF900C8F6AF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				76DD62B11768AEF900C8F6AF /* AttributedLabel.h */,
+				76DD62B21768AEF900C8F6AF /* AttributedLabel.m */,
+			);
+			name = Utils;
+			path = calender/Utils;
+			sourceTree = "<group>";
+		};
 		76DFD0D11764AF7100B183B7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				76D20B881766C51F00CCC21F /* Navigation */,
 				76DFD0D21764AF7100B183B7 /* DDMenuController.h */,
 				76DFD0D31764AF7100B183B7 /* DDMenuController.m */,
 				76DFD0D41764AF7100B183B7 /* menuNavigation.h */,
@@ -561,6 +647,13 @@
 				3D046E231762C091008EE2DA /* login_background@2x.png in Resources */,
 				3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */,
 				94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */,
+				76D20BBB1766C51F00CCC21F /* navigationMenuCell.xib in Resources */,
+				76D20BBF1766C51F00CCC21F /* navigationNotifyCell.xib in Resources */,
+				76D20BC31766C51F00CCC21F /* navigationNotifySectionHeader.xib in Resources */,
+				76D20BC41766C51F00CCC21F /* manuHeadImage.jpg in Resources */,
+				76D20BC51766C51F00CCC21F /* manuNavCal.png in Resources */,
+				76D20BC61766C51F00CCC21F /* manuNavQuestion.png in Resources */,
+				76D20BC71766C51F00CCC21F /* manuNavSetting.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +699,14 @@
 				76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */,
 				76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */,
 				94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */,
+				76D20BBA1766C51F00CCC21F /* navigationMenuCell.m in Sources */,
+				76D20BBC1766C51F00CCC21F /* navigationMenuCellBg.m in Sources */,
+				76D20BBD1766C51F00CCC21F /* navigationMenuDataSource.m in Sources */,
+				76D20BBE1766C51F00CCC21F /* navigationNotifyCell.m in Sources */,
+				76D20BC01766C51F00CCC21F /* navigationNotifyCellBg.m in Sources */,
+				76D20BC11766C51F00CCC21F /* navigationNotifyDataSource.m in Sources */,
+				76D20BC21766C51F00CCC21F /* navigationNotifySectionHeader.m in Sources */,
+				76DD62B31768AEF900C8F6AF /* AttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
