@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="静态结构-1" NameU="Page-1">
+			<Shapes>
+				<Shape ID="1" UniqueID="{9D96FE6F-AFBA-49C8-905C-C2DD727040F0}" Name="类" NameU="Class" Master="23">
+					<XForm>
+						<PinX Unit="MM">1.968503937007874</PinX>
+						<PinY Unit="MM">9.566929133858267</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{62BFCD85-6FCF-4269-B1CA-837209ECA18B}" Name="Name" NameU="Name">
+					<Text>FeedViewController</Text>
+					<XForm>
+						<PinX Unit="MM">1.968503937007874</PinX>
+						<PinY Unit="MM">9.742125984251969</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{BD41190A-1800-47A4-8D40-199BE6BF2E02}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>静态结构</Text>
+					<XForm>
+						<PinX Unit="MM">4.133858267716535</PinX>
+						<PinY Unit="MM">11.692913385826770</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="11" UniqueID="{691244F4-CC04-4AE5-A0F2-D777EB03F40B}" Name="类.11" NameU="Class.11" Master="23">
+					<XForm>
+						<PinX Unit="MM">4.311023622047244</PinX>
+						<PinY Unit="MM">9.566929133858267</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="18" UniqueID="{32FA37CC-A2EA-4704-9978-C5281A70DD7F}" Name="Name" NameU="Name">
+					<Text>Navigation</Text>
+					<XForm>
+						<PinX Unit="MM">4.311023622047244</PinX>
+						<PinY Unit="MM">9.742125984251969</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="20" UniqueID="{00612A08-03F8-4BF6-AA90-B69C02B3E96A}" Name="类.20" NameU="Class.20" Master="23">
+					<XForm>
+						<PinX Unit="MM">2.736220472440945</PinX>
+						<PinY Unit="MM">7.362204724409449</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="27" UniqueID="{325914C5-9075-4DE2-98E3-C1C4DEFA2F3F}" Name="Name" NameU="Name">
+					<Text>KalView</Text>
+					<XForm>
+						<PinX Unit="MM">2.736220472440945</PinX>
+						<PinY Unit="MM">7.537401574803149</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="29" UniqueID="{A8087A58-26DB-49BF-9D2C-BF70CD96F5CA}" Name="复合" NameU="Composition" Master="24">
+					<XForm>
+						<PinX Unit="MM">3.346456692913386</PinX>
+						<PinY Unit="MM">9.566929133858267</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="31" UniqueID="{EBDEB119-A812-4BB8-88AE-FBFDB328A055}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">2.862049260795821</PinX>
+						<PinY Unit="IN">9.496218455739610</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="33" UniqueID="{2CDE83F1-869B-4494-BF3F-9F06ED919048}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">3.830864125030950</PinX>
+						<PinY Unit="IN">9.496218455739612</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="34" UniqueID="{DA74D0C6-11B1-467A-8A42-DE7F70A8A07F}" Name="复合.34" NameU="Composition.34" Master="24">
+					<XForm>
+						<PinX Unit="MM">2.352362204724409</PinX>
+						<PinY Unit="MM">8.464566929133857</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="36" UniqueID="{3A1DAE24-F5D4-41AD-B783-538856CCC2D9}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">1.897793258889219</PinX>
+						<PinY Unit="IN">9.147990109282915</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="38" UniqueID="{99C43496-5770-4C0D-AB3E-7B3C6C867C43}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">2.665509794322290</PinX>
+						<PinY Unit="IN">7.781143748984800</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="39" UniqueID="{D4733BA2-06B1-4D10-B86C-25E472F7ED4F}" Name="类.39" NameU="Class.39" Master="23">
+					<XForm>
+						<PinX Unit="MM">4.429133858267717</PinX>
+						<PinY Unit="MM">6.574803149606299</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="46" UniqueID="{EF081749-EA48-40DA-A3A8-4BB23BA948B0}" Name="Name" NameU="Name">
+					<Text>Model</Text>
+					<XForm>
+						<PinX Unit="MM">4.429133858267717</PinX>
+						<PinY Unit="MM">6.749999999999999</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="48" UniqueID="{1C54CBE3-2083-42D8-B3BF-EF7EB1BFFA69}" Name="复合.48" NameU="Composition.48" Master="24">
+					<XForm>
+						<PinX Unit="MM">2.814960629921260</PinX>
+						<PinY Unit="MM">7.933070866141732</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="50" UniqueID="{D4C50825-5DFF-4E81-BF58-9D33943E51A2}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">1.504092471487644</PinX>
+						<PinY Unit="IN">9.064722392747479</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="52" UniqueID="{F586DC1F-56AC-482A-B918-D5FE80D81885}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">3.828501920306530</PinX>
+						<PinY Unit="IN">6.504092471487644</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="53" UniqueID="{8F36C8AF-E630-4059-86AD-F3714A20A41A}" Name="类.53" NameU="Class.53" Master="23">
+					<XForm>
+						<PinX Unit="MM">3.562992125984252</PinX>
+						<PinY Unit="MM">8.582677165354328</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="60" UniqueID="{9C840BA1-3FDB-4546-9174-03A6F9673465}" Name="Name" NameU="Name">
+					<Text>UITable</Text>
+					<XForm>
+						<PinX Unit="MM">3.562992125984252</PinX>
+						<PinY Unit="MM">8.757874015748030</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="62" UniqueID="{243A428C-CFC3-4E58-96A4-D4537D98C55E}" Name="复合.62" NameU="Composition.62" Master="24">
+					<XForm>
+						<PinX Unit="MM">2.775590551181102</PinX>
+						<PinY Unit="MM">8.937007874015746</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="64" UniqueID="{98E3F435-BB1B-4D50-B375-5B58B02F9BF2}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">2.291494046290794</PinX>
+						<PinY Unit="IN">9.174564912432523</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="66" UniqueID="{E8EC5BFB-5E61-4BC2-AD47-8AB913D9A14A}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">3.072202707708111</PinX>
+						<PinY Unit="IN">8.511966487235677</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="67" UniqueID="{3DF8DF2A-4AED-4279-AC79-691EEC0E6F5E}" Name="类.67" NameU="Class.67" Master="23">
+					<XForm>
+						<PinX Unit="MM">5.039370078740157</PinX>
+						<PinY Unit="MM">8.661417322834645</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="74" UniqueID="{09CDF18E-40A8-46CC-ABB3-8FE9E8E7C8D8}" Name="Name" NameU="Name">
+					<Text>EventView</Text>
+					<XForm>
+						<PinX Unit="MM">5.039370078740157</PinX>
+						<PinY Unit="MM">8.836614173228346</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="76" UniqueID="{C0A6B4BF-2ECE-477E-978B-BCC4A0A1E543}" Name="复合.76" NameU="Composition.76" Master="24">
+					<XForm>
+						<PinX Unit="MM">4.301181102362205</PinX>
+						<PinY Unit="MM">8.622047244094485</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="78" UniqueID="{3CE2C8B3-D120-4475-A466-7F13D6658C22}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">4.031931150559601</PinX>
+						<PinY Unit="IN">8.511966487235672</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="80" UniqueID="{A2FB91FE-2CE1-4EC5-AEA1-F77401E544C8}" Name="end2_mp" NameU="end2_mp">
+					<Text>*</Text>
+					<XForm>
+						<PinX Unit="IN">4.570431054164814</PinX>
+						<PinY Unit="IN">8.590706644715983</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>

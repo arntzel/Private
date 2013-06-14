@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="静态结构-1" NameU="Page-1">
+			<Shapes>
+				<Shape ID="1" UniqueID="{774B6EEF-1874-4F19-B55A-56203DD02104}" Name="类" NameU="Class" Master="23">
+					<XForm>
+						<PinX Unit="MM">5.039370078740157</PinX>
+						<PinY Unit="MM">8.070866141732283</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{D933CC7C-359F-48C3-B126-F099EA162CA0}" Name="Name" NameU="Name">
+					<Text>User</Text>
+					<XForm>
+						<PinX Unit="MM">5.039370078740157</PinX>
+						<PinY Unit="MM">8.246062992125983</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{130355EB-E02A-48CC-9952-4417F97CEB08}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>静态结构</Text>
+					<XForm>
+						<PinX Unit="MM">4.133858267716535</PinX>
+						<PinY Unit="MM">11.692913385826770</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="11" UniqueID="{5633DCAE-8C56-4213-B544-03B1B98B3BDB}" Name="类.11" NameU="Class.11" Master="23">
+					<XForm>
+						<PinX Unit="MM">6.968503937007874</PinX>
+						<PinY Unit="MM">8.149606299212596</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="18" UniqueID="{53B36C3C-80E5-4855-A5CD-EB990C453D1B}" Name="Name" NameU="Name">
+					<Text>Location</Text>
+					<XForm>
+						<PinX Unit="MM">6.968503937007874</PinX>
+						<PinY Unit="MM">8.324803149606296</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="20" UniqueID="{8A3DEFE8-F67B-4A0B-8814-FDC340F1506C}" Name="类.20" NameU="Class.20" Master="23">
+					<XForm>
+						<PinX Unit="MM">5.688976377952756</PinX>
+						<PinY Unit="MM">10.433070866141730</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="27" UniqueID="{E28F5EEF-AD0E-4E0F-8A89-F79721E3B112}" Name="Name" NameU="Name">
+					<Text>Event</Text>
+					<XForm>
+						<PinX Unit="MM">5.688976377952756</PinX>
+						<PinY Unit="MM">10.608267716535432</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="29" UniqueID="{A86C9CD4-3714-4017-BE7A-E3AA2D017259}" Name="复合" NameU="Composition" Master="26">
+					<XForm>
+						<PinX Unit="MM">5.270669291338582</PinX>
+						<PinY Unit="MM">9.251968503937007</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="31" UniqueID="{C3F5B411-04DE-46E0-8D02-06A5A2F681F0}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">5.431257825818353</PinX>
+						<PinY Unit="IN">10.018560975424649</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="33" UniqueID="{1B1C4885-16CF-4C05-94CC-0FA2455F3CA6}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">4.968659400621503</PinX>
+						<PinY Unit="IN">8.485376032449370</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="34" UniqueID="{7BF4AC9B-8008-4BCD-8964-8ED908961579}" Name="复合.34" NameU="Composition.34" Master="26">
+					<XForm>
+						<PinX Unit="MM">6.422244094488189</PinX>
+						<PinY Unit="MM">9.291338582677163</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="36" UniqueID="{54C2DA23-9920-418C-9B2E-705F9B6FD7DF}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">5.805273573849849</PinX>
+						<PinY Unit="IN">10.002025542353786</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="38" UniqueID="{6623AB2A-3BC0-46A5-B442-B13BA8409937}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">6.897793258889220</PinX>
+						<PinY Unit="IN">8.580651623000550</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="39" UniqueID="{40CC0B17-5281-427D-997A-931CF7A73449}" Name="类.39" NameU="Class.39" Master="23">
+					<XForm>
+						<PinX Unit="MM">1.912664795304397</PinX>
+						<PinY Unit="MM">10.155051908835796</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="44" UniqueID="{89972010-B6CE-45C5-8479-BE9825171B8D}" Name="Operations" NameU="Operations">
+					<Text>+getInstance() : Model
++getEvents()
++upDateEvent()
++deleteEvent()
++getMessage()
++updateMessage()
++deleteMessage()
++getBuddies()
++deleteBuddy()
++createBuddy()</Text>
+					<XForm>
+						<PinX Unit="MM">1.912664795304397</PinX>
+						<PinY Unit="MM">9.967059782851544</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="46" UniqueID="{3F115B4D-356D-4B13-BD17-55C66D3132BF}" Name="Name" NameU="Name">
+					<Text>Model</Text>
+					<XForm>
+						<PinX Unit="MM">1.912664795304397</PinX>
+						<PinY Unit="MM">10.923228346456693</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="48" UniqueID="{D0DC4EB4-80B4-4B2B-BC5A-EE4C96E46CDA}" Name="依赖关系" NameU="Dependency" Master="27">
+					<XForm>
+						<PinX Unit="MM">3.940223850422507</PinX>
+						<PinY Unit="MM">10.294061387488764</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="49" UniqueID="{61CFAC65-1B94-49F4-8CA7-A19623D2B32F}" Name="类.49" NameU="Class.49" Master="23">
+					<XForm>
+						<PinX Unit="MM">1.555118110236220</PinX>
+						<PinY Unit="MM">7.952755905511809</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="56" UniqueID="{8AE9A8F3-D5FA-4675-8BE7-758C719DFECE}" Name="Name" NameU="Name">
+					<Text>Buddy</Text>
+					<XForm>
+						<PinX Unit="MM">1.555118110236220</PinX>
+						<PinY Unit="MM">8.127952755905509</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="58" UniqueID="{D03F1082-FFE1-486D-886A-9C7B71F43472}" Name="依赖关系.58" NameU="Dependency.58" Master="27">
+					<XForm>
+						<PinX Unit="MM">1.570685883865469</PinX>
+						<PinY Unit="MM">8.757414113560206</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="59" UniqueID="{32FFFA29-46B3-4C2B-9068-3F2F052D6476}" Name="类.59" NameU="Class.59" Master="23">
+					<XForm>
+						<PinX Unit="MM">2.755905511811023</PinX>
+						<PinY Unit="MM">7.992125984251969</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="66" UniqueID="{713FFFD8-12CF-4E01-84DF-9733E566D91E}" Name="Name" NameU="Name">
+					<Text>Message</Text>
+					<XForm>
+						<PinX Unit="MM">2.755905511811023</PinX>
+						<PinY Unit="MM">8.167322834645669</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="68" UniqueID="{BDFD487C-BCF6-4DF2-A6A9-B004D19A37F0}" Name="依赖关系.68" NameU="Dependency.68" Master="27">
+					<XForm>
+						<PinX Unit="MM">2.497490722462549</PinX>
+						<PinY Unit="MM">8.777099152930285</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="69" UniqueID="{1726276A-651D-4064-A394-025B3E1FEBC2}" Name="复合.69" NameU="Composition.69" Master="26">
+					<XForm>
+						<PinX Unit="MM">3.789370078740157</PinX>
+						<PinY Unit="MM">8.031496062992126</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="71" UniqueID="{6267CCD8-F5E4-4F67-A8A8-0CB2239BC14D}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">3.242561071819443</PinX>
+						<PinY Unit="IN">7.921415306133314</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="73" UniqueID="{B79DF654-6B37-45CB-998A-423D260FF060}" Name="end2_mp" NameU="end2_mp">
+					<Text>2</Text>
+					<XForm>
+						<PinX Unit="IN">4.336179085660872</PinX>
+						<PinY Unit="IN">8.000155463613629</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="74" UniqueID="{30462B17-DF05-4DF9-A882-47DE8A5043D5}" Name="类.74" NameU="Class.74" Master="23">
+					<XForm>
+						<PinX Unit="MM">1.811023622047244</PinX>
+						<PinY Unit="MM">6.418043271880595</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="79" UniqueID="{F9034E82-6BDB-473A-BFC2-33773DB71C64}" Name="Operations" NameU="Operations">
+					<Text>+getInstance()
++craeteUser()
++getUser()
++getUserProfile()
++updateUserProfile()
++login()
++getLoginUser()</Text>
+					<XForm>
+						<PinX Unit="MM">1.811023622047244</PinX>
+						<PinY Unit="MM">6.230051145896344</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="81" UniqueID="{8D1D2EBD-2D49-4836-B788-1CED27DCE340}" Name="Name" NameU="Name">
+					<Text>UserModel</Text>
+					<XForm>
+						<PinX Unit="MM">1.811023622047244</PinX>
+						<PinY Unit="MM">6.986220472440945</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="83" UniqueID="{BE62796E-8160-4090-97DD-0A231F5F492C}" Name="依赖关系.83" NameU="Dependency.83" Master="27">
+					<XForm>
+						<PinX Unit="MM">3.576191567439508</PinX>
+						<PinY Unit="MM">7.273802156552826</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="84" UniqueID="{C485FB6C-8C7C-4BF1-8B93-8055B26509E9}" Name="类.84" NameU="Class.84" Master="23">
+					<XForm>
+						<PinX Unit="MM">5.629921259842520</PinX>
+						<PinY Unit="MM">6.220472440944882</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="91" UniqueID="{5612F6B1-DAD9-4421-A067-B907A8E5B85E}" Name="Name" NameU="Name">
+					<Text>UserProfiler</Text>
+					<XForm>
+						<PinX Unit="MM">5.629921259842520</PinX>
+						<PinY Unit="MM">6.395669291338582</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="93" UniqueID="{F888B190-131C-4454-A42D-3CAC1F8BC56C}" Name="复合.93" NameU="Composition.93" Master="26">
+					<XForm>
+						<PinX Unit="MM">5.482283464566930</PinX>
+						<PinY Unit="MM">7.145669291338582</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="95" UniqueID="{2C85260A-A496-43D0-AADC-C0061D462FB0}" Name="end1_mp" NameU="end1_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">5.700631937961175</PinX>
+						<PinY Unit="IN">6.614608315913932</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="97" UniqueID="{00CF7C24-AFF4-4569-A8A2-E7746EB9DE87}" Name="end2_mp" NameU="end2_mp">
+					<Text>1</Text>
+					<XForm>
+						<PinX Unit="IN">5.405356347409995</PinX>
+						<PinY Unit="IN">7.676730266763231</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="98" UniqueID="{A686F302-E1B8-4ED3-BC5A-76CA1CDBD5FE}" Name="依赖关系.98" NameU="Dependency.98" Master="27">
+					<XForm>
+						<PinX Unit="MM">3.830185995327206</PinX>
+						<PinY Unit="MM">6.152115131075801</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>

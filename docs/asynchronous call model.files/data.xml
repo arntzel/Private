@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="序列-1" NameU="Page-1">
+			<Shapes>
+				<Shape ID="1" UniqueID="{E55753FB-8BE5-4FF3-9D90-032AD6D66C52}" Name="对象生命线" NameU="Object Lifeline" Master="23">
+					<Text>FeedViewController</Text>
+					<XForm>
+						<PinX Unit="MM">1.574803149606299</PinX>
+						<PinY Unit="MM">9.273622047244094</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{3B4464B8-FD42-41F8-A039-DEE60F9745E2}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>序列</Text>
+					<XForm>
+						<PinX Unit="MM">4.133858267716535</PinX>
+						<PinY Unit="MM">11.692913385826770</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{6A9F4CA2-F06F-470C-A5BD-99B946C3053A}" Name="对象生命线.8" NameU="Object Lifeline.8" Master="23">
+					<Text>Model</Text>
+					<XForm>
+						<PinX Unit="MM">3.543307086614173</PinX>
+						<PinY Unit="MM">9.273622047244093</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="14" UniqueID="{F80B3791-4586-4B77-B50F-8D03265AD435}" Name="消息(调用)" NameU="Message (call)" Master="25">
+					<Text>getEvent</Text>
+					<XForm>
+						<PinX Unit="MM">2.559055118110236</PinX>
+						<PinY Unit="IN">8.348425196850393</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="15" UniqueID="{5E37A0CB-03D8-4A94-8123-0919D917EFC4}" Name="对象生命线.15" NameU="Object Lifeline.15" Master="23">
+					<Text>NSURLConnection</Text>
+					<XForm>
+						<PinX Unit="MM">5.118110236220472</PinX>
+						<PinY Unit="MM">9.273622047244093</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="21" UniqueID="{362FDDBA-A723-40B6-BFC5-3BEFD23D8CC6}" Name="消息(异步)" NameU="Message (async.)" Master="24">
+					<Text>sendAsynchronousRequest</Text>
+					<XForm>
+						<PinX Unit="MM">4.330708661417322</PinX>
+						<PinY Unit="IN">7.848425196850393</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="22" UniqueID="{77D65F01-31FA-454A-A653-C97B647A005F}" Name="消息(返回)" NameU="Message (return)" Master="26">
+					<Text>retrun</Text>
+					<XForm>
+						<PinX Unit="MM">2.559055118110236</PinX>
+						<PinY Unit="IN">7.348425196850394</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="23" UniqueID="{9FC2D5CE-F451-43A1-BE8E-80DF9CA082D4}" Name="消息(调用).23" NameU="Message (call).23" Master="25">
+					<Text>callback</Text>
+					<XForm>
+						<PinX Unit="MM">3.346456692913386</PinX>
+						<PinY Unit="IN">5.848425196850394</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>
