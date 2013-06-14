@@ -16,7 +16,7 @@
 @property IBOutlet UILabel * labLocation;
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgStatus;
-
+@property IBOutlet UIImageView * imgEventType;
 
 /*
  Update the date in the View

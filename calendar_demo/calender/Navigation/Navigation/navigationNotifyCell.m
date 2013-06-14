@@ -1,4 +1,6 @@
 #import "navigationNotifyCell.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
 @implementation navigationNotifyCell
@@ -46,4 +48,23 @@
     [_notifyDateLabel release];
     [super dealloc];
 }
+
+-(void) refreshView:(Message *) msg
+{
+    NSString * headerUrl = msg.sender.avatar_url;
+    
+    [self.headerIcon setImageWithURL:[NSURL URLWithString:headerUrl]
+                    placeholderImage:[UIImage imageNamed:@"header.png"]];
+    
+    NSString * subject = msg.subject;
+    
+    self.NotifyDetailLabel.text = subject;
+    
+    [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
+    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:12] fromIndex:0 length:subject.length];
+    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
+    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
+
+}
+
 @end

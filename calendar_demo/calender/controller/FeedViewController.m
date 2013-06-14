@@ -84,7 +84,7 @@
     
 
 
-//    [self login];
+    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,21 +93,6 @@
     [self.navigationController setNavigationBarHidden:YES];
 }
 
--(void) login {
-
-    NSString * user = @"fx.fangxiang@gmail.com";
-    NSString * pwd = @"fangxiang";
-
-    [[UserModel getInstance] login:user withPassword:pwd andCallback:^(NSInteger error, User *user) {
-
-        if(error == 0) {
-            [self loadData];
-        } else {
-            //TOOD:: show error;
-        }
-
-    }];
-}
 
 -(void) loadData
 {

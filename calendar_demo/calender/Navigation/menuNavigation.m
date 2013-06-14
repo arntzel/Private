@@ -8,10 +8,14 @@
 #import "navigationMenuDataSource.h"
 #import "navigationNotifyDataSource.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "Model.h"
+
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
 {
     navigationMenuDataSource *menuDataSource;
-    navigationNotifyDataSource *notifyDataSource;
+    //navigationNotifyDataSource *notifyDataSource;
+    NSArray * _messages;
 }
 @end
 
@@ -51,7 +55,7 @@
     [super viewDidLoad];
     
     menuDataSource = [[navigationMenuDataSource alloc] init];
-    notifyDataSource = [[navigationNotifyDataSource alloc] init];
+    //notifyDataSource = [[navigationNotifyDataSource alloc] init];
     
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -67,6 +71,17 @@
 
         self.tableView = tableView;
     }
+    
+    [[Model getInstance] getMessages:^(NSInteger error, NSArray *messages) {
+        
+        if(error == 0) {
+            _messages = messages;
+            [self.tableView reloadData];
+        } else {
+            //TODO::
+        }
+        
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -78,7 +93,7 @@
     }
     else if(section == 1)
     {
-        return [notifyDataSource numberOfObjects];
+        return [_messages count];
     }
     return 0;
 }
@@ -113,15 +128,11 @@
         if (cell == nil) {
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
-            cell.headerIcon.image = [UIImage imageNamed:[notifyDataSource iconImageAtIndex:indexPath.row]];
-            NSString *tempString = [notifyDataSource titleAtIndex:indexPath.row];
-            cell.NotifyDetailLabel.text = tempString;
             
-            [cell.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:tempString.length];
-            [cell.NotifyDetailLabel setFont:[UIFont systemFontOfSize:12] fromIndex:0 length:tempString.length];
-            [cell.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
-            [cell.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
+            Message * msg = [_messages objectAtIndex:indexPath.row];
+            [cell refreshView:msg];
         }
+        
         [cell setNeedsDisplay];
         return cell;
     }
@@ -136,7 +147,8 @@
     }
     else
     {
-        return [notifyDataSource heightForCellAtIndex:indexPath.row];
+        //return [notifyDataSource heightForCellAtIndex:indexPath.row];
+        return 55;
     }
 }
 

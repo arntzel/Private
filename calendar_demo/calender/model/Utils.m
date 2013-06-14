@@ -8,16 +8,18 @@
 
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
-    if(![strDate isKindOfClass:[NSNull class]]) {
-       return nil;
-    }
-
-    strDate = [Utils formateStringDate:strDate];
-
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate * date =[format dateFromString:strDate];
-    return date;
+//    if(![strDate isKindOfClass:[NSNull class]]) {
+//       return nil;
+//    }
+//
+//    strDate = [Utils formateStringDate:strDate];
+//
+//    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSDate * date =[format dateFromString:strDate];
+//    return date;
+    
+    return [NSDate date];
 }
 
 
