@@ -17,6 +17,8 @@
 #import "Model.h"
 #import "Utils.h"
 
+#import "RootNavContrller.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -125,7 +127,7 @@
 - (void)btnAddEvent:(id)sender
 {
     AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
-    [self.navigationController pushViewController:addEvent animated:YES];
+    [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }
 
 #pragma mark -

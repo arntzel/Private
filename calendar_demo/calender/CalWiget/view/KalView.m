@@ -179,7 +179,12 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (float)screenHeight
 {
-    return [[UIScreen mainScreen] bounds].size.height - 20;
+    CGFloat statusBarHeight = 0.0f;
+    if (![UIApplication sharedApplication].statusBarHidden)
+    {
+        statusBarHeight = 20.0f;
+    }
+    return [[UIScreen mainScreen] bounds].size.height - statusBarHeight;
 }
 
 - (void)setFrameToWeekMode

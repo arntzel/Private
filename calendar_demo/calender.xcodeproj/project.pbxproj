@@ -39,8 +39,6 @@
 		3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */; };
 		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
 		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
-		764404781751F06000B11BDE /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764404761751F06000B11BDE /* AddEventViewController.m */; };
-		764404791751F06000B11BDE /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764404771751F06000B11BDE /* AddEventViewController.xib */; };
 		7644047C1751F8E300B11BDE /* RootNavContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7644047B1751F8E300B11BDE /* RootNavContrller.m */; };
 		764404B017523B3700B11BDE /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404AF17523B3700B11BDE /* GoogleMaps.framework */; };
 		764404B217523B8600B11BDE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404B117523B8600B11BDE /* AVFoundation.framework */; };
@@ -55,8 +53,6 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
-		764404CC17523DF100B11BDE /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764404CA17523DF100B11BDE /* AddLocationViewController.m */; };
-		764404CD17523DF100B11BDE /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764404CB17523DF100B11BDE /* AddLocationViewController.xib */; };
 		76C22D7E173FCD3000AC7519 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76C22D66173FCD3000AC7519 /* Kal.bundle */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -157,9 +153,6 @@
 		761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceDataSource.h; sourceTree = "<group>"; };
 		761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceDataSource.m; sourceTree = "<group>"; };
 		761F0D21175509C2009650F4 /* googleAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = googleAPIKey.h; sourceTree = "<group>"; };
-		764404751751F06000B11BDE /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
-		764404761751F06000B11BDE /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
-		764404771751F06000B11BDE /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
 		7644047A1751F8E300B11BDE /* RootNavContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavContrller.h; sourceTree = "<group>"; };
 		7644047B1751F8E300B11BDE /* RootNavContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavContrller.m; sourceTree = "<group>"; };
 		764404AF17523B3700B11BDE /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = calender/GoogleMaps.framework; sourceTree = "<group>"; };
@@ -175,9 +168,12 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		764404C917523DF100B11BDE /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
-		764404CA17523DF100B11BDE /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
-		764404CB17523DF100B11BDE /* AddLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
+		76B970C5176F5BA200FC8535 /* AddEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		76B970C6176F5BA200FC8535 /* AddEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		76B970C7176F5BA200FC8535 /* AddEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
+		76B970C8176F5BA200FC8535 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		76B970C9176F5BA200FC8535 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		76B970CA176F5BA200FC8535 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
 		76C22D66173FCD3000AC7519 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
@@ -288,8 +284,9 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
-				76DD62B01768AEF900C8F6AF /* Utils */,
 				76DFD0D11764AF7100B183B7 /* Navigation */,
+				76B970C4176F5BA200FC8535 /* Events */,
+				76DD62B01768AEF900C8F6AF /* Utils */,
 				761F0D191754E002009650F4 /* googlePlaceApi */,
 				3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */,
 				3D6151A91734A391003D72B0 /* calender */,
@@ -411,12 +408,6 @@
 				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
 				3DB9780C174A2832005B462E /* FeedViewController.h */,
 				3DB9780D174A2832005B462E /* FeedViewController.m */,
-				764404751751F06000B11BDE /* AddEventViewController.h */,
-				764404761751F06000B11BDE /* AddEventViewController.m */,
-				764404771751F06000B11BDE /* AddEventViewController.xib */,
-				764404C917523DF100B11BDE /* AddLocationViewController.h */,
-				764404CA17523DF100B11BDE /* AddLocationViewController.m */,
-				764404CB17523DF100B11BDE /* AddLocationViewController.xib */,
 				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
 				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
 				94F4A6A11765DA0F009F0094 /* LoginNowController.h */,
@@ -437,6 +428,20 @@
 			);
 			name = googlePlaceApi;
 			path = calender/googlePlaceApi;
+			sourceTree = "<group>";
+		};
+		76B970C4176F5BA200FC8535 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				76B970C5176F5BA200FC8535 /* AddEventViewController.h */,
+				76B970C6176F5BA200FC8535 /* AddEventViewController.m */,
+				76B970C7176F5BA200FC8535 /* AddEventViewController.xib */,
+				76B970C8176F5BA200FC8535 /* AddLocationViewController.h */,
+				76B970C9176F5BA200FC8535 /* AddLocationViewController.m */,
+				76B970CA176F5BA200FC8535 /* AddLocationViewController.xib */,
+			);
+			name = Events;
+			path = calender/Events;
 			sourceTree = "<group>";
 		};
 		76C22D65173FCD2F00AC7519 /* CalWiget */ = {
@@ -642,9 +647,7 @@
 				3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */,
 				3D9AD89C1740B4AE0017B69E /* Default-568h@2x.png in Resources */,
 				3DB97809174A1424005B462E /* EventView.xib in Resources */,
-				764404791751F06000B11BDE /* AddEventViewController.xib in Resources */,
 				764404BC17523BF500B11BDE /* GoogleMaps.bundle in Resources */,
-				764404CD17523DF100B11BDE /* AddLocationViewController.xib in Resources */,
 				3D046E201762C091008EE2DA /* btn_login_fb@2x.png in Resources */,
 				3D046E211762C091008EE2DA /* btn_login_google@2x.png in Resources */,
 				3D046E221762C091008EE2DA /* btn_login@2x.png in Resources */,
@@ -693,9 +696,7 @@
 				9402B06F174D0B0F00E1C9FD /* UserProfile.m in Sources */,
 				9402B0721750A02600E1C9FD /* Message.m in Sources */,
 				9402B0751750A95E00E1C9FD /* Buddy.m in Sources */,
-				764404781751F06000B11BDE /* AddEventViewController.m in Sources */,
 				7644047C1751F8E300B11BDE /* RootNavContrller.m in Sources */,
-				764404CC17523DF100B11BDE /* AddLocationViewController.m in Sources */,
 				761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */,
 				761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */,
 				3D046E261762C0D8008EE2DA /* LoginView.m in Sources */,

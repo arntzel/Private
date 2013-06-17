@@ -14,6 +14,8 @@
 #import "DDMenuController.h"
 #import "LoginNowController.h"
 
+#import "RootNavContrller.h"
+
 @interface SignupViewController ()
 
 @end
@@ -68,8 +70,8 @@
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
     rootController.leftViewController = leftController;
     
-
-    [self.navigationController pushViewController:rootController animated:YES];
+    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
 }
 
 -(void) finish {
@@ -87,12 +89,12 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//}
 
 @end

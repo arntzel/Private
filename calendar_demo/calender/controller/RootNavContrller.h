@@ -4,4 +4,6 @@
 
 @interface RootNavContrller : UINavigationController
 
++ (RootNavContrller *)defaultInstance;
+
 @end
