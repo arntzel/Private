@@ -47,12 +47,9 @@
     sections = [[NSMutableArray alloc] init];
     sectionDict = [[NSMutableDictionary alloc] init];
 
-    CGRect frame1 = self.view.frame;
-    
     navigation = [Navigation createNavigationView];
 
-    CGRect frame2 = navigation.frame;
-    
+
     [self.view addSubview:navigation];
     [navigation.leftBtn addTarget:self action:@selector(btnManu:) forControlEvents:UIControlEventTouchUpInside];
     [navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,7 +58,7 @@
     
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
-    frame.size.height -=y;
+    frame.size.height -=(y + 64);
     
     
     tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
