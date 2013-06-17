@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<int key="IBDocument.SystemTarget">1792</int>
+		<string key="IBDocument.SystemVersion">12C54</string>
+		<string key="IBDocument.InterfaceBuilderVersion">4457.6</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
+			<string key="NS.object.0">3682.6</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -50,6 +50,7 @@
 								<string key="NSFrame">{{5, 5}, {71, 33}}</string>
 								<reference key="NSSuperview" ref="1063611515"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="1018114710"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -72,8 +73,8 @@
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="1012916831">
-									<string key="NSName">Helvetica-Bold</string>
+								<object class="NSFont" key="IBUIFont" id="671784456">
+									<string key="NSName">HelveticaNeue-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -84,6 +85,7 @@
 								<string key="NSFrame">{{244, 5}, {71, 33}}</string>
 								<reference key="NSSuperview" ref="1063611515"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="743573405"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -97,20 +99,20 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 								<reference key="IBUIFontDescription" ref="228302130"/>
-								<reference key="IBUIFont" ref="1012916831"/>
+								<reference key="IBUIFont" ref="671784456"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="743573405"/>
+						<reference key="NSNextKeyView" ref="640380307"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSColor" key="IBUITintColor" id="509030347">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 						</object>
-						<array class="NSMutableArray" key="IBUIItems">
+						<array key="IBUIItems">
 							<object class="IBUINavigationItem" id="689270067">
 								<reference key="IBUINavigationBar" ref="1063611515"/>
 								<string key="IBUITitle">New Event</string>
@@ -152,7 +154,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 						<reference key="IBUIFontDescription" ref="228302130"/>
-						<reference key="IBUIFont" ref="1012916831"/>
+						<reference key="IBUIFont" ref="671784456"/>
 					</object>
 					<object class="IBUIButton" id="580857195">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -174,7 +176,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 						<reference key="IBUIFontDescription" ref="228302130"/>
-						<reference key="IBUIFont" ref="1012916831"/>
+						<reference key="IBUIFont" ref="671784456"/>
 					</object>
 					<object class="IBUIImageView" id="743573405">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -212,7 +214,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 						<reference key="IBUIFontDescription" ref="228302130"/>
-						<reference key="IBUIFont" ref="1012916831"/>
+						<reference key="IBUIFont" ref="671784456"/>
 					</object>
 					<object class="IBUIButton" id="220893383">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -234,7 +236,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 						<reference key="IBUIFontDescription" ref="228302130"/>
-						<reference key="IBUIFont" ref="1012916831"/>
+						<reference key="IBUIFont" ref="671784456"/>
 					</object>
 					<object class="IBUIButton" id="411664818">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -256,7 +258,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="416107670"/>
 						<reference key="IBUIFontDescription" ref="228302130"/>
-						<reference key="IBUIFont" ref="1012916831"/>
+						<reference key="IBUIFont" ref="671784456"/>
 					</object>
 					<object class="IBUILabel" id="98801738">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -285,8 +287,8 @@
 							<int key="type">2</int>
 							<double key="pointSize">19</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="993188307">
-							<string key="NSName">Helvetica-Bold</string>
+						<object class="NSFont" key="IBUIFont" id="151831857">
+							<string key="NSName">HelveticaNeue-Bold</string>
 							<double key="NSSize">19</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -313,7 +315,7 @@
 						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="630286081"/>
-						<reference key="IBUIFont" ref="993188307"/>
+						<reference key="IBUIFont" ref="151831857"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<double key="preferredMaxLayoutWidth">142</double>
 					</object>
@@ -343,7 +345,7 @@
 							<string>{568, 320}</string>
 						</array>
 					</object>
-					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
+					<string key="IBUITargetRuntime">IBCocoaTouchFramework-SevenAndLater</string>
 					<string key="IBUIDisplayName">Retina 4 Full Screen</string>
 					<int key="IBUIType">2</int>
 				</object>
@@ -351,6 +353,7 @@
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<bool key="usesAutoincrementingIDs">NO</bool>
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -358,7 +361,7 @@
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="191373211"/>
 					</object>
-					<int key="connectionID">3</int>
+					<string key="id">3</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -366,7 +369,7 @@
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="743573405"/>
 					</object>
-					<int key="connectionID">255</int>
+					<string key="id">255</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -375,7 +378,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">137</int>
+					<string key="id">137</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -384,7 +387,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">136</int>
+					<string key="id">136</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -393,7 +396,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">138</int>
+					<string key="id">138</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -402,7 +405,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">149</int>
+					<string key="id">149</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -411,7 +414,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">252</int>
+					<string key="id">252</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -420,30 +423,30 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">260</int>
+					<string key="id">260</string>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
+						<string key="id">0</string>
 						<array key="object" id="0"/>
 						<reference key="children" ref="1000"/>
 						<nil key="parent"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
+						<string key="id">-1</string>
 						<reference key="object" ref="372490531"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">File's Owner</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
+						<string key="id">-2</string>
 						<reference key="object" ref="975951072"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1</int>
+						<string key="id">1</string>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="1063611515"/>
@@ -459,7 +462,7 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
+						<string key="id">4</string>
 						<reference key="object" ref="1063611515"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="689270067"/>
@@ -467,7 +470,7 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
+						<string key="id">10</string>
 						<reference key="object" ref="689270067"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="39892760"/>
@@ -476,58 +479,58 @@
 						<reference key="parent" ref="1063611515"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">92</int>
+						<string key="id">92</string>
 						<reference key="object" ref="177997642"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">invitePeopleButton</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">104</int>
+						<string key="id">104</string>
 						<reference key="object" ref="1010561187"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">addPhotoButton</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">119</int>
+						<string key="id">119</string>
 						<reference key="object" ref="580857195"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">addLocationButton</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">139</int>
+						<string key="id">139</string>
 						<reference key="object" ref="220893383"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">150</int>
+						<string key="id">150</string>
 						<reference key="object" ref="411664818"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">155</int>
+						<string key="id">155</string>
 						<reference key="object" ref="98801738"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">189</int>
+						<string key="id">189</string>
 						<reference key="object" ref="839792066"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">254</int>
+						<string key="id">254</string>
 						<reference key="object" ref="743573405"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">eventPhotoView</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">257</int>
+						<string key="id">257</string>
 						<reference key="object" ref="39892760"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="640380307"/>
@@ -535,12 +538,12 @@
 						<reference key="parent" ref="689270067"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">256</int>
+						<string key="id">256</string>
 						<reference key="object" ref="640380307"/>
 						<reference key="parent" ref="39892760"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">259</int>
+						<string key="id">259</string>
 						<reference key="object" ref="710748267"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="1018114710"/>
@@ -548,7 +551,7 @@
 						<reference key="parent" ref="689270067"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">258</int>
+						<string key="id">258</string>
 						<reference key="object" ref="1018114710"/>
 						<reference key="parent" ref="710748267"/>
 					</object>
@@ -579,47 +582,12 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">260</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AddEventViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="Cancel:">id</string>
-						<string key="btnAddDayOrTime:">id</string>
-						<string key="btnAddEventPhoto:">id</string>
-						<string key="btnAddEventTitle:">id</string>
-						<string key="btnAddLocation:">id</string>
-						<string key="btnInvitePeople:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="Cancel:">
-							<string key="name">Cancel:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnAddDayOrTime:">
-							<string key="name">btnAddDayOrTime:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnAddEventPhoto:">
-							<string key="name">btnAddEventPhoto:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnAddEventTitle:">
-							<string key="name">btnAddEventTitle:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnAddLocation:">
-							<string key="name">btnAddLocation:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnInvitePeople:">
-							<string key="name">btnInvitePeople:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">eventPhotoView</string>
 						<string key="NS.object.0">UIImageView</string>
@@ -640,8 +608,12 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
+			<integer value="4600" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
+		<string key="IBCocoaTouchPluginVersion">3682.6</string>
 	</data>
 </archive>

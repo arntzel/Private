@@ -7,13 +7,19 @@
 //
 
 #import "AppDelegate.h"
+//#import "AddEventViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+//    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
+    [self.window setRootViewController:[[UIViewController alloc] init]];
+    [self.window makeKeyAndVisible];
+    return YES;    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
