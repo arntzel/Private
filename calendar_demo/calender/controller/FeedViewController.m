@@ -48,7 +48,7 @@
     sectionDict = [[NSMutableDictionary alloc] init];
 
     navigation = [Navigation createNavigationView];
-
+    navigation.unreadCount.hidden = NO;
 
     [self.view addSubview:navigation];
     [navigation.leftBtn addTarget:self action:@selector(btnManu:) forControlEvents:UIControlEventTouchUpInside];
