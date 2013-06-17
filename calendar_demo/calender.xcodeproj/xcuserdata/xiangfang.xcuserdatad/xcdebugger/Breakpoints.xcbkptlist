@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "calender/controller/FeedViewController.m"
-         timestampString = "390921586.255941"
+         timestampString = "393172168.047872"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "152"
-         endingLineNumber = "152"
+         startingLineNumber = "156"
+         endingLineNumber = "156"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "calender/controller/FeedViewController.m"
-         timestampString = "390921586.255941"
+         timestampString = "393172168.047872"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "-tableView:viewForHeaderInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,13 +34,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "calender/controller/FeedViewController.m"
-         timestampString = "390921586.255941"
+         timestampString = "393172168.047872"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "140"
-         endingLineNumber = "140"
-         landmarkName = "@implementation FeedViewController"
-         landmarkType = "3">
+         startingLineNumber = "144"
+         endingLineNumber = "144"
+         landmarkName = "-tableView:numberOfRowsInSection:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -118,6 +118,19 @@
          startingLineNumber = "71"
          endingLineNumber = "71"
          landmarkName = "-login:withPassword:andCallback:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "calender/controller/FeedViewController.m"
+         timestampString = "393172168.047872"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

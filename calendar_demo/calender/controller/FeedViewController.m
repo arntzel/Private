@@ -46,9 +46,13 @@
 	
     sections = [[NSMutableArray alloc] init];
     sectionDict = [[NSMutableDictionary alloc] init];
-    
+
+    CGRect frame1 = self.view.frame;
     
     navigation = [Navigation createNavigationView];
+
+    CGRect frame2 = navigation.frame;
+    
     [self.view addSubview:navigation];
     [navigation.leftBtn addTarget:self action:@selector(btnManu:) forControlEvents:UIControlEventTouchUpInside];
     [navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];

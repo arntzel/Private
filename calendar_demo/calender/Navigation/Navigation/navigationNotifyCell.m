@@ -3,6 +3,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "Utils.h"
+
 @implementation navigationNotifyCell
 @synthesize headerIcon;
 
@@ -65,6 +67,7 @@
     [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
     [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
 
+    self.notifyDateLabel.text = [Utils formateDate:msg.sent_at];
 }
 
 @end
