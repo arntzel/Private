@@ -3,19 +3,20 @@
 #import "AddEventViewController.h"
 #import <UIKit/UIImagePickerController.h>
 //#import "AddLocationViewController.h"
+#import "AddEventView.h"
 
-@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *eventPhotoView;
+@interface AddEventViewController ()
+//<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @end
 
 @implementation AddEventViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -23,8 +24,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self.eventPhotoView setContentMode:UIViewContentModeScaleAspectFill];
+    // Do any additional setup after loading the view from its nib
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:scrollView];
+    [scrollView release];
+    
+//    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"AddEventView" owner:self options:nil];
+//    AddEventView *addEventView = (AddEventView*)[nibView objectAtIndex:0];
+//    [scrollView addSubview:addEventView];
+    
+    
+//    view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
+//    AddEventView *eventView = [AddEventView alloc] ini
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,10 +55,10 @@
 
 #pragma mark -
 #pragma mark AddEventPhoto
-- (IBAction)btnAddEventPhoto:(id)sender {
-    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
-    [menu showInView:self.view];
-}
+//- (IBAction)btnAddEventPhoto:(id)sender {
+//    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
+//    [menu showInView:self.view];
+//}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -67,7 +81,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    self.eventPhotoView.image = image;
+//    self.eventPhotoView.image = image;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -79,23 +93,23 @@
 //    [self.navigationController pushViewController:addLocation animated:YES];
 }
 
-- (IBAction)btnInvitePeople:(id)sender {
-}
+//- (IBAction)btnInvitePeople:(id)sender {
+//}
+//
+//- (IBAction)btnAddEventTitle:(id)sender {
+//}
+//
+//- (IBAction)btnAddDayOrTime:(id)sender {
+//}
 
-- (IBAction)btnAddEventTitle:(id)sender {
-}
 
-- (IBAction)btnAddDayOrTime:(id)sender {
-}
-
-
-- (IBAction)Cancel:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (IBAction)Cancel:(id)sender {
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)dealloc
 {
-    [self setEventPhotoView:nil];
+//    [self setEventPhotoView:nil];
 }
 
 @end

@@ -4,6 +4,4 @@
 
 @interface AddEventViewController : UIViewController
 
-
-
 @end
