@@ -14,7 +14,6 @@
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
 {
     navigationMenuDataSource *menuDataSource;
-    //navigationNotifyDataSource *notifyDataSource;
     NSArray * _messages;
 }
 @end
@@ -55,7 +54,6 @@
     [super viewDidLoad];
     
     menuDataSource = [[navigationMenuDataSource alloc] init];
-    //notifyDataSource = [[navigationNotifyDataSource alloc] init];
     
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
