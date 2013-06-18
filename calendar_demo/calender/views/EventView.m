@@ -2,6 +2,10 @@
 #import "EventView.h"
 #import "Utils.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+
+
 @implementation EventView
 
 - (id)initWithFrame:(CGRect)frame
@@ -21,12 +25,12 @@
 
     self.labTime.text = [Utils formateTime:event.start];
 
-    if(event.eventType == 0) {
-        self.imgStatus.image = [UIImage imageNamed:@"circle2"];
-    } else {
-        self.imgStatus.image = [UIImage imageNamed:@"circle"];
-    }
+    NSString * headerUrl = event.creator.avatar_url;
+    [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
+                    placeholderImage:[UIImage imageNamed:@"header.png"]];
 
+
+    
     NSMutableString * duration = [[NSMutableString alloc] init];
 
     if(event.duration_days>0) {
