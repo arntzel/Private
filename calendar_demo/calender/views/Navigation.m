@@ -36,7 +36,7 @@
 
     view.unreadCount.hidden = YES;
 
-    view.unreadCount.layer.cornerRadius = 4;//设置那个圆角的有多圆
+    view.unreadCount.layer.cornerRadius = 6;//设置那个圆角的有多圆
     view.unreadCount.layer.masksToBounds = YES;//设为NO去试试
 
     return view;

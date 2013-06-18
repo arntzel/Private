@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 
-#define PlanView_HEIGHT 105
+#define PlanView_HEIGHT 120
 
 
 /*
@@ -17,6 +17,7 @@
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgStatus;
 @property IBOutlet UIImageView * imgEventType;
+@property IBOutlet UILabel * labEventDuration;
 
 /*
  Update the date in the View

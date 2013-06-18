@@ -26,6 +26,26 @@
     } else {
         self.imgStatus.image = [UIImage imageNamed:@"circle"];
     }
+
+    NSMutableString * duration = [[NSMutableString alloc] init];
+
+    if(event.duration_days>0) {
+        [duration appendFormat:@"%dday ", event.duration_days];
+    }
+
+    if(event.duration_hours>0) {
+        [duration appendFormat:@"%dhr ", event.duration_hours];
+    }
+
+    if(event.duration_minutes>0) {
+        [duration appendFormat:@"%dmin ", event.duration_minutes];
+    }
+
+    self.labEventDuration.text = duration;
+
+    NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
+    self.imgEventType.image = [UIImage imageNamed:imgName];
+
 }
 
 
