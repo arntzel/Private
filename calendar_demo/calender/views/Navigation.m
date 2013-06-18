@@ -20,6 +20,14 @@
     return self;
 }
 
+-(id) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    
+    
+    return self;
+}
+
 +(Navigation *) createNavigationView
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"Navigation" owner:self options:nil];

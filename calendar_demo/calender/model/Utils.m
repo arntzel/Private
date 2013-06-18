@@ -8,18 +8,16 @@
 
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
-//    if(![strDate isKindOfClass:[NSNull class]]) {
-//       return nil;
-//    }
-//
-//    strDate = [Utils formateStringDate:strDate];
-//
-//    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-//    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSDate * date =[format dateFromString:strDate];
-//    return date;
-    
-    return [NSDate date];
+    if([strDate isKindOfClass:[NSNull class]]) {
+       return nil;
+    }
+
+    strDate = [Utils formateStringDate:strDate];
+
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate * date =[format dateFromString:strDate];
+    return date;
 }
 
 
@@ -54,7 +52,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateFormat:@"yyyy:MM:dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
 
 
     return [dateFormatter stringFromDate:time];
@@ -64,7 +62,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateFormat:@"yyyy:MM:dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
     return [dateFormatter stringFromDate:time];    
 }
