@@ -53,6 +53,10 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
+		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
+		7672D16C1770925B0053D024 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B970C7176F5BA200FC8535 /* AddEventViewController.xib */; };
+		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
+		7672D16E177093C10053D024 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B970C6176F5BA200FC8535 /* AddEventViewController.m */; };
 		76C22D7E173FCD3000AC7519 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76C22D66173FCD3000AC7519 /* Kal.bundle */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -168,12 +172,12 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		7672D169177091520053D024 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		7672D16A177091520053D024 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
 		76B970C5176F5BA200FC8535 /* AddEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		76B970C6176F5BA200FC8535 /* AddEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		76B970C7176F5BA200FC8535 /* AddEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
-		76B970C8176F5BA200FC8535 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
-		76B970C9176F5BA200FC8535 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
-		76B970CA176F5BA200FC8535 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
 		76C22D66173FCD3000AC7519 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
@@ -433,12 +437,12 @@
 		76B970C4176F5BA200FC8535 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				7672D168177091520053D024 /* AddLocationViewController.h */,
+				7672D169177091520053D024 /* AddLocationViewController.m */,
+				7672D16A177091520053D024 /* AddLocationViewController.xib */,
 				76B970C5176F5BA200FC8535 /* AddEventViewController.h */,
 				76B970C6176F5BA200FC8535 /* AddEventViewController.m */,
 				76B970C7176F5BA200FC8535 /* AddEventViewController.xib */,
-				76B970C8176F5BA200FC8535 /* AddLocationViewController.h */,
-				76B970C9176F5BA200FC8535 /* AddLocationViewController.m */,
-				76B970CA176F5BA200FC8535 /* AddLocationViewController.xib */,
 			);
 			name = Events;
 			path = calender/Events;
@@ -624,6 +628,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */,
+				7672D16C1770925B0053D024 /* AddEventViewController.xib in Resources */,
 				3D6151AE1734A391003D72B0 /* InfoPlist.strings in Resources */,
 				3D6151B61734A391003D72B0 /* Default.png in Resources */,
 				3D6151B81734A391003D72B0 /* Default@2x.png in Resources */,
@@ -671,6 +677,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */,
+				7672D16E177093C10053D024 /* AddEventViewController.m in Sources */,
 				3D6151B01734A391003D72B0 /* main.m in Sources */,
 				3D6151B41734A391003D72B0 /* AppDelegate.m in Sources */,
 				3D6151CA1734A4C4003D72B0 /* User.m in Sources */,

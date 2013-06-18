@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7672D175177094850053D024 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D170177094640053D024 /* AddEventViewController.m */; };
+		7672D1761770948F0053D024 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D171177094640053D024 /* AddEventViewController.xib */; };
 		76B970D8176F5C1A00FC8535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B970D7176F5C1A00FC8535 /* Foundation.framework */; };
 		76B970DA176F5C1A00FC8535 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B970D9176F5C1A00FC8535 /* CoreGraphics.framework */; };
 		76B970DC176F5C1A00FC8535 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B970DB176F5C1A00FC8535 /* UIKit.framework */; };
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7672D16F177094640053D024 /* AddEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AddEventViewController.h; path = ../../AddEventViewController.h; sourceTree = "<group>"; };
+		7672D170177094640053D024 /* AddEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddEventViewController.m; path = ../../AddEventViewController.m; sourceTree = "<group>"; };
+		7672D171177094640053D024 /* AddEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddEventViewController.xib; path = ../../AddEventViewController.xib; sourceTree = "<group>"; };
 		76B970D4176F5C1A00FC8535 /* eventProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eventProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B970D7176F5C1A00FC8535 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76B970D9176F5C1A00FC8535 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +116,9 @@
 		76B970DD176F5C1A00FC8535 /* eventProj */ = {
 			isa = PBXGroup;
 			children = (
+				7672D16F177094640053D024 /* AddEventViewController.h */,
+				7672D170177094640053D024 /* AddEventViewController.m */,
+				7672D171177094640053D024 /* AddEventViewController.xib */,
 				76B970E6176F5C1A00FC8535 /* AppDelegate.h */,
 				76B970E7176F5C1A00FC8535 /* AppDelegate.m */,
 				76B970E9176F5C1A00FC8535 /* Main_iPhone.storyboard */,
@@ -226,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7672D1761770948F0053D024 /* AddEventViewController.xib in Resources */,
 				76B970EE176F5C1A00FC8535 /* Main_iPad.storyboard in Resources */,
 				76B970F3176F5C1A00FC8535 /* Images.xcassets in Resources */,
 				76B970EB176F5C1A00FC8535 /* Main_iPhone.storyboard in Resources */,
@@ -248,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7672D175177094850053D024 /* AddEventViewController.m in Sources */,
 				76B970E8176F5C1A00FC8535 /* AppDelegate.m in Sources */,
 				76B970E4176F5C1A00FC8535 /* main.m in Sources */,
 			);
@@ -462,6 +472,7 @@
 				76B9710B176F5C1A00FC8535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76B9710C176F5C1A00FC8535 /* Build configuration list for PBXNativeTarget "eventProjTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +481,7 @@
 				76B9710E176F5C1A00FC8535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

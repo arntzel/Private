@@ -2,7 +2,7 @@
 
 #import "AddEventViewController.h"
 #import <UIKit/UIImagePickerController.h>
-#import "AddLocationViewController.h"
+//#import "AddLocationViewController.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *eventPhotoView;
@@ -75,8 +75,8 @@
 #pragma mark AddLocation
 
 - (IBAction)btnAddLocation:(id)sender {
-    AddLocationViewController *addLocation = [[AddLocationViewController alloc] initWithNibName:@"AddLocationViewController" bundle:nil];
-    [self.navigationController pushViewController:addLocation animated:YES];
+//    AddLocationViewController *addLocation = [[AddLocationViewController alloc] initWithNibName:@"AddLocationViewController" bundle:nil];
+//    [self.navigationController pushViewController:addLocation animated:YES];
 }
 
 - (IBAction)btnInvitePeople:(id)sender {

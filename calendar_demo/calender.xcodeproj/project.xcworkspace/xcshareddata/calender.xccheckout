@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>AAA476A4-3F02-46F4-8812-2418D5B33ABF</string>
+	<string>8DB77927-2A68-48E1-BD3C-2FC4263C4FA6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>calender</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -32,7 +32,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>080F680C-C118-4BAC-AB65-E40AEC068E82</string>
 			<key>IDESourceControlWCCName</key>
-			<string>calvinapp-ios</string>
+			<string>eventProj</string>
 		</dict>
 	</array>
 </dict>

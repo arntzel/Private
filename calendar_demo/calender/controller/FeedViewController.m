@@ -1,6 +1,6 @@
 
 #import "FeedViewController.h"
-#import "AddEventViewController.h"
+
 
 #import "Navigation.h"
 
@@ -18,7 +18,7 @@
 #import "Utils.h"
 
 #import "RootNavContrller.h"
-
+#import "AddEventViewController.h"
 /*
  FeedViewController show the event list and a calender wiget
  */

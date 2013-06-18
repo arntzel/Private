@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-//#import "AddEventViewController.h"
+#import "AddEventViewController.h"
 
 @implementation AppDelegate
 
@@ -16,8 +16,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
-    [self.window setRootViewController:[[UIViewController alloc] init]];
+    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
+    [self.window setRootViewController:addEvent];
     [self.window makeKeyAndVisible];
     return YES;    
 }
