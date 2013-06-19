@@ -1,33 +1,34 @@
+//
+//  AppDelegate.m
+//  eventProj2
+//
+//  Created by zyax86 on 13-6-18.
+//  Copyright (c) 2013年 zyax86. All rights reserved.
+//
 
 #import "AppDelegate.h"
 
-#import "FeedViewController.h"
-#import "RootNavContrller.h"
-#import <GoogleMaps/GoogleMaps.h>
-#import "googleAPIKey.h"
-#import "SignupViewController.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
+- (void)dealloc
+{
+    [_window release];
+    [_viewController release];
+    [super dealloc];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GMSServices provideAPIKey:(NSString *)googleAPIKey];
-    
-    [application setStatusBarHidden:NO withAnimation:NO];
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    
-    SignupViewController *viewController = [[SignupViewController alloc] init];
-    
-    RootNavContrller *navController = [RootNavContrller defaultInstance];
-    [navController pushViewController:viewController animated:NO];
-
-
-    [UIApplication sharedApplication].statusBarHidden = YES;
-    
-    [self.window setRootViewController:navController];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil] autorelease];
+    } else {
+        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil] autorelease];
+    }
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

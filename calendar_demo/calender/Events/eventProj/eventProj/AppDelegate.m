@@ -1,37 +1,27 @@
+//
+//  AppDelegate.m
+//  eventProj
+//
+//  Created by zyax86 on 13-6-17.
+//  Copyright (c) 2013年 zyax86. All rights reserved.
+//
 
 #import "AppDelegate.h"
-
-#import "FeedViewController.h"
-#import "RootNavContrller.h"
-#import <GoogleMaps/GoogleMaps.h>
-#import "googleAPIKey.h"
-#import "SignupViewController.h"
+#import "AddEventViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GMSServices provideAPIKey:(NSString *)googleAPIKey];
-    
-    [application setStatusBarHidden:NO withAnimation:NO];
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    SignupViewController *viewController = [[SignupViewController alloc] init];
-    
-    RootNavContrller *navController = [RootNavContrller defaultInstance];
-    [navController pushViewController:viewController animated:NO];
-
-
-    [UIApplication sharedApplication].statusBarHidden = YES;
-    
-    [self.window setRootViewController:navController];
+    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
+    [self.window setRootViewController:addEvent];
     [self.window makeKeyAndVisible];
-    return YES;
+    return YES;    
 }
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

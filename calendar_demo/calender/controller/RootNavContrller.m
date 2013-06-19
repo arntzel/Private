@@ -1,19 +1,20 @@
 
 #import "RootNavContrller.h"
 
+static RootNavContrller* defaultNavController = nil;
+
 @interface RootNavContrller ()
 
 @end
 
 @implementation RootNavContrller
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (RootNavContrller *)defaultInstance
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (defaultNavController == nil) {
+        defaultNavController = [[RootNavContrller alloc] init];
     }
-    return self;
+    return defaultNavController;
 }
 
 - (void)viewDidLoad
