@@ -29,6 +29,8 @@
     AddEventView *addEventView = (AddEventView*)[nibView objectAtIndex:0];
     [scrollView addSubview:addEventView];
     [scrollView setContentSize:addEventView.frame.size];
+    
+    UIImageView *imageview;
 }
 
 - (void)didReceiveMemoryWarning
