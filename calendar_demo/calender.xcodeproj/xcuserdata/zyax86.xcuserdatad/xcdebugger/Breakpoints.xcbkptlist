@@ -78,33 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "219"
          endingLineNumber = "219"
-         landmarkName = "-receivedTouches:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "calender/CalWiget/view/KalWeekGridView.m"
-         timestampString = "390060186.204629"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "239"
-         endingLineNumber = "239"
-         landmarkName = "-touchesBegan:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "calender/CalWiget/view/KalWeekGridView.m"
-         timestampString = "390060187.054688"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
-         landmarkName = "-touchesMoved:withEvent:"
+         landmarkName = "-touchesEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -117,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "249"
          endingLineNumber = "249"
-         landmarkName = "-touchesEnded:withEvent:"
+         landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
