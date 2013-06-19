@@ -55,11 +55,11 @@
     navigation.unreadCount.hidden = NO;
 
     [self.view addSubview:navigation];
-    [navigation.leftBtn addTarget:self action:@selector(btnManu:) forControlEvents:UIControlEventTouchUpInside];
+    [navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
     [navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = navigation.frame.size.height;
-    
+
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
     frame.size.height -=(y + 64);
@@ -131,9 +131,13 @@
 #pragma mark -
 #pragma mark btnEvent
 
-- (void)btnManu:(id)sender
+- (void)btnMenu:(id)sender
 {
-    
+    navigation.unreadCount.hidden = YES;
+
+    if(self.delegate != nil) {
+        [self.delegate onBtnMenuClick];
+    }
 }
 
 - (void)btnAddEvent:(id)sender

@@ -73,6 +73,8 @@
             DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
             rootController.leftViewController = leftController;
 
+            fdController.delegate = rootController;
+
             [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
             [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
         }

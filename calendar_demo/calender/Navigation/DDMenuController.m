@@ -1,6 +1,8 @@
 
 
 #import "DDMenuController.h"
+#import "FeedViewController.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 #define kMenuFullWidth 320.0f
@@ -18,7 +20,7 @@
 @synthesize canShowLeft;
 @end
 
-@interface DDMenuController (Internal)
+@interface DDMenuController (Internal) <FeedViewControllerDelegate>
 - (void)showShadow:(BOOL)val;
 @end
 
@@ -742,6 +744,12 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return self.rootViewController.supportedInterfaceOrientations;
+}
+
+-(void)onBtnMenuClick {
+
+   [self showLeftController:YES];
+
 }
 
 @end
