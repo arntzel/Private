@@ -6,13 +6,13 @@
 
 @property int id;
 
-@property NSString * username;
+@property(strong) NSString * username;
 
-@property NSString * email;
+@property(strong) NSString * email;
 
-@property NSString * avatar_url;
+@property(strong) NSString * avatar_url;
 
-@property NSString * apikey;
+@property(strong) NSString * apikey;
 
 
 /*

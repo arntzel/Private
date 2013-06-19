@@ -18,32 +18,32 @@
 @property BOOL is_all_day;
 @property BOOL published;
 
-@property NSDate * created_on;
+@property(strong) NSDate * created_on;
 
-@property User * creator;
+@property(strong) User * creator;
 
-@property NSString * description;
+@property(strong) NSString * description;
 
 @property int duration_days;
 @property int duration_hours;
 @property int duration_minutes;
 
-@property NSString * start_type;
-@property NSDate * start;
+@property(strong) NSString * start_type;
+@property(strong) NSDate * start;
 
-@property NSDate * end;
+@property(strong) NSDate * end;
 
-@property Location * location;
-
-
-@property NSDictionary * status;
+@property(strong) Location * location;
 
 
-@property NSString * thumbnail_url;
-@property NSString * title;
-@property NSString * userstatus;
+@property(strong) NSDictionary * status;
 
-@property NSArray * attendees;
+
+@property(strong) NSString * thumbnail_url;
+@property(strong) NSString * title;
+@property(strong) NSString * userstatus;
+
+@property(strong) NSArray * attendees;
 
 
 //Allow suggest new datetime  0

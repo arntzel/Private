@@ -14,11 +14,11 @@
 
 @property int id;
 
-@property NSString * gender;
+@property(strong) NSString * gender;
 
-@property NSString * self_description;
+@property(strong) NSString * self_description;
 
-@property User * user;
+@property(strong) User * user;
 
 +(UserProfile *) paserUserProfile:(NSDictionary *) json;
 

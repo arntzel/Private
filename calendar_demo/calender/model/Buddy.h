@@ -6,13 +6,13 @@
 
 @property int id;
 
-@property NSString * first_name;
-@property NSString * last_name;
-@property NSString * username;
-@property NSString * email;
+@property(strong) NSString * first_name;
+@property(strong) NSString * last_name;
+@property(strong) NSString * username;
+@property(strong) NSString * email;
 
-@property NSDate * date_joined;
-@property NSDate * last_login;
+@property(strong) NSDate * date_joined;
+@property(strong) NSDate * last_login;
 
 
 /*

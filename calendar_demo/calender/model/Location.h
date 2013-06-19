@@ -5,8 +5,8 @@
 @interface Location : NSObject
 
 @property int id;
-@property NSString * location;
-@property NSString * photo;
+@property(strong) NSString * location;
+@property(strong) NSString * photo;
 
 /*
  Parse Location object from json data.

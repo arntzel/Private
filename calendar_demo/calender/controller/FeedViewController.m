@@ -33,6 +33,8 @@
     
     NSMutableArray * sections;
     NSMutableDictionary * sectionDict;
+
+    UIActivityIndicatorView * loadingView;
 }
 
 @property (nonatomic, retain) KalView *calendarView;
@@ -86,6 +88,11 @@
     self.calendarView = kalView;
     
 
+    loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingView.center = self.view.center;
+    loadingView.hidesWhenStopped = YES;
+
+    [self.view addSubview:loadingView];
 
     [self loadData];
 }
@@ -99,10 +106,14 @@
 
 -(void) loadData
 {
+    [loadingView startAnimating];
+    
     [[Model getInstance] getEvents:^(NSInteger error, NSArray *events) {
 
         NSLog(@"getEvents:error=%d, events size=%d", error, events.count);
 
+        [loadingView stopAnimating];
+        
         if(error == 0) {
 
             sections = [Utils getEventSectionArray:events];

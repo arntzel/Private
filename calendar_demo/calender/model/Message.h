@@ -7,37 +7,37 @@
 
 @property int id;
 
-@property NSString * subject;
+@property(strong) NSString * subject;
 
-@property NSString * email;
+@property(strong) NSString * email;
 
-@property NSString * body;
-
-
-@property NSDate * moderation_date;
-
-@property NSString * moderation_reason;
-
-@property NSString * moderation_status;
-
-@property NSDate * read_at;
+@property(strong) NSString * body;
 
 
+@property(strong) NSDate * moderation_date;
 
-@property User * recipient;
+@property(strong) NSString * moderation_reason;
+
+@property(strong) NSString * moderation_status;
+
+@property(strong) NSDate * read_at;
+
+
+
+@property(strong) User * recipient;
 
 @property BOOL recipient_archived;
 
-@property NSDate * replied_at;
+@property(strong) NSDate * replied_at;
 
 
-@property User * sender;
+@property(strong) User * sender;
 
 @property BOOL sender_archived;
 
-@property NSDate * sender_deleted_at;
+@property(strong) NSDate * sender_deleted_at;
 
-@property NSDate * sent_at;
+@property(strong) NSDate * sent_at;
 
 
 /*

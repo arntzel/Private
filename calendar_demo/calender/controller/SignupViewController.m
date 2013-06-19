@@ -15,6 +15,7 @@
 #import "LoginNowController.h"
 
 #import "RootNavContrller.h"
+#import "UserModel.h"
 
 @interface SignupViewController ()
 
@@ -61,17 +62,21 @@
 -(void) signupEmail {
     
     [self finish];
-    
-    
-    menuNavigation *leftController = [[menuNavigation alloc] init];
-    FeedViewController * fdController = [[FeedViewController alloc] init];
-    
-    
-    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
-    rootController.leftViewController = leftController;
-    
-    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
-    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+
+    [[UserModel getInstance] login:@"fx.fangxiang@gmail.com" withPassword:@"fangxiang" andCallback:^(NSInteger error, User *user) {
+
+        if(error == 0) {
+            menuNavigation *leftController = [[menuNavigation alloc] init];
+            FeedViewController * fdController = [[FeedViewController alloc] init];
+
+
+            DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
+            rootController.leftViewController = leftController;
+
+            [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+            [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+        }
+    }];
 }
 
 -(void) finish {
