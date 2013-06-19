@@ -30,7 +30,6 @@
     [scrollView addSubview:addEventView];
     [scrollView setContentSize:addEventView.frame.size];
     
-    UIView *test;
 }
 
 - (void)didReceiveMemoryWarning
