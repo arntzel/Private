@@ -20,7 +20,8 @@ static Model * instance;
    
 
     [[UserModel getInstance] setAuthHeader:request];
-    
+    //Content-Type: application/json
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
@@ -41,6 +42,9 @@ static Model * instance;
             callback(ERROCODE_OK, events);
 
         } else {
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSLog(@"error=%d, resp:%@", status, aStr);
+
             callback(ERROCODE_SERVER, nil);
         }
     }];

@@ -63,7 +63,7 @@
     
     [self finish];
 
-    [[UserModel getInstance] login:@"fx.fangxiang@gmail.com" withPassword:@"fangxiang" andCallback:^(NSInteger error, User *user) {
+    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"huzhiwei" andCallback:^(NSInteger error, User *user) {
 
         if(error == 0) {
             menuNavigation *leftController = [[menuNavigation alloc] init];
@@ -77,6 +77,8 @@
 
             [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
             [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+        } else {
+            NSLog(@"error=%d", error);
         }
     }];
 }

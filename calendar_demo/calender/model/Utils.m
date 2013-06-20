@@ -67,6 +67,14 @@
     return [dateFormatter stringFromDate:time];    
 }
 
++(NSString *) formateMonth:(NSDate *) date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM"];
+
+    return [dateFormatter stringFromDate:date];
+}
+
 +(NSMutableArray *) getEventSectionArray: (NSArray*)events
 {
     NSMutableArray * array = [[NSMutableArray alloc] init];

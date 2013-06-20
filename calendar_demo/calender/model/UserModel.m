@@ -80,6 +80,10 @@ static UserModel * instance;
             mloginUser = user;
             callback(0, user);
         } else {
+
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSLog(@"error=%d, resp:%@", status, aStr);
+
             //TODO:: parse error type
             //401: UNAUTHORIZED
             //Other: net work error

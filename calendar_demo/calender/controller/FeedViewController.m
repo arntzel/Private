@@ -34,6 +34,9 @@
     NSMutableArray * sections;
     NSMutableDictionary * sectionDict;
 
+    //Month
+    NSMutableDictionary * monthEvents;
+
     UIActivityIndicatorView * loadingView;
 }
 
@@ -248,6 +251,9 @@
 - (void)didSelectDate:(KalDate *)date
 {
     NSLog(@"didSelectDate:%@", date);
+
+
+    
 }
 
 - (void)monthModeToEventMode
