@@ -26,9 +26,13 @@
     self.labTime.text = [Utils formateTime:event.start];
 
     NSString * headerUrl = event.creator.avatar_url;
-    [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
-                    placeholderImage:[UIImage imageNamed:@"header.png"]];
-
+    
+    if([headerUrl isKindOfClass: [NSNull class]]) {
+        self.imgUser.image = [UIImage imageNamed:@"header.png"];
+    } else {
+        [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
+                     placeholderImage:[UIImage imageNamed:@"header.png"]];
+    }
 
     
     NSMutableString * duration = [[NSMutableString alloc] init];
