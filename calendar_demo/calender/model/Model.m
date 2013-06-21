@@ -11,14 +11,48 @@ static Model * instance;
 
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event", HOST];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+    NSInteger iCurYear = [components year];  //当前的年份
+    NSInteger iCurMonth = [components month];  //当前的月份
+    [self getEvents:iCurYear andMonth:iCurMonth andCallback:callback];
+}
+
+
+-(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback
+{
+       
+    NSString * startDay = [Utils formate:year andMonth:month];
+    
+    month++;
+    if(month>12) {
+        month = 1;
+        year ++;
+    }
+    
+    NSString * endDay = [Utils formate:year andMonth:month];
+    
+    startDay =[NSString stringWithFormat:@"%@-01T00:00:00", startDay];
+    endDay =[NSString stringWithFormat:@"%@-01T00:00:00", endDay];
+    
+    [self getEvents:startDay andEnd:endDay andCallback:callback];
+}
+
+-(void) getEvents:(NSString *)startDay andEnd:(NSString *)endDay  andCallback:(void (^)(NSInteger error, NSArray* events))callback
+{
+    //start__gte=2013-06-15T00:00:00
+    //start__lt=2013-06-16T00:00:00
+
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?start__gte=%@&start__lt=%@", HOST, startDay, endDay];
     
     NSLog(@"url=%@", url);
     
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
-   
-
+    
+    
     [[UserModel getInstance] setAuthHeader:request];
     //Content-Type: application/json
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -29,27 +63,26 @@ static Model * instance;
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-
+            
             NSArray * objects = [json objectForKey:@"objects"];
-
+            
             NSMutableArray * events = [[NSMutableArray alloc] init];
-
+            
             for(int i=0; i<objects.count;i++) {
                 Event * e = [Event parseEvent:[objects objectAtIndex:i]];
                 [events addObject:e];
             }
-
+            
             callback(ERROCODE_OK, events);
-
+            
         } else {
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             NSLog(@"error=%d, resp:%@", status, aStr);
-
+            
             callback(ERROCODE_SERVER, nil);
         }
     }];
 }
-
 
 -(void) updateEvent:(Event *) event andCallback:(void (^)(NSInteger error))callback
 {

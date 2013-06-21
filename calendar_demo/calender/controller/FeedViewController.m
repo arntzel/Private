@@ -19,6 +19,11 @@
 
 #import "RootNavContrller.h"
 #import "AddEventViewController.h"
+
+#import "EventModel.h"
+
+
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -31,13 +36,19 @@
     
     UITableView * tableView;
     
-    NSMutableArray * sections;
-    NSMutableDictionary * sectionDict;
+    //NSMutableArray * sections;
+    //NSMutableDictionary * sectionDict;
 
     //Month
-    NSMutableDictionary * monthEvents;
+    //NSMutableDictionary * monthEvents;
 
     UIActivityIndicatorView * loadingView;
+    
+    EventModel * eventModel;
+    
+    int selectedYear;
+    int selectedMonth;
+    int selectedDay;
 }
 
 @property (nonatomic, retain) KalView *calendarView;
@@ -51,8 +62,10 @@
 {
     [super viewDidLoad];
 	
-    sections = [[NSMutableArray alloc] init];
-    sectionDict = [[NSMutableDictionary alloc] init];
+    eventModel = [[EventModel alloc] init];
+    
+    //sections = [[NSMutableArray alloc] init];
+    //sectionDict = [[NSMutableDictionary alloc] init];
 
     navigation = [Navigation createNavigationView];
     navigation.unreadCount.hidden = NO;
@@ -97,7 +110,14 @@
 
     [self.view addSubview:loadingView];
 
-    [self loadData];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+    selectedYear = [components year];  //当前的年份
+    selectedMonth = [components month];  //当前的月份
+    selectedDay = [components day];
+    
+    [self loadData:selectedYear andMonth:selectedMonth];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,22 +127,25 @@
 }
 
 
--(void) loadData
+-(void) loadData:(int) year andMonth:(int)month
 {
     [loadingView startAnimating];
     
-    [[Model getInstance] getEvents:^(NSInteger error, NSArray *events) {
-
+    
+    [[Model getInstance] getEvents:year andMonth:month andCallback:^(NSInteger error, NSArray *events) {
+        
         NSLog(@"getEvents:error=%d, events size=%d", error, events.count);
-
+        
         [loadingView stopAnimating];
         
         if(error == 0) {
-
-            sections = [Utils getEventSectionArray:events];
-            sectionDict = [Utils getEventSectionDict:events];
-
+    
+            NSString * strMonth = [Utils formate:year andMonth:month];
+            [eventModel setEvents:events forMonth:strMonth];
+             
             [tableView reloadData];
+            
+            [self tableviewScroll2SelectDay];
             
         } else {
             //TODO:: show network error
@@ -155,11 +178,13 @@
 
     NSLog(@"numberOfRowsInSection:%d", section);
     
-    NSString * key = [sections objectAtIndex:section];
-    NSArray * array = [sectionDict objectForKey:key];
+    NSArray * allDays = [eventModel getAllDays];
     
-    NSLog(@"section=%d, count=%d/%d, key=%@", section, array.count, sections.count, key);
+    NSString * key = [allDays objectAtIndex:section];
+
+    NSArray * array = [eventModel getEventsByDay:key];
     
+    NSLog(@"section=%d, count=%d/%d, key=%@", section, array.count, allDays.count, key);
     
     return array.count;
 }
@@ -172,10 +197,13 @@
     
     NSLog(@"cellForRowAtIndexPath: %d, %d", section, row);
     
-    NSString * key = [sections objectAtIndex:section];
-    NSArray * array = [sectionDict objectForKey:key];
+    NSArray * allDays = [eventModel getAllDays];
     
-    Event * event = [array objectAtIndex:row];
+    NSString * key = [allDays objectAtIndex:section];
+    
+    NSArray * dayEvents = [eventModel getEventsByDay:key];
+    
+    Event * event = [dayEvents objectAtIndex:row];
     EventView * view = [EventView createEventView];
     
     [view refreshView:event];
@@ -187,8 +215,9 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSArray * allDays = [eventModel getAllDays];
     
-    NSString * sectionName = [sections objectAtIndex:section];
+    NSString * sectionName = [allDays objectAtIndex:section];
     
     CGRect frame = CGRectMake(0, 0, 320, 24);
     
@@ -222,7 +251,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [sections count];
+    return [[eventModel getAllDays] count];
 }
 
 
@@ -252,8 +281,51 @@
 {
     NSLog(@"didSelectDate:%@", date);
 
-
+    if(!loadingView.isHidden) {
+        return;
+    }
     
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents *components = [calendar components:unitFlags fromDate:[date NSDate]];
+    
+    selectedYear = [components year];
+    selectedMonth = [components month];
+    selectedDay = [components day];
+    
+    NSString * strmonth = [Utils formate:selectedYear andMonth:selectedMonth];
+    
+    if([eventModel getEventsByMonth:strmonth] == nil) {
+        
+        [self loadData:selectedYear andMonth:selectedMonth];
+        
+    } else {
+        [self tableviewScroll2SelectDay];
+    }
+}
+
+-(void) tableviewScroll2SelectDay {
+    
+    NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
+    
+    NSArray * array = [eventModel getAllDays];
+    
+    int index = 0;
+    for(; index<array.count; index++) {
+        NSString * day = [array objectAtIndex:index];
+        if( [selectedDate compare:day] >= 0 ) {
+            break;
+        }
+    }
+    
+    if(index == array.count) {
+        index--;
+    }
+    
+    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:index];
+    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)monthModeToEventMode

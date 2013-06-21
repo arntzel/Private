@@ -28,6 +28,9 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback;
 
 
+-(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
+
+
 /**
  Call WebService API to Update event title and description
  */

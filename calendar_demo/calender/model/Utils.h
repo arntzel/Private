@@ -32,6 +32,7 @@
  */
 +(NSString *) formateDay:(NSDate *) time;
 
++(NSString *) formate:(int) year andMonth:(int)month andDay:(int) day;
 
 /*
  convert a NSDate to NSString object
@@ -44,6 +45,13 @@
  return the date of string format, example: "2013-06"
  */
 +(NSString *) formateMonth:(NSDate *) date;
+
+/*
+ convert  to NSString object
+ return the date of string format, example: "2013-06"
+ */
++(NSString *) formate:(int) year andMonth:(int)month;
+
 
 /**
  return the date list that the events contained

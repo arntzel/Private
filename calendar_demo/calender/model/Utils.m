@@ -58,6 +58,27 @@
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formate:(int) year andMonth:(int)month andDay:(int) day
+{
+    NSMutableString * str = [[NSMutableString alloc] init];
+    
+    [str appendFormat:@"%d-", year];
+    
+    if(month>9) {
+        [str appendFormat:@"%d-", month];
+    } else {
+        [str appendFormat:@"0%d-", month];
+    }
+    
+    if(day>9) {
+        [str appendFormat:@"%d", day];
+    } else {
+        [str appendFormat:@"%0d", day];
+    }
+    
+    return str;
+}
+
 +(NSString *) formateDate:(NSDate *) time
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -73,6 +94,15 @@
     [dateFormatter setDateFormat:@"yyyy-MM"];
 
     return [dateFormatter stringFromDate:date];
+}
+
++(NSString *) formate:(int) year andMonth:(int)month;
+{
+    if(month>9) {
+        return [NSString stringWithFormat:@"%d-%d", year, month];
+    } else {
+        return [NSString stringWithFormat:@"%d-0%d", year, month];
+    }
 }
 
 +(NSMutableArray *) getEventSectionArray: (NSArray*)events

@@ -1,10 +1,3 @@
-//
-//  EventModel.m
-//  calender
-//
-//  Created by xiangfang on 13-6-20.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "EventModel.h"
 #import "Event.h"
@@ -48,14 +41,11 @@
             [array addObject:event];
         }
 
-        alldays = [dayEvents keysSortedByValueUsingComparator: ^(id obj1, id obj2) {
-
-            NSString * str1 = (NSString *)obj1;
-            NSString * str2 = (NSString *)obj2;
-            return [str1 compare:str2];
+        alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString * str1 = obj1;
+            NSString * str2 = obj2;
+            return [str2 compare:str1];
         }];
-        
-       
         
     } else {
         assert(NO);

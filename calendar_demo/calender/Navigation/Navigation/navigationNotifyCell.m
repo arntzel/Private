@@ -55,8 +55,13 @@
 {
     NSString * headerUrl = msg.sender.avatar_url;
     
-    [self.headerIcon setImageWithURL:[NSURL URLWithString:headerUrl]
-                    placeholderImage:[UIImage imageNamed:@"header.png"]];
+    if([headerUrl isKindOfClass: [NSNull class]]) {
+        self.headerIcon.image = [UIImage imageNamed:@"header.png"];
+    } else {
+        [self.headerIcon setImageWithURL:[NSURL URLWithString:headerUrl]
+                     placeholderImage:[UIImage imageNamed:@"header.png"]];
+    }
+    
     
     NSString * subject = msg.subject;
     
