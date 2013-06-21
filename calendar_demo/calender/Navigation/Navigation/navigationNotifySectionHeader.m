@@ -4,6 +4,7 @@
 
 - (void)dealloc {
     [_title release];
+    self.loadingView = nil;
     [super dealloc];
 }
 

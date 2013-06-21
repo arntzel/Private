@@ -15,6 +15,7 @@
 {
     navigationMenuDataSource *menuDataSource;
     NSArray * _messages;
+    BOOL loading;
 }
 @end
 
@@ -70,15 +71,20 @@
         self.tableView = tableView;
     }
     
+    loading = YES;
+    [self.tableView reloadData];
     [[Model getInstance] getMessages:^(NSInteger error, NSArray *messages) {
         
         if(error == 0) {
             _messages = messages;
-            [self.tableView reloadData];
         } else {
             //TODO::
         }
         
+        loading = NO;
+        
+        [self.tableView reloadData];
+
     }];
 }
 
@@ -168,7 +174,15 @@
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifySectionHeader" owner:self options:nil] ;
         navigationNotifySectionHeader *header = [nib objectAtIndex:0];
         [header.title setText:@"NOTIFICATIONS"];
+        
+        if(loading) {
+            [header.loadingView startAnimating];
+        } else {
+            header.loadingView.hidden = YES;
+        }
+        
         [header setNeedsDisplay];
+        
         return header;
     }
     else
