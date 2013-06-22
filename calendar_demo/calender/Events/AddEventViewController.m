@@ -1,10 +1,4 @@
-//
-//  AddEventViewController.m
-//  calender
-//
-//  Created by zyax86 on 13-6-19.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "AddEventViewController.h"
 #import "AddEventView.h"
