@@ -11,6 +11,10 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Model.h"
 
+#import "RootNavContrller.h"
+#import "PedingEventViewController.h"
+
+
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
 {
     navigationMenuDataSource *menuDataSource;
@@ -194,7 +198,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
+    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
+    //PendingViewController
+    NSLog(@"didSelectRowAtIndexPath:%@", indexPath);
+
+    if(indexPath.section ==0 && indexPath.row ==1) {
+        PedingEventViewController * pendingController = [[PedingEventViewController alloc] init];
+        [[RootNavContrller defaultInstance] pushViewController:pendingController animated:YES];
+    }
+
+}
 @end

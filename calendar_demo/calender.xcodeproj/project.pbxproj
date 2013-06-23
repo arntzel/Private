@@ -107,6 +107,9 @@
 		940EBBD7173E8033001C3B44 /* header_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD5173E8033001C3B44 /* header_mask.png */; };
 		940EBBD8173E8033001C3B44 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD6173E8033001C3B44 /* header.png */; };
 		94260F5717733EF70037965D /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F5617733EF60037965D /* EventModel.m */; };
+		94260F6D177733D10037965D /* PedingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F6C177733D10037965D /* PedingEventViewController.m */; };
+		94260F73177735820037965D /* EventPending.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F72177735820037965D /* EventPending.xib */; };
+		94260F7F17773A460037965D /* EventPendingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F7E17773A460037965D /* EventPendingView.m */; };
 		943090211770932900266515 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090201770932900266515 /* clock.png */; };
 		943090291770985000266515 /* colordot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090231770985000266515 /* colordot1.png */; };
 		9430902A1770985000266515 /* colordot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090241770985000266515 /* colordot2.png */; };
@@ -267,6 +270,11 @@
 		940EBBD6173E8033001C3B44 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 		94260F5517733EF60037965D /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
 		94260F5617733EF60037965D /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
+		94260F6B177733D10037965D /* PedingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedingEventViewController.h; sourceTree = "<group>"; };
+		94260F6C177733D10037965D /* PedingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedingEventViewController.m; sourceTree = "<group>"; };
+		94260F72177735820037965D /* EventPending.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPending.xib; sourceTree = "<group>"; };
+		94260F7D17773A450037965D /* EventPendingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingView.h; sourceTree = "<group>"; };
+		94260F7E17773A460037965D /* EventPendingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingView.m; sourceTree = "<group>"; };
 		943090201770932900266515 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		943090231770985000266515 /* colordot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colordot1.png; sourceTree = "<group>"; };
 		943090241770985000266515 /* colordot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colordot2.png; sourceTree = "<group>"; };
@@ -310,6 +318,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				94260F6517772BD40037965D /* pending */,
 				76DFD0D11764AF7100B183B7 /* Navigation */,
 				76B970C4176F5BA200FC8535 /* Events */,
 				76DD62B01768AEF900C8F6AF /* Utils */,
@@ -606,6 +615,19 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		94260F6517772BD40037965D /* pending */ = {
+			isa = PBXGroup;
+			children = (
+				94260F6B177733D10037965D /* PedingEventViewController.h */,
+				94260F6C177733D10037965D /* PedingEventViewController.m */,
+				94260F72177735820037965D /* EventPending.xib */,
+				94260F7D17773A450037965D /* EventPendingView.h */,
+				94260F7E17773A460037965D /* EventPendingView.m */,
+			);
+			name = pending;
+			path = calender/pending;
+			sourceTree = "<group>";
+		};
 		943090221770985000266515 /* colordot */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +739,7 @@
 				9430902E1770985000266515 /* colordot6.png in Resources */,
 				76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */,
 				76383A2D177204BD00781166 /* AddEventView.xib in Resources */,
+				94260F73177735820037965D /* EventPending.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +795,8 @@
 				76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */,
 				76383A2C177204BD00781166 /* AddEventView.m in Sources */,
 				94260F5717733EF70037965D /* EventModel.m in Sources */,
+				94260F6D177733D10037965D /* PedingEventViewController.m in Sources */,
+				94260F7F17773A460037965D /* EventPendingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

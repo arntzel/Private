@@ -7,6 +7,7 @@
  */
 @interface Navigation : UIView
 
+@property IBOutlet UILabel * titleLable;
 @property IBOutlet UIButton * leftBtn;
 @property IBOutlet UIButton * rightBtn;
 @property IBOutlet UILabel * unreadCount;
