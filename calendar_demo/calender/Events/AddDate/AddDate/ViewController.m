@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "IZValueSelectorView.h"
+#import "CustomPickerView.h"
 
-@interface ViewController ()<IZValueSelectorViewDataSource,IZValueSelectorViewDelegate>
-@property (nonatomic,strong) IZValueSelectorView *selectorHorizontal;
+@interface ViewController ()<CustomPickerViewDataSource,CustomPickerViewDelegate>
+@property (nonatomic,strong) CustomPickerView *selectorHorizontal;
 @end
 
 @implementation ViewController
@@ -21,16 +21,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     
-    self.selectorHorizontal = [[IZValueSelectorView alloc] initWithFrame:CGRectMake(100, 50, 120, 400)];
+    self.selectorHorizontal = [[CustomPickerView alloc] initWithDelegate:self];
     [self.view addSubview:self.selectorHorizontal];
     
-    self.selectorHorizontal.dataSource = self;
-    self.selectorHorizontal.delegate = self;
-    self.selectorHorizontal.shouldBeTransparent = YES;
-    self.selectorHorizontal.horizontalScrolling = NO;
-    
-
     self.selectorHorizontal.debugEnabled = NO;
+    self.selectorHorizontal.debugEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,23 +36,19 @@
 
 
 #pragma IZValueSelector dataSource
-- (NSInteger)numberOfRowsInSelector:(IZValueSelectorView *)valueSelector {
-    return 30;
+- (NSInteger)numberOfRowsInSelector:(CustomPickerView *)valueSelector {
+    return 65536;
 }
 
 
 
 //ONLY ONE OF THESE WILL GET CALLED (DEPENDING ON the horizontalScrolling property Value)
-- (CGFloat)rowHeightInSelector:(IZValueSelectorView *)valueSelector {
-    return 70.0;
-}
-
-- (CGFloat)rowWidthInSelector:(IZValueSelectorView *)valueSelector {
+- (CGFloat)rowHeightInSelector:(CustomPickerView *)valueSelector {
     return 70.0;
 }
 
 
-- (UIView *)selector:(IZValueSelectorView *)valueSelector viewForRowAtIndex:(NSInteger)index {
+- (UIView *)selector:(CustomPickerView *)valueSelector viewForRowAtIndex:(NSInteger)index {
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, self.selectorHorizontal.frame.size.height)];
 
     label.text = [NSString stringWithFormat:@"day :%d",index + 1];
@@ -66,14 +57,14 @@
     return label;
 }
 
-- (CGRect)rectForSelectionInSelector:(IZValueSelectorView *)valueSelector {
+- (CGRect)rectForSelectionInSelector:(CustomPickerView *)valueSelector {
 
-        return CGRectMake(self.selectorHorizontal.frame.size.width/2 - 35.0, 0.0, 70.0, 90.0);
+    return CGRectMake(self.selectorHorizontal.frame.size.width/2 - 35.0, 0.0, 70.0, 90.0);
     
 }
 
 #pragma IZValueSelector delegate
-- (void)selector:(IZValueSelectorView *)valueSelector didSelectRowAtIndex:(NSInteger)index {
+- (void)selector:(CustomPickerView *)valueSelector didSelectRowAtIndex:(NSInteger)index {
     NSLog(@"Selected index %d",index);
 }
 
