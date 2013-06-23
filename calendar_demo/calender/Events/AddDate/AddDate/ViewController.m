@@ -21,7 +21,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     
-    self.selectorHorizontal = [[CustomPickerView alloc] initWithDelegate:self];
+    self.selectorHorizontal = [[CustomPickerView alloc] initWithFrame:CGRectMake(0, 250, 160, 160) Delegate:self];
     [self.view addSubview:self.selectorHorizontal];
     
     self.selectorHorizontal.debugEnabled = NO;
@@ -38,29 +38,6 @@
 #pragma IZValueSelector dataSource
 - (NSInteger)numberOfRowsInSelector:(CustomPickerView *)valueSelector {
     return 65536;
-}
-
-
-
-//ONLY ONE OF THESE WILL GET CALLED (DEPENDING ON the horizontalScrolling property Value)
-- (CGFloat)rowHeightInSelector:(CustomPickerView *)valueSelector {
-    return 70.0;
-}
-
-
-- (UIView *)selector:(CustomPickerView *)valueSelector viewForRowAtIndex:(NSInteger)index {
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, self.selectorHorizontal.frame.size.height)];
-
-    label.text = [NSString stringWithFormat:@"day :%d",index + 1];
-    label.textAlignment =  NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    return label;
-}
-
-- (CGRect)rectForSelectionInSelector:(CustomPickerView *)valueSelector {
-
-    return CGRectMake(self.selectorHorizontal.frame.size.width/2 - 35.0, 0.0, 70.0, 90.0);
-    
 }
 
 #pragma IZValueSelector delegate

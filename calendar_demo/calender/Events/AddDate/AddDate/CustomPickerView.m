@@ -1,24 +1,31 @@
 
 #import "CustomPickerView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "CustomPickerCell.h"
 
 
 @implementation CustomPickerView
 {
+    UIView *maskView;
+    
     UITableView *tableView;
-    CGRect _selectionRect;
+    CGRect maskViewRect;
+    
+    NSInteger cellHeight;
 }
 
 
 @synthesize delegate;
 
 
-- (id)initWithDelegate:(id <CustomPickerViewDelegate>)_delegate
+- (id)initWithFrame:(CGRect)frame Delegate:(id <CustomPickerViewDelegate>)_delegate
 {
-    self = [super initWithFrame:CGRectMake(100, 50, 120, 400)];
+    self = [super initWithFrame:frame];
     if (self) {
         self.delegate = _delegate;
+        cellHeight = 40;
         [self createContentTableView];
+        
+        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:65536 / 2 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
     }
     return self;
 }
@@ -32,18 +39,9 @@
 
 - (void)createContentTableView {
 
-    tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-
-    if (self.debugEnabled) {
-        tableView.layer.borderColor = [UIColor blueColor].CGColor;
-        tableView.layer.borderWidth = 1.0;
-        tableView.layer.cornerRadius = 10.0;
-    
-        tableView.tableHeaderView.layer.borderColor = [UIColor blackColor].CGColor;
-        tableView.tableFooterView.layer.borderColor = [UIColor blackColor].CGColor;
-    }
-    
-    tableView.backgroundColor = [UIColor greenColor];
+    tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];    
+    tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f];
+//    tableView.backgroundColor = [UIColor clearColor];
     
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -56,17 +54,18 @@
     [self addSubview:tableView];
     [tableView reloadData];
     
-    
-    UIImageView *selectionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectorRect.png"]];
-    _selectionRect = CGRectMake(0, 210, self.bounds.size.width, 70);
-    selectionImageView.frame = _selectionRect;
-    [self addSubview:selectionImageView];
-    [selectionImageView setAlpha:0.7f];
+    maskViewRect = CGRectMake(0, 0, self.bounds.size.width, cellHeight);
+    maskView = [[UIView alloc] initWithFrame:maskViewRect];
+    [maskView setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:0.7f]];
+    [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
+    [self addSubview:maskView];
+    [maskView setAlpha:0.7f];
+    [maskView setUserInteractionEnabled:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return cellHeight;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,19 +80,38 @@
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:CellIdentifier];
+    
+//    static BOOL nibsRegistered = NO;
+//    if (!nibsRegistered) {
+//        UINib *nib = [UINib nibWithNibName:@"CustomPickerCell" bundle:nil];
+//        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+//        nibsRegistered = YES;
+//    }
+    CustomPickerCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell ==nil) {
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"CustomPickerCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSString *labelString = [NSString stringWithFormat:@"%d",indexPath.row];
-    cell.textLabel.text = labelString;
+    
+    
+    NSInteger minute = indexPath.row % 60;
+    NSString *valueString = [NSString stringWithFormat:@"%d",minute + 1];
+    cell.labValue.text = valueString;
+    cell.labUnit.text = @"minites";
+    
+    CGFloat width = tableView.frame.size.width;
+    CGRect labelFrame = cell.frame;
+    labelFrame.size.width = width;
+    cell.frame = labelFrame;
+    
+    [cell initUI];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     [self.delegate selector:self didSelectRowAtIndex:indexPath.row];
 }
 
@@ -110,30 +128,30 @@
 }
 
 - (void)scrollToTheSelectedCell {
-    CGRect selectionRectConverted = [self convertRect:_selectionRect toView:tableView];        
+    CGRect selectionRectConverted = [self convertRect:maskViewRect toView:tableView];        
     NSArray *indexPathArray = [tableView indexPathsForRowsInRect:selectionRectConverted];
     
-    CGFloat intersectionHeight = 0.0;
+    CGFloat intersectionHeight = 0;
     NSIndexPath *selectedIndexPath = nil;
     
     for (NSIndexPath *index in indexPathArray) {
-        //looping through the closest cells to get the closest one
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:index];
         CGRect intersectedRect = CGRectIntersection(cell.frame, selectionRectConverted);
       
-        if (intersectedRect.size.height>=intersectionHeight) {
+        NSLog(@"intersectedRect  %d,%f",index.row,intersectedRect.size.height);
+        if (intersectedRect.size.height >= intersectionHeight) {
+            
             selectedIndexPath = index;
             intersectionHeight = intersectedRect.size.height;
         }
     }
+
     if (selectedIndexPath!=nil) {
-        //As soon as we elected an indexpath we just have to scroll to it
-        [tableView scrollToRowAtIndexPath:selectedIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        NSIndexPath *finalSelect = [NSIndexPath indexPathForRow:selectedIndexPath.row + 1 inSection:selectedIndexPath.section];
+        [tableView scrollToRowAtIndexPath:finalSelect atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         [self.delegate selector:self didSelectRowAtIndex:selectedIndexPath.row];
     }
 }
-
-
 
 - (void)reloadData {
     [tableView reloadData];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7672726017772218006A74FF /* CustomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672725F17772218006A74FF /* CustomPickerCell.xib */; };
+		767272631777225E006A74FF /* CustomPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 767272621777225E006A74FF /* CustomPickerCell.m */; };
 		76744BD81775DA3400CCA133 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76744BD71775DA3400CCA133 /* UIKit.framework */; };
 		76744BDA1775DA3400CCA133 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76744BD91775DA3400CCA133 /* Foundation.framework */; };
 		76744BDC1775DA3400CCA133 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76744BDB1775DA3400CCA133 /* CoreGraphics.framework */; };
@@ -20,11 +22,12 @@
 		76744BF41775DA3400CCA133 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF21775DA3400CCA133 /* ViewController_iPhone.xib */; };
 		76744BF71775DA3400CCA133 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF51775DA3400CCA133 /* ViewController_iPad.xib */; };
 		76744BFF1775DC9600CCA133 /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* CustomPickerView.m */; };
-		76744C021775E35200CCA133 /* selectorRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 76744C001775E35200CCA133 /* selectorRect.png */; };
-		76744C031775E35200CCA133 /* selectorRect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76744C011775E35200CCA133 /* selectorRect@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7672725F17772218006A74FF /* CustomPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerCell.xib; sourceTree = "<group>"; };
+		767272611777225E006A74FF /* CustomPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerCell.h; sourceTree = "<group>"; };
+		767272621777225E006A74FF /* CustomPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerCell.m; sourceTree = "<group>"; };
 		76744BD41775DA3400CCA133 /* AddDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76744BD71775DA3400CCA133 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		76744BD91775DA3400CCA133 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,8 +47,6 @@
 		76744BF61775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		76744BFD1775DC9600CCA133 /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
 		76744BFE1775DC9600CCA133 /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
-		76744C001775E35200CCA133 /* selectorRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectorRect.png; sourceTree = "<group>"; };
-		76744C011775E35200CCA133 /* selectorRect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectorRect@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +93,6 @@
 		76744BDD1775DA3400CCA133 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
-				76744C001775E35200CCA133 /* selectorRect.png */,
-				76744C011775E35200CCA133 /* selectorRect@2x.png */,
 				76744BFD1775DC9600CCA133 /* CustomPickerView.h */,
 				76744BFE1775DC9600CCA133 /* CustomPickerView.m */,
 				76744BE61775DA3400CCA133 /* AppDelegate.h */,
@@ -103,6 +102,9 @@
 				76744BF21775DA3400CCA133 /* ViewController_iPhone.xib */,
 				76744BF51775DA3400CCA133 /* ViewController_iPad.xib */,
 				76744BDE1775DA3400CCA133 /* Supporting Files */,
+				7672725F17772218006A74FF /* CustomPickerCell.xib */,
+				767272611777225E006A74FF /* CustomPickerCell.h */,
+				767272621777225E006A74FF /* CustomPickerCell.m */,
 			);
 			path = AddDate;
 			sourceTree = "<group>";
@@ -178,8 +180,7 @@
 				76744BEE1775DA3400CCA133 /* Default-568h@2x.png in Resources */,
 				76744BF41775DA3400CCA133 /* ViewController_iPhone.xib in Resources */,
 				76744BF71775DA3400CCA133 /* ViewController_iPad.xib in Resources */,
-				76744C021775E35200CCA133 /* selectorRect.png in Resources */,
-				76744C031775E35200CCA133 /* selectorRect@2x.png in Resources */,
+				7672726017772218006A74FF /* CustomPickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +195,7 @@
 				76744BE81775DA3400CCA133 /* AppDelegate.m in Sources */,
 				76744BF11775DA3400CCA133 /* ViewController.m in Sources */,
 				76744BFF1775DC9600CCA133 /* CustomPickerView.m in Sources */,
+				767272631777225E006A74FF /* CustomPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
