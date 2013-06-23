@@ -110,6 +110,10 @@
 		94260F6D177733D10037965D /* PedingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F6C177733D10037965D /* PedingEventViewController.m */; };
 		94260F73177735820037965D /* EventPending.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F72177735820037965D /* EventPending.xib */; };
 		94260F7F17773A460037965D /* EventPendingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F7E17773A460037965D /* EventPendingView.m */; };
+		94260F82177740120037965D /* YourEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F81177740120037965D /* YourEventCell.m */; };
+		94260F84177740390037965D /* YourEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F83177740390037965D /* YourEventCell.xib */; };
+		94260F86177744070037965D /* PendingEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F85177744070037965D /* PendingEventCell.xib */; };
+		94260F8C177744320037965D /* PendingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F8B177744310037965D /* PendingEventCell.m */; };
 		943090211770932900266515 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090201770932900266515 /* clock.png */; };
 		943090291770985000266515 /* colordot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090231770985000266515 /* colordot1.png */; };
 		9430902A1770985000266515 /* colordot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 943090241770985000266515 /* colordot2.png */; };
@@ -275,6 +279,12 @@
 		94260F72177735820037965D /* EventPending.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPending.xib; sourceTree = "<group>"; };
 		94260F7D17773A450037965D /* EventPendingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingView.h; sourceTree = "<group>"; };
 		94260F7E17773A460037965D /* EventPendingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingView.m; sourceTree = "<group>"; };
+		94260F80177740120037965D /* YourEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourEventCell.h; sourceTree = "<group>"; };
+		94260F81177740120037965D /* YourEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourEventCell.m; sourceTree = "<group>"; };
+		94260F83177740390037965D /* YourEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YourEventCell.xib; sourceTree = "<group>"; };
+		94260F85177744070037965D /* PendingEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventCell.xib; sourceTree = "<group>"; };
+		94260F8A177744310037965D /* PendingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventCell.h; sourceTree = "<group>"; };
+		94260F8B177744310037965D /* PendingEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventCell.m; sourceTree = "<group>"; };
 		943090201770932900266515 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		943090231770985000266515 /* colordot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colordot1.png; sourceTree = "<group>"; };
 		943090241770985000266515 /* colordot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colordot2.png; sourceTree = "<group>"; };
@@ -623,6 +633,12 @@
 				94260F72177735820037965D /* EventPending.xib */,
 				94260F7D17773A450037965D /* EventPendingView.h */,
 				94260F7E17773A460037965D /* EventPendingView.m */,
+				94260F80177740120037965D /* YourEventCell.h */,
+				94260F81177740120037965D /* YourEventCell.m */,
+				94260F83177740390037965D /* YourEventCell.xib */,
+				94260F85177744070037965D /* PendingEventCell.xib */,
+				94260F8A177744310037965D /* PendingEventCell.h */,
+				94260F8B177744310037965D /* PendingEventCell.m */,
 			);
 			name = pending;
 			path = calender/pending;
@@ -740,6 +756,8 @@
 				76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */,
 				76383A2D177204BD00781166 /* AddEventView.xib in Resources */,
 				94260F73177735820037965D /* EventPending.xib in Resources */,
+				94260F84177740390037965D /* YourEventCell.xib in Resources */,
+				94260F86177744070037965D /* PendingEventCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +815,8 @@
 				94260F5717733EF70037965D /* EventModel.m in Sources */,
 				94260F6D177733D10037965D /* PedingEventViewController.m in Sources */,
 				94260F7F17773A460037965D /* EventPendingView.m in Sources */,
+				94260F82177740120037965D /* YourEventCell.m in Sources */,
+				94260F8C177744320037965D /* PendingEventCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
