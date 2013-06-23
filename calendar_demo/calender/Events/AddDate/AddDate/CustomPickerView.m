@@ -60,6 +60,7 @@
     [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
     [self addSubview:maskView];
     [maskView setAlpha:0.7f];
+    [maskView setUserInteractionEnabled:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
