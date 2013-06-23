@@ -8,8 +8,6 @@
 
 - (NSInteger)numberOfRowsInSelector:(CustomPickerView *)valueSelector;
 - (UIView *)selector:(CustomPickerView *)valueSelector viewForRowAtIndex:(NSInteger) index;
-- (CGRect)rectForSelectionInSelector:(CustomPickerView *)valueSelector;
-- (CGFloat)rowHeightInSelector:(CustomPickerView *)valueSelector;
 @end
 
 @protocol CustomPickerViewDataSource <NSObject>
@@ -24,7 +22,7 @@
 
 @property (nonatomic,assign) BOOL debugEnabled;
 
-- (id)initWithDelegate:(id <CustomPickerViewDelegate>)_delegate;
+- (id)initWithFrame:(CGRect)frame Delegate:(id <CustomPickerViewDelegate>)_delegate;
 - (void)reloadData;
 
 @end
