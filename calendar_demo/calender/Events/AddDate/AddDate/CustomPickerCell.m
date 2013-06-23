@@ -22,6 +22,9 @@
 
 - (void)initUI
 {
+    self.selectedBackgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
+    
     CGFloat width = self.bounds.size.width * 3 / 8;
     CGRect labelFrame = self.labValue.frame;
     labelFrame.size.width = width;
