@@ -55,4 +55,9 @@
  */
 -(void) setAuthHeader:(NSMutableURLRequest *) request;
 
+
+//Begin SNS login
+-(void) signinFacebook:(NSString *) accessToken andCallback:(void (^)(NSInteger error, User * user))callback;
+
+
 @end

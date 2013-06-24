@@ -17,11 +17,20 @@
 #import "RootNavContrller.h"
 #import "UserModel.h"
 
-@interface SignupViewController ()
+#import "ShareLoginFacebook.h"
+#import "LoginStatusCheck.h"
+#import "LoginAccountStore.h"
+
+@interface SignupViewController () <ShareLoginDelegate>
+
+  
 
 @end
 
-@implementation SignupViewController
+@implementation SignupViewController {
+     ShareLoginFacebook * snsLogin;
+    int loginType;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +46,8 @@
     CGRect frame = self.view.frame;
     LoginView * view = [LoginView createView];
     
+    [view.signupGoogle addTarget:self action:@selector(signupGoogle) forControlEvents:UIControlEventTouchUpInside];
+    [view.signupFacebook addTarget:self action:@selector(signupFacebook) forControlEvents:UIControlEventTouchUpInside];
     [view.signupEmail addTarget:self action:@selector(signupEmail) forControlEvents:UIControlEventTouchUpInside];
 
     view.loginnow.userInteractionEnabled = YES;
@@ -48,14 +59,34 @@
     frame2.origin.y  = (frame.size.height - frame2.size.height)/2;
     view.frame = frame2;
     
-    [self.view addSubview: view ];
+    [self.view addSubview: view];
 
 }
 
--(void)login {
-
+-(void)login
+{
     LoginNowController * ctrl = [[LoginNowController alloc] initWithNibName:@"LoginNowController" bundle:nil];
     [self.navigationController pushViewController:ctrl animated:YES];
+}
+
+-(void)signupGoogle {
+    //TODO::
+}
+
+-(void)signupFacebook {
+  
+    loginType = 1;
+    
+    if(![LoginStatusCheck isFacebookAccountLoginIn])
+    {
+        snsLogin = [[ShareLoginFacebook alloc]init];
+        snsLogin.delegate = self;
+        [snsLogin shareLogin];
+    }
+    else
+    {
+        [self shareDidLogin:nil];
+    }
 
 }
 
@@ -64,19 +95,8 @@
     [self finish];
 
     [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"huzhiwei" andCallback:^(NSInteger error, User *user) {
-
         if(error == 0) {
-            menuNavigation *leftController = [[menuNavigation alloc] init];
-            FeedViewController * fdController = [[FeedViewController alloc] init];
-
-
-            DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
-            rootController.leftViewController = leftController;
-
-            fdController.delegate = rootController;
-
-            [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
-            [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+            [self onLogined];
         } else {
             NSLog(@"error=%d", error);
         }
@@ -105,5 +125,81 @@
 //    
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //}
+
+
+
+- (void)shareDidLogin:(ShareLoginBase *)shareLogin
+{
+    
+    LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
+    
+    if (1 == loginType) {
+        NSString * accessToken = store.facebookAccessToken;
+        
+        NSLog(@"shareDidLogin:%@", accessToken);
+        
+        [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
+            if(error == 0) {
+                [self onLogined];
+            } else {
+                //TODO::
+            }
+        }];
+    }
+}
+
+-(void) onLogined
+{
+    menuNavigation *leftController = [[menuNavigation alloc] init];
+    FeedViewController * fdController = [[FeedViewController alloc] init];
+    
+    
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
+    rootController.leftViewController = leftController;
+    
+    fdController.delegate = rootController;
+    
+    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+
+}
+
+- (void)shareDidNotLogin:(ShareLoginBase *)shareLogin
+{
+    NSLog(@"shareDidNotLogin");
+}
+
+- (void)shareDidNotNetWork:(ShareLoginBase *)shareLogin
+{
+    NSLog(@"shareDidNotNetWork");
+}
+
+- (void)shareDidLogout:(ShareLoginBase *)shareLogin
+{
+    NSLog(@"shareDidNotNetWork");
+    
+    NSString * accessToken = FBSession.activeSession.accessToken;
+    
+    NSLog(@"shareDidLogin:%@", accessToken);
+    
+    
+    [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
+        if(error == 0) {
+            
+        } else {
+            
+        }
+    }];
+}
+
+- (void)shareDidLoginErr:(ShareLoginBase *)shareLogin
+{
+    NSLog(@"shareDidLoginErr");
+}
+
+- (void)shareDidLoginTimeOut:(ShareLoginBase *)shareLogin
+{
+    NSLog(@"shareDidLoginTimeOut");
+}
 
 @end

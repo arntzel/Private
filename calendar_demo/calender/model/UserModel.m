@@ -66,13 +66,37 @@ static UserModel * instance;
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
+    [self doLogin:request andCallback:callback];
+}
 
+-(void) signinFacebook:(NSString *) accessToken andCallback:(void (^)(NSInteger error, User * user))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/facebook/connect/", HOST];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:30];
+    
+    
+    NSLog(@"url=%@", url);
+    
+    NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPBody:postData];
+    
+    [self doLogin:request andCallback:callback];
+}
+
+-(void) doLogin:(NSMutableURLRequest *) request andCallback:(void (^)(NSInteger error, User * user))callback
+{
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
-
+        
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
-
+        
         int status = httpResp.statusCode;
-
+        
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
@@ -80,10 +104,10 @@ static UserModel * instance;
             mloginUser = user;
             callback(0, user);
         } else {
-
+            
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             NSLog(@"error=%d, resp:%@", status, aStr);
-
+            
             //TODO:: parse error type
             //401: UNAUTHORIZED
             //Other: net work error
@@ -193,5 +217,8 @@ static UserModel * instance;
     NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", mloginUser.username, mloginUser.apikey];
     [request addValue:authHeader forHTTPHeaderField:@"AUTHORIZATION"];
 }
+
+
+
 
 @end

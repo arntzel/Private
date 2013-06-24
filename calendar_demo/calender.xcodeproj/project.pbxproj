@@ -27,6 +27,18 @@
 		3D6151CA1734A4C4003D72B0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6151C91734A4C4003D72B0 /* User.m */; };
 		3D6151D01734AF2A003D72B0 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6151CF1734AF2A003D72B0 /* Location.m */; };
 		3D6151D31734B1AB003D72B0 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6151D21734B1AB003D72B0 /* Event.m */; };
+		3D925207177848650066927A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925206177848650066927A /* FacebookSDK.framework */; };
+		3D925209177848720066927A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D925208177848720066927A /* FacebookSDKResources.bundle */; };
+		3D92520B17784A100066927A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520A17784A100066927A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520C17784A430066927A /* libsqlite3.0.dylib */; };
+		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92521017784AAE0066927A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3D92525917784C4B0066927A /* EncryptUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92521417784C4B0066927A /* EncryptUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92525A17784C4B0066927A /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92521617784C4B0066927A /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92525B17784C4B0066927A /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92521817784C4B0066927A /* LoginStatusCheck.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92525E17784C4B0066927A /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92521E17784C4B0066927A /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92525F17784C4B0066927A /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92522017784C4B0066927A /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92527617784D6B0066927A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92527417784D6B0066927A /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D9AD89C1740B4AE0017B69E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */; };
 		3DB97804174A1187005B462E /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97803174A1187005B462E /* Model.m */; };
 		3DB97808174A1424005B462E /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97806174A1424005B462E /* EventView.m */; };
@@ -155,6 +167,25 @@
 		3D6151CF1734AF2A003D72B0 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		3D6151D11734B1AB003D72B0 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		3D6151D21734B1AB003D72B0 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		3D925206177848650066927A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		3D925208177848720066927A /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		3D92520A17784A100066927A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		3D92520C17784A430066927A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		3D92521017784AAE0066927A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3D92521317784C4B0066927A /* EncryptUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptUtil.h; sourceTree = "<group>"; };
+		3D92521417784C4B0066927A /* EncryptUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptUtil.m; sourceTree = "<group>"; };
+		3D92521517784C4B0066927A /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
+		3D92521617784C4B0066927A /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
+		3D92521717784C4B0066927A /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
+		3D92521817784C4B0066927A /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
+		3D92521D17784C4B0066927A /* ShareLoginBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginBase.h; sourceTree = "<group>"; };
+		3D92521E17784C4B0066927A /* ShareLoginBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginBase.m; sourceTree = "<group>"; };
+		3D92521F17784C4B0066927A /* ShareLoginFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginFacebook.h; sourceTree = "<group>"; };
+		3D92522017784C4B0066927A /* ShareLoginFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginFacebook.m; sourceTree = "<group>"; };
+		3D92527317784D6B0066927A /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		3D92527417784D6B0066927A /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		3D92527517784D6B0066927A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3DB97802174A1187005B462E /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		3DB97803174A1187005B462E /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
@@ -302,6 +333,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */,
+				3D92520F17784A680066927A /* Accounts.framework in Frameworks */,
+				3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */,
+				3D92520B17784A100066927A /* Social.framework in Frameworks */,
 				764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */,
 				764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */,
 				764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */,
@@ -319,6 +354,7 @@
 				3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */,
 				764404B017523B3700B11BDE /* GoogleMaps.framework in Frameworks */,
 				3D07E6C4176AEFB9000D3FBA /* SDWebImage.framework in Frameworks */,
+				3D925207177848650066927A /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +364,8 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				3D92527217784D6B0066927A /* CTMBase64 */,
+				3D92521217784C4B0066927A /* Account */,
 				94260F6517772BD40037965D /* pending */,
 				76DFD0D11764AF7100B183B7 /* Navigation */,
 				76B970C4176F5BA200FC8535 /* Events */,
@@ -351,6 +389,12 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D92521017784AAE0066927A /* AdSupport.framework */,
+				3D92520E17784A680066927A /* Accounts.framework */,
+				3D92520C17784A430066927A /* libsqlite3.0.dylib */,
+				3D92520A17784A100066927A /* Social.framework */,
+				3D925208177848720066927A /* FacebookSDKResources.bundle */,
+				3D925206177848650066927A /* FacebookSDK.framework */,
 				3D07E6C3176AEFB9000D3FBA /* SDWebImage.framework */,
 				764404C317523C5700B11BDE /* libicucore.dylib */,
 				764404C117523C4C00B11BDE /* libz.dylib */,
@@ -446,6 +490,35 @@
 				3D046E271762C0EB008EE2DA /* LoginView.xib */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		3D92521217784C4B0066927A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				3D92521317784C4B0066927A /* EncryptUtil.h */,
+				3D92521417784C4B0066927A /* EncryptUtil.m */,
+				3D92521517784C4B0066927A /* LoginAccountStore.h */,
+				3D92521617784C4B0066927A /* LoginAccountStore.m */,
+				3D92521717784C4B0066927A /* LoginStatusCheck.h */,
+				3D92521817784C4B0066927A /* LoginStatusCheck.m */,
+				3D92521D17784C4B0066927A /* ShareLoginBase.h */,
+				3D92521E17784C4B0066927A /* ShareLoginBase.m */,
+				3D92521F17784C4B0066927A /* ShareLoginFacebook.h */,
+				3D92522017784C4B0066927A /* ShareLoginFacebook.m */,
+			);
+			name = Account;
+			path = calender/Account;
+			sourceTree = "<group>";
+		};
+		3D92527217784D6B0066927A /* CTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				3D92527317784D6B0066927A /* GTMBase64.h */,
+				3D92527417784D6B0066927A /* GTMBase64.m */,
+				3D92527517784D6B0066927A /* GTMDefines.h */,
+			);
+			name = CTMBase64;
+			path = calender/CTMBase64;
 			sourceTree = "<group>";
 		};
 		3DB9780B174A2814005B462E /* controller */ = {
@@ -758,6 +831,7 @@
 				94260F73177735820037965D /* EventPending.xib in Resources */,
 				94260F84177740390037965D /* YourEventCell.xib in Resources */,
 				94260F86177744070037965D /* PendingEventCell.xib in Resources */,
+				3D925209177848720066927A /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +891,12 @@
 				94260F7F17773A460037965D /* EventPendingView.m in Sources */,
 				94260F82177740120037965D /* YourEventCell.m in Sources */,
 				94260F8C177744320037965D /* PendingEventCell.m in Sources */,
+				3D92525917784C4B0066927A /* EncryptUtil.m in Sources */,
+				3D92525A17784C4B0066927A /* LoginAccountStore.m in Sources */,
+				3D92525B17784C4B0066927A /* LoginStatusCheck.m in Sources */,
+				3D92525E17784C4B0066927A /* ShareLoginBase.m in Sources */,
+				3D92525F17784C4B0066927A /* ShareLoginFacebook.m in Sources */,
+				3D92527617784D6B0066927A /* GTMBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +988,10 @@
 				GCC_PREFIX_HEADER = "calender/calender-Prefix.pch";
 				INFOPLIST_FILE = "calender/calender-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/calender/Account/TwitterLoginSdk/Libraries & Headers\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -929,6 +1013,10 @@
 				GCC_PREFIX_HEADER = "calender/calender-Prefix.pch";
 				INFOPLIST_FILE = "calender/calender-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/calender/Account/TwitterLoginSdk/Libraries & Headers\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
