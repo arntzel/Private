@@ -89,7 +89,7 @@
     if( [day isEqualToString:today]) {
         return @"Today";
     } else if( [day isEqualToString:tomorrom]) {
-        return @"Tomorrom";
+        return @"Tomorrow";
     } else if( [day isEqualToString:yestoday]) {
         return @"Yestoday";
     }

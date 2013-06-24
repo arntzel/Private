@@ -28,8 +28,10 @@
 @end
 
 @implementation SignupViewController {
-     ShareLoginFacebook * snsLogin;
+    ShareLoginFacebook * snsLogin;
     int loginType;
+    
+    UIActivityIndicatorView * loadingView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,7 +62,11 @@
     view.frame = frame2;
     
     [self.view addSubview: view];
-
+    
+    loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingView.center = self.view.center;
+    loadingView.hidesWhenStopped = YES;
+    [self.view addSubview:loadingView];
 }
 
 -(void)login
@@ -138,7 +144,11 @@
         
         NSLog(@"shareDidLogin:%@", accessToken);
         
+        [loadingView startAnimating];
         [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
+            
+            [loadingView stopAnimating];
+            
             if(error == 0) {
                 [self onLogined];
             } else {

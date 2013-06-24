@@ -9,6 +9,9 @@
 #import "navigationNotifyDataSource.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+
+#import "UserModel.h"
 #import "Model.h"
 
 #import "RootNavContrller.h"
@@ -121,9 +124,26 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
         }
-        cell.iconImageView.image = [UIImage imageNamed:[menuDataSource iconImageAtIndex:indexPath.row]];
-        cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
-        cell.titleLabel.text = [menuDataSource titleAtIndex:indexPath.row];
+        
+        if(indexPath.row == 2) {
+            
+            NSString * headerUrl = [[UserModel getInstance] getLoginUser].avatar_url;
+            
+            if([headerUrl isKindOfClass: [NSNull class]]) {
+                cell.iconImageView.image = [UIImage imageNamed:@"header.png"];
+            } else {
+                [cell.iconImageView setImageWithURL:[NSURL URLWithString:headerUrl]
+                                placeholderImage:[UIImage imageNamed:@"header.png"]];
+            }
+            
+            cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
+            cell.titleLabel.text = [[UserModel getInstance] getLoginUser].username;
+            
+        } else {
+            cell.iconImageView.image = [UIImage imageNamed:[menuDataSource iconImageAtIndex:indexPath.row]];
+            cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
+            cell.titleLabel.text = [menuDataSource titleAtIndex:indexPath.row];
+        }
         
         [cell setNeedsDisplay];
         
