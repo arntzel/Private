@@ -100,6 +100,7 @@ static UserModel * instance;
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            NSLog(@"Login resp:%@", json);
             User * user = [User parseUser:json];
             mloginUser = user;
             callback(0, user);

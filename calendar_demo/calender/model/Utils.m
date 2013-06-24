@@ -73,11 +73,30 @@
     if(day>9) {
         [str appendFormat:@"%d", day];
     } else {
-        [str appendFormat:@"%0d", day];
+        [str appendFormat:@"0%d", day];
     }
     
     return str;
 }
+
++(NSString *) toReadableDay:(NSString *) day
+{
+    NSDate * currentDate = [NSDate date];
+    NSString * today = [self formateDay:currentDate];
+    NSString * tomorrom = [self formateDay:[currentDate dateByAddingTimeInterval:24*3600] ];
+    NSString * yestoday = [self formateDay:[currentDate dateByAddingTimeInterval:-24*3600]];
+    
+    if( [day isEqualToString:today]) {
+        return @"Today";
+    } else if( [day isEqualToString:tomorrom]) {
+        return @"Tomorrom";
+    } else if( [day isEqualToString:yestoday]) {
+        return @"Yestoday";
+    }
+    
+    return day;
+}
+
 
 +(NSString *) formateDate:(NSDate *) time
 {

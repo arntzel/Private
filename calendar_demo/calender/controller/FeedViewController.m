@@ -219,6 +219,8 @@
     
     NSString * sectionName = [allDays objectAtIndex:section];
     
+    sectionName = [Utils toReadableDay:sectionName];
+    
     CGRect frame = CGRectMake(0, 0, 320, 24);
     
     UIView * view = [[UIView alloc] initWithFrame:frame];
@@ -309,6 +311,8 @@
 -(void) tableviewScroll2SelectDay {
     
     NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
+    
+    NSLog(@"tableviewScroll2SelectDay:%@", selectedDate);
     
     NSArray * array = [eventModel getAllDays];
     

@@ -65,6 +65,9 @@
 +(NSMutableDictionary *) getEventSectionDict: (NSArray*)events;
 
 
++(NSString *) toReadableDay:(NSString *) day;
+
+
 /*
  convert a object to a NSString object of json format.
  */
