@@ -49,40 +49,57 @@ static Model * instance;
     
     NSLog(@"url=%@", url);
     
-    
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
     
+    [self getEvents:request andCallback:callback];
+}
+
+-(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback
+{
+    NSString * currentDate = [Utils formateDay: [NSDate date]];
     
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00", HOST, currentDate];
+
+    NSLog(@"url=%@", url);
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+
+    [self getEvents:request andCallback:callback];
+}
+
+-(void) getEvents:(NSMutableURLRequest *) request  andCallback:(void (^)(NSInteger error, NSArray* events))callback
+{
     [[UserModel getInstance] setAuthHeader:request];
-    //Content-Type: application/json
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
-        
+
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            
+
             NSArray * objects = [json objectForKey:@"objects"];
-            
+
             NSMutableArray * events = [[NSMutableArray alloc] init];
-            
+
             for(int i=0; i<objects.count;i++) {
                 Event * e = [Event parseEvent:[objects objectAtIndex:i]];
                 [events addObject:e];
             }
-            
+
             callback(ERROCODE_OK, events);
-            
+
         } else {
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             NSLog(@"error=%d, resp:%@", status, aStr);
-            
+
             callback(ERROCODE_SERVER, nil);
         }
     }];
+
 }
+
 
 -(void) updateEvent:(Event *) event andCallback:(void (^)(NSInteger error))callback
 {
@@ -114,7 +131,6 @@ static Model * instance;
             callback(-1);
         }
     }];
-
 }
 
 

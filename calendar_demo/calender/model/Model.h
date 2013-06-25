@@ -30,6 +30,11 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
+/*
+ Get all pending events
+ */
+-(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback;
+
 
 /**
  Call WebService API to Update event title and description
