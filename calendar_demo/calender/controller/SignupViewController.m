@@ -21,7 +21,10 @@
 #import "LoginStatusCheck.h"
 #import "LoginAccountStore.h"
 
-@interface SignupViewController () <ShareLoginDelegate>
+#import "GPPSignIn.h"
+#import "GTLPlusConstants.h"
+
+@interface SignupViewController () <ShareLoginDelegate, GPPSignInDelegate>
 
   
 
@@ -67,6 +70,14 @@
     loadingView.center = self.view.center;
     loadingView.hidesWhenStopped = YES;
     [self.view addSubview:loadingView];
+    
+    
+    //Google sign in init
+    GPPSignIn * signIn = [GPPSignIn sharedInstance];
+    signIn.clientID = @"925583491857.apps.googleusercontent.com";
+    signIn.scopes = [NSArray arrayWithObjects: kGTLAuthScopePlusLogin, // 在 GTLPlusConstants.h 中定义
+                     nil];
+    signIn.delegate = self;
 }
 
 -(void)login
@@ -77,6 +88,9 @@
 
 -(void)signupGoogle {
     //TODO::
+    loginType = 2;
+    
+    [[GPPSignIn sharedInstance] authenticate];
 }
 
 -(void)signupFacebook {
@@ -93,18 +107,24 @@
     {
         [self shareDidLogin:nil];
     }
-
 }
 
 -(void) signupEmail {
     
     [self finish];
 
-    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"huzhiwei" andCallback:^(NSInteger error, User *user) {
+    [loadingView startAnimating];
+    
+    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"111111" andCallback:^(NSInteger error, User *user) {
+        [loadingView stopAnimating];
+        
+        NSLog(@"signupEmail error=%d", error);
+
+        
         if(error == 0) {
             [self onLogined];
         } else {
-            NSLog(@"error=%d", error);
+            //TOODO::
         }
     }];
 }
@@ -212,4 +232,17 @@
     NSLog(@"shareDidLoginTimeOut");
 }
 
+//google sign in delegate
+// The authorization has finished and is successful if |error| is |nil|.
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
+                   error:(NSError *)error
+{
+    NSLog(@"finishedWithAuth:%@", error);
+
+}
+
+- (void)didDisconnectWithError:(NSError *)error
+{
+    NSLog(@"didDisconnectWithError:%@", error);
+}
 @end

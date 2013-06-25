@@ -59,5 +59,6 @@
 //Begin SNS login
 -(void) signinFacebook:(NSString *) accessToken andCallback:(void (^)(NSInteger error, User * user))callback;
 
+-(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback;
 
 @end

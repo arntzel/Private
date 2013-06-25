@@ -123,7 +123,7 @@
         if (cell == nil) {
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
-        }
+        } 
         
         if(indexPath.row == 2) {
             

@@ -39,6 +39,76 @@
 		3D92525E17784C4B0066927A /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92521E17784C4B0066927A /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D92525F17784C4B0066927A /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92522017784C4B0066927A /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D92527617784D6B0066927A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92527417784D6B0066927A /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925278177960460066927A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925277177960450066927A /* Security.framework */; };
+		3D9253FA177964A30066927A /* Changelog in Resources */ = {isa = PBXBuildFile; fileRef = 3D92530A177964A20066927A /* Changelog */; };
+		3D9253FB177964A30066927A /* libGooglePlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925311177964A20066927A /* libGooglePlus.a */; };
+		3D9253FD177964A30066927A /* GTLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925316177964A20066927A /* GTLBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D9253FE177964A30066927A /* GTLBatchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925318177964A20066927A /* GTLBatchQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D9253FF177964A30066927A /* GTLBatchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92531A177964A20066927A /* GTLBatchResult.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925400177964A30066927A /* GTLDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92531C177964A20066927A /* GTLDateTime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925401177964A30066927A /* GTLErrorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92531F177964A20066927A /* GTLErrorObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925402177964A30066927A /* GTLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925321177964A20066927A /* GTLFramework.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925403177964A30066927A /* GTLJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925323177964A20066927A /* GTLJSONParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925404177964A30066927A /* GTLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925325177964A20066927A /* GTLObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925405177964A30066927A /* GTLPlusAcl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925329177964A20066927A /* GTLPlusAcl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925406177964A30066927A /* GTLPlusAclentryResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92532B177964A20066927A /* GTLPlusAclentryResource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925407177964A30066927A /* GTLPlusActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92532D177964A20066927A /* GTLPlusActivity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925408177964A30066927A /* GTLPlusActivityFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92532F177964A20066927A /* GTLPlusActivityFeed.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925409177964A30066927A /* GTLPlusComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925331177964A20066927A /* GTLPlusComment.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540A177964A30066927A /* GTLPlusCommentFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925333177964A20066927A /* GTLPlusCommentFeed.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540B177964A30066927A /* GTLPlusConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925335177964A20066927A /* GTLPlusConstants.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540C177964A30066927A /* GTLPlusItemScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925337177964A20066927A /* GTLPlusItemScope.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540D177964A30066927A /* GTLPlusMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925339177964A20066927A /* GTLPlusMoment.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540E177964A30066927A /* GTLPlusMomentsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92533B177964A20066927A /* GTLPlusMomentsFeed.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92540F177964A30066927A /* GTLPlusPeopleFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92533D177964A20066927A /* GTLPlusPeopleFeed.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925410177964A30066927A /* GTLPlusPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92533F177964A20066927A /* GTLPlusPerson.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925411177964A30066927A /* GTLQueryPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925341177964A20066927A /* GTLQueryPlus.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925412177964A30066927A /* GTLServicePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925343177964A20066927A /* GTLServicePlus.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925413177964A30066927A /* GTLQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925345177964A20066927A /* GTLQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925414177964A30066927A /* GTLRuntimeCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925347177964A20066927A /* GTLRuntimeCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925415177964A30066927A /* GTLService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925349177964A20066927A /* GTLService.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925416177964A30066927A /* GTLUploadParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92534C177964A20066927A /* GTLUploadParameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925417177964A30066927A /* GTLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92534E177964A20066927A /* GTLUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925418177964A30066927A /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925352177964A20066927A /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925419177964A30066927A /* GTMHTTPFetcherLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925354177964A20066927A /* GTMHTTPFetcherLogging.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541A177964A30066927A /* GTMHTTPFetcherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925356177964A20066927A /* GTMHTTPFetcherService.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541B177964A30066927A /* GTMHTTPFetchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925358177964A20066927A /* GTMHTTPFetchHistory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541C177964A30066927A /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92535A177964A20066927A /* GTMLogger.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541D177964A30066927A /* GTMMethodCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92535C177964A20066927A /* GTMMethodCheck.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541E177964A30066927A /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92535E177964A20066927A /* GTMNSDictionary+URLArguments.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D92541F177964A30066927A /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925360177964A20066927A /* GTMNSString+URLArguments.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925420177964A30066927A /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925362177964A20066927A /* GTMOAuth2Authentication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925421177964A30066927A /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925364177964A20066927A /* GTMOAuth2SignIn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925422177964A30066927A /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925366177964A20066927A /* GTMOAuth2ViewControllerTouch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925423177964A30066927A /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D925367177964A20066927A /* GTMOAuth2ViewTouch.xib */; };
+		3D925424177964A30066927A /* GTMObjC2Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D925369177964A20066927A /* GTMObjC2Runtime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925425177964A30066927A /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92536B177964A20066927A /* OpenInChromeController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D925426177964A30066927A /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3D92536C177964A20066927A /* README */; };
+		3D925427177964A30066927A /* GooglePlusPlatform.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D92536E177964A20066927A /* GooglePlusPlatform.strings */; };
+		3D925428177964A30066927A /* gpp_sign_in_dark_button_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D92539C177964A20066927A /* gpp_sign_in_dark_button_disabled.png */; };
+		3D925429177964A30066927A /* gpp_sign_in_dark_button_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D92539D177964A20066927A /* gpp_sign_in_dark_button_disabled@2x.png */; };
+		3D92542A177964A30066927A /* gpp_sign_in_dark_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D92539E177964A20066927A /* gpp_sign_in_dark_button_normal.png */; };
+		3D92542B177964A30066927A /* gpp_sign_in_dark_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D92539F177964A20066927A /* gpp_sign_in_dark_button_normal@2x.png */; };
+		3D92542C177964A30066927A /* gpp_sign_in_dark_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A0177964A20066927A /* gpp_sign_in_dark_button_pressed.png */; };
+		3D92542D177964A30066927A /* gpp_sign_in_dark_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A1177964A20066927A /* gpp_sign_in_dark_button_pressed@2x.png */; };
+		3D92542E177964A30066927A /* gpp_sign_in_dark_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A2177964A20066927A /* gpp_sign_in_dark_icon_disabled.png */; };
+		3D92542F177964A30066927A /* gpp_sign_in_dark_icon_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A3177964A20066927A /* gpp_sign_in_dark_icon_disabled@2x.png */; };
+		3D925430177964A30066927A /* gpp_sign_in_dark_icon_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A4177964A20066927A /* gpp_sign_in_dark_icon_normal.png */; };
+		3D925431177964A30066927A /* gpp_sign_in_dark_icon_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A5177964A20066927A /* gpp_sign_in_dark_icon_normal@2x.png */; };
+		3D925432177964A30066927A /* gpp_sign_in_dark_icon_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A6177964A20066927A /* gpp_sign_in_dark_icon_pressed.png */; };
+		3D925433177964A30066927A /* gpp_sign_in_dark_icon_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A7177964A20066927A /* gpp_sign_in_dark_icon_pressed@2x.png */; };
+		3D925434177964A30066927A /* gpp_sign_in_light_button_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A8177964A20066927A /* gpp_sign_in_light_button_disabled.png */; };
+		3D925435177964A30066927A /* gpp_sign_in_light_button_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253A9177964A20066927A /* gpp_sign_in_light_button_disabled@2x.png */; };
+		3D925436177964A30066927A /* gpp_sign_in_light_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AA177964A20066927A /* gpp_sign_in_light_button_normal.png */; };
+		3D925437177964A30066927A /* gpp_sign_in_light_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AB177964A20066927A /* gpp_sign_in_light_button_normal@2x.png */; };
+		3D925438177964A30066927A /* gpp_sign_in_light_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AC177964A20066927A /* gpp_sign_in_light_button_pressed.png */; };
+		3D925439177964A30066927A /* gpp_sign_in_light_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AD177964A20066927A /* gpp_sign_in_light_button_pressed@2x.png */; };
+		3D92543A177964A30066927A /* gpp_sign_in_light_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AE177964A20066927A /* gpp_sign_in_light_icon_disabled.png */; };
+		3D92543B177964A30066927A /* gpp_sign_in_light_icon_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253AF177964A20066927A /* gpp_sign_in_light_icon_disabled@2x.png */; };
+		3D92543C177964A30066927A /* gpp_sign_in_light_icon_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253B0177964A20066927A /* gpp_sign_in_light_icon_normal.png */; };
+		3D92543D177964A30066927A /* gpp_sign_in_light_icon_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253B1177964A20066927A /* gpp_sign_in_light_icon_normal@2x.png */; };
+		3D92543E177964A30066927A /* gpp_sign_in_light_icon_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253B2177964A20066927A /* gpp_sign_in_light_icon_pressed.png */; };
+		3D92543F177964A30066927A /* gpp_sign_in_light_icon_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9253B3177964A20066927A /* gpp_sign_in_light_icon_pressed@2x.png */; };
 		3D9AD89C1740B4AE0017B69E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */; };
 		3DB97804174A1187005B462E /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97803174A1187005B462E /* Model.m */; };
 		3DB97808174A1424005B462E /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97806174A1424005B462E /* EventView.m */; };
@@ -186,6 +256,207 @@
 		3D92527317784D6B0066927A /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		3D92527417784D6B0066927A /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		3D92527517784D6B0066927A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		3D925277177960450066927A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3D92530A177964A20066927A /* Changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog; sourceTree = "<group>"; };
+		3D92530C177964A20066927A /* GPPDeepLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPDeepLink.h; sourceTree = "<group>"; };
+		3D92530D177964A20066927A /* GPPShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPShare.h; sourceTree = "<group>"; };
+		3D92530E177964A20066927A /* GPPSignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPSignIn.h; sourceTree = "<group>"; };
+		3D92530F177964A20066927A /* GPPSignInButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPSignInButton.h; sourceTree = "<group>"; };
+		3D925310177964A20066927A /* GPPURLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPURLHandler.h; sourceTree = "<group>"; };
+		3D925311177964A20066927A /* libGooglePlus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGooglePlus.a; sourceTree = "<group>"; };
+		3D925315177964A20066927A /* GTLBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLBase64.h; sourceTree = "<group>"; };
+		3D925316177964A20066927A /* GTLBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLBase64.m; sourceTree = "<group>"; };
+		3D925317177964A20066927A /* GTLBatchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLBatchQuery.h; sourceTree = "<group>"; };
+		3D925318177964A20066927A /* GTLBatchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLBatchQuery.m; sourceTree = "<group>"; };
+		3D925319177964A20066927A /* GTLBatchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLBatchResult.h; sourceTree = "<group>"; };
+		3D92531A177964A20066927A /* GTLBatchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLBatchResult.m; sourceTree = "<group>"; };
+		3D92531B177964A20066927A /* GTLDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLDateTime.h; sourceTree = "<group>"; };
+		3D92531C177964A20066927A /* GTLDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLDateTime.m; sourceTree = "<group>"; };
+		3D92531D177964A20066927A /* GTLDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLDefines.h; sourceTree = "<group>"; };
+		3D92531E177964A20066927A /* GTLErrorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLErrorObject.h; sourceTree = "<group>"; };
+		3D92531F177964A20066927A /* GTLErrorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLErrorObject.m; sourceTree = "<group>"; };
+		3D925320177964A20066927A /* GTLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLFramework.h; sourceTree = "<group>"; };
+		3D925321177964A20066927A /* GTLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLFramework.m; sourceTree = "<group>"; };
+		3D925322177964A20066927A /* GTLJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLJSONParser.h; sourceTree = "<group>"; };
+		3D925323177964A20066927A /* GTLJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLJSONParser.m; sourceTree = "<group>"; };
+		3D925324177964A20066927A /* GTLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLObject.h; sourceTree = "<group>"; };
+		3D925325177964A20066927A /* GTLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLObject.m; sourceTree = "<group>"; };
+		3D925327177964A20066927A /* GTLPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlus.h; sourceTree = "<group>"; };
+		3D925328177964A20066927A /* GTLPlusAcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusAcl.h; sourceTree = "<group>"; };
+		3D925329177964A20066927A /* GTLPlusAcl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusAcl.m; sourceTree = "<group>"; };
+		3D92532A177964A20066927A /* GTLPlusAclentryResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusAclentryResource.h; sourceTree = "<group>"; };
+		3D92532B177964A20066927A /* GTLPlusAclentryResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusAclentryResource.m; sourceTree = "<group>"; };
+		3D92532C177964A20066927A /* GTLPlusActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusActivity.h; sourceTree = "<group>"; };
+		3D92532D177964A20066927A /* GTLPlusActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusActivity.m; sourceTree = "<group>"; };
+		3D92532E177964A20066927A /* GTLPlusActivityFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusActivityFeed.h; sourceTree = "<group>"; };
+		3D92532F177964A20066927A /* GTLPlusActivityFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusActivityFeed.m; sourceTree = "<group>"; };
+		3D925330177964A20066927A /* GTLPlusComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusComment.h; sourceTree = "<group>"; };
+		3D925331177964A20066927A /* GTLPlusComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusComment.m; sourceTree = "<group>"; };
+		3D925332177964A20066927A /* GTLPlusCommentFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusCommentFeed.h; sourceTree = "<group>"; };
+		3D925333177964A20066927A /* GTLPlusCommentFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusCommentFeed.m; sourceTree = "<group>"; };
+		3D925334177964A20066927A /* GTLPlusConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusConstants.h; sourceTree = "<group>"; };
+		3D925335177964A20066927A /* GTLPlusConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusConstants.m; sourceTree = "<group>"; };
+		3D925336177964A20066927A /* GTLPlusItemScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusItemScope.h; sourceTree = "<group>"; };
+		3D925337177964A20066927A /* GTLPlusItemScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusItemScope.m; sourceTree = "<group>"; };
+		3D925338177964A20066927A /* GTLPlusMoment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusMoment.h; sourceTree = "<group>"; };
+		3D925339177964A20066927A /* GTLPlusMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusMoment.m; sourceTree = "<group>"; };
+		3D92533A177964A20066927A /* GTLPlusMomentsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusMomentsFeed.h; sourceTree = "<group>"; };
+		3D92533B177964A20066927A /* GTLPlusMomentsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusMomentsFeed.m; sourceTree = "<group>"; };
+		3D92533C177964A20066927A /* GTLPlusPeopleFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusPeopleFeed.h; sourceTree = "<group>"; };
+		3D92533D177964A20066927A /* GTLPlusPeopleFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusPeopleFeed.m; sourceTree = "<group>"; };
+		3D92533E177964A20066927A /* GTLPlusPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLPlusPerson.h; sourceTree = "<group>"; };
+		3D92533F177964A20066927A /* GTLPlusPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLPlusPerson.m; sourceTree = "<group>"; };
+		3D925340177964A20066927A /* GTLQueryPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLQueryPlus.h; sourceTree = "<group>"; };
+		3D925341177964A20066927A /* GTLQueryPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLQueryPlus.m; sourceTree = "<group>"; };
+		3D925342177964A20066927A /* GTLServicePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLServicePlus.h; sourceTree = "<group>"; };
+		3D925343177964A20066927A /* GTLServicePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLServicePlus.m; sourceTree = "<group>"; };
+		3D925344177964A20066927A /* GTLQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLQuery.h; sourceTree = "<group>"; };
+		3D925345177964A20066927A /* GTLQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLQuery.m; sourceTree = "<group>"; };
+		3D925346177964A20066927A /* GTLRuntimeCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLRuntimeCommon.h; sourceTree = "<group>"; };
+		3D925347177964A20066927A /* GTLRuntimeCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLRuntimeCommon.m; sourceTree = "<group>"; };
+		3D925348177964A20066927A /* GTLService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLService.h; sourceTree = "<group>"; };
+		3D925349177964A20066927A /* GTLService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLService.m; sourceTree = "<group>"; };
+		3D92534A177964A20066927A /* GTLTargetNamespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLTargetNamespace.h; sourceTree = "<group>"; };
+		3D92534B177964A20066927A /* GTLUploadParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLUploadParameters.h; sourceTree = "<group>"; };
+		3D92534C177964A20066927A /* GTLUploadParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLUploadParameters.m; sourceTree = "<group>"; };
+		3D92534D177964A20066927A /* GTLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLUtilities.h; sourceTree = "<group>"; };
+		3D92534E177964A20066927A /* GTLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLUtilities.m; sourceTree = "<group>"; };
+		3D92534F177964A20066927A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		3D925350177964A20066927A /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMGarbageCollection.h; sourceTree = "<group>"; };
+		3D925351177964A20066927A /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
+		3D925352177964A20066927A /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcher.m; sourceTree = "<group>"; };
+		3D925353177964A20066927A /* GTMHTTPFetcherLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcherLogging.h; sourceTree = "<group>"; };
+		3D925354177964A20066927A /* GTMHTTPFetcherLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcherLogging.m; sourceTree = "<group>"; };
+		3D925355177964A20066927A /* GTMHTTPFetcherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcherService.h; sourceTree = "<group>"; };
+		3D925356177964A20066927A /* GTMHTTPFetcherService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcherService.m; sourceTree = "<group>"; };
+		3D925357177964A20066927A /* GTMHTTPFetchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetchHistory.h; sourceTree = "<group>"; };
+		3D925358177964A20066927A /* GTMHTTPFetchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetchHistory.m; sourceTree = "<group>"; };
+		3D925359177964A20066927A /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
+		3D92535A177964A20066927A /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
+		3D92535B177964A20066927A /* GTMMethodCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMMethodCheck.h; sourceTree = "<group>"; };
+		3D92535C177964A20066927A /* GTMMethodCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMMethodCheck.m; sourceTree = "<group>"; };
+		3D92535D177964A20066927A /* GTMNSDictionary+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSDictionary+URLArguments.h"; sourceTree = "<group>"; };
+		3D92535E177964A20066927A /* GTMNSDictionary+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSDictionary+URLArguments.m"; sourceTree = "<group>"; };
+		3D92535F177964A20066927A /* GTMNSString+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+URLArguments.h"; sourceTree = "<group>"; };
+		3D925360177964A20066927A /* GTMNSString+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+URLArguments.m"; sourceTree = "<group>"; };
+		3D925361177964A20066927A /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2Authentication.h; sourceTree = "<group>"; };
+		3D925362177964A20066927A /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2Authentication.m; sourceTree = "<group>"; };
+		3D925363177964A20066927A /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2SignIn.h; sourceTree = "<group>"; };
+		3D925364177964A20066927A /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2SignIn.m; sourceTree = "<group>"; };
+		3D925365177964A20066927A /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
+		3D925366177964A20066927A /* GTMOAuth2ViewControllerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2ViewControllerTouch.m; sourceTree = "<group>"; };
+		3D925367177964A20066927A /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
+		3D925368177964A20066927A /* GTMObjC2Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjC2Runtime.h; sourceTree = "<group>"; };
+		3D925369177964A20066927A /* GTMObjC2Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMObjC2Runtime.m; sourceTree = "<group>"; };
+		3D92536A177964A20066927A /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
+		3D92536B177964A20066927A /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
+		3D92536C177964A20066927A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		3D92536F177964A20066927A /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925370177964A20066927A /* am */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = am; path = am.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925371177964A20066927A /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925372177964A20066927A /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925373177964A20066927A /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925374177964A20066927A /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925375177964A20066927A /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925376177964A20066927A /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925377177964A20066927A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925378177964A20066927A /* de_AT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de_AT; path = de_AT.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925379177964A20066927A /* de_CH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de_CH; path = de_CH.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537A177964A20066927A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537B177964A20066927A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537C177964A20066927A /* en_GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_GB; path = en_GB.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537D177964A20066927A /* en_IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_IE; path = en_IE.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537E177964A20066927A /* en_IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_IN; path = en_IN.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92537F177964A20066927A /* en_SG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_SG; path = en_SG.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925380177964A20066927A /* en_ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_ZA; path = en_ZA.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925381177964A20066927A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925382177964A20066927A /* es_419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_419; path = es_419.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925383177964A20066927A /* es_AR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_AR; path = es_AR.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925384177964A20066927A /* es_BO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_BO; path = es_BO.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925385177964A20066927A /* es_CL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_CL; path = es_CL.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925386177964A20066927A /* es_CO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_CO; path = es_CO.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925387177964A20066927A /* es_CR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_CR; path = es_CR.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925388177964A20066927A /* es_DO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_DO; path = es_DO.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925389177964A20066927A /* es_EC */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_EC; path = es_EC.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538A177964A20066927A /* es_GT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_GT; path = es_GT.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538B177964A20066927A /* es_HN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_HN; path = es_HN.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538C177964A20066927A /* es_MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_MX; path = es_MX.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538D177964A20066927A /* es_NI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_NI; path = es_NI.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538E177964A20066927A /* es_PA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_PA; path = es_PA.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92538F177964A20066927A /* es_PE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_PE; path = es_PE.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925390177964A20066927A /* es_PR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_PR; path = es_PR.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925391177964A20066927A /* es_PY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_PY; path = es_PY.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925392177964A20066927A /* es_SV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_SV; path = es_SV.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925393177964A20066927A /* es_US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_US; path = es_US.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925394177964A20066927A /* es_UY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_UY; path = es_UY.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925395177964A20066927A /* es_VE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es_VE; path = es_VE.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925396177964A20066927A /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925397177964A20066927A /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925398177964A20066927A /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D925399177964A20066927A /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92539A177964A20066927A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92539B177964A20066927A /* fr_CH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr_CH; path = fr_CH.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D92539C177964A20066927A /* gpp_sign_in_dark_button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_button_disabled.png; sourceTree = "<group>"; };
+		3D92539D177964A20066927A /* gpp_sign_in_dark_button_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_button_disabled@2x.png"; sourceTree = "<group>"; };
+		3D92539E177964A20066927A /* gpp_sign_in_dark_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_button_normal.png; sourceTree = "<group>"; };
+		3D92539F177964A20066927A /* gpp_sign_in_dark_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_button_normal@2x.png"; sourceTree = "<group>"; };
+		3D9253A0177964A20066927A /* gpp_sign_in_dark_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_button_pressed.png; sourceTree = "<group>"; };
+		3D9253A1177964A20066927A /* gpp_sign_in_dark_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_button_pressed@2x.png"; sourceTree = "<group>"; };
+		3D9253A2177964A20066927A /* gpp_sign_in_dark_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_icon_disabled.png; sourceTree = "<group>"; };
+		3D9253A3177964A20066927A /* gpp_sign_in_dark_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_icon_disabled@2x.png"; sourceTree = "<group>"; };
+		3D9253A4177964A20066927A /* gpp_sign_in_dark_icon_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_icon_normal.png; sourceTree = "<group>"; };
+		3D9253A5177964A20066927A /* gpp_sign_in_dark_icon_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_icon_normal@2x.png"; sourceTree = "<group>"; };
+		3D9253A6177964A20066927A /* gpp_sign_in_dark_icon_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_dark_icon_pressed.png; sourceTree = "<group>"; };
+		3D9253A7177964A20066927A /* gpp_sign_in_dark_icon_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_dark_icon_pressed@2x.png"; sourceTree = "<group>"; };
+		3D9253A8177964A20066927A /* gpp_sign_in_light_button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_button_disabled.png; sourceTree = "<group>"; };
+		3D9253A9177964A20066927A /* gpp_sign_in_light_button_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_button_disabled@2x.png"; sourceTree = "<group>"; };
+		3D9253AA177964A20066927A /* gpp_sign_in_light_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_button_normal.png; sourceTree = "<group>"; };
+		3D9253AB177964A20066927A /* gpp_sign_in_light_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_button_normal@2x.png"; sourceTree = "<group>"; };
+		3D9253AC177964A20066927A /* gpp_sign_in_light_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_button_pressed.png; sourceTree = "<group>"; };
+		3D9253AD177964A20066927A /* gpp_sign_in_light_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_button_pressed@2x.png"; sourceTree = "<group>"; };
+		3D9253AE177964A20066927A /* gpp_sign_in_light_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_icon_disabled.png; sourceTree = "<group>"; };
+		3D9253AF177964A20066927A /* gpp_sign_in_light_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_icon_disabled@2x.png"; sourceTree = "<group>"; };
+		3D9253B0177964A20066927A /* gpp_sign_in_light_icon_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_icon_normal.png; sourceTree = "<group>"; };
+		3D9253B1177964A20066927A /* gpp_sign_in_light_icon_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_icon_normal@2x.png"; sourceTree = "<group>"; };
+		3D9253B2177964A20066927A /* gpp_sign_in_light_icon_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpp_sign_in_light_icon_pressed.png; sourceTree = "<group>"; };
+		3D9253B3177964A20066927A /* gpp_sign_in_light_icon_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpp_sign_in_light_icon_pressed@2x.png"; sourceTree = "<group>"; };
+		3D9253B4177964A20066927A /* gsw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gsw; path = gsw.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253B5177964A20066927A /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253B6177964A20066927A /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253B7177964A20066927A /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253B8177964A20066927A /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253B9177964A20066927A /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BA177964A20066927A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BB177964A20066927A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BC177964A20066927A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BD177964A20066927A /* ln */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ln; path = ln.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BE177964A20066927A /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253BF177964A20066927A /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C0177964A30066927A /* mo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mo; path = mo.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C1177964A30066927A /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C2177964A30066927A /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C3177964A30066927A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C4177964A30066927A /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C5177964A30066927A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C6177964A30066927A /* pt_BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_BR; path = pt_BR.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C7177964A30066927A /* pt_PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_PT; path = pt_PT.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C8177964A30066927A /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253C9177964A30066927A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CA177964A30066927A /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CB177964A30066927A /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CC177964A30066927A /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CD177964A30066927A /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CE177964A30066927A /* sw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253CF177964A30066927A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D0177964A30066927A /* tl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tl; path = tl.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D1177964A30066927A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D2177964A30066927A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D3177964A30066927A /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D4177964A30066927A /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D5177964A30066927A /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D6177964A30066927A /* zh_HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_HK; path = zh_HK.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D7177964A30066927A /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
+		3D9253D8177964A30066927A /* zu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zu; path = zu.lproj/GooglePlusPlatform.strings; sourceTree = "<group>"; };
 		3D9AD89B1740B4AE0017B69E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3DB97802174A1187005B462E /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		3DB97803174A1187005B462E /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
@@ -333,12 +604,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */,
+				3D925278177960460066927A /* Security.framework in Frameworks */,
 				3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */,
 				3D92520F17784A680066927A /* Accounts.framework in Frameworks */,
 				3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */,
 				3D92520B17784A100066927A /* Social.framework in Frameworks */,
 				764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */,
-				764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */,
 				764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */,
 				764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */,
 				764404C217523C4C00B11BDE /* libz.dylib in Frameworks */,
@@ -355,6 +627,7 @@
 				764404B017523B3700B11BDE /* GoogleMaps.framework in Frameworks */,
 				3D07E6C4176AEFB9000D3FBA /* SDWebImage.framework in Frameworks */,
 				3D925207177848650066927A /* FacebookSDK.framework in Frameworks */,
+				3D9253FB177964A30066927A /* libGooglePlus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +637,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				3D925309177964A10066927A /* google-plus-ios-sdk-1.2.1 */,
 				3D92527217784D6B0066927A /* CTMBase64 */,
 				3D92521217784C4B0066927A /* Account */,
 				94260F6517772BD40037965D /* pending */,
@@ -389,6 +663,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D925277177960450066927A /* Security.framework */,
 				3D92521017784AAE0066927A /* AdSupport.framework */,
 				3D92520E17784A680066927A /* Accounts.framework */,
 				3D92520C17784A430066927A /* libsqlite3.0.dylib */,
@@ -519,6 +794,172 @@
 			);
 			name = CTMBase64;
 			path = calender/CTMBase64;
+			sourceTree = "<group>";
+		};
+		3D925309177964A10066927A /* google-plus-ios-sdk-1.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				3D92530A177964A20066927A /* Changelog */,
+				3D92530B177964A20066927A /* lib */,
+				3D925313177964A20066927A /* OpenSource */,
+				3D92536C177964A20066927A /* README */,
+				3D92536D177964A20066927A /* Resources */,
+			);
+			path = "google-plus-ios-sdk-1.2.1";
+			sourceTree = "<group>";
+		};
+		3D92530B177964A20066927A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				3D92530C177964A20066927A /* GPPDeepLink.h */,
+				3D92530D177964A20066927A /* GPPShare.h */,
+				3D92530E177964A20066927A /* GPPSignIn.h */,
+				3D92530F177964A20066927A /* GPPSignInButton.h */,
+				3D925310177964A20066927A /* GPPURLHandler.h */,
+				3D925311177964A20066927A /* libGooglePlus.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		3D925313177964A20066927A /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				3D925314177964A20066927A /* GTL */,
+				3D92534F177964A20066927A /* GTMDefines.h */,
+				3D925350177964A20066927A /* GTMGarbageCollection.h */,
+				3D925351177964A20066927A /* GTMHTTPFetcher.h */,
+				3D925352177964A20066927A /* GTMHTTPFetcher.m */,
+				3D925353177964A20066927A /* GTMHTTPFetcherLogging.h */,
+				3D925354177964A20066927A /* GTMHTTPFetcherLogging.m */,
+				3D925355177964A20066927A /* GTMHTTPFetcherService.h */,
+				3D925356177964A20066927A /* GTMHTTPFetcherService.m */,
+				3D925357177964A20066927A /* GTMHTTPFetchHistory.h */,
+				3D925358177964A20066927A /* GTMHTTPFetchHistory.m */,
+				3D925359177964A20066927A /* GTMLogger.h */,
+				3D92535A177964A20066927A /* GTMLogger.m */,
+				3D92535B177964A20066927A /* GTMMethodCheck.h */,
+				3D92535C177964A20066927A /* GTMMethodCheck.m */,
+				3D92535D177964A20066927A /* GTMNSDictionary+URLArguments.h */,
+				3D92535E177964A20066927A /* GTMNSDictionary+URLArguments.m */,
+				3D92535F177964A20066927A /* GTMNSString+URLArguments.h */,
+				3D925360177964A20066927A /* GTMNSString+URLArguments.m */,
+				3D925361177964A20066927A /* GTMOAuth2Authentication.h */,
+				3D925362177964A20066927A /* GTMOAuth2Authentication.m */,
+				3D925363177964A20066927A /* GTMOAuth2SignIn.h */,
+				3D925364177964A20066927A /* GTMOAuth2SignIn.m */,
+				3D925365177964A20066927A /* GTMOAuth2ViewControllerTouch.h */,
+				3D925366177964A20066927A /* GTMOAuth2ViewControllerTouch.m */,
+				3D925367177964A20066927A /* GTMOAuth2ViewTouch.xib */,
+				3D925368177964A20066927A /* GTMObjC2Runtime.h */,
+				3D925369177964A20066927A /* GTMObjC2Runtime.m */,
+				3D92536A177964A20066927A /* OpenInChromeController.h */,
+				3D92536B177964A20066927A /* OpenInChromeController.m */,
+			);
+			path = OpenSource;
+			sourceTree = "<group>";
+		};
+		3D925314177964A20066927A /* GTL */ = {
+			isa = PBXGroup;
+			children = (
+				3D925315177964A20066927A /* GTLBase64.h */,
+				3D925316177964A20066927A /* GTLBase64.m */,
+				3D925317177964A20066927A /* GTLBatchQuery.h */,
+				3D925318177964A20066927A /* GTLBatchQuery.m */,
+				3D925319177964A20066927A /* GTLBatchResult.h */,
+				3D92531A177964A20066927A /* GTLBatchResult.m */,
+				3D92531B177964A20066927A /* GTLDateTime.h */,
+				3D92531C177964A20066927A /* GTLDateTime.m */,
+				3D92531D177964A20066927A /* GTLDefines.h */,
+				3D92531E177964A20066927A /* GTLErrorObject.h */,
+				3D92531F177964A20066927A /* GTLErrorObject.m */,
+				3D925320177964A20066927A /* GTLFramework.h */,
+				3D925321177964A20066927A /* GTLFramework.m */,
+				3D925322177964A20066927A /* GTLJSONParser.h */,
+				3D925323177964A20066927A /* GTLJSONParser.m */,
+				3D925324177964A20066927A /* GTLObject.h */,
+				3D925325177964A20066927A /* GTLObject.m */,
+				3D925326177964A20066927A /* GTLPlus */,
+				3D925344177964A20066927A /* GTLQuery.h */,
+				3D925345177964A20066927A /* GTLQuery.m */,
+				3D925346177964A20066927A /* GTLRuntimeCommon.h */,
+				3D925347177964A20066927A /* GTLRuntimeCommon.m */,
+				3D925348177964A20066927A /* GTLService.h */,
+				3D925349177964A20066927A /* GTLService.m */,
+				3D92534A177964A20066927A /* GTLTargetNamespace.h */,
+				3D92534B177964A20066927A /* GTLUploadParameters.h */,
+				3D92534C177964A20066927A /* GTLUploadParameters.m */,
+				3D92534D177964A20066927A /* GTLUtilities.h */,
+				3D92534E177964A20066927A /* GTLUtilities.m */,
+			);
+			path = GTL;
+			sourceTree = "<group>";
+		};
+		3D925326177964A20066927A /* GTLPlus */ = {
+			isa = PBXGroup;
+			children = (
+				3D925327177964A20066927A /* GTLPlus.h */,
+				3D925328177964A20066927A /* GTLPlusAcl.h */,
+				3D925329177964A20066927A /* GTLPlusAcl.m */,
+				3D92532A177964A20066927A /* GTLPlusAclentryResource.h */,
+				3D92532B177964A20066927A /* GTLPlusAclentryResource.m */,
+				3D92532C177964A20066927A /* GTLPlusActivity.h */,
+				3D92532D177964A20066927A /* GTLPlusActivity.m */,
+				3D92532E177964A20066927A /* GTLPlusActivityFeed.h */,
+				3D92532F177964A20066927A /* GTLPlusActivityFeed.m */,
+				3D925330177964A20066927A /* GTLPlusComment.h */,
+				3D925331177964A20066927A /* GTLPlusComment.m */,
+				3D925332177964A20066927A /* GTLPlusCommentFeed.h */,
+				3D925333177964A20066927A /* GTLPlusCommentFeed.m */,
+				3D925334177964A20066927A /* GTLPlusConstants.h */,
+				3D925335177964A20066927A /* GTLPlusConstants.m */,
+				3D925336177964A20066927A /* GTLPlusItemScope.h */,
+				3D925337177964A20066927A /* GTLPlusItemScope.m */,
+				3D925338177964A20066927A /* GTLPlusMoment.h */,
+				3D925339177964A20066927A /* GTLPlusMoment.m */,
+				3D92533A177964A20066927A /* GTLPlusMomentsFeed.h */,
+				3D92533B177964A20066927A /* GTLPlusMomentsFeed.m */,
+				3D92533C177964A20066927A /* GTLPlusPeopleFeed.h */,
+				3D92533D177964A20066927A /* GTLPlusPeopleFeed.m */,
+				3D92533E177964A20066927A /* GTLPlusPerson.h */,
+				3D92533F177964A20066927A /* GTLPlusPerson.m */,
+				3D925340177964A20066927A /* GTLQueryPlus.h */,
+				3D925341177964A20066927A /* GTLQueryPlus.m */,
+				3D925342177964A20066927A /* GTLServicePlus.h */,
+				3D925343177964A20066927A /* GTLServicePlus.m */,
+			);
+			path = GTLPlus;
+			sourceTree = "<group>";
+		};
+		3D92536D177964A20066927A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D92536E177964A20066927A /* GooglePlusPlatform.strings */,
+				3D92539C177964A20066927A /* gpp_sign_in_dark_button_disabled.png */,
+				3D92539D177964A20066927A /* gpp_sign_in_dark_button_disabled@2x.png */,
+				3D92539E177964A20066927A /* gpp_sign_in_dark_button_normal.png */,
+				3D92539F177964A20066927A /* gpp_sign_in_dark_button_normal@2x.png */,
+				3D9253A0177964A20066927A /* gpp_sign_in_dark_button_pressed.png */,
+				3D9253A1177964A20066927A /* gpp_sign_in_dark_button_pressed@2x.png */,
+				3D9253A2177964A20066927A /* gpp_sign_in_dark_icon_disabled.png */,
+				3D9253A3177964A20066927A /* gpp_sign_in_dark_icon_disabled@2x.png */,
+				3D9253A4177964A20066927A /* gpp_sign_in_dark_icon_normal.png */,
+				3D9253A5177964A20066927A /* gpp_sign_in_dark_icon_normal@2x.png */,
+				3D9253A6177964A20066927A /* gpp_sign_in_dark_icon_pressed.png */,
+				3D9253A7177964A20066927A /* gpp_sign_in_dark_icon_pressed@2x.png */,
+				3D9253A8177964A20066927A /* gpp_sign_in_light_button_disabled.png */,
+				3D9253A9177964A20066927A /* gpp_sign_in_light_button_disabled@2x.png */,
+				3D9253AA177964A20066927A /* gpp_sign_in_light_button_normal.png */,
+				3D9253AB177964A20066927A /* gpp_sign_in_light_button_normal@2x.png */,
+				3D9253AC177964A20066927A /* gpp_sign_in_light_button_pressed.png */,
+				3D9253AD177964A20066927A /* gpp_sign_in_light_button_pressed@2x.png */,
+				3D9253AE177964A20066927A /* gpp_sign_in_light_icon_disabled.png */,
+				3D9253AF177964A20066927A /* gpp_sign_in_light_icon_disabled@2x.png */,
+				3D9253B0177964A20066927A /* gpp_sign_in_light_icon_normal.png */,
+				3D9253B1177964A20066927A /* gpp_sign_in_light_icon_normal@2x.png */,
+				3D9253B2177964A20066927A /* gpp_sign_in_light_icon_pressed.png */,
+				3D9253B3177964A20066927A /* gpp_sign_in_light_icon_pressed@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		3DB9780B174A2814005B462E /* controller */ = {
@@ -765,6 +1206,90 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				af,
+				am,
+				ar,
+				be,
+				bg,
+				ca,
+				cs,
+				da,
+				de,
+				de_AT,
+				de_CH,
+				el,
+				en_GB,
+				en_IE,
+				en_IN,
+				en_SG,
+				en_ZA,
+				es,
+				es_419,
+				es_AR,
+				es_BO,
+				es_CL,
+				es_CO,
+				es_CR,
+				es_DO,
+				es_EC,
+				es_GT,
+				es_HN,
+				es_MX,
+				es_NI,
+				es_PA,
+				es_PE,
+				es_PR,
+				es_PY,
+				es_SV,
+				es_US,
+				es_UY,
+				es_VE,
+				et,
+				fa,
+				fi,
+				fil,
+				fr,
+				fr_CH,
+				gsw,
+				he,
+				hi,
+				hr,
+				hu,
+				id,
+				in,
+				it,
+				iw,
+				ja,
+				ko,
+				ln,
+				lt,
+				lv,
+				mo,
+				ms,
+				nb,
+				nl,
+				no,
+				pl,
+				pt,
+				pt_BR,
+				pt_PT,
+				ro,
+				ru,
+				sk,
+				sl,
+				sr,
+				sv,
+				sw,
+				th,
+				tl,
+				tr,
+				uk,
+				vi,
+				zh,
+				zh_CN,
+				zh_HK,
+				zh_TW,
+				zu,
 			);
 			mainGroup = 3D6151971734A391003D72B0;
 			productRefGroup = 3D6151A11734A391003D72B0 /* Products */;
@@ -832,6 +1357,34 @@
 				94260F84177740390037965D /* YourEventCell.xib in Resources */,
 				94260F86177744070037965D /* PendingEventCell.xib in Resources */,
 				3D925209177848720066927A /* FacebookSDKResources.bundle in Resources */,
+				3D9253FA177964A30066927A /* Changelog in Resources */,
+				3D925423177964A30066927A /* GTMOAuth2ViewTouch.xib in Resources */,
+				3D925426177964A30066927A /* README in Resources */,
+				3D925427177964A30066927A /* GooglePlusPlatform.strings in Resources */,
+				3D925428177964A30066927A /* gpp_sign_in_dark_button_disabled.png in Resources */,
+				3D925429177964A30066927A /* gpp_sign_in_dark_button_disabled@2x.png in Resources */,
+				3D92542A177964A30066927A /* gpp_sign_in_dark_button_normal.png in Resources */,
+				3D92542B177964A30066927A /* gpp_sign_in_dark_button_normal@2x.png in Resources */,
+				3D92542C177964A30066927A /* gpp_sign_in_dark_button_pressed.png in Resources */,
+				3D92542D177964A30066927A /* gpp_sign_in_dark_button_pressed@2x.png in Resources */,
+				3D92542E177964A30066927A /* gpp_sign_in_dark_icon_disabled.png in Resources */,
+				3D92542F177964A30066927A /* gpp_sign_in_dark_icon_disabled@2x.png in Resources */,
+				3D925430177964A30066927A /* gpp_sign_in_dark_icon_normal.png in Resources */,
+				3D925431177964A30066927A /* gpp_sign_in_dark_icon_normal@2x.png in Resources */,
+				3D925432177964A30066927A /* gpp_sign_in_dark_icon_pressed.png in Resources */,
+				3D925433177964A30066927A /* gpp_sign_in_dark_icon_pressed@2x.png in Resources */,
+				3D925434177964A30066927A /* gpp_sign_in_light_button_disabled.png in Resources */,
+				3D925435177964A30066927A /* gpp_sign_in_light_button_disabled@2x.png in Resources */,
+				3D925436177964A30066927A /* gpp_sign_in_light_button_normal.png in Resources */,
+				3D925437177964A30066927A /* gpp_sign_in_light_button_normal@2x.png in Resources */,
+				3D925438177964A30066927A /* gpp_sign_in_light_button_pressed.png in Resources */,
+				3D925439177964A30066927A /* gpp_sign_in_light_button_pressed@2x.png in Resources */,
+				3D92543A177964A30066927A /* gpp_sign_in_light_icon_disabled.png in Resources */,
+				3D92543B177964A30066927A /* gpp_sign_in_light_icon_disabled@2x.png in Resources */,
+				3D92543C177964A30066927A /* gpp_sign_in_light_icon_normal.png in Resources */,
+				3D92543D177964A30066927A /* gpp_sign_in_light_icon_normal@2x.png in Resources */,
+				3D92543E177964A30066927A /* gpp_sign_in_light_icon_pressed.png in Resources */,
+				3D92543F177964A30066927A /* gpp_sign_in_light_icon_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +1450,46 @@
 				3D92525E17784C4B0066927A /* ShareLoginBase.m in Sources */,
 				3D92525F17784C4B0066927A /* ShareLoginFacebook.m in Sources */,
 				3D92527617784D6B0066927A /* GTMBase64.m in Sources */,
+				3D9253FD177964A30066927A /* GTLBase64.m in Sources */,
+				3D9253FE177964A30066927A /* GTLBatchQuery.m in Sources */,
+				3D9253FF177964A30066927A /* GTLBatchResult.m in Sources */,
+				3D925400177964A30066927A /* GTLDateTime.m in Sources */,
+				3D925401177964A30066927A /* GTLErrorObject.m in Sources */,
+				3D925402177964A30066927A /* GTLFramework.m in Sources */,
+				3D925403177964A30066927A /* GTLJSONParser.m in Sources */,
+				3D925404177964A30066927A /* GTLObject.m in Sources */,
+				3D925405177964A30066927A /* GTLPlusAcl.m in Sources */,
+				3D925406177964A30066927A /* GTLPlusAclentryResource.m in Sources */,
+				3D925407177964A30066927A /* GTLPlusActivity.m in Sources */,
+				3D925408177964A30066927A /* GTLPlusActivityFeed.m in Sources */,
+				3D925409177964A30066927A /* GTLPlusComment.m in Sources */,
+				3D92540A177964A30066927A /* GTLPlusCommentFeed.m in Sources */,
+				3D92540B177964A30066927A /* GTLPlusConstants.m in Sources */,
+				3D92540C177964A30066927A /* GTLPlusItemScope.m in Sources */,
+				3D92540D177964A30066927A /* GTLPlusMoment.m in Sources */,
+				3D92540E177964A30066927A /* GTLPlusMomentsFeed.m in Sources */,
+				3D92540F177964A30066927A /* GTLPlusPeopleFeed.m in Sources */,
+				3D925410177964A30066927A /* GTLPlusPerson.m in Sources */,
+				3D925411177964A30066927A /* GTLQueryPlus.m in Sources */,
+				3D925412177964A30066927A /* GTLServicePlus.m in Sources */,
+				3D925413177964A30066927A /* GTLQuery.m in Sources */,
+				3D925414177964A30066927A /* GTLRuntimeCommon.m in Sources */,
+				3D925415177964A30066927A /* GTLService.m in Sources */,
+				3D925416177964A30066927A /* GTLUploadParameters.m in Sources */,
+				3D925417177964A30066927A /* GTLUtilities.m in Sources */,
+				3D925418177964A30066927A /* GTMHTTPFetcher.m in Sources */,
+				3D925419177964A30066927A /* GTMHTTPFetcherLogging.m in Sources */,
+				3D92541A177964A30066927A /* GTMHTTPFetcherService.m in Sources */,
+				3D92541B177964A30066927A /* GTMHTTPFetchHistory.m in Sources */,
+				3D92541C177964A30066927A /* GTMLogger.m in Sources */,
+				3D92541D177964A30066927A /* GTMMethodCheck.m in Sources */,
+				3D92541E177964A30066927A /* GTMNSDictionary+URLArguments.m in Sources */,
+				3D92541F177964A30066927A /* GTMNSString+URLArguments.m in Sources */,
+				3D925420177964A30066927A /* GTMOAuth2Authentication.m in Sources */,
+				3D925421177964A30066927A /* GTMOAuth2SignIn.m in Sources */,
+				3D925422177964A30066927A /* GTMOAuth2ViewControllerTouch.m in Sources */,
+				3D925424177964A30066927A /* GTMObjC2Runtime.m in Sources */,
+				3D925425177964A30066927A /* OpenInChromeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +1502,95 @@
 				3D6151AD1734A391003D72B0 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D92536E177964A20066927A /* GooglePlusPlatform.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D92536F177964A20066927A /* af */,
+				3D925370177964A20066927A /* am */,
+				3D925371177964A20066927A /* ar */,
+				3D925372177964A20066927A /* be */,
+				3D925373177964A20066927A /* bg */,
+				3D925374177964A20066927A /* ca */,
+				3D925375177964A20066927A /* cs */,
+				3D925376177964A20066927A /* da */,
+				3D925377177964A20066927A /* de */,
+				3D925378177964A20066927A /* de_AT */,
+				3D925379177964A20066927A /* de_CH */,
+				3D92537A177964A20066927A /* el */,
+				3D92537B177964A20066927A /* en */,
+				3D92537C177964A20066927A /* en_GB */,
+				3D92537D177964A20066927A /* en_IE */,
+				3D92537E177964A20066927A /* en_IN */,
+				3D92537F177964A20066927A /* en_SG */,
+				3D925380177964A20066927A /* en_ZA */,
+				3D925381177964A20066927A /* es */,
+				3D925382177964A20066927A /* es_419 */,
+				3D925383177964A20066927A /* es_AR */,
+				3D925384177964A20066927A /* es_BO */,
+				3D925385177964A20066927A /* es_CL */,
+				3D925386177964A20066927A /* es_CO */,
+				3D925387177964A20066927A /* es_CR */,
+				3D925388177964A20066927A /* es_DO */,
+				3D925389177964A20066927A /* es_EC */,
+				3D92538A177964A20066927A /* es_GT */,
+				3D92538B177964A20066927A /* es_HN */,
+				3D92538C177964A20066927A /* es_MX */,
+				3D92538D177964A20066927A /* es_NI */,
+				3D92538E177964A20066927A /* es_PA */,
+				3D92538F177964A20066927A /* es_PE */,
+				3D925390177964A20066927A /* es_PR */,
+				3D925391177964A20066927A /* es_PY */,
+				3D925392177964A20066927A /* es_SV */,
+				3D925393177964A20066927A /* es_US */,
+				3D925394177964A20066927A /* es_UY */,
+				3D925395177964A20066927A /* es_VE */,
+				3D925396177964A20066927A /* et */,
+				3D925397177964A20066927A /* fa */,
+				3D925398177964A20066927A /* fi */,
+				3D925399177964A20066927A /* fil */,
+				3D92539A177964A20066927A /* fr */,
+				3D92539B177964A20066927A /* fr_CH */,
+				3D9253B4177964A20066927A /* gsw */,
+				3D9253B5177964A20066927A /* he */,
+				3D9253B6177964A20066927A /* hi */,
+				3D9253B7177964A20066927A /* hr */,
+				3D9253B8177964A20066927A /* hu */,
+				3D9253B9177964A20066927A /* id */,
+				3D9253BA177964A20066927A /* it */,
+				3D9253BB177964A20066927A /* ja */,
+				3D9253BC177964A20066927A /* ko */,
+				3D9253BD177964A20066927A /* ln */,
+				3D9253BE177964A20066927A /* lt */,
+				3D9253BF177964A20066927A /* lv */,
+				3D9253C0177964A30066927A /* mo */,
+				3D9253C1177964A30066927A /* ms */,
+				3D9253C2177964A30066927A /* nb */,
+				3D9253C3177964A30066927A /* nl */,
+				3D9253C4177964A30066927A /* pl */,
+				3D9253C5177964A30066927A /* pt */,
+				3D9253C6177964A30066927A /* pt_BR */,
+				3D9253C7177964A30066927A /* pt_PT */,
+				3D9253C8177964A30066927A /* ro */,
+				3D9253C9177964A30066927A /* ru */,
+				3D9253CA177964A30066927A /* sk */,
+				3D9253CB177964A30066927A /* sl */,
+				3D9253CC177964A30066927A /* sr */,
+				3D9253CD177964A30066927A /* sv */,
+				3D9253CE177964A30066927A /* sw */,
+				3D9253CF177964A30066927A /* th */,
+				3D9253D0177964A30066927A /* tl */,
+				3D9253D1177964A30066927A /* tr */,
+				3D9253D2177964A30066927A /* uk */,
+				3D9253D3177964A30066927A /* vi */,
+				3D9253D4177964A30066927A /* zh */,
+				3D9253D5177964A30066927A /* zh_CN */,
+				3D9253D6177964A30066927A /* zh_HK */,
+				3D9253D7177964A30066927A /* zh_TW */,
+				3D9253D8177964A30066927A /* zu */,
+			);
+			name = GooglePlusPlatform.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -991,6 +1673,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender/Account/TwitterLoginSdk/Libraries & Headers\"",
+					"\"$(SRCROOT)/GoogleSDK1.2.1/lib\"",
+					"\"$(SRCROOT)/google-plus-ios-sdk-1.2.1/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1016,6 +1700,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender/Account/TwitterLoginSdk/Libraries & Headers\"",
+					"\"$(SRCROOT)/GoogleSDK1.2.1/lib\"",
+					"\"$(SRCROOT)/google-plus-ios-sdk-1.2.1/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

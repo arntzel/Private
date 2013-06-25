@@ -70,7 +70,7 @@ static UserModel * instance;
 }
 
 -(void) signinFacebook:(NSString *) accessToken andCallback:(void (^)(NSInteger error, User * user))callback
-{
+{   
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/facebook/connect/", HOST];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -82,6 +82,27 @@ static UserModel * instance;
     NSLog(@"url=%@", url);
     
     NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
+    NSLog(@"postContent=%@", postContent);
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPBody:postData];
+    
+    [self doLogin:request andCallback:callback];
+}
+
+-(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/google/connect/", HOST];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:30];
+    
+    NSLog(@"url=%@", url);
+    
+    NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
+    
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setHTTPBody:postData];

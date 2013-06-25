@@ -316,6 +316,8 @@
     
     NSArray * array = [eventModel getAllDays];
     
+    if(array.count ==0 ) return;
+    
     int index = 0;
     for(; index<array.count; index++) {
         NSString * day = [array objectAtIndex:index];
