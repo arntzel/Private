@@ -35,10 +35,25 @@
 
     [self.view addSubview:pendingView];
 
+    [pendingView.segmentedControl addTarget:self action:@selector(tableChange:) forControlEvents:UIControlEventValueChanged];
+    
 }
 
 -(void)back:(id)sender {
     [[RootNavContrller defaultInstance] popViewControllerAnimated:YES];
+}
+
+-(void)tableChange:(id)sender{
+
+    UISegmentedControl* control = (UISegmentedControl*)sender;
+
+    if(control.selectedSegmentIndex == 0) {
+        pendingView.table1.hidden = NO;
+        pendingView.table2.hidden = YES;
+    } else {
+        pendingView.table1.hidden = YES;
+        pendingView.table2.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning
