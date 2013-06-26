@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 @interface PendingEventCell : UIView
 
@@ -16,7 +17,9 @@
 @property IBOutlet UILabel * lableLocation;
 @property IBOutlet UILabel * lableResponsed;
 
-+(PendingEventCell *) createView;
 
+-(void) refreshView:(Event*) event;
+
++(PendingEventCell *) createView;
 
 @end

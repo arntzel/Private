@@ -3,12 +3,41 @@
 #import "Event.h"
 #import "Utils.h"
 
+@interface DayEventsObject : NSObject
+
+@property(strong)  NSString * day;
+@property(strong)  NSMutableArray * allEvents;
+@property int types;
+
+-(id)initWithDay:(NSString *) pDay;
+
+@end
+
+@implementation DayEventsObject
+
+-(id)initWithDay:(NSString *) pDay
+{
+
+    self = [super init];
+    
+    self.day = pDay;
+    self.allEvents = [[NSMutableArray alloc] init];
+    self.types = 0;
+    
+    return self;
+}
+@end
+
+
+
 @implementation EventModel {
 
     NSArray * alldays;
 
+    //Day -> DayEvents  
     NSMutableDictionary * dayEvents;
-
+    
+    //Month -> NSMutableArray
     NSMutableDictionary * monthEvents;
 }
 
@@ -32,13 +61,17 @@
 
             NSString * day = [Utils formateDay:event.start];
 
-            NSMutableArray * array = [dayEvents objectForKey:day];
-            if(array == nil) {
-                array = [[NSMutableArray alloc] init];
-                [dayEvents setObject:array forKey:day];
+            DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
+            
+            if(dayEventsObj == nil) {
+                dayEventsObj = [[DayEventsObject alloc] initWithDay:day];
+                [dayEvents setObject:dayEventsObj forKey:day];
             }
 
-            [array addObject:event];
+            [dayEventsObj.allEvents addObject:event];
+            
+            int type = 0x00000001 << event.eventType;
+            dayEventsObj.types |= type;
         }
 
         alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -58,12 +91,29 @@
 }
 
 -(NSArray *) getEventsByDay:(NSString *) day {
-    return [dayEvents objectForKey:day];
+    
+    DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
+
+    if(dayEventsObj != nil) {
+        return dayEventsObj.allEvents;
+    } else {
+        return nil;
+    }
 }
 
 -(NSArray *) getAllDays {
     return alldays;
 }
 
+-(int) getEventsTypes:(NSString *) day
+{
+    DayEventsObject * obj = [dayEvents objectForKey:day];
+    
+    if(obj != nil) {
+        return obj.types;
+    } else {
+        return 0;
+    }
+}
 
 @end

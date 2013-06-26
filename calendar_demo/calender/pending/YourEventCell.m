@@ -11,6 +11,11 @@
 @implementation YourEventCell
 
 
+-(void) refreshView:(Event*) event
+{
+    
+}
+
 
 +(YourEventCell*) createView {
 

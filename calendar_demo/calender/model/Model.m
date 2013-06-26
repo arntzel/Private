@@ -57,13 +57,30 @@ static Model * instance;
 -(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback
 {
     NSString * currentDate = [Utils formateDay: [NSDate date]];
+    User * me = [[UserModel getInstance] getLoginUser];
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00", HOST, currentDate];
+    NSString  * encodedName = [me.username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&creator=%@", HOST, currentDate, encodedName];
 
     NSLog(@"url=%@", url);
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
+    [self getEvents:request andCallback:callback];
+}
+
+-(void) getRelativeEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback
+{
+    
+    NSString * currentDate = [Utils formateDay: [NSDate date]];
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&attendee_status=PENDING", HOST, currentDate];
+    
+    NSLog(@"url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
     [self getEvents:request andCallback:callback];
 }
 

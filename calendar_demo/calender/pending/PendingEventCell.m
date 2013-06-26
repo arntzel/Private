@@ -19,6 +19,12 @@
     return self;
 }
 
+
+-(void) refreshView:(Event*) event
+{
+    
+}
+
 +(PendingEventCell*) createView {
 
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventCell" owner:self options:nil];

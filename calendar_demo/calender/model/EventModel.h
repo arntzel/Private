@@ -14,5 +14,9 @@
 
 -(NSArray *) getAllDays;
 
+/*
+ 
+ */
+-(int) getEventsTypes:(NSString *) day;
 
 @end
