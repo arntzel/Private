@@ -62,7 +62,7 @@
 {
     [super viewDidLoad];
 	
-    eventModel = [[EventModel alloc] init];
+    eventModel = [[Model getInstance] getEventModel];
     
     //sections = [[NSMutableArray alloc] init];
     //sectionDict = [[NSMutableDictionary alloc] init];

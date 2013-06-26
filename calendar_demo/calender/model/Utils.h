@@ -3,6 +3,12 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 
+#define COLOR_A(color)  (((color)&(0xFF000000))>>24)
+#define COLOR_R(color)  (((color)&(0x00FF0000))>>16)
+#define COLOR_G(color)  (((color)&(0x0000FF00))>>8)
+#define COLOR_B(color)  (((color)&(0x000000FF))>>0)
+
+
 @interface Utils : NSObject
 
 /*

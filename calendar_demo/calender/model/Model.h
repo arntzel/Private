@@ -1,5 +1,6 @@
 
 #import <Foundation/Foundation.h>
+#import "EventModel.h"
 #import "User.h"
 #import "Event.h"
 #import "Message.h"
@@ -88,6 +89,9 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
  Call WebService API to create a buddy with apikey
  */
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback;
+
+
+-(EventModel *) getEventModel;
 
 
 /*

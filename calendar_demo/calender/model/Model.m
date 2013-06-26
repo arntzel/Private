@@ -7,7 +7,15 @@
 
 static Model * instance;
 
-@implementation Model 
+@implementation Model  {
+    EventModel * eventModel;
+}
+
+-(id) init {
+    self = [super init];
+    eventModel = [[EventModel alloc] init];
+    return self;
+}
 
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 {
@@ -340,6 +348,10 @@ static Model * instance;
 //TODO
 }
 
+-(EventModel *) getEventModel
+{
+    return eventModel;
+}
 
 +(Model *) getInstance
 {

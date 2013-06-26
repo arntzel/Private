@@ -7,6 +7,7 @@
 #import "KalDate.h"
 #import "KalPrivate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Utils.h"
 
 const CGSize kTileSize = { 46.f, 44.f };
 @implementation KalTileView
@@ -145,28 +146,35 @@ const CGSize kTileSize = { 46.f, 44.f };
         OffsetY = 5.0f;
     }
     
+    CGPoint position;
+    position.x = OffsetX;
+    position.y = OffsetY;
+    
     if (count > 2) {
-        CGContextSetRGBFillColor(ctx, 0, 0, 255, 1);
-        CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
-        CGContextFillPath(ctx);
-        OffsetX += 10.0f;
+        
+        [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
     }
+    
+    position.x += 10.0f;
+    
     if(count > 1)
     {
-        CGContextSetRGBFillColor(ctx, 255, 0, 0, 1);
-        CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
-        CGContextFillPath(ctx);
         OffsetX += 10.0f;
+        [self drawColordot:ctx andPosition:position andColor:0xFFFF0000];
     }
+    
     if(count > 0)
     {
-        CGContextSetRGBFillColor(ctx, 0, 255, 0, 1);
-        CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddEllipseInRect(ctx, CGRectMake(OffsetX, OffsetY, 5, 5));
-        CGContextFillPath(ctx);
+        [self drawColordot:ctx andPosition:position andColor:0xFF00FF00];
     }
+}
+
+-(void) drawColordot:(CGContextRef)ctx andPosition:(CGPoint) position andColor:(int) color
+{
+    CGContextSetRGBFillColor(ctx, COLOR_R(color), COLOR_G(color), COLOR_B(color), COLOR_A(color)/255.0f);
+    CGContextSetLineWidth(ctx, 1.0f);
+    CGContextAddEllipseInRect(ctx, CGRectMake(position.x, position.y, 5, 5));
+    CGContextFillPath(ctx);
 }
 
 - (void)resetState
