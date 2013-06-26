@@ -68,9 +68,10 @@
     
     NSLog(@"application openURL:%@", url);
     
-    return [GPPURLHandler handleURL:url
+    BOOL result = [GPPURLHandler handleURL:url
                   sourceApplication:sourceApplication
                          annotation:annotation];
+    return result;
 }
 
 @end

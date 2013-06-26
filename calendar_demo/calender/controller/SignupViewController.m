@@ -23,6 +23,7 @@
 
 #import "GPPSignIn.h"
 #import "GTLPlusConstants.h"
+#import "GTMOAuth2Authentication.h"
 
 @interface SignupViewController () <ShareLoginDelegate, GPPSignInDelegate>
 
@@ -74,7 +75,8 @@
     
     //Google sign in init
     GPPSignIn * signIn = [GPPSignIn sharedInstance];
-    signIn.clientID = @"925583491857.apps.googleusercontent.com";
+    //signIn.clientID = @"925583491857.apps.googleusercontent.com";
+    signIn.clientID = @"1031805047217.apps.googleusercontent.com";
     signIn.scopes = [NSArray arrayWithObjects: kGTLAuthScopePlusLogin, // 在 GTLPlusConstants.h 中定义
                      nil];
     signIn.delegate = self;
@@ -90,6 +92,7 @@
     //TODO::
     loginType = 2;
     
+    [[GPPSignIn sharedInstance] signOut];
     [[GPPSignIn sharedInstance] authenticate];
 }
 
@@ -234,10 +237,28 @@
 
 //google sign in delegate
 // The authorization has finished and is successful if |error| is |nil|.
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
-                   error:(NSError *)error
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
     NSLog(@"finishedWithAuth:%@", error);
+    
+    if(error == nil) {
+        NSString  * acesssToken  = auth.accessToken;
+        
+        [loadingView startAnimating];
+        [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
+            
+            [loadingView stopAnimating];
+            
+            if(error == 0) {
+                [self onLogined];
+            } else {
+                //TODO::
+            }
+        }];
+        
+    } else {
+        //TODO::
+    }
 
 }
 
