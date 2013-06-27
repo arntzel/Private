@@ -4,6 +4,14 @@
 #import "FeedViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "KalView.h"
+
+#import "KalTileView.h"
+#import "KalWeekGridView.h"
+#import "KalWeekView.h"
+
+#import "KalGridView.h"
+#import "KalMonthView.h"
 
 #define kMenuFullWidth 320.0f
 #define kMenuDisplayedWidth 256.0f
@@ -309,6 +317,20 @@
         return YES;
     }     
     return NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // test if our control subview is on-screen
+    if ([touch.view isKindOfClass:[KalTileView class]] ||
+        [touch.view isKindOfClass:[KalWeekGridView class]] ||
+        [touch.view isKindOfClass:[KalWeekView class]] ||
+        [touch.view isKindOfClass:[KalGridView class]] ||
+        [touch.view isKindOfClass:[KalMonthView class]] ||
+        [touch.view isKindOfClass:[KalView class]]) {
+        // we touched our control surface
+        return NO; // ignore the touch
+    }
+    return YES; // handle the touch
 }
 
 
