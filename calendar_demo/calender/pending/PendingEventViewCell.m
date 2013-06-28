@@ -1,12 +1,27 @@
 
 
-#import "YourEventCell.h"
+#import "PendingEventViewCell.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
+@implementation PendingEventViewCell
 
-@implementation YourEventCell
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
 
 
 -(void) refreshView:(Event*) event
@@ -32,7 +47,7 @@
 
     int respCount = 0;
     int allCount = atendees.count;
-    
+
     for(int i=0;i<allCount;i++) {
 
         EventAttendee * atd = [atendees objectAtIndex:i];
@@ -45,12 +60,12 @@
     return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];
 }
 
-+(YourEventCell*) createView {
++(PendingEventViewCell*) createView {
 
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"YourEventCell" owner:self options:nil];
-    YourEventCell * view = (YourEventCell*)[nibView objectAtIndex:0];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventViewCell" owner:self options:nil];
+    PendingEventViewCell * view = (PendingEventViewCell*)[nibView objectAtIndex:0];
     return view;
-
+    
 }
 
 @end

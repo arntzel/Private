@@ -1,8 +1,8 @@
 
-#import <UIKit/UIKit.h>
 #import "Event.h"
+#import <UIKit/UIKit.h>
 
-@interface YourEventCell : UIView
+@interface PendingEventViewCell : UITableViewCell
 
 @property IBOutlet UIImageView * imgView;
 @property IBOutlet UILabel * labelTitle;
@@ -13,6 +13,7 @@
 -(void) refreshView:(Event*) event;
 
 
-+(YourEventCell *) createView;
++(PendingEventViewCell *) createView;
+
 
 @end

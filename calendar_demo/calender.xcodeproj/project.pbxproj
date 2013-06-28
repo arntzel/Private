@@ -190,10 +190,6 @@
 		940EBBD8173E8033001C3B44 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD6173E8033001C3B44 /* header.png */; };
 		94260F5717733EF70037965D /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F5617733EF60037965D /* EventModel.m */; };
 		94260F6D177733D10037965D /* PedingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F6C177733D10037965D /* PedingEventViewController.m */; };
-		94260F73177735820037965D /* EventPending.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F72177735820037965D /* EventPending.xib */; };
-		94260F7F17773A460037965D /* EventPendingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F7E17773A460037965D /* EventPendingView.m */; };
-		94260F82177740120037965D /* YourEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F81177740120037965D /* YourEventCell.m */; };
-		94260F84177740390037965D /* YourEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F83177740390037965D /* YourEventCell.xib */; };
 		94260F86177744070037965D /* PendingEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F85177744070037965D /* PendingEventCell.xib */; };
 		94260F8C177744320037965D /* PendingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F8B177744310037965D /* PendingEventCell.m */; };
 		942758F5177D294100B55F75 /* EventAttendee.m in Sources */ = {isa = PBXBuildFile; fileRef = 942758F4177D294100B55F75 /* EventAttendee.m */; };
@@ -209,6 +205,10 @@
 		945D3FC31779DB3400333ECD /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC01779DB3400333ECD /* email@2x.png */; };
 		945D3FC51779DB3400333ECD /* google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC21779DB3400333ECD /* google@2x.png */; };
 		945D3FC81779DBDA00333ECD /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */; };
+		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
+		94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D43544177DC469009B20F3 /* EventPendingToolbar.xib */; };
+		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
+		94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
 		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
 /* End PBXBuildFile section */
@@ -584,12 +584,6 @@
 		94260F5617733EF60037965D /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		94260F6B177733D10037965D /* PedingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedingEventViewController.h; sourceTree = "<group>"; };
 		94260F6C177733D10037965D /* PedingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedingEventViewController.m; sourceTree = "<group>"; };
-		94260F72177735820037965D /* EventPending.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPending.xib; sourceTree = "<group>"; };
-		94260F7D17773A450037965D /* EventPendingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingView.h; sourceTree = "<group>"; };
-		94260F7E17773A460037965D /* EventPendingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingView.m; sourceTree = "<group>"; };
-		94260F80177740120037965D /* YourEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourEventCell.h; sourceTree = "<group>"; };
-		94260F81177740120037965D /* YourEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourEventCell.m; sourceTree = "<group>"; };
-		94260F83177740390037965D /* YourEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YourEventCell.xib; sourceTree = "<group>"; };
 		94260F85177744070037965D /* PendingEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventCell.xib; sourceTree = "<group>"; };
 		94260F8A177744310037965D /* PendingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventCell.h; sourceTree = "<group>"; };
 		94260F8B177744310037965D /* PendingEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventCell.m; sourceTree = "<group>"; };
@@ -607,6 +601,12 @@
 		945D3FC01779DB3400333ECD /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
 		945D3FC21779DB3400333ECD /* google@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "google@2x.png"; sourceTree = "<group>"; };
 		945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
+		94D43542177DC469009B20F3 /* EventPendingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingToolbar.h; sourceTree = "<group>"; };
+		94D43543177DC469009B20F3 /* EventPendingToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingToolbar.m; sourceTree = "<group>"; };
+		94D43544177DC469009B20F3 /* EventPendingToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPendingToolbar.xib; sourceTree = "<group>"; };
+		94D43547177DD975009B20F3 /* PendingEventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventViewCell.h; sourceTree = "<group>"; };
+		94D43548177DD975009B20F3 /* PendingEventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventViewCell.m; sourceTree = "<group>"; };
+		94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell.xib; sourceTree = "<group>"; };
 		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
 		94F4A6A21765DA0F009F0094 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
 		94F4A6A31765DA0F009F0094 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
@@ -1162,17 +1162,17 @@
 		94260F6517772BD40037965D /* pending */ = {
 			isa = PBXGroup;
 			children = (
+				94D43542177DC469009B20F3 /* EventPendingToolbar.h */,
+				94D43543177DC469009B20F3 /* EventPendingToolbar.m */,
+				94D43544177DC469009B20F3 /* EventPendingToolbar.xib */,
 				94260F6B177733D10037965D /* PedingEventViewController.h */,
 				94260F6C177733D10037965D /* PedingEventViewController.m */,
-				94260F72177735820037965D /* EventPending.xib */,
-				94260F7D17773A450037965D /* EventPendingView.h */,
-				94260F7E17773A460037965D /* EventPendingView.m */,
-				94260F80177740120037965D /* YourEventCell.h */,
-				94260F81177740120037965D /* YourEventCell.m */,
-				94260F83177740390037965D /* YourEventCell.xib */,
 				94260F85177744070037965D /* PendingEventCell.xib */,
 				94260F8A177744310037965D /* PendingEventCell.h */,
 				94260F8B177744310037965D /* PendingEventCell.m */,
+				94D43547177DD975009B20F3 /* PendingEventViewCell.h */,
+				94D43548177DD975009B20F3 /* PendingEventViewCell.m */,
+				94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */,
 			);
 			name = pending;
 			path = calender/pending;
@@ -1373,8 +1373,6 @@
 				9430902E1770985000266515 /* colordot6.png in Resources */,
 				76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */,
 				76383A2D177204BD00781166 /* AddEventView.xib in Resources */,
-				94260F73177735820037965D /* EventPending.xib in Resources */,
-				94260F84177740390037965D /* YourEventCell.xib in Resources */,
 				94260F86177744070037965D /* PendingEventCell.xib in Resources */,
 				3D925209177848720066927A /* FacebookSDKResources.bundle in Resources */,
 				3D9253FA177964A30066927A /* Changelog in Resources */,
@@ -1410,6 +1408,8 @@
 				945D3FC81779DBDA00333ECD /* facebook_icon@2x.png in Resources */,
 				942758F9177D335100B55F75 /* arrow_right.png in Resources */,
 				942758FA177D335100B55F75 /* arrow_right@2x.png in Resources */,
+				94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */,
+				94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,8 +1466,6 @@
 				76383A2C177204BD00781166 /* AddEventView.m in Sources */,
 				94260F5717733EF70037965D /* EventModel.m in Sources */,
 				94260F6D177733D10037965D /* PedingEventViewController.m in Sources */,
-				94260F7F17773A460037965D /* EventPendingView.m in Sources */,
-				94260F82177740120037965D /* YourEventCell.m in Sources */,
 				94260F8C177744320037965D /* PendingEventCell.m in Sources */,
 				3D92525917784C4B0066927A /* EncryptUtil.m in Sources */,
 				3D92525A17784C4B0066927A /* LoginAccountStore.m in Sources */,
@@ -1516,6 +1514,8 @@
 				3D925424177964A30066927A /* GTMObjC2Runtime.m in Sources */,
 				3D925425177964A30066927A /* OpenInChromeController.m in Sources */,
 				942758F5177D294100B55F75 /* EventAttendee.m in Sources */,
+				94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */,
+				94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
