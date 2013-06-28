@@ -20,7 +20,6 @@
 -(void) refreshView:(Event *) event
 {
     self.labTitle.text = event.title;
-    //self.labAttendees.text = event.attenedees;
     self.labLocation.text = event.location.location;
 
     self.labTime.text = [Utils formateTime:event.start];
@@ -34,7 +33,16 @@
                      placeholderImage:[UIImage imageNamed:@"header.png"]];
     }
 
-    
+    NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
+    self.imgEventType.image = [UIImage imageNamed:imgName];
+
+    self.labEventDuration.text = [self getEventDutationText:event];
+    self.labAttendees.text = [self getAttendeesText:event];
+    self.labLocation.text = [self getLocationText:event];
+}
+
+-(NSString *) getEventDutationText:(Event*)event
+{
     NSMutableString * duration = [[NSMutableString alloc] init];
 
     if(event.duration_days>0) {
@@ -49,13 +57,56 @@
         [duration appendFormat:@"%dmin ", event.duration_minutes];
     }
 
-    self.labEventDuration.text = duration;
-
-    NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
-    self.imgEventType.image = [UIImage imageNamed:imgName];
-
+    return duration;
 }
 
+-(NSString *) getLocationText:(Event *) event
+{
+    Location * location = event.location;
+
+    if(location!= nil && location.location != nil && location.location.length > 0) {
+        return  location.location;
+    } else {
+        return @" No location determined";
+    }
+}
+
+-(NSString *) getAttendeesText:(Event*) event
+{
+    NSArray * attendees = event.attendees;
+    if(attendees.count>100) {
+        
+        return [NSString stringWithFormat:@"%d attendees", attendees.count];
+        
+    } else if(attendees.count>5) {
+        
+        NSMutableString * str = [[NSMutableString alloc] init];
+
+        EventAttendee * atd = [attendees objectAtIndex:0];
+        [str appendString: atd.user.username];
+        [str appendString:@" "];
+        
+        atd = [attendees objectAtIndex:1];
+        [str appendString: atd.user.username];
+       
+        [str appendFormat:@" and %dattendees", attendees.count-2];
+
+        return str;
+    } else if(attendees.count>0){
+
+        NSMutableString * str = [[NSMutableString alloc] init];
+
+        for(int i=0;i<attendees.count;i++) {
+            EventAttendee * atd = [attendees objectAtIndex:i];
+            [str appendString: atd.user.username];
+            [str appendString:@","];
+        }
+
+        return str;
+    } else {
+        return @"No guests invited";
+    }
+}
 
 +(EventView *) createEventView
 {

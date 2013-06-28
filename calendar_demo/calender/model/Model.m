@@ -104,6 +104,8 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
+            NSLog(@"Event resp:%@", json);
+
             NSArray * objects = [json objectForKey:@"objects"];
 
             NSMutableArray * events = [[NSMutableArray alloc] init];

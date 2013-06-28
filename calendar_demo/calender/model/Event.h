@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "Location.h"
+#import "EventAttendee.h"
 
 /*
 

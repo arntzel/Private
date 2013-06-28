@@ -45,8 +45,18 @@
 
     event.thumbnail_url = [json objectForKey:@"thumbnail_url"];
     event.title = [json objectForKey:@"title"];
+
     event.userstatus = [json objectForKey:@"userstatus"];
-    event.attendees = [json objectForKey:@"attendees"];
+
+    NSArray * attendeedDic = [json objectForKey:@"attendees"];
+    NSMutableArray * attendees = [[NSMutableArray alloc] init];
+    for(int i=0;i<attendeedDic.count;i++) {
+        NSDictionary * dic = [attendeedDic objectAtIndex:i];
+        EventAttendee * attendee = [EventAttendee parseEventAttendee:dic];
+        [attendees addObject:attendee];
+    }
+
+    event.attendees = attendees;
 
     return event;
 }
