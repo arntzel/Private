@@ -1,10 +1,3 @@
-//
-//  SignupViewController.m
-//  calender
-//
-//  Created by fang xiang on 13-6-8.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "SignupViewController.h"
 #import "LoginView.h"
@@ -77,6 +70,7 @@
     GPPSignIn * signIn = [GPPSignIn sharedInstance];
     //signIn.clientID = @"925583491857.apps.googleusercontent.com";
     signIn.clientID = @"1031805047217.apps.googleusercontent.com";
+    //signIn.clientID = @"413114824893.apps.googleusercontent.com";
     signIn.scopes = [NSArray arrayWithObjects: kGTLAuthScopePlusLogin, // 在 GTLPlusConstants.h 中定义
                      nil];
     signIn.delegate = self;
@@ -243,7 +237,7 @@
     
     if(error == nil) {
         NSString  * acesssToken  = auth.accessToken;
-        
+        NSLog(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
         [loadingView startAnimating];
         [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
             

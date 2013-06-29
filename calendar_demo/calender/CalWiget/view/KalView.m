@@ -388,4 +388,23 @@ static const CGFloat kMonthLabelHeight = 17.f;
   [super dealloc];
 }
 
+-(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource
+{
+    [self setKalTileViewDataSource:datasource andView:gridView];
+    [self setKalTileViewDataSource:datasource andView:weekGridView];
+}
+
+-(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource andView:(UIView *) view
+{
+    NSArray * subViews = [view subviews];
+    
+    for(int i=0; i<subViews.count; i++) {
+        UIView * subView = [subViews objectAtIndex:i];
+        
+        if( [subView isKindOfClass:[KalTileView class]]) {
+            KalTileView * tileView = (KalTileView *) subView;
+            tileView.datasource = datasource;
+        }
+    }
+}
 @end

@@ -97,7 +97,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Sign up with Fackbook</string>
+						<string key="IBUINormalTitle">Sign up with Facebook</string>
 						<reference key="IBUIHighlightedTitleColor" ref="150849000"/>
 						<reference key="IBUINormalTitleColor" ref="150849000"/>
 						<reference key="IBUINormalTitleShadowColor" ref="140718720"/>

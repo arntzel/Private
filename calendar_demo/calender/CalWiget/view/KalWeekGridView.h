@@ -41,6 +41,10 @@
 @property (nonatomic, readonly) BOOL transitioning;
 @property (nonatomic, readonly) KalDate *selectedDate;
 
+@property (nonatomic, readonly) KalWeekView *frontWeekView;
+@property (nonatomic, readonly) KalWeekView *backWeekView;
+
+
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalWeekGridViewDelegate>)delegate;
 - (void)selectDate:(KalDate *)date;
 - (void)markTilesForDates:(NSArray *)dates;

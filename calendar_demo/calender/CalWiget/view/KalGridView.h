@@ -4,6 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "KalTileView.h"
 
 @class KalTileView, KalMonthView, KalLogic, KalDate;
 @protocol KalViewDelegate;

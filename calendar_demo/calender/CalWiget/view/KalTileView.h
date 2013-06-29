@@ -12,7 +12,14 @@ enum {
 };
 typedef char KalTileType;
 
+
 @class KalDate;
+
+@protocol KalTileViewDataSource <NSObject>
+
+-(int) getEventType:(KalDate *) date;
+
+@end
 
 @interface KalTileView : UIView
 {
@@ -31,6 +38,8 @@ typedef char KalTileType;
 @property (nonatomic, getter=isSelected) BOOL selected;
 @property (nonatomic, getter=isMarked) BOOL marked;
 @property (nonatomic) KalTileType type;
+
+@property (nonatomic, retain) NSObject<KalTileViewDataSource> * datasource;
 
 - (void)resetState;
 - (BOOL)isToday;

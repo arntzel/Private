@@ -129,9 +129,20 @@ const CGSize kTileSize = { 46.f, 44.f };
         CGContextShowTextAtPoint(ctx, textX, textY, cMonthName, [monthName length]);
     }
     
-    //draw event
+    if(self.datasource == nil) return;
     
-    NSInteger count = rand()%4;
+    //draw event color dot
+    int eventType = [self.datasource getEventType:self.date];
+    
+    BOOL google = eventType & 0x00000006;
+    BOOL fackbook = eventType & 0x00000008;
+    BOOL birthday = eventType & 0x00000010;
+    
+    int count = 0;
+    if(google) count++;
+    if(fackbook) count++;
+    if(birthday) count++;
+    
     if (count == 0) {
         return;
     }
@@ -139,8 +150,6 @@ const CGSize kTileSize = { 46.f, 44.f };
     CGFloat dotLength = 10 * count - 5;
     CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
     
-    
-
     CGFloat OffsetY = 8.0f;
     if (n == 1) {
         OffsetY = 5.0f;
@@ -150,22 +159,20 @@ const CGSize kTileSize = { 46.f, 44.f };
     position.x = OffsetX;
     position.y = OffsetY;
     
-    if (count > 2) {
-        
-        [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
-    }
     
-    position.x += 10.0f;
-    
-    if(count > 1)
-    {
-        OffsetX += 10.0f;
+    if(google) {
         [self drawColordot:ctx andPosition:position andColor:0xFFFF0000];
+        position.x += 10.0f;
     }
     
-    if(count > 0)
-    {
+    if(fackbook) {
         [self drawColordot:ctx andPosition:position andColor:0xFF00FF00];
+        position.x += 10.0f;
+    }
+    
+    if(birthday) {
+        [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
+        position.x += 10.0f;
     }
 }
 
@@ -282,7 +289,9 @@ const CGSize kTileSize = { 46.f, 44.f };
 
 - (void)dealloc
 {
-  [date release];
+  self.date = nil;
+  self.datasource = nil;
+    
   [super dealloc];
 }
 
