@@ -12,7 +12,7 @@
 const CGSize kTileSize = { 46.f, 44.f };
 @implementation KalTileView
 
-@synthesize date;
+@synthesize date, datasource;
 
 - (id)initWithFrame:(CGRect)frame
 {

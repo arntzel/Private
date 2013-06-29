@@ -137,7 +137,7 @@
 
     [loadingView startAnimating];
     
-    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"111111" andCallback:^(NSInteger error, User *user) {
+    [[UserModel getInstance] login:@"fx.fangxiang@gmail.com" withPassword:@"pass1234" andCallback:^(NSInteger error, User *user) {
         [loadingView stopAnimating];
         
         NSLog(@"signupEmail error=%d", error);

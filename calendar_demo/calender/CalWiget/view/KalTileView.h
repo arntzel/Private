@@ -25,6 +25,7 @@ typedef char KalTileType;
 {
   KalDate *date;
   CGPoint origin;
+  
   struct {
     unsigned int selected : 1;
     unsigned int highlighted : 1;

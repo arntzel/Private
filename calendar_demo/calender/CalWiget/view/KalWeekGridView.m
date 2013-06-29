@@ -36,7 +36,7 @@ extern const CGSize kTileSize;
 static NSString *kWeekSlideAnimationId = @"KalSwitchWeeks";
 
 @implementation KalWeekGridView
-@synthesize selectedTile, highlightedTile, transitioning;
+@synthesize selectedTile, highlightedTile, transitioning, frontWeekView, backWeekView;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalWeekGridViewDelegate>)theDelegate
 {

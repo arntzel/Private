@@ -391,9 +391,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource
 {
-    KalMonthView * monthView = gridView.frontMonthView;
-    [self setKalTileViewDataSource:datasource andView:monthView];
-    [self setKalTileViewDataSource:datasource andView:weekGridView];
+    [self setKalTileViewDataSource:datasource andView:gridView.frontMonthView];
+    [self setKalTileViewDataSource:datasource andView:weekGridView.frontWeekView];
 }
 
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource andView:(UIView *) view
