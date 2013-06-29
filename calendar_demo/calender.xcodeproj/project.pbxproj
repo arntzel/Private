@@ -15,6 +15,7 @@
 		3D046E281762C0EB008EE2DA /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D046E271762C0EB008EE2DA /* LoginView.xib */; };
 		3D046E301763022F008EE2DA /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D046E2F1763022F008EE2DA /* SignupViewController.m */; };
 		3D07E6C4176AEFB9000D3FBA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D07E6C3176AEFB9000D3FBA /* SDWebImage.framework */; };
+		3D1540A0177E6C0C0015B475 /* calvin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D15409F177E6C0C0015B475 /* calvin@2x.png */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -224,6 +225,7 @@
 		3D046E2E1763022F008EE2DA /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		3D046E2F1763022F008EE2DA /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		3D07E6C3176AEFB9000D3FBA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		3D15409F177E6C0C0015B475 /* calvin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calvin@2x.png"; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1130,6 +1132,7 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3D15409F177E6C0C0015B475 /* calvin@2x.png */,
 				942758F7177D335100B55F75 /* arrow_right.png */,
 				942758F8177D335100B55F75 /* arrow_right@2x.png */,
 				945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */,
@@ -1410,6 +1413,7 @@
 				942758FA177D335100B55F75 /* arrow_right@2x.png in Resources */,
 				94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */,
 				94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */,
+				3D1540A0177E6C0C0015B475 /* calvin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
