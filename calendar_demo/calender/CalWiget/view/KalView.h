@@ -6,6 +6,8 @@
 #import <UIKit/UIKit.h>
 #import "KalWeekGridView.h"
 #import "CalendarIntegrationView.h"
+#import "KalGridView.h"
+
 @class KalGridView, KalLogic, KalDate;
 @protocol KalViewDelegate, KalDataSourceCallbacks;
 
@@ -38,7 +40,7 @@
 {
   UILabel *headerTitleLabel;
   KalGridView *gridView;
-    KalWeekGridView *weekGridView;
+  KalWeekGridView *weekGridView;
   UIImageView *shadowView;
   id<KalViewDelegate> delegate;
   KalLogic *logic;
@@ -59,6 +61,8 @@
 - (void)slideLeft;
 - (void)slideRight;
 - (void)jumpToSelectedMonth;    // change months without animation (i.e. when directly switching to "Today")
+
+-(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;
 
 @end
 

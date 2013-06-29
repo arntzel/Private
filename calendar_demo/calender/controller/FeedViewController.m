@@ -27,7 +27,7 @@
 /*
  FeedViewController show the event list and a calender wiget
  */
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate,KalViewDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate,KalViewDelegate, KalTileViewDataSource>
 {
     KalLogic *logic;
     KalView *calendarView;
@@ -100,6 +100,9 @@
     KalView *kalView = [[KalView alloc] initWithFrame:[self.view bounds] delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [kalView setUserInteractionEnabled:YES];
     [kalView setMultipleTouchEnabled:YES];
+
+    [kalView setKalTileViewDataSource:self];
+
     [self.view addSubview:kalView];
     self.calendarView = kalView;
     
@@ -146,6 +149,8 @@
             [tableView reloadData];
             
             [self tableviewScroll2SelectDay];
+
+            [self.calendarView setNeedsDisplay];
             
         } else {
             //TODO:: show network error
@@ -366,5 +371,11 @@
      {
          
      }];
+}
+
+#pragma mark -
+#pragma mark KalTileViewDataSource
+-(int) getEventType:(KalDate *) date {
+    return 0xFFFFFFFF;
 }
 @end

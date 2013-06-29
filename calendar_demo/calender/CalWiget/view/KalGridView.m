@@ -36,7 +36,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 
 @implementation KalGridView
 
-@synthesize selectedTile, highlightedTile, transitioning;
+@synthesize selectedTile, highlightedTile, transitioning, frontMonthView;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
