@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "CreateUser.h"
 #import "UserProfile.h"
 
 
@@ -19,7 +20,7 @@
 /**
  create user
  */
--(void) createUser:(User *)user andCallback: (void (^)(NSInteger error))callback;
+-(void) createUser:(CreateUser *)user andCallback: (void (^)(NSInteger error))callback;
 
 /*
  -Get user by userid

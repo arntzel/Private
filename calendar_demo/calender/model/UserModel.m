@@ -21,7 +21,7 @@ static UserModel * instance;
 
 
 
--(void) createUser:(User *)user andCallback:(void (^)(NSInteger error))callback
+-(void) createUser:(CreateUser *)user andCallback:(void (^)(NSInteger error))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/createuser", HOST];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
@@ -30,6 +30,8 @@ static UserModel * instance;
     NSLog(@"url=%@", url);
 
     NSString * postContent = [Utils convertObj2Json:user];
+    NSLog(@"postContent=%@", postContent);
+
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
@@ -41,6 +43,8 @@ static UserModel * instance;
         if(status == 201) {
             callback(ERROCODE_OK);
         } else {
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSLog(@"error=%d, resp:%@", status, aStr);
             callback(-1);
         }
     }];
