@@ -69,8 +69,8 @@
     //Google sign in init
     GPPSignIn * signIn = [GPPSignIn sharedInstance];
     //signIn.clientID = @"925583491857.apps.googleusercontent.com";
-    signIn.clientID = @"1031805047217.apps.googleusercontent.com";
-    //signIn.clientID = @"413114824893.apps.googleusercontent.com";
+    //signIn.clientID = @"1031805047217.apps.googleusercontent.com";
+    signIn.clientID = @"413114824893.apps.googleusercontent.com";
     signIn.scopes = [NSArray arrayWithObjects: kGTLAuthScopePlusLogin, // 在 GTLPlusConstants.h 中定义
                      nil];
     signIn.delegate = self;
@@ -107,6 +107,9 @@
 }
 
 -(void) signupEmail {
+    
+    [self onLogined];
+    return;
     
     [self finish];
 

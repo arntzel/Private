@@ -1,8 +1,3 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
-
 #import "NSDateAdditions.h"
 
 @implementation NSDate (KalAdditions)
@@ -44,14 +39,20 @@
     return d;
 }
 
-- (NSDate *)cc_dateByMovingToFirstDayOfThePreviousDayCout:(NSInteger )count
+- (NSDate *)cc_dateByMovingToEndDayOfTheWeek
+{
+    NSDate *d = [[self cc_dateByMovingToFirstDayOfTheFollowingWeek] cc_dateByMovingToThePreviousDayCout:1];
+    return d;
+}
+
+- (NSDate *)cc_dateByMovingToThePreviousDayCout:(NSInteger )count
 {
     NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
     c.day = -count;
     return [[NSCalendar currentCalendar] dateByAddingComponents:c toDate:self options:0];
 }
 
-- (NSDate *)cc_dateByMovingToFirstDayOfTheFollowingDayCout:(NSInteger )count
+- (NSDate *)cc_dateByMovingToTheFollowingDayCout:(NSInteger )count
 {
     NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
     c.day = count;

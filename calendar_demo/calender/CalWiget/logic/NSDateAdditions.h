@@ -1,8 +1,3 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
-
 #import <Foundation/Foundation.h>
 
 @interface NSDate (KalAdditions)
@@ -12,10 +7,11 @@
 
 
 ////////////// add york
-- (NSDate *)cc_dateByMovingToFirstDayOfThePreviousDayCout:(NSInteger )count;
-- (NSDate *)cc_dateByMovingToFirstDayOfTheFollowingDayCout:(NSInteger )count;
+- (NSDate *)cc_dateByMovingToThePreviousDayCout:(NSInteger )count;
+- (NSDate *)cc_dateByMovingToTheFollowingDayCout:(NSInteger )count;
 
 - (NSDate *)cc_dateByMovingToFirstDayOfTheWeek;
+- (NSDate *)cc_dateByMovingToEndDayOfTheWeek;
 - (NSDate *)cc_dateByMovingToFirstDayOfThePreviousWeek;
 - (NSDate *)cc_dateByMovingToFirstDayOfTheFollowingWeek;
 

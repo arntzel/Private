@@ -281,8 +281,6 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
-    NSLog(@"didSelectDate:%@", date);
-
     if(!loadingView.isHidden) {
         return;
     }

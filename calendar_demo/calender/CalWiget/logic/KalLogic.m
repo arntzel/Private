@@ -1,207 +1,115 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
 
 #import "KalLogic.h"
-#import "KalDate.h"
 #import "KalPrivate.h"
+#import "KalLogicUtils.h"
 
 @interface KalLogic ()
-- (void)moveToMonthForDate:(NSDate *)date;
-- (void)recalculateVisibleDays;
-- (NSUInteger)numberOfDaysInPreviousPartialWeek;
-- (NSUInteger)numberOfDaysInFollowingPartialWeek;
-
-@property (nonatomic, retain) NSDate *fromDate;
-@property (nonatomic, retain) NSDate *toDate;
-@property (nonatomic, retain) NSArray *daysInSelectedMonth;
-@property (nonatomic, retain) NSArray *daysInSelectedWeek;
-@property (nonatomic, retain) NSArray *daysInFinalWeekOfPreviousMonth;
-@property (nonatomic, retain) NSArray *daysInFirstWeekOfFollowingMonth;
 
 @end
 
 @implementation KalLogic
+@synthesize showMonth;
+@synthesize selectedDay;
+@synthesize showWeek;
 
-@synthesize baseDate,weekBaseDate, fromDate, toDate, daysInSelectedMonth, daysInSelectedWeek, daysInFinalWeekOfPreviousMonth, daysInFirstWeekOfFollowingMonth;
-
-+ (NSSet *)keyPathsForValuesAffectingSelectedMonthNameAndYear
+- (void) dealloc
 {
-  return [NSSet setWithObjects:@"baseDate", nil];
-}
-
-- (id)initForDate:(NSDate *)date
-{
-  if ((self = [super init])) {
-    monthAndYearFormatter = [[NSDateFormatter alloc] init];
-    [monthAndYearFormatter setDateFormat:@"LLLL yyyy"];
-    [self moveToMonthForDate:date];
-    [self moveToWeekForDate:date];
-  }
-  return self;
+    self.showMonth = nil;
+    self.selectedDay = nil;
+    self.showWeek = nil;
+    [super dealloc];
 }
 
 - (id)init
 {
-  return [self initForDate:[NSDate date]];
+    return [self initForDate:[NSDate date]];
 }
 
-//////////////////////  add
-- (void)moveToWeekForDate:(NSDate *)date
+- (id)initForDate:(NSDate *)date
 {
-    self.weekBaseDate = [date cc_dateByMovingToFirstDayOfTheWeek];
-    self.baseDate = [self.weekBaseDate cc_dateByMovingToFirstDayOfTheMonth];
-    [self recalculateCurrentWeekdays];
+    if ((self = [super init])) {
+        self.showMonth = [KalDate dateFromNSDate:[date cc_dateByMovingToFirstDayOfTheMonth]];
+        self.showWeek = [KalDate dateFromNSDate:[date cc_dateByMovingToFirstDayOfTheWeek]];
+        self.selectedDay = [KalDate dateFromNSDate:date];
+    }
+    return self;
 }
 
+//week
 - (void)retreatToPreviousWeek
 {
-    NSDate *tempDate = [self.weekBaseDate cc_dateByMovingToFirstDayOfThePreviousWeek];
-    [self moveToWeekForDate:tempDate];
+    NSDate *date = [[showWeek NSDate] cc_dateByMovingToFirstDayOfThePreviousWeek];
+    self.showWeek = [KalDate dateFromNSDate:date];
 }
 
 - (void)advanceToFollowingWeek
 {
-    NSDate *tempDate = [self.weekBaseDate cc_dateByMovingToFirstDayOfTheFollowingWeek];
-    [self moveToWeekForDate:tempDate];
+    NSDate *date = [[showWeek NSDate] cc_dateByMovingToFirstDayOfTheFollowingWeek];
+    self.showWeek = [KalDate dateFromNSDate:date];
 }
 
-- (void)recalculateCurrentWeekdays
+- (NSArray *)daysInShowingWeek
 {
-    NSMutableArray *days = [NSMutableArray array];
-    NSUInteger currentWeekDay = [self.weekBaseDate cc_weekday];
-    
-    NSLog(@"currentWeekDay :%d",currentWeekDay);
-    for (NSUInteger index = currentWeekDay; index > 1; index--)
-    {
-        NSDate *d = [self.weekBaseDate cc_dateByMovingToFirstDayOfThePreviousDayCout:currentWeekDay - index];
-        [days addObject:[KalDate dateFromNSDate:d]];
-    }
-    for (NSUInteger index = 7 ; index >= currentWeekDay; index--)
-    {
-        NSDate *d = [self.weekBaseDate cc_dateByMovingToFirstDayOfTheFollowingDayCout:7 - index];
-        [days addObject:[KalDate dateFromNSDate:d]];
-    }
-    
-    self.daysInSelectedWeek = days;
+    NSArray *daysInShowingWeek = [KalLogicUtils visibleWeekDaysForDay:[showWeek NSDate]];
+    return daysInShowingWeek;
 }
-///////////////////////
 
-- (void)moveToMonthForDate:(NSDate *)date
+- (void)ajustShowWeek
 {
-  self.baseDate = [date cc_dateByMovingToFirstDayOfTheMonth];
-    self.weekBaseDate = [self.baseDate cc_dateByMovingToFirstDayOfTheWeek];
-  [self recalculateVisibleDays];
+    if ((self.selectedDay.year == self.showMonth.year) &&
+        self.selectedDay.month == self.showMonth.month) {
+        NSDate *date = [[self.selectedDay NSDate] cc_dateByMovingToFirstDayOfTheWeek];
+        self.showWeek= [KalDate dateFromNSDate:date];
+    }
+    else
+    {
+        NSDate *date = [[self.showMonth NSDate] cc_dateByMovingToFirstDayOfTheWeek];
+        self.showWeek = [KalDate dateFromNSDate:date];
+    }
 }
-
+//month
 - (void)retreatToPreviousMonth
 {
-  [self moveToMonthForDate:[self.baseDate cc_dateByMovingToFirstDayOfThePreviousMonth]];
+    NSDate *date = [[showMonth NSDate] cc_dateByMovingToFirstDayOfThePreviousMonth];
+    self.showMonth = [KalDate dateFromNSDate:date];
 }
 
 - (void)advanceToFollowingMonth
 {
-  [self moveToMonthForDate:[self.baseDate cc_dateByMovingToFirstDayOfTheFollowingMonth]];
+    NSDate *date = [[showMonth NSDate] cc_dateByMovingToFirstDayOfTheFollowingMonth];
+    self.showMonth = [KalDate dateFromNSDate:date];
 }
 
-- (NSString *)selectedMonthNameAndYear;
+- (NSArray *)daysInShowingMonth
 {
-  return [monthAndYearFormatter stringFromDate:self.baseDate];
+    NSArray *daysInShowingMonth = [KalLogicUtils daysInSelectedMonthForDay:[showMonth NSDate]];
+    return daysInShowingMonth;
 }
 
-#pragma mark Low-level implementation details
-
-- (NSUInteger)numberOfDaysInPreviousPartialWeek
+- (NSArray *)daysInFinalWeekOfPreviousMonth
 {
-  return [self.baseDate cc_weekday] - 1;
+    NSArray *daysInFinalWeekOfPreviousMonth = [KalLogicUtils daysInFinalWeekOfPreviousMonthForDay:[showMonth NSDate]];
+    return daysInFinalWeekOfPreviousMonth;
 }
 
-- (NSUInteger)numberOfDaysInFollowingPartialWeek
+- (NSArray *)daysInFirstWeekOfFollowingMonth
 {
-  NSDateComponents *c = [self.baseDate cc_componentsForMonthDayAndYear];
-  c.day = [self.baseDate cc_numberOfDaysInMonth];
-  NSDate *lastDayOfTheMonth = [[NSCalendar currentCalendar] dateFromComponents:c];
-  return 7 - [lastDayOfTheMonth cc_weekday];
+    NSArray *daysInFirstWeekOfFollowingMonth = [KalLogicUtils daysInFirstWeekOfFollowingMonthForDay:[showMonth NSDate]];
+    return daysInFirstWeekOfFollowingMonth;
 }
 
-- (NSArray *)calculateDaysInFinalWeekOfPreviousMonth
+- (void)ajustShowMonth
 {
-  NSMutableArray *days = [NSMutableArray array];
-  
-  NSDate *beginningOfPreviousMonth = [self.baseDate cc_dateByMovingToFirstDayOfThePreviousMonth];
-  int n = [beginningOfPreviousMonth cc_numberOfDaysInMonth];
-  int numPartialDays = [self numberOfDaysInPreviousPartialWeek];
-  NSDateComponents *c = [beginningOfPreviousMonth cc_componentsForMonthDayAndYear];
-  for (int i = n - (numPartialDays - 1); i < n + 1; i++)
-    [days addObject:[KalDate dateForDay:i month:c.month year:c.year]];
-  
-  return days;
-}
-
-- (NSArray *)calculateDaysInSelectedMonth
-{
-  NSMutableArray *days = [NSMutableArray array];
-  
-  NSUInteger numDays = [self.baseDate cc_numberOfDaysInMonth];
-  NSDateComponents *c = [self.baseDate cc_componentsForMonthDayAndYear];
-  for (int i = 1; i < numDays + 1; i++)
-    [days addObject:[KalDate dateForDay:i month:c.month year:c.year]];
-  
-  return days;
-}
-
-- (NSArray *)calculateDaysInFirstWeekOfFollowingMonth
-{
-  NSMutableArray *days = [NSMutableArray array];
-  
-  NSDateComponents *c = [[self.baseDate cc_dateByMovingToFirstDayOfTheFollowingMonth] cc_componentsForMonthDayAndYear];
-  NSUInteger numPartialDays = [self numberOfDaysInFollowingPartialWeek];
-  
-  for (int i = 1; i < numPartialDays + 1; i++)
-    [days addObject:[KalDate dateForDay:i month:c.month year:c.year]];
-  
-  return days;
-}
-
-- (void)recalculateCurrentWeekDays
-{
-//    NSMutableArray *days = [NSMutableArray array];
-//    
-//    NSDate *beginningOfPreviousMonth = [self.baseDate cc_dateByMovingToFirstDayOfThePreviousMonth];
-//    int n = [beginningOfPreviousMonth cc_numberOfDaysInMonth];
-//    int numPartialDays = [self numberOfDaysInPreviousPartialWeek];
-//    NSDateComponents *c = [beginningOfPreviousMonth cc_componentsForMonthDayAndYear];
-//    for (int i = n - (numPartialDays - 1); i < n + 1; i++)
-//        [days addObject:[KalDate dateForDay:i month:c.month year:c.year]];
-//    
-//    return days;
-}
-
-- (void)recalculateVisibleDays
-{
-  self.daysInSelectedMonth = [self calculateDaysInSelectedMonth];
-  self.daysInFinalWeekOfPreviousMonth = [self calculateDaysInFinalWeekOfPreviousMonth];
-  self.daysInFirstWeekOfFollowingMonth = [self calculateDaysInFirstWeekOfFollowingMonth];
-  KalDate *from = [self.daysInFinalWeekOfPreviousMonth count] > 0 ? [self.daysInFinalWeekOfPreviousMonth objectAtIndex:0] : [self.daysInSelectedMonth objectAtIndex:0];
-  KalDate *to = [self.daysInFirstWeekOfFollowingMonth count] > 0 ? [self.daysInFirstWeekOfFollowingMonth lastObject] : [self.daysInSelectedMonth lastObject];
-  self.fromDate = [[from NSDate] cc_dateByMovingToBeginningOfDay];
-  self.toDate = [[to NSDate] cc_dateByMovingToEndOfDay];
-}
-
-#pragma mark -
-
-- (void) dealloc
-{
-  [monthAndYearFormatter release];
-  [baseDate release];
-    [weekBaseDate release];
-  [fromDate release];
-  [toDate release];
-  [daysInSelectedMonth release];
-  [daysInFinalWeekOfPreviousMonth release];
-  [daysInFirstWeekOfFollowingMonth release];
-  [super dealloc];
+    if ((self.selectedDay.year == self.showWeek.year) &&
+        self.selectedDay.month == self.showWeek.month) {
+        NSDate *date = [[self.selectedDay NSDate] cc_dateByMovingToFirstDayOfTheMonth];
+        self.showMonth = [KalDate dateFromNSDate:date];
+    }
+    else
+    {
+        NSDate *date = [[[self.showWeek NSDate] cc_dateByMovingToFirstDayOfTheFollowingWeek ] cc_dateByMovingToFirstDayOfTheMonth];
+        self.showMonth = [KalDate dateFromNSDate:date];
+    }
 }
 
 @end
