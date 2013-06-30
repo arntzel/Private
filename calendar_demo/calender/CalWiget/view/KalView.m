@@ -77,7 +77,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [headerView addSubview:weekdayLabel];
         [weekdayLabel release];
 
-        [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
+        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
     }
 }
 

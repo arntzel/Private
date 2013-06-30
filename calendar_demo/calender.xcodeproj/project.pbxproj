@@ -171,6 +171,7 @@
 		76DD62B31768AEF900C8F6AF /* AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD62B21768AEF900C8F6AF /* AttributedLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D31764AF7100B183B7 /* DDMenuController.m */; };
 		76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D51764AF7100B183B7 /* menuNavigation.m */; };
+		76F457B81780667600E4B444 /* KalMonthNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F457B71780667600E4B444 /* KalMonthNameView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9402B069174BB5D400E1C9FD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B068174BB5D400E1C9FD /* Utils.m */; };
 		9402B06C174CFBBB00E1C9FD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B06B174CFBBA00E1C9FD /* UserModel.m */; };
 		9402B06F174D0B0F00E1C9FD /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B06E174D0B0F00E1C9FD /* UserProfile.m */; };
@@ -559,6 +560,8 @@
 		76DFD0D31764AF7100B183B7 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		76DFD0D41764AF7100B183B7 /* menuNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuNavigation.h; sourceTree = "<group>"; };
 		76DFD0D51764AF7100B183B7 /* menuNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuNavigation.m; sourceTree = "<group>"; };
+		76F457B61780667600E4B444 /* KalMonthNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalMonthNameView.h; sourceTree = "<group>"; };
+		76F457B71780667600E4B444 /* KalMonthNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalMonthNameView.m; sourceTree = "<group>"; };
 		9402B067174BB5D400E1C9FD /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		9402B068174BB5D400E1C9FD /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		9402B06A174CFBBA00E1C9FD /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -1068,6 +1071,8 @@
 				76C22D7B173FCD3000AC7519 /* KalWeekView.m */,
 				76C22D7C173FCD3000AC7519 /* UIViewAdditions.h */,
 				76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */,
+				76F457B61780667600E4B444 /* KalMonthNameView.h */,
+				76F457B71780667600E4B444 /* KalMonthNameView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1522,6 +1527,7 @@
 				94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */,
 				94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */,
 				764094AF177FD29200D67ADB /* KalLogicUtils.m in Sources */,
+				76F457B81780667600E4B444 /* KalMonthNameView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

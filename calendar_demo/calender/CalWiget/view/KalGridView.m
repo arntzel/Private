@@ -7,6 +7,7 @@
 #import "KalLogic.h"
 #import "KalDate.h"
 #import "KalPrivate.h"
+#import "KalMonthNameView.h"
 
 #define SLIDE_NONE 0
 #define SLIDE_LEFT 1
@@ -18,6 +19,7 @@ extern const CGSize kTileSize;
 {    
     UISwipeGestureRecognizer *oneFingerSwipeLeft;
     UISwipeGestureRecognizer *oneFingerSwipeRight;
+    KalMonthNameView *monthNameView;
 }
 - (void)swapMonthViews;
 @end
@@ -47,6 +49,9 @@ extern const CGSize kTileSize;
 
         [self jumpToSelectedMonth];
         [self addUISwipGestureRecognizer:self];
+        
+        monthNameView = [[KalMonthNameView alloc] initWithFrame:CGRectZero];
+        [self addSubview:monthNameView];
     }
   
     return self;
@@ -176,6 +181,11 @@ extern const CGSize kTileSize;
         [self swapMonthViews];
         return;
     }
+    
+    [monthNameView setFrame:frontMonthView.frame];
+    [monthNameView setMonthNameAtIndex:[logic.showMonth month]];
+    [monthNameView setAlpha:0.0f];
+    
     [UIView animateWithDuration:0.5 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         if (direction == SLIDE_LEFT) {
             frontMonthView.left = -frontMonthView.width;
@@ -187,8 +197,17 @@ extern const CGSize kTileSize;
         backMonthView.left = 0;
         self.height = backMonthView.height;
         
+        [monthNameView setFrame:backMonthView.frame];
     } completion:^(BOOL finished) {
         [self swapMonthViews];
+    }];
+    
+    [UIView animateWithDuration:0.25 delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        [monthNameView setAlpha:1.0f];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.25 delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            [monthNameView setAlpha:0.0f];
+        } completion:nil];
     }];
 }
 
@@ -204,12 +223,12 @@ extern const CGSize kTileSize;
 
 - (void)dealloc
 {
-  [frontMonthView release];
-  [backMonthView release];
-  [logic release];
-    
-    
-  [super dealloc];
+    [frontMonthView release];
+    [backMonthView release];
+    [logic release];
+    [monthNameView release];
+
+    [super dealloc];
 }
 
 @end
