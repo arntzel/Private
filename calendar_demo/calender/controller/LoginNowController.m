@@ -1,15 +1,10 @@
-//
-//  LoginNowController.m
-//  calender
-//
-//  Created by xiangfang on 13-6-10.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "LoginNowController.h"
 #import "UserModel.h"
 #import "FeedViewController.h"
-
+#import "DDMenuController.h"
+#import "RootNavContrller.h"
+#import "menuNavigation.h"
 
 @interface LoginNowController ()
 
@@ -35,7 +30,7 @@
 
     //For Test
     self.tvUsername.text = @"fx.fangxiang@gmail.com";
-    self.tvPassword.text = @"fangxiang";
+    self.tvPassword.text = @"pass1234";
 }
 
 -(IBAction) back:(id)sender {
@@ -57,9 +52,7 @@
 
         if(error == 0) {
 
-            FeedViewController * ctrl = [[FeedViewController alloc] init];
-            //[self.navigationController popViewControllerAnimated:NO];
-            [self.navigationController pushViewController:ctrl animated:YES];
+            [self onLogined];
 
         } else {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
@@ -74,6 +67,21 @@
     }];
 }
 
+-(void) onLogined
+{
+    menuNavigation *leftController = [[menuNavigation alloc] init];
+    FeedViewController * fdController = [[FeedViewController alloc] init];
+
+
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
+    rootController.leftViewController = leftController;
+
+    fdController.delegate = rootController;
+
+    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+
+}
 
 - (void)didReceiveMemoryWarning
 {

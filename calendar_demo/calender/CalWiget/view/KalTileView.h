@@ -21,6 +21,7 @@ typedef char KalTileType;
 {
   KalDate *date;
   CGPoint origin;
+  
   struct {
     unsigned int selected : 1;
     unsigned int highlighted : 1;
@@ -35,7 +36,7 @@ typedef char KalTileType;
 @property (nonatomic, getter=isMarked) BOOL marked;
 @property (nonatomic) KalTileType type;
 
-@property (nonatomic, retain) NSObject<KalTileViewDataSource> * datasource;
+@property (nonatomic, assign) NSObject<KalTileViewDataSource> * datasource;
 
 - (void)resetState;
 - (BOOL)isToday;

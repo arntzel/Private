@@ -25,6 +25,8 @@ extern const CGSize kTileSize;
 @implementation KalGridView
 
 
+@synthesize frontMonthView, backMonthView;
+
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
     frame.size.width = 7 * kTileSize.width;

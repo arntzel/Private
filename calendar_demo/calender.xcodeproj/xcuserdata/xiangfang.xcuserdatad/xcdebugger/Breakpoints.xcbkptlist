@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "calender/controller/LoginNowController.m"
-         timestampString = "392556085.25126"
+         timestampString = "394245663.269382"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
          landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "calender/controller/LoginNowController.m"
-         timestampString = "392556085.25126"
+         timestampString = "394245663.269382"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
          landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>

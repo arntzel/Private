@@ -101,12 +101,15 @@ static UserModel * instance;
     
     NSLog(@"url=%@", url);
     
+    //NSString * postContent = [NSString stringWithFormat:@"access_token=%@&access_token_secret=oamFLl00vCTo7bAKmqTf1TIB", accessToken];
     NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
-    
+
+    NSLog(@"signinGooglePlus, postContent=%@", postContent);
+
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setHTTPBody:postData];
-    
+
     [self doLogin:request andCallback:callback];
 }
 
