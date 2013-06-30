@@ -376,6 +376,10 @@
 #pragma mark -
 #pragma mark KalTileViewDataSource
 -(int) getEventType:(KalDate *) date {
-    return 0xFFFFFFFF;
+
+    NSString * day = [Utils formate:date.year andMonth:date.month andDay:date.day];
+
+    int eventTypes = [eventModel getEventsTypes:day];
+    return eventTypes;
 }
 @end

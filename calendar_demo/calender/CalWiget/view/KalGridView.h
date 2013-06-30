@@ -43,6 +43,7 @@
 
 @property (nonatomic, readonly) BOOL transitioning;
 @property (nonatomic, readonly) KalMonthView * frontMonthView;
+@property (nonatomic, readonly) KalMonthView * backMonthView;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate;
 - (void)selectDate:(KalDate *)date;
