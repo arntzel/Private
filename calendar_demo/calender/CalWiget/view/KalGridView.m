@@ -23,17 +23,19 @@ extern const CGSize kTileSize;
 @end
 
 @implementation KalGridView
-
-
 @synthesize frontMonthView, backMonthView;
+@synthesize enableMonthChange;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
     frame.size.width = 7 * kTileSize.width;
+    
   
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = YES;
         [self setBackgroundColor:[UIColor clearColor]];
+        
+        enableMonthChange = YES;
         logic = [theLogic retain];
         delegate = theDelegate;
       
@@ -64,12 +66,16 @@ extern const CGSize kTileSize;
 
 - (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer *)recognizer
 {
-    [self slideLeft];
+    if (enableMonthChange) {
+        [self slideLeft];
+    }
 }
 
 - (void)oneFingerSwipeRight:(UISwipeGestureRecognizer *)recognizer
 {
-    [self slideRight];
+    if (enableMonthChange) {
+        [self slideRight];
+    }
 }
 
 - (void)sizeToFit
@@ -97,6 +103,9 @@ extern const CGSize kTileSize;
     if ([hitView isKindOfClass:[KalTileView class]]) {
         KalTileView *tile = (KalTileView*)hitView;
         
+        if (tile.belongsToAdjacentMonth && (!enableMonthChange)) {
+            return;
+        }
         if (![[logic selectedDay] isEqual:tile.date]) {
             [logic setSelectedDay:tile.date];
             [delegate didSelectDate:tile.date];
@@ -117,6 +126,7 @@ extern const CGSize kTileSize;
                 [self slideRight];
             }
         }
+
     }
 }
 

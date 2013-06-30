@@ -100,8 +100,11 @@
 
 - (void)ajustShowMonth
 {
-    if ((self.selectedDay.year == self.showWeek.year) &&
-        self.selectedDay.month == self.showWeek.month) {
+    NSDate *date = [self.showWeek NSDate];
+    KalDate *dayInWeekend = [KalDate dateFromNSDate:[date cc_dateByMovingToEndDayOfTheWeek]];
+    
+    if ((self.selectedDay.year == dayInWeekend.year) &&
+        self.selectedDay.month == dayInWeekend.month) {
         NSDate *date = [[self.selectedDay NSDate] cc_dateByMovingToFirstDayOfTheMonth];
         self.showMonth = [KalDate dateFromNSDate:date];
     }

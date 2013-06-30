@@ -21,6 +21,7 @@
 
 @property (nonatomic, readonly) KalMonthView * frontMonthView;
 @property (nonatomic, readonly) KalMonthView * backMonthView;
+@property (nonatomic, assign) BOOL enableMonthChange;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate;
 

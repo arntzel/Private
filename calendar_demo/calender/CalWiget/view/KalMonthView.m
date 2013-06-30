@@ -9,7 +9,6 @@
 extern const CGSize kTileSize;
 
 @implementation KalMonthView
-
 @synthesize numWeeks;
 
 - (id)initWithFrame:(CGRect)frame

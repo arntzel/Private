@@ -11,7 +11,6 @@
     UILabel *headerTitleLabel;
     KalGridView *gridView;
     KalWeekGridView *weekGridView;
-    UIImageView *shadowView;
     id<KalViewDelegate> delegate;
     KalLogic *logic;
 }
@@ -20,8 +19,6 @@
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate;
 
-- (void)slideLeft;
-- (void)slideRight;
 - (void)jumpToSelectedMonth;    // change months without animation (i.e. when directly switching to "Today")
 
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;

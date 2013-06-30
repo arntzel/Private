@@ -89,11 +89,13 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [gridView setMultipleTouchEnabled:YES];
     [gridView setUserInteractionEnabled:YES];
     [contentView addSubview:gridView];
+    [gridView sizeToFit];
         
     weekGridView = [[KalWeekGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
     [weekGridView setMultipleTouchEnabled:YES];
     [weekGridView setUserInteractionEnabled:YES];
     [contentView addSubview:weekGridView];
+    [weekGridView sizeToFit];
     
     eventView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     CalendarIntegrationView *listView = [CalendarIntegrationView createCalendarIntegrationView];
@@ -108,10 +110,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [self setFrameToWeekMode];
     KalMode = WEEK_MODE;
   
-    [gridView sizeToFit];
-    [weekGridView sizeToFit];
     [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
-    [weekGridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 -(void)addUISwipGestureRecognizer:(UIView *)view {
@@ -180,6 +179,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [UIView animateWithDuration:0.5 animations:^{
             [self setFrameToListMode];
         } completion:^(BOOL finished){
+            gridView.enableMonthChange = NO;
         }];
     }
 }
@@ -194,9 +194,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [weekGridView setFrame:CGRectMake(0 ,gridView.height, self.frame.size.width, weekGridView.height)];
         [UIView animateWithDuration:0.5 animations:^{
             [self setFrameToWeekMode];
-            [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];
-            NSLog(@"headerView.height : %f",headerView.height);
-            
+            [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];            
         } completion:^(BOOL finished){
         }];
     }
@@ -208,17 +206,16 @@ static const CGFloat kMonthLabelHeight = 17.f;
             [self setFrameToMonthMode];
         } completion:^(BOOL finished){
             [eventView setHidden:YES];
+            gridView.enableMonthChange = YES;
         }];
     }
 }
-
-
-
 
 #pragma mark -
 #pragma mark recall
 - (void)didSelectDate:(KalDate *)date
 {
+    NSLog(@"didSelectDate: year:%d,month:%d,day:%d",date.year,date.month,date.day);
     [self.delegate didSelectDate:date];
 }
 
@@ -231,23 +228,10 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-  if (object == gridView && [keyPath isEqualToString:@"frame"]) {
-    CGFloat gridBottom = gridView.top + gridView.height;
-    shadowView.top = gridBottom;
-    
-      [UIView animateWithDuration:0.5 animations:^{
-          [self setFrameToMonthMode];
-      } completion:^(BOOL finished){
-      }];
-  }
-  else if(object == weekGridView && [keyPath isEqualToString:@"frame"])
-  {
-      CGFloat gridBottom = weekGridView.top + weekGridView.height;
-      shadowView.top = gridBottom;
-  }
-  else {
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-  }
+    [UIView animateWithDuration:0.5 animations:^{
+      [self setFrameToMonthMode];
+    }
+    completion:nil];
 }
 
 - (void)jumpToSelectedMonth
@@ -263,10 +247,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [gridView removeObserver:self forKeyPath:@"frame"];
     [gridView release];
 
-    [weekGridView removeObserver:self forKeyPath:@"frame"];
     [weekGridView release];
 
-    [shadowView release];
     [super dealloc];
 }
 

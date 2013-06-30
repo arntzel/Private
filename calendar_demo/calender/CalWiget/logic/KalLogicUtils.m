@@ -8,7 +8,6 @@
     NSMutableArray *days = [NSMutableArray array];
     NSUInteger currentWeekDay = [date cc_weekday];
     
-    NSLog(@"currentWeekDay :%d",currentWeekDay);
     for (NSUInteger index = 1; index < currentWeekDay; index++)
     {
         NSDate *d = [date cc_dateByMovingToThePreviousDayCout:currentWeekDay - index];
