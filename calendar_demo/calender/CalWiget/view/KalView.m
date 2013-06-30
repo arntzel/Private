@@ -1,8 +1,3 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
-
 #import "KalView.h"
 #import "KalGridView.h"
 #import "KalMonthView.h"
@@ -22,129 +17,83 @@
     
     UISwipeGestureRecognizer *oneFingerSwipeDown;
     UISwipeGestureRecognizer *oneFingerSwipUP;
-    
-    UISwipeGestureRecognizer *oneFingerSwipeLeft;
-    UISwipeGestureRecognizer *oneFingerSwipeRight;
-    
-    KalDate *selectedDate;
 }
 
-- (void)addSubviewsToHeaderView:(UIView *)headerView;
 - (void)addSubviewsToContentView:(UIView *)contentView;
-- (void)setHeaderTitleText:(NSString *)text;
 @end
 
 extern const CGSize kTileSize;
-//static const CGFloat kHeaderHeight = 44.f;
 static const CGFloat kHeaderHeight = 20.0f;
 static const CGFloat kMonthLabelHeight = 17.f;
 
 @implementation KalView
-@synthesize selectedDate;
-
 @synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
-  if ((self = [super initWithFrame:frame])) {
-      self.selectedDate = _selectedDate;
-    delegate = theDelegate;
-    logic = [theLogic retain];
-    [logic addObserver:self forKeyPath:@"selectedMonthNameAndYear" options:NSKeyValueObservingOptionNew context:NULL];
-    
-    headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, kHeaderHeight)] autorelease];
-    headerView.backgroundColor = [UIColor grayColor];
-    [self addSubviewsToHeaderView:headerView];
-    [self addSubview:headerView];
-    
-    UIView *contentView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, kHeaderHeight, frame.size.width, frame.size.height - kHeaderHeight)] autorelease];
-    contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [self addSubviewsToContentView:contentView];
-    [self addSubview:contentView];
-      
-    _contentView = contentView;
-      
-    [self addUISwipGestureRecognizer:self];
-  }
-  
-  return self;
+    if ((self = [super initWithFrame:frame])) {
+        [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+        delegate = theDelegate;
+        logic = [theLogic retain];
+        [logic setSelectedDay:_selectedDate];
+
+        headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, kHeaderHeight)] autorelease];
+        headerView.backgroundColor = [UIColor grayColor];
+        [self addSubviewsToHeaderView];
+        [self addSubview:headerView];
+
+        UIView *contentView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, kHeaderHeight, frame.size.width, frame.size.height - kHeaderHeight)] autorelease];
+        contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        [self addSubviewsToContentView:contentView];
+        [self addSubview:contentView];
+
+        _contentView = contentView;
+
+        [self addUISwipGestureRecognizer:self];
+    }
+
+    return self;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
-  [NSException raise:@"Incomplete initializer" format:@"KalView must be initialized with a delegate and a KalLogic. Use the initWithFrame:delegate:logic: method."];
-  return nil;
+    [NSException raise:@"Incomplete initializer" format:@"KalView must be initialized with a delegate and a KalLogic. Use the initWithFrame:delegate:logic: method."];
+    return nil;
 }
 
-- (void)redrawEntireMonth { [self jumpToSelectedMonth]; }
-
-- (void)slideLeft
+- (void)addSubviewsToHeaderView
 {
-    if (KalMode == WEEK_MODE)
-    {
-        [weekGridView slideLeft];
-    }
-    else if(KalMode == MONTH_MODE)
-    {
-        [gridView slideLeft];
-    }
-}
-
-- (void)slideRight
-{
-    if (KalMode == WEEK_MODE) {
-        [weekGridView slideRight];
-    }
-    else if(KalMode == MONTH_MODE)
-    {
-        [gridView slideRight];
-    }
-}
-
-- (void)addSubviewsToHeaderView:(UIView *)_headerView
-{
-
     NSArray *weekdayNames = [NSArray arrayWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
-  NSUInteger firstWeekday = [[NSCalendar currentCalendar] firstWeekday];
-  NSUInteger i = firstWeekday - 1;
-  for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
-    CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 46.f, 20.0f);
-//      CGRect weekdayFrame = CGRectMake(xOffset, 30.f, 46.f, kHeaderHeight - 29.f);
+    NSUInteger firstWeekday = [[NSCalendar currentCalendar] firstWeekday];
+    NSUInteger i = firstWeekday - 1;
+    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
+        CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 46.f, 20.0f);
+        UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
+        weekdayLabel.backgroundColor = [UIColor clearColor];
+        weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
+        weekdayLabel.textAlignment = NSTextAlignmentCenter;
+        weekdayLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.f];
+        weekdayLabel.text = [weekdayNames objectAtIndex:i];
+        [headerView addSubview:weekdayLabel];
+        [weekdayLabel release];
 
-    UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
-    weekdayLabel.backgroundColor = [UIColor clearColor];
-    weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
-    weekdayLabel.textAlignment = NSTextAlignmentCenter;
-//    weekdayLabel.textColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.f];
-      weekdayLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.f];
-//    weekdayLabel.shadowColor = [UIColor whiteColor];
-//    weekdayLabel.shadowOffset = CGSizeMake(0.f, 1.f);
-    weekdayLabel.text = [weekdayNames objectAtIndex:i];
-    [headerView addSubview:weekdayLabel];
-    [weekdayLabel release];
-      
-      [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
-  }
+        [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
+    }
 }
 
 - (void)addSubviewsToContentView:(UIView *)contentView
 {
-  // Both the tile grid and the list of events will automatically lay themselves
-  // out to fit the # of weeks in the currently displayed month.
-  // So the only part of the frame that we need to specify is the width.
-  CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, 0.f, self.width, 0.f);
+    CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, 0.f, self.width, 0.f);
 
-  // The tile grid (the calendar body)
-  gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
+    gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
     [gridView setMultipleTouchEnabled:YES];
     [gridView setUserInteractionEnabled:YES];
-  [contentView addSubview:gridView];
+    [contentView addSubview:gridView];
         
     weekGridView = [[KalWeekGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
     [weekGridView setMultipleTouchEnabled:YES];
     [weekGridView setUserInteractionEnabled:YES];
     [contentView addSubview:weekGridView];
-    
     
     eventView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     CalendarIntegrationView *listView = [CalendarIntegrationView createCalendarIntegrationView];
@@ -159,7 +108,6 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [self setFrameToWeekMode];
     KalMode = WEEK_MODE;
   
-  // Trigger the initial KVO update to finish the contentView layout
     [gridView sizeToFit];
     [weekGridView sizeToFit];
     [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
@@ -269,45 +217,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 #pragma mark -
 #pragma mark recall
-- (void)showPreviousMonth
-{
-    if (!gridView.transitioning)
-    {
-        [logic retreatToPreviousMonth];
-        [self slideRight];
-    }
-}
-
-- (void)showFollowingMonth
-{
-    if (!gridView.transitioning)
-    {
-        [logic advanceToFollowingMonth];
-        [self slideLeft];
-    }
-}
-
-- (void)showPreviousWeek
-{
-    if (!gridView.transitioning)
-    {
-        [logic retreatToPreviousWeek];
-        [self slideRight];
-    }
-}
-
-- (void)showFollowingWeek
-{
-    if (!gridView.transitioning)
-    {
-        [logic advanceToFollowingWeek];
-        [self slideLeft];
-    }
-}
-
 - (void)didSelectDate:(KalDate *)date
 {
-    self.selectedDate = date;
     [self.delegate didSelectDate:date];
 }
 
@@ -316,27 +227,11 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [self.delegate showListView];
 }
 
-- (KalDate *)selectedDate
-{
-    return selectedDate;
-}
-
 #pragma mark -
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
   if (object == gridView && [keyPath isEqualToString:@"frame"]) {
-    
-    /* Animate tableView filling the remaining space after the
-     * gridView expanded or contracted to fit the # of weeks
-     * for the month that is being displayed.
-     *
-     * This observer method will be called when gridView's height
-     * changes, which we know to occur inside a Core Animation
-     * transaction. Hence, when I set the "frame" property on
-     * tableView here, I do not need to wrap it in a
-     * [UIView beginAnimations:context:].
-     */
     CGFloat gridBottom = gridView.top + gridView.height;
     shadowView.top = gridBottom;
     
@@ -350,43 +245,29 @@ static const CGFloat kMonthLabelHeight = 17.f;
       CGFloat gridBottom = weekGridView.top + weekGridView.height;
       shadowView.top = gridBottom;
   }
-  else if ([keyPath isEqualToString:@"selectedMonthNameAndYear"]) {
-    [self setHeaderTitleText:[change objectForKey:NSKeyValueChangeNewKey]];
-    
-  } else {
+  else {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
   }
 }
 
-- (void)setHeaderTitleText:(NSString *)text
+- (void)jumpToSelectedMonth
 {
-  [headerTitleLabel setText:text];
-  [headerTitleLabel sizeToFit];
-  headerTitleLabel.left = floorf(self.width/2.f - headerTitleLabel.width/2.f);
+    [gridView jumpToSelectedMonth];
 }
-
-- (void)jumpToSelectedMonth { [gridView jumpToSelectedMonth]; }
-
-- (BOOL)isSliding { return gridView.transitioning; }
-
-- (void)markTilesForDates:(NSArray *)dates { [gridView markTilesForDates:dates]; }
 
 - (void)dealloc
 {
-    self.selectedDate = nil;
-    
-  [logic removeObserver:self forKeyPath:@"selectedMonthNameAndYear"];
-  [logic release];
-  
-  [headerTitleLabel release];
-  [gridView removeObserver:self forKeyPath:@"frame"];
-  [gridView release];
-    
+    [logic release];
+
+    [headerTitleLabel release];
+    [gridView removeObserver:self forKeyPath:@"frame"];
+    [gridView release];
+
     [weekGridView removeObserver:self forKeyPath:@"frame"];
     [weekGridView release];
-    
-  [shadowView release];
-  [super dealloc];
+
+    [shadowView release];
+    [super dealloc];
 }
 
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource

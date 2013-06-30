@@ -1,8 +1,3 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
-
 #import "KalTileView.h"
 #import "KalDate.h"
 #import "KalPrivate.h"
@@ -17,10 +12,8 @@ const CGSize kTileSize = { 46.f, 44.f };
 - (id)initWithFrame:(CGRect)frame
 {
   if ((self = [super initWithFrame:frame])) {
-    self.opaque = NO;
-    self.backgroundColor = [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0];
-
-
+    [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+      
     self.clipsToBounds = NO;
     origin = frame.origin;
     [self resetState];
@@ -186,18 +179,17 @@ const CGSize kTileSize = { 46.f, 44.f };
 
 - (void)resetState
 {
-  // realign to the grid
-  CGRect frame = self.frame;
-  frame.origin = origin;
-  frame.size = kTileSize;
-  self.frame = frame;
-  
-  [date release];
-  date = nil;
-  flags.type = KalTileTypeRegular;
-  flags.highlighted = NO;
-  flags.selected = NO;
-  flags.marked = NO;
+    CGRect frame = self.frame;
+    frame.origin = origin;
+    frame.size = kTileSize;
+    self.frame = frame;
+
+    [date release];
+    date = nil;
+    flags.type = KalTileTypeRegular;
+    flags.highlighted = NO;
+    flags.selected = NO;
+    flags.marked = NO;
 }
 
 - (void)setDate:(KalDate *)aDate

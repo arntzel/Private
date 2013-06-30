@@ -1,7 +1,3 @@
-/* 
- * Copyright (c) 2009 Keith Lazuka
- * License: http://www.opensource.org/licenses/mit-license.html
- */
 
 #import <UIKit/UIKit.h>
 
@@ -16,8 +12,7 @@
 
 - (id)initWithFrame:(CGRect)rect; // designated initializer
 - (void)showDates:(NSArray *)mainDates leadingAdjacentDates:(NSArray *)leadingAdjacentDates trailingAdjacentDates:(NSArray *)trailingAdjacentDates selectedDate:(KalDate *)_selectedDate;
-- (KalTileView *)firstTileOfMonth;
+- (void)clearSelectedState;
 - (KalTileView *)tileForDate:(KalDate *)date;
-- (void)markTilesForDates:(NSArray *)dates;
 
 @end

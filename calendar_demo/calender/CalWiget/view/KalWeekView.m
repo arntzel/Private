@@ -1,11 +1,3 @@
-//
-//  KalWeekView.m
-//  calTest
-//
-//  Created by zyax86 on 13-5-12.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
-
 #import "KalWeekView.h"
 #import "KalTileView.h"
 #import "KalView.h"
@@ -19,7 +11,7 @@ extern const CGSize kTileSize;
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        self.opaque = NO;
+        [self setBackgroundColor:[UIColor clearColor]];
         self.clipsToBounds = YES;
         for (int j=0; j<7; j++) {
             CGRect r = CGRectMake(j*kTileSize.width, 0, kTileSize.width, kTileSize.height);
@@ -46,20 +38,24 @@ extern const CGSize kTileSize;
     [self setNeedsDisplay];
 }
 
+- (void)clearSelectedState
+{
+    for (UIView *view in [self subviews]) {
+        if([view isKindOfClass:[KalTileView class]]) {
+            KalTileView * tileView = (KalTileView *)view;
+            if (tileView.selected == YES)
+                tileView.selected = NO;
+        }
+    }
+    
+    [self setNeedsDisplay];
+    
+    [self setNeedsDisplay];
+}
+
 - (void)sizeToFit
 {
     self.height = 1.f + kTileSize.height;
-}
-
-- (KalTileView *)firstTileOfWeek
-{
-    KalTileView *tile = nil;
-    for (KalTileView *t in self.subviews) {
-        tile = t;
-        break;
-    }
-    
-    return tile;
 }
 
 - (KalTileView *)tileForDate:(KalDate *)date
@@ -77,25 +73,5 @@ extern const CGSize kTileSize;
     
     return tile;
 }
-
-- (void)markTilesForDates:(NSArray *)dates
-{
-    for (KalTileView *tile in self.subviews)
-        tile.marked = [dates containsObject:tile.date];
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-//- (void)drawRect:(CGRect)rect
-//{
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    CGContextDrawTiledImage(ctx, (CGRect){CGPointZero,kTileSize}, [[UIImage imageNamed:@"Kal.bundle/kal_tile.png"] CGImage]);
-//}
 
 @end

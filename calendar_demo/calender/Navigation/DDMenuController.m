@@ -95,6 +95,8 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizer:)];
     pan.delegate = (id<UIGestureRecognizerDelegate>)self;
     [_root.view addGestureRecognizer:pan];
+    
+    [_left.view addGestureRecognizer:pan];
     _pan = pan;
 }
 
@@ -105,7 +107,6 @@
 }
 
 - (void)panGestureRecognizer:(UIPanGestureRecognizer*)gesture {
-
     if (gesture.state == UIGestureRecognizerStateBegan) {
         
         [self showShadow:YES];
@@ -286,6 +287,8 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 
     // Check for horizontal pan gesture
+    
+    /*
     if (gestureRecognizer == _pan) {
 
         UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer*)gestureRecognizer;
@@ -307,17 +310,18 @@
         return NO;
         
     }
+     */
 
     return YES;
    
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    if (gestureRecognizer==_tap) {
-        return YES;
-    }     
-    return NO;
-}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//    if (gestureRecognizer==_tap) {
+//        return YES;
+//    }     
+//    return NO;
+//}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     // test if our control subview is on-screen
