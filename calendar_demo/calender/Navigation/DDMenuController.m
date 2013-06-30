@@ -58,7 +58,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-
+        
     }
     return self;
 }
@@ -95,8 +95,6 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizer:)];
     pan.delegate = (id<UIGestureRecognizerDelegate>)self;
     [_root.view addGestureRecognizer:pan];
-    
-    [_left.view addGestureRecognizer:pan];
     _pan = pan;
 }
 
@@ -107,10 +105,11 @@
 }
 
 - (void)panGestureRecognizer:(UIPanGestureRecognizer*)gesture {
+    
     if (gesture.state == UIGestureRecognizerStateBegan) {
         
         [self showShadow:YES];
-        _panOriginX = self.view.frame.origin.x;        
+        _panOriginX = self.view.frame.origin.x;
         _panVelocity = CGPointMake(0.0f, 0.0f);
         
         if([gesture velocityInView:self.view].x > 0) {
@@ -118,7 +117,7 @@
         } else {
             _panDirection = DDMenuPanDirectionLeft;
         }
-
+        
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
@@ -128,7 +127,7 @@
             _panDirection = (_panDirection == DDMenuPanDirectionRight) ? DDMenuPanDirectionLeft : DDMenuPanDirectionRight;
         }
         
-        _panVelocity = velocity;        
+        _panVelocity = velocity;
         CGPoint translation = [gesture translationInView:self.view];
         CGRect frame = _root.view.frame;
         frame.origin.x = _panOriginX + translation.x;
@@ -167,7 +166,7 @@
 				frame.size.width = kMenuFullWidth;
                 self.rightViewController.view.frame = frame;
                 [self.view insertSubview:self.rightViewController.view atIndex:0];
-     
+                
             } else {
                 frame.origin.x = 0.0f; // ignore left view if it's not set
             }
@@ -175,7 +174,7 @@
         }
         
         _root.view.frame = frame;
-
+        
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
         
         //  Finishing moving to left, right or root view with current pan velocity
@@ -189,7 +188,7 @@
             completion = DDMenuPanCompletionRight;
         }
         
-        CGPoint velocity = [gesture velocityInView:self.view];    
+        CGPoint velocity = [gesture velocityInView:self.view];
         if (velocity.x < 0.0f) {
             velocity.x *= -1.0f;
         }
@@ -270,13 +269,13 @@
         animation.keyTimes = keyTimes;
         //animation.calculationMode = @"cubic";
         animation.values = values;
-        animation.duration = duration;   
+        animation.duration = duration;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
         [_root.view.layer addAnimation:animation forKey:nil];
-        [CATransaction commit];   
-    
-    }    
+        [CATransaction commit];
+        
+    }
 }
 
 
@@ -285,18 +284,16 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-
-    // Check for horizontal pan gesture
     
-    /*
+    // Check for horizontal pan gesture
     if (gestureRecognizer == _pan) {
-
+        
         UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer*)gestureRecognizer;
         CGPoint translation = [panGesture translationInView:self.view];
-
+        
         if ([panGesture velocityInView:self.view].x < 600 && sqrt(translation.x * translation.x) / sqrt(translation.y * translation.y) > 1) {
             return YES;
-        } 
+        }
         
         return NO;
     }
@@ -310,18 +307,17 @@
         return NO;
         
     }
-     */
-
+    
     return YES;
-   
+    
 }
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//    if (gestureRecognizer==_tap) {
-//        return YES;
-//    }     
-//    return NO;
-//}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if (gestureRecognizer==_tap) {
+        return YES;
+    }
+    return NO;
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     // test if our control subview is on-screen
@@ -356,10 +352,10 @@
     
     [_tap setEnabled:NO];
     _root.view.userInteractionEnabled = YES;
-
+    
     CGRect frame = _root.view.frame;
     frame.origin.x = 0.0f;
-
+    
     BOOL _enabled = [UIView areAnimationsEnabled];
     if (!animated) {
         [UIView setAnimationsEnabled:NO];
@@ -381,7 +377,7 @@
         
         _menuFlags.showingLeftView = NO;
         _menuFlags.showingRightView = NO;
-
+        
         [self showShadow:NO];
         
     }];
@@ -401,7 +397,7 @@
     }
     _menuFlags.showingLeftView = YES;
     [self showShadow:YES];
-
+    
     UIView *view = self.leftViewController.view;
 	CGRect frame = self.view.bounds;
 	frame.size.width = kMenuFullWidth;
@@ -439,7 +435,7 @@
     }
     _menuFlags.showingRightView = YES;
     [self showShadow:YES];
-
+    
     UIView *view = self.rightViewController.view;
     CGRect frame = self.view.bounds;
 	frame.origin.x += frame.size.width - kMenuFullWidth;
@@ -488,11 +484,11 @@
             [tempRoot.view removeFromSuperview];
             tempRoot = nil;
         }
-
+        
         UIView *view = _root.view;
         view.frame = self.view.bounds;
         [self.view addSubview:view];
-
+        
         [self addPanGesture];
         
     } else {
@@ -505,7 +501,7 @@
 }
 
 - (void)setRootController:(UIViewController *)controller animated:(BOOL)animated {
-   
+    
     if (!controller) {
         [self setRootViewController:controller];
         return;
@@ -528,7 +524,7 @@
         } completion:^(BOOL finished) {
             
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-
+            
             [selfRef setRootViewController:controller];
             _root.view.frame = frame;
             [selfRef showRootController:animated];
@@ -542,10 +538,10 @@
         [self showRootController:animated];
         
     }
-     
+    
 }
 
-#pragma mark - Actions 
+#pragma mark - Actions
 
 - (BOOL)shouldAutorotate
 {
@@ -558,9 +554,9 @@
 }
 
 -(void)onBtnMenuClick {
-
-   [self showLeftController:YES];
-
+    
+    [self showLeftController:YES];
+    
 }
 
 @end

@@ -107,10 +107,6 @@
 }
 
 -(void) signupEmail {
-    
-    [self onLogined];
-    return;
-    
     [self finish];
 
     [loadingView startAnimating];
