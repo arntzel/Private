@@ -21,7 +21,7 @@
 		76744BF11775DA3400CCA133 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BF01775DA3400CCA133 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		76744BF41775DA3400CCA133 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF21775DA3400CCA133 /* ViewController_iPhone.xib */; };
 		76744BF71775DA3400CCA133 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF51775DA3400CCA133 /* ViewController_iPad.xib */; };
-		76744BFF1775DC9600CCA133 /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* CustomPickerView.m */; };
+		76744BFF1775DC9600CCA133 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* PickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +45,8 @@
 		76744BF01775DA3400CCA133 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		76744BF31775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		76744BF61775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		76744BFD1775DC9600CCA133 /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
-		76744BFE1775DC9600CCA133 /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
+		76744BFD1775DC9600CCA133 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
+		76744BFE1775DC9600CCA133 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +93,8 @@
 		76744BDD1775DA3400CCA133 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
-				76744BFD1775DC9600CCA133 /* CustomPickerView.h */,
-				76744BFE1775DC9600CCA133 /* CustomPickerView.m */,
+				76744BFD1775DC9600CCA133 /* PickerView.h */,
+				76744BFE1775DC9600CCA133 /* PickerView.m */,
 				76744BE61775DA3400CCA133 /* AppDelegate.h */,
 				76744BE71775DA3400CCA133 /* AppDelegate.m */,
 				76744BEF1775DA3400CCA133 /* ViewController.h */,
@@ -194,7 +194,7 @@
 				76744BE41775DA3400CCA133 /* main.m in Sources */,
 				76744BE81775DA3400CCA133 /* AppDelegate.m in Sources */,
 				76744BF11775DA3400CCA133 /* ViewController.m in Sources */,
-				76744BFF1775DC9600CCA133 /* CustomPickerView.m in Sources */,
+				76744BFF1775DC9600CCA133 /* PickerView.m in Sources */,
 				767272631777225E006A74FF /* CustomPickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
