@@ -21,19 +21,22 @@ static UserModel * instance;
 
 
 
--(void) createUser:(CreateUser *)user andCallback:(void (^)(NSInteger error))callback
+-(void) createUser:(CreateUser *)user andCallback:(void (^)(NSInteger error, NSString * msg))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/createuser", HOST];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/createuser/", HOST];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
 
     
     NSLog(@"url=%@", url);
 
     NSString * postContent = [Utils convertObj2Json:user];
+    //NSString * postContent = @"{\"username\":\"user123\", \"password\":\"111111\", \"email\":\"user123@pencilme.com\"}";
+    
     NSLog(@"postContent=%@", postContent);
 
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
+    
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
 
@@ -41,11 +44,14 @@ static UserModel * instance;
         int status = httpResp.statusCode;
 
         if(status == 201) {
-            callback(ERROCODE_OK);
+            callback(ERROCODE_OK, nil);
         } else {
-            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"error=%d, resp:%@", status, aStr);
-            callback(-1);
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            
+            NSLog(@"error=%d, resp:%@", status, json);
+            callback(-1, [json objectForKey:@"error"]);
         }
     }];
 }

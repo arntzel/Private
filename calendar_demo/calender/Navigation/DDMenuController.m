@@ -1,7 +1,7 @@
 
 
 #import "DDMenuController.h"
-#import "FeedViewController.h"
+
 
 #import <QuartzCore/QuartzCore.h>
 #import "KalView.h"
@@ -27,7 +27,7 @@
 @synthesize canShowLeft;
 @end
 
-@interface DDMenuController (Internal) <FeedViewControllerDelegate>
+@interface DDMenuController (Internal) 
 - (void)showShadow:(BOOL)val;
 @end
 
@@ -553,10 +553,6 @@
     return self.rootViewController.supportedInterfaceOrientations;
 }
 
--(void)onBtnMenuClick {
-    
-    [self showLeftController:YES];
-    
-}
+
 
 @end

@@ -50,23 +50,23 @@
 
     [self.indicator startAnimating];
 
-    [[UserModel getInstance] createUser:user andCallback:^(NSInteger error) {
+    [[UserModel getInstance] createUser:user andCallback:^(NSInteger error, NSString * msg) {
 
         [self.indicator stopAnimating];
 
         
         if(error == 0) {
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"提示"
-                                                          message:@"注册成功！"
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+                                                          message:@"Success！"
                                                          delegate:nil
-                                                cancelButtonTitle:@"确定"
+                                                cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
             [alert show];
         } else {
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"提示"
-                                                          message:@"注册失败！"
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+                                                          message:msg
                                                          delegate:nil
-                                                cancelButtonTitle:@"确定"
+                                                cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
             [alert show];
         }

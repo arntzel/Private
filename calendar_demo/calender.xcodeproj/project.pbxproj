@@ -19,6 +19,7 @@
 		3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */; };
 		3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */; };
 		3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDC17812CDF0093FE19 /* CreateUser.m */; };
+		3D473BE0178166F10093FE19 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDF178166F10093FE19 /* MainViewController.m */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -235,6 +236,8 @@
 		3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
 		3D473BDB17812CDF0093FE19 /* CreateUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUser.h; sourceTree = "<group>"; };
 		3D473BDC17812CDF0093FE19 /* CreateUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUser.m; sourceTree = "<group>"; };
+		3D473BDE178166F10093FE19 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		3D473BDF178166F10093FE19 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1008,6 +1011,8 @@
 				94F4A6A11765DA0F009F0094 /* LoginNowController.h */,
 				94F4A6A21765DA0F009F0094 /* LoginNowController.m */,
 				94F4A6A31765DA0F009F0094 /* LoginNowController.xib */,
+				3D473BDE178166F10093FE19 /* MainViewController.h */,
+				3D473BDF178166F10093FE19 /* MainViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1544,6 +1549,7 @@
 				76F457B81780667600E4B444 /* KalMonthNameView.m in Sources */,
 				3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */,
 				3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */,
+				3D473BE0178166F10093FE19 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

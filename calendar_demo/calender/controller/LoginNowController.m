@@ -2,7 +2,7 @@
 #import "LoginNowController.h"
 #import "UserModel.h"
 #import "FeedViewController.h"
-#import "DDMenuController.h"
+#import "MainViewController.h"
 #import "RootNavContrller.h"
 #import "menuNavigation.h"
 
@@ -73,7 +73,7 @@
     FeedViewController * fdController = [[FeedViewController alloc] init];
 
 
-    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:fdController];
+    MainViewController *rootController = [[MainViewController alloc] initWithRootViewController:fdController];
     rootController.leftViewController = leftController;
 
     fdController.delegate = rootController;

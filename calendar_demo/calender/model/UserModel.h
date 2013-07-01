@@ -20,7 +20,7 @@
 /**
  create user
  */
--(void) createUser:(CreateUser *)user andCallback: (void (^)(NSInteger error))callback;
+-(void) createUser:(CreateUser *)user andCallback: (void (^)(NSInteger error, NSString * msg))callback;
 
 /*
  -Get user by userid
