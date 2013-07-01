@@ -69,11 +69,32 @@
     
     //Google sign in init
     GPPSignIn * signIn = [GPPSignIn sharedInstance];
-    //signIn.clientID = @"925583491857.apps.googleusercontent.com";
+    signIn.clientID = @"925583491857-13g9a7inud7m0083m5jfbjinn3mp58ch.apps.googleusercontent.com";
     //signIn.clientID = @"1031805047217.apps.googleusercontent.com";
-    signIn.clientID = @"413114824893.apps.googleusercontent.com";
-    signIn.scopes = [NSArray arrayWithObjects: kGTLAuthScopePlusLogin, // 在 GTLPlusConstants.h 中定义
-                     nil];
+    //signIn.clientID = @"413114824893.apps.googleusercontent.com";
+    
+    signIn.shouldFetchGoogleUserEmail = YES;
+
+    signIn.actions = [NSArray arrayWithObjects:
+                                            @"http://schemas.google.com/AddActivity",
+                                            @"http://schemas.google.com/BuyActivity",
+                                            @"http://schemas.google.com/CheckInActivity",
+                                            @"http://schemas.google.com/CommentActivity",
+                                            @"http://schemas.google.com/CreateActivity",
+                                            @"http://schemas.google.com/ListenActivity",
+                                            @"http://schemas.google.com/ReserveActivity",
+                                            @"http://schemas.google.com/ReviewActivity",
+                                           nil];
+    
+    signIn.scopes = [NSArray arrayWithObjects:
+                                              kGTLAuthScopePlusLogin,
+                                              kGTLAuthScopePlusMe,
+                                              @"https://www.googleapis.com/auth/calendar",
+                                              @"https://www.googleapis.com/auth/userinfo.profile",
+                                              @"https://www.googleapis.com/auth/userinfo.email",
+                                              @"https://www.google.com/m8/feeds", 
+                                              nil];
+    
     signIn.delegate = self;
 }
 

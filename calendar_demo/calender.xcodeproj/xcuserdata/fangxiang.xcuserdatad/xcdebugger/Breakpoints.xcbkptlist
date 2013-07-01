@@ -182,7 +182,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "74"
          endingLineNumber = "74"
-         landmarkName = "-signinFacebook:andCallback:"
+         landmarkName = "-login:withPassword:andCallback:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -195,7 +195,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "117"
          endingLineNumber = "117"
-         landmarkName = "-doLogin:andCallback:"
+         landmarkName = "-signinGooglePlus:andCallback:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
