@@ -3,7 +3,7 @@
 #import "FeedViewController.h"
 #import "menuNavigation.h"
 
-@interface MainViewController () <FeedViewControllerDelegate, >
+@interface MainViewController () <FeedViewControllerDelegate, MenuNavigationDelegate>
 
 @end
 
@@ -46,5 +46,13 @@
 #pragma mark - FeedViewControllerDelegate
 -(void)onBtnMenuClick {
     [self showLeftController:YES];
+}
+
+
+
+#pragma mark - MenuNavigationDelegate
+-(void) onMenuSelected:(int) menuIndex
+{
+    
 }
 @end
