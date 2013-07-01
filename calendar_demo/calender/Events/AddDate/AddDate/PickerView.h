@@ -5,9 +5,8 @@
 @protocol PickerViewDelegate <NSObject>
 
 - (void)selector:(PickerView *)valueSelector didSelectRowAtIndex:(NSInteger)index;
-
 - (NSInteger)numberOfRowsInPicker:(PickerView *)picker;
-- (UIView *)selector:(PickerView *)valueSelector viewForRowAtIndex:(NSInteger) index;
+
 @end
 
 @protocol PickerViewDataSource <NSObject>
@@ -19,10 +18,11 @@
 @interface PickerView : UIView <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,assign) id <PickerViewDelegate> delegate;
-
 @property (nonatomic,assign) BOOL repeatEnable;
+@property (nonatomic,assign) NSString *UnitString;
 
-- (id)initWithFrame:(CGRect)frame Delegate:(id <PickerViewDelegate>)_delegate;
+- (id)initWithFrame:(CGRect)frame;
 - (void)reloadData;
+- (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation;
 
 @end

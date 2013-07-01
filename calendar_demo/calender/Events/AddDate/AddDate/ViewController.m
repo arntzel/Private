@@ -7,39 +7,28 @@
 //
 
 #import "ViewController.h"
-#import "PickerView.h"
+#import "TimePickerView.h"
 
-@interface ViewController ()<PickerViewDataSource,PickerViewDelegate>
-@property (nonatomic,strong) PickerView *selectorHorizontal;
+@interface ViewController ()
+{
+    TimePickerView *pickView;
+}
 @end
 
 @implementation ViewController
 
+- (void)dealloc
+{
+    [pickView release];
+    
+    [super dealloc];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    
-    self.selectorHorizontal = [[PickerView alloc] initWithFrame:CGRectMake(0, 250, 160, 160) Delegate:self];
-    [self.view addSubview:self.selectorHorizontal];
+    pickView = [[TimePickerView alloc] init];
+    [self.view addSubview:pickView];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-#pragma IZValueSelector dataSource
-- (NSInteger)numberOfRowsInSelector:(PickerView *)valueSelector {
-    return 65536;
-}
-
-#pragma IZValueSelector delegate
-- (void)selector:(PickerView *)valueSelector didSelectRowAtIndex:(NSInteger)index {
-    NSLog(@"Selected index %d",index);
-}
-
 @end
