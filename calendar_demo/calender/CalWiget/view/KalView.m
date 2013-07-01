@@ -273,4 +273,28 @@ static const CGFloat kMonthLabelHeight = 17.f;
         }
     }
 }
+
+-(void) setNeedsDisplay
+{
+    [super setNeedsDisplay];
+
+    [self setNeedsDisplay:gridView.frontMonthView];
+    [self setNeedsDisplay:weekGridView.frontWeekView];
+    [self setNeedsDisplay:gridView.frontMonthView];
+    [self setNeedsDisplay:weekGridView.backWeekView];
+}
+
+-(void) setNeedsDisplay:(UIView *) view
+{
+    NSArray * subViews = [view subviews];
+
+    for(int i=0; i<subViews.count; i++) {
+        UIView * subView = [subViews objectAtIndex:i];
+
+        if( [subView isKindOfClass:[KalTileView class]]) {
+            [subView setNeedsDisplay];
+        }
+    }
+}
+
 @end
