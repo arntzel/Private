@@ -69,15 +69,8 @@
 
 -(void) onLogined
 {
-    menuNavigation *leftController = [[menuNavigation alloc] init];
-    FeedViewController * fdController = [[FeedViewController alloc] init];
-
-
-    MainViewController *rootController = [[MainViewController alloc] initWithRootViewController:fdController];
-    rootController.leftViewController = leftController;
-
-    fdController.delegate = rootController;
-
+    MainViewController *rootController = [[MainViewController alloc] init];
+   
     [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
     [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
 

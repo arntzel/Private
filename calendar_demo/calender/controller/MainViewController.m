@@ -1,21 +1,35 @@
 
 #import "MainViewController.h"
 #import "FeedViewController.h"
+#import "menuNavigation.h"
 
-@interface MainViewController () <FeedViewControllerDelegate>
+@interface MainViewController () <FeedViewControllerDelegate, >
 
 @end
 
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+
+- (id)initWithRootViewController:(UIViewController*)controller {
+    assert(NO);
+    return nil;
+}
+
+-(id) init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    menuNavigation *leftController = [[menuNavigation alloc] init];
+    FeedViewController * fdController = [[FeedViewController alloc] init];
+    
+    self = [super initWithRootViewController:fdController];
+    
+    self.leftViewController = leftController;
+    
+    fdController.delegate = self;
+
     return self;
 }
+
 
 - (void)viewDidLoad
 {
