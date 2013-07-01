@@ -220,29 +220,10 @@
 {
     //[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    //PendingViewController
     NSLog(@"didSelectRowAtIndexPath:%@", indexPath);
 
     if(indexPath.section ==0) {
-        
         [self.delegate onMenuSelected:indexPath.row];
-        
-//        switch (indexPath.row) {
-//            case 0:
-//                
-//                break;
-//                
-//            case 1: {
-//                
-//                PedingEventViewController * pendingController = [[PedingEventViewController alloc] init];
-//                [[RootNavContrller defaultInstance] pushViewController:pendingController animated:YES];
-//                break;
-//            }
-//                
-//            default:
-//                break;
-//        }
-        
     }
 
 }

@@ -1,9 +1,9 @@
 
-#import "CustomPickerView.h"
+#import "PickerView.h"
 #import "CustomPickerCell.h"
 
 
-@implementation CustomPickerView
+@implementation PickerView
 {
     UIView *maskView;
     
@@ -11,18 +11,31 @@
     CGRect maskViewRect;
     
     NSInteger cellHeight;
+    
+    NSInteger numberOfData;
 }
 
 
 @synthesize delegate;
+@synthesize repeatEnable;
 
+- (void)dealloc
+{
+    [maskView release];
+    [tableView release];
+    
+    [super dealloc];
+}
 
-- (id)initWithFrame:(CGRect)frame Delegate:(id <CustomPickerViewDelegate>)_delegate
+- (id)initWithFrame:(CGRect)frame Delegate:(id <PickerViewDelegate>)_delegate
 {
     self = [super initWithFrame:frame];
     if (self) {
+        repeatEnable = NO;
         self.delegate = _delegate;
         cellHeight = 40;
+        numberOfData = 0;
+        
         [self createContentTableView];
         
         [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:65536 / 2 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
@@ -30,19 +43,9 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    if (tableView == nil) {
-        
-    }
-    [super layoutSubviews];
-}
-
 - (void)createContentTableView {
-
     tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];    
     tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f];
-//    tableView.backgroundColor = [UIColor clearColor];
-    
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -63,6 +66,12 @@
     [maskView setUserInteractionEnabled:NO];
 }
 
+- (void)fsdfasdf
+{
+    
+    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:65536 / 2 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return cellHeight;
@@ -73,27 +82,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rows = [self.delegate numberOfRowsInSelector:self];
+    NSInteger rows = [self.delegate numberOfRowsInPicker:self];
     return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    
-//    static BOOL nibsRegistered = NO;
-//    if (!nibsRegistered) {
-//        UINib *nib = [UINib nibWithNibName:@"CustomPickerCell" bundle:nil];
-//        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-//        nibsRegistered = YES;
-//    }
+
     CustomPickerCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"CustomPickerCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
     
     NSInteger minute = indexPath.row % 60;
     NSString *valueString = [NSString stringWithFormat:@"%d",minute + 1];
@@ -137,8 +139,6 @@
     for (NSIndexPath *index in indexPathArray) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:index];
         CGRect intersectedRect = CGRectIntersection(cell.frame, selectionRectConverted);
-      
-        NSLog(@"intersectedRect  %d,%f",index.row,intersectedRect.size.height);
         if (intersectedRect.size.height >= intersectionHeight) {
             
             selectedIndexPath = index;
