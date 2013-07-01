@@ -17,6 +17,7 @@
 #import "GPPSignIn.h"
 #import "GTLPlusConstants.h"
 #import "GTMOAuth2Authentication.h"
+#import "RegisterNewUserViewController.h"
 
 @interface SignupViewController () <ShareLoginDelegate, GPPSignInDelegate>
 
@@ -107,22 +108,25 @@
 }
 
 -(void) signupEmail {
-    [self finish];
-
-    [loadingView startAnimating];
+//    [self finish];
+//
+//    [loadingView startAnimating];
+//    
+//    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"111111" andCallback:^(NSInteger error, User *user) {
+//        [loadingView stopAnimating];
+//        
+//        NSLog(@"signupEmail error=%d", error);
+//
+//        
+//        if(error == 0) {
+//            [self onLogined];
+//        } else {
+//            //TOODO::
+//        }
+//    }];
     
-    [[UserModel getInstance] login:@"zhiwehu@gmail.com" withPassword:@"111111" andCallback:^(NSInteger error, User *user) {
-        [loadingView stopAnimating];
-        
-        NSLog(@"signupEmail error=%d", error);
-
-        
-        if(error == 0) {
-            [self onLogined];
-        } else {
-            //TOODO::
-        }
-    }];
+    RegisterNewUserViewController * ctr = [[RegisterNewUserViewController alloc] init];
+    [self.navigationController pushViewController:ctr animated:YES];
 }
 
 -(void) finish {

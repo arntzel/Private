@@ -1,10 +1,3 @@
-//
-//  RegisterNewUserViewController.m
-//  calender
-//
-//  Created by xiangfang on 13-6-30.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "RegisterNewUserViewController.h"
 #import "UserModel.h"

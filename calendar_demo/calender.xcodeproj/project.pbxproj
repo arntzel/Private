@@ -16,6 +16,9 @@
 		3D046E301763022F008EE2DA /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D046E2F1763022F008EE2DA /* SignupViewController.m */; };
 		3D07E6C4176AEFB9000D3FBA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D07E6C3176AEFB9000D3FBA /* SDWebImage.framework */; };
 		3D1540A0177E6C0C0015B475 /* calvin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D15409F177E6C0C0015B475 /* calvin@2x.png */; };
+		3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */; };
+		3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */; };
+		3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDC17812CDF0093FE19 /* CreateUser.m */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -227,6 +230,11 @@
 		3D046E2F1763022F008EE2DA /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		3D07E6C3176AEFB9000D3FBA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		3D15409F177E6C0C0015B475 /* calvin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calvin@2x.png"; sourceTree = "<group>"; };
+		3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
+		3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
+		3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
+		3D473BDB17812CDF0093FE19 /* CreateUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUser.h; sourceTree = "<group>"; };
+		3D473BDC17812CDF0093FE19 /* CreateUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUser.m; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -743,6 +751,8 @@
 		3D6151C61734A495003D72B0 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3D473BDB17812CDF0093FE19 /* CreateUser.h */,
+				3D473BDC17812CDF0093FE19 /* CreateUser.m */,
 				9402B067174BB5D400E1C9FD /* Utils.h */,
 				9402B068174BB5D400E1C9FD /* Utils.m */,
 				3D6151C81734A4C4003D72B0 /* User.h */,
@@ -986,6 +996,9 @@
 		3DB9780B174A2814005B462E /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */,
+				3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */,
+				3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */,
 				7644047A1751F8E300B11BDE /* RootNavContrller.h */,
 				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
 				3DB9780C174A2832005B462E /* FeedViewController.h */,
@@ -1420,6 +1433,7 @@
 				94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */,
 				94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */,
 				3D1540A0177E6C0C0015B475 /* calvin@2x.png in Resources */,
+				3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,6 +1542,8 @@
 				94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */,
 				764094AF177FD29200D67ADB /* KalLogicUtils.m in Sources */,
 				76F457B81780667600E4B444 /* KalMonthNameView.m in Sources */,
+				3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */,
+				3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
