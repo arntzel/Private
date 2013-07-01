@@ -194,6 +194,7 @@
 		940EBBD4173E7EC8001C3B44 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD0173E7EC8001C3B44 /* location.png */; };
 		940EBBD7173E8033001C3B44 /* header_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD5173E8033001C3B44 /* header_mask.png */; };
 		940EBBD8173E8033001C3B44 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 940EBBD6173E8033001C3B44 /* header.png */; };
+		941396DE1781AD75007D598B /* BaseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941396DD1781AD75007D598B /* BaseMenuViewController.m */; };
 		94260F5717733EF70037965D /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F5617733EF60037965D /* EventModel.m */; };
 		94260F6D177733D10037965D /* PedingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94260F6C177733D10037965D /* PedingEventViewController.m */; };
 		94260F86177744070037965D /* PendingEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94260F85177744070037965D /* PendingEventCell.xib */; };
@@ -597,6 +598,8 @@
 		940EBBD0173E7EC8001C3B44 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		940EBBD5173E8033001C3B44 /* header_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_mask.png; sourceTree = "<group>"; };
 		940EBBD6173E8033001C3B44 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		941396DC1781AD75007D598B /* BaseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuViewController.h; sourceTree = "<group>"; };
+		941396DD1781AD75007D598B /* BaseMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMenuViewController.m; sourceTree = "<group>"; };
 		94260F5517733EF60037965D /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
 		94260F5617733EF60037965D /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		94260F6B177733D10037965D /* PedingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedingEventViewController.h; sourceTree = "<group>"; };
@@ -1013,6 +1016,8 @@
 				94F4A6A31765DA0F009F0094 /* LoginNowController.xib */,
 				3D473BDE178166F10093FE19 /* MainViewController.h */,
 				3D473BDF178166F10093FE19 /* MainViewController.m */,
+				941396DC1781AD75007D598B /* BaseMenuViewController.h */,
+				941396DD1781AD75007D598B /* BaseMenuViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1550,6 +1555,7 @@
 				3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */,
 				3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */,
 				3D473BE0178166F10093FE19 /* MainViewController.m in Sources */,
+				941396DE1781AD75007D598B /* BaseMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

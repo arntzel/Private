@@ -1,15 +1,10 @@
 
 
 #import <UIKit/UIKit.h>
+#import "BaseMenuViewController.h"
 
-@protocol FeedViewControllerDelegate <NSObject>
+@interface FeedViewController : BaseMenuViewController
 
--(void)onBtnMenuClick;
 
-@end
-
-@interface FeedViewController : UIViewController
-
-@property(weak) id<FeedViewControllerDelegate> delegate;
 
 @end

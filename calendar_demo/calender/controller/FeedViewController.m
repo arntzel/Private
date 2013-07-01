@@ -2,8 +2,6 @@
 #import "FeedViewController.h"
 
 
-#import "Navigation.h"
-
 #import "EventView.h"
 
 #import "Location.h"
@@ -32,16 +30,10 @@
     KalLogic *logic;
     KalView *calendarView;
     
-    Navigation* navigation;
+   
     
     UITableView * tableView;
-    
-    //NSMutableArray * sections;
-    //NSMutableDictionary * sectionDict;
-
-    //Month
-    //NSMutableDictionary * monthEvents;
-
+  
     UIActivityIndicatorView * loadingView;
     
     EventModel * eventModel;
@@ -63,18 +55,10 @@
     [super viewDidLoad];
 	
     eventModel = [[Model getInstance] getEventModel];
+   
+    [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
-    //sections = [[NSMutableArray alloc] init];
-    //sectionDict = [[NSMutableDictionary alloc] init];
-
-    navigation = [Navigation createNavigationView];
-    navigation.unreadCount.hidden = NO;
-
-    [self.view addSubview:navigation];
-    [navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
-    
-    int y = navigation.frame.size.height;
+    int y = self.navigation.frame.size.height;
 
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
@@ -161,16 +145,6 @@
 
 #pragma mark -
 #pragma mark btnEvent
-
-- (void)btnMenu:(id)sender
-{
-    navigation.unreadCount.hidden = YES;
-
-    if(self.delegate != nil) {
-        [self.delegate onBtnMenuClick];
-    }
-}
-
 - (void)btnAddEvent:(id)sender
 {
     AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
@@ -339,14 +313,14 @@
 
 - (void)monthModeToEventMode
 {
-    CGRect frame = navigation.frame;
+    CGRect frame = self.navigation.frame;
     frame.origin.y = -44;
     
     CGRect frame2 = tableView.frame;
     frame2.origin = CGPointMake(0, 0);
     
     [UIView animateWithDuration:0.5 animations:^{
-        [navigation setFrame:frame];
+        [self.navigation setFrame:frame];
         [tableView setFrame:frame2];
     }completion:^(BOOL finish)
      {
@@ -356,14 +330,14 @@
 
 - (void)eventModeToMontMode
 {
-    CGRect frame = navigation.frame;
+    CGRect frame = self.navigation.frame;
     frame.origin.y = 0;
     
     CGRect frame2 = tableView.frame;
     frame2.origin = CGPointMake(0, 44);
     
     [UIView animateWithDuration:0.5 animations:^{
-        [navigation setFrame:frame];
+        [self.navigation setFrame:frame];
         [tableView setFrame:frame2];
     }completion:^(BOOL finish)
      {

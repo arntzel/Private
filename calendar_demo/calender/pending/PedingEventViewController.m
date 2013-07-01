@@ -1,7 +1,6 @@
 
 
 #import "PedingEventViewController.h"
-#import "Navigation.h"
 #import "EventPendingToolbar.h"
 #import "PendingEventViewCell.h"
 
@@ -12,7 +11,6 @@
 @end
 
 @implementation PedingEventViewController {
-    Navigation * navigation;
     EventPendingToolbar * toolbar;
     UITableView * table1;
     UITableView * table2;
@@ -22,13 +20,10 @@
 {
     [super viewDidLoad];
 
-    navigation = [Navigation createNavigationView];
-    navigation.titleLable.text = @"PENDING";
-    [self.view addSubview:navigation];
-
-    [navigation.leftBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-
-    int y = navigation.frame.size.height;
+    self.navigation.titleLable.text = @"PENDING";
+   
+    int y = self.navigation.frame.size.height;
+    
     toolbar = [EventPendingToolbar createView];
 
     [toolbar.segmentedControl addTarget:self action:@selector(tableChange:) forControlEvents:UIControlEventValueChanged];
@@ -62,10 +57,6 @@
     [self.view addSubview:table2];
 }
 
-
--(void)back:(id)sender {
-    [[RootNavContrller defaultInstance] popViewControllerAnimated:YES];
-}
 
 -(void)tableChange:(id)sender{
 

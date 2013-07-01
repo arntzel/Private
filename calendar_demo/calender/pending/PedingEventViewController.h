@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
+#import "BaseMenuViewController.h"
 
-@interface PedingEventViewController : UIViewController
+@interface PedingEventViewController : BaseMenuViewController
 
 @end
