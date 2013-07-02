@@ -22,7 +22,8 @@
     [super viewDidLoad];
 
     self.navigation.titleLable.text = @"PENDING";
-   
+    self.navigation.unreadCount.hidden = YES;
+    
     int y = self.navigation.frame.size.height;
     
     toolbar = [EventPendingToolbar createView];
