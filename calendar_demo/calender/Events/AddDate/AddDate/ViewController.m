@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "TimePickerView.h"
+#import "DuringTimePicker.h"
+#import "TimePicker.h"
 
 @interface ViewController ()
 {
-    TimePickerView *pickView;
+    DuringTimePicker *duringTimePicker;
+    TimePicker *timePicker;
 }
 @end
 
@@ -19,7 +21,8 @@
 
 - (void)dealloc
 {
-    [pickView release];
+    [duringTimePicker release];
+    [timePicker release];
     
     [super dealloc];
 }
@@ -28,7 +31,10 @@
 {
     [super viewDidLoad];
     
-    pickView = [[TimePickerView alloc] init];
-    [self.view addSubview:pickView];
+    duringTimePicker = [[DuringTimePicker alloc] init];
+    [self.view addSubview:duringTimePicker];
+    
+    timePicker = [[TimePicker alloc] init];
+    [self.view addSubview:timePicker];
 }
 @end
