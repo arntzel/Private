@@ -117,7 +117,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "333"
          endingLineNumber = "333"
-         landmarkName = "-tableviewScroll2SelectDay"
+         landmarkName = "-eventModeToMontMode"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -130,7 +130,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "118"
          endingLineNumber = "118"
-         landmarkName = "-viewDidLoad"
+         landmarkName = "-loadData:andMonth:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -143,8 +143,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "286"
          endingLineNumber = "286"
-         landmarkName = "@implementation FeedViewController"
-         landmarkType = "3">
+         landmarkName = "-didSelectDate:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -170,19 +170,6 @@
          startingLineNumber = "84"
          endingLineNumber = "84"
          landmarkName = "+toReadableDay:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "calender/model/UserModel.m"
-         timestampString = "394359414.425238"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "-login:withPassword:andCallback:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -221,7 +208,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "322"
          endingLineNumber = "322"
-         landmarkName = "-tableviewScroll2SelectDay"
+         landmarkName = "-monthModeToEventMode"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -236,6 +223,19 @@
          endingLineNumber = "21"
          landmarkName = "@implementation MainViewController"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "calender/pending/PedingEventViewController.m"
+         timestampString = "394451355.870272"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

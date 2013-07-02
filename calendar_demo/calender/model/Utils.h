@@ -89,5 +89,6 @@
  */
 +(NSMutableURLRequest *) createHttpRequest:(NSString *) url andMethod:(NSString *) methood;
 
-
++(NSString *) getAttendeeText:(Event*)event;
+    
 @end

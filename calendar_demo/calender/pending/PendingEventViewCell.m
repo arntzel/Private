@@ -1,6 +1,7 @@
 
 
 #import "PendingEventViewCell.h"
+#import "Utils.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -38,27 +39,9 @@
                      placeholderImage:[UIImage imageNamed:@"header.png"]];
     }
 
-    self.labelAttendees.text = [self getAttendeeText:event];
+    self.labelAttendees.text = [Utils getAttendeeText:event];
 }
 
--(NSString *) getAttendeeText:(Event*)event {
-
-    NSArray * atendees = event.attendees;
-
-    int respCount = 0;
-    int allCount = atendees.count;
-
-    for(int i=0;i<allCount;i++) {
-
-        EventAttendee * atd = [atendees objectAtIndex:i];
-
-        if([atd.status isEqualToString:@"ACCEPT"]) {
-            respCount ++;
-        }
-    }
-
-    return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];
-}
 
 +(PendingEventViewCell*) createView {
 

@@ -3,6 +3,7 @@
 #import "PedingEventViewController.h"
 #import "EventPendingToolbar.h"
 #import "PendingEventViewCell.h"
+#import "PendingEventViewCell2.h"
 
 #import "RootNavContrller.h"
 
@@ -28,12 +29,12 @@
 
     [toolbar.segmentedControl addTarget:self action:@selector(tableChange:) forControlEvents:UIControlEventValueChanged];
 
-    CGRect frame = self.view.bounds;
+    CGRect frame = toolbar.frame;
     frame.origin.y = y;
     toolbar.frame = frame;
     [self.view addSubview:toolbar];
 
-    y += toolbar.frame.origin.y;
+    y += toolbar.frame.size.height;
 
     
     frame = self.view.bounds;
@@ -87,12 +88,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.section == 0) {
+        PendingEventViewCell * cell = [PendingEventViewCell createView];
+        
+        return cell;
+    } else {
+        PendingEventViewCell2 * cell = [PendingEventViewCell2 createView];
+        
+        return cell;
+    }
     
-    PendingEventViewCell * cell = [PendingEventViewCell createView];
-
-
-
-    return cell;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -136,9 +141,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        return 80;
+        return 75;
     } else {
-        return 80;
+        return 60;
     }
 }
 
