@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		760B7D6017823A7E00669ECD /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B7D5F17823A7E00669ECD /* TimePickerView.m */; };
+		760B7D6017823A7E00669ECD /* DuringTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B7D5F17823A7E00669ECD /* DuringTimePicker.m */; };
 		7672726017772218006A74FF /* CustomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672725F17772218006A74FF /* CustomPickerCell.xib */; };
 		767272631777225E006A74FF /* CustomPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 767272621777225E006A74FF /* CustomPickerCell.m */; };
 		76744BD81775DA3400CCA133 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76744BD71775DA3400CCA133 /* UIKit.framework */; };
@@ -23,11 +23,12 @@
 		76744BF41775DA3400CCA133 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF21775DA3400CCA133 /* ViewController_iPhone.xib */; };
 		76744BF71775DA3400CCA133 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF51775DA3400CCA133 /* ViewController_iPad.xib */; };
 		76744BFF1775DC9600CCA133 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* PickerView.m */; };
+		768F20B217828F0700A9D869 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 768F20B117828F0700A9D869 /* TimePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		760B7D5E17823A7E00669ECD /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
-		760B7D5F17823A7E00669ECD /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
+		760B7D5E17823A7E00669ECD /* DuringTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringTimePicker.h; sourceTree = "<group>"; };
+		760B7D5F17823A7E00669ECD /* DuringTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringTimePicker.m; sourceTree = "<group>"; };
 		7672725F17772218006A74FF /* CustomPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerCell.xib; sourceTree = "<group>"; };
 		767272611777225E006A74FF /* CustomPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerCell.h; sourceTree = "<group>"; };
 		767272621777225E006A74FF /* CustomPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerCell.m; sourceTree = "<group>"; };
@@ -50,6 +51,8 @@
 		76744BF61775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		76744BFD1775DC9600CCA133 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
 		76744BFE1775DC9600CCA133 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
+		768F20B017828F0700A9D869 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
+		768F20B117828F0700A9D869 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +101,10 @@
 			children = (
 				76744BFD1775DC9600CCA133 /* PickerView.h */,
 				76744BFE1775DC9600CCA133 /* PickerView.m */,
-				760B7D5E17823A7E00669ECD /* TimePickerView.h */,
-				760B7D5F17823A7E00669ECD /* TimePickerView.m */,
+				768F20B017828F0700A9D869 /* TimePicker.h */,
+				768F20B117828F0700A9D869 /* TimePicker.m */,
+				760B7D5E17823A7E00669ECD /* DuringTimePicker.h */,
+				760B7D5F17823A7E00669ECD /* DuringTimePicker.m */,
 				76744BE61775DA3400CCA133 /* AppDelegate.h */,
 				76744BE71775DA3400CCA133 /* AppDelegate.m */,
 				76744BEF1775DA3400CCA133 /* ViewController.h */,
@@ -201,7 +206,8 @@
 				76744BF11775DA3400CCA133 /* ViewController.m in Sources */,
 				76744BFF1775DC9600CCA133 /* PickerView.m in Sources */,
 				767272631777225E006A74FF /* CustomPickerCell.m in Sources */,
-				760B7D6017823A7E00669ECD /* TimePickerView.m in Sources */,
+				760B7D6017823A7E00669ECD /* DuringTimePicker.m in Sources */,
+				768F20B217828F0700A9D869 /* TimePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  TimePickerView.h
+//  DuringTimePicker.h
 //  AddDate
 //
 //  Created by zyax86 on 13-7-2.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimePickerView : UIView
+@interface DuringTimePicker : UIView
 
 - (id)init;
 

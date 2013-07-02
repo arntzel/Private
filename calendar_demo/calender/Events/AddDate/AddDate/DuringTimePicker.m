@@ -1,21 +1,21 @@
 //
-//  TimePickerView.m
+//  DuringTimePicker.m
 //  AddDate
 //
 //  Created by zyax86 on 13-7-2.
 //  Copyright (c) 2013年 zyax86. All rights reserved.
 //
 
-#import "TimePickerView.h"
+#import "DuringTimePicker.h"
 #import "PickerView.h"
-@interface TimePickerView()<PickerViewDataSource,PickerViewDelegate>
+@interface DuringTimePicker()<PickerViewDataSource,PickerViewDelegate>
 {
     PickerView *hourPicker;
     PickerView *minPicker;
 }
 @end
 
-@implementation TimePickerView
+@implementation DuringTimePicker
 
 - (void)dealloc
 {
@@ -35,7 +35,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        hourPicker = [[PickerView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
+        hourPicker = [[PickerView alloc] initWithFrame:CGRectMake(0, 0, 159, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
         [hourPicker setRepeatEnable:YES];
