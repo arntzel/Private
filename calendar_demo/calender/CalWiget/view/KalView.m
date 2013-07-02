@@ -132,17 +132,21 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)hideViewWithAlphaAnimation:(UIView *)view
 {
-    CGFloat animationDuring = 0.2f;
-    [UIView animateWithDuration:animationDuring animations:^{
-        view.alpha = 0.0f;
-    } completion:^(BOOL finished){
-        [view setHidden:YES];
-        view.alpha = 1.0f;
-    }];
+    [view setHidden:YES];
+    
+//    CGFloat animationDuring = 0.2f;
+//    [UIView animateWithDuration:animationDuring animations:^{
+//        view.alpha = 0.0f;
+//    } completion:^(BOOL finished){
+//        [view setHidden:YES];
+//        view.alpha = 1.0f;
+//    }];
 }
 
 - (void)showViewWithAlphaAnimation:(UIView *)view
 {
+    [view setHidden:NO];
+    
     CGFloat animationDuring = 0.2f;
     view.alpha = 0.0f;
     [view setHidden:NO];
