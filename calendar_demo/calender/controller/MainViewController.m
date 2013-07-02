@@ -83,12 +83,10 @@
     switch (menuIndex) {
         case 0: {
             [self setRootController:feedViewCtr animated:YES];
-            //[self showRootController:YES];
             break;
         }
         case 1: {
             [self setRootController:pendingEventViewCtr animated:YES];
-            //[self showRightController:YES];
             break;
         }
             

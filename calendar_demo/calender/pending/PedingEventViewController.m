@@ -109,13 +109,11 @@
         title = @"WAITING FOR RESPONSES";
     }
 
-    UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 24)];
-    header.backgroundColor = [UIColor grayColor];
-    UILabel * label = [[UILabel alloc] initWithFrame:header.frame];
-    label.backgroundColor = [UIColor clearColor];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventHeader" owner:self options:nil];
+    UIView * header = [nibView objectAtIndex:0];
+    UILabel * label =  (UILabel *) [header viewWithTag:1];
     label.text = title;
-
-    [header addSubview:label];
+    
     return header;
 }
 

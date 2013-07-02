@@ -124,6 +124,7 @@
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
 		3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */; };
+		3DF520CE1782B56C009C3BCD /* PendingEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */; };
 		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
 		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
 		76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A1B1771F40A00781166 /* AddEventViewController.m */; };
@@ -492,6 +493,7 @@
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
 		3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarIntegrationView.h; sourceTree = "<group>"; };
 		3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarIntegrationView.m; sourceTree = "<group>"; };
+		3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventHeader.xib; sourceTree = "<group>"; };
 		761F0D1A1754E031009650F4 /* GPlaceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceApi.h; sourceTree = "<group>"; };
 		761F0D1B1754E031009650F4 /* GPlaceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceApi.m; sourceTree = "<group>"; };
 		761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceDataSource.h; sourceTree = "<group>"; };
@@ -1206,6 +1208,7 @@
 				94D43547177DD975009B20F3 /* PendingEventViewCell.h */,
 				94D43548177DD975009B20F3 /* PendingEventViewCell.m */,
 				94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */,
+				3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */,
 			);
 			name = pending;
 			path = calender/pending;
@@ -1444,6 +1447,7 @@
 				94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */,
 				3D1540A0177E6C0C0015B475 /* calvin@2x.png in Resources */,
 				3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */,
+				3DF520CE1782B56C009C3BCD /* PendingEventHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
