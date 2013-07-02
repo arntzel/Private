@@ -65,11 +65,10 @@ static Model * instance;
 -(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback
 {
     NSString * currentDate = [Utils formateDay: [NSDate date]];
-    User * me = [[UserModel getInstance] getLoginUser];
-    
-    NSString  * encodedName = [me.username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&creator=%@", HOST, currentDate, encodedName];
+    //User * me = [[UserModel getInstance] getLoginUser];
+    //NSString  * encodedName = [me.username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&creator=%@", HOST, currentDate, encodedName];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00", HOST, currentDate];
 
     NSLog(@"url=%@", url);
 
