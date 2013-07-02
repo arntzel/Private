@@ -6,20 +6,41 @@
 #import "PendingEventViewCell2.h"
 
 #import "RootNavContrller.h"
+#import "PendingTableView.h"
 
-@interface PedingEventViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "UserModel.h"
+#import "Model.h"
+
+@interface PedingEventViewController ()
 
 @end
 
 @implementation PedingEventViewController {
     EventPendingToolbar * toolbar;
-    UITableView * table1;
-    UITableView * table2;
+    
+    PendingTableView * table1;
+    PendingTableView * table2;
+
+    UIActivityIndicatorView * indicator;
+
+
+    //Data Model
+    NSMutableArray * yourCompletedEvents;
+    NSMutableArray * yourPendingEvents;
+    NSMutableArray * invitedCompletedEvents;
+    NSMutableArray * invitedPedingEvents;
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    yourCompletedEvents = [[NSMutableArray alloc] init];
+    yourPendingEvents = [[NSMutableArray alloc] init];
+    invitedCompletedEvents = [[NSMutableArray alloc] init];
+    invitedPedingEvents = [[NSMutableArray alloc] init];
+
 
     self.navigation.titleLable.text = @"PENDING";
     self.navigation.unreadCount.hidden = YES;
@@ -42,23 +63,95 @@
     frame.origin.y = y;
     frame.size.height -= y;
 
-    table1 = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    //table1.backgroundColor = [UIColor blueColor];
+    table1 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [table1 setAllowsSelection:NO];
-    table1.dataSource = self;
-    table1.delegate = self;
+    [table1 setSectionHeader:@"WAITING FOR FINALIZATION"];
     [self.view addSubview:table1];
 
-    table2 = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    //table2.backgroundColor = [UIColor redColor];
+    table2 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [table2 setAllowsSelection:NO];
-    table2.dataSource = self;
-    table2.delegate = self;
+    [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];
+
+
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.center = self.view.center;
+    indicator.hidesWhenStopped = YES;
+    [self.view addSubview:indicator];
+
+    table1.hidden = NO;
+    table2.hidden = YES;
+    
+    [self loadData];
 }
 
+-(void) loadData
+{
+    [indicator startAnimating];
+
+    [[Model getInstance] getEventsOfPending:^(NSInteger error, NSArray *events) {
+        [indicator stopAnimating];
+        NSLog(@"getEventsOfPending callback");
+
+        if(error == 0) {
+
+            [self resetEventsModel:events];
+
+        } else {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                            message:@"network or server error!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+
+            [alert show];
+        }
+    }];
+
+}
+
+-(void) resetEventsModel: (NSArray *) events
+{
+    [yourCompletedEvents removeAllObjects];
+    [yourPendingEvents removeAllObjects];
+    [invitedCompletedEvents removeAllObjects];
+    [invitedPedingEvents removeAllObjects];
+
+    for(int i=0; i<events.count;i++) {
+
+        Event * evt = [events objectAtIndex:i];
+
+        if([self isMyEvent:evt]) {
+
+            if([evt isPendingStatus]) {
+                [yourPendingEvents addObject:evt];
+            } else {
+                [yourCompletedEvents addObject:evt];
+            }
+
+        } else {
+
+            if([evt isPendingStatus]) {
+                [invitedPedingEvents addObject:evt];
+            } else {
+                [invitedCompletedEvents addObject:evt];
+            }
+        }
+    }
+
+    [table1 setCompletedEvents:yourCompletedEvents andPendingEvents:yourPendingEvents];
+    [table2 setCompletedEvents:invitedCompletedEvents andPendingEvents:invitedPedingEvents];
+    
+    [table1 reloadData];
+    [table2 reloadData];
+}
+
+-(BOOL) isMyEvent:(Event *) event
+{
+    return event.creator.id == [[UserModel getInstance] getLoginUser].id;
+}
 
 -(void)tableChange:(id)sender{
 
@@ -77,77 +170,5 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
-#pragma mark -
-#pragma mark tableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 3;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.section == 0) {
-        PendingEventViewCell * cell = [PendingEventViewCell createView];
-        
-        return cell;
-    } else {
-        PendingEventViewCell2 * cell = [PendingEventViewCell2 createView];
-        
-        return cell;
-    }
-    
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-
-    if(section == 0) {
-        return nil;
-    }
-
-    NSString * title;
-    if(tableView == table1) {
-       title = @"WAITING FOR FINALIZATION";
-    } else {
-        title = @"WAITING FOR RESPONSES";
-    }
-
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventHeader" owner:self options:nil];
-    UIView * header = [nibView objectAtIndex:0];
-    UILabel * label =  (UILabel *) [header viewWithTag:1];
-    label.text = title;
-    
-    return header;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return 0;
-    } else {
-        return 24;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.section == 0) {
-        return 75;
-    } else {
-        return 60;
-    }
-}
-
-
 
 @end

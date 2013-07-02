@@ -5,6 +5,32 @@
 
 @implementation Event
 
+
+-(int) getPendingUserCount
+{
+    NSArray * atendees = self.attendees;
+
+    int respCount = 0;
+    int allCount = atendees.count;
+
+    for(int i=0;i<allCount;i++) {
+        EventAttendee * atd = [atendees objectAtIndex:i];
+        if([atd.status isEqualToString:@"PENDING"]) {
+            respCount ++;
+        }
+    }
+
+    return respCount;
+}
+
+
+-(BOOL) isPendingStatus
+{
+    if(self.confirmed) return false;
+
+    return [self getPendingUserCount] > 0;
+}
+
 +(Event *) parseEvent:(NSDictionary *) json
 {
     Event * event = [[Event alloc] init];
@@ -17,6 +43,7 @@
     event.archived = [[json objectForKey:@"archived"] boolValue];
     event.is_all_day = [[json objectForKey:@"is_all_day"] boolValue];
     event.published = [[json objectForKey:@"published"] boolValue];
+    event.confirmed = [[json objectForKey:@"confirmed"] boolValue];
 
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];

@@ -18,6 +18,7 @@
 @property BOOL archived;
 @property BOOL is_all_day;
 @property BOOL published;
+@property BOOL confirmed;
 
 @property(strong) NSDate * created_on;
 
@@ -61,6 +62,11 @@
  Birthdays: 4
  */
 @property int eventType;
+
+
+-(int) getPendingUserCount;
+
+-(BOOL) isPendingStatus;
 
 
 /*

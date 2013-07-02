@@ -219,6 +219,7 @@
 		94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D43544177DC469009B20F3 /* EventPendingToolbar.xib */; };
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
 		94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */; };
+		94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8E2BD17831A5B000164AB /* PendingTableView.m */; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
 		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
 /* End PBXBuildFile section */
@@ -634,6 +635,8 @@
 		94D43547177DD975009B20F3 /* PendingEventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventViewCell.h; sourceTree = "<group>"; };
 		94D43548177DD975009B20F3 /* PendingEventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventViewCell.m; sourceTree = "<group>"; };
 		94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell.xib; sourceTree = "<group>"; };
+		94E8E2BC17831A5B000164AB /* PendingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingTableView.h; sourceTree = "<group>"; };
+		94E8E2BD17831A5B000164AB /* PendingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingTableView.m; sourceTree = "<group>"; };
 		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
 		94F4A6A21765DA0F009F0094 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
 		94F4A6A31765DA0F009F0094 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
@@ -1217,6 +1220,8 @@
 				3DF520D31782D6EB009C3BCD /* PendingEventViewCell2.h */,
 				3DF520D41782D6EB009C3BCD /* PendingEventViewCell2.m */,
 				3DF520D61782D8CA009C3BCD /* PendingEventViewCell2.xib */,
+				94E8E2BC17831A5B000164AB /* PendingTableView.h */,
+				94E8E2BD17831A5B000164AB /* PendingTableView.m */,
 			);
 			name = pending;
 			path = calender/pending;
@@ -1570,6 +1575,7 @@
 				3D473BE0178166F10093FE19 /* MainViewController.m in Sources */,
 				941396DE1781AD75007D598B /* BaseMenuViewController.m in Sources */,
 				3DF520D51782D6EB009C3BCD /* PendingEventViewCell2.m in Sources */,
+				94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
