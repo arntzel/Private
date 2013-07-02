@@ -17,11 +17,16 @@
   KalLogic *logic;
   KalMonthView *frontMonthView;
   KalMonthView *backMonthView;
+    
+    UISwipeGestureRecognizer *oneFingerSwipeLeft;
+    UISwipeGestureRecognizer *oneFingerSwipeRight;
 }
 
 @property (nonatomic, readonly) KalMonthView * frontMonthView;
 @property (nonatomic, readonly) KalMonthView * backMonthView;
 @property (nonatomic, assign) BOOL enableMonthChange;
+@property (nonatomic, assign) UISwipeGestureRecognizer *oneFingerSwipeLeft;
+@property (nonatomic, assign) UISwipeGestureRecognizer *oneFingerSwipeRight; 
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate;
 

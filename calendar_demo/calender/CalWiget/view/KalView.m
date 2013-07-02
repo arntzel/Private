@@ -15,8 +15,8 @@
     UIView *headerView;
     UIScrollView *eventView;
     
-    UISwipeGestureRecognizer *oneFingerSwipeDown;
-    UISwipeGestureRecognizer *oneFingerSwipUP;
+    CGPoint lastPanPoint;
+    CGRect orgFrame;
 }
 
 - (void)addSubviewsToContentView:(UIView *)contentView;
@@ -49,7 +49,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
         _contentView = contentView;
 
-        [self addUISwipGestureRecognizer:self];
+//        [self addUISwipGestureRecognizer];
+        [self addPanGestureRecognizer];
     }
 
     return self;
@@ -97,6 +98,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [contentView addSubview:weekGridView];
     [weekGridView sizeToFit];
     
+    /*
     eventView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     CalendarIntegrationView *listView = [CalendarIntegrationView createCalendarIntegrationView];
     [contentView addSubview:eventView];
@@ -106,48 +108,168 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [eventView setShowsHorizontalScrollIndicator:YES];
     [eventView setBounces:NO];
     [eventView setHidden:YES];
+     */
     
     [self setFrameToWeekMode];
     KalMode = WEEK_MODE;
+
   
-    [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+//    [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
--(void)addUISwipGestureRecognizer:(UIView *)view {
-    oneFingerSwipeDown = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeDown:)] autorelease];
+
+ 
+-(void)addPanGestureRecognizer
+{
+    UIPanGestureRecognizer *panGesture = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)] autorelease];
+    [panGesture setDelegate:self];
+    [self addGestureRecognizer:panGesture];
+    [panGesture requireGestureRecognizerToFail:gridView.oneFingerSwipeRight];
+    [panGesture requireGestureRecognizerToFail:gridView.oneFingerSwipeLeft];
+    [panGesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeLeft];
+    [panGesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeRight];
+}
+
+- (void)hideViewWithAlphaAnimation:(UIView *)view
+{
+    CGFloat animationDuring = 0.2f;
+    [UIView animateWithDuration:animationDuring animations:^{
+        view.alpha = 0.0f;
+    } completion:^(BOOL finished){
+        [view setHidden:YES];
+        view.alpha = 1.0f;
+    }];
+}
+
+- (void)showViewWithAlphaAnimation:(UIView *)view
+{
+    CGFloat animationDuring = 0.2f;
+    view.alpha = 0.0f;
+    [view setHidden:NO];
+    [UIView animateWithDuration:animationDuring animations:^{
+        view.alpha = 1.0f;
+    } completion:^(BOOL finished){
+    }];
+}
+
+- (void)panGesture:(UIPanGestureRecognizer *)pan
+{
+    CGPoint point = [pan locationInView:self.superview];
+    CGFloat animationDuring = 0.2f;
+    
+    if (pan.state==UIGestureRecognizerStateBegan) {
+        lastPanPoint = point;
+        if (KalMode == WEEK_MODE)
+        {
+            [gridView jumpToSelectedMonth];
+            [self hideViewWithAlphaAnimation:weekGridView];
+        }
+        else if(KalMode == MONTH_MODE)
+        {
+            [weekGridView jumpToSelectedWeek];
+        }
+        orgFrame = self.frame;
+    }
+    else if (pan.state==UIGestureRecognizerStateChanged) {
+        CGFloat yOffset = point.y - lastPanPoint.y;
+        if (KalMode == WEEK_MODE)
+        {
+            CGRect frame = self.frame;
+            frame.origin.y += yOffset;
+            
+            if (frame.origin.y > orgFrame.origin.y) {
+                self.frame = orgFrame;
+            }
+            else
+            {
+                self.frame = frame;
+            }
+        }
+        else if(KalMode == MONTH_MODE)
+        {
+            CGRect frame = self.frame;
+            frame.origin.y += yOffset;
+            
+            if (frame.origin.y < orgFrame.origin.y) {
+                self.frame = orgFrame;
+            }
+            else
+            {
+                self.frame = frame;
+            }
+        }
+        lastPanPoint = point;
+    }
+    else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateFailed || pan.state == UIGestureRecognizerStateCancelled)
+    {
+        CGRect frame = self.frame;
+        
+        if (KalMode == WEEK_MODE)
+        {
+            if (orgFrame.origin.y - frame.origin.y > weekGridView.frame.size.height) {
+                self.userInteractionEnabled = NO;
+                [UIView animateWithDuration:animationDuring animations:^{
+                    [self setFrameToMonthMode];
+                    [weekGridView setFrame:CGRectMake(0 , gridView.height + headerView.height, self.frame.size.width, weekGridView.height)];
+                } completion:^(BOOL finished){
+                    self.userInteractionEnabled = YES;
+                    [self hideViewWithAlphaAnimation:weekGridView];
+//                    [weekGridView setHidden:YES];
+                    KalMode = MONTH_MODE;
+                }];
+            }
+            else
+            {
+                self.userInteractionEnabled = NO;
+                [UIView animateWithDuration:animationDuring animations:^{
+                    self.frame = orgFrame;
+                } completion:^(BOOL finished){
+                    self.userInteractionEnabled = YES;
+                    [self showViewWithAlphaAnimation:weekGridView];
+//                    [weekGridView setHidden:NO];
+                }];
+            }
+        }
+        else if(KalMode == MONTH_MODE)
+        {
+            if (frame.origin.y - orgFrame.origin.y > weekGridView.frame.size.height)
+            {
+                self.userInteractionEnabled = NO;
+                [UIView animateWithDuration:animationDuring animations:^{
+                    [self setFrameToWeekMode];
+                    [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];
+                } completion:^(BOOL finished){
+                    self.userInteractionEnabled = YES;
+                    KalMode = WEEK_MODE;
+//                    [weekGridView setHidden:NO];
+                    [self showViewWithAlphaAnimation:weekGridView];
+                }];
+            }
+            else
+            {
+                self.userInteractionEnabled = NO;
+                [UIView animateWithDuration:animationDuring animations:^{
+                    self.frame = orgFrame;
+                } completion:^(BOOL finished){
+                    self.userInteractionEnabled = YES;
+                }];
+            }
+        }
+    }
+}
+
+
+ /* swip gesture， hang-up temporary
+-(void)addUISwipGestureRecognizer{
+    UISwipeGestureRecognizer *oneFingerSwipeDown = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeDown:)] autorelease];
     [oneFingerSwipeDown setDelegate:self];
     [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [view addGestureRecognizer:oneFingerSwipeDown];
+    [self addGestureRecognizer:oneFingerSwipeDown];
     
-    oneFingerSwipUP = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipUP:)] autorelease];
+    UISwipeGestureRecognizer *oneFingerSwipUP = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipUP:)] autorelease];
     [oneFingerSwipUP setDelegate:self];
     [oneFingerSwipUP setDirection:UISwipeGestureRecognizerDirectionUp];
-    [view addGestureRecognizer:oneFingerSwipUP];
-}
-
-- (float)screenHeight
-{
-    CGFloat statusBarHeight = 0.0f;
-    if (![UIApplication sharedApplication].statusBarHidden)
-    {
-        statusBarHeight = 20.0f;
-    }
-    return [[UIScreen mainScreen] bounds].size.height - statusBarHeight;
-}
-
-- (void)setFrameToWeekMode
-{
-    [self setFrame:CGRectMake(0, [self screenHeight] - weekGridView.height - headerView.height, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
-}
-
-- (void)setFrameToMonthMode
-{
-    [self setFrame:CGRectMake(0, [self screenHeight] - gridView.height - headerView.height, self.frame.size.width, gridView.height + headerView.frame.size.height)];
-}
-
-- (void)setFrameToListMode
-{
-    [self setFrame:CGRectMake(0, 75, self.frame.size.width, gridView.height + headerView.frame.size.height + eventView.frame.size.height)];
+    [self addGestureRecognizer:oneFingerSwipUP];
 }
 
 - (void)oneFingerSwipUP:(UISwipeGestureRecognizer *)recognizer
@@ -157,7 +279,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [gridView removeObserver:self forKeyPath:@"frame"];
         [gridView jumpToSelectedMonth];
         [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
-
+        
         [UIView animateWithDuration:0.5 animations:^{
             [self setFrameToMonthMode];
             [weekGridView setFrame:CGRectMake(0 , gridView.height + headerView.height, self.frame.size.width, weekGridView.height)];
@@ -194,7 +316,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [weekGridView setFrame:CGRectMake(0 ,gridView.height, self.frame.size.width, weekGridView.height)];
         [UIView animateWithDuration:0.5 animations:^{
             [self setFrameToWeekMode];
-            [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];            
+            [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];
         } completion:^(BOOL finished){
         }];
     }
@@ -210,6 +332,34 @@ static const CGFloat kMonthLabelHeight = 17.f;
         }];
     }
 }
+*/
+
+- (float)screenHeight
+{
+    CGFloat statusBarHeight = 0.0f;
+    if (![UIApplication sharedApplication].statusBarHidden)
+    {
+        statusBarHeight = 20.0f;
+    }
+    return [[UIScreen mainScreen] bounds].size.height - statusBarHeight;
+}
+
+- (void)setFrameToWeekMode
+{
+    [self setFrame:CGRectMake(0, [self screenHeight] - weekGridView.height - headerView.height, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
+}
+
+- (void)setFrameToMonthMode
+{
+    [self setFrame:CGRectMake(0, [self screenHeight] - gridView.height - headerView.height, self.frame.size.width, gridView.height + headerView.frame.size.height)];
+}
+
+- (void)setFrameToListMode
+{
+    [self setFrame:CGRectMake(0, 75, self.frame.size.width, gridView.height + headerView.frame.size.height + eventView.frame.size.height)];
+}
+
+
 
 #pragma mark -
 #pragma mark recall

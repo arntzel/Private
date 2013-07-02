@@ -19,11 +19,16 @@
     KalWeekView *frontWeekView;
     KalWeekView *backWeekView;
     KalTileView *selectedTile;
+    
+    UISwipeGestureRecognizer *oneFingerSwipeLeft;
+    UISwipeGestureRecognizer *oneFingerSwipeRight;
 }
 
 @property (nonatomic, readonly) KalDate *selectedDate;
 @property (nonatomic, readonly) KalWeekView *frontWeekView;
 @property (nonatomic, readonly) KalWeekView *backWeekView;
+@property (nonatomic, assign) UISwipeGestureRecognizer *oneFingerSwipeLeft;
+@property (nonatomic, assign) UISwipeGestureRecognizer *oneFingerSwipeRight;
 
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalWeekGridViewDelegate>)delegate;

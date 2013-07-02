@@ -13,8 +13,7 @@
 
 @interface KalWeekGridView()<UIGestureRecognizerDelegate>
 {    
-    UISwipeGestureRecognizer *oneFingerSwipeLeft;
-    UISwipeGestureRecognizer *oneFingerSwipeRight;
+
 }
 @end
 
@@ -22,6 +21,8 @@ extern const CGSize kTileSize;
 
 @implementation KalWeekGridView
 @synthesize frontWeekView,backWeekView;
+@synthesize oneFingerSwipeLeft;
+@synthesize oneFingerSwipeRight;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalWeekGridViewDelegate>)theDelegate
 {

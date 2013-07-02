@@ -17,8 +17,7 @@ extern const CGSize kTileSize;
 
 @interface KalGridView ()<UIGestureRecognizerDelegate>
 {    
-    UISwipeGestureRecognizer *oneFingerSwipeLeft;
-    UISwipeGestureRecognizer *oneFingerSwipeRight;
+
     KalMonthNameView *monthNameView;
 }
 - (void)swapMonthViews;
@@ -27,6 +26,8 @@ extern const CGSize kTileSize;
 @implementation KalGridView
 @synthesize frontMonthView, backMonthView;
 @synthesize enableMonthChange;
+@synthesize oneFingerSwipeLeft;
+@synthesize oneFingerSwipeRight;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
