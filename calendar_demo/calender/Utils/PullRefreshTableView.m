@@ -270,12 +270,16 @@ enum {
 
 - (void)pullStarted
 {
-    
+    if(self.pullRefreshDalegate) {
+        [self.pullRefreshDalegate onPullStarted];
+    }
 }
 
 - (void)pullCancelled
 {
-    
+    if(self.pullRefreshDalegate) {
+        [self.pullRefreshDalegate onPullCancelled];
+    }
 }
 
 - (void)stopHeaderLoadingComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
@@ -299,7 +303,12 @@ enum {
 {
     // This is just a demo. Override this method with your custom reload action.
     // Don't forget to call stopXXXXLoading at the end.
-    [self performSelector:@selector(stopPullLoading) withObject:nil afterDelay:2.0];
+
+    if(self.pullRefreshDalegate) {
+        [self.pullRefreshDalegate onStartLoadData];
+    } else {
+        [self performSelector:@selector(stopPullLoading) withObject:nil afterDelay:2.0];
+    }
 }
 
 #pragma mark * UIScrollViewDelegate

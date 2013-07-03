@@ -18,7 +18,6 @@
 
     NSString * sectionHeader;
     
-    UILabel * pullDesc;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,14 +55,6 @@
     self.dataSource = self;
     self.delegate = self;
     
-    
-    pullDesc = [[UILabel alloc] initWithFrame:CGRectMake(0, -30, CGRectGetWidth(self.bounds),  30)];
-    pullDesc.text = @"下拉获取数据...";
-    pullDesc.textAlignment = UITextAlignmentCenter;
-    //pullDesc.center = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2 - 22);
-    pullDesc.hidden = YES;
-    
-    [self addSubview:pullDesc];
 }
 
 -(void) setSectionHeader:(NSString *) header
@@ -77,32 +68,6 @@
     completedEvents = completedEvts;
     pendingEvents = pendingEvs;
 }
-
-
-
-#pragma mark * Internal Methods
-- (void)pullStarted
-{
-    
-   //pullDesc.hidden = YES;
-    
-}
-
-- (void)pullCancelled
-{
-    //pullDesc.hidden = YES;
-
-}
-- (void)doStartLoad:(BOOL)head
-{
-    //self.pullDesc.hidden = YES;
-
-    if(self.dataDalegate) {
-        [self.dataDalegate onStartLoadData];
-    }
-}
-
-
 
 #pragma mark -
 #pragma mark tableViewDelegate

@@ -11,7 +11,7 @@
 #import "UserModel.h"
 #import "Model.h"
 
-@interface PedingEventViewController () <PendingTableViewDalegate>
+@interface PedingEventViewController () <PullRefreshTableViewDelegate>
 
 @end
 
@@ -20,9 +20,6 @@
     
     PendingTableView * table1;
     PendingTableView * table2;
-
-    //UIActivityIndicatorView * indicator;
-
 
     //Data Model
     NSMutableArray * yourCompletedEvents;
@@ -75,21 +72,14 @@
     [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];
 
-
-    //indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    //indicator.center = self.view.center;
-    //indicator.hidesWhenStopped = YES;
-    //[self.view addSubview:indicator];
-
     table1.hidden = NO;
     table2.hidden = YES;
 
-    table1.dataDalegate = self;
-    table2.dataDalegate = self;
+    table1.pullRefreshDalegate = self;
+    table2.pullRefreshDalegate = self;
 
     [table1 startHeaderLoading];
     
-    //[self loadData];
 }
 
 -(void) loadData
@@ -175,14 +165,20 @@
 }
 
 
+#pragma mark -
+#pragma mark PullRefreshTableViewDelegate
+- (void) onPullStarted {
+    
+}
+
+- (void) onPullCancelled {
+    
+}
+
 -(void) onStartLoadData
 {
     [self loadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 @end
