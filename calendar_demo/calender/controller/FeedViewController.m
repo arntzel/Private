@@ -20,19 +20,23 @@
 
 #import "EventModel.h"
 
-
+#import "FeedEventTableView.h"
 
 /*
  FeedViewController show the event list and a calender wiget
  */
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate,KalViewDelegate, KalTileViewDataSource>
+@interface FeedViewController () <UITableViewDataSource,
+                                  UITableViewDelegate,
+                                  PullRefreshTableViewDelegate,
+                                  KalViewDelegate,
+                                  KalTileViewDataSource>
 {
     KalLogic *logic;
     KalView *calendarView;
     
    
     
-    UITableView * tableView;
+    FeedEventTableView * tableView;
   
     UIActivityIndicatorView * loadingView;
     
@@ -65,15 +69,16 @@
     frame.size.height -=(y + 64);
     
     
-    tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
+
+
     tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    
     [tableView setAllowsSelection:NO];
-    
-    tableView.dataSource = self;
-    tableView.delegate = self;
+    tableView.headerEnabled = YES;
+    tableView.tailerEnabled = NO;
+    tableView.pullRefreshDalegate = self;
     
     [self.view addSubview:tableView];
     
@@ -103,8 +108,9 @@
     selectedYear = [components year];  //当前的年份
     selectedMonth = [components month];  //当前的月份
     selectedDay = [components day];
-    
-    [self loadData:selectedYear andMonth:selectedMonth];
+
+    //[self loadData:selectedYear andMonth:selectedMonth];
+    [tableView startHeaderLoading];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,21 +122,17 @@
 
 -(void) loadData:(int) year andMonth:(int)month
 {
-    [loadingView startAnimating];
-    
     
     [[Model getInstance] getEvents:year andMonth:month andCallback:^(NSInteger error, NSArray *events) {
         
         NSLog(@"getEvents:error=%d, events size=%d", error, events.count);
         
-        [loadingView stopAnimating];
-        
         if(error == 0) {
     
             NSString * strMonth = [Utils formate:year andMonth:month];
             [eventModel setEvents:events forMonth:strMonth];
-             
-            [tableView reloadData];
+
+            [tableView setEventModel:eventModel];
             
             [self tableviewScroll2SelectDay];
 
@@ -139,6 +141,8 @@
         } else {
             //TODO:: show network error
         }
+
+        [tableView stopPullLoading];
     }];
 }
 
@@ -151,109 +155,6 @@
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }
 
-#pragma mark -
-#pragma mark tableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    NSLog(@"numberOfRowsInSection:%d", section);
-    
-    NSArray * allDays = [eventModel getAllDays];
-    
-    NSString * key = [allDays objectAtIndex:section];
-
-    NSArray * array = [eventModel getEventsByDay:key];
-    
-    NSLog(@"section=%d, count=%d/%d, key=%@", section, array.count, allDays.count, key);
-    
-    return array.count;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    int section = indexPath.section;
-    int row = indexPath.row;
-    
-    NSLog(@"cellForRowAtIndexPath: %d, %d", section, row);
-    
-    NSArray * allDays = [eventModel getAllDays];
-    
-    NSString * key = [allDays objectAtIndex:section];
-    
-    NSArray * dayEvents = [eventModel getEventsByDay:key];
-    
-    Event * event = [dayEvents objectAtIndex:row];
-    EventView * view = [EventView createEventView];
-    
-    [view refreshView:event];
-    
-    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-    [cell addSubview:view];
-    return cell;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSArray * allDays = [eventModel getAllDays];
-    
-    NSString * sectionName = [allDays objectAtIndex:section];
-    
-    sectionName = [Utils toReadableDay:sectionName];
-    
-    CGRect frame = CGRectMake(0, 0, 320, 24);
-    
-    UIView * view = [[UIView alloc] initWithFrame:frame];
-    UIImageView * bg = [[UIImageView alloc] initWithFrame:frame];
-    bg.image = [UIImage imageNamed:@"bg_section_header"];
-    [view addSubview:bg];
-    
-    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, 24)];
-    float colorVal = 227.0/255.0;
-    line.backgroundColor = [UIColor colorWithRed:colorVal green:colorVal blue:colorVal alpha:1];
-    [view addSubview:line];
-    
-    UIImageView * dotView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"dot"]];
-    dotView.frame = CGRectMake(54, 7, 10, 10);
-    [view addSubview:dotView];
-    
-    float fontColor = 172.0/255.0;
-    
-    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(68, 5, 320-68, 16)];
-    dayLabel.text = sectionName;
-    dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
-    dayLabel.font = [UIFont fontWithName:@"Arial" size:12];
-    dayLabel.textAlignment = UITextAlignmentLeft;
-    dayLabel.backgroundColor = [UIColor clearColor];
-    
-    [view addSubview:dayLabel];
-    
-    return view;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[eventModel getAllDays] count];
-}
-
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 24;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return PlanView_HEIGHT;
-}
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark -
 #pragma mark kalViewDelegate
@@ -277,8 +178,10 @@
     NSString * strmonth = [Utils formate:selectedYear andMonth:selectedMonth];
     
     if([eventModel getEventsByMonth:strmonth] == nil) {
-        
-        [self loadData:selectedYear andMonth:selectedMonth];
+
+        [tableView startHeaderLoading];
+
+        //[self loadData:selectedYear andMonth:selectedMonth];
         
     } else {
         [self tableviewScroll2SelectDay];
@@ -354,4 +257,22 @@
     int eventTypes = [eventModel getEventsTypes:day];
     return eventTypes;
 }
+
+
+
+#pragma mark -
+#pragma mark PullRefreshTableViewDelegate
+- (void) onPullStarted {
+
+}
+
+- (void) onPullCancelled {
+
+}
+
+-(void) onStartLoadData
+{
+    [self loadData:selectedYear andMonth:selectedMonth];
+}
+
 @end

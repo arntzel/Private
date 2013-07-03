@@ -218,6 +218,7 @@
 		945D3FC31779DB3400333ECD /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC01779DB3400333ECD /* email@2x.png */; };
 		945D3FC51779DB3400333ECD /* google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC21779DB3400333ECD /* google@2x.png */; };
 		945D3FC81779DBDA00333ECD /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */; };
+		946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 946372F7178474BC00041B0E /* FeedEventTableView.m */; };
 		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
 		94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D43544177DC469009B20F3 /* EventPendingToolbar.xib */; };
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
@@ -636,6 +637,8 @@
 		945D3FC01779DB3400333ECD /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
 		945D3FC21779DB3400333ECD /* google@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "google@2x.png"; sourceTree = "<group>"; };
 		945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
+		946372F6178474BC00041B0E /* FeedEventTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventTableView.h; sourceTree = "<group>"; };
+		946372F7178474BC00041B0E /* FeedEventTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableView.m; sourceTree = "<group>"; };
 		94D43542177DC469009B20F3 /* EventPendingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingToolbar.h; sourceTree = "<group>"; };
 		94D43543177DC469009B20F3 /* EventPendingToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingToolbar.m; sourceTree = "<group>"; };
 		94D43544177DC469009B20F3 /* EventPendingToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPendingToolbar.xib; sourceTree = "<group>"; };
@@ -1019,22 +1022,24 @@
 		3DB9780B174A2814005B462E /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */,
-				3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */,
-				3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */,
-				7644047A1751F8E300B11BDE /* RootNavContrller.h */,
-				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
+				941396DC1781AD75007D598B /* BaseMenuViewController.h */,
+				941396DD1781AD75007D598B /* BaseMenuViewController.m */,
+				946372F6178474BC00041B0E /* FeedEventTableView.h */,
+				946372F7178474BC00041B0E /* FeedEventTableView.m */,
 				3DB9780C174A2832005B462E /* FeedViewController.h */,
 				3DB9780D174A2832005B462E /* FeedViewController.m */,
-				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
-				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
 				94F4A6A11765DA0F009F0094 /* LoginNowController.h */,
 				94F4A6A21765DA0F009F0094 /* LoginNowController.m */,
 				94F4A6A31765DA0F009F0094 /* LoginNowController.xib */,
 				3D473BDE178166F10093FE19 /* MainViewController.h */,
 				3D473BDF178166F10093FE19 /* MainViewController.m */,
-				941396DC1781AD75007D598B /* BaseMenuViewController.h */,
-				941396DD1781AD75007D598B /* BaseMenuViewController.m */,
+				3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */,
+				3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */,
+				3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */,
+				7644047A1751F8E300B11BDE /* RootNavContrller.h */,
+				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
+				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
+				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1590,6 +1595,7 @@
 				3DF520D51782D6EB009C3BCD /* PendingEventViewCell2.m in Sources */,
 				94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */,
 				3DF520DA17841024009C3BCD /* PullRefreshTableView.m in Sources */,
+				946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

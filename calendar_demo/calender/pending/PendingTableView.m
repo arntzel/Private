@@ -50,7 +50,6 @@
     //self.backgroundColor = [UIColor grayColor];
     self.headerEnabled = YES;
     self.tailerEnabled = NO;
-    //self.scrollEnabled = NO;
     
     self.dataSource = self;
     self.delegate = self;

@@ -53,7 +53,7 @@
 
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month {
 
-    if([monthEvents objectForKey:month] == nil) {
+    //if([monthEvents objectForKey:month] == nil) {
         [monthEvents setObject:events forKey:month];
 
         for(int i=0;i<events.count;i++) {
@@ -80,9 +80,9 @@
             return [str2 compare:str1];
         }];
         
-    } else {
-        assert(NO);
-    }
+    //} else {
+        //assert(NO);
+    //}
 }
 
 

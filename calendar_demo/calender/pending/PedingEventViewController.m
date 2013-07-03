@@ -103,6 +103,9 @@
 
             [alert show];
         }
+
+        [table1 stopPullLoading];
+        [table2 stopPullLoading];
     }];
 
 }
@@ -138,9 +141,6 @@
 
     [table1 setCompletedEvents:yourCompletedEvents andPendingEvents:yourPendingEvents];
     [table2 setCompletedEvents:invitedCompletedEvents andPendingEvents:invitedPedingEvents];
-
-    [table1 stopPullLoading];
-    [table2 stopPullLoading];
 
     [table1 reloadData];
     [table2 reloadData];

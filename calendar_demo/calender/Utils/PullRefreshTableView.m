@@ -117,6 +117,7 @@ enum {
 {
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, REFRESH_HEADER_HEIGHT)];
     label.textAlignment = UITextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
     
     arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 28)];
     arrow.center = CGPointMake(36, REFRESH_HEADER_HEIGHT / 2);
@@ -192,12 +193,17 @@ enum {
 
 - (void)setTailerEnabled:(BOOL)tailerEnabled
 {
+
     tailer.hidden = (tailerEnabled != YES);
     _tailerEnabled = tailerEnabled;
 }
 
 - (void)startHeaderLoading
 {
+    if (header.isLoading || tailer.isLoading) {
+        return;
+    }
+
     isDragHeader = YES;
     [self startPullLoading];
 }
