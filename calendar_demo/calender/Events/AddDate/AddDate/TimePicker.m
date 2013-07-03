@@ -7,13 +7,13 @@
 //
 
 #import "TimePicker.h"
-#import "PickerView.h"
+#import "LoopPickerView.h"
 
-@interface TimePicker()<PickerViewDataSource,PickerViewDelegate>
+@interface TimePicker()<PickerViewDataSource,LoopPickerViewDelegate>
 {
-    PickerView *hourPicker;
-    PickerView *minPicker;
-    PickerView *AMPMPicker;
+    LoopPickerView *hourPicker;
+    LoopPickerView *minPicker;
+    LoopPickerView *AMPMPicker;
 }
 
 @end
@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        hourPicker = [[PickerView alloc] initWithFrame:CGRectMake(0, 0, 106, 160)];
+        hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, 0, 106, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
         [hourPicker setRepeatEnable:YES];
@@ -37,7 +37,7 @@
         [hourPicker reloadData];
         [hourPicker scrollToIndex:6 WithAnimation:NO];
         
-        minPicker = [[PickerView alloc] initWithFrame:CGRectMake(107, 0, 106, 160)];
+        minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(107, 0, 106, 160)];
         [self addSubview:minPicker];
         [minPicker setDelegate:self];
         [minPicker setRepeatEnable:YES];
@@ -45,7 +45,7 @@
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];
         
-        AMPMPicker = [[PickerView alloc] initWithFrame:CGRectMake(214, 0, 106, 160)];
+        AMPMPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(214, 0, 106, 160)];
         [self addSubview:AMPMPicker];
         [AMPMPicker setDelegate:self];
         [AMPMPicker setRepeatEnable:NO];
@@ -56,7 +56,7 @@
     return self;
 }
 
-- (NSInteger)numberOfRowsInPicker:(PickerView *)pickerView {
+- (NSInteger)numberOfRowsInPicker:(LoopPickerView *)pickerView {
     if (pickerView == hourPicker) {
         return 12;
     }
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)selector:(PickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
+- (void)selector:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     NSLog(@"Selected index %d",index);
 }
 
