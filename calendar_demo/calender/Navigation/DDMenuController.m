@@ -107,7 +107,7 @@
     if (gesture.state == UIGestureRecognizerStateBegan) {
         
         [self showShadow:YES];
-        _panOriginX = self.view.frame.origin.x;
+        _panOriginX = _root.view.frame.origin.x;
         _panVelocity = CGPointMake(0.0f, 0.0f);
         
         if([gesture velocityInView:self.view].x > 0) {
@@ -115,7 +115,6 @@
         } else {
             _panDirection = DDMenuPanDirectionLeft;
         }
-        
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
@@ -129,49 +128,27 @@
         CGPoint translation = [gesture translationInView:self.view];
         CGRect frame = _root.view.frame;
         frame.origin.x = _panOriginX + translation.x;
-        
-        if (frame.origin.x > 0.0f && !_menuFlags.showingLeftView) {
-            
-            if(_menuFlags.showingRightView) {
-                _menuFlags.showingRightView = NO;
-                [self.rightViewController.view removeFromSuperview];
-            }
-            
-            if (_menuFlags.canShowLeft) {
-                
-                _menuFlags.showingLeftView = YES;
-                CGRect frame = self.view.bounds;
-				frame.size.width = kMenuFullWidth;
-                self.leftViewController.view.frame = frame;
-                [self.view insertSubview:self.leftViewController.view atIndex:0];
-                
-            } else {
-                frame.origin.x = 0.0f; // ignore right view if it's not set
-            }
-            
-        } else if (frame.origin.x < 0.0f && !_menuFlags.showingRightView) {
-            
-            if(_menuFlags.showingLeftView) {
-                _menuFlags.showingLeftView = NO;
-                [self.leftViewController.view removeFromSuperview];
-            }
-            
-            if (_menuFlags.canShowRight) {
-                
-                _menuFlags.showingRightView = YES;
-                CGRect frame = self.view.bounds;
-				frame.origin.x += frame.size.width - kMenuFullWidth;
-				frame.size.width = kMenuFullWidth;
-                self.rightViewController.view.frame = frame;
-                [self.view insertSubview:self.rightViewController.view atIndex:0];
-                
-            } else {
-                frame.origin.x = 0.0f; // ignore left view if it's not set
-            }
-            
+        if (!_menuFlags.showingLeftView) {
+             if (frame.origin.x > 0.0f)
+             {
+                 if(_menuFlags.showingRightView) {
+                     _menuFlags.showingRightView = NO;
+                     [self.rightViewController.view removeFromSuperview];
+                 }
+                 _menuFlags.showingLeftView = YES;
+                 CGRect frame = self.view.bounds;
+                 frame.size.width = kMenuFullWidth;
+                 self.leftViewController.view.frame = frame;
+                 [self.view insertSubview:self.leftViewController.view atIndex:0];
+                 
+                 _root.view.frame = frame;
+             }
+        }
+        else
+        {
+            _root.view.frame = frame;
         }
         
-        _root.view.frame = frame;
         
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
         
@@ -326,13 +303,16 @@
 //}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if ([touch.view isKindOfClass:[KalTileView class]] ||
-        [touch.view isKindOfClass:[KalWeekGridView class]] ||
-        [touch.view isKindOfClass:[KalWeekView class]] ||
-        [touch.view isKindOfClass:[KalGridView class]] ||
-        [touch.view isKindOfClass:[KalMonthView class]] ||
-        [touch.view isKindOfClass:[KalView class]]) {
-        return NO; // ignore the touch in these views
+    if(_menuFlags.showingLeftView == NO && _menuFlags.showingRightView == NO)
+    {
+        if ([touch.view isKindOfClass:[KalTileView class]] ||
+            [touch.view isKindOfClass:[KalWeekGridView class]] ||
+            [touch.view isKindOfClass:[KalWeekView class]] ||
+            [touch.view isKindOfClass:[KalGridView class]] ||
+            [touch.view isKindOfClass:[KalMonthView class]] ||
+            [touch.view isKindOfClass:[KalView class]]) {
+            return NO; // ignore the touch in these views
+        }
     }
     return YES;
 }
