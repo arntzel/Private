@@ -99,8 +99,6 @@
 }
 
 - (void)tapGestureRecognizer:(UITapGestureRecognizer*)gesture {
-    
-    [gesture setEnabled:NO];
     [self showRootController:YES];
 }
 
@@ -284,10 +282,17 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    
     // Check for horizontal pan gesture
     if (gestureRecognizer == _pan) {
-        
+        CGPoint pointInRoot = [gestureRecognizer locationInView:_root.view];
+        if (CGRectContainsPoint(_root.view.bounds, pointInRoot)) {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+        /*
         UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer*)gestureRecognizer;
         CGPoint translation = [panGesture translationInView:self.view];
         
@@ -296,6 +301,7 @@
         }
         
         return NO;
+         */
     }
     
     if (gestureRecognizer == _tap) {
@@ -312,25 +318,23 @@
     
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    if (gestureRecognizer==_tap) {
-        return YES;
-    }
-    return NO;
-}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//    if (gestureRecognizer==_tap) {
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // test if our control subview is on-screen
     if ([touch.view isKindOfClass:[KalTileView class]] ||
         [touch.view isKindOfClass:[KalWeekGridView class]] ||
         [touch.view isKindOfClass:[KalWeekView class]] ||
         [touch.view isKindOfClass:[KalGridView class]] ||
         [touch.view isKindOfClass:[KalMonthView class]] ||
         [touch.view isKindOfClass:[KalView class]]) {
-        // we touched our control surface
-        return NO; // ignore the touch
+        return NO; // ignore the touch in these views
     }
-    return YES; // handle the touch
+    return YES;
 }
 
 
@@ -351,7 +355,6 @@
 - (void)showRootController:(BOOL)animated {
     
     [_tap setEnabled:NO];
-    _root.view.userInteractionEnabled = YES;
     
     CGRect frame = _root.view.frame;
     frame.origin.x = 0.0f;
@@ -413,7 +416,6 @@
         [UIView setAnimationsEnabled:NO];
     }
     
-    _root.view.userInteractionEnabled = NO;
     [UIView animateWithDuration:.3 animations:^{
         _root.view.frame = frame;
     } completion:^(BOOL finished) {
@@ -451,7 +453,6 @@
         [UIView setAnimationsEnabled:NO];
     }
     
-    _root.view.userInteractionEnabled = NO;
     [UIView animateWithDuration:.3 animations:^{
         _root.view.frame = frame;
     } completion:^(BOOL finished) {
