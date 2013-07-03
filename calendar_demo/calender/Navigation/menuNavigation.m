@@ -119,16 +119,16 @@
 {
     if (indexPath.section == 0) {
         
-        navigationMenuCell *cell = nil;
-        if (cell == nil) {
-            NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
-            cell = [nib objectAtIndex:0];
-        } 
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationMenuCell" owner:self options:nil] ;
+        navigationMenuCell * cell = [nib objectAtIndex:0];
         
         if(indexPath.row == 2) {
             
             NSString * headerUrl = [[UserModel getInstance] getLoginUser].avatar_url;
             
+            cell.iconImageView.layer.cornerRadius = cell.iconImageView.frame.size.width/2;
+            cell.iconImageView.layer.masksToBounds = YES;
+
             if([headerUrl isKindOfClass: [NSNull class]]) {
                 cell.iconImageView.image = [UIImage imageNamed:@"header.png"];
             } else {

@@ -127,6 +127,9 @@
 		3DF520CE1782B56C009C3BCD /* PendingEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */; };
 		3DF520D51782D6EB009C3BCD /* PendingEventViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF520D41782D6EB009C3BCD /* PendingEventViewCell2.m */; };
 		3DF520D71782D8CA009C3BCD /* PendingEventViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520D61782D8CA009C3BCD /* PendingEventViewCell2.xib */; };
+		3DF520DA17841024009C3BCD /* PullRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF520D917841024009C3BCD /* PullRefreshTableView.m */; };
+		3DF520DD1784117B009C3BCD /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520DB1784117B009C3BCD /* arrow.png */; };
+		3DF520DE1784117B009C3BCD /* pull_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520DC1784117B009C3BCD /* pull_arrow.png */; };
 		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
 		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
 		76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A1B1771F40A00781166 /* AddEventViewController.m */; };
@@ -500,6 +503,10 @@
 		3DF520D31782D6EB009C3BCD /* PendingEventViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventViewCell2.h; sourceTree = "<group>"; };
 		3DF520D41782D6EB009C3BCD /* PendingEventViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventViewCell2.m; sourceTree = "<group>"; };
 		3DF520D61782D8CA009C3BCD /* PendingEventViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell2.xib; sourceTree = "<group>"; };
+		3DF520D817841024009C3BCD /* PullRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableView.h; sourceTree = "<group>"; };
+		3DF520D917841024009C3BCD /* PullRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableView.m; sourceTree = "<group>"; };
+		3DF520DB1784117B009C3BCD /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		3DF520DC1784117B009C3BCD /* pull_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull_arrow.png; sourceTree = "<group>"; };
 		761F0D1A1754E031009650F4 /* GPlaceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceApi.h; sourceTree = "<group>"; };
 		761F0D1B1754E031009650F4 /* GPlaceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceApi.m; sourceTree = "<group>"; };
 		761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceDataSource.h; sourceTree = "<group>"; };
@@ -1149,6 +1156,8 @@
 		76DD62B01768AEF900C8F6AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3DF520D817841024009C3BCD /* PullRefreshTableView.h */,
+				3DF520D917841024009C3BCD /* PullRefreshTableView.m */,
 				76DD62B11768AEF900C8F6AF /* AttributedLabel.h */,
 				76DD62B21768AEF900C8F6AF /* AttributedLabel.m */,
 			);
@@ -1172,6 +1181,8 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3DF520DB1784117B009C3BCD /* arrow.png */,
+				3DF520DC1784117B009C3BCD /* pull_arrow.png */,
 				3D15409F177E6C0C0015B475 /* calvin@2x.png */,
 				942758F7177D335100B55F75 /* arrow_right.png */,
 				942758F8177D335100B55F75 /* arrow_right@2x.png */,
@@ -1462,6 +1473,8 @@
 				3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */,
 				3DF520CE1782B56C009C3BCD /* PendingEventHeader.xib in Resources */,
 				3DF520D71782D8CA009C3BCD /* PendingEventViewCell2.xib in Resources */,
+				3DF520DD1784117B009C3BCD /* arrow.png in Resources */,
+				3DF520DE1784117B009C3BCD /* pull_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1576,6 +1589,7 @@
 				941396DE1781AD75007D598B /* BaseMenuViewController.m in Sources */,
 				3DF520D51782D6EB009C3BCD /* PendingEventViewCell2.m in Sources */,
 				94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */,
+				3DF520DA17841024009C3BCD /* PullRefreshTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
