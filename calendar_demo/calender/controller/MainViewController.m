@@ -49,18 +49,14 @@
     return self;
 }
 
+- (void)showLeftController:(BOOL)animated {
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [super showLeftController:animated];
+
+    feedViewCtr.navigation.unreadCount.hidden = YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - FeedViewControllerDelegate
 -(void)onBtnMenuClick {

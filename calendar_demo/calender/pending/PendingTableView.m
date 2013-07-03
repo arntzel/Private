@@ -48,7 +48,7 @@
 
     sectionHeader = @"";
 
-    self.backgroundColor = [UIColor grayColor];
+    //self.backgroundColor = [UIColor grayColor];
     self.headerEnabled = YES;
     self.tailerEnabled = NO;
     //self.scrollEnabled = NO;
@@ -57,10 +57,10 @@
     self.delegate = self;
     
     
-    pullDesc = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds),  30)];
-    pullDesc.text = @"下拉获取数据";
+    pullDesc = [[UILabel alloc] initWithFrame:CGRectMake(0, -30, CGRectGetWidth(self.bounds),  30)];
+    pullDesc.text = @"下拉获取数据...";
     pullDesc.textAlignment = UITextAlignmentCenter;
-    pullDesc.center = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2 - 22);
+    //pullDesc.center = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2 - 22);
     pullDesc.hidden = YES;
     
     [self addSubview:pullDesc];
@@ -84,18 +84,22 @@
 - (void)pullStarted
 {
     
-   pullDesc.hidden = YES;
+   //pullDesc.hidden = YES;
     
 }
 
 - (void)pullCancelled
 {
-    pullDesc.hidden = YES;
+    //pullDesc.hidden = YES;
 
 }
 - (void)doStartLoad:(BOOL)head
 {
     //self.pullDesc.hidden = YES;
+
+    if(self.dataDalegate) {
+        [self.dataDalegate onStartLoadData];
+    }
 }
 
 

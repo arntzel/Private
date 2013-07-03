@@ -166,6 +166,17 @@ enum {
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    self = [super initWithFrame:frame style:style];
+    if (self) {
+        self.upTimes = 0;
+        self.downTimes = 0;
+        [self addPullHeader];
+        [self addPullTailer];
+    }
+    return self;
+}
 
 - (void)reloadData
 {
@@ -195,9 +206,9 @@ enum {
 - (void)addPullHeader
 {
     header = [[MRPullView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT + 6, 320, REFRESH_HEADER_HEIGHT)];
-    header.pullText = [NSString stringWithFormat:@"下拉可以更新..."];
-    header.releaseText = [NSString stringWithFormat:@"释放立即刷新..."];
-    header.loadingText = [NSString stringWithFormat:@"加载中..."];
+    header.pullText = [NSString stringWithFormat:@"Pull to refresh..."];
+    header.releaseText = [NSString stringWithFormat:@"Release to refresh..."];
+    header.loadingText = [NSString stringWithFormat:@"Loading..."];
     header.isHeader = YES;
     [self addSubview:header];
 }
@@ -294,8 +305,6 @@ enum {
 #pragma mark * UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"scrollViewWillBeginDragging");
-    
     if (header.isLoading || tailer.isLoading) {
         return;
     }
@@ -305,9 +314,7 @@ enum {
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
-   NSLog(@"scrollViewDidScroll");
-    
+
 #if 0
     if (header.isLoading) {
         // Update the content inset, good for section headers
@@ -351,9 +358,6 @@ enum {
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    
-    NSLog(@"scrollViewDidEndDragging");
-    
     if (header.isLoading || tailer.isLoading) {
         return;
     }

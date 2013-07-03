@@ -11,7 +11,7 @@
 #import "UserModel.h"
 #import "Model.h"
 
-@interface PedingEventViewController ()
+@interface PedingEventViewController () <PendingTableViewDalegate>
 
 @end
 
@@ -21,7 +21,7 @@
     PendingTableView * table1;
     PendingTableView * table2;
 
-    UIActivityIndicatorView * indicator;
+    //UIActivityIndicatorView * indicator;
 
 
     //Data Model
@@ -76,23 +76,28 @@
     [self.view addSubview:table2];
 
 
-    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.center = self.view.center;
-    indicator.hidesWhenStopped = YES;
-    [self.view addSubview:indicator];
+    //indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //indicator.center = self.view.center;
+    //indicator.hidesWhenStopped = YES;
+    //[self.view addSubview:indicator];
 
     table1.hidden = NO;
     table2.hidden = YES;
+
+    table1.dataDalegate = self;
+    table2.dataDalegate = self;
+
+    [table1 startHeaderLoading];
     
-    [self loadData];
+    //[self loadData];
 }
 
 -(void) loadData
 {
-    [indicator startAnimating];
+    //[indicator startAnimating];
 
     [[Model getInstance] getEventsOfPending:^(NSInteger error, NSArray *events) {
-        [indicator stopAnimating];
+        //[indicator stopAnimating];
         NSLog(@"getEventsOfPending callback");
 
         if(error == 0) {
@@ -143,7 +148,10 @@
 
     [table1 setCompletedEvents:yourCompletedEvents andPendingEvents:yourPendingEvents];
     [table2 setCompletedEvents:invitedCompletedEvents andPendingEvents:invitedPedingEvents];
-    
+
+    [table1 stopPullLoading];
+    [table2 stopPullLoading];
+
     [table1 reloadData];
     [table2 reloadData];
 }
@@ -164,6 +172,12 @@
         table1.hidden = YES;
         table2.hidden = NO;
     }
+}
+
+
+-(void) onStartLoadData
+{
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
