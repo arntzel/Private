@@ -36,23 +36,20 @@ typedef enum {
     CGPoint _panVelocity;
     DDMenuPanDirection _panDirection;
 
-    
     MenuFlag *_menuFlags;
 }
 
 @property(nonatomic, strong) MenuFlag *menuFlags;
 
 @property(nonatomic,strong) UIViewController *leftViewController;
-@property(nonatomic,strong) UIViewController *rightViewController;
 @property(nonatomic,strong) UIViewController *rootViewController;
 
 @property(nonatomic,readonly) UITapGestureRecognizer *tap;
 @property(nonatomic,readonly) UIPanGestureRecognizer *pan;
 
 - (id)initWithRootViewController:(UIViewController*)controller;
-- (void)setRootController:(UIViewController *)controller animated:(BOOL)animated; // used to push a new controller on the stack
-- (void)showRootController:(BOOL)animated; // reset to "home" view controller
-- (void)showRightController:(BOOL)animated;  // show right
-- (void)showLeftController:(BOOL)animated;  // show left
+- (void)setRootController:(UIViewController *)controller animated:(BOOL)animated;
+- (void)showRootController:(BOOL)animated;
+- (void)showLeftController:(BOOL)animated;
 
 @end
