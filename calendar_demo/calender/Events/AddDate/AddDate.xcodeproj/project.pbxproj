@@ -22,7 +22,8 @@
 		76744BF11775DA3400CCA133 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BF01775DA3400CCA133 /* ViewController.m */; };
 		76744BF41775DA3400CCA133 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF21775DA3400CCA133 /* ViewController_iPhone.xib */; };
 		76744BF71775DA3400CCA133 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76744BF51775DA3400CCA133 /* ViewController_iPad.xib */; };
-		76744BFF1775DC9600CCA133 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* PickerView.m */; };
+		76744BFF1775DC9600CCA133 /* LoopPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76744BFE1775DC9600CCA133 /* LoopPickerView.m */; };
+		76796B7317846D92003A54E9 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76796B7217846D92003A54E9 /* PickerView.m */; };
 		768F20B217828F0700A9D869 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 768F20B117828F0700A9D869 /* TimePicker.m */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +50,10 @@
 		76744BF01775DA3400CCA133 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		76744BF31775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		76744BF61775DA3400CCA133 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		76744BFD1775DC9600CCA133 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
-		76744BFE1775DC9600CCA133 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
+		76744BFD1775DC9600CCA133 /* LoopPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopPickerView.h; sourceTree = "<group>"; };
+		76744BFE1775DC9600CCA133 /* LoopPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopPickerView.m; sourceTree = "<group>"; };
+		76796B7117846D92003A54E9 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
+		76796B7217846D92003A54E9 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 		768F20B017828F0700A9D869 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		768F20B117828F0700A9D869 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,8 +102,10 @@
 		76744BDD1775DA3400CCA133 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
-				76744BFD1775DC9600CCA133 /* PickerView.h */,
-				76744BFE1775DC9600CCA133 /* PickerView.m */,
+				76796B7117846D92003A54E9 /* PickerView.h */,
+				76796B7217846D92003A54E9 /* PickerView.m */,
+				76744BFD1775DC9600CCA133 /* LoopPickerView.h */,
+				76744BFE1775DC9600CCA133 /* LoopPickerView.m */,
 				768F20B017828F0700A9D869 /* TimePicker.h */,
 				768F20B117828F0700A9D869 /* TimePicker.m */,
 				760B7D5E17823A7E00669ECD /* DuringTimePicker.h */,
@@ -204,10 +209,11 @@
 				76744BE41775DA3400CCA133 /* main.m in Sources */,
 				76744BE81775DA3400CCA133 /* AppDelegate.m in Sources */,
 				76744BF11775DA3400CCA133 /* ViewController.m in Sources */,
-				76744BFF1775DC9600CCA133 /* PickerView.m in Sources */,
+				76744BFF1775DC9600CCA133 /* LoopPickerView.m in Sources */,
 				767272631777225E006A74FF /* CustomPickerCell.m in Sources */,
 				760B7D6017823A7E00669ECD /* DuringTimePicker.m in Sources */,
 				768F20B217828F0700A9D869 /* TimePicker.m in Sources */,
+				76796B7317846D92003A54E9 /* PickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
