@@ -124,26 +124,30 @@
         
         _panVelocity = velocity;
         CGPoint translation = [gesture translationInView:self.view];
+
         CGRect frame = _root.view.frame;
         frame.origin.x = _panOriginX + translation.x;
-        if (!_menuFlags.showingLeftView) {
-             if (frame.origin.x > 0.0f)
-             {
-                 _menuFlags.showingLeftView = YES;
-                 CGRect frame = self.view.bounds;
-                 frame.size.width = kMenuFullWidth;
-                 self.leftViewController.view.frame = frame;
-                 [self.view insertSubview:self.leftViewController.view atIndex:0];
-                 
-                 _root.view.frame = frame;
-             }
+        
+        if (frame.origin.x > 0.0f)
+        {
+            if (!_menuFlags.showingLeftView) {
+                
+                _menuFlags.showingLeftView = YES;
+                CGRect frame = self.view.bounds;
+                frame.size.width = kMenuFullWidth;
+                self.leftViewController.view.frame = frame;
+                [self.view insertSubview:self.leftViewController.view atIndex:0];
+                
+            }
+
+            _root.view.frame = frame;
         }
         else
         {
+            frame.origin.x = 0;
             _root.view.frame = frame;
         }
-        
-        
+
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
         
         //  Finishing moving to left, right or root view with current pan velocity
@@ -342,6 +346,10 @@
 }
 
 - (void)showLeftController:(BOOL)animated {
+    if (_menuFlags.showingLeftView == YES && animated) {
+        [self showRootController:YES];
+        return;
+    }
     _menuFlags.showingLeftView = YES;
     [self showShadow:YES];
     
