@@ -124,11 +124,9 @@
 		3DB97808174A1424005B462E /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97806174A1424005B462E /* EventView.m */; };
 		3DB97809174A1424005B462E /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB97807174A1424005B462E /* EventView.xib */; };
 		3DB9780E174A2832005B462E /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9780D174A2832005B462E /* FeedViewController.m */; };
-		3DE06C8D174083F40071B8EE /* CalendarIntegrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8C174083F40071B8EE /* CalendarIntegrationView.xib */; };
 		3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8E174086310071B8EE /* bg_line1@2x.png */; };
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
-		3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */; };
 		3DF520CE1782B56C009C3BCD /* PendingEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */; };
 		3DF520D51782D6EB009C3BCD /* PendingEventViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF520D41782D6EB009C3BCD /* PendingEventViewCell2.m */; };
 		3DF520D71782D8CA009C3BCD /* PendingEventViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520D61782D8CA009C3BCD /* PendingEventViewCell2.xib */; };
@@ -224,6 +222,9 @@
 		945D3FC51779DB3400333ECD /* google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC21779DB3400333ECD /* google@2x.png */; };
 		945D3FC81779DBDA00333ECD /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */; };
 		946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 946372F7178474BC00041B0E /* FeedEventTableView.m */; };
+		94901DF31785B63000848ACA /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94901DF21785B63000848ACA /* EventFilterView.m */; };
+		94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF51785B68B00848ACA /* EventFilterView.xib */; };
+		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
 		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
 		94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D43544177DC469009B20F3 /* EventPendingToolbar.xib */; };
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
@@ -504,12 +505,9 @@
 		3DB97807174A1424005B462E /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		3DB9780C174A2832005B462E /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		3DB9780D174A2832005B462E /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
-		3DE06C8C174083F40071B8EE /* CalendarIntegrationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarIntegrationView.xib; sourceTree = "<group>"; };
 		3DE06C8E174086310071B8EE /* bg_line1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line1@2x.png"; sourceTree = "<group>"; };
 		3DE06C8F174086310071B8EE /* btn_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok@2x.png"; sourceTree = "<group>"; };
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
-		3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarIntegrationView.h; sourceTree = "<group>"; };
-		3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarIntegrationView.m; sourceTree = "<group>"; };
 		3DF520CD1782B56C009C3BCD /* PendingEventHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventHeader.xib; sourceTree = "<group>"; };
 		3DF520D31782D6EB009C3BCD /* PendingEventViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingEventViewCell2.h; sourceTree = "<group>"; };
 		3DF520D41782D6EB009C3BCD /* PendingEventViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingEventViewCell2.m; sourceTree = "<group>"; };
@@ -649,6 +647,10 @@
 		945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
 		946372F6178474BC00041B0E /* FeedEventTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventTableView.h; sourceTree = "<group>"; };
 		946372F7178474BC00041B0E /* FeedEventTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableView.m; sourceTree = "<group>"; };
+		94901DF11785B63000848ACA /* EventFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFilterView.h; sourceTree = "<group>"; };
+		94901DF21785B63000848ACA /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
+		94901DF51785B68B00848ACA /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
+		94901DF71785C06100848ACA /* btn_ok_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok_selected@2x.png"; sourceTree = "<group>"; };
 		94D43542177DC469009B20F3 /* EventPendingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingToolbar.h; sourceTree = "<group>"; };
 		94D43543177DC469009B20F3 /* EventPendingToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingToolbar.m; sourceTree = "<group>"; };
 		94D43544177DC469009B20F3 /* EventPendingToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPendingToolbar.xib; sourceTree = "<group>"; };
@@ -824,12 +826,12 @@
 				940EBBC1173E6C70001C3B44 /* Navigation.xib */,
 				940EBBC3173E6CA5001C3B44 /* Navigation.h */,
 				940EBBC4173E6CA5001C3B44 /* Navigation.m */,
-				3DE06C8C174083F40071B8EE /* CalendarIntegrationView.xib */,
-				3DE06C9417408C710071B8EE /* CalendarIntegrationView.h */,
-				3DE06C9517408C710071B8EE /* CalendarIntegrationView.m */,
 				3D046E241762C0D8008EE2DA /* LoginView.h */,
 				3D046E251762C0D8008EE2DA /* LoginView.m */,
 				3D046E271762C0EB008EE2DA /* LoginView.xib */,
+				94901DF11785B63000848ACA /* EventFilterView.h */,
+				94901DF21785B63000848ACA /* EventFilterView.m */,
+				94901DF51785B68B00848ACA /* EventFilterView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1208,35 +1210,36 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				3D9B24AF1785260A00689916 /* pending */,
 				3DF520DB1784117B009C3BCD /* arrow.png */,
-				3DF520DC1784117B009C3BCD /* pull_arrow.png */,
-				3D15409F177E6C0C0015B475 /* calvin@2x.png */,
 				942758F7177D335100B55F75 /* arrow_right.png */,
 				942758F8177D335100B55F75 /* arrow_right@2x.png */,
-				945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */,
-				945D3FC01779DB3400333ECD /* email@2x.png */,
-				945D3FC21779DB3400333ECD /* google@2x.png */,
-				943090221770985000266515 /* colordot */,
-				943090201770932900266515 /* clock.png */,
+				940EBBCD173E7EC8001C3B44 /* attendees.png */,
+				3DE06C8E174086310071B8EE /* bg_line1@2x.png */,
+				3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */,
+				940EBBBB173E6C32001C3B44 /* bg_nav@2x.png */,
+				940EBBC6173E71C0001C3B44 /* bg_section_header.png */,
+				940EBBBC173E6C32001C3B44 /* btn_add@2x.png */,
+				3D046E1E1762C091008EE2DA /* btn_login@2x.png */,
 				3D046E1C1762C091008EE2DA /* btn_login_fb@2x.png */,
 				3D046E1D1762C091008EE2DA /* btn_login_google@2x.png */,
-				3D046E1E1762C091008EE2DA /* btn_login@2x.png */,
-				3D046E1F1762C091008EE2DA /* login_background@2x.png */,
-				3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */,
-				3DE06C8E174086310071B8EE /* bg_line1@2x.png */,
+				940EBBBD173E6C32001C3B44 /* btn_menu@2x.png */,
 				3DE06C8F174086310071B8EE /* btn_ok@2x.png */,
-				940EBBD5173E8033001C3B44 /* header_mask.png */,
-				940EBBD6173E8033001C3B44 /* header.png */,
-				940EBBCD173E7EC8001C3B44 /* attendees.png */,
+				94901DF71785C06100848ACA /* btn_ok_selected@2x.png */,
+				3D15409F177E6C0C0015B475 /* calvin@2x.png */,
 				940EBBCE173E7EC8001C3B44 /* circle.png */,
 				940EBBCF173E7EC8001C3B44 /* circle2.png */,
-				940EBBD0173E7EC8001C3B44 /* location.png */,
-				940EBBC6173E71C0001C3B44 /* bg_section_header.png */,
+				943090201770932900266515 /* clock.png */,
+				943090221770985000266515 /* colordot */,
 				940EBBC7173E71C0001C3B44 /* dot.png */,
-				940EBBBB173E6C32001C3B44 /* bg_nav@2x.png */,
-				940EBBBC173E6C32001C3B44 /* btn_add@2x.png */,
-				940EBBBD173E6C32001C3B44 /* btn_menu@2x.png */,
+				945D3FC01779DB3400333ECD /* email@2x.png */,
+				945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */,
+				945D3FC21779DB3400333ECD /* google@2x.png */,
+				940EBBD6173E8033001C3B44 /* header.png */,
+				940EBBD5173E8033001C3B44 /* header_mask.png */,
+				940EBBD0173E7EC8001C3B44 /* location.png */,
+				3D046E1F1762C091008EE2DA /* login_background@2x.png */,
+				3D9B24AF1785260A00689916 /* pending */,
+				3DF520DC1784117B009C3BCD /* pull_arrow.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1431,7 +1434,6 @@
 				940EBBD4173E7EC8001C3B44 /* location.png in Resources */,
 				940EBBD7173E8033001C3B44 /* header_mask.png in Resources */,
 				940EBBD8173E8033001C3B44 /* header.png in Resources */,
-				3DE06C8D174083F40071B8EE /* CalendarIntegrationView.xib in Resources */,
 				3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */,
 				3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */,
 				3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */,
@@ -1508,6 +1510,8 @@
 				3D9B24B71785260A00689916 /* tab1.png in Resources */,
 				3D9B24B81785260A00689916 /* tab2.png in Resources */,
 				3D9B24B91785260A00689916 /* tab_bg.png in Resources */,
+				94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */,
+				94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,7 +1539,6 @@
 				76C22D86173FCD3000AC7519 /* KalWeekGridView.m in Sources */,
 				76C22D87173FCD3000AC7519 /* KalWeekView.m in Sources */,
 				76C22D88173FCD3000AC7519 /* UIViewAdditions.m in Sources */,
-				3DE06C9617408C710071B8EE /* CalendarIntegrationView.m in Sources */,
 				3DB97804174A1187005B462E /* Model.m in Sources */,
 				3DB97808174A1424005B462E /* EventView.m in Sources */,
 				3DB9780E174A2832005B462E /* FeedViewController.m in Sources */,
@@ -1624,6 +1627,7 @@
 				94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */,
 				3DF520DA17841024009C3BCD /* PullRefreshTableView.m in Sources */,
 				946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */,
+				94901DF31785B63000848ACA /* EventFilterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

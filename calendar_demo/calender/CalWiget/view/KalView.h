@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "KalWeekGridView.h"
-#import "CalendarIntegrationView.h"
+#import "EventFilterView.h"
 #import "KalGridView.h"
 
 @class KalGridView, KalLogic, KalDate;

@@ -36,6 +36,8 @@
     FeedEventTableView * tableView;
    
     EventModel * eventModel;
+
+    EventFilterView * filterView;
     
     int selectedYear;
     int selectedMonth;
@@ -99,6 +101,14 @@
 
     //[self loadData:selectedYear andMonth:selectedMonth];
     [tableView startHeaderLoading];
+
+
+    filterView = [EventFilterView createView];
+
+    frame = filterView.frame;
+    frame.origin.y = self.view.bounds.size.height - frame.size.height;
+    filterView.frame = frame;
+    [self.view addSubview:filterView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
