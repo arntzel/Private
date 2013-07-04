@@ -255,7 +255,14 @@ enum {
     [UIView setAnimationDuration:0.3];
     [pull startLoading];
     self.contentInset = insets;
-    self.contentOffset = CGPointMake(0, pull.frame.origin.y);
+    
+    if(pull.frame.origin.y<0 && self.contentOffset.y > pull.frame.origin.y) {
+        
+        self.contentOffset = CGPointMake(0, pull.frame.origin.y);
+        
+    }
+    
+    
     [UIView commitAnimations];
 
     // Refresh action!
