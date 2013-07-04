@@ -7,14 +7,15 @@
 //
 
 #import "PickerView.h"
+#import "CustomPickerCell.h"
+
+#define CellHeight 40
 
 @interface PickerView()<UIScrollViewDelegate>
 {
-    CGFloat heightPerRow;
-    NSInteger allRowNumber;
-    NSInteger effectRowNumber;
-    
+    NSInteger rowNumber;
     UIScrollView *scrollView;
+    NSMutableArray *itemArray;
 }
 @end
 
@@ -25,9 +26,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        heightPerRow = 1.0f;
-        allRowNumber = 1;
-        effectRowNumber = 1;
+        rowNumber = 1;
+        
+        itemArray = [[NSMutableArray alloc] init];
         
         scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollView];
@@ -43,6 +44,8 @@
 - (void)dealloc
 {
     [scrollView release];
+    [itemArray release];
+    
     [super dealloc];
 }
 
@@ -53,9 +56,47 @@
 
 - (void)reloadData
 {
-    heightPerRow = [self.delegate heightPerRowInPicker:self];
-    effectRowNumber = [self.delegate numberOfRowsInPicker:self];
-    NSInteger noEffectRowNumber = ceil(self.bounds.size.height / heightPerRow);
-    allRowNumber = effectRowNumber + noEffectRowNumber - 1;
+    rowNumber = [self.delegate numberOfRowsInPicker:self];
+    
+    for (UIView *view in itemArray)
+    {
+        [view removeFromSuperview];
+    }
+    [itemArray removeAllObjects];
+    
+    CGFloat offsetY = (self.bounds.size.height - CellHeight) / 2;
+    CGRect frame = CGRectMake(0, offsetY, self.bounds.size.width, CellHeight);
+    for (NSInteger index = 0; index < rowNumber; index++) {
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"CustomPickerCell" owner:self options:nil];
+        CustomPickerCell *cell = (CustomPickerCell *)[nib objectAtIndex:0];
+        [itemArray addObject:cell];
+        frame.origin.y += CellHeight;
+        [scrollView addSubview:cell];
+        [cell setFrame:frame];
+        
+        cell.labValue.text = [NSString stringWithFormat:@"%d",index];
+        cell.labUnit.text = @"min";
+        
+        [cell initUI];
+    }
+    
+    [scrollView setContentSize:CGSizeMake(self.bounds.size.width, CellHeight * rowNumber + offsetY * 2)];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self scrollToTheSelectedCell];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        [self scrollToTheSelectedCell];
+    }
+}
+
+- (void)scrollToTheSelectedCell
+{
+    [self.delegate Picker:self didSelectRowAtIndex:1];
 }
 @end

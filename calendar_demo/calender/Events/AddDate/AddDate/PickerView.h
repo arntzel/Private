@@ -7,25 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerViewProtocal.h"
 
 
-@class PickerView;
+@interface PickerView : UIView<PickerViewProtocal>
 
-@protocol PickerViewDelegate <NSObject>
-
-- (void)selector:(PickerView *)PickerView didSelectRowAtIndex:(NSInteger)index;
-- (NSInteger)numberOfRowsInPicker:(PickerView *)picker;
-
-- (CGFloat)heightPerRowInPicker:(PickerView *)picker;
-
-@end
-
-@protocol PickerViewDataSource <NSObject>
-
-@end
-
-@interface PickerView : UIView
 @property (nonatomic,assign) id <PickerViewDelegate> delegate;
+@property (nonatomic,assign) NSString *UnitString;
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation;

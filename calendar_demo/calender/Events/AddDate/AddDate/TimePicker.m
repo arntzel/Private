@@ -9,7 +9,7 @@
 #import "TimePicker.h"
 #import "LoopPickerView.h"
 
-@interface TimePicker()<PickerViewDataSource,LoopPickerViewDelegate>
+@interface TimePicker()<PickerViewDelegate>
 {
     LoopPickerView *hourPicker;
     LoopPickerView *minPicker;
@@ -32,7 +32,6 @@
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, 0, 106, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
-        [hourPicker setRepeatEnable:YES];
         [hourPicker setUnitString:@"hours"];
         [hourPicker reloadData];
         [hourPicker scrollToIndex:6 WithAnimation:NO];
@@ -40,7 +39,6 @@
         minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(107, 0, 106, 160)];
         [self addSubview:minPicker];
         [minPicker setDelegate:self];
-        [minPicker setRepeatEnable:YES];
         [minPicker setUnitString:@"minutes"];
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];
@@ -48,7 +46,6 @@
         AMPMPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(214, 0, 106, 160)];
         [self addSubview:AMPMPicker];
         [AMPMPicker setDelegate:self];
-        [AMPMPicker setRepeatEnable:NO];
         [AMPMPicker setUnitString:@""];
         [AMPMPicker reloadData];
         [AMPMPicker scrollToIndex:1 WithAnimation:NO];
@@ -70,7 +67,7 @@
     }
 }
 
-- (void)selector:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
+- (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     NSLog(@"Selected index %d",index);
 }
 
