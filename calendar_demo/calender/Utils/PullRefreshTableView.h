@@ -27,4 +27,6 @@
 - (void)pullStarted;
 - (void)pullCancelled;
 
+-(BOOL) isLoading;
+
 @end

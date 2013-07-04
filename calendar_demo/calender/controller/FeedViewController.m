@@ -33,13 +33,8 @@
 {
     KalLogic *logic;
     KalView *calendarView;
-    
-   
-    
     FeedEventTableView * tableView;
-  
-    UIActivityIndicatorView * loadingView;
-    
+   
     EventModel * eventModel;
     
     int selectedYear;
@@ -94,13 +89,6 @@
 
     [self.view addSubview:kalView];
     self.calendarView = kalView;
-    
-
-    loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    loadingView.center = self.view.center;
-    loadingView.hidesWhenStopped = YES;
-
-    [self.view addSubview:loadingView];
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -134,7 +122,7 @@
 
             [tableView setEventModel:eventModel];
             
-            [self tableviewScroll2SelectDay];
+            //[self tableviewScroll2SelectDay];
 
             [self.calendarView setNeedsDisplay];
             
@@ -161,11 +149,10 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
-    if(!loadingView.isHidden) {
+    if([tableView isLoading]) {
         return;
     }
     
-
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
     
@@ -180,8 +167,6 @@
     if([eventModel getEventsByMonth:strmonth] == nil) {
 
         [tableView startHeaderLoading];
-
-        //[self loadData:selectedYear andMonth:selectedMonth];
         
     } else {
         [self tableviewScroll2SelectDay];

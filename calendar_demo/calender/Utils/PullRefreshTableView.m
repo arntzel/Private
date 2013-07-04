@@ -198,9 +198,14 @@ enum {
     _tailerEnabled = tailerEnabled;
 }
 
+-(BOOL) isLoading
+{
+    return header.isLoading || tailer.isLoading;
+}
+
 - (void)startHeaderLoading
 {
-    if (header.isLoading || tailer.isLoading) {
+    if ([self isLoading]) {
         return;
     }
 
@@ -250,6 +255,7 @@ enum {
     [UIView setAnimationDuration:0.3];
     [pull startLoading];
     self.contentInset = insets;
+    self.contentOffset = CGPointMake(0, pull.frame.origin.y);
     [UIView commitAnimations];
 
     // Refresh action!
@@ -320,7 +326,7 @@ enum {
 #pragma mark * UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if (header.isLoading || tailer.isLoading) {
+    if ( [self isLoading]) {
         return;
     }
     isDragging = YES;
@@ -373,7 +379,7 @@ enum {
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (header.isLoading || tailer.isLoading) {
+    if ([self isLoading]) {
         return;
     }
     isDragging = NO;
