@@ -112,6 +112,8 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventView" owner:self options:nil];
     EventView * view = (EventView*)[nibView objectAtIndex:0];
+    view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
+    view.imgUser.layer.masksToBounds = YES;
     view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
     return view;
 }

@@ -11,7 +11,7 @@
 #import "UserModel.h"
 #import "Model.h"
 
-@interface PedingEventViewController () <PullRefreshTableViewDelegate>
+@interface PedingEventViewController () <PullRefreshTableViewDelegate, EventPendingToolbarDelegate>
 
 @end
 
@@ -45,8 +45,8 @@
     int y = self.navigation.frame.size.height;
     
     toolbar = [EventPendingToolbar createView];
+    toolbar.delegate = self;
 
-    [toolbar.segmentedControl addTarget:self action:@selector(tableChange:) forControlEvents:UIControlEventValueChanged];
 
     CGRect frame = toolbar.frame;
     frame.origin.y = y;
@@ -151,11 +151,11 @@
     return event.creator.id == [[UserModel getInstance] getLoginUser].id;
 }
 
--(void)tableChange:(id)sender{
-
-    UISegmentedControl* control = (UISegmentedControl*)sender;
-
-    if(control.selectedSegmentIndex == 0) {
+-(void) onButtonSelected:(int)index
+{
+    NSLog(@"onButtonSelected:%d", index);
+    
+    if(index == 0) {
         table1.hidden = NO;
         table2.hidden = YES;
     } else {

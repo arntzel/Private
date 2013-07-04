@@ -108,18 +108,18 @@
     bg.image = [UIImage imageNamed:@"bg_section_header"];
     [view addSubview:bg];
 
-    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, 24)];
+    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(65, 0, 1, 24)];
     float colorVal = 227.0/255.0;
     line.backgroundColor = [UIColor colorWithRed:colorVal green:colorVal blue:colorVal alpha:1];
     [view addSubview:line];
 
     UIImageView * dotView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"dot"]];
-    dotView.frame = CGRectMake(54, 7, 10, 10);
+    dotView.frame = CGRectMake(60.5, 7, 10, 10);
     [view addSubview:dotView];
 
     float fontColor = 172.0/255.0;
 
-    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(68, 5, 320-68, 16)];
+    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 320-68, 16)];
     dayLabel.text = sectionName;
     dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
     dayLabel.font = [UIFont fontWithName:@"Arial" size:12];
