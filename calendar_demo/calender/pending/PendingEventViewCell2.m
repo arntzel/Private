@@ -10,6 +10,14 @@
 -(void) refreshView:(Event*) event
 {
     
+    if(event == nil) {
+        self.lableEmpty.hidden = NO;
+        return;
+    }
+    
+    self.lableEmpty.hidden = YES;
+
+    
     self.labelTitle.text = event.title;
     
     NSString * headerUrl = event.creator.avatar_url;

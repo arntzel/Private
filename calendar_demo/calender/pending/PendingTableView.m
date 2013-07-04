@@ -73,7 +73,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray * eventList = [self getEventsList:section];
-    return eventList.count;
+    int rows = eventList.count;
+    
+    return rows > 0 ? rows : 1;
 }
 
 
@@ -95,7 +97,11 @@
     int row = indexPath.row;
 
     NSArray * eventList = [self getEventsList:section];
-    Event * evt = [eventList objectAtIndex:row];
+    
+    Event * evt = nil;
+    if(eventList.count>0) {
+        evt = [eventList objectAtIndex:row];
+    } 
 
     if(section == 0) {
         PendingEventViewCell * cell = [PendingEventViewCell createView];

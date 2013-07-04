@@ -8,6 +8,8 @@
 @property IBOutlet UILabel * labelTitle;
 @property IBOutlet UILabel * labelAttendees;
 
+@property IBOutlet UILabel * lableEmpty;
+
 
 
 -(void) refreshView:(Event*) event;

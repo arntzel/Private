@@ -9,6 +9,8 @@
 @property IBOutlet UILabel * labelAttendees;
 @property IBOutlet UILabel * lableFinalTime;
 
+@property IBOutlet UILabel * lableEmpty;
+
 
 -(void) refreshView:(Event*) event;
 
