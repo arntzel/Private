@@ -56,6 +56,7 @@
 		76796B7217846D92003A54E9 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 		768F20B017828F0700A9D869 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		768F20B117828F0700A9D869 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		76FFAD831785705D00416077 /* PickerViewProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +103,7 @@
 		76744BDD1775DA3400CCA133 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
+				76FFAD831785705D00416077 /* PickerViewProtocal.h */,
 				76796B7117846D92003A54E9 /* PickerView.h */,
 				76796B7217846D92003A54E9 /* PickerView.m */,
 				76744BFD1775DC9600CCA133 /* LoopPickerView.h */,

@@ -18,7 +18,6 @@
 
 @implementation LoopPickerView
 @synthesize delegate;
-@synthesize repeatEnable;
 @synthesize UnitString;
 
 - (void)dealloc
@@ -33,7 +32,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        repeatEnable = NO;
         cellHeight = 40;
         numberOfData = 0;
         maxRepeatDataNumber = 65536;
@@ -74,27 +72,14 @@
 
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation
 {
-    if (repeatEnable)
-    {
-        NSInteger indexTo = (maxRepeatDataNumber / numberOfData) / 2 * numberOfData + index;
-        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:indexTo inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:animation];
-    }
-    else
-    {
-        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:animation];
-    }
-
+    NSInteger indexTo = (maxRepeatDataNumber / numberOfData) / 2 * numberOfData + index;
+    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:indexTo inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:animation];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     numberOfData = [self.delegate numberOfRowsInPicker:self];
-    if (repeatEnable) {
-        return maxRepeatDataNumber;
-    }
-    else
-    {
-        return numberOfData;
-    }
+    return maxRepeatDataNumber;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,16 +103,15 @@
     cell.frame = labelFrame;
     
     [cell initUI];
-    [cell setBackgroundColor:[UIColor blackColor]];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    NSInteger index = indexPath.row % numberOfData;
-    [self.delegate selector:self didSelectRowAtIndex:index];
-}
+//- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+//    NSInteger index = indexPath.row % numberOfData;
+//    [self.delegate selector:self didSelectRowAtIndex:index];
+//}
 
 #pragma mark Scroll view methods
 
@@ -163,7 +147,7 @@
         [tableView scrollToRowAtIndexPath:finalSelect atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         
         NSInteger index = finalSelect.row % numberOfData;
-        [self.delegate selector:self didSelectRowAtIndex:index];
+        [self.delegate Picker:self didSelectRowAtIndex:index];
     }
 }
 
