@@ -158,6 +158,8 @@
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
 		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
+		76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76AC4B5D1785C6CF008E0F7D /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D81173FCD3000AC7519 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6E173FCD3000AC7519 /* NSDateAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -549,6 +551,10 @@
 		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
 		7672D169177091520053D024 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		7672D16A177091520053D024 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
+		76AC4B581785B9D4008E0F7D /* FeedCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCalenderView.h; sourceTree = "<group>"; };
+		76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCalenderView.m; sourceTree = "<group>"; };
+		76AC4B5B1785C6CF008E0F7D /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
 		76C22D6A173FCD3000AC7519 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
@@ -1101,6 +1107,8 @@
 			children = (
 				76C22D67173FCD3000AC7519 /* logic */,
 				76C22D6F173FCD3000AC7519 /* view */,
+				76AC4B581785B9D4008E0F7D /* FeedCalenderView.h */,
+				76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */,
 			);
 			path = CalWiget;
 			sourceTree = "<group>";
@@ -1187,6 +1195,8 @@
 				3DF520D917841024009C3BCD /* PullRefreshTableView.m */,
 				76DD62B11768AEF900C8F6AF /* AttributedLabel.h */,
 				76DD62B21768AEF900C8F6AF /* AttributedLabel.m */,
+				76AC4B5B1785C6CF008E0F7D /* DeviceInfo.h */,
+				76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */,
 			);
 			name = Utils;
 			path = calender/Utils;
@@ -1624,6 +1634,8 @@
 				94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */,
 				3DF520DA17841024009C3BCD /* PullRefreshTableView.m in Sources */,
 				946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */,
+				76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */,
+				76AC4B5D1785C6CF008E0F7D /* DeviceInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,22 +4,10 @@
 #import "KalLogic.h"
 #import "KalPrivate.h"
 
-#define WEEK_MODE 0
-#define MONTH_MODE 1
-#define LIST_MODE 2
-
 @interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate>
 {
-    UIView * _contentView;
-    NSInteger KalMode;
     UIView *headerView;
-    UIScrollView *eventView;
-    
-    CGPoint lastPanPoint;
-    CGRect orgFrame;
 }
-
-- (void)addSubviewsToContentView:(UIView *)contentView;
 @end
 
 extern const CGSize kTileSize;
@@ -28,10 +16,13 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 @implementation KalView
 @synthesize delegate;
+@synthesize KalMode;
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
     if ((self = [super initWithFrame:frame])) {
+        [self setClipsToBounds:YES];
+        
         [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
         delegate = theDelegate;
         logic = [theLogic retain];
@@ -42,15 +33,21 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [self addSubviewsToHeaderView];
         [self addSubview:headerView];
 
-        UIView *contentView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, kHeaderHeight, frame.size.width, frame.size.height - kHeaderHeight)] autorelease];
-        contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        [self addSubviewsToContentView:contentView];
-        [self addSubview:contentView];
-
-        _contentView = contentView;
-
-//        [self addUISwipGestureRecognizer];
-        [self addPanGestureRecognizer];
+        CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, kHeaderHeight, self.width, 0.f);
+        gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
+        [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+        [gridView setMultipleTouchEnabled:YES];
+        [gridView setUserInteractionEnabled:YES];
+        [self addSubview:gridView];
+        [gridView sizeToFit];
+        
+        weekGridView = [[KalWeekGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
+        [weekGridView setMultipleTouchEnabled:YES];
+        [weekGridView setUserInteractionEnabled:YES];
+        [self addSubview:weekGridView];
+        [weekGridView sizeToFit];
+        
+        [self swapToWeekMode];
     }
 
     return self;
@@ -82,52 +79,38 @@ static const CGFloat kMonthLabelHeight = 17.f;
     }
 }
 
-- (void)addSubviewsToContentView:(UIView *)contentView
+- (void)swapToWeekMode
 {
-    CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, 0.f, self.width, 0.f);
-
-    gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
-    [gridView setMultipleTouchEnabled:YES];
-    [gridView setUserInteractionEnabled:YES];
-    [contentView addSubview:gridView];
-    [gridView sizeToFit];
-        
-    weekGridView = [[KalWeekGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
-    [weekGridView setMultipleTouchEnabled:YES];
-    [weekGridView setUserInteractionEnabled:YES];
-    [contentView addSubview:weekGridView];
-    [weekGridView sizeToFit];
-    
-    /*
-    eventView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    CalendarIntegrationView *listView = [CalendarIntegrationView createCalendarIntegrationView];
-    [contentView addSubview:eventView];
-    [eventView addSubview:listView];
-    [eventView setContentSize:listView.frame.size];
-    [eventView setScrollEnabled:YES];
-    [eventView setShowsHorizontalScrollIndicator:YES];
-    [eventView setBounces:NO];
-    [eventView setHidden:YES];
-     */
-    
+    [weekGridView jumpToSelectedWeek];
+    [weekGridView setHidden:NO];
     [self setFrameToWeekMode];
     KalMode = WEEK_MODE;
-
-  
-//    [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
-
- 
--(void)addPanGestureRecognizer
+- (void)swapToMonthMode
 {
-    UIPanGestureRecognizer *panGesture = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)] autorelease];
-    [panGesture setDelegate:self];
-    [self addGestureRecognizer:panGesture];
-    [panGesture requireGestureRecognizerToFail:gridView.oneFingerSwipeRight];
-    [panGesture requireGestureRecognizerToFail:gridView.oneFingerSwipeLeft];
-    [panGesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeLeft];
-    [panGesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeRight];
+    [weekGridView setHidden:YES];
+    [self setFrameToMonthMode];
+    KalMode = MONTH_MODE;
+    [gridView jumpToSelectedMonth];
+}
+
+- (void)setFrameToWeekMode
+{
+    [self setFrame:CGRectMake(0, 0, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
+}
+
+- (void)setFrameToMonthMode
+{
+    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height)];
+}
+
+- (void)delayGestureResponse:(UIGestureRecognizer *)gesture
+{
+    [gesture requireGestureRecognizerToFail:gridView.oneFingerSwipeRight];
+    [gesture requireGestureRecognizerToFail:gridView.oneFingerSwipeLeft];
+    [gesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeLeft];
+    [gesture requireGestureRecognizerToFail:weekGridView.oneFingerSwipeRight];
 }
 
 - (void)hideViewWithAlphaAnimation:(UIView *)view
@@ -156,111 +139,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
     }];
 }
 
-- (void)panGesture:(UIPanGestureRecognizer *)pan
-{
-    CGPoint point = [pan locationInView:self.superview];
-    CGFloat animationDuring = 0.2f;
-    
-    if (pan.state==UIGestureRecognizerStateBegan) {
-        lastPanPoint = point;
-        if (KalMode == WEEK_MODE)
-        {
-            [gridView jumpToSelectedMonth];
-            [self hideViewWithAlphaAnimation:weekGridView];
-        }
-        else if(KalMode == MONTH_MODE)
-        {
-            [weekGridView jumpToSelectedWeek];
-        }
-        orgFrame = self.frame;
-    }
-    else if (pan.state==UIGestureRecognizerStateChanged) {
-        CGFloat yOffset = point.y - lastPanPoint.y;
-        if (KalMode == WEEK_MODE)
-        {
-            CGRect frame = self.frame;
-            frame.origin.y += yOffset;
-            
-            if (frame.origin.y > orgFrame.origin.y) {
-                self.frame = orgFrame;
-            }
-            else
-            {
-                self.frame = frame;
-            }
-        }
-        else if(KalMode == MONTH_MODE)
-        {
-            CGRect frame = self.frame;
-            frame.origin.y += yOffset;
-            
-            if (frame.origin.y < orgFrame.origin.y) {
-                self.frame = orgFrame;
-            }
-            else
-            {
-                self.frame = frame;
-            }
-        }
-        lastPanPoint = point;
-    }
-    else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateFailed || pan.state == UIGestureRecognizerStateCancelled)
-    {
-        CGRect frame = self.frame;
-        
-        if (KalMode == WEEK_MODE)
-        {
-            if (orgFrame.origin.y - frame.origin.y > weekGridView.frame.size.height) {
-                self.userInteractionEnabled = NO;
-                [UIView animateWithDuration:animationDuring animations:^{
-                    [self setFrameToMonthMode];
-                    [weekGridView setFrame:CGRectMake(0 , gridView.height + headerView.height, self.frame.size.width, weekGridView.height)];
-                } completion:^(BOOL finished){
-                    self.userInteractionEnabled = YES;
-                    [self hideViewWithAlphaAnimation:weekGridView];
-//                    [weekGridView setHidden:YES];
-                    KalMode = MONTH_MODE;
-                }];
-            }
-            else
-            {
-                self.userInteractionEnabled = NO;
-                [UIView animateWithDuration:animationDuring animations:^{
-                    self.frame = orgFrame;
-                } completion:^(BOOL finished){
-                    self.userInteractionEnabled = YES;
-                    [self showViewWithAlphaAnimation:weekGridView];
-//                    [weekGridView setHidden:NO];
-                }];
-            }
-        }
-        else if(KalMode == MONTH_MODE)
-        {
-            if (frame.origin.y - orgFrame.origin.y > weekGridView.frame.size.height)
-            {
-                self.userInteractionEnabled = NO;
-                [UIView animateWithDuration:animationDuring animations:^{
-                    [self setFrameToWeekMode];
-                    [weekGridView setFrame:CGRectMake(0 ,0, self.frame.size.width, weekGridView.height)];
-                } completion:^(BOOL finished){
-                    self.userInteractionEnabled = YES;
-                    KalMode = WEEK_MODE;
-//                    [weekGridView setHidden:NO];
-                    [self showViewWithAlphaAnimation:weekGridView];
-                }];
-            }
-            else
-            {
-                self.userInteractionEnabled = NO;
-                [UIView animateWithDuration:animationDuring animations:^{
-                    self.frame = orgFrame;
-                } completion:^(BOOL finished){
-                    self.userInteractionEnabled = YES;
-                }];
-            }
-        }
-    }
-}
+
 
 
  /* swip gesture， hang-up temporary
@@ -338,31 +217,10 @@ static const CGFloat kMonthLabelHeight = 17.f;
 }
 */
 
-- (float)screenHeight
+- (CGFloat)weekViewHeight
 {
-    CGFloat statusBarHeight = 0.0f;
-    if (![UIApplication sharedApplication].statusBarHidden)
-    {
-        statusBarHeight = 20.0f;
-    }
-    return [[UIScreen mainScreen] bounds].size.height - statusBarHeight;
+    return weekGridView.height + headerView.frame.size.height;
 }
-
-- (void)setFrameToWeekMode
-{
-    [self setFrame:CGRectMake(0, [self screenHeight] - weekGridView.height - headerView.height, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
-}
-
-- (void)setFrameToMonthMode
-{
-    [self setFrame:CGRectMake(0, [self screenHeight] - gridView.height - headerView.height, self.frame.size.width, gridView.height + headerView.frame.size.height)];
-}
-
-- (void)setFrameToListMode
-{
-    [self setFrame:CGRectMake(0, 75, self.frame.size.width, gridView.height + headerView.frame.size.height + eventView.frame.size.height)];
-}
-
 
 
 #pragma mark -
@@ -382,15 +240,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [UIView animateWithDuration:0.5 animations:^{
-      [self setFrameToMonthMode];
-    }
-    completion:nil];
-}
-
-- (void)jumpToSelectedMonth
-{
-    [gridView jumpToSelectedMonth];
+    [self setFrameToMonthMode];
 }
 
 - (void)dealloc

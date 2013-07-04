@@ -6,7 +6,6 @@
 
 #import "Location.h"
 
-#import "KalView.h"
 #import "KalLogic.h"
 #import "KalDate.h"
 #import "NSDateAdditions.h"
@@ -22,6 +21,10 @@
 
 #import "FeedEventTableView.h"
 
+#import "FeedCalenderView.h"
+
+#import "DeviceInfo.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -32,7 +35,7 @@
                                   KalTileViewDataSource>
 {
     KalLogic *logic;
-    KalView *calendarView;
+    FeedCalenderView *calendarView;
     FeedEventTableView * tableView;
    
     EventModel * eventModel;
@@ -42,7 +45,7 @@
     int selectedDay;
 }
 
-@property (nonatomic, retain) KalView *calendarView;
+@property (nonatomic, retain) FeedCalenderView *calendarView;
 @end
 
 @implementation FeedViewController
@@ -81,14 +84,12 @@
     
     NSDate *date = [NSDate date];
     logic = [[KalLogic alloc] initForDate:date];
-    KalView *kalView = [[KalView alloc] initWithFrame:[self.view bounds] delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
-    [kalView setUserInteractionEnabled:YES];
-    [kalView setMultipleTouchEnabled:YES];
-
-    [kalView setKalTileViewDataSource:self];
-
-    [self.view addSubview:kalView];
-    self.calendarView = kalView;
+    
+    self.calendarView = [[FeedCalenderView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 64, 320, 40) delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    [self.calendarView setUserInteractionEnabled:YES];
+    [self.calendarView setMultipleTouchEnabled:YES];
+    [self.calendarView setKalTileViewDataSource:self];
+    [self.view addSubview:self.calendarView];
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -121,9 +122,6 @@
             [eventModel setEvents:events forMonth:strMonth];
 
             [tableView setEventModel:eventModel];
-            
-            //[self tableviewScroll2SelectDay];
-
             [self.calendarView setNeedsDisplay];
             
         } else {
