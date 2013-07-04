@@ -103,9 +103,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "313"
-         endingLineNumber = "313"
-         landmarkName = "@implementation FeedViewController"
-         landmarkType = "3">
+         endingLineNumber = "313">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -116,9 +114,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "333"
-         endingLineNumber = "333"
-         landmarkName = "-eventModeToMontMode"
-         landmarkType = "5">
+         endingLineNumber = "333">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -130,7 +126,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "118"
          endingLineNumber = "118"
-         landmarkName = "-loadData:andMonth:"
+         landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -142,9 +138,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "286"
-         endingLineNumber = "286"
-         landmarkName = "-didSelectDate:"
-         landmarkType = "5">
+         endingLineNumber = "286">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -207,9 +201,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "322"
-         endingLineNumber = "322"
-         landmarkName = "-monthModeToEventMode"
-         landmarkType = "5">
+         endingLineNumber = "322">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"

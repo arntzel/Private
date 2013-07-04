@@ -5,6 +5,8 @@
 @interface EventModel : NSObject
 
 
+-(void) clear;
+
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
 
 

@@ -11,6 +11,8 @@
 
 -(id)initWithDay:(NSString *) pDay;
 
+-(void) addEvent:(Event*) event;
+
 @end
 
 @implementation DayEventsObject
@@ -25,6 +27,20 @@
     self.types = 0;
     
     return self;
+}
+
+-(void) addEvent:(Event*) event
+{
+    //Filter duplicated event obj
+    for(int i=0; i<self.allEvents.count; i++) {
+        Event * oldEvt = [self.allEvents objectAtIndex:i];
+        if(event.id == oldEvt.id) {
+            [self.allEvents  replaceObjectAtIndex:i withObject:event];
+            return;
+        }
+    }
+    
+    [self.allEvents addObject:event];
 }
 @end
 
@@ -51,38 +67,39 @@
     return self;
 }
 
+-(void) clear
+{
+    alldays = [[NSMutableArray alloc] init];
+    dayEvents = [[NSMutableDictionary alloc] init];
+    monthEvents = [[NSMutableDictionary alloc] init];
+}
+
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month {
 
-    //if([monthEvents objectForKey:month] == nil) {
-        [monthEvents setObject:events forKey:month];
-
-        for(int i=0;i<events.count;i++) {
-            Event * event = [events objectAtIndex:i];
-
-            NSString * day = [Utils formateDay:event.start];
-
-            DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
-            
-            if(dayEventsObj == nil) {
-                dayEventsObj = [[DayEventsObject alloc] initWithDay:day];
-                [dayEvents setObject:dayEventsObj forKey:day];
-            }
-
-            [dayEventsObj.allEvents addObject:event];
-            
-            int type = 0x00000001 << event.eventType;
-            dayEventsObj.types |= type;
-        }
-
-        alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString * str1 = obj1;
-            NSString * str2 = obj2;
-            return [str2 compare:str1];
-        }];
+    [monthEvents setObject:events forKey:month];
+    
+    for(int i=0;i<events.count;i++) {
+        Event * event = [events objectAtIndex:i];
         
-    //} else {
-        //assert(NO);
-    //}
+        NSString * day = [Utils formateDay:event.start];
+        
+        DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
+        if(dayEventsObj == nil) {
+            dayEventsObj = [[DayEventsObject alloc] initWithDay:day];
+            [dayEvents setObject:dayEventsObj forKey:day];
+        }
+        
+        [dayEventsObj addEvent:event];
+        
+        int type = 0x00000001 << event.eventType;
+        dayEventsObj.types |= type;
+    }
+    
+    alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * str1 = obj1;
+        NSString * str2 = obj2;
+        return [str2 compare:str1];
+    }];
 }
 
 

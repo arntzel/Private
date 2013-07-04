@@ -155,10 +155,14 @@
         
         DDMenuPanCompletion completion = DDMenuPanCompletionRoot; // by default animate back to the root
         
+        /*
         if (_panDirection == DDMenuPanDirectionRight && _menuFlags.showingLeftView)
         {
             completion = DDMenuPanCompletionLeft;
         }
+         */
+        
+        
         
         CGPoint velocity = [gesture velocityInView:self.view];
         
@@ -174,6 +178,11 @@
         CGFloat span = (width - kMenuOverlayWidth);
         CGFloat duration = kMenuSlideDuration;
 
+        //超过此位置显示leftView
+        if(originX>120) {
+            completion = DDMenuPanCompletionLeft;
+        }
+        
         
         if (completion != DDMenuPanCompletionLeft) {
             bounce = NO;
