@@ -127,7 +127,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     //draw event color dot
     int eventType = [self.datasource getEventType:self.date];
     
-    BOOL google = eventType & 0x00000006;
+    BOOL google = eventType & 0x00000002;
     BOOL fackbook = eventType & 0x00000008;
     BOOL birthday = eventType & 0x00000010;
     
