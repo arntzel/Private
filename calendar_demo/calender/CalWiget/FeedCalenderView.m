@@ -3,6 +3,7 @@
 #import "DeviceInfo.h"
 
 #define weekViewHeight 65
+#define topGap 100
 
 @interface FeedCalenderView()<UIGestureRecognizerDelegate>
 {
@@ -10,6 +11,8 @@
     KalView *kalView;
     
     CGRect orgFrame;
+    
+    NSInteger kalMode;
 }
 
 @end
@@ -39,6 +42,7 @@ extern const CGSize kTileSize;
     if (self) {
         kalView = [[KalView alloc] initWithFrame:self.bounds delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
         [kalView swapToWeekMode];
+        kalMode = WEEK_MODE;
         [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
         [self addSubview:kalView];
         
@@ -84,7 +88,7 @@ extern const CGSize kTileSize;
 
 - (void)ajustEventScrollPosition
 {
-    CGFloat height = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - 100;
+    CGFloat height = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - topGap;
     [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, height)];
     
     CGRect frame = self.frame;
@@ -104,7 +108,14 @@ extern const CGSize kTileSize;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frame"]) {
+        
         [self ajustEventScrollPosition];
+        if (kalMode == MONTH_MODE) {
+            CGRect frame = self.frame;
+            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height;
+            self.frame = frame;
+        }
+    
     }
 }
 
@@ -151,26 +162,30 @@ extern const CGSize kTileSize;
         if (pointAfterTransf.y < [DeviceInfo fullScreenHeight]) {
             [self animationWithBlock:^{
                 [self setFrameToFilterMode];
-            } Completion:nil];
-            return;
-        }
-    
-        testPoint = CGPointMake(kalView.frame.size.width / 2, kalView.frame.origin.y + kalView.frame.size.height / 2);
-        pointAfterTransf = [self convertPoint:testPoint toView:self.superview];
-        if (pointAfterTransf.y < [DeviceInfo fullScreenHeight]) {
-            [self animationWithBlock:^{
-                [self setFrameToMonthMode];
-            } Completion:nil];
-            return;
+            } Completion:^{
+                kalMode = FILTER_MODE;
+            }];
         }
         else
         {
-            [self animationWithBlock:^{
-                [self setFrameToWeekMode];
-            } Completion:^{
-                [kalView swapToWeekMode];
-            }];
-            return;
+            testPoint = CGPointMake(kalView.frame.size.width / 2, kalView.frame.origin.y + kalView.frame.size.height / 2);
+            pointAfterTransf = [self convertPoint:testPoint toView:self.superview];
+            if (pointAfterTransf.y < [DeviceInfo fullScreenHeight]) {
+                [self animationWithBlock:^{
+                    [self setFrameToMonthMode];
+                } Completion:^{
+                    kalMode = MONTH_MODE;
+                }];
+            }
+            else
+            {
+                [self animationWithBlock:^{
+                    [self setFrameToWeekMode];
+                } Completion:^{
+                    [kalView swapToWeekMode];
+                    kalMode = WEEK_MODE;
+                }];
+            }
         }
     }
 }

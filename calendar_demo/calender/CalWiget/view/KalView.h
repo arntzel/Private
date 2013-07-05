@@ -8,6 +8,7 @@
 
 #define WEEK_MODE 0
 #define MONTH_MODE 1
+#define FILTER_MODE 2
 
 @interface KalView : UIView
 {
