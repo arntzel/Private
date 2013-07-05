@@ -5,9 +5,14 @@
 #import "Location.h"
 #import "EventAttendee.h"
 
-/*
 
- */
+#define FILTER_IMCOMPLETE  0X00000001
+#define FILTER_GOOGLE      0X00000002
+#define FILTER_FB          0X00000004
+#define FILTER_BIRTHDAY    0X00000008
+
+
+
 @interface Event : NSObject
 
 @property int id;

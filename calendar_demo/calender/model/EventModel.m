@@ -3,18 +3,6 @@
 #import "Event.h"
 #import "Utils.h"
 
-@interface DayEventsObject : NSObject
-
-@property(strong)  NSString * day;
-@property(strong)  NSMutableArray * allEvents;
-@property int types;
-
--(id)initWithDay:(NSString *) pDay;
-
--(void) addEvent:(Event*) event;
-
-@end
-
 @implementation DayEventsObject
 
 -(id)initWithDay:(NSString *) pDay
@@ -44,8 +32,90 @@
 }
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation MonthEventsObject {
+    
+    NSArray * _events;
+    NSString * _month;
+
+    NSArray * _alldays;
+
+    //Day -> DayEvents
+    NSMutableDictionary * _dayEvents;
+}
+
+-(id) init
+{
+    self = [super init];
+
+    _alldays = [[NSMutableArray alloc] init];
+    _dayEvents = [[NSMutableDictionary alloc] init];
+    
+    return self;
+}
+
+-(void) clear
+{
+    _events = nil;
+    _month = nil;
+    _alldays = nil;
+    [_dayEvents removeAllObjects];
+}
+
+-(void) setEvents:(NSArray *) events forMonth:(NSString*) month
+{
+    _events = events;
+    _month = month;
+
+    for(int i=0;i<events.count;i++) {
+        Event * event = [events objectAtIndex:i];
+
+        NSString * day = [Utils formateDay:event.start];
+
+        DayEventsObject * dayEventsObj = [_dayEvents objectForKey:day];
+        if(dayEventsObj == nil) {
+            dayEventsObj = [[DayEventsObject alloc] initWithDay:day];
+            [_dayEvents setObject:dayEventsObj forKey:day];
+        }
+
+        [dayEventsObj addEvent:event];
+
+        int type = 0x00000001 << event.eventType;
+        dayEventsObj.types |= type;
+    }
+
+    _alldays = [[_dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * str1 = obj1;
+        NSString * str2 = obj2;
+        return [str2 compare:str1];
+    }];
+
+}
+
+-(NSArray *) getEvents{
+    return _events;
+}
+
+-(NSString *) getMonth{
+    return  _month;
+}
+
+-(NSArray *) getEventsByDay:(NSString *) day
+{
+    DayEventsObject * dayEventsObj = [_dayEvents objectForKey:day];
+    return dayEventsObj.allEvents;
+}
+
+-(NSArray *) getAllDays
+{
+    return _alldays;
+}
+
+@end
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
 
     NSArray * alldays;

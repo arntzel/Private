@@ -4,12 +4,6 @@
 
 #define EventFilterViewHeight 275
 
-#define FILTER_IMCOMPLETE  0X00000001
-#define FILTER_GOOGLE      0X00000002
-#define FILTER_FB          0X00000004
-#define FILTER_BIRTHDAY    0X00000008
-
-
 @protocol EventFilterViewDelegate <NSObject>
 
 -(void) onFilterChanged:(int)filters;

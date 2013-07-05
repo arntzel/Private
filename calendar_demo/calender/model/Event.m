@@ -85,12 +85,7 @@
 
     event.attendees = attendees;
 
-    //EventType: for test
-    event.eventType = 1;
-
-    if([event.title isEqualToString:@"test2"] ){
-        event.eventType = 3;
-    }
+    event.eventType = [[json objectForKey:@"event_type"] intValue];
 
     return event;
 }

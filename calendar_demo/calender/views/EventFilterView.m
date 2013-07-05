@@ -2,6 +2,8 @@
 
 #import "EventFilterView.h"
 
+#import "Event.h"
+
 @implementation EventFilterView {
 
     BOOL incompletedSelected;
