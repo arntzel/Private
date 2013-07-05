@@ -4,4 +4,6 @@
 
 + (float)fullScreenHeight;
 
++ (CGRect)fullScreenFrame;
+
 @end

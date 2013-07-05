@@ -8,10 +8,14 @@
 
 #import "DuringTimePicker.h"
 #import "LoopPickerView.h"
+#import "DeviceInfo.h"
+
 @interface DuringTimePicker()<PickerViewDelegate>
 {
     LoopPickerView *hourPicker;
     LoopPickerView *minPicker;
+    
+    UIView *toolBar;
 }
 @end
 
@@ -21,13 +25,14 @@
 {
     [hourPicker release];
     [minPicker release];
+    [toolBar release];
     
     [super dealloc];
 }
 
 - (id)init
 {
-    return [self initWithFrame:CGRectMake(0, 250, 320, 160)];
+    return [self initWithFrame:[DeviceInfo fullScreenFrame]];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -35,14 +40,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, 0, 159, 160)];
+        [self setBackgroundColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.5f]];
+        
+        toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 50, 320, 50)];
+        [self addSubview:toolBar];
+        [self initToolBar];
+        
+        hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 159, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
         [hourPicker setUnitString:@"hours"];
         [hourPicker reloadData];
         [hourPicker scrollToIndex:12 WithAnimation:NO];
         
-        minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(160, 0, 160, 160)];
+        minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(160, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 160, 160)];
         [self addSubview:minPicker];
         [minPicker setDelegate:self];
         [minPicker setUnitString:@"minutes"];
@@ -50,6 +61,15 @@
         [minPicker scrollToIndex:30 WithAnimation:NO];
     }
     return self;
+}
+
+- (void)initToolBar
+{
+    [toolBar setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
+    UISwitch *allDaySwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 40, 100)];
+    [allDaySwitch setCenter:CGPointMake(toolBar.frame.size.width / 2 + 50, toolBar.frame.size.height / 2)];
+    [toolBar addSubview:allDaySwitch];
+    [allDaySwitch release];
 }
 
 - (NSInteger)numberOfRowsInPicker:(LoopPickerView *)pickerView {
@@ -66,5 +86,8 @@
     NSLog(@"Selected index %d",index);
 }
 
-
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self removeFromSuperview];
+}
 @end

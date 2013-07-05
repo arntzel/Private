@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		760B7D6017823A7E00669ECD /* DuringTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B7D5F17823A7E00669ECD /* DuringTimePicker.m */; };
+		7656D2EE17870EA200C90C3B /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D2ED17870EA200C90C3B /* DeviceInfo.m */; };
 		7672726017772218006A74FF /* CustomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672725F17772218006A74FF /* CustomPickerCell.xib */; };
 		767272631777225E006A74FF /* CustomPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 767272621777225E006A74FF /* CustomPickerCell.m */; };
 		76744BD81775DA3400CCA133 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76744BD71775DA3400CCA133 /* UIKit.framework */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		760B7D5E17823A7E00669ECD /* DuringTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringTimePicker.h; sourceTree = "<group>"; };
 		760B7D5F17823A7E00669ECD /* DuringTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringTimePicker.m; sourceTree = "<group>"; };
+		7656D2EC17870EA200C90C3B /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceInfo.h; path = ../../../Utils/DeviceInfo.h; sourceTree = "<group>"; };
+		7656D2ED17870EA200C90C3B /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceInfo.m; path = ../../../Utils/DeviceInfo.m; sourceTree = "<group>"; };
 		7672725F17772218006A74FF /* CustomPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerCell.xib; sourceTree = "<group>"; };
 		767272611777225E006A74FF /* CustomPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerCell.h; sourceTree = "<group>"; };
 		767272621777225E006A74FF /* CustomPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerCell.m; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 		76744BDD1775DA3400CCA133 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
+				7656D2EC17870EA200C90C3B /* DeviceInfo.h */,
+				7656D2ED17870EA200C90C3B /* DeviceInfo.m */,
 				76FFAD831785705D00416077 /* PickerViewProtocal.h */,
 				76796B7117846D92003A54E9 /* PickerView.h */,
 				76796B7217846D92003A54E9 /* PickerView.m */,
@@ -216,6 +221,7 @@
 				760B7D6017823A7E00669ECD /* DuringTimePicker.m in Sources */,
 				768F20B217828F0700A9D869 /* TimePicker.m in Sources */,
 				76796B7317846D92003A54E9 /* PickerView.m in Sources */,
+				7656D2EE17870EA200C90C3B /* DeviceInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

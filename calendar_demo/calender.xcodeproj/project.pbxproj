@@ -154,6 +154,14 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
+		7656D31A1787176300C90C3B /* CustomPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3051787176300C90C3B /* CustomPickerCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D31B1787176300C90C3B /* CustomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7656D3061787176300C90C3B /* CustomPickerCell.xib */; };
+		7656D31C1787176300C90C3B /* DuringTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3081787176300C90C3B /* DuringTimePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D31D1787176300C90C3B /* LoopPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30A1787176300C90C3B /* LoopPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D31E1787176300C90C3B /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30C1787176300C90C3B /* PickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D31F1787176300C90C3B /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30F1787176300C90C3B /* TimePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D325178717B100C90C3B /* AddEventDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D324178717B100C90C3B /* AddEventDateController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3271787188A00C90C3B /* AddDateCalenderView.m */; };
 		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
 		76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -546,6 +554,22 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7656D3041787176300C90C3B /* CustomPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerCell.h; sourceTree = "<group>"; };
+		7656D3051787176300C90C3B /* CustomPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerCell.m; sourceTree = "<group>"; };
+		7656D3061787176300C90C3B /* CustomPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerCell.xib; sourceTree = "<group>"; };
+		7656D3071787176300C90C3B /* DuringTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringTimePicker.h; sourceTree = "<group>"; };
+		7656D3081787176300C90C3B /* DuringTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringTimePicker.m; sourceTree = "<group>"; };
+		7656D3091787176300C90C3B /* LoopPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopPickerView.h; sourceTree = "<group>"; };
+		7656D30A1787176300C90C3B /* LoopPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopPickerView.m; sourceTree = "<group>"; };
+		7656D30B1787176300C90C3B /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
+		7656D30C1787176300C90C3B /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
+		7656D30D1787176300C90C3B /* PickerViewProtocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocal.h; sourceTree = "<group>"; };
+		7656D30E1787176300C90C3B /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
+		7656D30F1787176300C90C3B /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		7656D323178717B100C90C3B /* AddEventDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventDateController.h; sourceTree = "<group>"; };
+		7656D324178717B100C90C3B /* AddEventDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventDateController.m; sourceTree = "<group>"; };
+		7656D3261787188A00C90C3B /* AddDateCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateCalenderView.h; sourceTree = "<group>"; };
+		7656D3271787188A00C90C3B /* AddDateCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateCalenderView.m; sourceTree = "<group>"; };
 		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
 		7672D169177091520053D024 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		7672D16A177091520053D024 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
@@ -1087,9 +1111,31 @@
 			path = calender/googlePlaceApi;
 			sourceTree = "<group>";
 		};
+		7656D2EF1787176300C90C3B /* AddDate */ = {
+			isa = PBXGroup;
+			children = (
+				7656D3041787176300C90C3B /* CustomPickerCell.h */,
+				7656D3051787176300C90C3B /* CustomPickerCell.m */,
+				7656D3061787176300C90C3B /* CustomPickerCell.xib */,
+				7656D3071787176300C90C3B /* DuringTimePicker.h */,
+				7656D3081787176300C90C3B /* DuringTimePicker.m */,
+				7656D3091787176300C90C3B /* LoopPickerView.h */,
+				7656D30A1787176300C90C3B /* LoopPickerView.m */,
+				7656D30B1787176300C90C3B /* PickerView.h */,
+				7656D30C1787176300C90C3B /* PickerView.m */,
+				7656D30D1787176300C90C3B /* PickerViewProtocal.h */,
+				7656D30E1787176300C90C3B /* TimePicker.h */,
+				7656D30F1787176300C90C3B /* TimePicker.m */,
+				7656D323178717B100C90C3B /* AddEventDateController.h */,
+				7656D324178717B100C90C3B /* AddEventDateController.m */,
+			);
+			path = AddDate;
+			sourceTree = "<group>";
+		};
 		76B970C4176F5BA200FC8535 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				7656D2EF1787176300C90C3B /* AddDate */,
 				76383A29177204BC00781166 /* AddEventView.h */,
 				76383A2A177204BC00781166 /* AddEventView.m */,
 				76383A2B177204BD00781166 /* AddEventView.xib */,
@@ -1111,6 +1157,8 @@
 				76C22D6F173FCD3000AC7519 /* view */,
 				76AC4B581785B9D4008E0F7D /* FeedCalenderView.h */,
 				76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */,
+				7656D3261787188A00C90C3B /* AddDateCalenderView.h */,
+				7656D3271787188A00C90C3B /* AddDateCalenderView.m */,
 			);
 			path = CalWiget;
 			sourceTree = "<group>";
@@ -1522,6 +1570,7 @@
 				3D9B24B91785260A00689916 /* tab_bg.png in Resources */,
 				94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */,
 				94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */,
+				7656D31B1787176300C90C3B /* CustomPickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,6 +1689,13 @@
 				94901DF31785B63000848ACA /* EventFilterView.m in Sources */,
 				76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */,
 				76AC4B5D1785C6CF008E0F7D /* DeviceInfo.m in Sources */,
+				7656D31A1787176300C90C3B /* CustomPickerCell.m in Sources */,
+				7656D31C1787176300C90C3B /* DuringTimePicker.m in Sources */,
+				7656D31D1787176300C90C3B /* LoopPickerView.m in Sources */,
+				7656D31E1787176300C90C3B /* PickerView.m in Sources */,
+				7656D31F1787176300C90C3B /* TimePicker.m in Sources */,
+				7656D325178717B100C90C3B /* AddEventDateController.m in Sources */,
+				7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

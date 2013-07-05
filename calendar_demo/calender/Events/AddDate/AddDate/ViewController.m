@@ -31,8 +31,8 @@
 {
     [super viewDidLoad];
     
-    duringTimePicker = [[DuringTimePicker alloc] init];
-    [self.view addSubview:duringTimePicker];
+//    duringTimePicker = [[DuringTimePicker alloc] init];
+//    [self.view addSubview:duringTimePicker];
     
     timePicker = [[TimePicker alloc] init];
     [self.view addSubview:timePicker];
