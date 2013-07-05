@@ -6,7 +6,6 @@
 
 #import "Location.h"
 
-#import "KalView.h"
 #import "KalLogic.h"
 #import "KalDate.h"
 #import "NSDateAdditions.h"
@@ -22,6 +21,8 @@
 
 #import "FeedEventTableView.h"
 
+#import "FeedCalenderView.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -32,19 +33,17 @@
                                   KalTileViewDataSource>
 {
     KalLogic *logic;
-    KalView *calendarView;
+    FeedCalenderView *calendarView;
     FeedEventTableView * tableView;
    
     EventModel * eventModel;
-
-    EventFilterView * filterView;
     
     int selectedYear;
     int selectedMonth;
     int selectedDay;
 }
 
-@property (nonatomic, retain) KalView *calendarView;
+@property (nonatomic, retain) FeedCalenderView *calendarView;
 @end
 
 @implementation FeedViewController
@@ -83,14 +82,12 @@
     
     NSDate *date = [NSDate date];
     logic = [[KalLogic alloc] initForDate:date];
-    KalView *kalView = [[KalView alloc] initWithFrame:[self.view bounds] delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
-    [kalView setUserInteractionEnabled:YES];
-    [kalView setMultipleTouchEnabled:YES];
-
-    [kalView setKalTileViewDataSource:self];
-
-    [self.view addSubview:kalView];
-    self.calendarView = kalView;
+    
+    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    [self.calendarView setUserInteractionEnabled:YES];
+    [self.calendarView setMultipleTouchEnabled:YES];
+    [self.calendarView setKalTileViewDataSource:self];
+    [self.view addSubview:self.calendarView];
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -99,21 +96,7 @@
     selectedMonth = [components month];  //当前的月份
     selectedDay = [components day];
 
-    //[self loadData:selectedYear andMonth:selectedMonth];
     [tableView startHeaderLoading];
-
-
-    filterView = [EventFilterView createView];
-
-    frame = filterView.frame;
-    frame.origin.y = self.calendarView.frame.origin.y + self.calendarView.frame.size.height;
-    filterView.frame = frame;
-    [self.view addSubview:filterView];
-    
-    
-     [self.calendarView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    
-    
 }
 
 
@@ -137,9 +120,6 @@
             [eventModel setEvents:events forMonth:strMonth];
 
             [tableView setEventModel:eventModel];
-            
-            //[self tableviewScroll2SelectDay];
-
             [self.calendarView setNeedsDisplay];
             
         } else {
@@ -215,40 +195,6 @@
     [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-- (void)monthModeToEventMode
-{
-    CGRect frame = self.navigation.frame;
-    frame.origin.y = -44;
-    
-    CGRect frame2 = tableView.frame;
-    frame2.origin = CGPointMake(0, 0);
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.navigation setFrame:frame];
-        [tableView setFrame:frame2];
-    }completion:^(BOOL finish)
-     {
-         
-     }];
-}
-
-- (void)eventModeToMontMode
-{
-    CGRect frame = self.navigation.frame;
-    frame.origin.y = 0;
-    
-    CGRect frame2 = tableView.frame;
-    frame2.origin = CGPointMake(0, 44);
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.navigation setFrame:frame];
-        [tableView setFrame:frame2];
-    }completion:^(BOOL finish)
-     {
-         
-     }];
-}
-
 #pragma mark -
 #pragma mark KalTileViewDataSource
 -(int) getEventType:(KalDate *) date {
@@ -274,17 +220,5 @@
 -(void) onStartLoadData
 {
     [self loadData:selectedYear andMonth:selectedMonth];
-}
-
-#pragma mark - KVO Delegate
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    //NSLog(@"%@",keyPath);
-    //NSLog(@"%@ %@",object,self.calendarView);
-    NSLog(@"%@",change);
-    
-    CGRect frame = filterView.frame;
-    frame.origin.y = self.calendarView.frame.origin.y + self.calendarView.frame.size.height;
-    filterView.frame = frame;
 }
 @end
