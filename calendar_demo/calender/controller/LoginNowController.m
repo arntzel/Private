@@ -29,8 +29,11 @@
     [self.progress stopAnimating];
 
     //For Test
-    self.tvUsername.text = @"fx.fangxiang@gmail.com";
-    self.tvPassword.text = @"pass1234";
+    //self.tvUsername.text = @"fx.fangxiang@gmail.com";
+    //self.tvPassword.text = @"pass1234";
+
+    self.tvUsername.text = @"zhiwehu";
+    self.tvPassword.text = @"111111";
 }
 
 -(IBAction) back:(id)sender {
