@@ -103,13 +103,19 @@
     [tableView startHeaderLoading];
 
 
-//    filterView = [EventFilterView createView];
-//
-//    frame = filterView.frame;
-//    frame.origin.y = self.view.bounds.size.height - frame.size.height;
-//    filterView.frame = frame;
-//    [self.view addSubview:filterView];
+    filterView = [EventFilterView createView];
+
+    frame = filterView.frame;
+    frame.origin.y = self.calendarView.frame.origin.y + self.calendarView.frame.size.height;
+    filterView.frame = frame;
+    [self.view addSubview:filterView];
+    
+    
+     [self.calendarView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -270,4 +276,15 @@
     [self loadData:selectedYear andMonth:selectedMonth];
 }
 
+#pragma mark - KVO Delegate
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    //NSLog(@"%@",keyPath);
+    //NSLog(@"%@ %@",object,self.calendarView);
+    NSLog(@"%@",change);
+    
+    CGRect frame = filterView.frame;
+    frame.origin.y = self.calendarView.frame.origin.y + self.calendarView.frame.size.height;
+    filterView.frame = frame;
+}
 @end
