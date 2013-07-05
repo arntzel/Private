@@ -11,7 +11,7 @@
 
 @interface FeedCalenderView : UIView
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
+- (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;
 
 @end

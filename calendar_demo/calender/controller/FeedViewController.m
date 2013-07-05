@@ -85,7 +85,7 @@
     NSDate *date = [NSDate date];
     logic = [[KalLogic alloc] initForDate:date];
     
-    self.calendarView = [[FeedCalenderView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 64, 320, 40) delegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
