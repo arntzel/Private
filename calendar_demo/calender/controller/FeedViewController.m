@@ -30,7 +30,8 @@
                                   UITableViewDelegate,
                                   PullRefreshTableViewDelegate,
                                   KalViewDelegate,
-                                  KalTileViewDataSource>
+                                  KalTileViewDataSource,
+                                  EventFilterViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -89,12 +90,16 @@
     [self.calendarView setKalTileViewDataSource:self];
     [self.view addSubview:self.calendarView];
 
+
+    self.calendarView.filterView.delegate = self;
+
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
     NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
     selectedYear = [components year];  //当前的年份
     selectedMonth = [components month];  //当前的月份
     selectedDay = [components day];
+
 
     [tableView startHeaderLoading];
 }
@@ -221,4 +226,15 @@
 {
     [self loadData:selectedYear andMonth:selectedMonth];
 }
+
+#pragma mark -
+#pragma mark EventFilterViewDelegate
+-(void) onFilterChanged:(int)filters
+{
+    NSLog(@"onFilterChanged:0x%x", filters);
+
+    [eventModel setFilter:filters];
+    [tableView reloadData];
+}
+
 @end

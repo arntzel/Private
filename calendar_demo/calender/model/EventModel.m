@@ -149,20 +149,22 @@
 
     //Only save the three months data
     NSMutableArray * _monthEventsObjects;
-
+    int _filter;
+    
     NSArray * alldays;
 
     //Day -> DayEvents  
     NSMutableDictionary * dayEvents;
     
     //Month -> MonthEventsObject
-    NSMutableDictionary * monthEvents;
+    NSMutableDictionary * monthEvents;    
 }
 
 -(id) init {
     self = [super init];
 
     _monthEventsObjects = [[NSMutableArray alloc] init];
+    _filter = 0;
 
     
     alldays = [[NSMutableArray alloc] init];
@@ -198,6 +200,11 @@
     [self rebuild];
 }
 
+-(void) setFilter:(int) filter
+{
+    _filter = filter;
+    
+}
 
 -(void) rebuild
 {
@@ -214,11 +221,15 @@
         NSArray * monthdays = [monthEventsObj getAllDays];
 
         for(int j=0;j<monthdays.count;j++) {
+            
             NSString * day = [monthdays objectAtIndex:j];
 
             DayEventsObject * dayObj = [monthEventsObj getDayEventsObjectByDay:day];
 
-            [dayEvents setObject:dayObj forKey:day];
+            if (_filter==0 || (dayObj.types & _filter) > 0) {
+                
+                [dayEvents setObject:dayObj forKey:day];
+            } 
         }
     }
 
@@ -238,7 +249,28 @@
     DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
 
     if(dayEventsObj != nil) {
-        return dayEventsObj.allEvents;
+
+
+        if(_filter==0) {
+            return dayEventsObj.allEvents;
+        }
+
+
+        NSMutableArray * events = [[NSMutableArray alloc] init];
+
+        for(int i=0;i<dayEventsObj.allEvents.count;i++) {
+            
+            Event * evt = [dayEventsObj.allEvents objectAtIndex:i];
+
+            int type = 0x00000001 << evt.eventType;
+
+            if( (type & _filter) > 0) {
+                [events addObject:evt];
+            }
+        }
+
+        return events;
+        
     } else {
         return nil;
     }

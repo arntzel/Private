@@ -181,6 +181,46 @@ static UserModel * instance;
     }];
 }
 
+-(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback
+{
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/?offset=%d", HOST, offset];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+
+    NSLog(@"url=%@", url);
+
+    [[UserModel getInstance] setAuthHeader:request];
+
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+
+        int status = httpResp.statusCode;
+
+        if(status == 200) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            NSArray * array = [json objectForKey:@"objects"];
+
+            NSMutableArray * users =  [[NSMutableArray alloc] init];
+
+            for(int i=0; i<array.count; i++) {
+                NSDictionary * json = [array objectAtIndex:i];
+                User * user = [User parseUser:json];
+                [users addObject:user];
+            }
+
+            callback(0, users);
+        } else {
+            //TODO:: parse error type
+            //401: UNAUTHORIZED
+            //Other: net work error
+            callback(-1, nil);
+        }
+    }];
+}
+
 -(void) getUserProfile:(int)prifleID andCallback: (void (^)(NSInteger error, UserProfile * profile))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/userprofile/%d", HOST, prifleID];

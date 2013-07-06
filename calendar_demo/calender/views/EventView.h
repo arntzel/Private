@@ -13,6 +13,7 @@
 @property IBOutlet UILabel * labTitle;
 @property IBOutlet UILabel * labAttendees;
 @property IBOutlet UILabel * labTime;
+@property IBOutlet UILabel * labTimeType;
 @property IBOutlet UILabel * labLocation;
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgStatus;

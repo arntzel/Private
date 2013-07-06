@@ -28,6 +28,9 @@
 -(void) getUser:(int)userID andCallback: (void (^)(NSInteger error, User * user))callback;
 
 
+-(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback;
+
+
 /*
  -Get user profile by userid
  */

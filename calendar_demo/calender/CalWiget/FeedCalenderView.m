@@ -26,6 +26,8 @@ extern const CGSize kTileSize;
     [kalView removeObserver:self forKeyPath:@"frame"];
     [eventScrollView release];
     [kalView release];
+
+    self.filterView = nil;
     
     [super dealloc];
 }
@@ -55,10 +57,11 @@ extern const CGSize kTileSize;
 - (void)addeventScrollView
 {
     eventScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    EventFilterView *listView = [EventFilterView createView];
+    self.filterView = [EventFilterView createView];
+    
     [self addSubview:eventScrollView];
-    [eventScrollView addSubview:listView];
-    [eventScrollView setContentSize:listView.frame.size];
+    [eventScrollView addSubview:self.filterView];
+    [eventScrollView setContentSize:self.filterView.frame.size];
     [eventScrollView setScrollEnabled:YES];
     [eventScrollView setShowsHorizontalScrollIndicator:YES];
     [eventScrollView setBounces:NO];

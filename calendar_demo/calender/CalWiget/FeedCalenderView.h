@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "KalView.h"
+#import "EventFilterView.h"
+
 
 @interface FeedCalenderView : UIView
+
+@property(retain, nonatomic) EventFilterView * filterView;
 
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;

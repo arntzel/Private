@@ -22,7 +22,35 @@
     self.labTitle.text = event.title;
     self.labLocation.text = event.location.location;
 
-    self.labTime.text = [Utils formateTime:event.start];
+
+    if(event.is_all_day) {
+        
+        self.labTime.text = @"ALL DAY";
+        self.labTimeType.hidden = YES;
+        self.labEventDuration.text = @"All Day";
+        
+    } else {
+
+        NSString * startType = event.start_type;
+        
+        if([@"exactly_at" isEqualToString:startType]) {
+
+            self.labTimeType.hidden = YES;
+
+        } else if([@"anytime_after" isEqualToString:startType]) {
+            
+            self.labTimeType.hidden = NO;
+            self.labTimeType.text = @"AFTER";
+            
+        } else {
+
+            self.labTimeType.hidden = NO;
+            self.labTimeType.text = @"AROUND";
+        }
+
+        self.labTime.text = [Utils formateTimeAMPM:event.start];
+        self.labEventDuration.text = [self getEventDutationText:event];
+    }
 
     NSString * headerUrl = event.creator.avatar_url;
     
@@ -36,7 +64,7 @@
     NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
     self.imgEventType.image = [UIImage imageNamed:imgName];
 
-    self.labEventDuration.text = [self getEventDutationText:event];
+   
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
 }
@@ -67,7 +95,7 @@
     if(location!= nil && location.location != nil && location.location.length > 0) {
         return  location.location;
     } else {
-        return @" No location determined";
+        return @"No location determined";
     }
 }
 

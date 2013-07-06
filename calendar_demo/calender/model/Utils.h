@@ -33,6 +33,8 @@
  */
 +(NSString *) formateTime:(NSDate *) time;
 
++(NSString *) formateTimeAMPM:(NSDate *) time;
+
 /*
  return the day part of the NDDate: example: "2013-06-02"
  */

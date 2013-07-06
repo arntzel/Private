@@ -47,6 +47,15 @@
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formateTimeAMPM:(NSDate *) time
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"K:mm a"];
+
+    return [dateFormatter stringFromDate:time];
+}
+
 
 +(NSString *) formateDay:(NSDate *) time
 {
