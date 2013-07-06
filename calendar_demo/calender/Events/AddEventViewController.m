@@ -133,8 +133,8 @@ AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
 
 
 - (IBAction)Create:(id)sender {
-//    [self createEvent];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self createEvent];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)createEvent
