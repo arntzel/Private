@@ -27,7 +27,12 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventFilterView" owner:self options:nil];
     EventFilterView * view = (EventFilterView*)[nibView objectAtIndex:0];
-  
+
+    view.btnImcompletedEvnt.selected = YES;
+    view.btnGoogleEvnt.selected = YES;
+    view.btnFBEvnt.selected = YES;
+    view.btnBirthdayEvnt.selected = YES;
+    
     return view;
 }
 
@@ -40,19 +45,19 @@
     int filters = 0x00000000;
 
     if(self.btnImcompletedEvnt.selected) {
-        filters &= FILTER_IMCOMPLETE;
+        filters |= FILTER_IMCOMPLETE;
     }
     
     if(self.btnGoogleEvnt.selected) {
-        filters &= FILTER_GOOGLE;
+        filters |= FILTER_GOOGLE;
     }
 
     if(self.btnFBEvnt.selected) {
-        filters &= FILTER_FB;
+        filters |= FILTER_FB;
     }
 
     if(self.btnBirthdayEvnt.selected) {
-        filters &= FILTER_BIRTHDAY;
+        filters |= FILTER_BIRTHDAY;
     }
 
     if(self.delegate) {

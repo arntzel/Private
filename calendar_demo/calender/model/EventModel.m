@@ -203,7 +203,7 @@
 -(void) setFilter:(int) filter
 {
     _filter = filter;
-    
+    [self rebuild];
 }
 
 -(void) rebuild

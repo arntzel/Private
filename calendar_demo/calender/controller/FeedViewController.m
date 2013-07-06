@@ -231,7 +231,7 @@
 #pragma mark EventFilterViewDelegate
 -(void) onFilterChanged:(int)filters
 {
-    NSLog(@"onFilterChanged:0x%x", filters);
+    NSLog(@"onFilterChanged:0x %x", filters);
 
     [eventModel setFilter:filters];
     [tableView reloadData];
