@@ -4,6 +4,7 @@
 #import "AddEventView.h"
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"
+#import "AddEventInviteViewController.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate>
 {
@@ -59,7 +60,8 @@
 
 - (void)invitePeople:(id)sender
 {
-    
+    AddEventInviteViewController *invitePeople = [[AddEventInviteViewController alloc] initWithNibName:@"AddEventInviteViewController" bundle:nil];
+    [self.navigationController pushViewController:invitePeople animated:YES];
 }
 
 #pragma mark -
