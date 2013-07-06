@@ -19,14 +19,16 @@
     location.location = [json objectForKey:@"location"];
     location.photo = [json objectForKey:@"photo"];
 
-    if([json objectForKey:@"lat"]) {
-        location.lat = [[json objectForKey:@"lat"] floatValue];
+    id obj = [json objectForKey:@"lat"];
+    if(![obj isKindOfClass: [NSNull class]]) {
+        location.lat = [obj floatValue];
     }
 
-    if([json objectForKey:@"lng"]) {
-        location.lat = [[json objectForKey:@"lng"] floatValue];
+    obj = [json objectForKey:@"lng"];
+    if(![obj isKindOfClass: [NSNull class]]) {
+        location.lng = [obj floatValue];
     }
-    
+
     return location;
 }
 @end

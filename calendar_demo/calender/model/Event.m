@@ -48,6 +48,8 @@
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
     event.description = [json objectForKey:@"description"];
+    
+    event.duration = [json objectForKey:@"duration"];
 
     id obj = [json objectForKey:@"duration_days"];
     if(![obj isKindOfClass:[NSNull class]]) {
@@ -72,6 +74,7 @@
 
     event.thumbnail_url = [json objectForKey:@"thumbnail_url"];
     event.title = [json objectForKey:@"title"];
+    event.timezone = [json objectForKey:@"timezone"];
 
     event.userstatus = [json objectForKey:@"userstatus"];
 
@@ -80,7 +83,10 @@
     for(int i=0;i<attendeedDic.count;i++) {
         NSDictionary * dic = [attendeedDic objectAtIndex:i];
         EventAttendee * attendee = [EventAttendee parseEventAttendee:dic];
-        [attendees addObject:attendee];
+
+        if (![@"OWNER" isEqualToString:attendee.distinction]) {
+            [attendees addObject:attendee];
+        }
     }
 
     event.attendees = attendees;

@@ -21,6 +21,7 @@ static Model * instance;
  {
  allow_attendee_invite: false,
  allow_new_dt: false,
+ 
  invitees:
  [
 
@@ -47,16 +48,83 @@ static Model * instance;
  title: "YouTube Livestream from the AngularJS-MTV Meetup"
  },
  */
--(void) createEvent:(Event *) msg andCallback:(void (^)(NSInteger error))callback
+-(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error))callback
 {
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-    //dict set
- 
+    
+    [dict setObject:[NSNumber numberWithBool:evt.allow_attendee_invite] forKey:@"allow_attendee_invite"];
+    [dict setObject:[NSNumber numberWithBool:evt.allow_new_dt] forKey:@"allow_new_dt"];
+
+    NSMutableArray * invitees =  [[NSMutableArray alloc] init];
+
+    for(int i=0; i<evt.attendees.count; i++) {
+        EventAttendee * atd = [evt.attendees objectAtIndex:i];
+
+        NSMutableDictionary * userDic = [[NSMutableDictionary alloc] init];
+        [userDic setObject:atd.user.email forKey:@"email"];
+        [userDic setObject:atd.user.username forKey:@"username"];
+
+        [invitees addObject:userDic];
+    }
+
+    [dict setObject:invitees forKey:@"invitees"];
+
+    [dict setObject:evt.description forKey:@"description"];
+
+    [dict setObject:[NSNumber numberWithInt:evt.duration_days] forKey:@"duration_days"];
+    [dict setObject:[NSNumber numberWithInt:evt.duration_hours] forKey:@"duration_hours"];
+    [dict setObject:[NSNumber numberWithInt:evt.duration_minutes] forKey:@"duration_minutes"];
+    
+    [dict setObject:[NSNumber numberWithInt:0] forKey:@"event_type"];
+
+    [dict setObject:[NSNumber numberWithBool:evt.is_all_day] forKey:@"is_all_day"];
+    [dict setObject:[NSNumber numberWithBool:true] forKey:@"published"];
+
+    
+    NSString * start = [Utils formateDate:evt.start];
+    [dict setObject:start forKey:@"start"];
+
+    [dict setObject:evt.start_type forKey:@"start_type"];
+    [dict setObject:evt.thumbnail_url forKey:@"thumbnail_url"];
+    [dict setObject:evt.title forKey:@"title"];
+    [dict setObject:evt.timezone forKey:@"timezone"];
+
 
     NSString * postContent = [Utils dictionary2String:dict];
 
+    NSLog(@"createEvent, postContent:%@", postContent);
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event", HOST];
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+
+        int status = httpResp.statusCode;
+
+        if(status == 201) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            NSLog(@"Login resp:%@", json);
+            
+            callback(0);
+            
+        } else {
+
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSLog(@"error=%d, resp:%@", status, aStr);
+
+            callback(-1);
+        }
+    }];    
 }
+
 
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 {

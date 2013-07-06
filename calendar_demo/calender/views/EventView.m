@@ -33,11 +33,11 @@
 
         NSString * startType = event.start_type;
         
-        if([@"exactly_at" isEqualToString:startType]) {
+        if([START_TYPEEXACTLYAT isEqualToString:startType]) {
 
             self.labTimeType.hidden = YES;
 
-        } else if([@"anytime_after" isEqualToString:startType]) {
+        } else if([START_TYPEAFTER isEqualToString:startType]) {
             
             self.labTimeType.hidden = NO;
             self.labTimeType.text = @"AFTER";
@@ -49,7 +49,7 @@
         }
 
         self.labTime.text = [Utils formateTimeAMPM:event.start];
-        self.labEventDuration.text = [self getEventDutationText:event];
+        self.labEventDuration.text = event.duration;
     }
 
     NSString * headerUrl = event.creator.avatar_url;
