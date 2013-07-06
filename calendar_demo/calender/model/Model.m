@@ -70,6 +70,13 @@ static Model * instance;
 
     [dict setObject:invitees forKey:@"invitees"];
 
+
+    NSMutableDictionary * location =  [[NSMutableDictionary alloc] init];
+    [location setObject:evt.location.location forKey:@"location"];
+    [location setObject:[NSNumber numberWithFloat:evt.location.lat]  forKey:@"lat"];
+    [location setObject:[NSNumber numberWithFloat:evt.location.lng]  forKey:@"lng"];
+    [dict setObject:location forKey:@"location"];
+
     [dict setObject:evt.description forKey:@"description"];
 
     [dict setObject:[NSNumber numberWithInt:evt.duration_days] forKey:@"duration_days"];
@@ -93,14 +100,15 @@ static Model * instance;
     [dict setObject:evt.title forKey:@"title"];
     [dict setObject:evt.timezone forKey:@"timezone"];
 
-
     NSString * postContent = [Utils dictionary2String:dict];
 
     NSLog(@"createEvent, postContent:%@", postContent);
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event", HOST];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/", HOST];
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    [[UserModel getInstance] setAuthHeader:request];
+
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
@@ -121,7 +129,7 @@ static Model * instance;
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"error=%d, resp:%@", status, aStr);
+            NSLog(@"error=%@, resp:%@", error, aStr);
 
             callback(-1);
         }

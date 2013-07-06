@@ -17,6 +17,9 @@
 @interface AddEventInviteViewController : UIViewController
 @property (nonatomic, assign) id<AddEventInviteViewControllerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+
+
 - (IBAction)Cancel:(id)sender;
 - (IBAction)create:(id)sender;
 

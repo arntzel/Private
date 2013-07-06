@@ -142,26 +142,48 @@ AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
     NSString *title = addEventView.txtAddEventTitle.text;
     
     Event *event = [[Event alloc] init];
-    event.description = @"";
-    event.attendees = self.invitedPeoples;
+    event.description = @"test";
+
+    NSMutableArray * attentees = [[NSMutableArray alloc] init];
+    for(User * user in self.invitedPeoples) {
+        EventAttendee * atd = [[EventAttendee alloc] init];
+        atd.user = user;
+        [attentees addObject:atd];
+    }
+    event.attendees = attentees;
+    
     event.duration_days = 1;
     event.duration_hours = 5;
     event.duration_minutes = 10;
-//    event.eventType = 0;
+    event.eventType = 0;
     event.is_all_day = NO;
     event.location = self.locationPlace;
     event.start = [NSDate date];
     event.published = YES;
     event.start_type = START_TYPEAFTER;
-    event.thumbnail_url = @"";
-    event.timezone = @"Asia/Chongqing",
+    event.thumbnail_url = @"test";
+    event.timezone = @"America/New_York",
     event.title = title;
     
     Model *model = [Model getInstance];
-    
+
+    [self.indicatorView startAnimating];
     [model createEvent:event andCallback:^(NSInteger error) {
-        if (error) {
+
+        [self.indicatorView stopAnimating];
+        
+        if (error == 0) {
+
             [self.navigationController popViewControllerAnimated:YES];
+
+        } else {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                            message:@"Create Event failed"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+
+            [alert show];
         }
     }];
 }

@@ -290,6 +290,7 @@ static UserModel * instance;
 -(void) setAuthHeader:(NSMutableURLRequest *) request
 {
     NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", mloginUser.username, mloginUser.apikey];
+    NSLog(@"authHeader:%@", authHeader);
     [request addValue:authHeader forHTTPHeaderField:@"AUTHORIZATION"];
 }
 

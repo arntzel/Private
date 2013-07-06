@@ -24,6 +24,8 @@
 {
     [dataSource release];
     self.tableView = nil;
+    self.indicatorView = nil;
+    
     [super dealloc];
 }
 
@@ -40,7 +42,9 @@
 - (void)getInvitePeopleData
 {
     UserModel *model = [UserModel getInstance];
+    [self.indicatorView startAnimating];
     [model getUsers:0 andCallback:^(NSInteger error, NSArray *users) {
+        [self.indicatorView stopAnimating];
         [dataSource reloadData:users];
         [self.tableView reloadData];
     }];
