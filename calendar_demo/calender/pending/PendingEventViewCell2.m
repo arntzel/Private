@@ -23,7 +23,8 @@
     NSString * headerUrl = event.creator.avatar_url;
 
     [self.imgView.layer setCornerRadius:self.imgView.frame.size.width / 2];
-    
+    self.imgView.layer.masksToBounds = YES;
+
     if([headerUrl isKindOfClass: [NSNull class]]) {
         self.imgView.image = [UIImage imageNamed:@"header.png"];
     } else {
