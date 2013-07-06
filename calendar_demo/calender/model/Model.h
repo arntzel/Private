@@ -21,6 +21,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
  */
 @interface Model : NSObject
 
+-(void) createEvent:(Event *) msg andCallback:(void (^)(NSInteger error))callback;
+
 
 /**
  Call WebService API to get the lastest events.s

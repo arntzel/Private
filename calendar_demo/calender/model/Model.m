@@ -17,6 +17,11 @@ static Model * instance;
     return self;
 }
 
+-(void) createEvent:(Event *) msg andCallback:(void (^)(NSInteger error))callback
+{
+    //TODO::
+}
+
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -68,7 +73,7 @@ static Model * instance;
     //User * me = [[UserModel getInstance] getLoginUser];
     //NSString  * encodedName = [me.username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&creator=%@", HOST, currentDate, encodedName];
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00", HOST, currentDate];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&event_type=0", HOST, currentDate];
 
     NSLog(@"url=%@", url);
 
