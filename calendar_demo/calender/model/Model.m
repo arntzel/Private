@@ -85,6 +85,9 @@ static Model * instance;
     NSString * start = [Utils formateDate:evt.start];
     [dict setObject:start forKey:@"start"];
 
+    //FOR TEST
+    [dict setObject:start forKey:@"end"];
+    
     [dict setObject:evt.start_type forKey:@"start_type"];
     [dict setObject:evt.thumbnail_url forKey:@"thumbnail_url"];
     [dict setObject:evt.title forKey:@"title"];
