@@ -12,6 +12,17 @@
 #define FILTER_BIRTHDAY    0X00000008
 
 
+/*
+ exactly_at', _(u'Exactly at')),
+ ('within_an_hour', _(u'Within an hour')),
+ ('anytime_after', _(u'Anytime after')),
+
+ */
+
+#define START_TYPEEXACTLYAT  @"exactly_at"
+#define START_TYPEWITHIN     @"within_an_hour"
+#define START_TYPEBIRTHDAY   @"anytime_after"
+
 
 @interface Event : NSObject
 

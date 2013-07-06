@@ -17,9 +17,45 @@ static Model * instance;
     return self;
 }
 
+/*
+ {
+ allow_attendee_invite: false,
+ allow_new_dt: false,
+ invitees:
+ [
+
+ {
+ email: "zhiwehu@gmail.com",
+ username: "zhiwehu"
+ },
+
+ ...
+ ],
+
+ description: "*",
+ duration_days: 0,
+ duration_hours: null,
+ duration_minutes: null,
+ event_type: 0,
+ is_all_day: false,
+ location: { lat（维度）, lng(经度), location},
+ published: true,
+ start: "2013-06-12T09:45:18",
+ start_type: "exactly_at",
+ thumbnail_url: null,
+ timezone: "Asia/Chongqing",
+ title: "YouTube Livestream from the AngularJS-MTV Meetup"
+ },
+ */
 -(void) createEvent:(Event *) msg andCallback:(void (^)(NSInteger error))callback
 {
-    //TODO::
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    //dict set
+ 
+
+    NSString * postContent = [Utils dictionary2String:dict];
+
 }
 
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback

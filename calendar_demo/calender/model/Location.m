@@ -19,6 +19,13 @@
     location.location = [json objectForKey:@"location"];
     location.photo = [json objectForKey:@"photo"];
 
+    if([json objectForKey:@"lat"]) {
+        location.lat = [[json objectForKey:@"lat"] floatValue];
+    }
+
+    if([json objectForKey:@"lng"]) {
+        location.lat = [[json objectForKey:@"lng"] floatValue];
+    }
     
     return location;
 }
