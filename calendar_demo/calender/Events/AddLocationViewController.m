@@ -22,6 +22,7 @@
 @end
 
 @implementation AddLocationViewController
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,11 +98,11 @@
 
 }
 
-- (void)didSelectPlace:(CGPoint)place GPlaceDataSource:(GPlaceDataSource *)dataSource
+- (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource
 {
     if (dataSource == txtSearchDataSource) {
         self.txtSearchTabView.hidden = YES;
-        currentCoordinate = CLLocationCoordinate2DMake(place.x, place.y);
+        currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
                                                              zoom:14];
         
@@ -111,6 +112,7 @@
     }
     else if (dataSource == nearByDataSource)
     {
+        [self.delegate setLocation:location];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

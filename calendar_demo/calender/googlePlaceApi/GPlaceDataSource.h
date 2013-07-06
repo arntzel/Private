@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Location.h"
 
 @class GPlaceDataSource;
 
 @protocol GPlaceDataSourceDelegate <NSObject>
 
-- (void)didSelectPlace:(CGPoint)place GPlaceDataSource:(GPlaceDataSource*)dataSource;
+- (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource;
 
 @end
 
