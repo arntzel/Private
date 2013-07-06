@@ -14,6 +14,7 @@
 
 @property(strong) NSString * apikey;
 
+@property(strong) NSString * timezone;
 
 /*
  Parse User object from json data.

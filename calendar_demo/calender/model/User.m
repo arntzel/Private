@@ -8,16 +8,15 @@
 
 +(User *) parseUser:(NSDictionary *) jsonData
 {
-
     User * user = [[User alloc] init];
-
 
     user.id = [[jsonData objectForKey:@"id"] intValue];
     user.username = [jsonData objectForKey:@"username"];
     user.email = [jsonData objectForKey:@"email"];
     user.apikey = [jsonData objectForKey:@"apikey"];
     user.avatar_url = [jsonData objectForKey:@"avatar_url"];
-   
+    user.timezone = [jsonData objectForKey:@"timezone"];
+
     return user;
 }
 

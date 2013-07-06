@@ -21,6 +21,8 @@
     self.labelTitle.text = event.title;
     
     NSString * headerUrl = event.creator.avatar_url;
+
+    [self.imgView.layer setCornerRadius:self.imgView.frame.size.width / 2];
     
     if([headerUrl isKindOfClass: [NSNull class]]) {
         self.imgView.image = [UIImage imageNamed:@"header.png"];
@@ -37,6 +39,7 @@
     
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventViewCell2" owner:self options:nil];
     PendingEventViewCell2 * view = (PendingEventViewCell2*)[nibView objectAtIndex:0];
+    
     return view;
     
 }
