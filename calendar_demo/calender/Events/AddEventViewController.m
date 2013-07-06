@@ -1,5 +1,5 @@
 
-
+#import "Model.h"
 #import "AddEventViewController.h"
 #import "AddEventView.h"
 #import "AddLocationViewController.h"
@@ -133,7 +133,37 @@ AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
 
 
 - (IBAction)Create:(id)sender {
+//    [self createEvent];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)createEvent
+{
+    NSString *title = addEventView.txtAddEventTitle.text;
+    
+    Event *event = [[Event alloc] init];
+    event.description = @"";
+    event.attendees = self.invitedPeoples;
+    event.duration_days = 1;
+    event.duration_hours = 5;
+    event.duration_minutes = 10;
+//    event.eventType = 0;
+    event.is_all_day = NO;
+    event.location = self.locationPlace;
+    event.start = [NSDate date];
+    event.published = YES;
+    event.start_type = START_TYPEAFTER;
+    event.thumbnail_url = @"";
+    event.timezone = @"Asia/Chongqing",
+    event.title = title;
+    
+    Model *model = [Model getInstance];
+    
+    [model createEvent:event andCallback:^(NSInteger error) {
+        if (error) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 
