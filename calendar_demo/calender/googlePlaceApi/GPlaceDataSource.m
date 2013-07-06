@@ -8,17 +8,40 @@
 
 #import "GPlaceDataSource.h"
 
+
 @interface GPlaceDataSource()
-@property(nonatomic,strong) NSArray *arrayData;
+@property(nonatomic,strong) NSMutableArray *arrayData;
 
 @end
 
 @implementation GPlaceDataSource
 @synthesize delegate;
 
++(Location *)parseLocation:(NSDictionary *)json
+{
+    Location * location = [[Location alloc] init];
+    location.location = [json objectForKey:@"name"];
+    location.photo = [json objectForKey:@"icon"];
+    
+    NSDictionary *geometryDict = [json objectForKey:@"geometry"];
+    NSDictionary *locationDict = [geometryDict objectForKey:@"location"];
+    
+    if([json objectForKey:@"lat"] != [NSNull null]) {
+        location.lat = [[locationDict objectForKey:@"lat"] floatValue];
+    }
+    if([json objectForKey:@"lng"] != [NSNull null]) {
+        location.lng = [[locationDict objectForKey:@"lng"] floatValue];
+    }
+    
+    return location;
+}
+
 - (void)setData:(NSArray *)data
 {
-    self.arrayData = data;
+    self.arrayData = [[NSMutableArray alloc] init];
+    for (NSDictionary *json in data) {
+        [self.arrayData addObject:[GPlaceDataSource parseLocation:json]];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -33,22 +56,15 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    //config the cell
     
-    NSDictionary *placeDict = [self.arrayData objectAtIndex:indexPath.row];
-    cell.textLabel.text = [placeDict objectForKey:@"name"];
-//    cell.imageView.image = @"http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png";
+    Location * location = [self.arrayData objectAtIndex:indexPath.row];
+    cell.textLabel.text = location.location;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *placeDict = [self.arrayData objectAtIndex:indexPath.row];
-    NSDictionary *geometry = [placeDict objectForKey:@"geometry"];
-    NSDictionary *location = [geometry objectForKey:@"location"];
-    NSNumber *lat = [location objectForKey:@"lat"];
-    NSNumber *lng = [location objectForKey:@"lng"];
-    
-    [self.delegate didSelectPlace:CGPointMake([lat floatValue], [lng floatValue]) GPlaceDataSource:self];
+    Location * location = [self.arrayData objectAtIndex:indexPath.row];
+    [self.delegate didSelectPlace:location GPlaceDataSource:self];
 }
 @end

@@ -7,14 +7,17 @@
 #import "AddEventInviteViewController.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,
-AddEventInviteViewControllerDelegate>
+AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
 {
     AddEventView *addEventView;
 }
 @property(nonatomic, retain) NSArray *invitedPeoples;
+@property(nonatomic, retain) Location *locationPlace;
 @end
 
 @implementation AddEventViewController
+@synthesize invitedPeoples;
+@synthesize locationPlace;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,6 +104,7 @@ AddEventInviteViewControllerDelegate>
 - (void)addLocation:(id)sender
 {
     AddLocationViewController *addLocation = [[AddLocationViewController alloc] initWithNibName:@"AddLocationViewController" bundle:nil];
+    addLocation.delegate = self;
     [self.navigationController pushViewController:addLocation animated:YES];
 }
 
@@ -140,4 +144,8 @@ AddEventInviteViewControllerDelegate>
     self.invitedPeoples = inviteArray;
 }
 
+- (void)setLocation:(Location *)location_
+{
+    self.locationPlace = location_;
+}
 @end
