@@ -3,6 +3,7 @@
 #import "AddEventViewController.h"
 #import "AddEventView.h"
 #import "AddLocationViewController.h"
+#import "AddEventDateViewController.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate>
 {
@@ -45,7 +46,8 @@
 
 - (void)addDate:(id)sender
 {
-    
+    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithNibName:@"AddEventDateViewController" bundle:nil];
+    [self.navigationController pushViewController:addDate animated:YES];
 }
 
 - (void)addEventPhoto:(id)sender

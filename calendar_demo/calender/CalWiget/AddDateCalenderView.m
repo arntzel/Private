@@ -8,15 +8,18 @@
 
 #import "AddDateCalenderView.h"
 #import "DeviceInfo.h"
+#import "AddDateTypeView.h"
 
 @interface AddDateCalenderView()
 {
     KalView *kalView;
+    AddDateTypeView *typeView;
 }
 
 @end
 
 @implementation AddDateCalenderView
+@synthesize delegate;
 
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
@@ -29,28 +32,58 @@
     self = [super initWithFrame:frame];
     if (self) {
         kalView = [[KalView alloc] initWithFrame:self.bounds delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
-        [kalView swapToWeekMode];
-        [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+        [kalView swapToMonthMode];
         [self addSubview:kalView];
         [self addDateTypeView];
+        [self ajustViewFrame];
+        
+        [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
 
-- (void)addDateTypeView
+- (void)ajustViewFrame
 {
+    CGFloat height = [DeviceInfo fullScreenHeight];
     
+    CGRect frame = self.frame;
+    frame.size.height = typeView.frame.size.height + kalView.frame.size.height;
+    frame.origin.y = height - frame.size.height;
+    self.frame = frame;
+
+    frame = typeView.frame;
+    frame.origin.y = kalView.frame.size.height;
+    typeView.frame = frame;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"frame"]) {
-        [self ajustEventScrollPosition];
+    if ([keyPath isEqualToString:@"frame"] && (object == kalView)) {
+        [self ajustViewFrame];
     }
 }
 
-- (void)ajustEventScrollPosition
+- (void)addDateTypeView
 {
+    typeView = [AddDateTypeView createView];
+    [self addSubview:typeView];
+    [typeView.btnChooseTime addTarget:self action:@selector(chooseTimeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [typeView.btnChooseDuration addTarget:self action:@selector(chooseDurationAction:) forControlEvents:UIControlEventTouchUpInside];
+}
 
+- (void)chooseTimeAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(chooseTimeAction)])
+    {
+        [self.delegate chooseTimeAction];
+    }
+}
+
+- (void)chooseDurationAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(chooseDurationAction)])
+    {
+        [self.delegate chooseDurationAction];
+    }
 }
 @end

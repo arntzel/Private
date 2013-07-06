@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "KalView.h"
 
+@protocol AddDateCalenderViewDelegate <NSObject>
+
+- (void)chooseTimeAction;
+
+- (void)chooseDurationAction;
+
+@end
+
 @interface AddDateCalenderView : UIView
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
+
+@property(nonatomic,assign) id<AddDateCalenderViewDelegate>delegate;
 @end

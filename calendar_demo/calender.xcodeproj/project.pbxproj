@@ -135,6 +135,10 @@
 		3DF520DE1784117B009C3BCD /* pull_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF520DC1784117B009C3BCD /* pull_arrow.png */; };
 		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
 		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
+		762002F01787A48400F94023 /* AddEventDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762002EE1787A48400F94023 /* AddEventDateViewController.m */; };
+		762002F11787A48400F94023 /* AddEventDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002EF1787A48400F94023 /* AddEventDateViewController.xib */; };
+		762002F31787A72000F94023 /* AddDateTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002F21787A72000F94023 /* AddDateTypeView.xib */; };
+		762002F61787A7A200F94023 /* AddDateTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762002F51787A7A200F94023 /* AddDateTypeView.m */; };
 		76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A1B1771F40A00781166 /* AddEventViewController.m */; };
 		76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76383A1C1771F40A00781166 /* AddEventViewController.xib */; };
 		76383A2C177204BD00781166 /* AddEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A2A177204BC00781166 /* AddEventView.m */; };
@@ -160,7 +164,6 @@
 		7656D31D1787176300C90C3B /* LoopPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30A1787176300C90C3B /* LoopPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D31E1787176300C90C3B /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30C1787176300C90C3B /* PickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D31F1787176300C90C3B /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30F1787176300C90C3B /* TimePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7656D325178717B100C90C3B /* AddEventDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D324178717B100C90C3B /* AddEventDateController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3271787188A00C90C3B /* AddDateCalenderView.m */; };
 		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
@@ -531,6 +534,12 @@
 		761F0D1E1754E8E6009650F4 /* GPlaceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceDataSource.h; sourceTree = "<group>"; };
 		761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceDataSource.m; sourceTree = "<group>"; };
 		761F0D21175509C2009650F4 /* googleAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = googleAPIKey.h; sourceTree = "<group>"; };
+		762002ED1787A48400F94023 /* AddEventDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventDateViewController.h; sourceTree = "<group>"; };
+		762002EE1787A48400F94023 /* AddEventDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventDateViewController.m; sourceTree = "<group>"; };
+		762002EF1787A48400F94023 /* AddEventDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventDateViewController.xib; sourceTree = "<group>"; };
+		762002F21787A72000F94023 /* AddDateTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDateTypeView.xib; sourceTree = "<group>"; };
+		762002F41787A7A200F94023 /* AddDateTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateTypeView.h; sourceTree = "<group>"; };
+		762002F51787A7A200F94023 /* AddDateTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateTypeView.m; sourceTree = "<group>"; };
 		76383A1A1771F40A00781166 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		76383A1B1771F40A00781166 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		76383A1C1771F40A00781166 /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
@@ -566,8 +575,6 @@
 		7656D30D1787176300C90C3B /* PickerViewProtocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocal.h; sourceTree = "<group>"; };
 		7656D30E1787176300C90C3B /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		7656D30F1787176300C90C3B /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
-		7656D323178717B100C90C3B /* AddEventDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventDateController.h; sourceTree = "<group>"; };
-		7656D324178717B100C90C3B /* AddEventDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventDateController.m; sourceTree = "<group>"; };
 		7656D3261787188A00C90C3B /* AddDateCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateCalenderView.h; sourceTree = "<group>"; };
 		7656D3271787188A00C90C3B /* AddDateCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateCalenderView.m; sourceTree = "<group>"; };
 		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
@@ -1126,8 +1133,12 @@
 				7656D30D1787176300C90C3B /* PickerViewProtocal.h */,
 				7656D30E1787176300C90C3B /* TimePicker.h */,
 				7656D30F1787176300C90C3B /* TimePicker.m */,
-				7656D323178717B100C90C3B /* AddEventDateController.h */,
-				7656D324178717B100C90C3B /* AddEventDateController.m */,
+				762002ED1787A48400F94023 /* AddEventDateViewController.h */,
+				762002EE1787A48400F94023 /* AddEventDateViewController.m */,
+				762002EF1787A48400F94023 /* AddEventDateViewController.xib */,
+				762002F21787A72000F94023 /* AddDateTypeView.xib */,
+				762002F41787A7A200F94023 /* AddDateTypeView.h */,
+				762002F51787A7A200F94023 /* AddDateTypeView.m */,
 			);
 			path = AddDate;
 			sourceTree = "<group>";
@@ -1571,6 +1582,8 @@
 				94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */,
 				94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */,
 				7656D31B1787176300C90C3B /* CustomPickerCell.xib in Resources */,
+				762002F11787A48400F94023 /* AddEventDateViewController.xib in Resources */,
+				762002F31787A72000F94023 /* AddDateTypeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1694,8 +1707,9 @@
 				7656D31D1787176300C90C3B /* LoopPickerView.m in Sources */,
 				7656D31E1787176300C90C3B /* PickerView.m in Sources */,
 				7656D31F1787176300C90C3B /* TimePicker.m in Sources */,
-				7656D325178717B100C90C3B /* AddEventDateController.m in Sources */,
 				7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */,
+				762002F01787A48400F94023 /* AddEventDateViewController.m in Sources */,
+				762002F61787A7A200F94023 /* AddDateTypeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

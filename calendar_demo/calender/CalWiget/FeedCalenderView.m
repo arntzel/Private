@@ -107,7 +107,7 @@ extern const CGSize kTileSize;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"frame"]) {
+    if ([keyPath isEqualToString:@"frame"] && (object == kalView)) {
         
         [self ajustEventScrollPosition];
         if (kalMode == MONTH_MODE) {
