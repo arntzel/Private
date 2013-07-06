@@ -33,6 +33,24 @@
     
     [self.allEvents addObject:event];
 }
+
+-(NSArray *) getEventsByFilter:(int) filter
+{
+    NSMutableArray * events = [[NSMutableArray alloc] init];
+    
+    for(int i=0; i<self.allEvents.count; i++) {
+        Event * evt = [self.allEvents objectAtIndex:i];
+
+        int type = 0x00000001 << evt.eventType;
+
+        if( (type & filter) > 0) {
+            [events addObject:evt];
+        }
+    }
+
+    return events;
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,6 +109,11 @@
         NSString * str2 = obj2;
         return [str2 compare:str1];
     }];
+
+}
+
+-(void) setFilter:(int) filter
+{
 
 }
 

@@ -14,6 +14,8 @@
 
 -(void) addEvent:(Event*) event;
 
+-(NSArray *) getEventsByFilter:(int) filter;
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,10 +40,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface EventModel : NSObject
 
-
 -(void) clear;
 
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
+
+-(void) setFilter:(int) filter;
 
 
 -(MonthEventsObject *) getEventsByMonth:(NSString *) month;
