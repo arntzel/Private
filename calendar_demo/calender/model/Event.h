@@ -21,7 +21,7 @@
 
 #define START_TYPEEXACTLYAT  @"exactly_at"
 #define START_TYPEWITHIN     @"within_an_hour"
-#define START_TYPEBIRTHDAY   @"anytime_after"
+#define START_TYPEAFTER   @"anytime_after"
 
 
 @interface Event : NSObject
