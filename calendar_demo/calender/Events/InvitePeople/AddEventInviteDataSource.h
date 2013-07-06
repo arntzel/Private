@@ -11,6 +11,8 @@
 @interface AddEventInviteDataSource : NSObject<UITableViewDataSource>
 
 - (NSString *)nameAtIndex:(NSInteger)index;
+- (void)reloadData:(NSArray *)users;
+- (NSArray *)getSelectedUsers;
 
 - (void)setSelectedAtIndex:(NSInteger)index;
 - (void)setDeselectedAtIndex:(NSInteger)index;

@@ -8,15 +8,17 @@
 
 #import "AddEventInviteViewController.h"
 #import "AddEventInviteDataSource.h"
+#import "UserModel.h"
 
 @interface AddEventInviteViewController ()<UITableViewDelegate>
 {
-    AddEventInviteDataSource *dataSource; 
+    AddEventInviteDataSource *dataSource;
 }
 
 @end
 
 @implementation AddEventInviteViewController
+@synthesize delegate;
 
 - (void)dealloc
 {
@@ -31,7 +33,17 @@
     // Do any additional setup after loading the view from its nib.
     dataSource = [[AddEventInviteDataSource alloc] init];
     self.tableView.delegate = self;
-    self.tableView.dataSource = dataSource;
+    self.tableView.dataSource =  dataSource;
+    [self getInvitePeopleData];
+}
+
+- (void)getInvitePeopleData
+{
+    UserModel *model = [UserModel getInstance];
+    [model getUsers:0 andCallback:^(NSInteger error, NSArray *users) {
+        [dataSource reloadData:users];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)viewDidUnload {
@@ -60,6 +72,7 @@
 }
 
 - (IBAction)create:(id)sender {
+    [self.delegate setInVitePeopleArray:[dataSource getSelectedUsers]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

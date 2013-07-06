@@ -8,10 +8,12 @@
 
 #import "AddEventInviteDataSource.h"
 #import "AddEventInvitePeopleCell.h"
+#import "UserModel.h"
+#import "User.h"
 
 @interface AddEventInvitePeople : NSObject <NSObject>
 
-@property(nonatomic, copy) NSString *name;
+@property(nonatomic, retain) User *user;
 @property(nonatomic, assign) BOOL selected;
 
 
@@ -21,7 +23,7 @@
 
 - (void)dealloc
 {
-    self.name = nil;
+    self.user = nil;
     [super dealloc];
 }
 
@@ -46,16 +48,31 @@
 {
     if (self = [super init]) {
         array = [[NSMutableArray alloc] init];
-        
-        for (NSInteger index = 0; index < 100; index++) {
-            AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-            people.selected = index % 2;
-            people.name = [NSString stringWithFormat:@"index at %d", index];
-            [array addObject:people];
-        }
-
     }
     return self;
+}
+
+- (void)reloadData:(NSArray *)users
+{
+    [array removeAllObjects];
+    
+    for (User *user in users) {
+        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+        people.user = user;
+        people.selected = NO;
+        [array addObject:people];
+    }
+}
+
+- (NSArray *)getSelectedUsers
+{
+    NSMutableArray *selectedArray = [[NSMutableArray alloc] init];
+    for (AddEventInvitePeople *people in array) {
+        if (people.selected) {
+            [selectedArray addObject:people.user];
+        }
+    }
+    return [selectedArray autorelease];
 }
 
 - (void)setSelectedAtIndex:(NSInteger)index
@@ -89,7 +106,7 @@
     
     AddEventInvitePeople *people = [array objectAtIndex:indexPath.row];
     cell.selected = people.selected;
-    cell.peopleName.text = people.name;
+    cell.peopleName.text = people.user.username;
 
     return cell;
 }
