@@ -4,12 +4,14 @@
 #import "AddEventView.h"
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"
+#import "AddEventInviteViewController.h"
 
-@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate>
+@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,
+AddEventInviteViewControllerDelegate>
 {
     AddEventView *addEventView;
 }
-
+@property(nonatomic, retain) NSArray *invitedPeoples;
 @end
 
 @implementation AddEventViewController
@@ -59,7 +61,9 @@
 
 - (void)invitePeople:(id)sender
 {
-    
+    AddEventInviteViewController *invitePeople = [[AddEventInviteViewController alloc] initWithNibName:@"AddEventInviteViewController" bundle:nil];
+    invitePeople.delegate = self;
+    [self.navigationController pushViewController:invitePeople animated:YES];
 }
 
 #pragma mark -
@@ -128,5 +132,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark recall
+
+- (void)setInVitePeopleArray:(NSArray *)inviteArray
+{
+    self.invitedPeoples = inviteArray;
+}
 
 @end
