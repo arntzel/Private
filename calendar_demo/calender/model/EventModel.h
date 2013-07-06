@@ -44,7 +44,7 @@
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
 
 
--(NSArray *) getEventsByMonth:(NSString *) month;
+-(MonthEventsObject *) getEventsByMonth:(NSString *) month;
 
 -(NSArray *) getEventsByDay:(NSString *) day;
 

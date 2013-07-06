@@ -27,6 +27,9 @@
             return;
         }
     }
+
+    int type = 0x00000001 << event.eventType;
+    self.types |= type;
     
     [self.allEvents addObject:event];
 }
@@ -81,8 +84,6 @@
 
         [dayEventsObj addEvent:event];
 
-        int type = 0x00000001 << event.eventType;
-        dayEventsObj.types |= type;
     }
 
     _alldays = [[_dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -107,6 +108,11 @@
     return dayEventsObj.allEvents;
 }
 
+-(DayEventsObject *) getDayEventsObjectByDay:(NSString *) day
+{
+    return [_dayEvents objectForKey:day];
+}
+
 -(NSArray *) getAllDays
 {
     return _alldays;
@@ -118,27 +124,35 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
 
+    //Only save the three months data
+    NSMutableArray * _monthEventsObjects;
+
     NSArray * alldays;
 
     //Day -> DayEvents  
     NSMutableDictionary * dayEvents;
     
-    //Month -> NSMutableArray
+    //Month -> MonthEventsObject
     NSMutableDictionary * monthEvents;
 }
 
 -(id) init {
     self = [super init];
 
+    _monthEventsObjects = [[NSMutableArray alloc] init];
+
+    
     alldays = [[NSMutableArray alloc] init];
     dayEvents = [[NSMutableDictionary alloc] init];
     monthEvents = [[NSMutableDictionary alloc] init];
-
+    
     return self;
 }
 
 -(void) clear
 {
+    [_monthEventsObjects removeAllObjects];
+    
     alldays = [[NSMutableArray alloc] init];
     dayEvents = [[NSMutableDictionary alloc] init];
     monthEvents = [[NSMutableDictionary alloc] init];
@@ -146,25 +160,45 @@
 
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month {
 
-    [monthEvents setObject:events forKey:month];
-    
-    for(int i=0;i<events.count;i++) {
-        Event * event = [events objectAtIndex:i];
-        
-        NSString * day = [Utils formateDay:event.start];
-        
-        DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
-        if(dayEventsObj == nil) {
-            dayEventsObj = [[DayEventsObject alloc] initWithDay:day];
-            [dayEvents setObject:dayEventsObj forKey:day];
-        }
-        
-        [dayEventsObj addEvent:event];
-        
-        int type = 0x00000001 << event.eventType;
-        dayEventsObj.types |= type;
+    NSLog(@"EventModel: setEvents: %@: count=%d", month, events.count);
+
+    if(_monthEventsObjects.count>=3) {
+        //TODO:: Xiang Fang
+        //[_monthEventsObjects removeObjectAtIndex:0];
     }
-    
+
+    MonthEventsObject * monthEventsObj = [[MonthEventsObject alloc] init];
+    [monthEventsObj setEvents:events forMonth:month];
+
+    [_monthEventsObjects  addObject:monthEventsObj];
+
+    [self rebuild];
+}
+
+
+-(void) rebuild
+{
+
+    dayEvents = [[NSMutableDictionary alloc] init];
+    monthEvents = [[NSMutableDictionary alloc] init];
+
+    for(int i=0 ;i<_monthEventsObjects.count;i++) {
+
+        MonthEventsObject * monthEventsObj = [_monthEventsObjects objectAtIndex:i];
+
+        [monthEvents setObject:monthEventsObj forKey:[monthEventsObj getMonth]];
+
+        NSArray * monthdays = [monthEventsObj getAllDays];
+
+        for(int j=0;j<monthdays.count;j++) {
+            NSString * day = [monthdays objectAtIndex:j];
+
+            DayEventsObject * dayObj = [monthEventsObj getDayEventsObjectByDay:day];
+
+            [dayEvents setObject:dayObj forKey:day];
+        }
+    }
+
     alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString * str1 = obj1;
         NSString * str2 = obj2;
@@ -172,8 +206,7 @@
     }];
 }
 
-
--(NSArray *) getEventsByMonth:(NSString *) month {
+-(MonthEventsObject *) getEventsByMonth:(NSString *) month {
     return [monthEvents objectForKey:month];
 }
 
