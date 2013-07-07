@@ -250,6 +250,9 @@
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
 		94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */; };
 		94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8E2BD17831A5B000164AB /* PendingTableView.m */; };
+		94F1507417894B0100CEA5DA /* craete_event_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507117894B0100CEA5DA /* craete_event_title.png */; };
+		94F1507517894B0100CEA5DA /* create_event_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507217894B0100CEA5DA /* create_event_img.png */; };
+		94F1507617894B0100CEA5DA /* create_event_imgbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507317894B0100CEA5DA /* create_event_imgbg.png */; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
 		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
 /* End PBXBuildFile section */
@@ -713,6 +716,9 @@
 		94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell.xib; sourceTree = "<group>"; };
 		94E8E2BC17831A5B000164AB /* PendingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingTableView.h; sourceTree = "<group>"; };
 		94E8E2BD17831A5B000164AB /* PendingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingTableView.m; sourceTree = "<group>"; };
+		94F1507117894B0100CEA5DA /* craete_event_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = craete_event_title.png; sourceTree = "<group>"; };
+		94F1507217894B0100CEA5DA /* create_event_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_img.png; sourceTree = "<group>"; };
+		94F1507317894B0100CEA5DA /* create_event_imgbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_imgbg.png; sourceTree = "<group>"; };
 		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
 		94F4A6A21765DA0F009F0094 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
 		94F4A6A31765DA0F009F0094 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
@@ -1322,6 +1328,9 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				94F1507117894B0100CEA5DA /* craete_event_title.png */,
+				94F1507217894B0100CEA5DA /* create_event_img.png */,
+				94F1507317894B0100CEA5DA /* create_event_imgbg.png */,
 				3DF520DB1784117B009C3BCD /* arrow.png */,
 				942758F7177D335100B55F75 /* arrow_right.png */,
 				942758F8177D335100B55F75 /* arrow_right@2x.png */,
@@ -1631,6 +1640,9 @@
 				763B0AFF1787E40600533D1F /* AddEventInvitePeopleCell.xib in Resources */,
 				763B0B041787E8C000533D1F /* addInviteBox.png in Resources */,
 				763B0B051787E8C000533D1F /* addInviteFlag.png in Resources */,
+				94F1507417894B0100CEA5DA /* craete_event_title.png in Resources */,
+				94F1507517894B0100CEA5DA /* create_event_img.png in Resources */,
+				94F1507617894B0100CEA5DA /* create_event_imgbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
