@@ -21,7 +21,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
  */
 @interface Model : NSObject
 
--(void) createEvent:(Event *) msg andCallback:(void (^)(NSInteger error))callback;
+
+-(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback;
 
 
 /**

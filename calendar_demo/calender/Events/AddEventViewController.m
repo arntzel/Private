@@ -142,7 +142,7 @@ AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
     NSString *title = addEventView.txtAddEventTitle.text;
     
     Event *event = [[Event alloc] init];
-    event.description = @"test";
+    event.description = @"";
 
     NSMutableArray * attentees = [[NSMutableArray alloc] init];
     for(User * user in self.invitedPeoples) {
@@ -168,11 +168,15 @@ AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate>
     Model *model = [Model getInstance];
 
     [self.indicatorView startAnimating];
-    [model createEvent:event andCallback:^(NSInteger error) {
+    [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
 
         [self.indicatorView stopAnimating];
         
         if (error == 0) {
+
+            if(self.delegate) {
+                [self.delegate onEventCreated:newEvent];
+            }
 
             [self.navigationController popViewControllerAnimated:YES];
 

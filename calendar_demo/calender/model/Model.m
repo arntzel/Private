@@ -48,7 +48,7 @@ static Model * instance;
  title: "YouTube Livestream from the AngularJS-MTV Meetup"
  },
  */
--(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error))callback
+-(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback
 {
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
@@ -123,15 +123,16 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
             NSLog(@"Login resp:%@", json);
-            
-            callback(0);
+
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
             
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             NSLog(@"error=%@, resp:%@", error, aStr);
 
-            callback(-1);
+            callback(-1, nil);
         }
     }];    
 }
