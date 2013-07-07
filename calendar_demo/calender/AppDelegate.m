@@ -9,6 +9,8 @@
 
 #import "GPPURLHandler.h"
 
+#import "UIFont+Replacement.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

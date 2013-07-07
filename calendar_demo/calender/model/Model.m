@@ -174,7 +174,7 @@ static Model * instance;
     //start__lt=2013-06-16T00:00:00
 
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?start__gte=%@&start__lt=%@", HOST, startDay, endDay];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
     
     NSLog(@"url=%@", url);
     

@@ -253,6 +253,7 @@
 		94F1507417894B0100CEA5DA /* craete_event_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507117894B0100CEA5DA /* craete_event_title.png */; };
 		94F1507517894B0100CEA5DA /* create_event_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507217894B0100CEA5DA /* create_event_img.png */; };
 		94F1507617894B0100CEA5DA /* create_event_imgbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507317894B0100CEA5DA /* create_event_imgbg.png */; };
+		94F1507F17899DCA00CEA5DA /* UIFont+Replacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1507E17899DCA00CEA5DA /* UIFont+Replacement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
 		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
 /* End PBXBuildFile section */
@@ -719,6 +720,8 @@
 		94F1507117894B0100CEA5DA /* craete_event_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = craete_event_title.png; sourceTree = "<group>"; };
 		94F1507217894B0100CEA5DA /* create_event_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_img.png; sourceTree = "<group>"; };
 		94F1507317894B0100CEA5DA /* create_event_imgbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_imgbg.png; sourceTree = "<group>"; };
+		94F1507D17899DCA00CEA5DA /* UIFont+Replacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Replacement.h"; sourceTree = "<group>"; };
+		94F1507E17899DCA00CEA5DA /* UIFont+Replacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Replacement.m"; sourceTree = "<group>"; };
 		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
 		94F4A6A21765DA0F009F0094 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
 		94F4A6A31765DA0F009F0094 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
@@ -820,6 +823,7 @@
 		3D6151A91734A391003D72B0 /* calender */ = {
 			isa = PBXGroup;
 			children = (
+				94F1507C17899DC900CEA5DA /* UIFont+Replacement */,
 				3DB9780B174A2814005B462E /* controller */,
 				76C22D65173FCD2F00AC7519 /* CalWiget */,
 				940EBBBA173E6BEB001C3B44 /* images */,
@@ -1403,6 +1407,15 @@
 			path = colordot;
 			sourceTree = "<group>";
 		};
+		94F1507C17899DC900CEA5DA /* UIFont+Replacement */ = {
+			isa = PBXGroup;
+			children = (
+				94F1507D17899DCA00CEA5DA /* UIFont+Replacement.h */,
+				94F1507E17899DCA00CEA5DA /* UIFont+Replacement.m */,
+			);
+			path = "UIFont+Replacement";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1772,6 +1785,7 @@
 				763B0AF51787DCF100533D1F /* AddEventInviteViewController.m in Sources */,
 				763B0AFA1787DFFE00533D1F /* AddEventInviteDataSource.m in Sources */,
 				763B0AFD1787E3F000533D1F /* AddEventInvitePeopleCell.m in Sources */,
+				94F1507F17899DCA00CEA5DA /* UIFont+Replacement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
