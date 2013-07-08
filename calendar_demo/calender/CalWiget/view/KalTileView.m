@@ -26,13 +26,21 @@ const CGSize kTileSize = { 46.f, 44.f };
     CGContextRef ctx=UIGraphicsGetCurrentContext();
     
     UIColor *textColor = nil;
-    if (self.selected) {
+
+    if (self.selected || [date isToday]) {
         textColor = [UIColor whiteColor];
-        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
+
+        if(self.selected) {
+            CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
+        } else {
+            CGContextSetRGBFillColor(ctx, 150/255.0f, 150/255.0f, 150/255.0f, 1);
+        }
+        
         CGContextSetLineWidth(ctx, 1.0f);
         CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
         CGContextFillPath(ctx);
-    }
+        
+    } 
     else if(self.belongsToAdjacentMonth)
     {
         textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1.0];
@@ -129,12 +137,12 @@ const CGSize kTileSize = { 46.f, 44.f };
     
     BOOL google = eventType & 0x00000002;
     BOOL fackbook = eventType & 0x00000008;
-    BOOL birthday = eventType & 0x00000010;
+    //BOOL birthday = eventType & 0x00000010;
     
     int count = 0;
     if(google) count++;
     if(fackbook) count++;
-    if(birthday) count++;
+    //if(birthday) count++;
     
     if (count == 0) {
         return;
@@ -162,11 +170,13 @@ const CGSize kTileSize = { 46.f, 44.f };
         [self drawColordot:ctx andPosition:position andColor:0xFF00FF00];
         position.x += 10.0f;
     }
-    
+
+    /*
     if(birthday) {
         [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
         position.x += 10.0f;
     }
+     */
 }
 
 -(void) drawColordot:(CGContextRef)ctx andPosition:(CGPoint) position andColor:(int) color
