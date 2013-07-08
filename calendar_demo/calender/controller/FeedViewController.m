@@ -137,15 +137,6 @@
 }
 
 
-#pragma mark -
-#pragma mark btnEvent
-- (void)btnAddEvent:(id)sender
-{
-    AddEventViewController *addEvent = [[AddEventViewController alloc] init];
-    addEvent.delegate = self;
-    [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
-}
-
 
 #pragma mark -
 #pragma mark kalViewDelegate
