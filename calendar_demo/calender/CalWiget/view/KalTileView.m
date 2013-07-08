@@ -21,29 +21,30 @@ const CGSize kTileSize = { 46.f, 44.f };
   return self;
 }
 
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx=UIGraphicsGetCurrentContext();
     
     UIColor *textColor = nil;
-
-    if (self.selected || [date isToday]) {
-        textColor = [UIColor whiteColor];
-
         if(self.selected) {
+        textColor = [UIColor whiteColor];
             CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
-        } else {
-            CGContextSetRGBFillColor(ctx, 150/255.0f, 150/255.0f, 150/255.0f, 1);
-        }
-        
         CGContextSetLineWidth(ctx, 1.0f);
         CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
         CGContextFillPath(ctx);
-        
     } 
     else if(self.belongsToAdjacentMonth)
     {
         textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1.0];
+    }
+    else if([self isToday])
+    {
+        textColor = [UIColor whiteColor];
+        CGContextSetRGBFillColor(ctx, 190.0/255.0f, 190.0/255.0f, 190.0/255.0f, 1);
+        CGContextSetLineWidth(ctx, 1.0f);
+        CGContextAddRect(ctx, CGRectMake(-2, 0, kTileSize.width - 1, kTileSize.height - 1));
+        CGContextFillPath(ctx);
     }
     else
     {
@@ -101,7 +102,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     
   textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
 //  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
-    if (n == 1) {
+    if (n == 1 || self.selected) {
         textY = 14.0f;
     }
     else
@@ -112,7 +113,7 @@ const CGSize kTileSize = { 46.f, 44.f };
   CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
 
     //draw month
-    if (n == 1) {
+    if (n == 1 || self.isSelected) {
         fontSize = 10.0f;
         UIFont *monthFont = [UIFont boldSystemFontOfSize:fontSize];
         
@@ -152,7 +153,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
     
     CGFloat OffsetY = 8.0f;
-    if (n == 1) {
+    if (n == 1 || self.selected) {
         OffsetY = 5.0f;
     }
     
@@ -217,13 +218,13 @@ const CGSize kTileSize = { 46.f, 44.f };
 
 - (void)setSelected:(BOOL)selected
 {
-  if (flags.selected == selected)
-    return;
+//  if (flags.selected == selected)
+//    return;
 
   // workaround since I cannot draw outside of the frame in drawRect:
-  if (![self isToday]) {
     CGRect rect = self.frame;
-    if (selected) {
+    if (selected)
+    {
       rect.origin.x--;
       rect.size.width++;
       rect.size.height++;
@@ -233,7 +234,6 @@ const CGSize kTileSize = { 46.f, 44.f };
       rect.size.height--;
     }
     self.frame = rect;
-  }
   
   flags.selected = selected;
   [self setNeedsDisplay];
@@ -275,9 +275,9 @@ const CGSize kTileSize = { 46.f, 44.f };
     rect.size.width++;
     rect.size.height++;
   } else if (flags.type == KalTileTypeToday) {
-    rect.origin.x++;
-    rect.size.width--;
-    rect.size.height--;
+      rect.origin.x--;
+      rect.size.width++;
+      rect.size.height++;
   }
   self.frame = rect;
   
@@ -285,7 +285,11 @@ const CGSize kTileSize = { 46.f, 44.f };
   [self setNeedsDisplay];
 }
 
-- (BOOL)isToday { return flags.type == KalTileTypeToday; }
+- (BOOL)isToday
+{
+    NSDate *today = [NSDate date];
+    return [self.date isEqual:[KalDate dateFromNSDate:today]];
+}
 
 - (BOOL)belongsToAdjacentMonth { return flags.type == KalTileTypeAdjacent; }
 
