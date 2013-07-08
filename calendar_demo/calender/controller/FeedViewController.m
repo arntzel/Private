@@ -141,8 +141,7 @@
 #pragma mark btnEvent
 - (void)btnAddEvent:(id)sender
 {
-    AddEventViewController *addEvent = [[AddEventViewController alloc] initWithNibName:@"AddEventViewController" bundle:nil];
-
+    AddEventViewController *addEvent = [[AddEventViewController alloc] init];
     addEvent.delegate = self;
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }

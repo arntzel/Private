@@ -139,10 +139,6 @@
 		762002F11787A48400F94023 /* AddEventDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002EF1787A48400F94023 /* AddEventDateViewController.xib */; };
 		762002F31787A72000F94023 /* AddDateTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002F21787A72000F94023 /* AddDateTypeView.xib */; };
 		762002F61787A7A200F94023 /* AddDateTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762002F51787A7A200F94023 /* AddDateTypeView.m */; };
-		76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A1B1771F40A00781166 /* AddEventViewController.m */; };
-		76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76383A1C1771F40A00781166 /* AddEventViewController.xib */; };
-		76383A2C177204BD00781166 /* AddEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76383A2A177204BC00781166 /* AddEventView.m */; };
-		76383A2D177204BD00781166 /* AddEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76383A2B177204BD00781166 /* AddEventView.xib */; };
 		763B0AF51787DCF100533D1F /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B0AF31787DCF100533D1F /* AddEventInviteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		763B0AF61787DCF100533D1F /* AddEventInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B0AF41787DCF100533D1F /* AddEventInviteViewController.xib */; };
 		763B0AFA1787DFFE00533D1F /* AddEventInviteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B0AF91787DFFE00533D1F /* AddEventInviteDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -176,6 +172,23 @@
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
 		76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76AC4B5D1785C6CF008E0F7D /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */; };
+		76BC52C81789C72F005D78E2 /* AddDateEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76BC52C91789C72F005D78E2 /* AddDateEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */; };
+		76BC52CA1789C72F005D78E2 /* AddEventSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC52C21789C72F005D78E2 /* AddEventSettingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76BC52CB1789C72F005D78E2 /* AddEventSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52C31789C72F005D78E2 /* AddEventSettingView.xib */; };
+		76BC52CC1789C72F005D78E2 /* NavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC52C51789C72F005D78E2 /* NavgationBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76BC52CD1789C72F005D78E2 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC52C71789C72F005D78E2 /* AddEventViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76BC52DA1789C748005D78E2 /* addDateBtnIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52CF1789C748005D78E2 /* addDateBtnIcon.png */; };
+		76BC52DB1789C748005D78E2 /* addEventBtnBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D01789C748005D78E2 /* addEventBtnBg.png */; };
+		76BC52DC1789C748005D78E2 /* addEventSettingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D11789C748005D78E2 /* addEventSettingIcon.png */; };
+		76BC52DD1789C748005D78E2 /* addLocationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D21789C748005D78E2 /* addLocationIcon.png */; };
+		76BC52DE1789C748005D78E2 /* arraw.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D31789C748005D78E2 /* arraw.png */; };
+		76BC52DF1789C748005D78E2 /* imagePicker_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D41789C748005D78E2 /* imagePicker_bg.jpg */; };
+		76BC52E01789C748005D78E2 /* imagePickerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D51789C748005D78E2 /* imagePickerIcon.png */; };
+		76BC52E11789C748005D78E2 /* imagePickerTitleBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D61789C748005D78E2 /* imagePickerTitleBg.png */; };
+		76BC52E21789C748005D78E2 /* invitePeopleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D71789C748005D78E2 /* invitePeopleIcon.png */; };
+		76BC52E31789C748005D78E2 /* navBar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D81789C748005D78E2 /* navBar_bg.png */; };
+		76BC52E41789C748005D78E2 /* navBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D91789C748005D78E2 /* navBtn_bg.png */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D81173FCD3000AC7519 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6E173FCD3000AC7519 /* NSDateAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -250,9 +263,6 @@
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
 		94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */; };
 		94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8E2BD17831A5B000164AB /* PendingTableView.m */; };
-		94F1507417894B0100CEA5DA /* craete_event_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507117894B0100CEA5DA /* craete_event_title.png */; };
-		94F1507517894B0100CEA5DA /* create_event_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507217894B0100CEA5DA /* create_event_img.png */; };
-		94F1507617894B0100CEA5DA /* create_event_imgbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F1507317894B0100CEA5DA /* create_event_imgbg.png */; };
 		94F1507F17899DCA00CEA5DA /* UIFont+Replacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1507E17899DCA00CEA5DA /* UIFont+Replacement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
 		94F4A6A51765DA0F009F0094 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F4A6A31765DA0F009F0094 /* LoginNowController.xib */; };
@@ -551,12 +561,6 @@
 		762002F21787A72000F94023 /* AddDateTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDateTypeView.xib; sourceTree = "<group>"; };
 		762002F41787A7A200F94023 /* AddDateTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateTypeView.h; sourceTree = "<group>"; };
 		762002F51787A7A200F94023 /* AddDateTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateTypeView.m; sourceTree = "<group>"; };
-		76383A1A1771F40A00781166 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
-		76383A1B1771F40A00781166 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
-		76383A1C1771F40A00781166 /* AddEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventViewController.xib; sourceTree = "<group>"; };
-		76383A29177204BC00781166 /* AddEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventView.h; sourceTree = "<group>"; };
-		76383A2A177204BC00781166 /* AddEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventView.m; sourceTree = "<group>"; };
-		76383A2B177204BD00781166 /* AddEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventView.xib; sourceTree = "<group>"; };
 		763B0AF21787DCF100533D1F /* AddEventInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInviteViewController.h; sourceTree = "<group>"; };
 		763B0AF31787DCF100533D1F /* AddEventInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInviteViewController.m; sourceTree = "<group>"; };
 		763B0AF41787DCF100533D1F /* AddEventInviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInviteViewController.xib; sourceTree = "<group>"; };
@@ -605,6 +609,27 @@
 		76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCalenderView.m; sourceTree = "<group>"; };
 		76AC4B5B1785C6CF008E0F7D /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
 		76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateEntryView.h; sourceTree = "<group>"; };
+		76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateEntryView.m; sourceTree = "<group>"; };
+		76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDateEntryView.xib; sourceTree = "<group>"; };
+		76BC52C11789C72F005D78E2 /* AddEventSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventSettingView.h; sourceTree = "<group>"; };
+		76BC52C21789C72F005D78E2 /* AddEventSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventSettingView.m; sourceTree = "<group>"; };
+		76BC52C31789C72F005D78E2 /* AddEventSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventSettingView.xib; sourceTree = "<group>"; };
+		76BC52C41789C72F005D78E2 /* NavgationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavgationBar.h; sourceTree = "<group>"; };
+		76BC52C51789C72F005D78E2 /* NavgationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavgationBar.m; sourceTree = "<group>"; };
+		76BC52C61789C72F005D78E2 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		76BC52C71789C72F005D78E2 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		76BC52CF1789C748005D78E2 /* addDateBtnIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addDateBtnIcon.png; sourceTree = "<group>"; };
+		76BC52D01789C748005D78E2 /* addEventBtnBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addEventBtnBg.png; sourceTree = "<group>"; };
+		76BC52D11789C748005D78E2 /* addEventSettingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addEventSettingIcon.png; sourceTree = "<group>"; };
+		76BC52D21789C748005D78E2 /* addLocationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addLocationIcon.png; sourceTree = "<group>"; };
+		76BC52D31789C748005D78E2 /* arraw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arraw.png; sourceTree = "<group>"; };
+		76BC52D41789C748005D78E2 /* imagePicker_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imagePicker_bg.jpg; sourceTree = "<group>"; };
+		76BC52D51789C748005D78E2 /* imagePickerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imagePickerIcon.png; sourceTree = "<group>"; };
+		76BC52D61789C748005D78E2 /* imagePickerTitleBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imagePickerTitleBg.png; sourceTree = "<group>"; };
+		76BC52D71789C748005D78E2 /* invitePeopleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invitePeopleIcon.png; sourceTree = "<group>"; };
+		76BC52D81789C748005D78E2 /* navBar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar_bg.png; sourceTree = "<group>"; };
+		76BC52D91789C748005D78E2 /* navBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBtn_bg.png; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
 		76C22D6A173FCD3000AC7519 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
@@ -717,9 +742,6 @@
 		94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell.xib; sourceTree = "<group>"; };
 		94E8E2BC17831A5B000164AB /* PendingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingTableView.h; sourceTree = "<group>"; };
 		94E8E2BD17831A5B000164AB /* PendingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingTableView.m; sourceTree = "<group>"; };
-		94F1507117894B0100CEA5DA /* craete_event_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = craete_event_title.png; sourceTree = "<group>"; };
-		94F1507217894B0100CEA5DA /* create_event_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_img.png; sourceTree = "<group>"; };
-		94F1507317894B0100CEA5DA /* create_event_imgbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_event_imgbg.png; sourceTree = "<group>"; };
 		94F1507D17899DCA00CEA5DA /* UIFont+Replacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Replacement.h"; sourceTree = "<group>"; };
 		94F1507E17899DCA00CEA5DA /* UIFont+Replacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Replacement.m"; sourceTree = "<group>"; };
 		94F4A6A11765DA0F009F0094 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
@@ -1194,15 +1216,20 @@
 			children = (
 				763B0AF71787DFAD00533D1F /* InvitePeople */,
 				7656D2EF1787176300C90C3B /* AddDate */,
-				76383A29177204BC00781166 /* AddEventView.h */,
-				76383A2A177204BC00781166 /* AddEventView.m */,
-				76383A2B177204BD00781166 /* AddEventView.xib */,
+				76BC52CE1789C748005D78E2 /* resource */,
+				76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */,
+				76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */,
+				76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */,
+				76BC52C11789C72F005D78E2 /* AddEventSettingView.h */,
+				76BC52C21789C72F005D78E2 /* AddEventSettingView.m */,
+				76BC52C31789C72F005D78E2 /* AddEventSettingView.xib */,
+				76BC52C41789C72F005D78E2 /* NavgationBar.h */,
+				76BC52C51789C72F005D78E2 /* NavgationBar.m */,
+				76BC52C61789C72F005D78E2 /* AddEventViewController.h */,
+				76BC52C71789C72F005D78E2 /* AddEventViewController.m */,
 				7672D168177091520053D024 /* AddLocationViewController.h */,
 				7672D169177091520053D024 /* AddLocationViewController.m */,
 				7672D16A177091520053D024 /* AddLocationViewController.xib */,
-				76383A1A1771F40A00781166 /* AddEventViewController.h */,
-				76383A1B1771F40A00781166 /* AddEventViewController.m */,
-				76383A1C1771F40A00781166 /* AddEventViewController.xib */,
 				763B0AF21787DCF100533D1F /* AddEventInviteViewController.h */,
 				763B0AF31787DCF100533D1F /* AddEventInviteViewController.m */,
 				763B0AF41787DCF100533D1F /* AddEventInviteViewController.xib */,
@@ -1212,6 +1239,24 @@
 			);
 			name = Events;
 			path = calender/Events;
+			sourceTree = "<group>";
+		};
+		76BC52CE1789C748005D78E2 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				76BC52CF1789C748005D78E2 /* addDateBtnIcon.png */,
+				76BC52D01789C748005D78E2 /* addEventBtnBg.png */,
+				76BC52D11789C748005D78E2 /* addEventSettingIcon.png */,
+				76BC52D21789C748005D78E2 /* addLocationIcon.png */,
+				76BC52D31789C748005D78E2 /* arraw.png */,
+				76BC52D41789C748005D78E2 /* imagePicker_bg.jpg */,
+				76BC52D51789C748005D78E2 /* imagePickerIcon.png */,
+				76BC52D61789C748005D78E2 /* imagePickerTitleBg.png */,
+				76BC52D71789C748005D78E2 /* invitePeopleIcon.png */,
+				76BC52D81789C748005D78E2 /* navBar_bg.png */,
+				76BC52D91789C748005D78E2 /* navBtn_bg.png */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		76C22D65173FCD2F00AC7519 /* CalWiget */ = {
@@ -1332,9 +1377,6 @@
 		940EBBBA173E6BEB001C3B44 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				94F1507117894B0100CEA5DA /* craete_event_title.png */,
-				94F1507217894B0100CEA5DA /* create_event_img.png */,
-				94F1507317894B0100CEA5DA /* create_event_imgbg.png */,
 				3DF520DB1784117B009C3BCD /* arrow.png */,
 				942758F7177D335100B55F75 /* arrow_right.png */,
 				942758F8177D335100B55F75 /* arrow_right@2x.png */,
@@ -1594,8 +1636,6 @@
 				9430902C1770985000266515 /* colordot4.png in Resources */,
 				9430902D1770985000266515 /* colordot5.png in Resources */,
 				9430902E1770985000266515 /* colordot6.png in Resources */,
-				76383A1E1771F40A00781166 /* AddEventViewController.xib in Resources */,
-				76383A2D177204BD00781166 /* AddEventView.xib in Resources */,
 				94260F86177744070037965D /* PendingEventCell.xib in Resources */,
 				3D925209177848720066927A /* FacebookSDKResources.bundle in Resources */,
 				3D9253FA177964A30066927A /* Changelog in Resources */,
@@ -1653,9 +1693,19 @@
 				763B0AFF1787E40600533D1F /* AddEventInvitePeopleCell.xib in Resources */,
 				763B0B041787E8C000533D1F /* addInviteBox.png in Resources */,
 				763B0B051787E8C000533D1F /* addInviteFlag.png in Resources */,
-				94F1507417894B0100CEA5DA /* craete_event_title.png in Resources */,
-				94F1507517894B0100CEA5DA /* create_event_img.png in Resources */,
-				94F1507617894B0100CEA5DA /* create_event_imgbg.png in Resources */,
+				76BC52C91789C72F005D78E2 /* AddDateEntryView.xib in Resources */,
+				76BC52CB1789C72F005D78E2 /* AddEventSettingView.xib in Resources */,
+				76BC52DA1789C748005D78E2 /* addDateBtnIcon.png in Resources */,
+				76BC52DB1789C748005D78E2 /* addEventBtnBg.png in Resources */,
+				76BC52DC1789C748005D78E2 /* addEventSettingIcon.png in Resources */,
+				76BC52DD1789C748005D78E2 /* addLocationIcon.png in Resources */,
+				76BC52DE1789C748005D78E2 /* arraw.png in Resources */,
+				76BC52DF1789C748005D78E2 /* imagePicker_bg.jpg in Resources */,
+				76BC52E01789C748005D78E2 /* imagePickerIcon.png in Resources */,
+				76BC52E11789C748005D78E2 /* imagePickerTitleBg.png in Resources */,
+				76BC52E21789C748005D78E2 /* invitePeopleIcon.png in Resources */,
+				76BC52E31789C748005D78E2 /* navBar_bg.png in Resources */,
+				76BC52E41789C748005D78E2 /* navBtn_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1707,8 +1757,6 @@
 				76D20BC11766C51F00CCC21F /* navigationNotifyDataSource.m in Sources */,
 				76D20BC21766C51F00CCC21F /* navigationNotifySectionHeader.m in Sources */,
 				76DD62B31768AEF900C8F6AF /* AttributedLabel.m in Sources */,
-				76383A1D1771F40A00781166 /* AddEventViewController.m in Sources */,
-				76383A2C177204BD00781166 /* AddEventView.m in Sources */,
 				94260F5717733EF70037965D /* EventModel.m in Sources */,
 				94260F6D177733D10037965D /* PedingEventViewController.m in Sources */,
 				94260F8C177744320037965D /* PendingEventCell.m in Sources */,
@@ -1785,7 +1833,10 @@
 				763B0AF51787DCF100533D1F /* AddEventInviteViewController.m in Sources */,
 				763B0AFA1787DFFE00533D1F /* AddEventInviteDataSource.m in Sources */,
 				763B0AFD1787E3F000533D1F /* AddEventInvitePeopleCell.m in Sources */,
-				94F1507F17899DCA00CEA5DA /* UIFont+Replacement.m in Sources */,
+				76BC52C81789C72F005D78E2 /* AddDateEntryView.m in Sources */,
+				76BC52CA1789C72F005D78E2 /* AddEventSettingView.m in Sources */,
+				76BC52CC1789C72F005D78E2 /* NavgationBar.m in Sources */,
+				76BC52CD1789C72F005D78E2 /* AddEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

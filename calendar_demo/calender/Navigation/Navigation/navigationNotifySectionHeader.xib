@@ -53,7 +53,7 @@
 					<object class="IBUILabel" id="39538137">
 						<reference key="NSNextResponder" ref="695645082"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{10, 0}, {285, 23}}</string>
+						<string key="NSFrame">{{5, 0}, {285, 23}}</string>
 						<reference key="NSSuperview" ref="695645082"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1045438645"/>
@@ -72,11 +72,11 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
-							<double key="pointSize">14</double>
+							<double key="pointSize">17</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">14</double>
+							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -84,7 +84,7 @@
 					<object class="IBUIActivityIndicatorView" id="1045438645">
 						<reference key="NSNextResponder" ref="695645082"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{229, 1}, {20, 20}}</string>
+						<string key="NSFrame">{{230, 1}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="695645082"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
