@@ -5,11 +5,11 @@
 	<key>ReplacementFonts</key>
 	<dict>
 		<key>Helvetica-Italic</key>
-		<string>Courier-Italic</string>
+		<string>AvenirNext-Italic</string>
 		<key>Helvetica-Bold</key>
-		<string>Courier-Bold</string>
+		<string>AvenirNext-Bold</string>
 		<key>Helvetica</key>
-		<string>Courier</string>
+		<string>Avenir Next</string>
 		<key>System</key>
 		<string>Avenir Next</string>
 	</dict>

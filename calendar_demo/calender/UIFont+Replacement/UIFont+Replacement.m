@@ -118,14 +118,22 @@ static void initializeReplacementFonts()
 	
 	[replacementDictionary release];
 	replacementDictionary = [aReplacementDictionary retain];
-	
+
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+    
 	for (id key in [replacementDictionary allKeys])
 	{
 		NSString *fontName = [replacementDictionary objectForKey:key];
 		UIFont *font = [UIFont fontWithName:fontName size:10];
-		if (!font)
-			NSLog(@"WARNING: replacement font '%@' is not available.", fontName);
+		if (!font) {
+            NSLog(@"WARNING: replacement font '%@' is not available.", fontName);
+        } else {
+            [dic setObject:fontName forKey:key];
+        }
 	}
+
+    [replacementDictionary release];
+    replacementDictionary = dic;
 }
 
 @end
