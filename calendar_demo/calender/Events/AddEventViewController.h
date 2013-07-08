@@ -10,7 +10,7 @@
 
 @interface AddEventViewController : UIViewController
 
-@property(strong, nonatomic) UIActivityIndicatorView * indicatorView;
+@property(retain, nonatomic) UIActivityIndicatorView * indicatorView;
 
 @property(assign, nonatomic) id<AddEventViewDelegate> delegate;
 @end

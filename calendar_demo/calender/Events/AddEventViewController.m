@@ -43,8 +43,10 @@
 @end
 
 @implementation AddEventViewController
+
 @synthesize invitedPeoples;
 @synthesize locationPlace;
+@synthesize indicatorView;
 
 - (void)dealloc
 {
