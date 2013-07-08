@@ -53,7 +53,12 @@
     }
 
     NSString * headerUrl = event.creator.avatar_url;
-    
+
+    //Birthday
+    if(event.eventType == 4) {
+        headerUrl = event.thumbnail_url;
+    }
+
     if([headerUrl isKindOfClass: [NSNull class]]) {
         self.imgUser.image = [UIImage imageNamed:@"header.png"];
     } else {

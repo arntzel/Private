@@ -259,6 +259,8 @@
 		94901DF31785B63000848ACA /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94901DF21785B63000848ACA /* EventFilterView.m */; };
 		94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF51785B68B00848ACA /* EventFilterView.xib */; };
 		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
+		94C4527C178AF0DB00E2E1A1 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */; };
+		94C45280178AF1A200E2E1A1 /* BirthdayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */; };
 		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
 		94D43546177DC46A009B20F3 /* EventPendingToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D43544177DC469009B20F3 /* EventPendingToolbar.xib */; };
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
@@ -736,6 +738,9 @@
 		94901DF21785B63000848ACA /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
 		94901DF51785B68B00848ACA /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
 		94901DF71785C06100848ACA /* btn_ok_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok_selected@2x.png"; sourceTree = "<group>"; };
+		94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayEventView.xib; sourceTree = "<group>"; };
+		94C4527E178AF1A200E2E1A1 /* BirthdayEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayEventView.h; sourceTree = "<group>"; };
+		94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayEventView.m; sourceTree = "<group>"; };
 		94D43542177DC469009B20F3 /* EventPendingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPendingToolbar.h; sourceTree = "<group>"; };
 		94D43543177DC469009B20F3 /* EventPendingToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPendingToolbar.m; sourceTree = "<group>"; };
 		94D43544177DC469009B20F3 /* EventPendingToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPendingToolbar.xib; sourceTree = "<group>"; };
@@ -918,6 +923,9 @@
 				94901DF11785B63000848ACA /* EventFilterView.h */,
 				94901DF21785B63000848ACA /* EventFilterView.m */,
 				94901DF51785B68B00848ACA /* EventFilterView.xib */,
+				94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */,
+				94C4527E178AF1A200E2E1A1 /* BirthdayEventView.h */,
+				94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1706,6 +1714,7 @@
 				76BC52E21789C748005D78E2 /* invitePeopleIcon.png in Resources */,
 				76BC52E31789C748005D78E2 /* navBar_bg.png in Resources */,
 				76BC52E41789C748005D78E2 /* navBtn_bg.png in Resources */,
+				94C4527C178AF0DB00E2E1A1 /* BirthdayEventView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1838,6 +1847,7 @@
 				76BC52CC1789C72F005D78E2 /* NavgationBar.m in Sources */,
 				76BC52CD1789C72F005D78E2 /* AddEventViewController.m in Sources */,
 				3D9B24C0178A994500689916 /* UIFont+Replacement.m in Sources */,
+				94C45280178AF1A200E2E1A1 /* BirthdayEventView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
