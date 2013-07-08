@@ -18,6 +18,8 @@
 #import "AddEventDateViewController.h"
 #import "AddEventInviteViewController.h"
 
+#import "DeviceInfo.h"
+
 @interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate,NavgationBarDelegate>
 {
     NavgationBar *navBar;
@@ -82,7 +84,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:237.0f/255.0f blue:237.0f/255.0f alpha:1.0f]];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 568 - 44)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, [DeviceInfo fullScreenHeight] - 44)];
     [self.view addSubview:scrollView];
     scrollView.delegate = self;
     
