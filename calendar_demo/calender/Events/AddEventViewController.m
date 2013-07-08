@@ -345,23 +345,27 @@
     event.title = title;
     
     Model *model = [Model getInstance];
-    
-    [indicatorView startAnimating];
-    [model createEvent:event andCallback:^(NSInteger error) {
-        
-        [indicatorView stopAnimating];
+
+    [self.indicatorView startAnimating];
+    [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
+
+        [self.indicatorView stopAnimating];
         
         if (error == 0) {
-            
+
+            if(self.delegate) {
+                [self.delegate onEventCreated:newEvent];
+            }
+
             [self.navigationController popViewControllerAnimated:YES];
-            
+
         } else {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
                                                             message:@"Create Event failed"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-            
+
             [alert show];
         }
     }];

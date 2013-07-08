@@ -44,6 +44,8 @@
 
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
 
+-(void) addNewEvent:(Event*) newEvent;
+
 -(void) setFilter:(int) filter;
 
 

@@ -32,6 +32,14 @@
     self.types |= type;
     
     [self.allEvents addObject:event];
+
+    NSArray * sortedArray = [self.allEvents sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Event * evt1 = obj1;
+        Event * evt2 = obj2;
+        return [evt2.start compare:evt1.start];
+    }];
+
+    self.allEvents = [[NSMutableArray alloc] initWithArray:sortedArray];
 }
 
 -(NSArray *) getEventsByFilter:(int) filter
@@ -198,6 +206,26 @@
     [_monthEventsObjects  addObject:monthEventsObj];
 
     [self rebuild];
+}
+
+-(void) addNewEvent:(Event*) newEvent
+{
+    NSString * day = [Utils formateDay: newEvent.start];
+
+    DayEventsObject * dayObj = [dayEvents objectForKey:day];
+
+    if(dayObj != nil) {
+        [dayObj addEvent:newEvent];
+    } else {
+
+        NSString * month = [Utils formateMonth:newEvent.start];
+        MonthEventsObject * monthObj = [self getEventsByMonth:month];
+
+        NSMutableArray * array = [[NSMutableArray alloc] initWithArray:[monthObj getEvents]];
+        [array addObject:newEvent];
+
+        [self setEvents:array forMonth:month];
+    }
 }
 
 -(void) setFilter:(int) filter

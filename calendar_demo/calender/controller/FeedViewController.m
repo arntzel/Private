@@ -31,7 +31,8 @@
                                   PullRefreshTableViewDelegate,
                                   KalViewDelegate,
                                   KalTileViewDataSource,
-                                  EventFilterViewDelegate>
+                                  EventFilterViewDelegate,
+                                  AddEventViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -141,6 +142,7 @@
 - (void)btnAddEvent:(id)sender
 {
     AddEventViewController *addEvent = [[AddEventViewController alloc] init];
+    addEvent.delegate = self;
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }
 
@@ -234,6 +236,14 @@
     NSLog(@"onFilterChanged:0x %x", filters);
 
     [eventModel setFilter:filters];
+    [tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark AddEventViewDelegate
+-(void) onEventCreated:(Event *) event
+{
+    [eventModel addNewEvent:event];
     [tableView reloadData];
 }
 
