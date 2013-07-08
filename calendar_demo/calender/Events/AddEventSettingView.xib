@@ -114,7 +114,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="799791869">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="1009437740">
 									<string key="name">Helvetica-Bold</string>
 									<string key="family">Helvetica</string>
 									<int key="traits">2</int>
@@ -148,7 +148,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -173,7 +173,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -198,7 +198,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -208,10 +208,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="541717475"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuOTYwNzg0MzEzNyAwLjk2MDc4NDMxMzcAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="179554956"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIView" id="1028914187">
@@ -239,7 +236,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -264,7 +261,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -274,10 +271,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="930253000"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuOTYwNzg0MzEzNyAwLjk2MDc4NDMxMzcAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="179554956"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIView" id="334227680">
@@ -304,7 +298,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="799791869"/>
+								<reference key="IBUIFontDescription" ref="1009437740"/>
 								<reference key="IBUIFont" ref="991609694"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
@@ -314,10 +308,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="890000982"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuOTYwNzg0MzEzNyAwLjk2MDc4NDMxMzcAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="179554956"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
