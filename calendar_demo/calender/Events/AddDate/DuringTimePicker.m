@@ -16,10 +16,14 @@
     LoopPickerView *minPicker;
     
     UIView *toolBar;
+    
+    NSInteger hours;
+    NSInteger minutes;
 }
 @end
 
 @implementation DuringTimePicker
+@synthesize delegate;
 
 - (void)dealloc
 {
@@ -41,6 +45,9 @@
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.5f]];
+        
+        hours = 0;
+        minutes = 0;
         
         toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 50, 320, 50)];
         [self addSubview:toolBar];
@@ -84,7 +91,18 @@
 
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     NSLog(@"Selected index %d",index);
+    if (pickerView == hourPicker) {
+        hours = index;
+    }
+    else if(pickerView == minPicker)
+    {
+        minutes = index;
+    }
+    if ([self.delegate respondsToSelector:@selector(setDurationHours:Minutes:)]) {
+        [self.delegate setDurationHours:hours Minutes:minutes];
+    }
 }
+
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {

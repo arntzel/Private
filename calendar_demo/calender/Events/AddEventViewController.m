@@ -17,10 +17,10 @@
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"
 #import "AddEventInviteViewController.h"
-
 #import "DeviceInfo.h"
 
-@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate,NavgationBarDelegate>
+@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,
+AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate, AddEventDateViewControllerDelegate,NavgationBarDelegate>
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -41,7 +41,7 @@
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
 @property(nonatomic, retain) Location *locationPlace;
-
+@property(nonatomic, retain) EventDate *arrangedDate;
 @end
 
 @implementation AddEventViewController
@@ -49,6 +49,7 @@
 @synthesize invitedPeoples;
 @synthesize locationPlace;
 @synthesize indicatorView;
+@synthesize arrangedDate;
 
 - (void)dealloc
 {
@@ -259,9 +260,14 @@
 - (void)addDate:(id)sender
 {
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithNibName:@"AddEventDateViewController" bundle:nil];
+    addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
 }
 
+- (void)setEventDate:(EventDate *)eventDate_
+{
+    self.arrangedDate = eventDate_;
+}
 #pragma mark Add People
 - (void)invitePeople:(id)sender
 {
@@ -325,6 +331,7 @@
     NSString *title = txtFieldTitle.text;
     
     Event *event = [[Event alloc] init];
+    event.eventType = 0;
     event.description = @"test";
     
     NSMutableArray * attentees = [[NSMutableArray alloc] init];
@@ -335,15 +342,15 @@
     }
     event.attendees = attentees;
     
-    event.duration_days = 1;
-    event.duration_hours = 5;
-    event.duration_minutes = 10;
-    event.eventType = 0;
-    event.is_all_day = NO;
+    event.duration_days = arrangedDate.duration_days;
+    event.duration_hours = arrangedDate.duration_hours;
+    event.duration_minutes = arrangedDate.duration_minutes;
+    event.is_all_day = arrangedDate.is_all_day;
+    event.start = arrangedDate.start;
+    event.start_type = arrangedDate.start_type;
     event.location = self.locationPlace;
-    event.start = [NSDate date];
+
     event.published = YES;
-    event.start_type = START_TYPEAFTER;
     event.thumbnail_url = @"test";
     event.timezone = @"America/New_York",
     event.title = title;
@@ -382,5 +389,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

@@ -190,6 +190,7 @@
 		76BC52E21789C748005D78E2 /* invitePeopleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D71789C748005D78E2 /* invitePeopleIcon.png */; };
 		76BC52E31789C748005D78E2 /* navBar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D81789C748005D78E2 /* navBar_bg.png */; };
 		76BC52E41789C748005D78E2 /* navBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52D91789C748005D78E2 /* navBtn_bg.png */; };
+		76BC526717891FB8005D78E2 /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC526617891FB8005D78E2 /* EventDate.m */; };
 		76C22D7F173FCD3000AC7519 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D69173FCD3000AC7519 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D80173FCD3000AC7519 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6B173FCD3000AC7519 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D81173FCD3000AC7519 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D6E173FCD3000AC7519 /* NSDateAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -634,6 +635,8 @@
 		76BC52D71789C748005D78E2 /* invitePeopleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invitePeopleIcon.png; sourceTree = "<group>"; };
 		76BC52D81789C748005D78E2 /* navBar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar_bg.png; sourceTree = "<group>"; };
 		76BC52D91789C748005D78E2 /* navBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBtn_bg.png; sourceTree = "<group>"; };
+		76BC526517891FB8005D78E2 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
+		76BC526617891FB8005D78E2 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
 		76C22D68173FCD3000AC7519 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
 		76C22D69173FCD3000AC7519 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
 		76C22D6A173FCD3000AC7519 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
@@ -904,6 +907,8 @@
 				94260F5617733EF60037965D /* EventModel.m */,
 				942758F3177D294100B55F75 /* EventAttendee.h */,
 				942758F4177D294100B55F75 /* EventAttendee.m */,
+				76BC526517891FB8005D78E2 /* EventDate.h */,
+				76BC526617891FB8005D78E2 /* EventDate.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1848,6 +1853,7 @@
 				76BC52CD1789C72F005D78E2 /* AddEventViewController.m in Sources */,
 				3D9B24C0178A994500689916 /* UIFont+Replacement.m in Sources */,
 				94C45280178AF1A200E2E1A1 /* BirthdayEventView.m in Sources */,
+				76BC526717891FB8005D78E2 /* EventDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

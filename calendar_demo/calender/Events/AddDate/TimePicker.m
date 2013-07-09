@@ -16,12 +16,17 @@
     LoopPickerView *minPicker;
     LoopPickerView *AMPMPicker;
     
+    NSInteger Hours;
+    NSInteger Minutes;
+    NSInteger Ampm;
+    
     UIView *toolBar;
 }
 
 @end
 
 @implementation TimePicker
+@synthesize delegate;
 
 - (id)init
 {
@@ -43,6 +48,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.5f]];
+        
+        Hours = 0;
+        Minutes = 0;
+        Ampm = 0;
 
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:hourPicker];
@@ -103,6 +112,21 @@
 
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     NSLog(@"Selected index %d",index);
+    if (pickerView == hourPicker) {
+        Hours = index;
+    }
+    else if(pickerView == minPicker)
+    {
+        Minutes = index;
+    }
+    else
+    {
+        Ampm = index;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(setStartTimeHours:Minutes:AMPM:)]) {
+        [self.delegate setStartTimeHours:Hours Minutes:Minutes AMPM:Ampm];
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
