@@ -68,9 +68,10 @@
     self.NotifyDetailLabel.text = subject;
     
     [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
-    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:12] fromIndex:0 length:subject.length];
-    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
-    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
+    
+    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:11] fromIndex:0 length:subject.length];
+    //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
+    //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
 
     self.notifyDateLabel.text = [self getTimeText:msg];
 }
