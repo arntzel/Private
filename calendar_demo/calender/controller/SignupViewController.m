@@ -43,7 +43,7 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = self.view.frame;
+    //CGRect frame = self.view.frame;
     LoginView * view = [LoginView createView];
     
     [view.signupGoogle addTarget:self action:@selector(signupGoogle) forControlEvents:UIControlEventTouchUpInside];
@@ -55,8 +55,8 @@
     [view.loginnow addGestureRecognizer:tapGes];
                                                                                                           
     
-    CGRect frame2 = view.frame;
-    frame2.origin.y  = (frame.size.height - frame2.size.height)/2;
+    CGRect frame2 = self.view.bounds;
+    //frame2.origin.y  = (frame.size.height - frame2.size.height)/2;
     view.frame = frame2;
     
     [self.view addSubview: view];
