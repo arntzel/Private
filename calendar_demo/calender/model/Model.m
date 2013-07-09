@@ -3,10 +3,53 @@
 #import "Event.h"
 #import "UserModel.h"
 #import "Utils.h"
-
+#import "ASIFormDataRequest.h"
 
 static Model * instance;
 
+@interface ASIHTTPRequestDelegateAdapter : NSObject <ASIHTTPRequestDelegate>
+
+@property(nonatomic, strong) id<UploadImageDelegate> delegate;
+
+@end
+
+
+@implementation ASIHTTPRequestDelegateAdapter 
+
+
+- (void)requestStarted:(ASIHTTPRequest *)request
+{
+    [self.delegate onUploadStart];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    
+    int httpRespCode = [request responseStatusCode];
+    NSLog(@"uploadFinished: code=%d, msg=%@" , httpRespCode, [request responseStatusMessage]);
+    
+    if(httpRespCode == 200) {
+        
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[request responseData] options:kNilOptions error:&error];
+        NSString * imgUrl = [json valueForKey:@"thumbnail_url"];
+        
+        [self.delegate onUploadCompleted:0 andUrl:imgUrl];
+        
+    } else {
+        [self requestFinished:request];
+    }
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [self.delegate onUploadCompleted:-1 andUrl:nil];
+}
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation Model  {
     EventModel * eventModel;
 }
@@ -468,6 +511,39 @@ static Model * instance;
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback
 {
 //TODO
+}
+
+
+-(void) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/photo/upload/", HOST];
+
+    ASIFormDataRequest * request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    User * currentUser = [[UserModel getInstance] getLoginUser];
+    
+    NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", currentUser.username, currentUser.apikey];
+    [request addRequestHeader:@"Authorization" value:authHeader];
+    
+	NSData *data = UIImageJPEGRepresentation(img, 1.0);
+    [request setData:data withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    
+      
+    [request setRequestMethod:@"POST"];
+	[request setTimeOutSeconds:40];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	[request setShouldContinueWhenAppEntersBackground:YES];
+#endif
+    
+	//[request setUploadProgressDelegate:progressIndicator];
+    
+    ASIHTTPRequestDelegateAdapter * delegateAdapter = [[ASIHTTPRequestDelegateAdapter alloc] init];
+    delegateAdapter.delegate = delegate;
+    
+	[request setDelegate:delegateAdapter];
+	
+    [request startAsynchronous];
 }
 
 -(EventModel *) getEventModel
