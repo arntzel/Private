@@ -1,14 +1,17 @@
-//
-//  TimePicker.h
-//  AddDate
-//
-//  Created by 张亚 on 13-7-2.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
+#import "EventDate.h"
+
+@protocol TimePickerDelegate <NSObject>
+
+- (void)setStartTimeType:(NSString *)startDateType;
+- (void)setStartTimeHours:(NSInteger)hours Minutes:(NSInteger)minutes AMPM:(NSInteger)ampm;
+
+@end
 
 @interface TimePicker : UIView
+
+@property(nonatomic,assign) id<TimePickerDelegate> delegate;
 
 - (id)init;
 

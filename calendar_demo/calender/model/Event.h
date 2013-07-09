@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "EventDate.h"
 #import "Location.h"
 #import "EventAttendee.h"
 
@@ -19,10 +20,10 @@
 
  */
 
-#define START_TYPEEXACTLYAT  @"exactly_at"
-#define START_TYPEWITHIN     @"within_an_hour"
-#define START_TYPEAFTER      @"anytime_after"
-
+//#define START_TYPEEXACTLYAT  @"exactly_at"
+//#define START_TYPEWITHIN     @"within_an_hour"
+//#define START_TYPEAFTER      @"anytime_after"
+//define in EventDate.h
 
 @interface Event : NSObject
 
