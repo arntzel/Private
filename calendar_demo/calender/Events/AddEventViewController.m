@@ -20,7 +20,14 @@
 
 #import "DeviceInfo.h"
 
-@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate,NavgationBarDelegate>
+@interface AddEventViewController ()<UINavigationControllerDelegate,
+                                     UIImagePickerControllerDelegate,
+                                     UIActionSheetDelegate ,
+                                     UIScrollViewDelegate,
+                                     AddEventInviteViewControllerDelegate,
+                                     AddLocationViewControllerDelegate,
+                                     NavgationBarDelegate,
+                                     UploadImageDelegate >
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -99,7 +106,7 @@
     
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
     
-    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:indicatorView];
     [indicatorView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
     
@@ -304,7 +311,7 @@
 - (void)rightNavBtnClick
 {
     if ([self canCreateEvent]) {
-        [self createEvent];
+        [self uploadImage];
     }
 }
 
@@ -317,11 +324,14 @@
         [alert release];
         return NO;
     }
+    
+    
     return YES;
 }
 
-- (void)createEvent
+- (void)createEvent:(NSString *) imgUrl
 {
+      
     NSString *title = txtFieldTitle.text;
     
     Event *event = [[Event alloc] init];
@@ -334,7 +344,7 @@
         [attentees addObject:atd];
     }
     event.attendees = attentees;
-    
+    event.thumbnail_url = imgUrl;
     event.duration_days = 1;
     event.duration_hours = 5;
     event.duration_minutes = 10;
@@ -373,6 +383,44 @@
             [alert show];
         }
     }];
+}
+
+-(void) uploadImage
+{
+    UIImage * img = imagePickerView.image;
+    
+    [self.indicatorView startAnimating];
+    [[Model getInstance] uploadImage:img andCallback:self];
+}
+
+-(void) onUploadStart
+{
+    NSLog(@"onUploadStart");
+}
+
+-(void) onUploadProgress: (int) progress andSize: (int) Size
+{
+    NSLog(@"onUploadProgress");
+
+}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    NSLog(@"onUploadCompleted");
+    
+    if(error != 0) {
+        [self.indicatorView stopAnimating];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                        message:@"Upload Image failed."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    } else {
+        NSLog(@"onUploadCompleted:%@", url);
+        [self createEvent:url];
+    }
 }
 
 

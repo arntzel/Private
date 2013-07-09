@@ -47,11 +47,21 @@ static Model * instance;
     [self.delegate onUploadCompleted:-1 andUrl:nil];
 }
 
+- (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes
+{
+    long long size = request.postLength;
+    
+    NSLog(@"didSendBytes:%d / %d", bytes, size);
+    [self.delegate onUploadProgress:bytes andSize:size];
+}
+
 @end
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation Model  {
     EventModel * eventModel;
+    
+    ASIHTTPRequestDelegateAdapter * uploadImgDelegateAdapter;
 }
 
 -(id) init {
@@ -536,12 +546,12 @@ static Model * instance;
 	[request setShouldContinueWhenAppEntersBackground:YES];
 #endif
     
-	//[request setUploadProgressDelegate:progressIndicator];
+	    
+    uploadImgDelegateAdapter = [[ASIHTTPRequestDelegateAdapter alloc] init];
+    uploadImgDelegateAdapter.delegate = delegate;
     
-    ASIHTTPRequestDelegateAdapter * delegateAdapter = [[ASIHTTPRequestDelegateAdapter alloc] init];
-    delegateAdapter.delegate = delegate;
-    
-	[request setDelegate:delegateAdapter];
+    [request setUploadProgressDelegate:uploadImgDelegateAdapter];
+	[request setDelegate:uploadImgDelegateAdapter];
 	
     [request startAsynchronous];
 }
