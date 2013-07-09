@@ -330,7 +330,16 @@
         [alert release];
         return NO;
     }
-    
+
+    /*
+    if( arrangedDate.start == nil) {
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"start time is nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    */
     
     return YES;
 }
@@ -351,17 +360,27 @@
         [attentees addObject:atd];
     }
     event.attendees = attentees;
-    event.thumbnail_url = imgUrl;
     event.duration_days = arrangedDate.duration_days;
     event.duration_hours = arrangedDate.duration_hours;
     event.duration_minutes = arrangedDate.duration_minutes;
     event.is_all_day = arrangedDate.is_all_day;
+
     event.start = arrangedDate.start;
+
     event.start_type = arrangedDate.start_type;
     event.location = self.locationPlace;
 
+
+    if(event.start == nil) {
+        event.start = [NSDate date];
+    }
+
+    if(event.start_type == nil) {
+         event.start_type = START_TYPEWITHIN;
+    }
+
     event.published = YES;
-    event.thumbnail_url = @"test";
+    event.thumbnail_url = imgUrl;
     event.timezone = @"America/New_York",
     event.title = title;
     

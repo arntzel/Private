@@ -5,6 +5,9 @@
 #import "BirthdayEventView.h"
 #import "Utils.h"
 
+#import "EventDetailViewController.h"
+
+#import "RootNavContrller.h"
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -165,6 +168,18 @@
     } else {
         return PlanView_HEIGHT;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
+
+    Event * event = [self getEvent:indexPath];
+
+    EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
+    [detailCtl setEvent:event];
+
+    [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
 }
 
 -(Event *) getEvent:(NSIndexPath*)indexPath

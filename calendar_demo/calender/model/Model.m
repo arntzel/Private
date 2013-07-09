@@ -32,8 +32,8 @@ static Model * instance;
         
         NSError *error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[request responseData] options:kNilOptions error:&error];
+
         NSString * imgUrl = [json valueForKey:@"thumbnail_url"];
-        
         [self.delegate onUploadCompleted:0 andUrl:imgUrl];
         
     } else {
@@ -175,7 +175,7 @@ static Model * instance;
             
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            NSLog(@"Login resp:%@", json);
+            NSLog(@"createEvent resp:%@", json);
 
             Event * newEvent = [Event parseEvent:json];
             callback(0, newEvent);
@@ -183,7 +183,7 @@ static Model * instance;
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"error=%@, resp:%@", error, aStr);
+            NSLog(@"createEvent error=%@, resp:%@", error, aStr);
 
             callback(-1, nil);
         }

@@ -23,6 +23,8 @@
 
 #import "FeedCalenderView.h"
 
+#import "EventDetailViewController.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -73,7 +75,8 @@
 
 
     tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    [tableView setAllowsSelection:NO];
+    //[tableView setAllowsSelection:NO];
+    
     tableView.headerEnabled = YES;
     tableView.tailerEnabled = NO;
     tableView.pullRefreshDalegate = self;

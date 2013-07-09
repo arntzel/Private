@@ -99,4 +99,8 @@
     eventDate.duration_minutes = minutes;
 }
 
+-(void) didSelectDate: (KalDate*) date
+{
+    
+}
 @end
