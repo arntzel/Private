@@ -10,8 +10,7 @@
 
 @interface AddEventDateViewController : UIViewController
 
-- (IBAction)Cancel:(id)sender;
-- (IBAction)AddDate:(id)sender;
+- (id)initWithEventDate:(EventDate *)arrangedDate;
 
 @property(nonatomic,assign) id<AddEventDateViewControllerDelegate> delegate;
 

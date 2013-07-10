@@ -20,4 +20,7 @@
 
 - (id)init;
 
+- (void)setHours:(NSInteger)hours_ Minutes:(NSInteger)minutes_ Animation:(BOOL)animation;
+- (void)setisAllDate:(BOOL)isAllDay;
+
 @end

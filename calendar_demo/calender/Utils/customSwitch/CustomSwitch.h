@@ -12,6 +12,7 @@
 
 - (id)initWithFrame:(CGRect)frame segmentCount:(NSInteger)count;
 - (void)setSegTitle:(NSString *)title AtIndex:(NSInteger)index;
+- (void)selectIndex:(NSInteger)index;
 
 @property(nonatomic,assign) NSInteger selectedIndex;
 

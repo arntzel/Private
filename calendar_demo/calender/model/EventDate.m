@@ -41,29 +41,38 @@
 
 - (NSString *)parseStartDateString
 {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"HH:mm"];
-    NSString *dateStr = [format stringFromDate:self.start];
-    NSString *preStr = @"";
+    NSArray *monthNameArray = [NSArray arrayWithObjects:
+                               @"jan",
+                               @"feb",
+                               @"march",
+                               @"april",
+                               
+                               @"may",
+                               @"june",
+                               @"july",
+                               @"aug",
+                               
+                               @"sep",
+                               @"oct",
+                               @"nov",
+                               @"dec",
+                               nil
+                               ];
     
-    if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
-        preStr = @" exactly at ";
-    }
-    else if ([self.start_type isEqualToString:START_TYPEWITHIN]) {
-        preStr = @" within an hour of ";
-    }
-    else if ([self.start_type isEqualToString:START_TYPEAFTER]) {
-        preStr = @" anytime after ";
-    }
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.start];
     
-    return [preStr stringByAppendingString:dateStr];
+    NSString *monthName = [monthNameArray objectAtIndex:parts.month - 1];
+    NSString *preFix = [NSString stringWithFormat:@"%@ %dth",monthName,parts.day];
+    
+    return [NSString stringWithFormat:@"%@,%@",preFix,[self parseStartTimeString]];
 }
 
 - (NSString *)parseDuringDateString
 {
 
     if (self.is_all_day) {
-        return @"All Day";
+        return @"all day";
     }
     
     NSString *duringDateString = [NSString stringWithFormat:@"%d hours %d minutes", self.duration_hours, self.duration_minutes];

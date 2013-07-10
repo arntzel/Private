@@ -5,40 +5,48 @@
 #import "TimePicker.h"
 #import "DuringTimePicker.h"
 #import "KalLogic.h"
+#import "NavgationBar.h"
 
-@interface AddEventDateViewController ()<AddDateCalenderViewDelegate,KalViewDelegate, TimePickerDelegate,DuringTimePickerDelegate>
+@interface AddEventDateViewController ()<AddDateCalenderViewDelegate,KalViewDelegate, TimePickerDelegate,DuringTimePickerDelegate,NavgationBarDelegate>
 {
     KalLogic *logic;
     EventDate *eventDate;
     
     AddDateCalenderView *calView;
 }
+
+@property(nonatomic,strong) EventDate *eventDate;
 @end
 
 @implementation AddEventDateViewController
 @synthesize delegate;
+@synthesize eventDate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithEventDate:(EventDate *)arrangedDate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self = [super init]) {
+        self.eventDate = arrangedDate;
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    eventDate = [[EventDate alloc] init];
-
-    NSDate *date = [NSDate date];
-    logic = [[KalLogic alloc] initForDate:date];
+    logic = [[KalLogic alloc] initForDate:eventDate.start];
     
-    calView = [[AddDateCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    calView = [[AddDateCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:eventDate.start]];
 
     [self.view addSubview:calView];
     calView.delegate = self;
+    
+    NavgationBar *navBar = [[NavgationBar alloc] init];
+    [self.view addSubview:navBar];
+    [navBar setTitle:@"Add Date"];
+    [navBar setLeftBtnText:@"Cancel"];
+    [navBar setRightBtnText:@"Add"];
+    navBar.delegate = self;
     
     [self refreshTimeString];
 }
@@ -49,11 +57,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)Cancel:(id)sender {
+- (void)leftNavBtnClick
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)AddDate:(id)sender {
+- (void)rightNavBtnClick
+{
     if ([self.delegate respondsToSelector:@selector(setEventDate:)]) {
         [self.delegate setEventDate:eventDate];
     }
@@ -65,6 +75,12 @@
 {
     TimePicker *picker = [[TimePicker alloc] init];
     picker.delegate = self;
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
+    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [picker setHours:parts.hour Minutes:parts.minute Animation:NO];
+    [picker setStartTimeType:eventDate.start_type];
+
     [self.view addSubview:picker];
 }
 
@@ -72,6 +88,9 @@
 {
     DuringTimePicker *picker = [[DuringTimePicker alloc] init];
     picker.delegate = self;
+    [picker setHours:eventDate.duration_hours Minutes:eventDate.duration_minutes Animation:NO];
+    [picker setisAllDate:eventDate.is_all_day];
+    
     [self.view addSubview:picker];
 }
 
@@ -87,7 +106,7 @@
 {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];    
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
-    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+//    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     [parts setHour:hours + ampm * 12];
     [parts setMinute:minutes];
     NSDate *startDate = [gregorian dateFromComponents:parts];
@@ -115,7 +134,7 @@
 {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
-    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+//    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     [parts setYear:date.year];
     [parts setMonth:date.month];
     [parts setDay:date.day];

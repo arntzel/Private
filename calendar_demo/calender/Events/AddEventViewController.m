@@ -281,7 +281,7 @@
 #pragma mark Add Date
 - (void)addDate:(id)sender
 {
-    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithNibName:@"AddEventDateViewController" bundle:nil];
+    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:arrangedDate];
     addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
 }

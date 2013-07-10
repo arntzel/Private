@@ -149,7 +149,6 @@
 		761F0D1C1754E031009650F4 /* GPlaceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1B1754E031009650F4 /* GPlaceApi.m */; };
 		761F0D201754E8E6009650F4 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F0D1F1754E8E6009650F4 /* GPlaceDataSource.m */; };
 		762002F01787A48400F94023 /* AddEventDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762002EE1787A48400F94023 /* AddEventDateViewController.m */; };
-		762002F11787A48400F94023 /* AddEventDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002EF1787A48400F94023 /* AddEventDateViewController.xib */; };
 		762002F31787A72000F94023 /* AddDateTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762002F21787A72000F94023 /* AddDateTypeView.xib */; };
 		762002F61787A7A200F94023 /* AddDateTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762002F51787A7A200F94023 /* AddDateTypeView.m */; };
 		763B0AF51787DCF100533D1F /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B0AF31787DCF100533D1F /* AddEventInviteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -604,7 +603,6 @@
 		761F0D21175509C2009650F4 /* googleAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = googleAPIKey.h; sourceTree = "<group>"; };
 		762002ED1787A48400F94023 /* AddEventDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEventDateViewController.h; path = AddDate/AddEventDateViewController.h; sourceTree = "<group>"; };
 		762002EE1787A48400F94023 /* AddEventDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEventDateViewController.m; path = AddDate/AddEventDateViewController.m; sourceTree = "<group>"; };
-		762002EF1787A48400F94023 /* AddEventDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddEventDateViewController.xib; path = AddDate/AddEventDateViewController.xib; sourceTree = "<group>"; };
 		762002F21787A72000F94023 /* AddDateTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDateTypeView.xib; sourceTree = "<group>"; };
 		762002F41787A7A200F94023 /* AddDateTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateTypeView.h; sourceTree = "<group>"; };
 		762002F51787A7A200F94023 /* AddDateTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateTypeView.m; sourceTree = "<group>"; };
@@ -1378,7 +1376,6 @@
 				763B0AF41787DCF100533D1F /* AddEventInviteViewController.xib */,
 				762002ED1787A48400F94023 /* AddEventDateViewController.h */,
 				762002EE1787A48400F94023 /* AddEventDateViewController.m */,
-				762002EF1787A48400F94023 /* AddEventDateViewController.xib */,
 			);
 			name = Events;
 			path = calender/Events;
@@ -1832,7 +1829,6 @@
 				94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */,
 				94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */,
 				7656D31B1787176300C90C3B /* CustomPickerCell.xib in Resources */,
-				762002F11787A48400F94023 /* AddEventDateViewController.xib in Resources */,
 				762002F31787A72000F94023 /* AddDateTypeView.xib in Resources */,
 				763B0AF61787DCF100533D1F /* AddEventInviteViewController.xib in Resources */,
 				763B0AFF1787E40600533D1F /* AddEventInvitePeopleCell.xib in Resources */,

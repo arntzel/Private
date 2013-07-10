@@ -47,6 +47,26 @@
     return [self initWithFrame:[DeviceInfo fullScreenFrame]];
 }
 
+- (void)setHours:(NSInteger)hours_ Minutes:(NSInteger)minutes_ Animation:(BOOL)animation
+{
+    hours = hours_;
+    minutes = minutes_;
+    [hourPicker scrollToIndex:hours_ WithAnimation:animation];
+    [minPicker scrollToIndex:minutes_ WithAnimation:animation];
+}
+
+- (void)setisAllDate:(BOOL)isAllDay
+{
+    if(isAllDay)
+    {
+        [isAllDaySwitch selectIndex:0];
+    }
+    else
+    {
+        [isAllDaySwitch selectIndex:1];
+    }
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

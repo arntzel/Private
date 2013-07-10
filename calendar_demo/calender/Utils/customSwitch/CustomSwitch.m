@@ -145,6 +145,14 @@
     [self switchToSelectedIndex:selectedIndex];
 }
 
+- (void)selectIndex:(NSInteger)index
+{
+    selectedIndex = index;
+    CGFloat startX = index * frontView.frame.size.width + padding;
+    [frontView setFrame:CGRectMake(startX, frontView.frame.origin.y , frontView.frame.size.width, frontView.frame.size.height)];
+    [self updateHeilightLabel];
+}
+
 -(int)getSelectedSlotInPoint:(CGPoint)pnt{
     CGFloat  slotInPoint= (pnt.x - padding) / frontView.frame.size.width;
     NSInteger index = 0;

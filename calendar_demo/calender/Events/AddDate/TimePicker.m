@@ -23,6 +23,8 @@
     NSInteger Minutes;
     NSInteger Ampm;
     
+    NSInteger startType;
+    
 }
 
 @end
@@ -49,6 +51,36 @@
 
     
     [super dealloc];
+}
+
+- (void)setHours:(NSInteger)hours_ Minutes:(NSInteger)minutes_ Animation:(BOOL)animation
+{
+    Hours = hours_%12;
+    Minutes = minutes_;
+    Ampm = hours_/12;
+    
+    [hourPicker scrollToIndex:hours_%12 WithAnimation:animation];
+    [minPicker scrollToIndex:minutes_ WithAnimation:animation];
+    [AMPMPicker scrollToIndex:hours_/12 WithAnimation:animation];
+}
+
+- (void)setStartTimeType:(NSString *)startTimeType
+{
+    if([startTimeType isEqualToString:START_TYPEEXACTLYAT])
+    {
+        startType = 0;
+        [startTimeTypeSwitch selectIndex:0];
+    }
+    else if([startTimeType isEqualToString:START_TYPEWITHIN])
+    {
+        startType = 1;
+        [startTimeTypeSwitch selectIndex:1];
+    }
+    else if([startTimeType isEqualToString:START_TYPEAFTER])
+    {
+        startType = 2;
+        [startTimeTypeSwitch selectIndex:2];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -149,14 +181,17 @@
     NSLog(@"%d",index);
     
     if (index == 0) {
+        startType = 0;
         [self.delegate setStartTimeType:START_TYPEEXACTLYAT];
     }
     else if(index == 1)
     {
+        startType = 1;
         [self.delegate setStartTimeType:START_TYPEWITHIN];
     }
     else if(index == 2)
     {
+        startType = 2;
         [self.delegate setStartTimeType:START_TYPEAFTER];
     }
 }
