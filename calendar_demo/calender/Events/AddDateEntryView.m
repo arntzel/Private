@@ -23,6 +23,9 @@
     [_DateResultView release];
     [_AddDateView release];
     [_btnAddDate release];
+    [_startTimeLabel release];
+    [_duringTimeLabel release];
+    
     [super dealloc];
 }
 @end

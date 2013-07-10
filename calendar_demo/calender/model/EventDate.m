@@ -19,21 +19,41 @@
 }
 
 
-- (NSString *)parseStartDateString
+- (NSString *)parseStartTimeString
 {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [format setDateFormat:@"HH:mm"];
     NSString *dateStr = [format stringFromDate:self.start];
     NSString *preStr = @"";
     
     if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
-        preStr = @"start exactly at ";
+        preStr = @"exactly at ";
     }
     else if ([self.start_type isEqualToString:START_TYPEWITHIN]) {
-        preStr = @"start within an hour of ";
+        preStr = @"within an hour of ";
     }
     else if ([self.start_type isEqualToString:START_TYPEAFTER]) {
         preStr = @"anytime after ";
+    }
+    
+    return [preStr stringByAppendingString:dateStr];
+}
+
+- (NSString *)parseStartDateString
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"HH:mm"];
+    NSString *dateStr = [format stringFromDate:self.start];
+    NSString *preStr = @"";
+    
+    if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+        preStr = @" exactly at ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEWITHIN]) {
+        preStr = @" within an hour of ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEAFTER]) {
+        preStr = @" anytime after ";
     }
     
     return [preStr stringByAppendingString:dateStr];

@@ -10,8 +10,9 @@
 {
     KalLogic *logic;
     EventDate *eventDate;
+    
+    AddDateCalenderView *calView;
 }
-
 @end
 
 @implementation AddEventDateViewController
@@ -34,10 +35,12 @@
     NSDate *date = [NSDate date];
     logic = [[KalLogic alloc] initForDate:date];
     
-    AddDateCalenderView *calView = [[AddDateCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    calView = [[AddDateCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
 
     [self.view addSubview:calView];
     calView.delegate = self;
+    
+    [self refreshTimeString];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,7 +79,10 @@
 - (void)setStartTimeType:(NSString *)startDateType
 {
     eventDate.start_type = startDateType;
+    
+    [self refreshTimeString];
 }
+
 - (void)setStartTimeHours:(NSInteger)hours Minutes:(NSInteger)minutes AMPM:(NSInteger)ampm
 {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];    
@@ -86,21 +92,40 @@
     [parts setMinute:minutes];
     NSDate *startDate = [gregorian dateFromComponents:parts];
     eventDate.start = startDate;
+    
+    [self refreshTimeString];
 }
 
 - (void)setDurationAllDay:(BOOL)allDay
 {
     eventDate.is_all_day = allDay;
+    
+    [self refreshTimeString];
 }
 
 - (void)setDurationHours:(NSInteger)hours Minutes:(NSInteger)minutes
 {
     eventDate.duration_hours = hours;
     eventDate.duration_minutes = minutes;
+    
+    [self refreshTimeString];
 }
 
 -(void) didSelectDate: (KalDate*) date
 {
-    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
+    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [parts setYear:date.year];
+    [parts setMonth:date.month];
+    [parts setDay:date.day];
+    NSDate *startDate = [gregorian dateFromComponents:parts];
+    eventDate.start = startDate;
+}
+
+- (void)refreshTimeString
+{
+    [calView setStartTimeString:[eventDate parseStartTimeString]];
+    [calView setDuringTimeString:[eventDate parseDuringDateString]];
 }
 @end

@@ -7,4 +7,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnChooseDuration;
 
 +(AddDateTypeView *) createView;
+
+@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *duringTimeLabel;
+
+
 @end

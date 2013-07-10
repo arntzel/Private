@@ -107,6 +107,7 @@
     [self initImagePickerView];
     [self initInviteAndPlaceView];
     [self initAddDateView];
+    [self refreshTimeString];
     [self initSettingView];
     
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
@@ -230,6 +231,10 @@
     addDateView.frame = frame;
     [scrollView addSubview:addDateView];
     [addDateView.btnAddDate addTarget:self action:@selector(addDate:) forControlEvents:UIControlEventTouchUpInside];
+    
+    EventDate *tempEventDate = [[EventDate alloc] init];
+    self.arrangedDate = tempEventDate;
+    [tempEventDate release];
 }
 
 - (void)initSettingView
@@ -285,6 +290,18 @@
 {
     self.arrangedDate = eventDate_;
 }
+
+- (void)refreshTimeString
+{
+    addDateView.startTimeLabel.text = [arrangedDate parseStartDateString];
+    addDateView.duringTimeLabel.text = [arrangedDate parseDuringDateString];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshTimeString];
+}
+
 #pragma mark Add People
 - (void)invitePeople:(id)sender
 {

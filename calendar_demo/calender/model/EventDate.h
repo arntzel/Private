@@ -18,6 +18,7 @@
 
 @property(strong) NSDate * end;
 
+- (NSString *)parseStartTimeString;
 - (NSString *)parseStartDateString;
 - (NSString *)parseDuringDateString;
 

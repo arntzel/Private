@@ -86,4 +86,15 @@
         [self.delegate chooseDurationAction];
     }
 }
+
+- (void)setStartTimeString:(NSString *)string
+{
+    typeView.startTimeLabel.text = string;
+}
+
+- (void)setDuringTimeString:(NSString *)string
+{
+    typeView.duringTimeLabel.text = string;
+}
+
 @end

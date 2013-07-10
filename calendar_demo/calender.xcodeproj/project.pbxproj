@@ -662,9 +662,9 @@
 		76B16FF6178D8A490026F4B2 /* customSwitchFront@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customSwitchFront@2x.png"; sourceTree = "<group>"; };
 		76BC526517891FB8005D78E2 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
 		76BC526617891FB8005D78E2 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
-		76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateEntryView.h; sourceTree = "<group>"; };
-		76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateEntryView.m; sourceTree = "<group>"; };
-		76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDateEntryView.xib; sourceTree = "<group>"; };
+		76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddDateEntryView.h; path = calender/Events/AddDateEntryView.h; sourceTree = SOURCE_ROOT; };
+		76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddDateEntryView.m; path = calender/Events/AddDateEntryView.m; sourceTree = SOURCE_ROOT; };
+		76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddDateEntryView.xib; path = calender/Events/AddDateEntryView.xib; sourceTree = SOURCE_ROOT; };
 		76BC52C11789C72F005D78E2 /* AddEventSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventSettingView.h; sourceTree = "<group>"; };
 		76BC52C21789C72F005D78E2 /* AddEventSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventSettingView.m; sourceTree = "<group>"; };
 		76BC52C31789C72F005D78E2 /* AddEventSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventSettingView.xib; sourceTree = "<group>"; };
@@ -1360,12 +1360,12 @@
 				763B0AF71787DFAD00533D1F /* InvitePeople */,
 				7656D2EF1787176300C90C3B /* AddDate */,
 				76BC52CE1789C748005D78E2 /* resource */,
-				76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */,
-				76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */,
-				76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */,
 				76BC52C11789C72F005D78E2 /* AddEventSettingView.h */,
 				76BC52C21789C72F005D78E2 /* AddEventSettingView.m */,
 				76BC52C31789C72F005D78E2 /* AddEventSettingView.xib */,
+				76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */,
+				76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */,
+				76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */,
 				76BC52C41789C72F005D78E2 /* NavgationBar.h */,
 				76BC52C51789C72F005D78E2 /* NavgationBar.m */,
 				76BC52C61789C72F005D78E2 /* AddEventViewController.h */,

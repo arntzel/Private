@@ -132,6 +132,15 @@
 }
 
 -(void)sliderValueChanged:(CustomSwitch *) sender{
-    NSLog(@"%d",sender.selectedIndex);
+    NSInteger index = sender.selectedIndex;
+    NSLog(@"%d",index);
+    
+    if (index == 0) {
+        [self.delegate setDurationAllDay:YES];
+    }
+    else if(index == 1)
+    {
+        [self.delegate setDurationAllDay:NO];
+    }
 }
 @end

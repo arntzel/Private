@@ -21,4 +21,8 @@
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 
 @property(nonatomic,assign) id<AddDateCalenderViewDelegate>delegate;
+
+- (void)setStartTimeString:(NSString *)string;
+- (void)setDuringTimeString:(NSString *)string;
+
 @end

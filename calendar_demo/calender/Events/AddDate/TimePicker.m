@@ -132,7 +132,8 @@
         Ampm = index;
     }
     
-    if ([self.delegate respondsToSelector:@selector(setStartTimeHours:Minutes:AMPM:)]) {
+    if ([self.delegate respondsToSelector:@selector(setStartTimeHours:Minutes:AMPM:)])
+    {
         [self.delegate setStartTimeHours:Hours Minutes:Minutes AMPM:Ampm];
     }
 }
@@ -142,8 +143,22 @@
     [self removeFromSuperview];
 }
 
--(void)sliderValueChanged:(CustomSwitch *) sender{
-    NSLog(@"%d",sender.selectedIndex);
+-(void)sliderValueChanged:(CustomSwitch *) sender
+{
+    NSInteger index = sender.selectedIndex;
+    NSLog(@"%d",index);
+    
+    if (index == 0) {
+        [self.delegate setStartTimeType:START_TYPEEXACTLYAT];
+    }
+    else if(index == 1)
+    {
+        [self.delegate setStartTimeType:START_TYPEWITHIN];
+    }
+    else if(index == 2)
+    {
+        [self.delegate setStartTimeType:START_TYPEAFTER];
+    }
 }
 
 @end

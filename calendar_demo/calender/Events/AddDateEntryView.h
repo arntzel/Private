@@ -15,4 +15,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnAddDate;
 
 +(AddDateEntryView *) createDateEntryView;
+
+@property (retain, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *duringTimeLabel;
+
 @end
