@@ -68,11 +68,41 @@
     self.NotifyDetailLabel.text = subject;
     
     [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
-    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:12] fromIndex:0 length:subject.length];
-    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
-    [self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
+    
+    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:11] fromIndex:0 length:subject.length];
+    //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
+    //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
 
-    self.notifyDateLabel.text = [Utils formateDate:msg.sent_at];
+    self.notifyDateLabel.text = [self getTimeText:msg];
+}
+
+
+-(NSString *) getTimeText:(Message *) msg
+{
+    NSTimeInterval interval = [msg.sent_at timeIntervalSinceNow];
+
+    int ago = -1*interval/60;
+
+    if(ago < 1) {
+        return @"now";
+    }
+
+    if(ago <= 60) {
+        return [NSString stringWithFormat:@"%d mins ago", ago];
+    }
+
+    int hour = ago/60;
+    if(hour <= 24) {
+        return [NSString stringWithFormat:@"%d hours ago", hour];
+    }
+
+    int day = hour/24;
+
+    if (day<=5) {
+        return [NSString stringWithFormat:@"%d days ago", day];
+    }
+
+    return [Utils formateDay:msg.sent_at];
 }
 
 @end

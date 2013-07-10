@@ -17,8 +17,17 @@
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"
 #import "AddEventInviteViewController.h"
+#import "DeviceInfo.h"
 
-@interface AddEventViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate ,UIScrollViewDelegate,AddEventInviteViewControllerDelegate, AddLocationViewControllerDelegate,NavgationBarDelegate>
+@interface AddEventViewController ()<UINavigationControllerDelegate,
+                                     UIImagePickerControllerDelegate,
+                                     UIActionSheetDelegate ,
+                                     UIScrollViewDelegate,
+                                     AddEventInviteViewControllerDelegate,
+                                     AddLocationViewControllerDelegate,
+                                     AddEventDateViewControllerDelegate,
+                                     NavgationBarDelegate,
+                                     UploadImageDelegate >
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -39,12 +48,15 @@
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
 @property(nonatomic, retain) Location *locationPlace;
-
+@property(nonatomic, retain) EventDate *arrangedDate;
 @end
 
 @implementation AddEventViewController
+
 @synthesize invitedPeoples;
 @synthesize locationPlace;
+@synthesize indicatorView;
+@synthesize arrangedDate;
 
 - (void)dealloc
 {
@@ -80,7 +92,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:237.0f/255.0f blue:237.0f/255.0f alpha:1.0f]];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 568 - 44)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, [DeviceInfo fullScreenHeight] - 44)];
     [self.view addSubview:scrollView];
     scrollView.delegate = self;
     
@@ -95,7 +107,7 @@
     
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
     
-    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:indicatorView];
     [indicatorView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
     
@@ -255,9 +267,14 @@
 - (void)addDate:(id)sender
 {
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithNibName:@"AddEventDateViewController" bundle:nil];
+    addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
 }
 
+- (void)setEventDate:(EventDate *)eventDate_
+{
+    self.arrangedDate = eventDate_;
+}
 #pragma mark Add People
 - (void)invitePeople:(id)sender
 {
@@ -300,7 +317,7 @@
 - (void)rightNavBtnClick
 {
     if ([self canCreateEvent]) {
-        [self createEvent];
+        [self uploadImage];
     }
 }
 
@@ -313,14 +330,27 @@
         [alert release];
         return NO;
     }
+
+    /*
+    if( arrangedDate.start == nil) {
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"start time is nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return NO;
+    }
+    */
+    
     return YES;
 }
 
-- (void)createEvent
+- (void)createEvent:(NSString *) imgUrl
 {
+      
     NSString *title = txtFieldTitle.text;
     
     Event *event = [[Event alloc] init];
+    event.eventType = 0;
     event.description = @"test";
     
     NSMutableArray * attentees = [[NSMutableArray alloc] init];
@@ -330,17 +360,27 @@
         [attentees addObject:atd];
     }
     event.attendees = attentees;
-    
-    event.duration_days = 1;
-    event.duration_hours = 5;
-    event.duration_minutes = 10;
-    event.eventType = 0;
-    event.is_all_day = NO;
+    event.duration_days = arrangedDate.duration_days;
+    event.duration_hours = arrangedDate.duration_hours;
+    event.duration_minutes = arrangedDate.duration_minutes;
+    event.is_all_day = arrangedDate.is_all_day;
+
+    event.start = arrangedDate.start;
+
+    event.start_type = arrangedDate.start_type;
     event.location = self.locationPlace;
-    event.start = [NSDate date];
+
+
+    if(event.start == nil) {
+        event.start = [NSDate date];
+    }
+
+    if(event.start_type == nil) {
+         event.start_type = START_TYPEWITHIN;
+    }
+
     event.published = YES;
-    event.start_type = START_TYPEAFTER;
-    event.thumbnail_url = @"test";
+    event.thumbnail_url = imgUrl;
     event.timezone = @"America/New_York",
     event.title = title;
     
@@ -371,6 +411,44 @@
     }];
 }
 
+-(void) uploadImage
+{
+    UIImage * img = imagePickerView.image;
+    
+    [self.indicatorView startAnimating];
+    [[Model getInstance] uploadImage:img andCallback:self];
+}
+
+-(void) onUploadStart
+{
+    NSLog(@"onUploadStart");
+}
+
+-(void) onUploadProgress: (int) progress andSize: (int) Size
+{
+    NSLog(@"onUploadProgress");
+
+}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    NSLog(@"onUploadCompleted");
+    
+    if(error != 0) {
+        [self.indicatorView stopAnimating];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                        message:@"Upload Image failed."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    } else {
+        NSLog(@"onUploadCompleted:%@", url);
+        [self createEvent:url];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -378,5 +456,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

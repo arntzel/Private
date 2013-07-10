@@ -49,8 +49,6 @@ extern const CGSize kTileSize;
     }
     
     [self setNeedsDisplay];
-    
-    [self setNeedsDisplay];
 }
 
 - (void)sizeToFit

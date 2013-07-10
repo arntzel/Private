@@ -51,7 +51,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateFormat:@"K:mm a"];
+    [dateFormatter setDateFormat:@"K:mma"];
 
     return [dateFormatter stringFromDate:time];
 }

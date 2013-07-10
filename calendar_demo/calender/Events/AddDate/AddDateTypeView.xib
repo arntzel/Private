@@ -46,7 +46,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{310, 50}</string>
 								<reference key="NSSuperview" ref="22731939"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="300843292"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -61,7 +60,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{40, 14}, {200, 21}}</string>
 								<reference key="NSSuperview" ref="22731939"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="550272543"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -92,7 +90,6 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{0, 3}, {310, 50}}</string>
 								<reference key="NSSuperview" ref="22731939"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="649598467"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -124,7 +121,6 @@
 						</array>
 						<string key="NSFrame">{{5, 15}, {310, 50}}</string>
 						<reference key="NSSuperview" ref="457352375"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="734041535"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="586555449">
@@ -142,7 +138,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{310, 50}</string>
 								<reference key="NSSuperview" ref="550272543"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="315642380"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -154,7 +149,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{40, 14}, {200, 21}}</string>
 								<reference key="NSSuperview" ref="550272543"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -177,7 +171,6 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrameSize">{310, 50}</string>
 								<reference key="NSSuperview" ref="550272543"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="429674077"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -196,7 +189,6 @@
 						</array>
 						<string key="NSFrame">{{5, 73}, {310, 50}}</string>
 						<reference key="NSSuperview" ref="457352375"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="706264488"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="586555449"/>
@@ -205,7 +197,6 @@
 				</array>
 				<string key="NSFrameSize">{324, 133}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="22731939"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -336,32 +327,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">235</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">AddDateTypeView</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnChooseDuration">UIButton</string>
-						<string key="btnChooseTime">UIButton</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnChooseDuration">
-							<string key="name">btnChooseDuration</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnChooseTime">
-							<string key="name">btnChooseTime</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AddDateTypeView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

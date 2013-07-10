@@ -44,6 +44,7 @@
         labelTitle.text = @"NEW EVENT";
         [labelTitle setTextAlignment:NSTextAlignmentCenter];
         [labelTitle setTextColor:[UIColor whiteColor]];
+        [labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
         
         leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 8, 51, 29)];
         [leftBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];

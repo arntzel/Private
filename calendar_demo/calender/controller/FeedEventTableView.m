@@ -2,8 +2,12 @@
 #import "FeedEventTableView.h"
 #import "Event.h"
 #import "EventView.h"
+#import "BirthdayEventView.h"
 #import "Utils.h"
 
+#import "EventDetailViewController.h"
+
+#import "RootNavContrller.h"
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -72,18 +76,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int section = indexPath.section;
-    int row = indexPath.row;
 
-    NSLog(@"cellForRowAtIndexPath: %d, %d", section, row);
+    Event * event = [self getEvent:indexPath];
 
-    NSArray * allDays = [eventModel getAllDays];
+    if(event.eventType != 4) {
+        EventView * view = [EventView createEventView];
 
-    NSString * key = [allDays objectAtIndex:section];
+        [view refreshView:event];
 
-    NSArray * dayEvents = [eventModel getEventsByDay:key];
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+        [cell addSubview:view];
+        return cell;
 
-    Event * event = [dayEvents objectAtIndex:row];
+    } else {
+        BirthdayEventView * view = [BirthdayEventView createEventView];
+
+        [view refreshView:event];
+
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+        [cell addSubview:view];
+        return cell;
+
+    }
+
+
     EventView * view = [EventView createEventView];
 
     [view refreshView:event];
@@ -145,6 +161,38 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return PlanView_HEIGHT;
+    Event * event = [self getEvent:indexPath];
+
+    if(event.eventType == 4) {
+        return BirthdayEventView_Height;
+    } else {
+        return PlanView_HEIGHT;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
+
+    Event * event = [self getEvent:indexPath];
+
+    EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
+    [detailCtl setEvent:event];
+
+    [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+}
+
+-(Event *) getEvent:(NSIndexPath*)indexPath
+{
+    int section = indexPath.section;
+    int row = indexPath.row;
+
+    NSArray * allDays = [eventModel getAllDays];
+
+    NSString * key = [allDays objectAtIndex:section];
+    NSArray * dayEvents = [eventModel getEventsByDay:key];
+    Event * event = [dayEvents objectAtIndex:row];
+
+    return event;
 }
 @end

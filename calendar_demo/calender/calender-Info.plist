@@ -4,6 +4,12 @@
 <dict>
 	<key>ReplacementFonts</key>
 	<dict>
+		<key>Helvetica-Italic</key>
+		<string>AvenirNext-Italic</string>
+		<key>Helvetica-Bold</key>
+		<string>AvenirNext-Bold</string>
+		<key>Helvetica</key>
+		<string>Avenir Next</string>
 		<key>System</key>
 		<string>Avenir Next</string>
 	</dict>

@@ -15,6 +15,17 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 };
 
 
+@protocol UploadImageDelegate <NSObject>
+
+-(void) onUploadStart;
+
+-(void) onUploadProgress: (int) progress andSize: (int) Size;
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url;
+
+@end
+
+
 /*
  All methods are called by UI thread, and return immediately.
  UI thread may received a notification though callback object when the asynchronous task done.
@@ -92,6 +103,10 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
  Call WebService API to create a buddy with apikey
  */
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback;
+
+
+-(void) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
+
 
 
 -(EventModel *) getEventModel;

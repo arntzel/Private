@@ -17,6 +17,7 @@
 #import "RootNavContrller.h"
 #import "PedingEventViewController.h"
 
+#import "Utils.h"
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -68,7 +69,7 @@
         tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         tableView.bounces = NO;
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
+        tableView.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
         tableView.dataSource = self;
         tableView.delegate = self;
         

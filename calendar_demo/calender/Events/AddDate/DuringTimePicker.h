@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DuringTimePickerDelegate <NSObject>
+
+- (void)setDurationAllDay:(BOOL)allDay;
+- (void)setDurationHours:(NSInteger)hours Minutes:(NSInteger)minutes;
+
+@end
+
 @interface DuringTimePicker : UIView
+@property(nonatomic,assign) id<DuringTimePickerDelegate> delegate;
 
 - (id)init;
 

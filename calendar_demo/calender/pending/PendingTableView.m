@@ -153,4 +153,10 @@
     }
 }
 
+#pragma mark -
+#pragma mark AddEventViewDelegate
+-(void) onEventCreated:(Event *) event
+{
+    //No implements, should be overwrited by children class
+}
 @end
