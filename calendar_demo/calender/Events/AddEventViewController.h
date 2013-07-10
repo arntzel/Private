@@ -10,6 +10,5 @@
 
 @interface AddEventViewController : UIViewController
 
-@property(assign, nonatomic) id<AddEventViewDelegate> delegate;
-
+@property(weak, nonatomic) id<AddEventViewDelegate> delegate;
 @end
