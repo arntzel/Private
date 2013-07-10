@@ -288,9 +288,12 @@ static Model * instance;
             callback(ERROCODE_OK, events);
 
         } else {
-            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"error=%d, resp:%@", status, aStr);
-
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                NSLog(@"error=%d, resp:%@", status, aStr);
+            }
+            
             callback(ERROCODE_SERVER, nil);
         }
     }];
