@@ -43,6 +43,7 @@
 @end
 
 @implementation AddEventViewController
+
 @synthesize invitedPeoples;
 @synthesize locationPlace;
 
@@ -346,10 +347,10 @@
     
     Model *model = [Model getInstance];
 
-    [self.indicatorView startAnimating];
+    [indicatorView startAnimating];
     [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
 
-        [self.indicatorView stopAnimating];
+        [indicatorView stopAnimating];
         
         if (error == 0) {
 
