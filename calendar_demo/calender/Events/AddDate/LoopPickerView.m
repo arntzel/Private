@@ -23,6 +23,8 @@
 - (void)dealloc
 {
     [maskView release];
+    tableView.delegate = nil;
+    tableView.dataSource = nil;
     [tableView release];
     
     [super dealloc];

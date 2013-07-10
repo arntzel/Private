@@ -9,6 +9,7 @@
 #import "TimePicker.h"
 #import "LoopPickerView.h"
 #import "DeviceInfo.h"
+#import "CustomSwitch.h"
 
 @interface TimePicker()<PickerViewDelegate>
 {
@@ -16,11 +17,12 @@
     LoopPickerView *minPicker;
     LoopPickerView *AMPMPicker;
     
+    CustomSwitch *startTimeTypeSwitch;
+    
     NSInteger Hours;
     NSInteger Minutes;
     NSInteger Ampm;
     
-    UIView *toolBar;
 }
 
 @end
@@ -35,11 +37,17 @@
 
 - (void)dealloc
 {
+    hourPicker.delegate = nil;
     [hourPicker release];
+    minPicker.delegate = nil;
     [minPicker release];
+    AMPMPicker.delegate = nil;
     [AMPMPicker release];
     
-    [toolBar release];
+    [startTimeTypeSwitch removeTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [startTimeTypeSwitch release];
+
+    
     [super dealloc];
 }
 
@@ -74,8 +82,6 @@
         [AMPMPicker reloadData];
         [AMPMPicker scrollToIndex:1 WithAnimation:NO];
         
-        toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 51 - 160, 320, 50)];
-        [self addSubview:toolBar];
         [self initToolBar];
     }
     return self;
@@ -83,16 +89,18 @@
 
 - (void)initToolBar
 {
-    [toolBar setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
-    NSArray *segmentedArray = [[NSArray alloc] initWithObjects:@"exactly at",@"in an hour",@"time after", nil];
-//    NSArray *segmentedArray = [[NSArray alloc] initWithObjects:@"exactly at",@"with in an hour",@"any time after", nil];
-    UISegmentedControl *typeContrl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
-    [typeContrl setFrame:CGRectMake(0, 0, 320, 50)];
-    [segmentedArray release];
-    [typeContrl setCenter:CGPointMake(toolBar.frame.size.width / 2 , toolBar.frame.size.height / 2)];
-    [toolBar addSubview:typeContrl];
-    [typeContrl release];
-    [typeContrl setSelectedSegmentIndex:0];
+    UIView *startTypeView = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 58 - 160, 320, 57)];
+    [startTypeView setBackgroundColor:[UIColor colorWithRed:245.0/255.0f green:245.0/255.0f blue:245.0/255.0f alpha:1.0f]];
+    [self addSubview:startTypeView];
+    
+    startTimeTypeSwitch = [[CustomSwitch alloc] initWithFrame:CGRectMake(5, 5, 310, 42) segmentCount:3];
+    [startTimeTypeSwitch setSegTitle:@"exactly at" AtIndex:0];
+    [startTimeTypeSwitch setSegTitle:@"within an hour" AtIndex:1];
+    [startTimeTypeSwitch setSegTitle:@"anytime after" AtIndex:2];
+    [startTypeView addSubview:startTimeTypeSwitch];
+    [startTimeTypeSwitch addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    [startTypeView release];
     
 }
 
@@ -132,6 +140,10 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self removeFromSuperview];
+}
+
+-(void)sliderValueChanged:(CustomSwitch *) sender{
+    NSLog(@"%d",sender.selectedIndex);
 }
 
 @end

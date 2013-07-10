@@ -9,11 +9,13 @@
 #import "DuringTimePicker.h"
 #import "LoopPickerView.h"
 #import "DeviceInfo.h"
+#import "CustomSwitch.h"
 
 @interface DuringTimePicker()<PickerViewDelegate>
 {
     LoopPickerView *hourPicker;
     LoopPickerView *minPicker;
+    CustomSwitch *isAllDaySwitch;
     
     UIView *toolBar;
     
@@ -27,8 +29,14 @@
 
 - (void)dealloc
 {
+    hourPicker.delegate = nil;
     [hourPicker release];
+    minPicker.delegate = nil;
     [minPicker release];
+    
+    [isAllDaySwitch removeTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [isAllDaySwitch release];
+    
     [toolBar release];
     
     [super dealloc];
@@ -49,8 +57,6 @@
         hours = 0;
         minutes = 0;
         
-        toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 50, 320, 50)];
-        [self addSubview:toolBar];
         [self initToolBar];
         
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 159, 160)];
@@ -72,11 +78,27 @@
 
 - (void)initToolBar
 {
-    [toolBar setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
-    UISwitch *allDaySwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 40, 100)];
-    [allDaySwitch setCenter:CGPointMake(toolBar.frame.size.width / 2 + 50, toolBar.frame.size.height / 2)];
-    [toolBar addSubview:allDaySwitch];
-    [allDaySwitch release];
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 58, 320, 57)];
+    [toolBar setBackgroundColor:[UIColor colorWithRed:245.0/255.0f green:245.0/255.0f blue:245.0/255.0f alpha:1.0f]];
+    [self addSubview:toolBar];
+    
+    
+    CGRect labelFrame = toolBar.bounds;
+    labelFrame.origin.x = 15;
+    labelFrame.size.width = 200;
+    UILabel *isAllDayLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    [isAllDayLabel setBackgroundColor:[UIColor clearColor]];
+    [isAllDayLabel setTextAlignment:NSTextAlignmentLeft];
+    [isAllDayLabel setTextColor:[UIColor colorWithRed:116.0f/255.0f green:116.0f/255.0f blue:116.0f/255.0f alpha:1.0f]];
+    [isAllDayLabel setFont:[UIFont systemFontOfSize:16]];
+    isAllDayLabel.text = @"All Day?";
+    [toolBar addSubview:isAllDayLabel];
+    
+    isAllDaySwitch = [[CustomSwitch alloc] initWithFrame:CGRectMake(320 - 10 - 121, 10, 121, 40) segmentCount:2];
+    [isAllDaySwitch setSegTitle:@"Yes" AtIndex:0];
+    [isAllDaySwitch setSegTitle:@"No" AtIndex:1];
+    [toolBar addSubview:isAllDaySwitch];
+    [isAllDaySwitch addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (NSInteger)numberOfRowsInPicker:(LoopPickerView *)pickerView {
@@ -107,5 +129,9 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self removeFromSuperview];
+}
+
+-(void)sliderValueChanged:(CustomSwitch *) sender{
+    NSLog(@"%d",sender.selectedIndex);
 }
 @end
