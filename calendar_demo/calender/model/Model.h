@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) onUploadStart;
 
--(void) onUploadProgress: (int) progress andSize: (int) Size;
+-(void) onUploadProgress: (long long) progress andSize: (long long) Size;
 
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url;
 

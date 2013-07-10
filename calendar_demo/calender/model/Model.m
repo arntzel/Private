@@ -14,8 +14,7 @@ static Model * instance;
 @end
 
 
-@implementation ASIHTTPRequestDelegateAdapter 
-
+@implementation ASIHTTPRequestDelegateAdapter
 
 - (void)requestStarted:(ASIHTTPRequest *)request
 {
@@ -49,10 +48,8 @@ static Model * instance;
 
 - (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes
 {
-    long long size = request.postLength;
-    
-    NSLog(@"didSendBytes:%d / %d", bytes, size);
-    [self.delegate onUploadProgress:bytes andSize:size];
+    NSLog(@"didSendBytes:%lld / %lld", request.totalBytesSent, request.postLength);
+    [self.delegate onUploadProgress:request.totalBytesSent andSize:request.postLength];
 }
 
 @end

@@ -44,6 +44,8 @@
     AddEventSettingView *settingView;
     
     UIActivityIndicatorView *indicatorView;
+    UIProgressView * uploadImageProgressView;
+    
 }
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
@@ -75,6 +77,8 @@
     [settingView release];
     
     [indicatorView release];
+    
+    [uploadImageProgressView release];
     
     [super dealloc];
 }
@@ -122,6 +126,7 @@
     [imagePickerView setContentMode:UIViewContentModeScaleAspectFill];
     [imagePickerView setClipsToBounds:YES];
     
+    
     UIImageView *imagePickerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerIcon.png"]];
     [imagePickerIcon setFrame:CGRectMake((320 - 36) / 2 , 47, 36, 31)];
     [imagePickerView addSubview:imagePickerIcon];
@@ -145,6 +150,11 @@
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
+    
+    uploadImageProgressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    uploadImageProgressView.center = imagePickerView.center;
+    uploadImageProgressView.hidden = YES;
+    [scrollView addSubview:uploadImageProgressView];
 }
 
 - (void)initInviteAndPlaceView
@@ -422,17 +432,25 @@
 -(void) onUploadStart
 {
     NSLog(@"onUploadStart");
+    uploadImageProgressView.hidden = NO;
+    uploadImageProgressView.progress = 0;
 }
 
--(void) onUploadProgress: (int) progress andSize: (int) Size
+-(void) onUploadProgress: (long long) progress andSize: (long long) Size
 {
     NSLog(@"onUploadProgress");
-
+    float progressVal = (progress*1.0)/Size;
+    
+    if(progressVal>1) progressVal = 1;
+    
+    [uploadImageProgressView setProgress:progressVal animated:YES];
 }
 
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
     NSLog(@"onUploadCompleted");
+    
+    uploadImageProgressView.hidden = YES;
     
     if(error != 0) {
         [self.indicatorView stopAnimating];
