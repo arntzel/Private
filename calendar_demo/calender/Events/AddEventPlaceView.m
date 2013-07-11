@@ -22,6 +22,7 @@
 -(void)dealloc
 {
     self.label = nil;
+    self.btnPick = nil;
     [super dealloc];
 }
 

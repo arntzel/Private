@@ -11,5 +11,6 @@
 @interface AddEventInviteView : UIView
 
 @property(retain, nonatomic) IBOutlet UILabel * label;
+@property(retain, nonatomic) IBOutlet UIButton * btnInvite;
 
 @end

@@ -22,6 +22,7 @@
 -(void)dealloc
 {
     self.label = nil;
+    self.btnInvite = nil;
     [super dealloc];
 }
 /*

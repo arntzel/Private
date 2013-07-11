@@ -196,9 +196,14 @@
     
     inviteView.layer.cornerRadius = 4;
     inviteView.layer.masksToBounds = YES;
+    inviteView.layer.shadowOffset = CGSizeMake(2, 2);
     
     placeView.layer.cornerRadius = 4;
     placeView.layer.masksToBounds = YES;
+
+    [inviteView.btnInvite addTarget:self action:@selector(invitePeople:) forControlEvents:UIControlEventTouchUpInside];
+    [placeView.btnPick addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+    
 
     
      
