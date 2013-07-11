@@ -77,6 +77,11 @@
         hours = 0;
         minutes = 0;
         
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 57 - 161, self.bounds.size.width, 57 + 161)];
+        [self addSubview:bgView];
+        [bgView setBackgroundColor:[UIColor colorWithRed:227.0/255.0f green:227.0/255.0f blue:227.0/255.0f alpha:1.0f]];
+        [bgView release];
+        
         [self initToolBar];
         
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 159, 160)];
@@ -100,8 +105,8 @@
 
 - (void)initToolBar
 {
-    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 58, 320, 57)];
-    [toolBar setBackgroundColor:[UIColor colorWithRed:245.0/255.0f green:245.0/255.0f blue:245.0/255.0f alpha:1.0f]];
+    toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 57, 320, 57)];
+    [toolBar setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
     [self addSubview:toolBar];
     
     

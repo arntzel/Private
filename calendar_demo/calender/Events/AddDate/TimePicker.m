@@ -93,6 +93,11 @@
         Hours = 0;
         Minutes = 0;
         Ampm = 0;
+        
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 57 - 161, self.bounds.size.width, 57 + 161)];
+        [self addSubview:bgView];
+        [bgView setBackgroundColor:[UIColor colorWithRed:227.0/255.0f green:227.0/255.0f blue:227.0/255.0f alpha:1.0f]];
+        [bgView release];
 
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:hourPicker];
