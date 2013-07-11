@@ -13,7 +13,6 @@
 @interface PickerView : UIView<PickerViewProtocal>
 
 @property (nonatomic,assign) id <PickerViewDelegate> delegate;
-@property (nonatomic,assign) NSString *UnitString;
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation;

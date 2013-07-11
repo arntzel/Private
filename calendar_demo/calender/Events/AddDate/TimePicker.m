@@ -8,6 +8,7 @@
 
 #import "TimePicker.h"
 #import "LoopPickerView.h"
+#import "PickerView.h"
 #import "DeviceInfo.h"
 #import "CustomSwitch.h"
 
@@ -15,7 +16,7 @@
 {
     LoopPickerView *hourPicker;
     LoopPickerView *minPicker;
-    LoopPickerView *AMPMPicker;
+    PickerView *AMPMPicker;
     
     CustomSwitch *startTimeTypeSwitch;
     
@@ -109,13 +110,11 @@
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];
         
-        AMPMPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(214, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
+        AMPMPicker = [[PickerView alloc] initWithFrame:CGRectMake(214, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:AMPMPicker];
         [AMPMPicker setDelegate:self];
-        [AMPMPicker setUnitOffset:77];
-        [AMPMPicker setUnitString:@""];
         [AMPMPicker reloadData];
-        [AMPMPicker scrollToIndex:1 WithAnimation:NO];
+        [AMPMPicker scrollToIndex:0 WithAnimation:NO];
         
         [self initToolBar];
     }
@@ -170,6 +169,27 @@
     if ([self.delegate respondsToSelector:@selector(setStartTimeHours:Minutes:AMPM:)])
     {
         [self.delegate setStartTimeHours:Hours Minutes:Minutes AMPM:Ampm];
+    }
+}
+
+- (NSString *)stringOfRowsInPicker:(id<PickerViewProtocal>)picker AtIndex:(NSInteger)index
+{
+    if (picker == AMPMPicker) {
+        if (index == 0) {
+            return @"AM";
+        }
+        else if (index == 1)
+        {
+            return @"PM";
+        }
+        else
+        {
+            return @"";
+        }
+    }
+    else
+    {
+        return @"";
     }
 }
 

@@ -16,6 +16,11 @@
     NSInteger rowNumber;
     UIScrollView *scrollView;
     NSMutableArray *itemArray;
+    UIView *maskView;
+    
+    CGFloat offsetY;
+    
+    NSInteger selectedIndex;
 }
 @end
 
@@ -26,6 +31,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setBackgroundColor:[UIColor colorWithRed:252.0/255.0f green:252.0/255.0f blue:252.0/255.0f alpha:1.0f]];
+        
         rowNumber = 1;
         
         itemArray = [[NSMutableArray alloc] init];
@@ -37,21 +44,30 @@
         scrollView.showsVerticalScrollIndicator = NO;
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setDelegate:self];
+
+        maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
+        [maskView setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:0.7f]];
+        [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
+        [maskView setUserInteractionEnabled:NO];
+        [self addSubview:maskView];
     }
     return self;
 }
 
 - (void)dealloc
 {
+    scrollView.delegate = nil;
     [scrollView release];
     [itemArray release];
+    [maskView release];
     
     [super dealloc];
 }
 
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation
 {
-    
+    selectedIndex = index;
+    [scrollView setContentOffset:CGPointMake(0, CellHeight * selectedIndex) animated:YES];
 }
 
 - (void)reloadData
@@ -64,18 +80,17 @@
     }
     [itemArray removeAllObjects];
     
-    CGFloat offsetY = (self.bounds.size.height - CellHeight) / 2;
+    offsetY = (self.bounds.size.height - CellHeight) / 2;
     CGRect frame = CGRectMake(0, offsetY, self.bounds.size.width, CellHeight);
     for (NSInteger index = 0; index < rowNumber; index++) {
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"CustomPickerCell" owner:self options:nil];
         CustomPickerCell *cell = (CustomPickerCell *)[nib objectAtIndex:0];
         [itemArray addObject:cell];
-        frame.origin.y += CellHeight;
+        frame.origin.y = offsetY + CellHeight * index;
         [scrollView addSubview:cell];
         [cell setFrame:frame];
-        
-        cell.labValue.text = [NSString stringWithFormat:@"%d",index];
-//        cell.labUnit.text = @"min";
+        [cell setLabelWidth:75];
+        cell.labValue.text = [self.delegate stringOfRowsInPicker:self AtIndex:index];
         
         [cell initUI];
     }
@@ -97,6 +112,19 @@
 
 - (void)scrollToTheSelectedCell
 {
-    [self.delegate Picker:self didSelectRowAtIndex:1];
+    CGFloat yOffset = scrollView.contentOffset.y;
+    
+    NSInteger remainder = ((NSInteger)yOffset) % CellHeight;
+    selectedIndex = yOffset / CellHeight;
+    if (remainder > CellHeight / 2) {
+        selectedIndex++;
+    }
+    
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [scrollView setContentOffset:CGPointMake(0, CellHeight * selectedIndex)];
+    } completion:^(BOOL finished) {
+        [self.delegate Picker:self didSelectRowAtIndex:selectedIndex];
+    }];
 }
+
 @end
