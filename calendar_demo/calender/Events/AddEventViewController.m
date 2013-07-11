@@ -19,6 +19,16 @@
 #import "AddEventInviteViewController.h"
 #import "DeviceInfo.h"
 
+
+#import "AddEventInviteView.h"
+#import "AddEventPlaceView.h"
+#import "ViewUtils.h"
+
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+
+
 @interface AddEventViewController ()<UINavigationControllerDelegate,
                                      UIImagePickerControllerDelegate,
                                      UIActionSheetDelegate ,
@@ -36,7 +46,7 @@
     UIButton *imagePickerbtn;
     UITextField *txtFieldTitle;
     
-    UIView *inviteAndPlaceView;
+    //UIView *inviteAndPlaceView;
     UIButton *invitePeoplebtn;
     UIButton *addLocationbtn;
     
@@ -46,6 +56,8 @@
     UIActivityIndicatorView *indicatorView;
     UIProgressView * uploadImageProgressView;
     
+    AddEventInviteView * inviteView;
+    AddEventPlaceView * placeView;
 }
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
@@ -69,7 +81,11 @@
     [imagePickerbtn release];
     [txtFieldTitle release];
     
-    [inviteAndPlaceView release];
+    
+    //[inviteAndPlaceView release];
+    [inviteView release];
+    [placeView release];
+    
     [invitePeoplebtn release];
     [addLocationbtn release];
     
@@ -160,6 +176,33 @@
 
 - (void)initInviteAndPlaceView
 {
+    int y = imagePickerView.frame.size.height;
+    
+    inviteView = (AddEventInviteView*)[ViewUtils createView:@"AddEventInviteView"];
+    CGRect frame = inviteView.frame;
+    frame.origin.x = 8;
+    frame.origin.y = y + 5;
+    inviteView.frame = frame;
+    
+    [scrollView addSubview:inviteView];
+    
+    placeView = (AddEventPlaceView*)[ViewUtils createView:@"AddEventPlaceView"];
+    frame = placeView.frame;
+    frame.origin.x = 162;
+    frame.origin.y = y + 5;
+    placeView.frame = frame;
+    
+    [scrollView addSubview:placeView];
+    
+    inviteView.layer.cornerRadius = 4;
+    inviteView.layer.masksToBounds = YES;
+    
+    placeView.layer.cornerRadius = 4;
+    placeView.layer.masksToBounds = YES;
+
+    
+     
+    /*
     inviteAndPlaceView = [[UIView alloc] initWithFrame:CGRectMake(0, imagePickerView.frame.size.height, 320, 143)];
     [scrollView addSubview:inviteAndPlaceView];
     
@@ -221,13 +264,14 @@
     addLocationbtn = [[UIButton alloc] initWithFrame:addLocationView.frame];
     [inviteAndPlaceView addSubview:addLocationbtn];
     [addLocationbtn addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+     */
 }
 
 - (void)initAddDateView
 {
     addDateView = [[AddDateEntryView createDateEntryView] retain];
     CGRect frame = addDateView.frame;
-    frame.origin.y = inviteAndPlaceView.frame.origin.y + inviteAndPlaceView.frame.size.height;
+    frame.origin.y = inviteView.frame.origin.y + inviteView.frame.size.height + 5;
     addDateView.frame = frame;
     [scrollView addSubview:addDateView];
     [addDateView.btnAddDate addTarget:self action:@selector(addDate:) forControlEvents:UIControlEventTouchUpInside];
