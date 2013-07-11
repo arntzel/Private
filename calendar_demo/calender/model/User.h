@@ -1,8 +1,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
-
+@interface User : NSObject 
 
 @property int id;
 
@@ -21,5 +20,6 @@
  */
 +(User *) parseUser:(NSDictionary *) jsonData;
 
++(NSDictionary*)convent2Dic:(User*) user;
 
 @end

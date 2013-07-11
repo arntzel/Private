@@ -307,6 +307,8 @@
 {
     AddEventInviteViewController *invitePeople = [[AddEventInviteViewController alloc] initWithNibName:@"AddEventInviteViewController" bundle:nil];
     invitePeople.delegate = self;
+    
+    [invitePeople setSelectedUser:invitedPeoples];
     [self.navigationController pushViewController:invitePeople animated:YES];
 }
 

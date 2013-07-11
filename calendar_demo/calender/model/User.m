@@ -20,4 +20,17 @@
     return user;
 }
 
++(NSDictionary*)convent2Dic:(User*) user{
+    
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+    
+    [dic setObject:[NSNumber numberWithInt:user.id] forKey:@"id"];
+    [dic setObject:user.username forKey:@"username"];
+    [dic setObject:user.email forKey:@"email"];
+    [dic setObject:user.avatar_url forKey:@"avatar_url"];
+    [dic setObject:user.timezone forKey:@"timezone"];
+    
+    return dic;
+}
+
 @end

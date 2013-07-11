@@ -1,12 +1,17 @@
-//
-//  AddEventInvitePeopleCell.m
-//  calender
-//
-//  Created by zyax86 on 13-7-6.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "AddEventInvitePeopleCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+
+@implementation AddEventInvitePeople
+- (void)dealloc
+{
+    self.user = nil;
+    [super dealloc];
+}
+@end
+
 
 @implementation AddEventInvitePeopleCell
 
@@ -19,25 +24,47 @@
     return self;
 }
 
-- (void)initUI
+- (void) refreshView: (AddEventInvitePeople*) iuser
 {
+    if(iuser == nil) {
+        self.labNoData.hidden = NO;
+        return;
+    } else {
+        self.labNoData.hidden = YES;
+    }
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
     self.selectedBackgroundView = view;
     [view setBackgroundColor:[UIColor clearColor]];
+    
+    User * user = iuser.user;
+    
+    self.peopleName.text = user.username;
+    
+    NSString * headerUrl = user.avatar_url;
+    
+    if([headerUrl isKindOfClass: [NSNull class]]) {
+        self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
+    } else {
+        [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
+                          placeholderImage:[UIImage imageNamed:@"header.png"]];
+    }
+    
+    self.peopleHeader.layer.cornerRadius = self.peopleHeader.frame.size.width/2;
+    self.peopleHeader.layer.masksToBounds = YES;
+
+    //self.btnSelect.selected = iuser.selected;
+    
+    if(iuser.selected) {
+        self.btnSelect.image = [UIImage imageNamed:@"btn_ok_selected"];
+    } else {
+        self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:NO];
-    if (selected) {
-        self.selectedFlagView.image = [UIImage imageNamed:@"addInviteFlag"];
-    }
-    else
-    {
-        self.selectedFlagView.image = [UIImage imageNamed:@"addInviteBox.png"];
-    }
-
-    // Configure the view for the selected state
 }
 
 @end

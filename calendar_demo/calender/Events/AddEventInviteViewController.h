@@ -1,10 +1,3 @@
-//
-//  AddEventInviteViewController.h
-//  calender
-//
-//  Created by zyax86 on 13-7-6.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
@@ -15,9 +8,14 @@
 @end
 
 @interface AddEventInviteViewController : UIViewController
+
 @property (nonatomic, assign) id<AddEventInviteViewControllerDelegate> delegate;
+
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (retain, nonatomic) IBOutlet UISearchBar * searchBar;
+
+-(void) setSelectedUser:(NSArray *) selectedUsers;
 
 
 - (IBAction)Cancel:(id)sender;
