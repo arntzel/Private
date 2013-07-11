@@ -45,11 +45,7 @@
     UIImageView *imagePickerView;
     UIButton *imagePickerbtn;
     UITextField *txtFieldTitle;
-    
-    //UIView *inviteAndPlaceView;
-    UIButton *invitePeoplebtn;
-    UIButton *addLocationbtn;
-    
+
     AddDateEntryView *addDateView;
     AddEventSettingView *settingView;
     
@@ -82,13 +78,9 @@
     [txtFieldTitle release];
     
     
-    //[inviteAndPlaceView release];
     [inviteView release];
     [placeView release];
-    
-    [invitePeoplebtn release];
-    [addLocationbtn release];
-    
+
     [addDateView release];
     [settingView release];
     
@@ -179,6 +171,7 @@
     int y = imagePickerView.frame.size.height;
     
     inviteView = (AddEventInviteView*)[ViewUtils createView:@"AddEventInviteView"];
+    [inviteView retain];
     CGRect frame = inviteView.frame;
     frame.origin.x = 8;
     frame.origin.y = y + 5;
@@ -187,6 +180,8 @@
     [scrollView addSubview:inviteView];
     
     placeView = (AddEventPlaceView*)[ViewUtils createView:@"AddEventPlaceView"];
+    [placeView retain];
+
     frame = placeView.frame;
     frame.origin.x = 162;
     frame.origin.y = y + 5;
@@ -197,7 +192,7 @@
     inviteView.layer.cornerRadius = 4;
     inviteView.layer.masksToBounds = YES;
     inviteView.layer.shadowOffset = CGSizeMake(2, 2);
-    
+
     placeView.layer.cornerRadius = 4;
     placeView.layer.masksToBounds = YES;
 
