@@ -373,7 +373,7 @@
 - (void)setLocation:(Location *)location_
 {
     self.locationPlace = location_;
-    placeView.label.text = location_.location;
+    [placeView setLocation:location_];
 }
 
 #pragma mark ScrollViewDelegate

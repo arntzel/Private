@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Location.h"
 
 @interface AddEventPlaceView : UIView
 
 @property(retain, nonatomic) IBOutlet UILabel * label;
 @property(retain, nonatomic) IBOutlet UIButton * btnPick;
 
+@property(retain, nonatomic) IBOutlet UIView * mapView;
+
+
+-(void) setLocation:(Location*) location;
 
 @end

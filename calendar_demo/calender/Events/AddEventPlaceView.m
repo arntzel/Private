@@ -8,7 +8,14 @@
 
 #import "AddEventPlaceView.h"
 
-@implementation AddEventPlaceView
+#import <GoogleMaps/GoogleMaps.h>
+#import "GPlaceApi.h"
+#import "GPlaceDataSource.h"
+
+@implementation AddEventPlaceView {
+
+    GMSMapView * gmsMapView;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,16 +30,28 @@
 {
     self.label = nil;
     self.btnPick = nil;
+
+    [gmsMapView removeFromSuperview];
+    [gmsMapView release];
     [super dealloc];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void) setLocation:(Location*) location
 {
-    // Drawing code
+    self.label.text = location.location;
+
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.lat
+                                                            longitude:location.lng
+                                                                 zoom:10];
+    if(gmsMapView == nil) {
+
+        gmsMapView = [GMSMapView mapWithFrame:self.mapView.bounds camera:camera];
+        gmsMapView.settings.compassButton = YES;
+        
+        [self.mapView addSubview:gmsMapView];
+    } else {
+        gmsMapView.camera = camera;
+    }
 }
-*/
 
 @end
