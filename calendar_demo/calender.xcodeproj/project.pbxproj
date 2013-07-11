@@ -31,6 +31,10 @@
 		3D20D03E178E835D008C2F0C /* AddEventInvitePeopleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D03D178E835D008C2F0C /* AddEventInvitePeopleHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D20D040178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D03F178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib */; };
 		3D20D043178E859D008C2F0C /* ViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D042178E859D008C2F0C /* ViewUtils.m */; };
+		3D20D049178EAA63008C2F0C /* AddEventInviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D048178EAA63008C2F0C /* AddEventInviteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D20D04B178EAA77008C2F0C /* AddEventInviteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D04A178EAA77008C2F0C /* AddEventInviteView.xib */; };
+		3D20D04E178EB164008C2F0C /* AddEventPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D20D050178EB17A008C2F0C /* AddEventPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */; };
 		3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */; };
 		3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */; };
 		3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDC17812CDF0093FE19 /* CreateUser.m */; };
@@ -329,6 +333,12 @@
 		3D20D03F178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInvitePeopleHeaderView.xib; sourceTree = "<group>"; };
 		3D20D041178E859D008C2F0C /* ViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtils.h; sourceTree = "<group>"; };
 		3D20D042178E859D008C2F0C /* ViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtils.m; sourceTree = "<group>"; };
+		3D20D047178EAA63008C2F0C /* AddEventInviteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInviteView.h; sourceTree = "<group>"; };
+		3D20D048178EAA63008C2F0C /* AddEventInviteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInviteView.m; sourceTree = "<group>"; };
+		3D20D04A178EAA77008C2F0C /* AddEventInviteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInviteView.xib; sourceTree = "<group>"; };
+		3D20D04C178EB164008C2F0C /* AddEventPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventPlaceView.h; sourceTree = "<group>"; };
+		3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventPlaceView.m; sourceTree = "<group>"; };
+		3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventPlaceView.xib; sourceTree = "<group>"; };
 		3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
 		3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
 		3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
@@ -1368,6 +1378,12 @@
 				763B0AF41787DCF100533D1F /* AddEventInviteViewController.xib */,
 				762002ED1787A48400F94023 /* AddEventDateViewController.h */,
 				762002EE1787A48400F94023 /* AddEventDateViewController.m */,
+				3D20D047178EAA63008C2F0C /* AddEventInviteView.h */,
+				3D20D048178EAA63008C2F0C /* AddEventInviteView.m */,
+				3D20D04A178EAA77008C2F0C /* AddEventInviteView.xib */,
+				3D20D04C178EB164008C2F0C /* AddEventPlaceView.h */,
+				3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */,
+				3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */,
 			);
 			name = Events;
 			path = calender/Events;
@@ -1844,6 +1860,8 @@
 				76B16FF7178D8A490026F4B2 /* customSwitchBg@2x.png in Resources */,
 				76B16FF8178D8A490026F4B2 /* customSwitchFront@2x.png in Resources */,
 				3D20D040178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib in Resources */,
+				3D20D04B178EAA77008C2F0C /* AddEventInviteView.xib in Resources */,
+				3D20D050178EB17A008C2F0C /* AddEventPlaceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1990,6 +2008,8 @@
 				76B16FF0178D86180026F4B2 /* CustomSwitch.m in Sources */,
 				3D20D03E178E835D008C2F0C /* AddEventInvitePeopleHeaderView.m in Sources */,
 				3D20D043178E859D008C2F0C /* ViewUtils.m in Sources */,
+				3D20D049178EAA63008C2F0C /* AddEventInviteView.m in Sources */,
+				3D20D04E178EB164008C2F0C /* AddEventPlaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
