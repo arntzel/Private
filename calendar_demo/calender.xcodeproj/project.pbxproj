@@ -220,6 +220,10 @@
 		76C22D87173FCD3000AC7519 /* KalWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7B173FCD3000AC7519 /* KalWeekView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D88173FCD3000AC7519 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
+		76C6C60A178ED9A100BBEF15 /* eventSetingBg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C6C607178ED9A100BBEF15 /* eventSetingBg1.png */; };
+		76C6C60B178ED9A100BBEF15 /* eventSetingBg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C6C608178ED9A100BBEF15 /* eventSetingBg2.png */; };
+		76C6C60C178ED9A100BBEF15 /* eventSetingBg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C6C609178ED9A100BBEF15 /* eventSetingBg3.png */; };
+		76C6C60E178EDB8C00BBEF15 /* eventSettingLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C6C60D178EDB8C00BBEF15 /* eventSettingLine.png */; };
 		76D20BBA1766C51F00CCC21F /* navigationMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20B9C1766C51F00CCC21F /* navigationMenuCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76D20BBB1766C51F00CCC21F /* navigationMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D20B9D1766C51F00CCC21F /* navigationMenuCell.xib */; };
 		76D20BBC1766C51F00CCC21F /* navigationMenuCellBg.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D20B9F1766C51F00CCC21F /* navigationMenuCellBg.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -714,6 +718,10 @@
 		76C22D7C173FCD3000AC7519 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		76C22D7D173FCD3000AC7519 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		76C22D89173FCD6700AC7519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		76C6C607178ED9A100BBEF15 /* eventSetingBg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventSetingBg1.png; sourceTree = "<group>"; };
+		76C6C608178ED9A100BBEF15 /* eventSetingBg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventSetingBg2.png; sourceTree = "<group>"; };
+		76C6C609178ED9A100BBEF15 /* eventSetingBg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventSetingBg3.png; sourceTree = "<group>"; };
+		76C6C60D178EDB8C00BBEF15 /* eventSettingLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventSettingLine.png; sourceTree = "<group>"; };
 		76D20B9B1766C51F00CCC21F /* navigationMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = navigationMenuCell.h; sourceTree = "<group>"; };
 		76D20B9C1766C51F00CCC21F /* navigationMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = navigationMenuCell.m; sourceTree = "<group>"; };
 		76D20B9D1766C51F00CCC21F /* navigationMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = navigationMenuCell.xib; sourceTree = "<group>"; };
@@ -1392,6 +1400,10 @@
 		76BC52CE1789C748005D78E2 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				76C6C60D178EDB8C00BBEF15 /* eventSettingLine.png */,
+				76C6C607178ED9A100BBEF15 /* eventSetingBg1.png */,
+				76C6C608178ED9A100BBEF15 /* eventSetingBg2.png */,
+				76C6C609178ED9A100BBEF15 /* eventSetingBg3.png */,
 				76BC52CF1789C748005D78E2 /* addDateBtnIcon.png */,
 				76BC52D01789C748005D78E2 /* addEventBtnBg.png */,
 				76BC52D11789C748005D78E2 /* addEventSettingIcon.png */,
@@ -1862,6 +1874,10 @@
 				3D20D040178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				3D20D04B178EAA77008C2F0C /* AddEventInviteView.xib in Resources */,
 				3D20D050178EB17A008C2F0C /* AddEventPlaceView.xib in Resources */,
+				76C6C60A178ED9A100BBEF15 /* eventSetingBg1.png in Resources */,
+				76C6C60B178ED9A100BBEF15 /* eventSetingBg2.png in Resources */,
+				76C6C60C178ED9A100BBEF15 /* eventSetingBg3.png in Resources */,
+				76C6C60E178EDB8C00BBEF15 /* eventSettingLine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
