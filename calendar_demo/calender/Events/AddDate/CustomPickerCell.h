@@ -10,7 +10,8 @@
 
 @interface CustomPickerCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *labValue;
-@property (retain, nonatomic) IBOutlet UILabel *labUnit;
+
+@property (assign, nonatomic) CGFloat labelWidth;
 
 - (void)initUI;
 

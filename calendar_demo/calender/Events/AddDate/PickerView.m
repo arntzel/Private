@@ -75,7 +75,7 @@
         [cell setFrame:frame];
         
         cell.labValue.text = [NSString stringWithFormat:@"%d",index];
-        cell.labUnit.text = @"min";
+//        cell.labUnit.text = @"min";
         
         [cell initUI];
     }

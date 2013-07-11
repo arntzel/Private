@@ -82,6 +82,7 @@
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 159, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
+        [hourPicker setUnitOffset:80];
         [hourPicker setUnitString:@"hours"];
         [hourPicker reloadData];
         [hourPicker scrollToIndex:12 WithAnimation:NO];
@@ -89,6 +90,7 @@
         minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(160, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 160, 160)];
         [self addSubview:minPicker];
         [minPicker setDelegate:self];
+        [minPicker setUnitOffset:70];
         [minPicker setUnitString:@"minutes"];
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];

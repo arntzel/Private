@@ -12,13 +12,16 @@
     NSInteger cellHeight;
     NSInteger numberOfData;
     NSInteger maxRepeatDataNumber;
+    
+    UILabel *unitLabel;
+    
+    CGFloat unitOffset;
 }
 
 @end
 
 @implementation LoopPickerView
 @synthesize delegate;
-@synthesize UnitString;
 
 - (void)dealloc
 {
@@ -26,7 +29,7 @@
     tableView.delegate = nil;
     tableView.dataSource = nil;
     [tableView release];
-    
+    [unitLabel release];
     [super dealloc];
 }
 
@@ -37,6 +40,7 @@
         cellHeight = 40;
         numberOfData = 0;
         maxRepeatDataNumber = 65536;
+        unitOffset = 0;
         
         [self createContentTableView];
     }
@@ -57,9 +61,34 @@
     maskView = [[UIView alloc] initWithFrame:maskViewRect];
     [maskView setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:0.7f]];
     [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
+    
+    unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(maskView.frame.size.width / 2, maskView.frame.origin.y, maskView.frame.size.width, maskView.frame.size.height)];
+    [unitLabel setBackgroundColor:[UIColor clearColor]];
+    [unitLabel setTextColor:[UIColor colorWithRed:130/255.0f green:125/255.0f blue:125/255.0f alpha:1.0f]];
+    [unitLabel setFont:[UIFont systemFontOfSize:22]];
+    [unitLabel setTextAlignment:NSTextAlignmentLeft];
+    [self addSubview:unitLabel];
+    
     [self addSubview:maskView];
     [maskView setAlpha:0.7f];
     [maskView setUserInteractionEnabled:NO];
+}
+
+- (void)setUnitString:(NSString *)UnitString
+{
+    unitLabel.text = UnitString;
+    [self reloadData];
+}
+
+- (void)setUnitOffset:(CGFloat)offset
+{
+    unitOffset = offset;
+    CGRect frame = unitLabel.frame;
+    frame.origin.x = offset;
+    frame.size.width = self.frame.size.width - offset;
+    unitLabel.frame = frame;
+    
+    [self reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,16 +123,16 @@
         cell = [nib objectAtIndex:0];
     }
     
-    NSInteger minute = indexPath.row % numberOfData;
-    NSString *valueString = [NSString stringWithFormat:@"%d",minute];
+    NSInteger value = indexPath.row % numberOfData;
+    NSString *valueString = [NSString stringWithFormat:@"%d",value];
     cell.labValue.text = valueString;
-    cell.labUnit.text = UnitString;
     
     CGFloat width = tableView.frame.size.width;
     CGRect labelFrame = cell.frame;
     labelFrame.size.width = width;
     cell.frame = labelFrame;
     
+    [cell setLabelWidth:unitOffset - 10];
     [cell initUI];
     
     return cell;

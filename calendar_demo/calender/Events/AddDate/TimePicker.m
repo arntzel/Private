@@ -96,20 +96,23 @@
         hourPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:hourPicker];
         [hourPicker setDelegate:self];
-        [hourPicker setUnitString:@"hours"];
+        [hourPicker setUnitOffset:77];
+        [hourPicker setUnitString:@""];
         [hourPicker reloadData];
         [hourPicker scrollToIndex:6 WithAnimation:NO];
         
         minPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(107, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:minPicker];
         [minPicker setDelegate:self];
-        [minPicker setUnitString:@"minutes"];
+        [minPicker setUnitOffset:77];
+        [minPicker setUnitString:@""];
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];
         
         AMPMPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(214, [DeviceInfo fullScreenHeight] - 160, 106, 160)];
         [self addSubview:AMPMPicker];
         [AMPMPicker setDelegate:self];
+        [AMPMPicker setUnitOffset:77];
         [AMPMPicker setUnitString:@""];
         [AMPMPicker reloadData];
         [AMPMPicker scrollToIndex:1 WithAnimation:NO];

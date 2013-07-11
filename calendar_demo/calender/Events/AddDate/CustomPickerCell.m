@@ -25,16 +25,10 @@
     self.selectedBackgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     self.backgroundView.backgroundColor = [UIColor clearColor];
     
-    CGFloat width = self.bounds.size.width * 3 / 8;
     CGRect labelFrame = self.labValue.frame;
-    labelFrame.size.width = width;
+    labelFrame.size.width = self.labelWidth;
     labelFrame.origin.x = 0;
-
-    width = self.bounds.size.width * 4 / 8;
-    labelFrame = self.labUnit.frame;
-    labelFrame.size.width = width;
-    labelFrame.origin.x = self.bounds.size.width * 4 / 8;
-    self.labUnit.frame = labelFrame;
+    self.labValue.frame = labelFrame;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -46,7 +40,6 @@
 
 - (void)dealloc {
     [_labValue release];
-    [_labUnit release];
     [super dealloc];
 }
 @end
