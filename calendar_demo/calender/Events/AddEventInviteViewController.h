@@ -18,7 +18,5 @@
 -(void) setSelectedUser:(NSArray *) selectedUsers;
 
 
-- (IBAction)Cancel:(id)sender;
-- (IBAction)create:(id)sender;
 
 @end

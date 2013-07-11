@@ -7,9 +7,9 @@
 
 #import "ViewUtils.h"
 #import "Utils.h"
+#import "NavgationBar.h"
 
-
-@interface AddEventInviteViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface AddEventInviteViewController ()<UITableViewDelegate, UITableViewDataSource, NavgationBarDelegate>
 {
     NSMutableArray * recentInvitePeople;
     NSMutableDictionary * recentInvitePeopleDic;
@@ -51,6 +51,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    NavgationBar * navBar = [[NavgationBar alloc] init];
+    [navBar setTitle:@"Invite People"];
+    [navBar setLeftBtnText:@"Cancel"];
+    [navBar setRightBtnText:@"Invite"];
+    
+    [self.view addSubview:navBar];
+    navBar.delegate = self;
+    [navBar release];
     
     recentInvitePeople = [[NSMutableArray alloc] init];
     recentInvitePeopleDic = [[NSMutableDictionary alloc] init];
@@ -223,19 +233,6 @@
 }
 
 
-- (IBAction)Cancel:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)create:(id)sender {
-    
-    NSArray * selectUsers = [self getSelectedUsers];
-    
-    [self saveRecentUsers:selectUsers];
-    
-    [self.delegate setInVitePeopleArray:selectUsers];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 -(NSArray *) readRecentUsers
@@ -292,4 +289,20 @@
     [saveData release];
 }
 
+- (void)leftNavBtnClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
+- (void)rightNavBtnClick
+{
+    NSArray * selectUsers = [self getSelectedUsers];
+    
+    [self saveRecentUsers:selectUsers];
+    
+    [self.delegate setInVitePeopleArray:selectUsers];
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
 @end
