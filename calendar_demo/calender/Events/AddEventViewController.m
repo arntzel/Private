@@ -364,6 +364,7 @@
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
 {
     self.invitedPeoples = inviteArray;
+    inviteView.label.text = [NSString stringWithFormat:@"%d invitees", self.invitedPeoples.count];
 }
 
 #pragma mark AddLocation
@@ -377,6 +378,7 @@
 - (void)setLocation:(Location *)location_
 {
     self.locationPlace = location_;
+    placeView.label.text = location_.location;
 }
 
 #pragma mark ScrollViewDelegate
