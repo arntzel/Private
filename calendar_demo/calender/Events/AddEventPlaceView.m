@@ -31,8 +31,11 @@
     self.label = nil;
     self.btnPick = nil;
 
-    [gmsMapView removeFromSuperview];
-    [gmsMapView release];
+    if(gmsMapView != nil) {
+        [gmsMapView removeFromSuperview];
+        [gmsMapView release];
+    }
+    
     [super dealloc];
 }
 
@@ -46,9 +49,11 @@
     if(gmsMapView == nil) {
 
         gmsMapView = [GMSMapView mapWithFrame:self.mapView.bounds camera:camera];
-        gmsMapView.settings.compassButton = YES;
+        [gmsMapView retain];
         
+        gmsMapView.settings.compassButton = YES;
         [self.mapView addSubview:gmsMapView];
+        
     } else {
         gmsMapView.camera = camera;
     }
