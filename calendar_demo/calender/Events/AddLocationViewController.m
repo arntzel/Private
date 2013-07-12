@@ -4,10 +4,11 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "GPlaceApi.h"
 #import "GPlaceDataSource.h"
+#import "NavgationBar.h"
 
 #define NearBySearchRadius 5000
 
-@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate>
+@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate,CLLocationManagerDelegate,NavgationBarDelegate>
 {
     BOOL firstLocationUpdate_;
     CLLocationCoordinate2D currentCoordinate;
@@ -17,12 +18,16 @@
     
     GPlaceDataSource *txtSearchDataSource;
     GPlaceDataSource *nearByDataSource;
+    
+    GMSMarker *marker;
+    CLLocationManager *manager;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
 @end
 
 @implementation AddLocationViewController
 @synthesize delegate;
+@synthesize mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,17 +49,27 @@
     return self;
 }
 
+- (GMSMarker *)marker
+{
+    if (marker == nil) {
+        marker = [[GMSMarker alloc] init];
+        marker.map = self.mapView;
+    }
+    return marker;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
     
-    self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 44, 320, 200) camera:camera];
+    self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
     self.mapView.settings.myLocationButton = YES;
     [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
     
+
     
     // Listen to the myLocation property of GMSMapView.
     [self.mapView addObserver:self
@@ -76,11 +91,32 @@
     
     self.nearBySearchTabView.dataSource = nearByDataSource;
     self.nearBySearchTabView.delegate = nearByDataSource;
+    
+    [self addTopBar];
+}
+
+- (void)addTopBar
+{
+    NavgationBar * navBar = [[NavgationBar alloc] init];
+    [navBar setTitle:@"Add Place"];
+    [navBar setLeftBtnText:@"Cancel"];
+    [navBar setRightBtnText:@"Add"];
+    
+    [self.view addSubview:navBar];
+    navBar.delegate = self;
+    [navBar setRightBtnHidden:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [GPTxtSearchApi startRequestWithTxtSearchQuery:searchText];
+    if ([searchText isEqualToString:@""] || searchText == nil) {
+        [self.locationSearchBar resignFirstResponder];
+        self.txtSearchTabView.hidden = YES;
+    }
+    else
+    {
+        [GPTxtSearchApi startRequestWithTxtSearchQuery:searchText];
+    }
 }
 
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
@@ -105,7 +141,8 @@
         currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
                                                              zoom:14];
-        
+        self.marker.position = currentCoordinate;
+        [self.mapView animateToLocation:currentCoordinate];        
         
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
         [self.locationSearchBar resignFirstResponder];
@@ -117,6 +154,15 @@
     }
 }
 
+- (void)tableViewDidScroll:(GPlaceDataSource *)tableViewSource
+{
+    if (tableViewSource == nearByDataSource)
+    {
+        self.txtSearchTabView.hidden = YES;
+    }
+    
+    [self.locationSearchBar resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -124,8 +170,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)Cancel:(id)sender {
+
+- (void)leftNavBtnClick
+{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)rightNavBtnClick
+{
+    
 }
 
 #pragma mark - KVO updates
@@ -140,6 +193,8 @@
         firstLocationUpdate_ = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         currentCoordinate = location.coordinate;
+        
+        self.mapView.myLocationEnabled = YES;
         
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate

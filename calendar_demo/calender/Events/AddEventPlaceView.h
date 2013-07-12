@@ -16,6 +16,7 @@
 
 @property(retain, nonatomic) IBOutlet UIView * mapView;
 
+@property (retain, nonatomic) IBOutlet UIButton *btnPickerLocation;
 
 -(void) setLocation:(Location*) location;
 

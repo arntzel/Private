@@ -67,4 +67,9 @@
     Location * location = [self.arrayData objectAtIndex:indexPath.row];
     [self.delegate didSelectPlace:location GPlaceDataSource:self];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.delegate tableViewDidScroll:self];
+}
 @end

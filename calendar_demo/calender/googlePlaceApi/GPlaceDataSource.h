@@ -15,6 +15,8 @@
 
 - (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource;
 
+- (void)tableViewDidScroll:(GPlaceDataSource *)tableView;
+
 @end
 
 @interface GPlaceDataSource : NSObject<UITableViewDataSource, UITableViewDelegate>

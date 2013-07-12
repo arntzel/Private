@@ -45,16 +45,16 @@
 -(void) setLocation:(Location*) location
 {
     self.label.text = location.location;
-
+    [self.btnPickerLocation setTitle:@"" forState:UIControlStateNormal];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.lat
                                                             longitude:location.lng
-                                                                 zoom:10];
+                                                                 zoom:13];
     if(gmsMapView == nil) {
 
         gmsMapView = [GMSMapView mapWithFrame:self.mapView.bounds camera:camera];
         [gmsMapView retain];
         
-        gmsMapView.settings.compassButton = YES;
+        gmsMapView.settings.compassButton = NO;
         [self.mapView addSubview:gmsMapView];
         
     } else {
@@ -68,6 +68,8 @@
     
     marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
     marker.map = gmsMapView;
+    
+    gmsMapView.userInteractionEnabled = NO;
 }
 
 @end
