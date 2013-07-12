@@ -85,6 +85,11 @@
     [rightBtn setTitle:text forState:UIControlStateNormal];
 }
 
+- (void) setRightBtnHidden:(BOOL) hidden;
+{
+    rightBtn.hidden = hidden;
+}
+
 - (void)leftBtnClick:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(leftNavBtnClick)]) {

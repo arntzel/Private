@@ -23,4 +23,7 @@
 - (void)setLeftBtnText:(NSString *)text;
 - (void)setRightBtnText:(NSString *)text;
 
+- (void) setRightBtnHidden:(BOOL)  hidden;
+
+
 @end

@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C54</string>
+		<string key="IBDocument.SystemVersion">11G63</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1138.51</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -310,7 +310,6 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIHighlightedTitleColor" ref="139090549"/>
@@ -334,7 +333,6 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIHighlightedTitleColor" ref="139090549"/>
@@ -358,7 +356,6 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIHighlightedTitleColor" ref="139090549"/>
@@ -541,7 +538,7 @@
 							<object class="IBUILabel" id="729893448">
 								<reference key="NSNextResponder" ref="334227680"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{174, 12}, {103, 22}}</string>
+								<string key="NSFrame">{{130, 12}, {150, 22}}</string>
 								<reference key="NSSuperview" ref="334227680"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="129412964"/>
@@ -578,6 +575,27 @@
 									<string key="NSResourceName">arraw.png</string>
 								</object>
 								<reference key="IBUIHighlightedImage" ref="140734832"/>
+							</object>
+							<object class="IBUIButton" id="598836848">
+								<reference key="NSNextResponder" ref="334227680"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{5, 4}, {300, 44}}</string>
+								<reference key="NSSuperview" ref="334227680"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<reference key="IBUIBackgroundColor" ref="179554956"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="139090549"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="107792731"/>
+								<reference key="IBUIFontDescription" ref="8837782"/>
+								<reference key="IBUIFont" ref="1030760822"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{6, 338}, {308, 45}}</string>
@@ -649,6 +667,38 @@
 					<int key="connectionID">129</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnInvite1</string>
+						<reference key="source" ref="268701977"/>
+						<reference key="destination" ref="434557575"/>
+					</object>
+					<int key="connectionID">130</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnInvite2</string>
+						<reference key="source" ref="268701977"/>
+						<reference key="destination" ref="230215284"/>
+					</object>
+					<int key="connectionID">131</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnInvite3</string>
+						<reference key="source" ref="268701977"/>
+						<reference key="destination" ref="1059228621"/>
+					</object>
+					<int key="connectionID">132</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnInvite4</string>
+						<reference key="source" ref="268701977"/>
+						<reference key="destination" ref="459886876"/>
+					</object>
+					<int key="connectionID">133</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">proposeDaysClick:</string>
 						<reference key="source" ref="434557575"/>
@@ -683,6 +733,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">126</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onTimezoneClick:</string>
+						<reference key="source" ref="598836848"/>
+						<reference key="destination" ref="268701977"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">136</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -743,6 +802,7 @@
 							<reference ref="890000982"/>
 							<reference ref="129412964"/>
 							<reference ref="729893448"/>
+							<reference ref="598836848"/>
 						</array>
 						<reference key="parent" ref="268701977"/>
 					</object>
@@ -881,6 +941,11 @@
 						<reference key="object" ref="459886876"/>
 						<reference key="parent" ref="19007922"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">135</int>
+						<reference key="object" ref="598836848"/>
+						<reference key="parent" ref="334227680"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -912,6 +977,7 @@
 				<string key="122.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="122.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="135.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -930,7 +996,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">129</int>
+			<int key="maxID">136</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -939,6 +1005,7 @@
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="canntProposeDaysClick:">id</string>
+						<string key="onTimezoneClick:">id</string>
 						<string key="onlyProposeDaysClick:">id</string>
 						<string key="onlyProposeTimes:">id</string>
 						<string key="proposeDaysClick:">id</string>
@@ -946,6 +1013,10 @@
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="canntProposeDaysClick:">
 							<string key="name">canntProposeDaysClick:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onTimezoneClick:">
+							<string key="name">onTimezoneClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="onlyProposeDaysClick:">
@@ -962,6 +1033,10 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnInvite1">UIButton</string>
+						<string key="btnInvite2">UIButton</string>
+						<string key="btnInvite3">UIButton</string>
+						<string key="btnInvite4">UIButton</string>
 						<string key="canChangeLocation">CustomSwitch</string>
 						<string key="canInvitePeopleSwitch">CustomSwitch</string>
 						<string key="timeZoneLabel">UILabel</string>
@@ -970,6 +1045,22 @@
 						<string key="view3">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnInvite1">
+							<string key="name">btnInvite1</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnInvite2">
+							<string key="name">btnInvite2</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnInvite3">
+							<string key="name">btnInvite3</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnInvite4">
+							<string key="name">btnInvite4</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="canChangeLocation">
 							<string key="name">canChangeLocation</string>
 							<string key="candidateClassName">CustomSwitch</string>

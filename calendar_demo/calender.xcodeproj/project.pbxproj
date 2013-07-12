@@ -35,6 +35,8 @@
 		3D20D04B178EAA77008C2F0C /* AddEventInviteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D04A178EAA77008C2F0C /* AddEventInviteView.xib */; };
 		3D20D04E178EB164008C2F0C /* AddEventPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D20D050178EB17A008C2F0C /* AddEventPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */; };
+		3D20D054178FD4C6008C2F0C /* SelectTimeZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D20D055178FD4C6008C2F0C /* SelectTimeZoneController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */; };
 		3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */; };
 		3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */; };
 		3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDC17812CDF0093FE19 /* CreateUser.m */; };
@@ -343,6 +345,9 @@
 		3D20D04C178EB164008C2F0C /* AddEventPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventPlaceView.h; sourceTree = "<group>"; };
 		3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventPlaceView.m; sourceTree = "<group>"; };
 		3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventPlaceView.xib; sourceTree = "<group>"; };
+		3D20D051178FD4C4008C2F0C /* SelectTimeZoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeZoneController.h; sourceTree = "<group>"; };
+		3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimeZoneController.m; sourceTree = "<group>"; };
+		3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectTimeZoneController.xib; sourceTree = "<group>"; };
 		3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
 		3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
 		3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
@@ -1392,6 +1397,9 @@
 				3D20D04C178EB164008C2F0C /* AddEventPlaceView.h */,
 				3D20D04D178EB164008C2F0C /* AddEventPlaceView.m */,
 				3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */,
+				3D20D051178FD4C4008C2F0C /* SelectTimeZoneController.h */,
+				3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */,
+				3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */,
 			);
 			name = Events;
 			path = calender/Events;
@@ -1878,6 +1886,7 @@
 				76C6C60B178ED9A100BBEF15 /* eventSetingBg2.png in Resources */,
 				76C6C60C178ED9A100BBEF15 /* eventSetingBg3.png in Resources */,
 				76C6C60E178EDB8C00BBEF15 /* eventSettingLine.png in Resources */,
+				3D20D055178FD4C6008C2F0C /* SelectTimeZoneController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2026,6 +2035,7 @@
 				3D20D043178E859D008C2F0C /* ViewUtils.m in Sources */,
 				3D20D049178EAA63008C2F0C /* AddEventInviteView.m in Sources */,
 				3D20D04E178EB164008C2F0C /* AddEventPlaceView.m in Sources */,
+				3D20D054178FD4C6008C2F0C /* SelectTimeZoneController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,3 @@
-//
-//  AddEventSettingView.h
-//  test
-//
-//  Created by zyax86 on 13-7-7.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 #import "CustomSwitch.h"
@@ -21,10 +14,18 @@
 - (IBAction)onlyProposeTimes:(id)sender;
 - (IBAction)canntProposeDaysClick:(id)sender;
 
+-(IBAction) onTimezoneClick:(id)sender;
+
 @property (retain, nonatomic) IBOutlet CustomSwitch *canInvitePeopleSwitch;
 @property (retain, nonatomic) IBOutlet CustomSwitch *canChangeLocation;
 
 @property (retain, nonatomic) IBOutlet UILabel *timeZoneLabel;
+
+
+@property (retain, nonatomic) IBOutlet UIButton *btnInvite1;
+@property (retain, nonatomic) IBOutlet UIButton *btnInvite2;
+@property (retain, nonatomic) IBOutlet UIButton *btnInvite3;
+@property (retain, nonatomic) IBOutlet UIButton *btnInvite4;
 
 
 @end

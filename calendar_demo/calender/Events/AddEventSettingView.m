@@ -1,13 +1,11 @@
-//
-//  AddEventSettingView.m
-//  test
-//
-//  Created by zyax86 on 13-7-7.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
 
 #import "AddEventSettingView.h"
+#import "SelectTimeZoneController.h"
+#import "RootNavContrller.h"
 
+@interface AddEventSettingView () <SelectTimeZoneControllerDelegate>
+
+@end
 
 @implementation AddEventSettingView
 
@@ -61,14 +59,35 @@
     [self reversSelectBtn:sender];
 }
 
+-(IBAction) onTimezoneClick:(id)sender
+{
+    SelectTimeZoneController * ctr = [[SelectTimeZoneController alloc] init];
+    ctr.delegate = self;
+    [[RootNavContrller defaultInstance] pushViewController:ctr animated:YES];
+    [ctr release];
+}
+
+-(void) onSelectedTimezone:(NSString *) timezone
+{
+    self.timeZoneLabel.text = timezone;
+}
+
 - (void)reversSelectBtn:(UIButton *)btn
 {
-    btn.selected = !btn.selected;
+    self.btnInvite1.selected =  (self.btnInvite1== btn);
+    self.btnInvite2.selected =  (self.btnInvite2== btn);
+    self.btnInvite3.selected =  (self.btnInvite3== btn);
+    self.btnInvite4.selected =  (self.btnInvite4== btn);
 }
 
 - (void)dealloc {
     self.canChangeLocation = nil;
     self.canInvitePeopleSwitch = nil;
+    
+    self.btnInvite1 = nil;
+    self.btnInvite2 = nil;
+    self.btnInvite3 = nil;
+    self.btnInvite4 = nil;
     
     [_view1 release];
     [_view2 release];

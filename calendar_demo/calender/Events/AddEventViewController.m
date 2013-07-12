@@ -460,8 +460,12 @@
 
     event.published = YES;
     event.thumbnail_url = imgUrl;
-    event.timezone = @"America/New_York",
+    event.timezone = settingView.timeZoneLabel.text;
     event.title = title;
+    
+    event.allow_new_dt = settingView.btnInvite1.selected;
+    event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
+    event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
     
     Model *model = [Model getInstance];
 
