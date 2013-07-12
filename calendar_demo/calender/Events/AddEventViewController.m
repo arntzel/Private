@@ -398,6 +398,10 @@
 
 - (BOOL)canCreateEvent
 {
+    if(self.indicatorView.hidden == NO) {
+        return NO;
+    }
+    
     if (self.invitedPeoples == nil || self.locationPlace == nil || txtFieldTitle.text == nil) {
         NSString *alertString = @"invitedPeoples , location or title need to be set !";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:alertString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

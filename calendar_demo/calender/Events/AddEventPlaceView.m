@@ -15,6 +15,7 @@
 @implementation AddEventPlaceView {
 
     GMSMapView * gmsMapView;
+    GMSMarker *marker;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -31,6 +32,8 @@
     self.label = nil;
     self.btnPick = nil;
 
+    [marker release];
+    
     if(gmsMapView != nil) {
         [gmsMapView removeFromSuperview];
         [gmsMapView release];
@@ -57,6 +60,14 @@
     } else {
         gmsMapView.camera = camera;
     }
+    
+    // 在map中间做一个标记
+    if(marker == nil) {
+        marker = [[GMSMarker alloc] init];
+    }
+    
+    marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
+    marker.map = gmsMapView;
 }
 
 @end
