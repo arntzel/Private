@@ -9,12 +9,17 @@
 #import "Utils.h"
 #import "NavgationBar.h"
 
-@interface AddEventInviteViewController ()<UITableViewDelegate, UITableViewDataSource, NavgationBarDelegate>
+@interface AddEventInviteViewController ()<UITableViewDelegate,
+                                           UITableViewDataSource,
+                                           UISearchBarDelegate,
+                                           NavgationBarDelegate>
 {
     NSMutableArray * recentInvitePeople;
     NSMutableDictionary * recentInvitePeopleDic;
     
     NSMutableArray * users;
+    NSMutableArray * searchUsers;
+
     NSMutableDictionary * selectedUsersDic;
 }
 
@@ -29,6 +34,7 @@
     [recentInvitePeopleDic release];
     
     [users release];
+    [searchUsers release];
     [selectedUsersDic release];
     
     self.tableView = nil;
@@ -83,9 +89,13 @@
 
     
     users = [[NSMutableArray alloc] init];
-        
+    searchUsers = [[NSMutableArray alloc] init];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
+
+    self.searchBar.delegate = self;
+    
     [self getInvitePeopleData];
 }
 
@@ -104,7 +114,7 @@
 -(void) resetData:(NSArray *) userArray
 {
     [users removeAllObjects];
-    
+     
     for (User *user in userArray) {
         
         if([recentInvitePeopleDic objectForKey:user.username] != nil) {
@@ -124,6 +134,10 @@
         [users addObject:people];
         [people release];
     }
+
+    NSString * searchText = self.searchBar.text;
+
+    [self searchUser:searchText];
 }
 
 
@@ -176,7 +190,7 @@
         int count = [recentInvitePeople count];
         return count > 0 ? count : 1;
     } else {
-        return [users count];
+        return [searchUsers count];
     }
 }
 
@@ -212,7 +226,7 @@
         
         people = [recentInvitePeople objectAtIndex:indexPath.row];
     } else {
-        people = [users objectAtIndex:indexPath.row];
+        people = [searchUsers objectAtIndex:indexPath.row];
     }
     
     return people;
@@ -236,8 +250,6 @@
     
     return [selectedArray autorelease];
 }
-
-
 
 
 -(NSArray *) readRecentUsers
@@ -265,8 +277,6 @@
 
 -(void) saveRecentUsers:(NSArray *) recentUsers
 {
-    
-    
     NSMutableString * saveData = [[NSMutableString alloc] init];
     
     [saveData appendString:@"["];
@@ -310,4 +320,37 @@
     [self.navigationController popViewControllerAnimated:YES];
 
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self searchUser:searchText];
+    [self.tableView reloadData];
+}
+
+-(void) searchUser:(NSString *) searchText
+{
+    [searchUsers removeAllObjects];
+
+    if(searchText==nil || searchText.length == 0) {
+        [searchUsers addObjectsFromArray:users];
+        return;
+    }
+
+    searchText = [searchText lowercaseString];
+    
+    for(AddEventInvitePeople * people in users) {
+
+        NSString * username = [people.user.username lowercaseString];
+        
+        if( [username hasPrefix:searchText]) {
+            [searchUsers addObject:people];
+        }
+    }
+}
+
 @end
+
+
+
+
+

@@ -184,7 +184,7 @@ static UserModel * instance;
 -(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback
 {
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/?offset=%d", HOST, offset];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/?offset=%d&limit=100", HOST, offset];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
     NSLog(@"url=%@", url);
