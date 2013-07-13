@@ -6,7 +6,8 @@
 #import "GPlaceDataSource.h"
 #import "NavgationBar.h"
 
-#define NearBySearchRadius 5000
+//#define NearBySearchRadius 5000
+#define NearBySearchRadius 300
 
 @interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate,CLLocationManagerDelegate,NavgationBarDelegate>
 {
@@ -124,15 +125,18 @@
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
     if (api == GPTxtSearchApi) {
-        NSMutableArray *mutArray = [NSMutableArray arrayWithObject:self.markedLocation];
-        [mutArray addObjectsFromArray:array];
-        [txtSearchDataSource setData:mutArray];
+        [txtSearchDataSource setData:array];
         [self.txtSearchTabView reloadData];
         self.txtSearchTabView.hidden = NO;
     }
     else if (api == GPNearByApi)
     {
-        [nearByDataSource setData:array];
+        NSMutableArray *mutArray = [NSMutableArray array];
+        if (self.markedLocation) {
+            [mutArray addObject:self.markedLocation];
+        }
+        [mutArray addObjectsFromArray:array];
+        [nearByDataSource setData:mutArray];
         [self.nearBySearchTabView reloadData];
     }
 

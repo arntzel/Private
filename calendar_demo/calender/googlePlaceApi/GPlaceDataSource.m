@@ -10,38 +10,18 @@
 
 
 @interface GPlaceDataSource()
-@property(nonatomic,strong) NSMutableArray *arrayData;
+@property(nonatomic,strong) NSArray *arrayData;
 
 @end
 
 @implementation GPlaceDataSource
 @synthesize delegate;
 
-+(Location *)parseLocation:(NSDictionary *)json
-{
-    Location * location = [[Location alloc] init];
-    location.location = [json objectForKey:@"name"];
-    location.photo = [json objectForKey:@"icon"];
-    
-    NSDictionary *geometryDict = [json objectForKey:@"geometry"];
-    NSDictionary *locationDict = [geometryDict objectForKey:@"location"];
-    
-    if([json objectForKey:@"lat"] != [NSNull null]) {
-        location.lat = [[locationDict objectForKey:@"lat"] floatValue];
-    }
-    if([json objectForKey:@"lng"] != [NSNull null]) {
-        location.lng = [[locationDict objectForKey:@"lng"] floatValue];
-    }
-    
-    return location;
-}
+
 
 - (void)setData:(NSArray *)data
 {
-    self.arrayData = [[NSMutableArray alloc] init];
-    for (NSDictionary *json in data) {
-        [self.arrayData addObject:[GPlaceDataSource parseLocation:json]];
-    }
+    self.arrayData = data;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

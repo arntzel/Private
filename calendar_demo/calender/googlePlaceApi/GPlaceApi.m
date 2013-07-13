@@ -7,6 +7,8 @@
 //
 
 #import "GPlaceApi.h"
+#import "Location.h"
+
 @interface GPlaceApi()
 {
     NSURLConnection *queryConnect;
@@ -67,7 +69,32 @@
     }
     NSArray *resultArray = [json objectForKey:@"results"];
 
-    [self.delegate upDateWithArray:resultArray GPlaceApi:self];
+    NSMutableArray *arrayData = [[NSMutableArray alloc] init];
+    for (NSDictionary *json in resultArray) {
+        [arrayData addObject:[GPlaceApi parseLocation:json]];
+    }
+    
+
+    [self.delegate upDateWithArray:arrayData GPlaceApi:self];
+}
+
++(Location *)parseLocation:(NSDictionary *)json
+{
+    Location * location = [[Location alloc] init];
+    location.location = [json objectForKey:@"name"];
+    location.photo = [json objectForKey:@"icon"];
+    
+    NSDictionary *geometryDict = [json objectForKey:@"geometry"];
+    NSDictionary *locationDict = [geometryDict objectForKey:@"location"];
+    
+    if([json objectForKey:@"lat"] != [NSNull null]) {
+        location.lat = [[locationDict objectForKey:@"lat"] floatValue];
+    }
+    if([json objectForKey:@"lng"] != [NSNull null]) {
+        location.lng = [[locationDict objectForKey:@"lng"] floatValue];
+    }
+    
+    return location;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {    
