@@ -238,9 +238,6 @@
         firstLocationUpdate_ = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         currentCoordinate = location.coordinate;
-        
-        self.mapView.myLocationEnabled = YES;
-        
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
                                                          zoom:16];
