@@ -32,7 +32,16 @@
     [self.canChangeLocation setSegTitle:@"No" AtIndex:1];
     [_view2 addSubview:self.canChangeLocation];
 
+
+    NSString * timezone = [self getRecentTimezone];
+    if(timezone == nil) {
+        timezone = @"America/New_York";
+    }
+    self.timeZoneLabel.text = timezone;
+
 //    [self.canInvitePeopleSwitch addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+
+    
 }
 
 +(AddEventSettingView *) createEventSettingView
@@ -70,6 +79,7 @@
 -(void) onSelectedTimezone:(NSString *) timezone
 {
     self.timeZoneLabel.text = timezone;
+    [self saveTimezone:timezone];
 }
 
 - (void)reversSelectBtn:(UIButton *)btn
@@ -94,4 +104,18 @@
     [_view3 release];
     [super dealloc];
 }
+
+-(NSString *) getRecentTimezone
+{
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"timezone"];
+}
+
+-(void) saveTimezone:(NSString *) timezone
+{
+     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    [defaults setObject:timezone forKey:@"timezone"];
+    [defaults synchronize];
+}
+
 @end
