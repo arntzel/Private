@@ -20,17 +20,19 @@
     GPlaceDataSource *txtSearchDataSource;
     GPlaceDataSource *nearByDataSource;
     
-    GMSMarker *marker;
+    GMSMarker *nowLoacalmarker;
     CLLocationManager *manager;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
 @property (strong, nonatomic) Location* markedLocation;
+@property (strong, nonatomic) NSMutableArray* nearByMarkers;
 @end
 
 @implementation AddLocationViewController
 @synthesize delegate;
 @synthesize mapView;
 @synthesize markedLocation;
+@synthesize nearByMarkers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,24 +50,27 @@
         
         nearByDataSource = [[GPlaceDataSource alloc] init];
         nearByDataSource.delegate = self;
+        
+        self.nearByMarkers = [NSMutableArray array];
     }
     return self;
 }
 
-- (GMSMarker *)marker
+- (GMSMarker *)nowLoacalmarker
 {
-    if (marker == nil) {
-        marker = [[GMSMarker alloc] init];
-        marker.map = self.mapView;
+    if (nowLoacalmarker == nil) {
+        nowLoacalmarker = [[GMSMarker alloc] init];
+        nowLoacalmarker.map = self.mapView;
+        nowLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
     }
-    return marker;
+    return nowLoacalmarker;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
-                                                                 zoom:12];
+                                                                 zoom:14];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
@@ -135,11 +140,40 @@
         if (self.markedLocation) {
             [mutArray addObject:self.markedLocation];
         }
-        [mutArray addObjectsFromArray:array];
+        
+        for (Location *loc in array) {
+            if (![loc.location isEqualToString:self.markedLocation.location]) {
+                [mutArray addObject:loc];
+            }
+        }
+        
         [nearByDataSource setData:mutArray];
+        [self updateNearByMarkersFromLocations:array];
         [self.nearBySearchTabView reloadData];
     }
+}
 
+- (void)updateNearByMarkersFromLocations:(NSArray *)locations
+{
+    for (GMSMarker *maker in self.nearByMarkers) {
+        maker.map = nil;
+    }
+    
+    [self.nearByMarkers removeAllObjects];
+    for (Location *loc in locations) {
+        if ([loc.location isEqualToString:self.markedLocation.location]) {
+            continue;
+        }
+        
+        GMSMarker *nearBymarker = [[GMSMarker alloc] init];
+        nearBymarker.map = self.mapView;
+        nearBymarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+        nearBymarker.position = CLLocationCoordinate2DMake(loc.lat, loc.lng);
+        nearBymarker.title = loc.location;
+        
+        [self.nearByMarkers addObject:nearBymarker];
+    }
+    
 }
 
 - (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource
@@ -149,8 +183,10 @@
         self.txtSearchTabView.hidden = YES;
         currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                             zoom:14];
-        self.marker.position = currentCoordinate;
+                                                             zoom:18];
+        self.nowLoacalmarker.position = currentCoordinate;
+        self.nowLoacalmarker.title = location.location;
+        
         [self.mapView animateToLocation:currentCoordinate];        
         
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
@@ -207,7 +243,7 @@
         
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                         zoom:14];
+                                                         zoom:16];
     }
 }
 
