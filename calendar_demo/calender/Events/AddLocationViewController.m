@@ -23,11 +23,13 @@
     CLLocationManager *manager;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
+@property (strong, nonatomic) Location* markedLocation;
 @end
 
 @implementation AddLocationViewController
 @synthesize delegate;
 @synthesize mapView;
+@synthesize markedLocation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -122,7 +124,9 @@
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
     if (api == GPTxtSearchApi) {
-        [txtSearchDataSource setData:array];
+        NSMutableArray *mutArray = [NSMutableArray arrayWithObject:self.markedLocation];
+        [mutArray addObjectsFromArray:array];
+        [txtSearchDataSource setData:mutArray];
         [self.txtSearchTabView reloadData];
         self.txtSearchTabView.hidden = NO;
     }
@@ -137,6 +141,7 @@
 - (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource
 {
     if (dataSource == txtSearchDataSource) {
+        self.markedLocation = location;
         self.txtSearchTabView.hidden = YES;
         currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate

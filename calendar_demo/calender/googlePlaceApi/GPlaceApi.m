@@ -57,6 +57,11 @@
     NSError *err;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&err];
     NSString *result = [json objectForKey:@"status"];
+    if ([result isEqualToString:@"OVER_QUERY_LIMIT"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"QUERY OVER GOOGLE API LIMIT" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     if (![result isEqualToString:@"OK"]) {
         return;
     }
