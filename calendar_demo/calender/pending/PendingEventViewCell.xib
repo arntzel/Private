@@ -128,6 +128,7 @@
 								<string key="NSFrame">{{55, 46}, {255, 21}}</string>
 								<reference key="NSSuperview" ref="491165009"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -163,7 +164,7 @@
 							<object class="IBUIImageView" id="843471026">
 								<reference key="NSNextResponder" ref="491165009"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{293, 29}, {10, 15}}</string>
+								<string key="NSFrame">{{293, 29}, {10, 14}}</string>
 								<reference key="NSSuperview" ref="491165009"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="656222116"/>
@@ -172,7 +173,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">arrow_right@2x.png</string>
+									<string key="NSResourceName">arraw.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="4660849">
@@ -426,9 +427,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="arrow_right@2x.png">{18, 32}</string>
+			<string key="arraw.png">{20, 28}</string>
 			<string key="attendees.png">{34, 34}</string>
-			<string key="header.png">{60, 60}</string>
+			<string key="header.png">{160, 160}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
