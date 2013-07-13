@@ -98,15 +98,6 @@
         return cell;
 
     }
-
-
-    EventView * view = [EventView createEventView];
-
-    [view refreshView:event];
-
-    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-    [cell addSubview:view];
-    return cell;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -138,7 +129,7 @@
     UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 320-68, 16)];
     dayLabel.text = sectionName;
     dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
-    dayLabel.font = [UIFont fontWithName:@"Arial" size:12];
+    dayLabel.font = [UIFont systemFontOfSize:12];
     dayLabel.textAlignment = UITextAlignmentLeft;
     dayLabel.backgroundColor = [UIColor clearColor];
 
