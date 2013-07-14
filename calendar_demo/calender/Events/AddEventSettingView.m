@@ -2,6 +2,7 @@
 #import "AddEventSettingView.h"
 #import "SelectTimeZoneController.h"
 #import "RootNavContrller.h"
+#import "UserModel.h"
 
 @interface AddEventSettingView () <SelectTimeZoneControllerDelegate>
 
@@ -32,15 +33,17 @@
     [self.canChangeLocation setSegTitle:@"No" AtIndex:1];
     [_view2 addSubview:self.canChangeLocation];
 
-
+    /*
     NSString * timezone = [self getRecentTimezone];
     if(timezone == nil) {
         timezone = @"America/New_York";
     }
     self.timeZoneLabel.text = timezone;
+    */
 
+    self.timeZoneLabel.text = [[UserModel getInstance] getLoginUser].timezone;
+    
 //    [self.canInvitePeopleSwitch addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-
     
 }
 
@@ -79,7 +82,7 @@
 -(void) onSelectedTimezone:(NSString *) timezone
 {
     self.timeZoneLabel.text = timezone;
-    [self saveTimezone:timezone];
+    //[self saveTimezone:timezone];
 }
 
 - (void)reversSelectBtn:(UIButton *)btn

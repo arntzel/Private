@@ -8,6 +8,7 @@
 #import "ViewUtils.h"
 #import "Utils.h"
 #import "NavgationBar.h"
+#import "UserModel.h"
 
 @interface AddEventInviteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
@@ -114,9 +115,16 @@
 -(void) resetData:(NSArray *) userArray
 {
     [users removeAllObjects];
-     
+
+    User * me = [[UserModel getInstance] getLoginUser];
+
     for (User *user in userArray) {
-        
+
+        if(user.id == me.id) {
+            //exclude creator in the event
+            continue;
+        }
+
         if([recentInvitePeopleDic objectForKey:user.username] != nil) {
             continue;
         }
