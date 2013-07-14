@@ -6,6 +6,7 @@
 #import "DuringTimePicker.h"
 #import "KalLogic.h"
 #import "NavgationBar.h"
+#import "KalDate.h"
 
 @interface AddEventDateViewController ()<AddDateCalenderViewDelegate,KalViewDelegate, TimePickerDelegate,DuringTimePickerDelegate,NavgationBarDelegate>
 {
@@ -15,7 +16,7 @@
     AddDateCalenderView *calView;
 }
 
-@property(nonatomic,strong) EventDate *eventDate;
+@property(nonatomic,copy) EventDate *eventDate;
 @end
 
 @implementation AddEventDateViewController
@@ -64,11 +65,40 @@
 
 - (void)rightNavBtnClick
 {
-    if ([self.delegate respondsToSelector:@selector(setEventDate:)]) {
-        [self.delegate setEventDate:eventDate];
+    if ([self timeIsInFuture])
+    {
+        if ([self.delegate respondsToSelector:@selector(setEventDate:)])
+        {
+            [self.delegate setEventDate:eventDate];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
+    else
+    {
+        [self showTimeErrorWarning];
+    }
+}
+
+- (void)showTimeErrorWarning
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Warning"
+                                                    message:@"Do not choose the past time please!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [alert show];
+}
+
+- (BOOL)timeIsInFuture
+{
+    if ([eventDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 - (void)chooseTimeAction

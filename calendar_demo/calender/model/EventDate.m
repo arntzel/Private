@@ -1,6 +1,11 @@
 
 #import "EventDate.h"
 
+
+@interface EventDate()<NSCopying>
+
+@end
+
 @implementation EventDate
 
 - (id)init
@@ -16,6 +21,21 @@
         self.start_type = START_TYPEEXACTLYAT;
     }
     return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    EventDate *newDate = [[EventDate alloc] init];
+    newDate.start = [self.start copy];
+    newDate.end = [self.end copy];
+    newDate.is_all_day = self.is_all_day;
+    newDate.start_type = [self.start_type copy];
+    
+    newDate.duration_days = self.duration_days;
+    newDate.duration_minutes = self.duration_minutes;
+    newDate.duration_hours = self.duration_hours;
+    
+    return newDate;
 }
 
 - (void)convertMinToQuarterMode

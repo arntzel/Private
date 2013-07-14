@@ -386,14 +386,48 @@
 - (void)rightNavBtnClick
 {
     if ([self canCreateEvent]) {
-        [self uploadImage];
+        if ([self timeIsInFuture]) {
+            [self uploadImage];
+        }
+        else
+        {
+            [self showTimeErrorWarning];
+        }
     }
     else
     {
-        NSString *alertString = @"invitedPeoples , location or title need to be set !";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:alertString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
+        [self showEventContentWarning];
+    }
+}
+
+- (void)showTimeErrorWarning
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Warning"
+                                                    message:@"Do not choose the past time please!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    [alert release];
+}
+
+- (void)showEventContentWarning
+{
+    NSString *alertString = @"Attendee , location or title need to be set !";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:alertString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+}
+
+- (BOOL)timeIsInFuture
+{
+    if ([arrangedDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
     }
 }
 
@@ -472,6 +506,7 @@
                                                   otherButtonTitles:nil];
 
             [alert show];
+            [alert release];
         }
     }];
 }
