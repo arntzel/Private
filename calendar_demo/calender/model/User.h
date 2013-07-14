@@ -15,6 +15,13 @@
 
 @property(strong) NSString * timezone;
 
+@property(strong) NSString * first_name;
+
+@property(strong) NSString * last_name;
+
+
+-(NSString *) getReadableUsername;
+
 /*
  Parse User object from json data.
  */

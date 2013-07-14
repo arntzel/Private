@@ -5,6 +5,16 @@
 @implementation User
 
 
+-(NSString *) getReadableUsername
+{
+    if(self.first_name.length > 0 || self.last_name.length >0) {
+
+        return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
+
+    } else {
+        return self.email;
+    }
+}
 
 +(User *) parseUser:(NSDictionary *) jsonData
 {
@@ -16,6 +26,9 @@
     user.apikey = [jsonData objectForKey:@"apikey"];
     user.avatar_url = [jsonData objectForKey:@"avatar_url"];
     user.timezone = [jsonData objectForKey:@"timezone"];
+
+    user.first_name = [jsonData objectForKey:@"first_name"];
+    user.last_name = [jsonData objectForKey:@"last_name"];
 
     return user;
 }

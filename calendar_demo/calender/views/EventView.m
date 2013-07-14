@@ -116,11 +116,11 @@
         NSMutableString * str = [[NSMutableString alloc] init];
 
         EventAttendee * atd = [attendees objectAtIndex:0];
-        [str appendString: atd.user.username];
+        [str appendString: [atd.user getReadableUsername]];
         [str appendString:@" "];
         
         atd = [attendees objectAtIndex:1];
-        [str appendString: atd.user.username];
+        [str appendString: [atd.user getReadableUsername]];
        
         [str appendFormat:@" and %dattendees", attendees.count-2];
 
@@ -131,8 +131,11 @@
 
         for(int i=0;i<attendees.count;i++) {
             EventAttendee * atd = [attendees objectAtIndex:i];
-            [str appendString: atd.user.username];
-            [str appendString:@","];
+            [str appendString: [atd.user getReadableUsername]];
+
+            if(i<attendees.count-1) {
+                [str appendString:@", "];
+            }
         }
 
         return str;
@@ -140,6 +143,7 @@
         return @"No guests invited";
     }
 }
+
 
 +(EventView *) createEventView
 {
