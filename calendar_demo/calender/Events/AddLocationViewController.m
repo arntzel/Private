@@ -280,7 +280,7 @@
     if (!firstLocationUpdate_) {
         firstLocationUpdate_ = YES;
         myLocationCoordinate = newLocation.coordinate;
-        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
+//        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
         self.myLoacalmarker.position = myLocationCoordinate;
         
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
