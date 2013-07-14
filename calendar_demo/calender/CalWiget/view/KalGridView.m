@@ -147,12 +147,14 @@ extern const CGSize kTileSize;
 - (void)slideLeft
 {
     [logic advanceToFollowingMonth];
+    [delegate willShowMonth:logic.showMonth];
     [self slide:SLIDE_LEFT];
 }
 
 - (void)slideRight
 {
     [logic retreatToPreviousMonth];
+    [delegate willShowMonth:logic.showMonth];
     [self slide:SLIDE_RIGHT];
 }
 

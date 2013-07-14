@@ -8,6 +8,7 @@
 @protocol KalGridViewDelegate <NSObject>
 @required
 - (void)didSelectDate:(KalDate *)date;
+- (void)willShowMonth:(KalDate *)date;
 @end
 
 

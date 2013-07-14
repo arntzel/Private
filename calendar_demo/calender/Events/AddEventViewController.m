@@ -23,6 +23,8 @@
 #import "AddEventInviteView.h"
 #import "AddEventPlaceView.h"
 #import "ViewUtils.h"
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
 
 
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -37,7 +39,8 @@
                                      AddLocationViewControllerDelegate,
                                      AddEventDateViewControllerDelegate,
                                      NavgationBarDelegate,
-                                     UploadImageDelegate >
+                                     UploadImageDelegate,
+                                     ATMHudDelegate>
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -49,8 +52,7 @@
     AddDateEntryView *addDateView;
     AddEventSettingView *settingView;
     
-    UIActivityIndicatorView *indicatorView;
-    UIProgressView * uploadImageProgressView;
+    ATMHud *hud;
     
     AddEventInviteView * inviteView;
     AddEventPlaceView * placeView;
@@ -65,11 +67,13 @@
 
 @synthesize invitedPeoples;
 @synthesize locationPlace;
-@synthesize indicatorView;
 @synthesize arrangedDate;
 
 - (void)dealloc
 {
+    hud.delegate = nil;
+    [hud release];
+    
     [navBar release];
     [scrollView release];
     
@@ -83,10 +87,6 @@
 
     [addDateView release];
     [settingView release];
-    
-    [indicatorView release];
-    
-    [uploadImageProgressView release];
     
     [super dealloc];
 }
@@ -119,11 +119,9 @@
     [self initSettingView];
     
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
-    
-    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [self.view addSubview:indicatorView];
-    [indicatorView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
-    
+
+    hud = [[ATMHud alloc] initWithDelegate:self];
+	[self.view addSubview:hud.view];
 }
 
 - (void)initImagePickerView
@@ -159,11 +157,6 @@
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
-    
-    uploadImageProgressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    uploadImageProgressView.center = imagePickerView.center;
-    uploadImageProgressView.hidden = YES;
-    [scrollView addSubview:uploadImageProgressView];
 }
 
 - (void)initInviteAndPlaceView
@@ -382,7 +375,6 @@
     [txtFieldTitle resignFirstResponder];
 }
 
-
 #pragma mark NavBarDelegate
 - (void)leftNavBtnClick
 {
@@ -394,32 +386,20 @@
     if ([self canCreateEvent]) {
         [self uploadImage];
     }
-}
-
-- (BOOL)canCreateEvent
-{
-    if(self.indicatorView.hidden == NO) {
-        return NO;
-    }
-    
-    if (self.invitedPeoples == nil || self.locationPlace == nil || txtFieldTitle.text == nil) {
+    else
+    {
         NSString *alertString = @"invitedPeoples , location or title need to be set !";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:alertString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
+    }
+}
+
+- (BOOL)canCreateEvent
+{
+    if (self.invitedPeoples == nil || self.locationPlace == nil || txtFieldTitle.text == nil) {
         return NO;
     }
-
-    /*
-    if( arrangedDate.start == nil) {
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"start time is nil" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return NO;
-    }
-    */
-    
     return YES;
 }
 
@@ -469,10 +449,10 @@
     
     Model *model = [Model getInstance];
 
-    [self.indicatorView startAnimating];
+    [self startIndicator];
     [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
 
-        [self.indicatorView stopAnimating];
+        [self stopIndicator];
         
         if (error == 0) {
 
@@ -494,19 +474,38 @@
     }];
 }
 
+- (void)startUploadIndicator
+{
+    [hud setCaption:@"Uploading Photo"];
+    [hud setProgress:0.08];
+    [hud show];
+    [hud blockTouches];
+}
+
+- (void)startIndicator
+{
+    [hud setCaption:@"Creating Event"];
+    [hud setActivity:YES];
+    [hud show];
+    [hud blockTouches];
+}
+
+- (void)stopIndicator
+{
+    [hud setActivity:NO];
+    [hud setProgress:0];
+}
+
 -(void) uploadImage
 {
     UIImage * img = imagePickerView.image;
-    
-    [self.indicatorView startAnimating];
+    [self startUploadIndicator];
     [[Model getInstance] uploadImage:img andCallback:self];
 }
 
 -(void) onUploadStart
 {
-    NSLog(@"onUploadStart");
-    uploadImageProgressView.hidden = NO;
-    uploadImageProgressView.progress = 0;
+    
 }
 
 -(void) onUploadProgress: (long long) progress andSize: (long long) Size
@@ -515,18 +514,15 @@
     float progressVal = (progress*1.0)/Size;
     
     if(progressVal>1) progressVal = 1;
-    
-    [uploadImageProgressView setProgress:progressVal animated:YES];
+    [hud setProgress:progressVal];
 }
 
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
     NSLog(@"onUploadCompleted");
     
-    uploadImageProgressView.hidden = YES;
-    
     if(error != 0) {
-        [self.indicatorView stopAnimating];
+        [self stopIndicator];
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
                                                         message:@"Upload Image failed."
                                                        delegate:nil
@@ -536,6 +532,7 @@
         [alert show];
     } else {
         NSLog(@"onUploadCompleted:%@", url);
+        [self stopIndicator];
         [self createEvent:url];
     }
 }

@@ -188,6 +188,19 @@
 		7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3271787188A00C90C3B /* AddDateCalenderView.m */; };
 		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
+		76943B44179246020006FCA9 /* gps.db in Resources */ = {isa = PBXBuildFile; fileRef = 76943B3C179246020006FCA9 /* gps.db */; };
+		76943B45179246020006FCA9 /* CSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B3F179246020006FCA9 /* CSqlite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B49179253D00006FCA9 /* map_my_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 76943B48179253D00006FCA9 /* map_my_location.png */; };
+		76943B5C1792570F0006FCA9 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B4C1792570F0006FCA9 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B5D1792570F0006FCA9 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B4F1792570F0006FCA9 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B5E1792570F0006FCA9 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B511792570F0006FCA9 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B5F1792570F0006FCA9 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B531792570F0006FCA9 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B601792570F0006FCA9 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B551792570F0006FCA9 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B611792570F0006FCA9 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76943B571792570F0006FCA9 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76943B621792570F0006FCA9 /* 11-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76943B591792570F0006FCA9 /* 11-x.png */; };
+		76943B631792570F0006FCA9 /* 19-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 76943B5A1792570F0006FCA9 /* 19-check.png */; };
+		76943B641792570F0006FCA9 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 76943B5B1792570F0006FCA9 /* pop.wav */; };
+		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		76AC4B5A1785B9D4008E0F7D /* FeedCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76AC4B5D1785C6CF008E0F7D /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AC4B5C1785C6CF008E0F7D /* DeviceInfo.m */; };
 		76B16FF0178D86180026F4B2 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B16FDF178D86180026F4B2 /* CustomSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -670,6 +683,29 @@
 		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
 		7672D169177091520053D024 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		7672D16A177091520053D024 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
+		76943B3C179246020006FCA9 /* gps.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gps.db; sourceTree = "<group>"; };
+		76943B3E179246020006FCA9 /* CSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqlite.h; sourceTree = "<group>"; };
+		76943B3F179246020006FCA9 /* CSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqlite.m; sourceTree = "<group>"; };
+		76943B42179246020006FCA9 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		76943B43179246020006FCA9 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		76943B48179253D00006FCA9 /* map_my_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_my_location.png; sourceTree = "<group>"; };
+		76943B4B1792570F0006FCA9 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		76943B4C1792570F0006FCA9 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		76943B4D1792570F0006FCA9 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		76943B4E1792570F0006FCA9 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		76943B4F1792570F0006FCA9 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		76943B501792570F0006FCA9 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		76943B511792570F0006FCA9 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		76943B521792570F0006FCA9 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		76943B531792570F0006FCA9 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		76943B541792570F0006FCA9 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		76943B551792570F0006FCA9 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		76943B561792570F0006FCA9 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		76943B571792570F0006FCA9 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		76943B591792570F0006FCA9 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
+		76943B5A1792570F0006FCA9 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
+		76943B5B1792570F0006FCA9 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		76AC4B581785B9D4008E0F7D /* FeedCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCalenderView.h; sourceTree = "<group>"; };
 		76AC4B591785B9D4008E0F7D /* FeedCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCalenderView.m; sourceTree = "<group>"; };
 		76AC4B5B1785C6CF008E0F7D /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
@@ -833,6 +869,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
 				3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */,
 				3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */,
 				3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */,
@@ -940,6 +977,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76943B6517925AED0006FCA9 /* AudioToolbox.framework */,
 				3D0381A3178BABD600809F1D /* MobileCoreServices.framework */,
 				3D0381A5178BABEF00809F1D /* libxml2.dylib */,
 				3D0381A1178BAA7E00809F1D /* CFNetwork.framework */,
@@ -1347,6 +1385,48 @@
 			path = AddDate;
 			sourceTree = "<group>";
 		};
+		76943B3D179246020006FCA9 /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				76943B3E179246020006FCA9 /* CSqlite.h */,
+				76943B3F179246020006FCA9 /* CSqlite.m */,
+				76943B42179246020006FCA9 /* sqlite3.h */,
+				76943B43179246020006FCA9 /* sqlite3ext.h */,
+			);
+			path = Sqlite;
+			sourceTree = "<group>";
+		};
+		76943B4A1792570F0006FCA9 /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				76943B4B1792570F0006FCA9 /* ATMHud.h */,
+				76943B4C1792570F0006FCA9 /* ATMHud.m */,
+				76943B4D1792570F0006FCA9 /* ATMHudDelegate.h */,
+				76943B4E1792570F0006FCA9 /* ATMHudQueueItem.h */,
+				76943B4F1792570F0006FCA9 /* ATMHudQueueItem.m */,
+				76943B501792570F0006FCA9 /* ATMHudView.h */,
+				76943B511792570F0006FCA9 /* ATMHudView.m */,
+				76943B521792570F0006FCA9 /* ATMProgressLayer.h */,
+				76943B531792570F0006FCA9 /* ATMProgressLayer.m */,
+				76943B541792570F0006FCA9 /* ATMSoundFX.h */,
+				76943B551792570F0006FCA9 /* ATMSoundFX.m */,
+				76943B561792570F0006FCA9 /* ATMTextLayer.h */,
+				76943B571792570F0006FCA9 /* ATMTextLayer.m */,
+				76943B581792570F0006FCA9 /* Resource */,
+			);
+			path = ATMHud;
+			sourceTree = "<group>";
+		};
+		76943B581792570F0006FCA9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				76943B591792570F0006FCA9 /* 11-x.png */,
+				76943B5A1792570F0006FCA9 /* 19-check.png */,
+				76943B5B1792570F0006FCA9 /* pop.wav */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		76B16FC8178D86180026F4B2 /* customSwitch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1408,6 +1488,7 @@
 		76BC52CE1789C748005D78E2 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				76943B48179253D00006FCA9 /* map_my_location.png */,
 				76C6C60D178EDB8C00BBEF15 /* eventSettingLine.png */,
 				76C6C607178ED9A100BBEF15 /* eventSetingBg1.png */,
 				76C6C608178ED9A100BBEF15 /* eventSetingBg2.png */,
@@ -1518,6 +1599,9 @@
 		76DD62B01768AEF900C8F6AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				76943B4A1792570F0006FCA9 /* ATMHud */,
+				76943B3C179246020006FCA9 /* gps.db */,
+				76943B3D179246020006FCA9 /* Sqlite */,
 				76B16FC8178D86180026F4B2 /* customSwitch */,
 				3DF520D817841024009C3BCD /* PullRefreshTableView.h */,
 				3DF520D917841024009C3BCD /* PullRefreshTableView.m */,
@@ -1887,6 +1971,11 @@
 				76C6C60C178ED9A100BBEF15 /* eventSetingBg3.png in Resources */,
 				76C6C60E178EDB8C00BBEF15 /* eventSettingLine.png in Resources */,
 				3D20D055178FD4C6008C2F0C /* SelectTimeZoneController.xib in Resources */,
+				76943B44179246020006FCA9 /* gps.db in Resources */,
+				76943B49179253D00006FCA9 /* map_my_location.png in Resources */,
+				76943B621792570F0006FCA9 /* 11-x.png in Resources */,
+				76943B631792570F0006FCA9 /* 19-check.png in Resources */,
+				76943B641792570F0006FCA9 /* pop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2036,6 +2125,13 @@
 				3D20D049178EAA63008C2F0C /* AddEventInviteView.m in Sources */,
 				3D20D04E178EB164008C2F0C /* AddEventPlaceView.m in Sources */,
 				3D20D054178FD4C6008C2F0C /* SelectTimeZoneController.m in Sources */,
+				76943B45179246020006FCA9 /* CSqlite.m in Sources */,
+				76943B5C1792570F0006FCA9 /* ATMHud.m in Sources */,
+				76943B5D1792570F0006FCA9 /* ATMHudQueueItem.m in Sources */,
+				76943B5E1792570F0006FCA9 /* ATMHudView.m in Sources */,
+				76943B5F1792570F0006FCA9 /* ATMProgressLayer.m in Sources */,
+				76943B601792570F0006FCA9 /* ATMSoundFX.m in Sources */,
+				76943B611792570F0006FCA9 /* ATMTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
