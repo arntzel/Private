@@ -5,6 +5,7 @@
 #import "GPlaceApi.h"
 #import "GPlaceDataSource.h"
 #import "NavgationBar.h"
+#import "CSqlite.h"
 
 //#define NearBySearchRadius 5000
 #define NearBySearchRadius 300
@@ -13,6 +14,7 @@
 {
     BOOL firstLocationUpdate_;
     CLLocationCoordinate2D currentCoordinate;
+    CLLocationCoordinate2D myLocationCoordinate;
     
     GPlaceApi *GPTxtSearchApi;
     GPlaceApi *GPNearByApi;
@@ -21,7 +23,10 @@
     GPlaceDataSource *nearByDataSource;
     
     GMSMarker *nowLoacalmarker;
-    CLLocationManager *manager;
+    GMSMarker *myLoacalmarker;
+    CLLocationManager *locationManager;
+    
+    CSqlite *m_sqlite;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
 @property (strong, nonatomic) Location* markedLocation;
@@ -52,8 +57,24 @@
         nearByDataSource.delegate = self;
         
         self.nearByMarkers = [NSMutableArray array];
+        
+        m_sqlite = [[CSqlite alloc]init];
+        [m_sqlite openSqlite];
     }
     return self;
+}
+
+
+
+- (GMSMarker *)myLoacalmarker
+{
+    if (myLoacalmarker == nil) {
+        myLoacalmarker = [[GMSMarker alloc] init];
+        myLoacalmarker.map = self.mapView;
+        myLoacalmarker.title = @"My Location";
+        myLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+    }
+    return myLoacalmarker;
 }
 
 - (GMSMarker *)nowLoacalmarker
@@ -74,22 +95,25 @@
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
-    self.mapView.settings.myLocationButton = YES;
+//    self.mapView.settings.myLocationButton = YES;
     [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
     
-
+    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 188, 46, 46)];
+    [self.view addSubview:btnMyLocation];
+    [btnMyLocation setImage:[UIImage imageNamed:@"map_my_location.png"] forState:UIControlStateNormal];
+    [btnMyLocation addTarget:self action:@selector(animationToMyLocation) forControlEvents:UIControlEventTouchUpInside];
     
-    // Listen to the myLocation property of GMSMapView.
+    
+    /* google map location
     [self.mapView addObserver:self
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
-    
-    
-    // Ask for My Location data after the map has already been added to the UI.
+
     dispatch_async(dispatch_get_main_queue(), ^{
         self.mapView.myLocationEnabled = YES;
     });
+     */
 
     self.locationSearchBar.delegate = self;
     
@@ -101,6 +125,8 @@
     self.nearBySearchTabView.delegate = nearByDataSource;
     
     [self addTopBar];
+    
+    [self startLocation];
 }
 
 - (void)addTopBar
@@ -228,6 +254,48 @@
 
 #pragma mark - KVO updates
 
+- (void)animationToMyLocation
+{
+    [mapView animateToLocation:myLocationCoordinate];
+}
+
+
+- (void)startLocation
+{
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.distanceFilter=0.5;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager startUpdatingLocation];
+    }
+}
+
+// location success
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    if (!firstLocationUpdate_) {
+        firstLocationUpdate_ = YES;
+        myLocationCoordinate = newLocation.coordinate;
+        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
+        self.myLoacalmarker.position = myLocationCoordinate;
+        
+        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
+        self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
+    }
+
+    
+}
+
+// location failed
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+}
+
+
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -237,11 +305,36 @@
         // location.
         firstLocationUpdate_ = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        currentCoordinate = location.coordinate;
-        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                         zoom:16];
+        myLocationCoordinate = location.coordinate;
+        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
+        self.myLoacalmarker.position = myLocationCoordinate;
+        
+        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
+        self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
     }
+}
+
+-(CLLocationCoordinate2D)zzTransGPS:(CLLocationCoordinate2D)yGps
+{
+    int TenLat=0;
+    int TenLog=0;
+    TenLat = (int)(yGps.latitude*10);
+    TenLog = (int)(yGps.longitude*10);
+    NSString *sql = [[NSString alloc]initWithFormat:@"select offLat,offLog from gpsT where lat=%d and log = %d",TenLat,TenLog];
+    NSLog(@"%@",sql);
+    sqlite3_stmt* stmtL = [m_sqlite NSRunSql:sql];
+    int offLat=0;
+    int offLog=0;
+    while (sqlite3_step(stmtL)==SQLITE_ROW)
+    {
+        offLat = sqlite3_column_int(stmtL, 0);
+        offLog = sqlite3_column_int(stmtL, 1);
+        
+    }
+    
+    yGps.latitude = yGps.latitude+offLat*0.0001;
+    yGps.longitude = yGps.longitude + offLog*0.0001;
+    return yGps;
 }
 
 - (void)viewDidUnload {
