@@ -22,4 +22,6 @@
 - (NSString *)parseStartDateString;
 - (NSString *)parseDuringDateString;
 
+- (void)convertMinToQuarterMode;
+
 @end

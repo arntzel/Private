@@ -18,6 +18,20 @@
     return self;
 }
 
+- (void)convertMinToQuarterMode
+{
+
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:self.start];
+    parts.minute += 14;
+
+    NSInteger min = [parts minute];
+    parts.minute = (min / 15) * 15;
+    
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:parts];
+    self.start = date;
+}
+
 
 - (NSString *)parseStartTimeString
 {

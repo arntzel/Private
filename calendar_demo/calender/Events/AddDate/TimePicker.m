@@ -61,7 +61,7 @@
     Ampm = hours_/12;
     
     [hourPicker scrollToIndex:hours_%12 WithAnimation:animation];
-    [minPicker scrollToIndex:minutes_ WithAnimation:animation];
+    [minPicker scrollToIndex:minutes_ / 15 WithAnimation:animation];
     [AMPMPicker scrollToIndex:hours_/12 WithAnimation:animation];
 }
 
@@ -149,11 +149,26 @@
     }
     else if(pickerView == minPicker)
     {
-        return 60;
+        return 4;
     }
     else
     {
         return 2;
+    }
+}
+
+- (NSInteger)integerOfRowsInPicker:(LoopPickerView *)pickerView AtIndex:(NSInteger)index
+{
+    if (pickerView == hourPicker) {
+        return index;
+    }
+    else if(pickerView == minPicker)
+    {
+        return index * 15;
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -164,7 +179,7 @@
     }
     else if(pickerView == minPicker)
     {
-        Minutes = index;
+        Minutes = index * 15;
     }
     else
     {

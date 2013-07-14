@@ -52,7 +52,7 @@
     hours = hours_;
     minutes = minutes_;
     [hourPicker scrollToIndex:hours_ WithAnimation:animation];
-    [minPicker scrollToIndex:minutes_ WithAnimation:animation];
+    [minPicker scrollToIndex:minutes_ / 15 WithAnimation:animation];
 }
 
 - (void)setisAllDate:(BOOL)isAllDay
@@ -134,7 +134,22 @@
     }
     else
     {
-        return 60;
+        return 4;
+    }
+}
+
+- (NSInteger)integerOfRowsInPicker:(LoopPickerView *)pickerView AtIndex:(NSInteger)index
+{
+    if (pickerView == hourPicker) {
+        return index;
+    }
+    else if(pickerView == minPicker)
+    {
+        return index * 15;
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -145,7 +160,7 @@
     }
     else if(pickerView == minPicker)
     {
-        minutes = index;
+        minutes = index * 15;
     }
     if ([self.delegate respondsToSelector:@selector(setDurationHours:Minutes:)]) {
         [self.delegate setDurationHours:hours Minutes:minutes];

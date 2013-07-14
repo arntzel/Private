@@ -123,7 +123,8 @@
         cell = [nib objectAtIndex:0];
     }
     
-    NSInteger value = indexPath.row % numberOfData;
+//    NSInteger value = indexPath.row % numberOfData;
+    NSInteger value = [self.delegate integerOfRowsInPicker:self AtIndex:(indexPath.row % numberOfData)];
     NSString *valueString = [NSString stringWithFormat:@"%d",value];
     cell.labValue.text = valueString;
     

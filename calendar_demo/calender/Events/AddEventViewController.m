@@ -270,7 +270,9 @@
     [addDateView.btnAddDate addTarget:self action:@selector(addDate:) forControlEvents:UIControlEventTouchUpInside];
     
     EventDate *tempEventDate = [[EventDate alloc] init];
+    [tempEventDate convertMinToQuarterMode];
     self.arrangedDate = tempEventDate;
+    
     [tempEventDate release];
 }
 

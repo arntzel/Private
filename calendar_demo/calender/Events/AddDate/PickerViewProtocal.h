@@ -26,5 +26,6 @@
 
 @optional
 - (NSString *)stringOfRowsInPicker:(id<PickerViewProtocal>)picker AtIndex:(NSInteger)index;
+- (NSInteger)integerOfRowsInPicker:(id<PickerViewProtocal>)picker AtIndex:(NSInteger)index;
 
 @end
