@@ -124,7 +124,25 @@ static const CGFloat kMonthLabelHeight = 17.f;
 - (void)didSelectDate:(KalDate *)date
 {
     NSLog(@"didSelectDate: year:%d,month:%d,day:%d",date.year,date.month,date.day);
-    [self.delegate didSelectDate:date];
+    if ([self.delegate respondsToSelector:@selector(didSelectDate:)]) {
+        [self.delegate didSelectDate:date];
+    }
+}
+
+- (void)willShowMonth:(KalDate *)date
+{
+    NSLog(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
+    if ([self.delegate respondsToSelector:@selector(willShowMonth:)]) {
+        [self.delegate willShowMonth:date];
+    }
+}
+
+- (void)willShowWeek:(KalDate *)date
+{
+    NSLog(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
+    if ([self.delegate respondsToSelector:@selector(willShowMonth:)]) {
+        [self.delegate willShowWeek:date];
+    }
 }
 
 - (void)showListView

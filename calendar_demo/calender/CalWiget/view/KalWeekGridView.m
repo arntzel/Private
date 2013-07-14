@@ -59,12 +59,14 @@ extern const CGSize kTileSize;
 - (void)slideLeft
 {
     [logic advanceToFollowingWeek];
+    [delegate willShowWeek:logic.showWeek];
     [self slide:SLIDE_LEFT];
 }
 
 - (void)slideRight
 {
     [logic retreatToPreviousWeek];
+    [delegate willShowWeek:logic.showWeek];
     [self slide:SLIDE_RIGHT];
 }
 

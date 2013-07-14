@@ -9,6 +9,7 @@
 @protocol KalWeekGridViewDelegate <NSObject>
 @required
 - (void)didSelectDate:(KalDate *)date;
+- (void)willShowWeek:(KalDate *)date;
 @end
 
 

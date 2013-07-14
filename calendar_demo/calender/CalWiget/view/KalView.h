@@ -47,4 +47,6 @@
 - (void)showListView;
 
 - (void)didSelectDate:(KalDate *)date;
+- (void)willShowMonth:(KalDate *)date;
+- (void)willShowWeek:(KalDate *)date;
 @end
