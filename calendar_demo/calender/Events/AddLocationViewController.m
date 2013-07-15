@@ -98,8 +98,8 @@
 //    self.mapView.settings.myLocationButton = YES;
     [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
     
-    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 188, 46, 46)];
-    [self.view addSubview:btnMyLocation];
+    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 100, 46, 46)];
+    [self.mapView addSubview:btnMyLocation];
     [btnMyLocation setImage:[UIImage imageNamed:@"map_my_location.png"] forState:UIControlStateNormal];
     [btnMyLocation addTarget:self action:@selector(animationToMyLocation) forControlEvents:UIControlEventTouchUpInside];
     
