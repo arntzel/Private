@@ -195,6 +195,14 @@
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{//
+    if (self.view.frame.origin.x > 100) {
+        return NO;
+    }
+    return YES;
+}
+
 -(void) tableviewScroll2SelectDay {
     
     NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];

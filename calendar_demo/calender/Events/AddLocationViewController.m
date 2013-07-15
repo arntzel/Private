@@ -89,17 +89,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
-                                                            longitude:151.2086
-                                                                 zoom:14];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294
+                                                            longitude:-74.00
+                                                                 zoom:12];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
 //    self.mapView.settings.myLocationButton = YES;
     [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
     
-    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 188, 46, 46)];
-    [self.view addSubview:btnMyLocation];
+    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 100, 46, 46)];
+    [self.mapView addSubview:btnMyLocation];
     [btnMyLocation setImage:[UIImage imageNamed:@"map_my_location.png"] forState:UIControlStateNormal];
     [btnMyLocation addTarget:self action:@selector(animationToMyLocation) forControlEvents:UIControlEventTouchUpInside];
     
@@ -286,8 +286,6 @@
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
     }
-
-    
 }
 
 // location failed
