@@ -39,7 +39,7 @@
     
     User * user = iuser.user;
     
-    self.peopleName.text = user.username;
+    self.peopleName.text = [user getReadableUsername];
     
     NSString * headerUrl = user.avatar_url;
     

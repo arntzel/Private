@@ -7,6 +7,8 @@
 
 - (void) onPullStarted;
 
+-(void) onPullStop;
+
 - (void) onPullCancelled;
 
 @end

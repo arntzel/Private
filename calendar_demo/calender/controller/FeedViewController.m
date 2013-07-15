@@ -24,6 +24,7 @@
 #import "FeedCalenderView.h"
 
 #import "EventDetailViewController.h"
+#import "CustomerIndicatorView.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -45,6 +46,8 @@
     int selectedYear;
     int selectedMonth;
     int selectedDay;
+
+    CustomerIndicatorView * dataLoadingView;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -119,6 +122,15 @@
 
 
     [tableView startHeaderLoading];
+
+    dataLoadingView = [[CustomerIndicatorView alloc] init];
+    frame = dataLoadingView.frame;
+    frame.origin.x = 320 + 40;
+    frame.origin.y = 80;
+    dataLoadingView.frame = frame;
+    
+
+    [self.view addSubview:dataLoadingView];
 }
 
 
@@ -225,6 +237,32 @@
 #pragma mark PullRefreshTableViewDelegate
 - (void) onPullStarted {
 
+
+    // Show the header
+
+    [dataLoadingView startAnim];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+
+    CGRect frame = CGRectMake(320 - 80, 80, 30, 30);
+    dataLoadingView.frame = frame;
+
+    [UIView commitAnimations];
+
+}
+
+-(void) onPullStop {
+
+    [dataLoadingView stopAnim];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+
+    CGRect frame = CGRectMake(320 + 40, 80, 30, 30);
+    dataLoadingView.frame = frame;
+
+    [UIView commitAnimations];
 }
 
 - (void) onPullCancelled {
@@ -235,6 +273,7 @@
 {
     [self loadData:selectedYear andMonth:selectedMonth];
 }
+
 
 #pragma mark -
 #pragma mark EventFilterViewDelegate

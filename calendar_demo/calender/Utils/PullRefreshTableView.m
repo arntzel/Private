@@ -254,14 +254,10 @@ enum {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [pull startLoading];
-    self.contentInset = insets;
+    //self.contentInset = insets;
     
-    if(pull.frame.origin.y<0 && self.contentOffset.y > pull.frame.origin.y) {
-        
-        self.contentOffset = CGPointMake(0, pull.frame.origin.y);
-        
-    }
-    
+
+
     
     [UIView commitAnimations];
 
@@ -285,6 +281,10 @@ enum {
     self.contentInset = UIEdgeInsetsZero;
     [pull stopLoading];
     [UIView commitAnimations];
+
+    if(self.pullRefreshDalegate) {
+        [self.pullRefreshDalegate onPullStop];
+    }
 }
 
 - (void)pullStarted

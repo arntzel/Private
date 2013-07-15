@@ -294,6 +294,7 @@
 		945D3FC51779DB3400333ECD /* google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC21779DB3400333ECD /* google@2x.png */; };
 		945D3FC81779DBDA00333ECD /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */; };
 		946372F8178474BC00041B0E /* FeedEventTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 946372F7178474BC00041B0E /* FeedEventTableView.m */; };
+		9475840D1794375D001C7489 /* CustomerIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475840C1794375D001C7489 /* CustomerIndicatorView.m */; };
 		94901DF31785B63000848ACA /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94901DF21785B63000848ACA /* EventFilterView.m */; };
 		94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF51785B68B00848ACA /* EventFilterView.xib */; };
 		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
@@ -841,6 +842,8 @@
 		945D3FC71779DBDA00333ECD /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
 		946372F6178474BC00041B0E /* FeedEventTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventTableView.h; sourceTree = "<group>"; };
 		946372F7178474BC00041B0E /* FeedEventTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableView.m; sourceTree = "<group>"; };
+		9475840B1794375D001C7489 /* CustomerIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerIndicatorView.h; sourceTree = "<group>"; };
+		9475840C1794375D001C7489 /* CustomerIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerIndicatorView.m; sourceTree = "<group>"; };
 		94901DF11785B63000848ACA /* EventFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFilterView.h; sourceTree = "<group>"; };
 		94901DF21785B63000848ACA /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
 		94901DF51785B68B00848ACA /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
@@ -1092,6 +1095,8 @@
 				94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */,
 				94C4527E178AF1A200E2E1A1 /* BirthdayEventView.h */,
 				94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */,
+				9475840B1794375D001C7489 /* CustomerIndicatorView.h */,
+				9475840C1794375D001C7489 /* CustomerIndicatorView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -2132,6 +2137,7 @@
 				76943B5F1792570F0006FCA9 /* ATMProgressLayer.m in Sources */,
 				76943B601792570F0006FCA9 /* ATMSoundFX.m in Sources */,
 				76943B611792570F0006FCA9 /* ATMTextLayer.m in Sources */,
+				9475840D1794375D001C7489 /* CustomerIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
