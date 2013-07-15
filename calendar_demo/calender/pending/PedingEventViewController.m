@@ -180,5 +180,7 @@
     [self loadData];
 }
 
-
+-(void) onPullStop {
+    
+}
 @end
