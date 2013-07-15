@@ -5,7 +5,7 @@
 #define weekViewHeight 65
 #define topGap 100
 
-@interface FeedCalenderView()<UIGestureRecognizerDelegate>
+@interface FeedCalenderView()
 {
     UIScrollView *eventScrollView;
     KalView *kalView;
@@ -32,13 +32,13 @@ extern const CGSize kTileSize;
     [super dealloc];
 }
 
-- (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
+- (id)initWithdelegate:(id<KalViewDelegate,UIGestureRecognizerDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
     CGRect frame = CGRectMake(0, [DeviceInfo fullScreenHeight] - weekViewHeight, 320, 40);
     return [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
 }
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
+- (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate,UIGestureRecognizerDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -49,7 +49,7 @@ extern const CGSize kTileSize;
         [self addSubview:kalView];
         
         [self addeventScrollView];
-        [self addPanGestureRecognizer];
+        [self addPanGestureRecognizer:theDelegate];
     }
     return self;
 }
@@ -122,10 +122,10 @@ extern const CGSize kTileSize;
     }
 }
 
--(void)addPanGestureRecognizer
+-(void)addPanGestureRecognizer:(id<UIGestureRecognizerDelegate>)delegate
 {
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
-    [panGesture setDelegate:self];
+    [panGesture setDelegate:delegate];
     [self addGestureRecognizer:panGesture];
     [panGesture release];
     [kalView delayGestureResponse:panGesture];
