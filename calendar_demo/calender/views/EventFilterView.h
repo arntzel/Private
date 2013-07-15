@@ -23,6 +23,8 @@
 
 -(IBAction) btnSelected:(id)sender;
 
+-(void) setFilter:(int) filter;
+
 
 @property(nonatomic, assign) id<EventFilterViewDelegate> delegate;
 

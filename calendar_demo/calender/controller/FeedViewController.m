@@ -95,6 +95,13 @@
     [self.view addSubview:self.calendarView];
 
 
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    NSNumber * filterNum = [defaults objectForKey:@"eventfilters"];
+    if(filterNum != nil) {
+        [self.calendarView.filterView setFilter: filterNum.intValue];
+        [eventModel setFilter:filterNum.intValue];
+    }
+    
     self.calendarView.filterView.delegate = self;
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -229,6 +236,11 @@
 {
     NSLog(@"onFilterChanged:0x %x", filters);
 
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];
+    [defaults synchronize];
+
+    
     [eventModel setFilter:filters];
     [tableView reloadData];
 }

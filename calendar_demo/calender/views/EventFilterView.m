@@ -65,4 +65,13 @@
     }
 }
 
+-(void) setFilter:(int) filter
+{
+    self.btnImcompletedEvnt.selected = (filter & FILTER_IMCOMPLETE);
+    self.btnGoogleEvnt.selected = (filter & FILTER_GOOGLE);
+    self.btnFBEvnt.selected = (filter & FILTER_FB);
+    self.btnBirthdayEvnt.selected = (filter & FILTER_BIRTHDAY);
+
+}
+
 @end
