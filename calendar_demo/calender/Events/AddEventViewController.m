@@ -121,7 +121,7 @@
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
 
     hud = [[ATMHud alloc] initWithDelegate:self];
-	[self.view addSubview:hud.view];
+	[self.view addSubview:hud.view];    
 }
 
 - (void)initImagePickerView
@@ -271,6 +271,7 @@
     
     EventDate *tempEventDate = [[EventDate alloc] init];
     [tempEventDate convertMinToQuarterMode];
+    tempEventDate.duration_hours = 1;
     self.arrangedDate = tempEventDate;
     
     [tempEventDate release];
@@ -414,7 +415,7 @@
 
 - (void)showEventContentWarning
 {
-    NSString *alertString = @"Attendee , location or title need to be set !";
+    NSString *alertString = @"need a title !!";
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:alertString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -433,7 +434,7 @@
 
 - (BOOL)canCreateEvent
 {
-    if (self.invitedPeoples == nil || self.locationPlace == nil || txtFieldTitle.text == nil) {
+    if (txtFieldTitle.text == nil) {
         return NO;
     }
     return YES;
