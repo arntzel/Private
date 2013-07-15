@@ -20,7 +20,7 @@
     
     event.status = [json objectForKey:@"status"];
 
-    NSLog(@"Status:%@", event.status);
+    //NSLog(@"Status:%@", event.status);
     
     event.distinction = [json objectForKey:@"distinction"];
     event.suggest_end_datetime = [json objectForKey:@"suggest_end_datetime"];
