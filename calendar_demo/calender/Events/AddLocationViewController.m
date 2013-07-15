@@ -89,9 +89,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
-                                                            longitude:151.2086
-                                                                 zoom:14];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294
+                                                            longitude:-74.00
+                                                                 zoom:12];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
@@ -286,8 +286,6 @@
         [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
     }
-
-    
 }
 
 // location failed
