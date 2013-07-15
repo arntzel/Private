@@ -13,8 +13,20 @@
 
 @implementation AppDelegate
 
+- (void)redirectNSLogToDocumentFolder{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fileName =[NSString stringWithFormat:@"%@.log",[NSDate date]];
+    NSString *logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifndef DEBUG
+    [self redirectNSLogToDocumentFolder];
+#endif
+    
     [GMSServices provideAPIKey:(NSString *)googleAPIKey];
     
     [application setStatusBarHidden:NO withAnimation:NO];
