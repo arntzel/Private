@@ -98,10 +98,13 @@
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     NSNumber * filterNum = [defaults objectForKey:@"eventfilters"];
     if(filterNum != nil) {
-        [self.calendarView.filterView setFilter: filterNum.intValue];
-        [eventModel setFilter:filterNum.intValue];
+        int filetVal = filterNum.intValue;
+        NSLog(@"Read filterVal:0x %x", filetVal);
+        [self.calendarView.filterView setFilter: filetVal];
+        [eventModel setFilter:filetVal];
     } else {
         int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
+        [self.calendarView.filterView setFilter:filetVal];
         [eventModel setFilter:filetVal];
     }
     

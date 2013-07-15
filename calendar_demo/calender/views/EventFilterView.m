@@ -67,11 +67,10 @@
 
 -(void) setFilter:(int) filter
 {
-    self.btnImcompletedEvnt.selected = (filter & FILTER_IMCOMPLETE);
-    self.btnGoogleEvnt.selected = (filter & FILTER_GOOGLE);
-    self.btnFBEvnt.selected = (filter & FILTER_FB);
-    self.btnBirthdayEvnt.selected = (filter & FILTER_BIRTHDAY);
-
+    self.btnImcompletedEvnt.selected = (filter & FILTER_IMCOMPLETE) > 0;
+    self.btnGoogleEvnt.selected = (filter & FILTER_GOOGLE) > 0;
+    self.btnFBEvnt.selected = (filter & FILTER_FB) > 0;
+    self.btnBirthdayEvnt.selected = (filter & FILTER_BIRTHDAY) > 0;
 }
 
 @end
