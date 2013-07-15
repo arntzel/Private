@@ -529,6 +529,7 @@
 
 - (void)stopIndicator
 {
+    [hud setProgress:0.0f];
     [hud setActivity:NO];
     [hud setBlockTouches:NO];
     [hud hide];
