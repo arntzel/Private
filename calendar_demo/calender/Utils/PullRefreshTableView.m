@@ -254,10 +254,8 @@ enum {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [pull startLoading];
-    //self.contentInset = insets;
+    self.contentInset = insets;
     
-
-
     
     [UIView commitAnimations];
 

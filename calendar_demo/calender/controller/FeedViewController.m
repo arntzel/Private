@@ -47,7 +47,7 @@
     int selectedMonth;
     int selectedDay;
 
-    CustomerIndicatorView * dataLoadingView;
+    //CustomerIndicatorView * dataLoadingView;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -123,14 +123,14 @@
 
     [tableView startHeaderLoading];
 
-    dataLoadingView = [[CustomerIndicatorView alloc] init];
-    frame = dataLoadingView.frame;
-    frame.origin.x = 320 + 40;
-    frame.origin.y = 80;
-    dataLoadingView.frame = frame;
-    
-
-    [self.view addSubview:dataLoadingView];
+//    dataLoadingView = [[CustomerIndicatorView alloc] init];
+//    frame = dataLoadingView.frame;
+//    frame.origin.x = 320 + 40;
+//    frame.origin.y = 60;
+//    dataLoadingView.frame = frame;
+//    
+//
+//    [self.view addSubview:dataLoadingView];
 }
 
 
@@ -245,32 +245,22 @@
 #pragma mark PullRefreshTableViewDelegate
 - (void) onPullStarted {
 
-
-    // Show the header
-
-    [dataLoadingView startAnim];
-
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-
-    CGRect frame = CGRectMake(320 - 80, 80, 30, 30);
-    dataLoadingView.frame = frame;
-
-    [UIView commitAnimations];
+   
 
 }
 
 -(void) onPullStop {
 
-    [dataLoadingView stopAnim];
-
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-
-    CGRect frame = CGRectMake(320 + 40, 80, 30, 30);
-    dataLoadingView.frame = frame;
-
-    [UIView commitAnimations];
+//    [dataLoadingView stopAnim];
+//
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.3];
+//
+//    CGRect frame = dataLoadingView.frame;
+//    frame.origin.x = 320 + 40;
+//    dataLoadingView.frame = frame;
+//
+//    [UIView commitAnimations];
 }
 
 - (void) onPullCancelled {
@@ -280,6 +270,17 @@
 -(void) onStartLoadData
 {
     [self loadData:selectedYear andMonth:selectedMonth];
+
+//    [dataLoadingView startAnim];
+//
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.3];
+//
+//    CGRect frame = dataLoadingView.frame;
+//    frame.origin.x = 320 - 40;
+//    dataLoadingView.frame = frame;
+//
+//    [UIView commitAnimations];
 }
 
 
