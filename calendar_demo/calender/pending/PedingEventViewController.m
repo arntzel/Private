@@ -88,7 +88,7 @@
 
     [[Model getInstance] getEventsOfPending:^(NSInteger error, NSArray *events) {
         //[indicator stopAnimating];
-        NSLog(@"getEventsOfPending callback");
+        LOG_D(@"getEventsOfPending callback");
 
         if(error == 0) {
 
@@ -153,7 +153,7 @@
 
 -(void) onButtonSelected:(int)index
 {
-    NSLog(@"onButtonSelected:%d", index);
+    LOG_D(@"onButtonSelected:%d", index);
     
     if(index == 0) {
         table1.hidden = NO;

@@ -25,14 +25,14 @@ static void initializeReplacementFonts()
 
     UIFont * font = [UIFont systemFontOfSize:16];
     
-    NSLog(@"famili:%@, name:%@", font.familyName, font.fontName);
+    LOG_D(@"famili:%@, name:%@", font.familyName, font.fontName);
 
 
 	NSDictionary *replacementDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ReplacementFonts"];
 	[UIFont setReplacementDictionary:replacementDictionary];
 
     font = [[UIFont alloc] init];
-    NSLog(@"famili:%@, name:%@", font.familyName, font.fontName);
+    LOG_D(@"famili:%@, name:%@", font.familyName, font.fontName);
 }
 
 + (void) load
@@ -104,14 +104,14 @@ static void initializeReplacementFonts()
 	{
 		if (![key isKindOfClass:[NSString class]])
 		{
-			NSLog(@"ERROR: Replacement font key must be a string.");
+			LOG_D(@"ERROR: Replacement font key must be a string.");
 			return;
 		}
 		
 		id value = [aReplacementDictionary valueForKey:key];
 		if (![value isKindOfClass:[NSString class]])
 		{
-			NSLog(@"ERROR: Replacement font value must be a string.");
+			LOG_D(@"ERROR: Replacement font value must be a string.");
 			return;
 		}
 	}
@@ -126,7 +126,7 @@ static void initializeReplacementFonts()
 		NSString *fontName = [replacementDictionary objectForKey:key];
 		UIFont *font = [UIFont fontWithName:fontName size:10];
 		if (!font) {
-            NSLog(@"WARNING: replacement font '%@' is not available.", fontName);
+            LOG_D(@"WARNING: replacement font '%@' is not available.", fontName);
         } else {
             [dic setObject:fontName forKey:key];
         }

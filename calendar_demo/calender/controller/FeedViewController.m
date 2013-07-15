@@ -102,7 +102,7 @@
     NSNumber * filterNum = [defaults objectForKey:@"eventfilters"];
     if(filterNum != nil) {
         int filetVal = filterNum.intValue;
-        NSLog(@"Read filterVal:0x %x", filetVal);
+        LOG_D(@"Read filterVal:0x %x", filetVal);
         [self.calendarView.filterView setFilter: filetVal];
         [eventModel setFilter:filetVal];
     } else {
@@ -146,7 +146,7 @@
     
     [[Model getInstance] getEvents:year andMonth:month andCallback:^(NSInteger error, NSArray *events) {
         
-        NSLog(@"getEvents:error=%d, events size=%d", error, events.count);
+        LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
         
         if(error == 0) {
     
@@ -207,7 +207,7 @@
     
     NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
     
-    NSLog(@"tableviewScroll2SelectDay:%@", selectedDate);
+    LOG_D(@"tableviewScroll2SelectDay:%@", selectedDate);
     
     NSArray * array = [eventModel getAllDays];
     
@@ -288,7 +288,7 @@
 #pragma mark EventFilterViewDelegate
 -(void) onFilterChanged:(int)filters
 {
-    NSLog(@"onFilterChanged:0x %x", filters);
+    LOG_D(@"onFilterChanged:0x %x", filters);
 
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];

@@ -18,7 +18,7 @@
 {
     [super setSelected:selected animated:animated];
 
-    NSLog(@"setSelected:%d", selected);
+    LOG_D(@"setSelected:%d", selected);
     
     // Configure the view for the selected state
 }

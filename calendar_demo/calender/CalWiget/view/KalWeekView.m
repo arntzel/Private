@@ -60,7 +60,7 @@ extern const CGSize kTileSize;
 {
     KalTileView *tile = nil;
     for (KalTileView *t in self.subviews) {
-        NSLog(@"%@",t.date);
+        LOG_D(@"%@",t.date);
         if ([t.date isEqual:date])
         {
             tile = t;

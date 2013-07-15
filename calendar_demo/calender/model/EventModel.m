@@ -193,7 +193,7 @@
 
 -(void) setEvents:(NSArray *) events forMonth:(NSString*) month {
 
-    NSLog(@"EventModel: setEvents: %@: count=%d", month, events.count);
+    LOG_D(@"EventModel: setEvents: %@: count=%d", month, events.count);
 
     if(_monthEventsObjects.count>=3) {
         //TODO:: Xiang Fang

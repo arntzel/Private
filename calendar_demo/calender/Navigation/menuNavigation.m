@@ -221,7 +221,7 @@
 {
     //[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    NSLog(@"didSelectRowAtIndexPath:%@", indexPath);
+    LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
 
     if(indexPath.section ==0) {
         [self.delegate onMenuSelected:indexPath.row];

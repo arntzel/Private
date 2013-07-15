@@ -123,7 +123,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 #pragma mark recall
 - (void)didSelectDate:(KalDate *)date
 {
-    NSLog(@"didSelectDate: year:%d,month:%d,day:%d",date.year,date.month,date.day);
+    LOG_D(@"didSelectDate: year:%d,month:%d,day:%d",date.year,date.month,date.day);
     if ([self.delegate respondsToSelector:@selector(didSelectDate:)]) {
         [self.delegate didSelectDate:date];
     }
@@ -131,7 +131,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)willShowMonth:(KalDate *)date
 {
-    NSLog(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
+    LOG_D(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
     if ([self.delegate respondsToSelector:@selector(willShowMonth:)]) {
         [self.delegate willShowMonth:date];
     }
@@ -139,7 +139,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)willShowWeek:(KalDate *)date
 {
-    NSLog(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
+    LOG_D(@"%s,%d,%d,%d",__func__,date.year,date.month,date.day);
     if ([self.delegate respondsToSelector:@selector(willShowMonth:)]) {
         [self.delegate willShowWeek:date];
     }

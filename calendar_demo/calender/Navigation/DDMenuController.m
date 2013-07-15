@@ -116,7 +116,7 @@
     if (gesture.state == UIGestureRecognizerStateChanged) {
         
         CGPoint velocity = [gesture velocityInView:self.view];
-        NSLog(@"velocity.x:%f,velocity.y:%f", velocity.x, velocity.y);
+        LOG_D(@"velocity.x:%f,velocity.y:%f", velocity.x, velocity.y);
         
         if((velocity.x*_panVelocity.x + velocity.y*_panVelocity.y) < 0) {
             _panDirection = (_panDirection == DDMenuPanDirectionRight) ? DDMenuPanDirectionLeft : DDMenuPanDirectionRight;
@@ -166,7 +166,7 @@
         
         CGPoint velocity = [gesture velocityInView:self.view];
         
-        NSLog(@"touch end. velocity.x:%f,velocity.y:%f", velocity.x, velocity.y);
+        LOG_D(@"touch end. velocity.x:%f,velocity.y:%f", velocity.x, velocity.y);
         
         if (velocity.x < 0.0f)
         {

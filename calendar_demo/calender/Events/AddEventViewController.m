@@ -551,7 +551,7 @@
 
 -(void) onUploadProgress: (long long) progress andSize: (long long) Size
 {
-    NSLog(@"onUploadProgress");
+    LOG_D(@"onUploadProgress");
     float progressVal = (progress*1.0)/Size;
     
     if(progressVal>1) progressVal = 1;
@@ -560,7 +560,7 @@
 
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
-    NSLog(@"onUploadCompleted");
+    LOG_D(@"onUploadCompleted");
     [self stopIndicator];
     if(error != 0) {
         
@@ -572,7 +572,7 @@
         
         [alert show];
     } else {
-        NSLog(@"onUploadCompleted:%@", url);
+        LOG_D(@"onUploadCompleted:%@", url);
         [self createEvent:url];
     }
 }

@@ -27,12 +27,12 @@ static UserModel * instance;
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
 
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     NSString * postContent = [Utils convertObj2Json:user];
     //NSString * postContent = @"{\"username\":\"user123\", \"password\":\"111111\", \"email\":\"user123@pencilme.com\"}";
     
-    NSLog(@"postContent=%@", postContent);
+    LOG_D(@"postContent=%@", postContent);
 
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
@@ -50,7 +50,7 @@ static UserModel * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
             
-            NSLog(@"error=%d, resp:%@", status, json);
+            LOG_D(@"error=%d, resp:%@", status, json);
             callback(-1, [json objectForKey:@"error"]);
         }
     }];
@@ -65,7 +65,7 @@ static UserModel * instance;
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/login", HOST];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
 
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
@@ -89,10 +89,10 @@ static UserModel * instance;
     [request setTimeoutInterval:30];
     
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
     
     NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
-    NSLog(@"postContent=%@", postContent);
+    LOG_D(@"postContent=%@", postContent);
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setHTTPBody:postData];
@@ -109,12 +109,12 @@ static UserModel * instance;
     [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:30];
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
     
     //NSString * postContent = [NSString stringWithFormat:@"access_token=%@&access_token_secret=oamFLl00vCTo7bAKmqTf1TIB", accessToken];
     NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
 
-    NSLog(@"signinGooglePlus, postContent=%@", postContent);
+    LOG_D(@"signinGooglePlus, postContent=%@", postContent);
 
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -134,14 +134,14 @@ static UserModel * instance;
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            NSLog(@"Login resp:%@", json);
+            LOG_D(@"Login resp:%@", json);
             User * user = [User parseUser:json];
             mloginUser = user;
             callback(0, user);
         } else {
             
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"error=%d, resp:%@", status, aStr);
+            LOG_D(@"error=%d, resp:%@", status, aStr);
             
             //TODO:: parse error type
             //401: UNAUTHORIZED
@@ -156,7 +156,7 @@ static UserModel * instance;
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/%d", HOST, userID];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     [[UserModel getInstance] setAuthHeader:request];
 
@@ -187,7 +187,7 @@ static UserModel * instance;
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/user/?offset=%d&limit=100", HOST, offset];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     [[UserModel getInstance] setAuthHeader:request];
 
@@ -226,7 +226,7 @@ static UserModel * instance;
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/userprofile/%d", HOST, prifleID];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     [[UserModel getInstance] setAuthHeader:request];
 
@@ -290,7 +290,7 @@ static UserModel * instance;
 -(void) setAuthHeader:(NSMutableURLRequest *) request
 {
     NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", mloginUser.username, mloginUser.apikey];
-    NSLog(@"authHeader:%@", authHeader);
+    LOG_D(@"authHeader:%@", authHeader);
     [request addValue:authHeader forHTTPHeaderField:@"AUTHORIZATION"];
 }
 

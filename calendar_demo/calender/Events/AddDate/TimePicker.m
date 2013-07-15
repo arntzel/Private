@@ -173,7 +173,7 @@
 }
 
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
-    NSLog(@"Selected index %d",index);
+    LOG_D(@"Selected index %d",index);
     if (pickerView == hourPicker) {
         Hours = index;
     }
@@ -221,7 +221,7 @@
 -(void)sliderValueChanged:(CustomSwitch *) sender
 {
     NSInteger index = sender.selectedIndex;
-    NSLog(@"%d",index);
+    LOG_D(@"%d",index);
     
     if (index == 0) {
         startType = 0;

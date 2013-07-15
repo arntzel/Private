@@ -108,7 +108,7 @@ enum {
         case MRPullView_Loading:
             break;
         default:
-            NSLog(@"setLabel param error!");
+            LOG_D(@"setLabel param error!");
             break;
     }
 }

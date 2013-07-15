@@ -25,7 +25,7 @@ static Model * instance;
 {
     
     int httpRespCode = [request responseStatusCode];
-    NSLog(@"uploadFinished: code=%d, msg=%@" , httpRespCode, [request responseStatusMessage]);
+    LOG_D(@"uploadFinished: code=%d, msg=%@" , httpRespCode, [request responseStatusMessage]);
     
     if(httpRespCode == 200) {
         
@@ -48,7 +48,7 @@ static Model * instance;
 
 - (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes
 {
-    NSLog(@"didSendBytes:%lld / %lld", request.totalBytesSent, request.postLength);
+    LOG_D(@"didSendBytes:%lld / %lld", request.totalBytesSent, request.postLength);
     [self.delegate onUploadProgress:request.totalBytesSent andSize:request.postLength];
 }
 
@@ -156,7 +156,7 @@ static Model * instance;
 
     NSString * postContent = [Utils dictionary2String:dict];
 
-    NSLog(@"createEvent, postContent:%@", postContent);
+    LOG_D(@"createEvent, postContent:%@", postContent);
 
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/", HOST];
 
@@ -176,7 +176,7 @@ static Model * instance;
             
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            NSLog(@"createEvent resp:%@", json);
+            LOG_D(@"createEvent resp:%@", json);
 
             Event * newEvent = [Event parseEvent:json];
             callback(0, newEvent);
@@ -184,7 +184,7 @@ static Model * instance;
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"createEvent error=%@, resp:%@", error, aStr);
+            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
 
             callback(-1, nil);
         }
@@ -230,7 +230,7 @@ static Model * instance;
     
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
     
@@ -245,7 +245,7 @@ static Model * instance;
     //NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&creator=%@", HOST, currentDate, encodedName];
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&event_type=0", HOST, currentDate];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
@@ -259,7 +259,7 @@ static Model * instance;
     
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?end__gte=%@T00:00:00&attendee_status=PENDING", HOST, currentDate];
     
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
     
@@ -278,7 +278,7 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
-            NSLog(@"Event resp:%@", json);
+            LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
@@ -295,7 +295,7 @@ static Model * instance;
             
             if(data != nil) {
                 NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                NSLog(@"error=%d, resp:%@", status, aStr);
+                LOG_D(@"error=%d, resp:%@", status, aStr);
             }
             
             callback(ERROCODE_SERVER, nil);
@@ -309,7 +309,7 @@ static Model * instance;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, event.id];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
@@ -342,7 +342,7 @@ static Model * instance;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, event.id];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
 
@@ -368,7 +368,7 @@ static Model * instance;
 
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/message", HOST];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
@@ -407,7 +407,7 @@ static Model * instance;
 
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/message/%d", HOST, msg.id];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
@@ -444,7 +444,7 @@ static Model * instance;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/message/%d", HOST, msg.id];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
 
@@ -467,7 +467,7 @@ static Model * instance;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/buddy", HOST];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
@@ -504,7 +504,7 @@ static Model * instance;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/buddy/%d", HOST, buddy.id];
 
-    NSLog(@"url=%@", url);
+    LOG_D(@"url=%@", url);
 
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
 

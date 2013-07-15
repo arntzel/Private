@@ -28,7 +28,7 @@
 
     NSString * url = _event.thumbnail_url;
 
-    NSLog(@"EventDetailViewController: url=%@", url);
+    LOG_D(@"EventDetailViewController: url=%@", url);
 
     if(![url isKindOfClass: [NSNull class]]) {
 

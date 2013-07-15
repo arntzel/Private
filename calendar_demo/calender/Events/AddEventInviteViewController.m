@@ -303,7 +303,7 @@
     
     [saveData appendString:@"]"];
        
-    NSLog(@"saveRecentUsers: json:%@", saveData);
+    LOG_D(@"saveRecentUsers: json:%@", saveData);
     
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     [defaults setObject:saveData forKey:@"readRecentUsers"];

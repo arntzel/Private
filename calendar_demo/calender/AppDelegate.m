@@ -27,6 +27,8 @@
     [self redirectNSLogToDocumentFolder];
 #endif
     
+    LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    
     [GMSServices provideAPIKey:(NSString *)googleAPIKey];
     
     [application setStatusBarHidden:NO withAnimation:NO];

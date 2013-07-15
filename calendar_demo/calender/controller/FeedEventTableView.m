@@ -60,7 +60,7 @@
 #pragma mark tableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    //NSLog(@"numberOfRowsInSection:%d", section);
+    //LOG_D(@"numberOfRowsInSection:%d", section);
 
     NSArray * allDays = [eventModel getAllDays];
 
@@ -68,7 +68,7 @@
 
     NSArray * array = [eventModel getEventsByDay:key];
 
-    //NSLog(@"section=%d, count=%d/%d, key=%@", section, array.count, allDays.count, key);
+    //LOG_D(@"section=%d, count=%d/%d, key=%@", section, array.count, allDays.count, key);
 
     return array.count;
 }
@@ -163,7 +163,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
+    LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
 
     Event * event = [self getEvent:indexPath];
 

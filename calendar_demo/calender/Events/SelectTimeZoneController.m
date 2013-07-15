@@ -82,7 +82,7 @@
 {
     int row = indexPath.row;
     NSString * timezone = [timezonenames objectAtIndex:row];
-    NSLog(@"Selected timezone:%@", timezone);
+    LOG_D(@"Selected timezone:%@", timezone);
     
     [self.delegate onSelectedTimezone:timezone];
     

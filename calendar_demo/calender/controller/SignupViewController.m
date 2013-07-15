@@ -183,7 +183,7 @@
     if (1 == loginType) {
         NSString * accessToken = store.facebookAccessToken;
         
-        NSLog(@"shareDidLogin:%@", accessToken);
+        LOG_D(@"shareDidLogin:%@", accessToken);
         
         [loadingView startAnimating];
         [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
@@ -210,21 +210,21 @@
 
 - (void)shareDidNotLogin:(ShareLoginBase *)shareLogin
 {
-    NSLog(@"shareDidNotLogin");
+    LOG_D(@"shareDidNotLogin");
 }
 
 - (void)shareDidNotNetWork:(ShareLoginBase *)shareLogin
 {
-    NSLog(@"shareDidNotNetWork");
+    LOG_D(@"shareDidNotNetWork");
 }
 
 - (void)shareDidLogout:(ShareLoginBase *)shareLogin
 {
-    NSLog(@"shareDidNotNetWork");
+    LOG_D(@"shareDidNotNetWork");
     
     NSString * accessToken = FBSession.activeSession.accessToken;
     
-    NSLog(@"shareDidLogin:%@", accessToken);
+    LOG_D(@"shareDidLogin:%@", accessToken);
     
     
     [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
@@ -238,23 +238,23 @@
 
 - (void)shareDidLoginErr:(ShareLoginBase *)shareLogin
 {
-    NSLog(@"shareDidLoginErr");
+    LOG_D(@"shareDidLoginErr");
 }
 
 - (void)shareDidLoginTimeOut:(ShareLoginBase *)shareLogin
 {
-    NSLog(@"shareDidLoginTimeOut");
+    LOG_D(@"shareDidLoginTimeOut");
 }
 
 //google sign in delegate
 // The authorization has finished and is successful if |error| is |nil|.
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
-    NSLog(@"finishedWithAuth:%@", error);
+    LOG_D(@"finishedWithAuth:%@", error);
     
     if(error == nil) {
         NSString  * acesssToken  = auth.accessToken;
-        NSLog(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
+        LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
         [loadingView startAnimating];
         [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
             
@@ -275,6 +275,6 @@
 
 - (void)didDisconnectWithError:(NSError *)error
 {
-    NSLog(@"didDisconnectWithError:%@", error);
+    LOG_D(@"didDisconnectWithError:%@", error);
 }
 @end
