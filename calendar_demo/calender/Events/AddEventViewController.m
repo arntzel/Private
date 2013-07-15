@@ -516,7 +516,7 @@
     [hud setCaption:@"Uploading Photo"];
     [hud setProgress:0.08];
     [hud show];
-    [hud blockTouches];
+    [hud setBlockTouches:YES];
 }
 
 - (void)startIndicator
@@ -524,13 +524,15 @@
     [hud setCaption:@"Creating Event"];
     [hud setActivity:YES];
     [hud show];
-    [hud blockTouches];
+    [hud setBlockTouches:YES];
 }
 
 - (void)stopIndicator
 {
     [hud setActivity:NO];
-    [hud setProgress:0];
+    [hud setBlockTouches:NO];
+    [hud hide];
+    [self.view setUserInteractionEnabled:YES];
 }
 
 -(void) uploadImage
@@ -557,9 +559,9 @@
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
     NSLog(@"onUploadCompleted");
-    
+    [self stopIndicator];
     if(error != 0) {
-        [self stopIndicator];
+        
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
                                                         message:@"Upload Image failed."
                                                        delegate:nil
@@ -569,7 +571,6 @@
         [alert show];
     } else {
         NSLog(@"onUploadCompleted:%@", url);
-        [self stopIndicator];
         [self createEvent:url];
     }
 }
