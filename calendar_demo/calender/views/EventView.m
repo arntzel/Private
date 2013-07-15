@@ -19,9 +19,6 @@
 
 -(void) refreshView:(Event *) event
 {
-    self.labTitle.text = event.title;
-    self.labLocation.text = event.location.location;
-
 
     if(event.is_all_day) {
         
@@ -72,6 +69,8 @@
    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
+    
+    self.labTitle.text = event.title;
 }
 
 -(NSString *) getEventDutationText:(Event*)event

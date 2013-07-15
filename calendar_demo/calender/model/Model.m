@@ -106,29 +106,33 @@ static Model * instance;
     [dict setObject:[NSNumber numberWithBool:evt.allow_attendee_invite] forKey:@"allow_attendee_invite"];
     [dict setObject:[NSNumber numberWithBool:evt.allow_new_dt] forKey:@"allow_new_dt"];
 
-    NSMutableArray * invitees =  [[NSMutableArray alloc] init];
 
-    for(int i=0; i<evt.attendees.count; i++) {
-        EventAttendee * atd = [evt.attendees objectAtIndex:i];
+    if(evt.attendees != nil) {
+        NSMutableArray * invitees =  [[NSMutableArray alloc] init];
 
-        NSMutableDictionary * userDic = [[NSMutableDictionary alloc] init];
-        [userDic setObject:atd.user.email forKey:@"email"];
-        [userDic setObject:atd.user.username forKey:@"username"];
+        for(int i=0; i<evt.attendees.count; i++) {
+            EventAttendee * atd = [evt.attendees objectAtIndex:i];
 
-        [invitees addObject:userDic];
+            NSMutableDictionary * userDic = [[NSMutableDictionary alloc] init];
+            [userDic setObject:atd.user.email forKey:@"email"];
+            [userDic setObject:atd.user.username forKey:@"username"];
+
+            [invitees addObject:userDic];
+        }
+        
+        [dict setObject:invitees forKey:@"invitees"];
     }
 
-    [dict setObject:invitees forKey:@"invitees"];
-
-
-    NSMutableDictionary * location =  [[NSMutableDictionary alloc] init];
-    [location setObject:evt.location.location forKey:@"location"];
-    [location setObject:[NSNumber numberWithFloat:evt.location.lat]  forKey:@"lat"];
-    [location setObject:[NSNumber numberWithFloat:evt.location.lng]  forKey:@"lng"];
-    [dict setObject:location forKey:@"location"];
+    if(evt.location != nil) {
+        NSMutableDictionary * location =  [[NSMutableDictionary alloc] init];
+        [location setObject:evt.location.location forKey:@"location"];
+        [location setObject:[NSNumber numberWithFloat:evt.location.lat]  forKey:@"lat"];
+        [location setObject:[NSNumber numberWithFloat:evt.location.lng]  forKey:@"lng"];
+        [dict setObject:location forKey:@"location"];
+    }
 
     [dict setObject:evt.description forKey:@"description"];
-
+    
     [dict setObject:[NSNumber numberWithInt:evt.duration_days] forKey:@"duration_days"];
     [dict setObject:[NSNumber numberWithInt:evt.duration_hours] forKey:@"duration_hours"];
     [dict setObject:[NSNumber numberWithInt:evt.duration_minutes] forKey:@"duration_minutes"];
