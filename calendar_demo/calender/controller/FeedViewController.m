@@ -100,6 +100,9 @@
     if(filterNum != nil) {
         [self.calendarView.filterView setFilter: filterNum.intValue];
         [eventModel setFilter:filterNum.intValue];
+    } else {
+        int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
+        [eventModel setFilter:filetVal];
     }
     
     self.calendarView.filterView.delegate = self;

@@ -254,7 +254,7 @@
 
             DayEventsObject * dayObj = [monthEventsObj getDayEventsObjectByDay:day];
 
-            if (_filter==0 || (dayObj.types & _filter) > 0) {
+            if ((dayObj.types & _filter) > 0) {
                 
                 [dayEvents setObject:dayObj forKey:day];
             } 
