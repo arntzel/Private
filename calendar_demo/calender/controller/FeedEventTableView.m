@@ -43,7 +43,7 @@
 -(void) initTableView {
    
     self.headerEnabled = YES;
-    self.tailerEnabled = NO;
+    self.tailerEnabled = YES;
 
     self.dataSource = self;
     self.delegate = self;

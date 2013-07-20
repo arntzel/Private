@@ -47,7 +47,7 @@
     int selectedMonth;
     int selectedDay;
 
-    //CustomerIndicatorView * dataLoadingView;
+    CustomerIndicatorView * dataLoadingView;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -81,7 +81,7 @@
     //[tableView setAllowsSelection:NO];
     
     tableView.headerEnabled = YES;
-    tableView.tailerEnabled = NO;
+    tableView.tailerEnabled = YES;
     tableView.pullRefreshDalegate = self;
     
     [self.view addSubview:tableView];
@@ -120,17 +120,17 @@
     selectedMonth = [components month];  //当前的月份
     selectedDay = [components day];
 
+    dataLoadingView = [[CustomerIndicatorView alloc] init];
+    frame = dataLoadingView.frame;
+    frame.origin.x = 320 + 40;
+    frame.origin.y = 55;
+    dataLoadingView.frame = frame;
+    
 
-    [tableView startHeaderLoading];
+    [self.view addSubview:dataLoadingView];
 
-//    dataLoadingView = [[CustomerIndicatorView alloc] init];
-//    frame = dataLoadingView.frame;
-//    frame.origin.x = 320 + 40;
-//    frame.origin.y = 60;
-//    dataLoadingView.frame = frame;
-//    
-//
-//    [self.view addSubview:dataLoadingView];
+
+    [tableView startTailerLoading];
 }
 
 
@@ -250,37 +250,23 @@
 }
 
 -(void) onPullStop {
-
-//    [dataLoadingView stopAnim];
-//
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.3];
-//
-//    CGRect frame = dataLoadingView.frame;
-//    frame.origin.x = 320 + 40;
-//    dataLoadingView.frame = frame;
-//
-//    [UIView commitAnimations];
+    
+    [dataLoadingView stopAnim];
 }
 
 - (void) onPullCancelled {
 
 }
 
--(void) onStartLoadData
+-(void) onStartLoadData:(BOOL)head
 {
-    [self loadData:selectedYear andMonth:selectedMonth];
-
-//    [dataLoadingView startAnim];
-//
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.3];
-//
-//    CGRect frame = dataLoadingView.frame;
-//    frame.origin.x = 320 - 40;
-//    dataLoadingView.frame = frame;
-//
-//    [UIView commitAnimations];
+    if(head) {
+        [self loadData:selectedYear andMonth:selectedMonth];
+        [dataLoadingView startAnim];
+    } else {
+        //TODO::
+        [self loadData:selectedYear andMonth:selectedMonth];
+    }
 }
 
 

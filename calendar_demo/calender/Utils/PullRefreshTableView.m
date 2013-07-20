@@ -58,9 +58,9 @@ enum {
         transform = CATransform3DTranslate(transform, 0, 3, 0);
         arrow.layer.transform = transform;
     } else {
-        [label removeFromSuperview]; label = nil;
+        //[label removeFromSuperview]; label = nil;
         [arrow removeFromSuperview]; arrow = nil;
-        spinner.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        //spinner.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     }
     _isHeader = isHeader;
 }
@@ -213,6 +213,16 @@ enum {
     [self startPullLoading];
 }
 
+- (void)startTailerLoading
+{
+    if ([self isLoading]) {
+        return;
+    }
+
+    isDragHeader = NO;
+    [self startPullLoading];
+}
+
 #pragma mark * Internal Methods
 - (void)addPullHeader
 {
@@ -234,19 +244,27 @@ enum {
     [self addSubview:tailer];
 }
 
+
+
 - (void)startPullLoading
 {
     MRPullView *pull = nil;
     UIEdgeInsets insets;
     if (isDragHeader) {
         pull = header;
-        insets = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+        //insets = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+        insets = UIEdgeInsetsMake(0, 0, 0, 0);
         self.downTimes +=1;
+
+        tailer.hidden = YES;
     } else {
         pull = tailer;
         insets = UIEdgeInsetsMake(0, 0, REFRESH_HEADER_HEIGHT, 0);
         self.upTimes +=1;
+
+        header.hidden = YES;
     }
+    
     pull.isLoading = YES;
     pull.hidden = NO;
     
@@ -322,7 +340,7 @@ enum {
     // Don't forget to call stopXXXXLoading at the end.
 
     if(self.pullRefreshDalegate) {
-        [self.pullRefreshDalegate onStartLoadData];
+        [self.pullRefreshDalegate onStartLoadData:head];
     } else {
         [self performSelector:@selector(stopPullLoading) withObject:nil afterDelay:2.0];
     }

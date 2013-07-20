@@ -37,11 +37,29 @@
 -(void) startAnim
 {
     [indicatorView startAnimating];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+
+    CGRect frame = self.frame;
+    frame.origin.x = 320 - 40;
+    self.frame = frame;
+
+    [UIView commitAnimations];
 }
 
 -(void) stopAnim
 {
     [indicatorView stopAnimating];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+
+    CGRect frame = self.frame;
+    frame.origin.x = 320 + 40;
+    self.frame = frame;
+
+    [UIView commitAnimations];
 }
 
 @end

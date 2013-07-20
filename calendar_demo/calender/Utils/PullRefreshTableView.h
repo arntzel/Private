@@ -3,7 +3,7 @@
 
 @protocol PullRefreshTableViewDelegate <NSObject>
 
--(void) onStartLoadData;
+-(void) onStartLoadData:(BOOL) head;
 
 - (void) onPullStarted;
 
@@ -24,6 +24,8 @@
 @property (nonatomic, assign) id<PullRefreshTableViewDelegate> pullRefreshDalegate;
 
 - (void)startHeaderLoading;
+- (void)startTailerLoading;
+
 - (void)stopPullLoading;
 
 - (void)pullStarted;

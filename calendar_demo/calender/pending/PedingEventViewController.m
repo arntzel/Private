@@ -11,6 +11,8 @@
 #import "UserModel.h"
 #import "Model.h"
 
+#import "CustomerIndicatorView.h"
+
 @interface PedingEventViewController () <PullRefreshTableViewDelegate, EventPendingToolbarDelegate>
 
 @end
@@ -20,6 +22,8 @@
     
     PendingTableView * table1;
     PendingTableView * table2;
+
+    CustomerIndicatorView * dataLoadingView;
 
     //Data Model
     NSMutableArray * yourCompletedEvents;
@@ -78,8 +82,16 @@
     table1.pullRefreshDalegate = self;
     table2.pullRefreshDalegate = self;
 
-    [table1 startHeaderLoading];
+
+    dataLoadingView = [[CustomerIndicatorView alloc] init];
+    frame = dataLoadingView.frame;
+    frame.origin.x = 320 + 40;
+    frame.origin.y = 100;
+    dataLoadingView.frame = frame;
+
+    [self.view addSubview:dataLoadingView];
     
+    [table1 startHeaderLoading];
 }
 
 -(void) loadData
@@ -175,12 +187,14 @@
     
 }
 
--(void) onStartLoadData
+-(void) onStartLoadData:(BOOL)head
 {
+    [dataLoadingView startAnim];
+
     [self loadData];
 }
 
 -(void) onPullStop {
-    
+    [dataLoadingView stopAnim];
 }
 @end
