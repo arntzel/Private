@@ -25,6 +25,7 @@
 
 #import "EventDetailViewController.h"
 #import "CustomerIndicatorView.h"
+#import "NSDateAdditions.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -62,7 +63,9 @@
     [super viewDidLoad];
 	
     eventModel = [[Model getInstance] getEventModel];
-   
+    eventModel.begin = eventModel.end = [NSDate date];
+
+
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -74,9 +77,6 @@
     
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-
-
     tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     //[tableView setAllowsSelection:NO];
     
@@ -141,27 +141,34 @@
 }
 
 
--(void) loadData:(int) year andMonth:(int)month
+-(void) loadDataBegin:(NSDate *) begin andEnd:(NSDate *)end
 {
-    
-    [[Model getInstance] getEvents:year andMonth:month andCallback:^(NSInteger error, NSArray *events) {
-        
+
+    [[Model getInstance] getEventsOfBegin:begin andEnd:end andCallback:^(NSInteger error, NSArray *events) {
+
         LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
-        
+
         if(error == 0) {
-    
-            NSString * strMonth = [Utils formate:year andMonth:month];
-            [eventModel setEvents:events forMonth:strMonth];
+
+            [eventModel addEvents:events];
+
+            if([begin compare:eventModel.begin] < 0) {
+                eventModel.begin = begin;
+            }
+
+            if([end compare:eventModel.end] > 0) {
+                eventModel.end = end;
+            }
 
             [tableView setEventModel:eventModel];
             [self.calendarView setNeedsDisplay];
-            
+
         } else {
             //TODO:: show network error
         }
 
         [tableView stopPullLoading];
-    }];
+    }];    
 }
 
 
@@ -183,20 +190,22 @@
     selectedYear = [components year];
     selectedMonth = [components month];
     selectedDay = [components day];
-    
-    NSString * strmonth = [Utils formate:selectedYear andMonth:selectedMonth];
-    
-    if([eventModel getEventsByMonth:strmonth] == nil) {
 
-        [tableView startHeaderLoading];
-        
-    } else {
-        [self tableviewScroll2SelectDay];
-    }
+    [self tableviewScroll2SelectDay];
+
+//    NSString * strmonth = [Utils formate:selectedYear andMonth:selectedMonth];
+//    
+//    if([eventModel getEventsByMonth:strmonth] == nil) {
+//
+//        [tableView startHeaderLoading];
+//        
+//    } else {
+//        [self tableviewScroll2SelectDay];
+//    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{//
+{
     if (self.view.frame.origin.x > 100) {
         return NO;
     }
@@ -216,7 +225,7 @@
     int index = 0;
     for(; index<array.count; index++) {
         NSString * day = [array objectAtIndex:index];
-        if( [selectedDate compare:day] >= 0 ) {
+        if( [selectedDate compare:day] <= 0 ) {
             break;
         }
     }
@@ -261,12 +270,19 @@
 -(void) onStartLoadData:(BOOL)head
 {
     if(head) {
-        [self loadData:selectedYear andMonth:selectedMonth];
-        [dataLoadingView startAnim];
+
+        NSDate * end = eventModel.begin;
+        NSDate * begin = [end cc_dateByMovingToThePreviousDayCout:7];
+        [self loadDataBegin:begin andEnd:end];
+        
     } else {
-        //TODO::
-        [self loadData:selectedYear andMonth:selectedMonth];
+
+        NSDate * begin = eventModel.end;
+        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:7];
+        [self loadDataBegin:begin andEnd:end];
     }
+
+    [dataLoadingView startAnim];
 }
 
 

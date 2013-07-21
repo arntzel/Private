@@ -222,6 +222,17 @@ static Model * instance;
     [self getEvents:startDay andEnd:endDay andCallback:callback];
 }
 
+-(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
+{
+    NSString * startDay = [Utils formateDay:begin];
+    NSString * endDay = [Utils formateDay:end];
+
+    startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
+    endDay =[NSString stringWithFormat:@"%@T00:00:00", endDay];
+
+    [self getEvents:startDay andEnd:endDay andCallback:callback];
+}
+
 -(void) getEvents:(NSString *)startDay andEnd:(NSString *)endDay  andCallback:(void (^)(NSInteger error, NSArray* events))callback
 {
     //start__gte=2013-06-15T00:00:00
@@ -278,7 +289,7 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
-            LOG_D(@"Event resp:%@", json);
+            //LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 

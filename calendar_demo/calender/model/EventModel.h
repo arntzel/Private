@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 
+#import "NSDateAdditions.h"
 
 @interface DayEventsObject : NSObject
 
@@ -18,46 +19,28 @@
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface MonthEventsObject : NSObject
-
--(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
-
--(NSArray *) getEvents;
-
--(NSArray *) getEventsByDay:(NSString *) day;
-
--(NSArray *) getAllDays;
-
--(NSString *) getMonth;
-
--(void) clear;
-
-@end
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface EventModel : NSObject
 
+@property(strong) NSDate * begin;
+@property(strong) NSDate * end;
+
+
 -(void) clear;
 
--(void) setEvents:(NSArray *) events forMonth:(NSString*) month;
+-(void) addEvents:(NSArray *) eveent;
 
 -(void) addNewEvent:(Event*) newEvent;
 
 -(void) setFilter:(int) filter;
 
 
--(MonthEventsObject *) getEventsByMonth:(NSString *) month;
 
 -(NSArray *) getEventsByDay:(NSString *) day;
 
 -(NSArray *) getAllDays;
 
-/*
- 
- */
 -(int) getEventsTypes:(NSString *) day;
 
 @end
