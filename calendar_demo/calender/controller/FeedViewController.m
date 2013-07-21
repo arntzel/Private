@@ -43,15 +43,12 @@
     FeedEventTableView * tableView;
    
     EventModel * eventModel;
-    
-    int selectedYear;
-    int selectedMonth;
-    int selectedDay;
 
     CustomerIndicatorView * dataLoadingView;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
+
 @end
 
 @implementation FeedViewController
@@ -113,12 +110,12 @@
     
     self.calendarView.filterView.delegate = self;
 
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
-    selectedYear = [components year];  //当前的年份
-    selectedMonth = [components month];  //当前的月份
-    selectedDay = [components day];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+//    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+//    selectedYear = [components year];  //当前的年份
+//    selectedMonth = [components month];  //当前的月份
+//    selectedDay = [components day];
 
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
@@ -128,8 +125,6 @@
     
 
     [self.view addSubview:dataLoadingView];
-
-
     [tableView startTailerLoading];
 }
 
@@ -178,30 +173,8 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
-    if([tableView isLoading]) {
-        return;
-    }
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    
-    NSDateComponents *components = [calendar components:unitFlags fromDate:[date NSDate]];
-    
-    selectedYear = [components year];
-    selectedMonth = [components month];
-    selectedDay = [components day];
-
-    [self tableviewScroll2SelectDay];
-
-//    NSString * strmonth = [Utils formate:selectedYear andMonth:selectedMonth];
-//    
-//    if([eventModel getEventsByMonth:strmonth] == nil) {
-//
-//        [tableView startHeaderLoading];
-//        
-//    } else {
-//        [self tableviewScroll2SelectDay];
-//    }
+    NSString * selectedDate = [Utils formateDay:[date NSDate]];
+    [self tableviewScroll2SelectDay:selectedDate];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -212,9 +185,10 @@
     return YES;
 }
 
--(void) tableviewScroll2SelectDay {
+-(void) tableviewScroll2SelectDay:(NSString *) selectedDate
+{
     
-    NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
+    //NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
     
     LOG_D(@"tableviewScroll2SelectDay:%@", selectedDate);
     
@@ -296,7 +270,6 @@
     [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];
     [defaults synchronize];
 
-    
     [eventModel setFilter:filters];
     [tableView reloadData];
 }

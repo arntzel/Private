@@ -3,7 +3,12 @@
 #import "Event.h"
 #import "Utils.h"
 
-@implementation DayEventsObject
+@implementation DayEventsObject {
+    
+    NSMutableArray * allEvents;
+    NSMutableArray * filterEvents;
+    int _filter;
+}
 
 -(id)initWithDay:(NSString *) pDay
 {
@@ -11,19 +16,29 @@
     self = [super init];
     
     self.day = pDay;
-    self.allEvents = [[NSMutableArray alloc] init];
     self.types = 0;
+
+    _filter  = 0;
+    allEvents = [[NSMutableArray alloc] init];
+    filterEvents = [[NSMutableArray alloc] init];
     
     return self;
+}
+
+-(void) setFilter:(int) filter
+{
+    _filter = filter;
+    [self resetFilterEvents];
 }
 
 -(void) addEvent:(Event*) event
 {
     //Filter duplicated event obj
-    for(int i=0; i<self.allEvents.count; i++) {
-        Event * oldEvt = [self.allEvents objectAtIndex:i];
+    for(int i=0; i<allEvents.count; i++) {
+        Event * oldEvt = [allEvents objectAtIndex:i];
         if(event.id == oldEvt.id) {
-            [self.allEvents  replaceObjectAtIndex:i withObject:event];
+            [allEvents  replaceObjectAtIndex:i withObject:event];
+            [self resetFilterEvents];
             return;
         }
     }
@@ -31,32 +46,37 @@
     int type = 0x00000001 << event.eventType;
     self.types |= type;
     
-    [self.allEvents addObject:event];
+    [allEvents addObject:event];
 
-    NSArray * sortedArray = [self.allEvents sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    NSArray * sortedArray = [allEvents sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Event * evt1 = obj1;
         Event * evt2 = obj2;
         return [evt2.start compare:evt1.start];
     }];
 
-    self.allEvents = [[NSMutableArray alloc] initWithArray:sortedArray];
+    allEvents = [[NSMutableArray alloc] initWithArray:sortedArray];
+
+    [self resetFilterEvents];
 }
 
--(NSArray *) getEventsByFilter:(int) filter
+-(void) resetFilterEvents
 {
-    NSMutableArray * events = [[NSMutableArray alloc] init];
-    
-    for(int i=0; i<self.allEvents.count; i++) {
-        Event * evt = [self.allEvents objectAtIndex:i];
+    [filterEvents removeAllObjects];
+
+    for(int i=0; i<allEvents.count; i++) {
+        Event * evt = [allEvents objectAtIndex:i];
 
         int type = 0x00000001 << evt.eventType;
 
-        if( (type & filter) > 0) {
-            [events addObject:evt];
+        if( (type & _filter) > 0) {
+            [filterEvents addObject:evt];
         }
     }
+}
 
-    return events;
+-(NSArray *) getEventsByFilter
+{
+    return filterEvents;
 }
 
 @end
@@ -66,7 +86,7 @@
 
     int _filter;
     
-    NSArray * alldays;
+    NSMutableArray * alldays;
 
     //Day -> DayEvents  
     NSMutableDictionary * dayEvents;
@@ -115,7 +135,9 @@
 
     if(dayObj == nil) {
         dayObj = [[DayEventsObject alloc] initWithDay:day];
+        [dayObj setFilter:_filter];
         [dayEvents setObject:dayObj forKey:day];
+        [alldays addObject:day];
     }
 
     [dayObj addEvent:newEvent];
@@ -124,16 +146,42 @@
 -(void) setFilter:(int) filter
 {
     _filter = filter;
-    [self rebuildDaysArray];
-}
 
--(void) rebuildDaysArray
-{
-    alldays = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    NSArray * days = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString * str1 = obj1;
         NSString * str2 = obj2;
         return [str1 compare:str2];
     }];
+
+    [alldays removeAllObjects];
+
+    for(NSString * day  in days) {
+        DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
+        [dayEventsObj setFilter:_filter];
+
+        if([dayEventsObj getEventsByFilter].count > 0) {
+            [alldays addObject:day];
+        }
+    }
+}
+
+-(void) rebuildDaysArray
+{
+    NSArray * days = [[dayEvents allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * str1 = obj1;
+        NSString * str2 = obj2;
+        return [str1 compare:str2];
+    }];
+
+    
+    [alldays removeAllObjects];
+
+    for(NSString * day  in days) {
+        DayEventsObject * dayEventsObj = [dayEvents objectForKey:day];
+        if([dayEventsObj getEventsByFilter].count > 0) {
+            [alldays addObject:day];
+        }
+    }
 }
 
 -(NSArray *) getEventsByDay:(NSString *) day {
@@ -142,26 +190,7 @@
 
     if(dayEventsObj != nil) {
 
-
-//        if(_filter==0) {
-//            return dayEventsObj.allEvents;
-//        }
-
-
-        NSMutableArray * events = [[NSMutableArray alloc] init];
-
-        for(int i=0;i<dayEventsObj.allEvents.count;i++) {
-            
-            Event * evt = [dayEventsObj.allEvents objectAtIndex:i];
-
-            int type = 0x00000001 << evt.eventType;
-
-            if( (type & _filter) > 0) {
-                [events addObject:evt];
-            }
-        }
-
-        return events;
+        return [dayEventsObj getEventsByFilter];
         
     } else {
         return nil;

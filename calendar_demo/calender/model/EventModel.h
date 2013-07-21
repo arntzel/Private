@@ -8,14 +8,15 @@
 @interface DayEventsObject : NSObject
 
 @property(strong)  NSString * day;
-@property(strong)  NSMutableArray * allEvents;
 @property int types;
 
 -(id)initWithDay:(NSString *) pDay;
 
+-(void) setFilter:(int) filter;
+
 -(void) addEvent:(Event*) event;
 
--(NSArray *) getEventsByFilter:(int) filter;
+-(NSArray *) getEventsByFilter;
 
 @end
 
