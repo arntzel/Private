@@ -3,20 +3,10 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 
-#import "NSDateAdditions.h"
 
-@interface DayEventsObject : NSObject
+@protocol EventModelDelegate <NSObject>
 
-@property(strong)  NSString * day;
-@property int types;
-
--(id)initWithDay:(NSString *) pDay;
-
--(void) setFilter:(int) filter;
-
--(void) addEvent:(Event*) event;
-
--(NSArray *) getEventsByFilter;
+-(void) onEventModelChanged;
 
 @end
 
@@ -26,6 +16,11 @@
 
 @property(strong) NSDate * begin;
 @property(strong) NSDate * end;
+
+
+-(void) addDelegate:(id<EventModelDelegate>) delegate;
+
+-(void) removeDelegate:(id<EventModelDelegate>) delegate;
 
 
 -(void) clear;

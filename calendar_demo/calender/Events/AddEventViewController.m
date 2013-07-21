@@ -30,6 +30,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "Model.h"
+#import "Utils.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate,
                                      UIImagePickerControllerDelegate,
@@ -493,21 +495,13 @@
         
         if (error == 0) {
 
-            if(self.delegate) {
-                [self.delegate onEventCreated:newEvent];
-            }
+            [[[Model getInstance] getEventModel] addNewEvent:event];
 
             [self.navigationController popViewControllerAnimated:YES];
 
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"Create Event failed"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-
-            [alert show];
-            [alert release];
+            
+            [Utils showUIAlertView:@"Error" andMessage:@"Create event failed"];
         }
     }];
 }

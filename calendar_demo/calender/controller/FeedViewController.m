@@ -36,7 +36,7 @@
                                   KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
-                                  AddEventViewDelegate>
+                                  EventModelDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -61,7 +61,7 @@
 	
     eventModel = [[Model getInstance] getEventModel];
     eventModel.begin = eventModel.end = [NSDate date];
-
+    [eventModel addDelegate:self];
 
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -80,10 +80,11 @@
     tableView.headerEnabled = YES;
     tableView.tailerEnabled = YES;
     tableView.pullRefreshDalegate = self;
+
+    [tableView setEventModel:eventModel];
     
     [self.view addSubview:tableView];
     
-
     
     NSDate *date = [NSDate date];
     logic = [[KalLogic alloc] initForDate:date];
@@ -145,8 +146,6 @@
 
         if(error == 0) {
 
-            [eventModel addEvents:events];
-
             if([begin compare:eventModel.begin] < 0) {
                 eventModel.begin = begin;
             }
@@ -155,11 +154,10 @@
                 eventModel.end = end;
             }
 
-            [tableView setEventModel:eventModel];
-            [self.calendarView setNeedsDisplay];
+            [eventModel addEvents:events];
 
         } else {
-            //TODO:: show network error
+            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
 
         [tableView stopPullLoading];
@@ -274,12 +272,16 @@
     [tableView reloadData];
 }
 
-#pragma mark -
-#pragma mark AddEventViewDelegate
--(void) onEventCreated:(Event *) event
-{
-    [eventModel addNewEvent:event];
-    [tableView reloadData];
-}
+//#pragma mark -
+//#pragma mark AddEventViewDelegate
+//-(void) onEventCreated:(Event *) event
+//{
+//    [eventModel addNewEvent:event];
+//    [tableView reloadData];
+//}
 
+-(void) onEventModelChanged {
+    [tableView reloadData];
+    [self.calendarView setNeedsDisplay];
+}
 @end

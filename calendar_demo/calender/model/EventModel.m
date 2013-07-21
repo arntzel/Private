@@ -3,6 +3,22 @@
 #import "Event.h"
 #import "Utils.h"
 
+@interface DayEventsObject : NSObject
+
+@property(strong)  NSString * day;
+@property int types;
+
+-(id)initWithDay:(NSString *) pDay;
+
+-(void) setFilter:(int) filter;
+
+-(void) addEvent:(Event*) event;
+
+-(NSArray *) getEventsByFilter;
+
+@end
+
+
 @implementation DayEventsObject {
     
     NSMutableArray * allEvents;
@@ -91,6 +107,7 @@
     //Day -> DayEvents  
     NSMutableDictionary * dayEvents;
 
+    NSMutableArray * delegates;
 }
 
 -(id) init {
@@ -100,14 +117,35 @@
 
     alldays = [[NSMutableArray alloc] init];
     dayEvents = [[NSMutableDictionary alloc] init];
-    
+
+    delegates = [[NSMutableArray alloc] init];
+
     return self;
+}
+
+-(void) addDelegate:(id<EventModelDelegate>) delegate
+{
+    [delegates addObject:delegate];
+}
+
+-(void) removeDelegate:(id<EventModelDelegate>) delegate
+{
+    [delegates removeObject:delegate];
+}
+
+-(void) nofityModelChanged
+{
+    for(id<EventModelDelegate> delegate in delegates) {
+        [delegate onEventModelChanged];
+    }
 }
 
 -(void) clear
 {
     alldays = [[NSMutableArray alloc] init];
     dayEvents = [[NSMutableDictionary alloc] init];
+
+    [self nofityModelChanged];
 }
 
 
@@ -118,18 +156,22 @@
     }
 
     [self rebuildDaysArray];
+
+    [self nofityModelChanged];
 }
 
 -(void) addNewEvent:(Event*) newEvent
 {
-    [self addNewEvent:newEvent];
+    [self addEvent:newEvent];
 
     [self rebuildDaysArray];
+
+    [self nofityModelChanged];
 }
 
--(void) addEvent:(Event*) newEvent
+-(void) addEvent:(Event*) event
 {
-    NSString * day = [Utils formateDay: newEvent.start];
+    NSString * day = [Utils formateDay: event.start];
 
     DayEventsObject * dayObj = [dayEvents objectForKey:day];
 
@@ -140,7 +182,7 @@
         [alldays addObject:day];
     }
 
-    [dayObj addEvent:newEvent];
+    [dayObj addEvent:event];
 }
 
 -(void) setFilter:(int) filter
@@ -163,6 +205,8 @@
             [alldays addObject:day];
         }
     }
+
+    [self nofityModelChanged];
 }
 
 -(void) rebuildDaysArray

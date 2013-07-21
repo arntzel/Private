@@ -92,5 +92,7 @@
 +(NSMutableURLRequest *) createHttpRequest:(NSString *) url andMethod:(NSString *) methood;
 
 +(NSString *) getAttendeeText:(Event*)event;
-    
+
++(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
+
 @end

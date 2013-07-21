@@ -243,4 +243,16 @@
     return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];
 }
 
+
++(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:title
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+
+    [alert show];
+
+}
 @end

@@ -3,8 +3,7 @@
 #import "AddEventViewController.h"
 #import "RootNavContrller.h"
 
-@interface BaseMenuViewController () <AddEventViewDelegate>
-
+@interface BaseMenuViewController ()
 @end
 
 @implementation BaseMenuViewController
@@ -46,15 +45,7 @@
 - (void)btnAddEvent:(id)sender
 {
     AddEventViewController *addEvent = [[AddEventViewController alloc] init];
-    addEvent.delegate = self;
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }
 
-#pragma mark -
-#pragma mark AddEventViewDelegate
--(void) onEventCreated:(Event *) event
-{
-    //No implements, should be overwrited by children class
-    //TODO:: FangXaing, need to refactory Event Model by MVC
-}
 @end
