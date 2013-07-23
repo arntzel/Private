@@ -126,7 +126,7 @@
 
     float fontColor = 172.0/255.0;
 
-    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 320-68, 16)];
+    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 4, 320-68, 16)];
     dayLabel.text = sectionName;
     dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
     dayLabel.font = [UIFont systemFontOfSize:12];
