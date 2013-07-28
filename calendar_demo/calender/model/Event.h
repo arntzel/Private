@@ -88,6 +88,9 @@
 -(BOOL) isPendingStatus;
 
 
+-(NSDictionary*)convent2Dic;
+
+
 /*
  Parse Event object from json data.
  */

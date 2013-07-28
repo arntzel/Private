@@ -22,6 +22,8 @@
 
 -(NSString *) getReadableUsername;
 
+-(NSDictionary*)convent2Dic;
+
 /*
  Parse User object from json data.
  */

@@ -31,4 +31,25 @@
 
     return location;
 }
+
+-(NSDictionary*)convent2Dic
+{
+
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+
+    [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
+    if(self.location != nil) {
+       [dic setObject:self.location forKey:@"location"];
+    }
+
+    if(self.photo != nil) {
+        [dic setObject:self.photo forKey:@"photo"];
+    }
+    
+
+    [dic setObject:[NSNumber numberWithFloat:self.lat] forKey:@"lat"];
+    [dic setObject:[NSNumber numberWithFloat:self.lng] forKey:@"lng"];
+
+    return dic;
+}
 @end

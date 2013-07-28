@@ -241,6 +241,30 @@
     }
 }
 
+-(NSArray *) getEventsByBeginDay:(NSDate *) start andEndDay:(NSDate *) end
+{
+
+    NSString * strStart = [Utils formateDay:start];
+    NSString * strEnd = [Utils formateDay:end];
+
+
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+
+    
+    NSArray * allDays = [self getAllDays];
+
+    for(NSString * day in allDays) {
+
+        if( [day compare:strStart] >=0 && [day compare:strEnd] <0) {
+            NSArray * events = [self getEventsByDay:day];
+            [array addObjectsFromArray:events];
+        }
+    }
+
+    return array;
+}
+
+
 -(NSArray *) getAllDays {
     return alldays;
 }

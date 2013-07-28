@@ -11,6 +11,8 @@
 @property float lat; //维度
 @property float lng; //经度
 
+-(NSDictionary*)convent2Dic;
+
 
 /*
  Parse Location object from json data.

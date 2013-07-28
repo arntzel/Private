@@ -96,4 +96,59 @@
     return event;
 }
 
+
+-(NSDictionary*)convent2Dic
+{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+
+    [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
+
+    [dic setObject:[NSNumber numberWithBool:self.allow_attendee_invite]   forKey:@"allow_attendee_invite"];
+    [dic setObject:[NSNumber numberWithBool:self.allow_new_dt]            forKey:@"allow_new_dt"];
+    [dic setObject:[NSNumber numberWithBool:self.allow_new_location]      forKey:@"allow_new_location"];
+    [dic setObject:[NSNumber numberWithBool:self.archived]                forKey:@"archived"];
+    [dic setObject:[NSNumber numberWithBool:self.is_all_day]              forKey:@"is_all_day"];
+    [dic setObject:[NSNumber numberWithBool:self.published]               forKey:@"published"];
+    [dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
+
+    NSString * created_on = [Utils formateDate:self.created_on];
+    [dic setObject:created_on forKey:@"created_on"];
+    [dic setObject:[self.creator convent2Dic] forKey:@"creator"];
+    [dic setObject:self.description forKey:@"description"];
+
+    [dic setObject:self.duration forKey:@"duration"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_days]    forKey:@"duration_days"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_hours]   forKey:@"duration_hours"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_minutes] forKey:@"duration_minutes"];
+
+    [dic setObject:self.start_type forKey:@"start_type"];
+
+    NSString * start = [Utils formateDate:self.start];
+    [dic setObject:start forKey:@"start"];
+
+    if(self.location != nil) {
+        [dic setObject:[self.location convent2Dic] forKey:@"location"];
+    }
+    
+    [dic setObject:self.status forKey:@"status"];
+
+    [dic setObject:self.thumbnail_url forKey:@"thumbnail_url"];
+    [dic setObject:self.title forKey:@"title"];
+    [dic setObject:self.userstatus forKey:@"userstatus"];
+    [dic setObject:self.timezone forKey:@"timezone"];
+
+    [dic setObject:[NSNumber numberWithInt:self.privilige] forKey:@"privilige"];
+    [dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"eventType"];
+
+    NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
+    for(EventAttendee * attendee in self.attendees) {
+        [jsonarray addObject:[attendee convent2Dic]];
+    }
+
+    [dic setObject:jsonarray forKey:@"attendees"];
+
+    return dic;
+
+}
+
 @end

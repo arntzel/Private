@@ -11,6 +11,10 @@
 
 #import "UIFont+Replacement.h"
 
+#import "Model.h"
+#import "NSDateAdditions.h"
+#import "Utils.h"
+
 @implementation AppDelegate
 
 - (void)redirectNSLogToDocumentFolder{
@@ -47,6 +51,24 @@
     
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
+
+
+    NSData * data = [NSData dataWithContentsOfFile:[self getEventsSavePath]];
+
+    if(data != nil && data.length > 0) {
+        NSError * err;
+        NSArray * objects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+        NSMutableArray * events = [[NSMutableArray alloc] init];
+
+        for(int i=0; i<objects.count;i++) {
+            Event * e = [Event parseEvent:[objects objectAtIndex:i]];
+            [events addObject:e];
+        }
+
+        EventModel * model = [[Model getInstance] getEventModel];
+        [model addEvents:events];
+    }
+
     return YES;
 }
 
@@ -82,6 +104,37 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+
+
+    //Save event data
+    
+    NSDate * start = [NSDate date];
+    NSDate * end = [start cc_dateByMovingToTheFollowingDayCout:7];
+
+    EventModel * model = [[Model getInstance] getEventModel];
+    NSArray * events =  [model getEventsByBeginDay:start andEndDay:end];
+
+    NSMutableArray * jsonArray = [[NSMutableArray alloc] init];
+    for(Event * event in events) {
+        NSDictionary * json = [event convent2Dic];
+        [jsonArray addObject:json];
+    }
+
+    if (jsonArray.count > 0) {
+
+        NSString * path =  [self getEventsSavePath];
+        NSError * err;
+        NSData * data = [NSJSONSerialization dataWithJSONObject:jsonArray options:NSJSONWritingPrettyPrinted error:&err];
+        [data writeToFile:path atomically:YES];
+    }
+}
+
+-(NSString *) getEventsSavePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [paths objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@/events.json", documentDirectory];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

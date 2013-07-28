@@ -18,6 +18,9 @@
 
 @property(strong) User * user;
 
+
+-(NSDictionary*)convent2Dic;
+
 +(EventAttendee *) parseEventAttendee:(NSDictionary *) json;
 
 @end

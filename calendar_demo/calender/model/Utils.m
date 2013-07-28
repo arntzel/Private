@@ -8,7 +8,7 @@
 
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
-    if([strDate isKindOfClass:[NSNull class]]) {
+    if(strDate == nil || [strDate isKindOfClass:[NSNull class]]) {
        return nil;
     }
 

@@ -31,4 +31,21 @@
 
     return event;
 }
+
+-(NSDictionary*) convent2Dic
+{
+
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+
+    
+    [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
+    [dic setObject:[NSNumber numberWithInt:self.archived] forKey:@"archived"];
+    [dic setObject:[NSNumber numberWithInt:self.send] forKey:@"send"];
+
+    [dic setObject:self.status forKey:@"status"];
+    [dic setObject:[self.user convent2Dic] forKey:@"user"];
+
+    return dic;
+}
+
 @end

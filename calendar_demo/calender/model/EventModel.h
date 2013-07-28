@@ -35,6 +35,9 @@
 
 -(NSArray *) getEventsByDay:(NSString *) day;
 
+-(NSArray *) getEventsByBeginDay:(NSDate *) begin andEndDay:(NSDate *) end;
+
+
 -(NSArray *) getAllDays;
 
 -(int) getEventsTypes:(NSString *) day;
