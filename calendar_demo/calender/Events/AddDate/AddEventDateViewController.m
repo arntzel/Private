@@ -76,6 +76,7 @@
     int bottom = calView.frame.origin.y;
 
     feedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top, 320, bottom-top) style:UITableViewStylePlain];
+    feedTableView.allowsSelection = NO;
     feedTableView.backgroundColor = [UIColor whiteColor];
     feedTableView.dataSource = self;
     feedTableView.delegate = self;
@@ -96,8 +97,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(dayEvents == nil) {
-        return 0;
+    if(dayEvents == nil || dayEvents.count == 0) {
+        return 1;
     }
 
     return dayEvents.count;
@@ -106,6 +107,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    if(dayEvents == nil || dayEvents.count == 0) {
+
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        label.text = @"No event";
+        label.textColor = [UIColor grayColor];
+        label.font = [UIFont systemFontOfSize:18];
+        label.textAlignment = UITextAlignmentCenter;
+        label.backgroundColor = [UIColor clearColor];
+
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noevent"];
+        [cell addSubview:label];
+        cell.frame = label.frame;
+        return cell;
+    }
+    
     Event * event = [dayEvents objectAtIndex:indexPath.row];
 
     if(event.eventType != 4) {
@@ -132,6 +148,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(dayEvents == nil || dayEvents.count == 0) {
+        return 50;
+    }
+
     Event * event = [dayEvents objectAtIndex:indexPath.row];
 
     if(event.eventType == 4) {
@@ -140,7 +160,6 @@
         return PlanView_HEIGHT;
     }
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

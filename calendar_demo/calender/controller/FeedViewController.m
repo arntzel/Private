@@ -171,8 +171,23 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
+    
+    NSString * begin = [Utils formateDay:eventModel.begin];
+    NSString * end = [Utils formateDay:eventModel.end];
+
     NSString * selectedDate = [Utils formateDay:[date NSDate]];
-    [self tableviewScroll2SelectDay:selectedDate];
+
+    if([selectedDate compare:begin] >= 0 && [selectedDate compare:end] < 0 ) {
+
+        [self tableviewScroll2SelectDay:selectedDate];
+
+    } else {
+
+        NSDate * begin =  [date NSDate];
+        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:7];
+        [self loadDataBegin:begin andEnd:end];
+        [dataLoadingView startAnim];
+    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -246,13 +261,13 @@
     if(head) {
 
         NSDate * end = eventModel.begin;
-        NSDate * begin = [end cc_dateByMovingToThePreviousDayCout:7];
+        NSDate * begin = [end cc_dateByMovingToThePreviousDayCout:14];
         [self loadDataBegin:begin andEnd:end];
         
     } else {
 
         NSDate * begin = eventModel.end;
-        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:7];
+        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:14];
         [self loadDataBegin:begin andEnd:end];
     }
 
