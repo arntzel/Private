@@ -5,4 +5,9 @@
 
 +(UIView *) createView:(NSString *) xibFileName;
 
+
++(int) getEventTypeColor:(int) eventType;
+
++(UIColor *) getUIColor:(int) argbColor;
+
 @end

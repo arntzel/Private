@@ -1,6 +1,7 @@
 
 #import "EventView.h"
 #import "Utils.h"
+#import "ViewUtils.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -63,9 +64,10 @@
                      placeholderImage:[UIImage imageNamed:@"header.png"]];
     }
 
-    NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
-    self.imgEventType.image = [UIImage imageNamed:imgName];
-
+    //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
+    
+    int color = [ViewUtils getEventTypeColor:event.eventType];
+    self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
@@ -150,6 +152,10 @@
     EventView * view = (EventView*)[nibView objectAtIndex:0];
     view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
     view.imgUser.layer.masksToBounds = YES;
+    
+    view.imgEventType.layer.cornerRadius = view.imgEventType.frame.size.width/2;
+    view.imgEventType.layer.masksToBounds = YES;
+    
     view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
     return view;
 }

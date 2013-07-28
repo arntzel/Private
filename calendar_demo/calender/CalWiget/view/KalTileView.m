@@ -164,18 +164,17 @@ const CGSize kTileSize = { 46.f, 44.f };
     
     
     if(google) {
-        [self drawColordot:ctx andPosition:position andColor:0xFFFF0000];
-        position.x += 10.0f;
-    }
-    
-    if(fackbook) {
-        [self drawColordot:ctx andPosition:position andColor:0xFF00FF00];
+        [self drawColordot:ctx andPosition:position andColor:0xFFD5AD3E];
         position.x += 10.0f;
     }
 
+    if(fackbook) {
+        [self drawColordot:ctx andPosition:position andColor:0xFF477DBD];
+        position.x += 10.0f;
+    }
     
     if(calvin) {
-        [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
+        [self drawColordot:ctx andPosition:position andColor:0xFFFF0000];
         position.x += 10.0f;
     }
      

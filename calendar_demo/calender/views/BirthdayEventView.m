@@ -4,7 +4,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-
+#import "ViewUtils.h"
 
 @implementation BirthdayEventView
 
@@ -40,6 +40,13 @@
     BirthdayEventView * view = (BirthdayEventView*)[nibView objectAtIndex:0];
     view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
     view.imgUser.layer.masksToBounds = YES;
+    
+    view.imgEventType.layer.cornerRadius = view.imgEventType.frame.size.width/2;
+    view.imgEventType.layer.masksToBounds = YES;
+    
+    int color = [ViewUtils getEventTypeColor:4];
+    view.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
+    
     return view;
 }
 
