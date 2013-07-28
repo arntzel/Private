@@ -135,7 +135,8 @@ const CGSize kTileSize = { 46.f, 44.f };
     
     //draw event color dot
     int eventType = [self.datasource getEventType:self.date];
-    
+
+    BOOL calvin = eventType & 0x00000001;
     BOOL google = eventType & 0x00000002;
     BOOL fackbook = eventType & 0x00000008;
     //BOOL birthday = eventType & 0x00000010;
@@ -143,7 +144,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     int count = 0;
     if(google) count++;
     if(fackbook) count++;
-    //if(birthday) count++;
+    if(calvin) count++;
     
     if (count == 0) {
         return;
@@ -172,12 +173,12 @@ const CGSize kTileSize = { 46.f, 44.f };
         position.x += 10.0f;
     }
 
-    /*
-    if(birthday) {
+    
+    if(calvin) {
         [self drawColordot:ctx andPosition:position andColor:0xFF0000FF];
         position.x += 10.0f;
     }
-     */
+     
 }
 
 -(void) drawColordot:(CGContextRef)ctx andPosition:(CGPoint) position andColor:(int) color

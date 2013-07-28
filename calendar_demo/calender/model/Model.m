@@ -3,6 +3,7 @@
 #import "Event.h"
 #import "UserModel.h"
 #import "Utils.h"
+#import "NSDateAdditions.h"
 #import "ASIFormDataRequest.h"
 
 static Model * instance;
@@ -246,6 +247,12 @@ static Model * instance;
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
     
     [self getEvents:request andCallback:callback];
+}
+
+-(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback
+{
+    NSDate * end = [day cc_dateByMovingToTheFollowingDayCout:1];
+    return [self getEventsOfBegin:day andEnd:end andCallback:callback];
 }
 
 -(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback

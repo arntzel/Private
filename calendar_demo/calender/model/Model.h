@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
 
+-(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback;
+
+
 /*
  Get all pending events
  */

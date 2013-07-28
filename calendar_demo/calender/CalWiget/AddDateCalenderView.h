@@ -25,4 +25,6 @@
 - (void)setStartTimeString:(NSString *)string;
 - (void)setDuringTimeString:(NSString *)string;
 
+-(KalView *) getKalView;
+
 @end

@@ -8,12 +8,32 @@
 #import "NavgationBar.h"
 #import "KalDate.h"
 
-@interface AddEventDateViewController ()<AddDateCalenderViewDelegate,KalViewDelegate, TimePickerDelegate,DuringTimePickerDelegate,NavgationBarDelegate>
+#import "Event.h"
+#import "EventView.h"
+#import "BirthdayEventView.h"
+
+#import "Model.h"
+#import "Utils.h"
+#import "Model.h"
+
+@interface AddEventDateViewController ()<AddDateCalenderViewDelegate,
+                                         KalViewDelegate,
+                                         KalTileViewDataSource,
+                                         TimePickerDelegate,
+                                         DuringTimePickerDelegate,
+                                         NavgationBarDelegate,
+                                         UITableViewDataSource,
+                                         UITableViewDelegate>
 {
     KalLogic *logic;
     EventDate *eventDate;
     
     AddDateCalenderView *calView;
+
+    UIActivityIndicatorView * indicatorView;
+    UITableView * feedTableView;
+ 
+    NSArray * dayEvents;
 }
 
 @property(nonatomic,copy) EventDate *eventDate;
@@ -41,16 +61,88 @@
 
     [self.view addSubview:calView];
     calView.delegate = self;
-    
+    [[calView getKalView] setKalTileViewDataSource:self];
+
+
     NavgationBar *navBar = [[NavgationBar alloc] init];
     [self.view addSubview:navBar];
     [navBar setTitle:@"Add Date"];
     [navBar setLeftBtnText:@"Cancel"];
     [navBar setRightBtnText:@"Add"];
     navBar.delegate = self;
-    
+
+
+    int top = navBar.frame.size.height;
+    int bottom = calView.frame.origin.y;
+
+    feedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top, 320, bottom-top) style:UITableViewStylePlain];
+    feedTableView.backgroundColor = [UIColor whiteColor];
+    feedTableView.dataSource = self;
+    feedTableView.delegate = self;
+
+    [self.view addSubview:feedTableView];
+
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicatorView.center = feedTableView.center;
+    indicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:indicatorView];
+
     [self refreshTimeString];
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark tableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(dayEvents == nil) {
+        return 0;
+    }
+
+    return dayEvents.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    Event * event = [dayEvents objectAtIndex:indexPath.row];
+
+    if(event.eventType != 4) {
+        EventView * view = [EventView createEventView];
+
+        [view refreshView:event];
+
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+        [cell addSubview:view];
+        return cell;
+
+    } else {
+        BirthdayEventView * view = [BirthdayEventView createEventView];
+
+        [view refreshView:event];
+
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+        [cell addSubview:view];
+        return cell;
+
+    }
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Event * event = [dayEvents objectAtIndex:indexPath.row];
+
+    if(event.eventType == 4) {
+        return BirthdayEventView_Height;
+    } else {
+        return PlanView_HEIGHT;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -170,6 +262,24 @@
     [parts setDay:date.day];
     NSDate *startDate = [gregorian dateFromComponents:parts];
     eventDate.start = startDate;
+
+
+    [indicatorView startAnimating];
+    [[Model getInstance] getEventsOfDay:startDate andCallback:^(NSInteger error, NSArray *events) {
+        [indicatorView stopAnimating];
+        if(error == 0) {
+            dayEvents = events;
+
+            EventModel * eventModel = [[Model getInstance] getEventModel];
+
+            [eventModel addEvents:events];
+            
+            [feedTableView reloadData];
+            [[calView getKalView] setNeedsDisplay];
+        } else {
+            
+        }
+    }];
 }
 
 - (void)refreshTimeString
@@ -177,4 +287,17 @@
     [calView setStartTimeString:[eventDate parseStartTimeString]];
     [calView setDuringTimeString:[eventDate parseDuringDateString]];
 }
+
+#pragma mark -
+#pragma mark KalTileViewDataSource
+-(int) getEventType:(KalDate *) date {
+
+    NSString * day = [Utils formate:date.year andMonth:date.month andDay:date.day];
+
+    EventModel * eventModel = [[Model getInstance] getEventModel];
+ 
+    int eventTypes = [eventModel getEventsTypes:day];
+    return eventTypes;
+}
+
 @end

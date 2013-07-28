@@ -97,4 +97,8 @@
     typeView.duringTimeLabel.text = string;
 }
 
+-(KalView *) getKalView
+{
+    return kalView;
+}
 @end
