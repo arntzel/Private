@@ -174,7 +174,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     }
     
     if(calvin) {
-        [self drawColordot:ctx andPosition:position andColor:0xFFFF0000];
+        [self drawColordot:ctx andPosition:position andColor:0xFFF44258];
         position.x += 10.0f;
     }
      
@@ -182,7 +182,7 @@ const CGSize kTileSize = { 46.f, 44.f };
 
 -(void) drawColordot:(CGContextRef)ctx andPosition:(CGPoint) position andColor:(int) color
 {
-    CGContextSetRGBFillColor(ctx, COLOR_R(color), COLOR_G(color), COLOR_B(color), COLOR_A(color)/255.0f);
+    CGContextSetRGBFillColor(ctx, COLOR_R(color)/255.0f, COLOR_G(color)/255.0f, COLOR_B(color)/255.0f, COLOR_A(color)/255.0f);
     CGContextSetLineWidth(ctx, 1.0f);
     CGContextAddEllipseInRect(ctx, CGRectMake(position.x, position.y, 5, 5));
     CGContextFillPath(ctx);

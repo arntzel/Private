@@ -138,7 +138,7 @@
     [dic setObject:self.timezone forKey:@"timezone"];
 
     [dic setObject:[NSNumber numberWithInt:self.privilige] forKey:@"privilige"];
-    [dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"eventType"];
+    [dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"event_type"];
 
     NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
     for(EventAttendee * attendee in self.attendees) {
