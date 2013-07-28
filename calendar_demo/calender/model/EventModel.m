@@ -185,6 +185,11 @@
     [dayObj addEvent:event];
 }
 
+-(int) getFilter
+{
+    return _filter;
+}
+
 -(void) setFilter:(int) filter
 {
     _filter = filter;

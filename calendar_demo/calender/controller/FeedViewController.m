@@ -217,6 +217,8 @@
     NSString * day = [Utils formate:date.year andMonth:date.month andDay:date.day];
 
     int eventTypes = [eventModel getEventsTypes:day];
+    eventTypes = (eventTypes & [eventModel getFilter]);
+
     return eventTypes;
 }
 
@@ -226,7 +228,7 @@
 #pragma mark PullRefreshTableViewDelegate
 - (void) onPullStarted {
 
-   
+
 
 }
 
@@ -269,7 +271,6 @@
     [defaults synchronize];
 
     [eventModel setFilter:filters];
-    [tableView reloadData];
 }
 
 //#pragma mark -

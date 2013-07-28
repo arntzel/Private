@@ -31,6 +31,8 @@
 
 -(void) setFilter:(int) filter;
 
+-(int) getFilter;
+
 
 
 -(NSArray *) getEventsByDay:(NSString *) day;
