@@ -10,4 +10,8 @@
 
 +(UIColor *) getUIColor:(int) argbColor;
 
+
++ (UIImage*) imageByScalingAndCroppingForSize:(CGSize)targetSize andUIImage:(UIImage *)sourceImage;
+
+
 @end

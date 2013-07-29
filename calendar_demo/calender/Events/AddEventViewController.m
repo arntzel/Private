@@ -32,6 +32,7 @@
 
 #import "Model.h"
 #import "Utils.h"
+#import "ViewUtils.h"
 
 @interface AddEventViewController ()<UINavigationControllerDelegate,
                                      UIImagePickerControllerDelegate,
@@ -316,7 +317,11 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    imagePickerView.image = image;
+ 
+    CGSize targetSize = imagePickerView.frame.size;
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
+    
+    imagePickerView.image = newImage;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -495,7 +500,7 @@
         
         if (error == 0) {
 
-            [[[Model getInstance] getEventModel] addNewEvent:event];
+            [[[Model getInstance] getEventModel] addNewEvent:newEvent];
 
             [self.navigationController popViewControllerAnimated:YES];
 
