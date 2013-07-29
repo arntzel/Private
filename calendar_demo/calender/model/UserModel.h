@@ -12,6 +12,8 @@
 
 @interface UserModel : NSObject
 
+@property(strong) NSString * device_token;
+
 /*
  Get the single instance of UserModel object
  */

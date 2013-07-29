@@ -14,6 +14,7 @@
 #import "Model.h"
 #import "NSDateAdditions.h"
 #import "Utils.h"
+#import "UserModel.h"
 
 @implementation AppDelegate
 
@@ -92,6 +93,11 @@
     
     //注册成功，将deviceToken保存到应用服务器数据库中
     
+    NSString *token = [[pToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]]; //去掉"<>"
+    token = [[token description] stringByReplacingOccurrencesOfString:@" " withString:@""];//去掉中间空格
+    LOG_D(@"reportToken :%@",token);
+
+    [UserModel getInstance].device_token = token;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -71,7 +71,10 @@ static UserModel * instance;
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     [dict setObject:username forKey:@"username_or_email"];
     [dict setObject:pwd forKey:@"password"];
-
+    if(self.device_token != nil) {
+        [dict setObject:self.device_token forKey:@"device_token"];
+    }
+    
     NSString * postContent = [Utils dictionary2String:dict];
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
@@ -91,7 +94,8 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
     
-    NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
+    
+    NSString * postContent = [NSString stringWithFormat:@"access_token=%@&device_token=%@", accessToken, self.device_token];
     LOG_D(@"postContent=%@", postContent);
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -112,7 +116,7 @@ static UserModel * instance;
     LOG_D(@"url=%@", url);
     
     //NSString * postContent = [NSString stringWithFormat:@"access_token=%@&access_token_secret=oamFLl00vCTo7bAKmqTf1TIB", accessToken];
-    NSString * postContent = [NSString stringWithFormat:@"access_token=%@", accessToken];
+    NSString * postContent = [NSString stringWithFormat:@"access_token=%@&device_token=%@", accessToken, self.device_token];
 
     LOG_D(@"signinGooglePlus, postContent=%@", postContent);
 
