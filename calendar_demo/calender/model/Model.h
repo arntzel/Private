@@ -1,6 +1,8 @@
 
 #import <Foundation/Foundation.h>
 #import "EventModel.h"
+#import "MessageModel.h"
+
 #import "User.h"
 #import "Event.h"
 #import "Message.h"
@@ -73,6 +75,10 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) deleteEvent:(Event *) event andCallback:(void (^)(NSInteger error))callback;
 
 
+-(void) getUnreadMessages:(void (^)(NSInteger error, NSArray* messages))callback;
+
+
+-(void) readMessage:(int) msgID andCallback:(void (^)(NSInteger error, int msgID))callback;
 
 /**
  Call WebService API to get messages with apikey
@@ -117,6 +123,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 
 -(EventModel *) getEventModel;
+
+-(MessageModel *) getMessageModel;
 
 
 /*

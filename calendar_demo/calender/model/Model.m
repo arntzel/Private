@@ -58,6 +58,7 @@ static Model * instance;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation Model  {
     EventModel * eventModel;
+    MessageModel * msgModel;
     
     ASIHTTPRequestDelegateAdapter * uploadImgDelegateAdapter;
 }
@@ -65,6 +66,7 @@ static Model * instance;
 -(id) init {
     self = [super init];
     eventModel = [[EventModel alloc] init];
+    msgModel = [[MessageModel alloc] init];
     return self;
 }
 
@@ -378,6 +380,47 @@ static Model * instance;
     }];
 }
 
+
+-(void) getUnreadMessages:(void (^)(NSInteger error, NSArray* messages))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/message?read_at__isnull=true", HOST];
+    LOG_D(@"url=%@", url);
+    [self doGetMessage:url andCallback:callback];
+}
+
+-(void) readMessage:(int) msgID andCallback:(void (^)(NSInteger error, int msgID))callback
+{
+    //PUT /api/v1/message/1/ {"read_at":now()}
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/message/%d", HOST, msgID];
+    
+    LOG_D(@"url=%@", url);
+    
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSString * now = [Utils formateDate: [NSDate date]];
+    NSString * postContent =  [NSString stringWithFormat:@"{\"read_at\":\"%@\"}", now];
+    
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 202) {
+            callback(ERROCODE_OK, msgID);
+        } else {
+            callback(-1, msgID);
+        }
+    }];
+
+}
+
+
 /**
  Call WebService API to get messages with apikey
  */
@@ -388,31 +431,36 @@ static Model * instance;
 
     LOG_D(@"url=%@", url);
 
+    [self doGetMessage:url andCallback:callback];
+}
 
+
+-(void) doGetMessage:(NSString *) url andCallback:(void (^)(NSInteger error, NSArray* messages))callback
+{
+    
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
-
-
+    
     [[UserModel getInstance] setAuthHeader:request];
-
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
-
+        
         if(status == 200) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-
+            
             NSArray * objects = [json objectForKey:@"objects"];
-
+            
             NSMutableArray * events = [[NSMutableArray alloc] init];
-
+            
             for(int i=0; i<objects.count;i++) {
                 Message * e = [Message parseMSeesage:[objects objectAtIndex:i]];
                 [events addObject:e];
             }
-
+            
             callback(0, events);
-
+            
         } else {
             callback(-1, nil);
         }
@@ -581,6 +629,11 @@ static Model * instance;
 -(EventModel *) getEventModel
 {
     return eventModel;
+}
+
+-(MessageModel *) getMessageModel
+{
+    return msgModel;
 }
 
 +(Model *) getInstance

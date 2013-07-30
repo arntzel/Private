@@ -18,12 +18,16 @@
 #import "PedingEventViewController.h"
 
 #import "Utils.h"
+#import "Model.h"
 
-@interface menuNavigation()<UITableViewDelegate,UITableViewDataSource>
+@interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
 {
     navigationMenuDataSource *menuDataSource;
-    NSArray * _messages;
+    //NSArray * _messages;
     BOOL loading;
+    
+    MessageModel * msgModel;
+    
 }
 @end
 
@@ -79,21 +83,18 @@
         self.tableView = tableView;
     }
     
-    loading = YES;
-    [self.tableView reloadData];
-    [[Model getInstance] getMessages:^(NSInteger error, NSArray *messages) {
-        
-        if(error == 0) {
-            _messages = messages;
-        } else {
-            //TODO::
-        }
-        
-        loading = NO;
-        
-        [self.tableView reloadData];
+   
+    
+    msgModel = [[Model getInstance] getMessageModel];
+    
+    [msgModel addDelegate:self];
+    
+    [msgModel reloadUnreadMsg];
+}
 
-    }];
+- (void)viewWillUnload {
+    [msgModel removeDelegate:self];
+    [super viewWillUnload];
 }
 
 #pragma mark - UITableViewDataSource
@@ -105,7 +106,7 @@
     }
     else if(section == 1)
     {
-        return [_messages count];
+        return  [msgModel getUnreadMsg].count;
     }
     return 0;
 }
@@ -158,7 +159,7 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
             
-            Message * msg = [_messages objectAtIndex:indexPath.row];
+            Message * msg = [[msgModel getUnreadMsg] objectAtIndex:indexPath.row];
             [cell refreshView:msg];
         }
         
@@ -225,7 +226,21 @@
 
     if(indexPath.section ==0) {
         [self.delegate onMenuSelected:indexPath.row];
+    } else {
+        Message * msg = [[msgModel getUnreadMsg] objectAtIndex:indexPath.row];
+        [[[Model getInstance] getMessageModel] readMessage:msg];
     }
-
 }
+
+-(void) onMessageModelChanged
+{
+    [_tableView reloadData];
+}
+
+-(void) onLoadDataStatusChanged:(BOOL) isLoading
+{
+    loading = isLoading;
+    [self.tableView reloadData];
+}
+
 @end

@@ -146,6 +146,7 @@
 		3DB97808174A1424005B462E /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97806174A1424005B462E /* EventView.m */; };
 		3DB97809174A1424005B462E /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB97807174A1424005B462E /* EventView.xib */; };
 		3DB9780E174A2832005B462E /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9780D174A2832005B462E /* FeedViewController.m */; };
+		3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC59EB817A797F30068AC79 /* MessageModel.m */; };
 		3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8E174086310071B8EE /* bg_line1@2x.png */; };
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
@@ -623,6 +624,8 @@
 		3DB97807174A1424005B462E /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		3DB9780C174A2832005B462E /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		3DB9780D174A2832005B462E /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3DC59EB717A797F30068AC79 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		3DC59EB817A797F30068AC79 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		3DE06C8E174086310071B8EE /* bg_line1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line1@2x.png"; sourceTree = "<group>"; };
 		3DE06C8F174086310071B8EE /* btn_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok@2x.png"; sourceTree = "<group>"; };
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
@@ -1074,6 +1077,8 @@
 				942758F4177D294100B55F75 /* EventAttendee.m */,
 				76BC526517891FB8005D78E2 /* EventDate.h */,
 				76BC526617891FB8005D78E2 /* EventDate.m */,
+				3DC59EB717A797F30068AC79 /* MessageModel.h */,
+				3DC59EB817A797F30068AC79 /* MessageModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2140,6 +2145,7 @@
 				76943B601792570F0006FCA9 /* ATMSoundFX.m in Sources */,
 				76943B611792570F0006FCA9 /* ATMTextLayer.m in Sources */,
 				9475840D1794375D001C7489 /* CustomerIndicatorView.m in Sources */,
+				3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,7 @@
     //self.tvUsername.text = @"fx.fangxiang@gmail.com";
     //self.tvPassword.text = @"pass1234";
 
-    self.tvUsername.text = @"zhiwehu";
+    self.tvUsername.text = @"fx.fangxiang@gmail.com";
     self.tvPassword.text = @"111111";
 }
 
