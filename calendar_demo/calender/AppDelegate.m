@@ -79,13 +79,26 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+//         (UIRemoteNotificationTypeNewsstandContentAvailability |
+//          UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |
+//          UIRemoteNotificationTypeSound)];
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-         (UIRemoteNotificationTypeNewsstandContentAvailability |
-          UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |
+         (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |
           UIRemoteNotificationTypeSound)];
     });
     
 }
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"获取令牌失败:  %@",str);
+    
+    //如果device token获取失败则需要重新获取一次
+    //[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(registerForRemoteNotificationToGetToken) userInfo:nil repeats:NO];
+}
+
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)pToken {
     
