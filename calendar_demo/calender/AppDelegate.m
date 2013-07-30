@@ -28,6 +28,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    application.applicationIconBadgeNumber = 0;
+    
+    
 #ifndef DEBUG
     [self redirectNSLogToDocumentFolder];
 #endif
@@ -71,6 +74,11 @@
     }
 
     return YES;
+}
+
+- (void)application:(UIApplication *)app didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    LOG_D(@"%@",userInfo);
 }
 
 - (void)registerForRemoteNotificationToGetToken
