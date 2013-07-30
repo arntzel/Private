@@ -53,7 +53,7 @@
 
     [super showLeftController:animated];
 
-    feedViewCtr.navigation.unreadCount.hidden = YES;
+    //feedViewCtr.navigation.unreadCount.hidden = YES;
 }
 
 

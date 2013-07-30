@@ -24,8 +24,7 @@
     [super viewDidLoad];
 
     self.navigation = [Navigation createNavigationView];
-    self.navigation.unreadCount.hidden = NO;
-
+    
     [self.view addSubview:self.navigation];
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -43,8 +42,6 @@
 
 - (void)btnMenu:(id)sender
 {
-    self.navigation.unreadCount.hidden = YES;
-    
     if(self.delegate != nil) {
         [self.delegate onBtnMenuClick];
     }

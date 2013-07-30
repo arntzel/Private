@@ -44,7 +44,7 @@
 
 
     self.navigation.titleLable.text = @"PENDING";
-    self.navigation.unreadCount.hidden = YES;
+    //self.navigation.unreadCount.hidden = YES;
     
     int y = self.navigation.frame.size.height;
     

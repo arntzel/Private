@@ -76,11 +76,6 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)app didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    LOG_D(@"%@",userInfo);
-}
-
 - (void)registerForRemoteNotificationToGetToken
 {
     NSLog(@"Registering for push notifications...");
