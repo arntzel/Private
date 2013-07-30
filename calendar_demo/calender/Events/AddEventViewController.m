@@ -136,6 +136,11 @@
     [imagePickerView setContentMode:UIViewContentModeScaleAspectFill];
     [imagePickerView setClipsToBounds:YES];
     
+    UIImageView *maskImageView = [[UIImageView alloc] initWithFrame:imagePickerView.bounds];
+    maskImageView.image = [UIImage imageNamed:@"shadow_ovlerlay_asset.png"];
+    [imagePickerView addSubview:maskImageView];
+    [maskImageView release];
+    
     
     UIImageView *imagePickerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerIcon.png"]];
     [imagePickerIcon setFrame:CGRectMake((320 - 36) / 2 , 47, 36, 31)];

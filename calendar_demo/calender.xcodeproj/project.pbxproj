@@ -207,6 +207,7 @@
 		76B16FF0178D86180026F4B2 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B16FDF178D86180026F4B2 /* CustomSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76B16FF7178D8A490026F4B2 /* customSwitchBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B16FF5178D8A490026F4B2 /* customSwitchBg@2x.png */; };
 		76B16FF8178D8A490026F4B2 /* customSwitchFront@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B16FF6178D8A490026F4B2 /* customSwitchFront@2x.png */; };
+		76BAB72717A81529008627ED /* shadow_ovlerlay_asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BAB72617A81529008627ED /* shadow_ovlerlay_asset.png */; };
 		76BC526717891FB8005D78E2 /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC526617891FB8005D78E2 /* EventDate.m */; };
 		76BC52C81789C72F005D78E2 /* AddDateEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC52BF1789C72F005D78E2 /* AddDateEntryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76BC52C91789C72F005D78E2 /* AddDateEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BC52C01789C72F005D78E2 /* AddDateEntryView.xib */; };
@@ -718,6 +719,7 @@
 		76B16FDF178D86180026F4B2 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
 		76B16FF5178D8A490026F4B2 /* customSwitchBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customSwitchBg@2x.png"; sourceTree = "<group>"; };
 		76B16FF6178D8A490026F4B2 /* customSwitchFront@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customSwitchFront@2x.png"; sourceTree = "<group>"; };
+		76BAB72617A81529008627ED /* shadow_ovlerlay_asset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_ovlerlay_asset.png; sourceTree = "<group>"; };
 		76BC526517891FB8005D78E2 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
 		76BC526617891FB8005D78E2 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
 		76BC52BE1789C72F005D78E2 /* AddDateEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddDateEntryView.h; path = calender/Events/AddDateEntryView.h; sourceTree = SOURCE_ROOT; };
@@ -1499,6 +1501,7 @@
 		76BC52CE1789C748005D78E2 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				76BAB72617A81529008627ED /* shadow_ovlerlay_asset.png */,
 				76943B48179253D00006FCA9 /* map_my_location.png */,
 				76C6C60D178EDB8C00BBEF15 /* eventSettingLine.png */,
 				76C6C607178ED9A100BBEF15 /* eventSetingBg1.png */,
@@ -1988,6 +1991,7 @@
 				76943B621792570F0006FCA9 /* 11-x.png in Resources */,
 				76943B631792570F0006FCA9 /* 19-check.png in Resources */,
 				76943B641792570F0006FCA9 /* pop.wav in Resources */,
+				76BAB72717A81529008627ED /* shadow_ovlerlay_asset.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
