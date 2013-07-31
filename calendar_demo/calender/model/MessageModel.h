@@ -37,4 +37,6 @@
 
 -(void) readMessage:(Message *) msg;
 
+-(void) updateMessageReadStatus: (void (^)(NSInteger error))callback;
+
 @end

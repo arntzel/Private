@@ -86,25 +86,13 @@
 
 -(void) readMessage:(Message *) msg
 {
+     msg.unread = NO;
     [self nofifyModelLoadingStatus:YES];
+}
+
+-(void) updateMessageReadStatus: (void (^)(NSInteger error))callback
+{
     
-    [[Model getInstance]  readMessage:msg.id andCallback:^(NSInteger error, int msgID) {
-    
-        [self nofifyModelLoadingStatus:NO];
-    
-        
-        if(error != 0) return;
-        
-        for(Message * msg in unreadMessages) {
-            if(msg.id == msgID) {
-                [unreadMessages removeObject:msg];
-                break;
-            }
-        }
-        
-        unreadMessageCount = unreadMessages.count;
-        [self nofityModelChanged];
-    }];
 }
 
 @end

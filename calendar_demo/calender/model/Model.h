@@ -121,6 +121,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
 
 
+-(void) updateMessageReadStatus: (void (^)(NSInteger error))callback;
+
 
 -(EventModel *) getEventModel;
 

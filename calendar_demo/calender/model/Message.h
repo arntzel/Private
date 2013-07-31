@@ -42,6 +42,7 @@
 
 @property(strong) NSDate * sent_at;
 
+@property BOOL unread;
 
 /*
  Parse Message object from json data.

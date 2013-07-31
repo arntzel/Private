@@ -33,11 +33,11 @@
     msg.sent_at = [Utils parseNSDate:[json objectForKey:@"sent_at"]];
     msg.sent_at = [Utils convertLocalDate:msg.sent_at];
     
+    msg.unread = (msg.read_at == nil);
+    
     
     NSString * url = [json objectForKey:@"url"];
-    
     NSString * prefix = @"/schedule/event/";
-    
     NSRange range;
     range.location = [prefix length];
     range.length = [url length] -1 - range.location;

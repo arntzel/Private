@@ -5,6 +5,8 @@
 #import "PedingEventViewController.h"
 #import "BaseMenuViewController.h"
 
+#import "Model.h"
+
 @interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
 
    
@@ -53,7 +55,9 @@
 
     [super showLeftController:animated];
 
-    //feedViewCtr.navigation.unreadCount.hidden = YES;
+    [[[Model getInstance] getMessageModel] updateMessageReadStatus:^(NSInteger error) {
+        
+    }];
 }
 
 

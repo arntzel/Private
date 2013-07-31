@@ -74,6 +74,10 @@
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
 
     self.notifyDateLabel.text = [self getTimeText:msg];
+    
+    if(msg.unread) {
+        self.notifyDateLabel.textColor = [UIColor redColor];
+    }
 }
 
 
