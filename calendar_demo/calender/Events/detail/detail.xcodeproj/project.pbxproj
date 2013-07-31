@@ -21,6 +21,9 @@
 		7618BF0F17A3B0DA00176977 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF0D17A3B0DA00176977 /* ViewController_iPad.xib */; };
 		7618BF1617A3B12000176977 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF1517A3B12000176977 /* resource */; };
 		7618BF1817A3B20100176977 /* EventDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */; };
+		76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */; };
+		76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */; };
+		76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		7618BF0E17A3B0DA00176977 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		7618BF1517A3B12000176977 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resource; sourceTree = "<group>"; };
 		7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailNavigationBar.xib; sourceTree = "<group>"; };
+		76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailPhotoView.xib; sourceTree = "<group>"; };
+		76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailFinailzeView.xib; path = ../EventDetailFinailzeView.xib; sourceTree = "<group>"; };
+		76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,9 @@
 				7618BF0D17A3B0DA00176977 /* ViewController_iPad.xib */,
 				7618BEF617A3B0D900176977 /* Supporting Files */,
 				7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */,
+				76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */,
+				76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */,
+				76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -175,6 +184,9 @@
 				7618BF0F17A3B0DA00176977 /* ViewController_iPad.xib in Resources */,
 				7618BF1617A3B12000176977 /* resource in Resources */,
 				7618BF1817A3B20100176977 /* EventDetailNavigationBar.xib in Resources */,
+				76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */,
+				76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */,
+				76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +330,7 @@
 				7618BF1417A3B0DA00176977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
