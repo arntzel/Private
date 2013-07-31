@@ -6,6 +6,7 @@
 #import "BaseMenuViewController.h"
 
 #import "Model.h"
+#import "Utils.h"
 
 @interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
 
@@ -55,11 +56,18 @@
 
     [super showLeftController:animated];
 
-    [[[Model getInstance] getMessageModel] updateMessageReadStatus:^(NSInteger error) {
+    MessageModel * msgModel = [[Model getInstance] getMessageModel];
+    if([msgModel getUnreadMsgCount] > 0) {
         
-    }];
+        [msgModel refreshModel:^(NSInteger error) {
+            if(error ==0) {
+                [msgModel updateMessageReadStatus:nil];
+            } else {
+                [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
+            }
+        }];
+    }
 }
-
 
 
 #pragma mark - FeedViewControllerDelegate

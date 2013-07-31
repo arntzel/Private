@@ -13,9 +13,11 @@
     
     NSMutableArray * delegates;
     
-    NSMutableArray * unreadMessages;
+    NSMutableArray * messages;
     
     int unreadMessageCount;
+
+    BOOL loading;
 }
 
 -(id) init
@@ -23,8 +25,10 @@
     self = [super init];
     
     delegates =  [[NSMutableArray alloc] init];
-    unreadMessages = [[NSMutableArray alloc] init];
+    messages = [[NSMutableArray alloc] init];
     unreadMessageCount = 0;
+    loading = NO;
+    
     return self;
 }
 
@@ -66,33 +70,64 @@
     [self nofityModelChanged];
 }
 
--(NSArray *) getUnreadMsg
+-(NSArray *) getMessages
 {
-    return unreadMessages;
+    return messages;
 }
 
--(void) reloadUnreadMsg
+
+-(void) loadMoreMsg:(void (^)(NSInteger error))callback
 {
-    [[Model getInstance] getUnreadMessages:^(NSInteger error, NSArray *messages) {
-        
-        if(error == 0) {
-            [unreadMessages removeAllObjects];
-            [unreadMessages addObjectsFromArray:messages];
-            unreadMessageCount = unreadMessages.count;
-            [self nofityModelChanged];
+    int offset = [messages count];
+    
+    [[Model getInstance] getMessages:offset andCallback:^(NSInteger error, NSArray * moreMessages) {
+
+        for(Message * msg in moreMessages) {
+            [messages addObject:msg];
         }
+
+        callback(error);
+    }];
+}
+
+-(void) refreshModel:(void (^)(NSInteger error))callback;
+{
+    [self nofifyModelLoadingStatus:YES];
+
+    [[Model getInstance] getMessages:0 andCallback:^(NSInteger error, NSArray * moreMessages) {
+
+        [self nofifyModelLoadingStatus:NO];
+
+        Message * oldMsg = nil;
+
+        if(messages.count >0) {
+            oldMsg = [messages objectAtIndex:0];
+        }
+
+        for(int i= moreMessages.count-1; i>=0 ; i--) {
+            Message * msg = [moreMessages objectAtIndex:i];
+
+            if(oldMsg != nil || msg.id > oldMsg.id) {
+                [messages insertObject:msg atIndex:0];
+            }
+        }
+
+        [self nofityModelChanged];
+
+        if(callback) callback(error);
     }];
 }
 
 -(void) readMessage:(Message *) msg
 {
-     msg.unread = NO;
-    [self nofifyModelLoadingStatus:YES];
+    msg.unread = NO;
+    [self nofifyModelLoadingStatus:NO];
 }
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback
 {
-    
+    [self setUnReadMsgCount:0];
+    [[Model getInstance] readAllMessage:nil];
 }
 
 @end

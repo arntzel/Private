@@ -80,11 +80,18 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) readMessage:(int) msgID andCallback:(void (^)(NSInteger error, int msgID))callback;
 
+
+-(void) readAllMessage: (void (^)(NSInteger error))callback;
+
+
 /**
  Call WebService API to get messages with apikey
   NSArray* messages: The Message object array
  */
 -(void) getMessages:(void (^)(NSInteger error, NSArray* messages))callback;
+
+
+-(void) getMessages:(int) offset andCallback :(void (^)(NSInteger error, NSArray* messages))callback;
 
 
 /**

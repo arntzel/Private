@@ -420,6 +420,28 @@ static Model * instance;
 
 }
 
+-(void) readAllMessage: (void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s//api/v1/readall/message/", HOST];
+    LOG_D(@"url=%@", url);
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    [[UserModel getInstance] setAuthHeader:request];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+
+        if(callback == nil) return;
+
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+
+        if(status == 200) {
+            callback(ERROCODE_OK);
+        } else {
+            callback(-1);
+        }
+    }];
+}
 
 /**
  Call WebService API to get messages with apikey
@@ -434,6 +456,16 @@ static Model * instance;
     [self doGetMessage:url andCallback:callback];
 }
 
+
+-(void) getMessages:(int) offset andCallback :(void (^)(NSInteger error, NSArray* messages))callback
+{
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/message?offset=%d", HOST, offset];
+
+    LOG_D(@"url=%@", url);
+
+    [self doGetMessage:url andCallback:callback];
+}
 
 -(void) doGetMessage:(NSString *) url andCallback:(void (^)(NSInteger error, NSArray* messages))callback
 {

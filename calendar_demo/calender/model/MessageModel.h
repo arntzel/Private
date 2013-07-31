@@ -31,9 +31,12 @@
 -(void) setUnReadMsgCount:(int) count;
 
 
--(NSArray *) getUnreadMsg;
+-(NSArray *) getMessages;
 
--(void) reloadUnreadMsg;
+-(void) refreshModel:(void (^)(NSInteger error))callback;
+
+-(void) loadMoreMsg:(void (^)(NSInteger error))callback;
+
 
 -(void) readMessage:(Message *) msg;
 

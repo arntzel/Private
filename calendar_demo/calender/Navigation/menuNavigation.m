@@ -86,10 +86,8 @@
    
     
     msgModel = [[Model getInstance] getMessageModel];
-    
     [msgModel addDelegate:self];
-    
-    [msgModel reloadUnreadMsg];
+    [msgModel refreshModel:nil];
 }
 
 - (void)viewWillUnload {
@@ -106,7 +104,7 @@
     }
     else if(section == 1)
     {
-        return  [msgModel getUnreadMsg].count;
+        return  [msgModel getMessages].count;
     }
     return 0;
 }
@@ -159,7 +157,7 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
             
-            Message * msg = [[msgModel getUnreadMsg] objectAtIndex:indexPath.row];
+            Message * msg = [[msgModel getMessages] objectAtIndex:indexPath.row];
             [cell refreshView:msg];
         }
         
@@ -227,8 +225,14 @@
     if(indexPath.section ==0) {
         [self.delegate onMenuSelected:indexPath.row];
     } else {
-        Message * msg = [[msgModel getUnreadMsg] objectAtIndex:indexPath.row];
-        [[[Model getInstance] getMessageModel] readMessage:msg];
+        Message * msg = [[msgModel getMessages] objectAtIndex:indexPath.row];
+
+        if(msg.unread) {
+            msg.unread = NO;
+            [_tableView reloadData];
+        }
+
+        //TODO: open event detail page
     }
 }
 
