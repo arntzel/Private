@@ -7,6 +7,9 @@
 
 @property int id;
 
+@property int eventID;
+
+
 @property(strong) NSString * subject;
 
 @property(strong) NSString * email;

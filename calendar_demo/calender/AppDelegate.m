@@ -193,10 +193,13 @@
 
     
     int badge = [UIApplication sharedApplication].applicationIconBadgeNumber ;
-    [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [[[Model getInstance] getMessageModel] reloadUnreadMsg];
+    
+    if(badge>0) {
+        [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
+        [[[Model getInstance] getMessageModel] reloadUnreadMsg];
+    }
+    
     [self registerForRemoteNotificationToGetToken];
 }
 

@@ -6,6 +6,16 @@
 
 @implementation Utils
 
++(NSDate *) convertLocalDate:(NSDate *) gmtDate
+{
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: gmtDate];
+    
+    NSDate * localeDate = [gmtDate  dateByAddingTimeInterval:interval];
+    
+    return localeDate;
+}
+
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
     if(strDate == nil || [strDate isKindOfClass:[NSNull class]]) {

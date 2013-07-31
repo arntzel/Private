@@ -31,7 +31,19 @@
     msg.sender_archived  = [[json objectForKey:@"sender_archived"] boolValue];
     msg.sender_deleted_at = [Utils parseNSDate:[json objectForKey:@"sender_deleted_at"]];
     msg.sent_at = [Utils parseNSDate:[json objectForKey:@"sent_at"]];
+    msg.sent_at = [Utils convertLocalDate:msg.sent_at];
     
+    
+    NSString * url = [json objectForKey:@"url"];
+    
+    NSString * prefix = @"/schedule/event/";
+    
+    NSRange range;
+    range.location = [prefix length];
+    range.length = [url length] -1 - range.location;
+    
+    NSString * strEventID = [url substringWithRange:range];
+    msg.eventID = [strEventID intValue];
     return msg;
 }
 @end

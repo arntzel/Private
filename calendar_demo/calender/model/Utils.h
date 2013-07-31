@@ -11,6 +11,10 @@
 
 @interface Utils : NSObject
 
+
++(NSDate *) convertLocalDate:(NSDate *) gmtDate;
+
+
 /*
  convert a NSString to NSDate object
  strDate: the date of string format, example: "2013-06-02 12:12:10"
@@ -94,5 +98,6 @@
 +(NSString *) getAttendeeText:(Event*)event;
 
 +(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
+
 
 @end
