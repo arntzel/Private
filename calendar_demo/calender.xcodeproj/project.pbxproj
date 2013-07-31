@@ -300,6 +300,9 @@
 		94901DF31785B63000848ACA /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94901DF21785B63000848ACA /* EventFilterView.m */; };
 		94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF51785B68B00848ACA /* EventFilterView.xib */; };
 		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
+		94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9417A93B82007AFFBC /* Model.xcdatamodeld */; };
+		94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9817A93B9C007AFFBC /* CoreDataModel.m */; };
+		94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9E17A93E1B007AFFBC /* MessageEntity.m */; };
 		94C4527C178AF0DB00E2E1A1 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */; };
 		94C45280178AF1A200E2E1A1 /* BirthdayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */; };
 		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
@@ -854,6 +857,11 @@
 		94901DF21785B63000848ACA /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
 		94901DF51785B68B00848ACA /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
 		94901DF71785C06100848ACA /* btn_ok_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok_selected@2x.png"; sourceTree = "<group>"; };
+		94977E9517A93B82007AFFBC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		94977E9717A93B9C007AFFBC /* CoreDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataModel.h; sourceTree = "<group>"; };
+		94977E9817A93B9C007AFFBC /* CoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModel.m; sourceTree = "<group>"; };
+		94977E9D17A93E1B007AFFBC /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
+		94977E9E17A93E1B007AFFBC /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayEventView.xib; sourceTree = "<group>"; };
 		94C4527E178AF1A200E2E1A1 /* BirthdayEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayEventView.h; sourceTree = "<group>"; };
 		94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayEventView.m; sourceTree = "<group>"; };
@@ -960,6 +968,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				94977E9217A93B70007AFFBC /* coredata */,
 				3D925309177964A10066927A /* google-plus-ios-sdk-1.2.1 */,
 				3D92527217784D6B0066927A /* CTMBase64 */,
 				3D92521217784C4B0066927A /* Account */,
@@ -1719,6 +1728,19 @@
 			path = colordot;
 			sourceTree = "<group>";
 		};
+		94977E9217A93B70007AFFBC /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				94977E9D17A93E1B007AFFBC /* MessageEntity.h */,
+				94977E9E17A93E1B007AFFBC /* MessageEntity.m */,
+				94977E9417A93B82007AFFBC /* Model.xcdatamodeld */,
+				94977E9717A93B9C007AFFBC /* CoreDataModel.h */,
+				94977E9817A93B9C007AFFBC /* CoreDataModel.m */,
+			);
+			name = coredata;
+			path = calender/coredata;
+			sourceTree = "<group>";
+		};
 		94EC277D178C380A009DC3F6 /* EventDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2150,6 +2172,9 @@
 				76943B611792570F0006FCA9 /* ATMTextLayer.m in Sources */,
 				9475840D1794375D001C7489 /* CustomerIndicatorView.m in Sources */,
 				3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */,
+				94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */,
+				94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */,
+				94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2392,6 +2417,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		94977E9417A93B82007AFFBC /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				94977E9517A93B82007AFFBC /* Model.xcdatamodel */,
+			);
+			currentVersion = 94977E9517A93B82007AFFBC /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3D6151981734A391003D72B0 /* Project object */;
 }
