@@ -12,4 +12,6 @@
 
 -(void) setEvent:(Event*)event;
 
+-(void) setEventID:(int)eventID;
+
 @end

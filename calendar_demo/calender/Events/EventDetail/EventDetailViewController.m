@@ -11,6 +11,7 @@
 
 @implementation EventDetailViewController {
     Event * _event;
+    int  _eventID;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if(_event == nil) return;
 
     NSString * url = _event.thumbnail_url;
 
@@ -50,7 +53,10 @@
     _event = event;
 }
 
-
+-(void) setEventID:(int)eventID
+{
+    _eventID = eventID;
+}
 
 
 @end

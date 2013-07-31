@@ -19,6 +19,7 @@
 
 #import "Utils.h"
 #import "Model.h"
+#import "EventDetailViewController.h"
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
 {
@@ -227,12 +228,16 @@
     } else {
         Message * msg = [[msgModel getMessages] objectAtIndex:indexPath.row];
 
+        EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
+        [detailCtl setEventID:msg.id];
+
+        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        
         if(msg.unread) {
             msg.unread = NO;
             [_tableView reloadData];
         }
 
-        //TODO: open event detail page
     }
 }
 
