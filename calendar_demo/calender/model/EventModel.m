@@ -67,7 +67,7 @@
     NSArray * sortedArray = [allEvents sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Event * evt1 = obj1;
         Event * evt2 = obj2;
-        return [evt2.start compare:evt1.start];
+        return [evt1.start compare:evt2.start];
     }];
 
     allEvents = [[NSMutableArray alloc] initWithArray:sortedArray];
