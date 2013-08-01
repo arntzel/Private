@@ -45,8 +45,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{28, 15}, {55, 21}}</string>
 								<reference key="NSSuperview" ref="498526917"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -77,7 +75,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 22}, {11, 8}}</string>
 								<reference key="NSSuperview" ref="498526917"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="111123132"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -90,7 +87,6 @@
 						</array>
 						<string key="NSFrame">{{219, 0}, {87, 52}}</string>
 						<reference key="NSSuperview" ref="57503268"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="737305611"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -108,7 +104,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{28, 15}, {55, 21}}</string>
 								<reference key="NSSuperview" ref="509626232"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="498526917"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -129,7 +124,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 22}, {9, 9}}</string>
 								<reference key="NSSuperview" ref="509626232"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="399000267"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -142,7 +136,6 @@
 						</array>
 						<string key="NSFrame">{{219, 0}, {87, 52}}</string>
 						<reference key="NSSuperview" ref="57503268"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="54903403"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -154,7 +147,6 @@
 				</array>
 				<string key="NSFrameSize">{306, 52}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="509626232"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -164,7 +156,24 @@
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords"/>
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">finailzeView</string>
+						<reference key="source" ref="57503268"/>
+						<reference key="destination" ref="498526917"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">removeView</string>
+						<reference key="source" ref="57503268"/>
+						<reference key="destination" ref="509626232"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
+			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
@@ -243,13 +252,14 @@
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="3.CustomClassName">EventDetailFinailzeView</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

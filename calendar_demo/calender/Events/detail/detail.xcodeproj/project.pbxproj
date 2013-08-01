@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7605E35017AA9E43005B68EB /* EventDetailInviteeConformView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7605E34F17AA9E43005B68EB /* EventDetailInviteeConformView.xib */; };
+		7605E35317AAA3BC005B68EB /* EventDetailNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E35217AAA3BB005B68EB /* EventDetailNavigationBar.m */; };
+		7605E35617AAA5E9005B68EB /* EventDetailPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E35517AAA5E9005B68EB /* EventDetailPhotoView.m */; };
+		7605E35917AAA66D005B68EB /* EventDetailFinailzeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E35817AAA66D005B68EB /* EventDetailFinailzeView.m */; };
+		7605E35C17AAA702005B68EB /* EventDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E35B17AAA702005B68EB /* EventDetailHeader.m */; };
+		7605E35F17AAA7E6005B68EB /* EventDetailInviteeConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E35E17AAA7E6005B68EB /* EventDetailInviteeConformView.m */; };
+		7605E36117AAA9C7005B68EB /* EventDetailInviteeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7605E36017AAA9C6005B68EB /* EventDetailInviteeView.xib */; };
+		7605E36317AAAC61005B68EB /* EventDetailPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7605E36217AAAC60005B68EB /* EventDetailPlaceView.xib */; };
+		7605E36617AAACA3005B68EB /* EventDetailInviteeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E36517AAACA3005B68EB /* EventDetailInviteeView.m */; };
+		7605E36917AAACBE005B68EB /* EventDetailPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7605E36817AAACBE005B68EB /* EventDetailPlaceView.m */; };
 		7618BEF017A3B0D900176977 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618BEEF17A3B0D900176977 /* UIKit.framework */; };
 		7618BEF217A3B0D900176977 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618BEF117A3B0D900176977 /* Foundation.framework */; };
 		7618BEF417A3B0D900176977 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618BEF317A3B0D900176977 /* CoreGraphics.framework */; };
@@ -27,6 +37,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7605E34F17AA9E43005B68EB /* EventDetailInviteeConformView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailInviteeConformView.xib; sourceTree = "<group>"; };
+		7605E35117AAA3BB005B68EB /* EventDetailNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailNavigationBar.h; sourceTree = "<group>"; };
+		7605E35217AAA3BB005B68EB /* EventDetailNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailNavigationBar.m; sourceTree = "<group>"; };
+		7605E35417AAA5E9005B68EB /* EventDetailPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailPhotoView.h; sourceTree = "<group>"; };
+		7605E35517AAA5E9005B68EB /* EventDetailPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailPhotoView.m; sourceTree = "<group>"; };
+		7605E35717AAA66D005B68EB /* EventDetailFinailzeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView.h; sourceTree = "<group>"; };
+		7605E35817AAA66D005B68EB /* EventDetailFinailzeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView.m; sourceTree = "<group>"; };
+		7605E35A17AAA702005B68EB /* EventDetailHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailHeader.h; sourceTree = "<group>"; };
+		7605E35B17AAA702005B68EB /* EventDetailHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailHeader.m; sourceTree = "<group>"; };
+		7605E35D17AAA7E6005B68EB /* EventDetailInviteeConformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailInviteeConformView.h; sourceTree = "<group>"; };
+		7605E35E17AAA7E6005B68EB /* EventDetailInviteeConformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailInviteeConformView.m; sourceTree = "<group>"; };
+		7605E36017AAA9C6005B68EB /* EventDetailInviteeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailInviteeView.xib; sourceTree = "<group>"; };
+		7605E36217AAAC60005B68EB /* EventDetailPlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailPlaceView.xib; sourceTree = "<group>"; };
+		7605E36417AAACA2005B68EB /* EventDetailInviteeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailInviteeView.h; sourceTree = "<group>"; };
+		7605E36517AAACA3005B68EB /* EventDetailInviteeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailInviteeView.m; sourceTree = "<group>"; };
+		7605E36717AAACBE005B68EB /* EventDetailPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailPlaceView.h; sourceTree = "<group>"; };
+		7605E36817AAACBE005B68EB /* EventDetailPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailPlaceView.m; sourceTree = "<group>"; };
 		7618BEEC17A3B0D900176977 /* detail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = detail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7618BEEF17A3B0D900176977 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7618BEF117A3B0D900176977 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,9 +131,26 @@
 				7618BF0D17A3B0DA00176977 /* ViewController_iPad.xib */,
 				7618BEF617A3B0D900176977 /* Supporting Files */,
 				7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */,
+				7605E35117AAA3BB005B68EB /* EventDetailNavigationBar.h */,
+				7605E35217AAA3BB005B68EB /* EventDetailNavigationBar.m */,
 				76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */,
+				7605E35417AAA5E9005B68EB /* EventDetailPhotoView.h */,
+				7605E35517AAA5E9005B68EB /* EventDetailPhotoView.m */,
 				76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */,
+				7605E35717AAA66D005B68EB /* EventDetailFinailzeView.h */,
+				7605E35817AAA66D005B68EB /* EventDetailFinailzeView.m */,
 				76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */,
+				7605E35A17AAA702005B68EB /* EventDetailHeader.h */,
+				7605E35B17AAA702005B68EB /* EventDetailHeader.m */,
+				7605E34F17AA9E43005B68EB /* EventDetailInviteeConformView.xib */,
+				7605E35D17AAA7E6005B68EB /* EventDetailInviteeConformView.h */,
+				7605E35E17AAA7E6005B68EB /* EventDetailInviteeConformView.m */,
+				7605E36017AAA9C6005B68EB /* EventDetailInviteeView.xib */,
+				7605E36417AAACA2005B68EB /* EventDetailInviteeView.h */,
+				7605E36517AAACA3005B68EB /* EventDetailInviteeView.m */,
+				7605E36217AAAC60005B68EB /* EventDetailPlaceView.xib */,
+				7605E36717AAACBE005B68EB /* EventDetailPlaceView.h */,
+				7605E36817AAACBE005B68EB /* EventDetailPlaceView.m */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -187,6 +231,9 @@
 				76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */,
 				76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */,
 				76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */,
+				7605E35017AA9E43005B68EB /* EventDetailInviteeConformView.xib in Resources */,
+				7605E36117AAA9C7005B68EB /* EventDetailInviteeView.xib in Resources */,
+				7605E36317AAAC61005B68EB /* EventDetailPlaceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +247,13 @@
 				7618BEFC17A3B0D900176977 /* main.m in Sources */,
 				7618BF0017A3B0D900176977 /* AppDelegate.m in Sources */,
 				7618BF0917A3B0DA00176977 /* ViewController.m in Sources */,
+				7605E35317AAA3BC005B68EB /* EventDetailNavigationBar.m in Sources */,
+				7605E35617AAA5E9005B68EB /* EventDetailPhotoView.m in Sources */,
+				7605E35917AAA66D005B68EB /* EventDetailFinailzeView.m in Sources */,
+				7605E35C17AAA702005B68EB /* EventDetailHeader.m in Sources */,
+				7605E35F17AAA7E6005B68EB /* EventDetailInviteeConformView.m in Sources */,
+				7605E36617AAACA3005B68EB /* EventDetailInviteeView.m in Sources */,
+				7605E36917AAACBE005B68EB /* EventDetailPlaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
