@@ -36,7 +36,8 @@
                                   KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
-                                  EventModelDelegate>
+                                  EventModelDelegate,
+                                  FeedEventTableViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -75,6 +76,8 @@
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    tableView.feedEventdelegate = self;
+    
     //[tableView setAllowsSelection:NO];
     
     tableView.headerEnabled = YES;
@@ -299,5 +302,13 @@
 -(void) onEventModelChanged {
     [tableView reloadData];
     [self.calendarView setNeedsDisplay];
+}
+
+
+#pragma mark -
+#pragma mark FeedEventTableViewDelegate
+-(void) onDisplayFirstDayChanged:(NSDate *) firstDay
+{
+    NSLog(@"onDisplayFirstDayChanged:%@", firstDay);
 }
 @end

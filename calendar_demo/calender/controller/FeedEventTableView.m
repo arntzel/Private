@@ -16,6 +16,7 @@
 
 @implementation FeedEventTableView {
     EventModel * eventModel;
+    NSString * currentFirstDay;
 }
 
 
@@ -58,6 +59,26 @@
 
 #pragma mark -
 #pragma mark tableViewDelegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSLog(@"didEndDisplayingCell");
+    NSArray * indexs = [self indexPathsForVisibleRows];
+    
+    if(indexs.count > 0) {
+        NSIndexPath * path = [indexs objectAtIndex:0];
+                
+        NSString * day =  [[eventModel getAllDays] objectAtIndex:path.section];
+        NSLog(@"didEndDisplayingCell:%@", path);
+        
+        if(currentFirstDay!= nil && ![currentFirstDay isEqualToString:day]) {
+            Event * event = [self getEvent:path];
+            [self.feedEventdelegate onDisplayFirstDayChanged: event.start];
+        }
+        
+        currentFirstDay = day;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     //LOG_D(@"numberOfRowsInSection:%d", section);
