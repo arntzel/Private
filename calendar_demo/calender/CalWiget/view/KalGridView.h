@@ -33,6 +33,8 @@
 
 - (void)slideRight;
 - (void)slideLeft;
+- (void)slide:(int)direction;
+
 - (void)jumpToSelectedMonth;    // see comment on KalView
 
 @end

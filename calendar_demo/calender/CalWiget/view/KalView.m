@@ -97,11 +97,45 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void) swith2Date:(NSDate *) date
 {
-    [logic showDate:date];
-    
-    [gridView slide:0];
-    [weekGridView slide:0];
+
+    NSLog(@"swith2Date:%@", date);
+
+    if(KalMode == WEEK_MODE) {
+
+        NSDate * showWeek = [logic.showWeek NSDate];
+        int ret = [date compareWeek:showWeek];
+        if(ret == 0) {
+            return;
+        }
+        
+        [logic showDate:date];
+
+        if(ret>0) {
+            [weekGridView slide:1];
+        } else {
+            [weekGridView slide:2];
+        }
+        
+    } else {
+
+        KalDate * kalDate = [KalDate dateFromNSDate:date];
+        KalDate * showMonth = logic.showMonth;
+
+        int ret = [kalDate compareMonth:showMonth];
+
+        if(ret == 0) {
+            return;
+        }
+        
+        if(ret>0) {
+            [gridView slide:2];
+        } else {
+            [gridView slide:1];
+        }
+    }
 }
+
+
 
 - (void)setFrameToWeekMode
 {

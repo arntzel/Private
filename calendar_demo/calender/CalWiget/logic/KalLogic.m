@@ -50,8 +50,8 @@
 
 -(void) showDate:(NSDate *) date
 {
-    date = [date cc_dateByMovingToFirstDayOfTheWeek];
-    self.showWeek = [KalDate dateFromNSDate:date];
+    NSDate * dateWeek = [date cc_dateByMovingToFirstDayOfTheWeek];
+    self.showWeek = [KalDate dateFromNSDate:dateWeek];
     
     date = [date cc_dateByMovingToFirstDayOfTheMonth];
     self.showMonth = [KalDate dateFromNSDate:date];

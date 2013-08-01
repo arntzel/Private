@@ -3,6 +3,7 @@
 
 #import "KalWeekView.h"
 
+
 @class KalTileView, KalLogic, KalDate;
 
 
@@ -33,6 +34,8 @@
 
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalWeekGridViewDelegate>)delegate;
+
+- (void)slide:(int)direction;
 
 - (void)slideLeft;
 - (void)slideRight;

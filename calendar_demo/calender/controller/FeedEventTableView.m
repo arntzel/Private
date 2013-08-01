@@ -61,14 +61,12 @@
 #pragma mark tableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    NSLog(@"didEndDisplayingCell");
     NSArray * indexs = [self indexPathsForVisibleRows];
     
     if(indexs.count > 0) {
         NSIndexPath * path = [indexs objectAtIndex:0];
                 
         NSString * day =  [[eventModel getAllDays] objectAtIndex:path.section];
-        NSLog(@"didEndDisplayingCell:%@", path);
         
         if(currentFirstDay!= nil && ![currentFirstDay isEqualToString:day]) {
             Event * event = [self getEvent:path];

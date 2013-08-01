@@ -26,4 +26,7 @@
 - (NSUInteger)cc_weekday;
 - (NSUInteger)cc_numberOfDaysInMonth;
 
+
+-(int) compareWeek:(NSDate *) date;
+
 @end

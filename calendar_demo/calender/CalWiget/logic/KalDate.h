@@ -20,4 +20,7 @@
 - (NSComparisonResult)compare:(KalDate *)otherDate;
 - (BOOL)isToday;
 
+
+-(int) compareMonth:(KalDate *) date;
+
 @end

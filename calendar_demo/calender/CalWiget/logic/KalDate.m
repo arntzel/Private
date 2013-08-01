@@ -1,5 +1,6 @@
 #import "KalDate.h"
 #import "KalPrivate.h"
+#import "NSDateAdditions.h"
 
 static KalDate *today;
 
@@ -93,5 +94,18 @@ static KalDate *today;
 {
   return [NSString stringWithFormat:@"%u/%u/%u", a.month, a.day, a.year];
 }
+
+
+-(int) compareMonth:(KalDate *) date
+{
+    int ret = self.year - date.year;
+    if(ret != 0) {
+        return ret;
+    }
+
+    NSLog(@"M1:%d, M2:%d", self.month, date.month);
+    return self.month - date.month;
+}
+
 
 @end
