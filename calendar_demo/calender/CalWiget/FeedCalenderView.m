@@ -8,7 +8,6 @@
 @interface FeedCalenderView()
 {
     UIScrollView *eventScrollView;
-    KalView *kalView;
     
     CGRect orgFrame;
     
@@ -21,12 +20,14 @@ extern const CGSize kTileSize;
 
 @implementation FeedCalenderView
 
+@synthesize kalView;
+
 - (void)dealloc
 {
     [kalView removeObserver:self forKeyPath:@"frame"];
     [eventScrollView release];
-    [kalView release];
-
+    
+    self.kalView = nil;
     self.filterView = nil;
     
     [super dealloc];

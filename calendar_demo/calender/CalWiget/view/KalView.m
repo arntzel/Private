@@ -95,6 +95,14 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [gridView jumpToSelectedMonth];
 }
 
+- (void) swith2Date:(NSDate *) date
+{
+    [logic showDate:date];
+    
+    [gridView slide:0];
+    [weekGridView slide:0];
+}
+
 - (void)setFrameToWeekMode
 {
     [self setFrame:CGRectMake(0, 0, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];

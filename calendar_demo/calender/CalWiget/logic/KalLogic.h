@@ -28,4 +28,6 @@
 - (NSArray *)daysInFirstWeekOfFollowingMonth;
 - (void)ajustShowMonth;
 
+-(void) showDate:(NSDate *) date;
+
 @end

@@ -14,6 +14,7 @@
 @interface FeedCalenderView : UIView
 
 @property(retain, nonatomic) EventFilterView * filterView;
+@property(retain, nonatomic) KalView *kalView;
 
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;

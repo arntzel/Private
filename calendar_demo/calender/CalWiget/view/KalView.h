@@ -34,6 +34,8 @@
 
 - (void)delayGestureResponse:(UIGestureRecognizer *)gesture;
 
+- (void) swith2Date:(NSDate *) date;
+
 @end
 
 #pragma mark -

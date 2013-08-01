@@ -48,6 +48,15 @@
     self.showWeek = [KalDate dateFromNSDate:date];
 }
 
+-(void) showDate:(NSDate *) date
+{
+    date = [date cc_dateByMovingToFirstDayOfTheWeek];
+    self.showWeek = [KalDate dateFromNSDate:date];
+    
+    date = [date cc_dateByMovingToFirstDayOfTheMonth];
+    self.showMonth = [KalDate dateFromNSDate:date];
+}
+
 - (NSArray *)daysInShowingWeek
 {
     NSArray *daysInShowingWeek = [KalLogicUtils visibleWeekDaysForDay:[showWeek NSDate]];
