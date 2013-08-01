@@ -72,7 +72,14 @@
         EventModel * model = [[Model getInstance] getEventModel];
         [model addEvents:events];
     }
-
+    
+    MessageModel * msgModel = [[Model getInstance] getMessageModel];
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    NSNumber * count = [defaults objectForKey:@"unreadmessagecount"];
+    if(count != nil && count.intValue > 0) {
+        [msgModel setUnReadMsgCount:count.intValue];
+    }
+    
     return YES;
 }
 
@@ -146,7 +153,14 @@
 
 
      NSLog(@"applicationDidEnterBackground");
-
+ 
+    
+    MessageModel * msgModel = [[Model getInstance] getMessageModel];
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    int count = [msgModel getUnreadMsgCount];    
+    [defaults setObject:[NSNumber numberWithInt:count] forKey:@"unreadmessagecount"];
+    [defaults synchronize];
+    
     //Save event data
     
     NSDate * start = [NSDate date];
