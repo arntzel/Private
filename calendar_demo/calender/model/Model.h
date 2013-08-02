@@ -8,6 +8,7 @@
 #import "Message.h"
 #import "Buddy.h"
 
+#import "ASIFormDataRequest.h"
 
 typedef NS_ENUM(NSInteger, ERROCODE) {
     ERROCODE_OK = 0,   //OK
@@ -125,7 +126,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) createBuddy:(Buddy *) buddy andCallback:(void (^)(NSInteger error))callback;
 
 
--(void) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
+-(ASIFormDataRequest *) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
 
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback;

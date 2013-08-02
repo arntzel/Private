@@ -4,7 +4,6 @@
 #import "UserModel.h"
 #import "Utils.h"
 #import "NSDateAdditions.h"
-#import "ASIFormDataRequest.h"
 
 static Model * instance;
 
@@ -626,7 +625,7 @@ static Model * instance;
 }
 
 
--(void) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
+-(ASIFormDataRequest *) uploadImage:(UIImage *) img andCallback:(id<UploadImageDelegate>)delegate;
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/photo/upload/", HOST];
 
@@ -656,6 +655,8 @@ static Model * instance;
 	[request setDelegate:uploadImgDelegateAdapter];
 	
     [request startAsynchronous];
+    
+    return  request;
 }
 
 -(EventModel *) getEventModel

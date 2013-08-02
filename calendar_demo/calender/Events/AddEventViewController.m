@@ -59,6 +59,13 @@
     
     AddEventInviteView * inviteView;
     AddEventPlaceView * placeView;
+    
+    
+    //For preupload Image
+    ASIFormDataRequest * request;
+    NSString * imageUrl;
+    
+    UIActivityIndicatorView * imageUploadingIndicator;
 }
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
@@ -91,6 +98,9 @@
     [addDateView release];
     [settingView release];
     
+    [imageUrl release];
+    
+    [imageUploadingIndicator release];
     [super dealloc];
 }
 
@@ -165,6 +175,12 @@
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
+    
+    
+    imageUploadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    imageUploadingIndicator.hidesWhenStopped = YES;
+    imageUploadingIndicator.center = CGPointMake(20, 20);
+    [imagePickerView addSubview:imageUploadingIndicator];
 }
 
 - (void)initInviteAndPlaceView
@@ -328,6 +344,8 @@
     
     imagePickerView.image = newImage;
     [picker dismissModalViewControllerAnimated:YES];
+    
+    [self uploadImage];
 }
 
 #pragma mark Add Date
@@ -394,13 +412,22 @@
 - (void)leftNavBtnClick
 {
     [self.navigationController popViewControllerAnimated:YES];
+    if(request  != nil) {
+        [request cancel];
+        request = nil;
+    }
 }
 
 - (void)rightNavBtnClick
 {
     if ([self canCreateEvent]) {
         if ([self timeIsInFuture]) {
-            [self uploadImage];
+            //[self uploadImage];
+            if(request != nil) {
+                return;
+            } else {
+                [self createEvent:imageUrl];
+            }
         }
         else
         {
@@ -454,7 +481,7 @@
 
 - (void)createEvent:(NSString *) imgUrl
 {
-      
+   
     NSString *title = txtFieldTitle.text;
     
     Event *event = [[Event alloc] init];
@@ -484,11 +511,17 @@
     }
 
     if(event.start_type == nil) {
-         event.start_type = START_TYPEWITHIN;
+        event.start_type = START_TYPEWITHIN;
     }
 
     event.published = YES;
-    event.thumbnail_url = imgUrl;
+    
+    if(imgUrl == nil) {
+        event.thumbnail_url = @"";
+    } else {
+        event.thumbnail_url = imgUrl;
+    }
+    
     event.timezone = settingView.timeZoneLabel.text;
     event.title = title;
     
@@ -543,9 +576,22 @@
 
 -(void) uploadImage
 {
+    if(request != nil)
+    {
+        [request cancel];
+        request = nil;
+    }
+    
+    if(imageUrl != nil) {
+        [imageUrl release];
+        imageUrl = nil;
+    }
+    
     UIImage * img = imagePickerView.image;
-    [self startUploadIndicator];
-    [[Model getInstance] uploadImage:img andCallback:self];
+    //[self startUploadIndicator];
+    [imageUploadingIndicator startAnimating];
+    request =[[Model getInstance] uploadImage:img andCallback:self];
+    [request retain];
 }
 
 -(void) onUploadStart
@@ -565,7 +611,13 @@
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
     LOG_D(@"onUploadCompleted");
-    [self stopIndicator];
+    //[self stopIndicator];
+    
+    [imageUploadingIndicator stopAnimating];
+    
+    [request release];
+    request = nil;
+    
     if(error != 0) {
         
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
@@ -575,9 +627,13 @@
                                               otherButtonTitles:nil];
         
         [alert show];
+        
+        imagePickerView.image = nil;
+        
     } else {
         LOG_D(@"onUploadCompleted:%@", url);
-        [self createEvent:url];
+        //[self createEvent:url];
+        imageUrl = [url retain];;
     }
 }
 
