@@ -106,29 +106,9 @@
 -(int) compareWeek:(NSDate *) date
 {
 
-    NSDateComponents *parts = [date cc_componentsForMonthDayAndYear];
-
-    int dayVal =  parts.year*10000 + parts.month * 100 + parts.day;
-
-    NSDate * weekBegin =[self cc_dateByMovingToFirstDayOfTheWeek];
-    parts = [weekBegin cc_componentsForMonthDayAndYear];
-
-    int beginDayVal = parts.year*10000 + parts.month * 100 + parts.day;
-
-    if( dayVal < beginDayVal) {
-        return 1;
-    }
-
-    NSDate * weekEnd = [weekBegin cc_dateByMovingToTheFollowingDayCout:6];
-    parts = [weekEnd cc_componentsForMonthDayAndYear];
-
-    int endDayVal = parts.year*10000 + parts.month * 100 + parts.day;
-
-    if( endDayVal < dayVal) {
-        return -1;
-    }
-
-    return 0;
-
+    NSDate  * weekBegin = [self cc_dateByMovingToFirstDayOfTheWeek];
+    NSDate  * weekBegin2 = [date cc_dateByMovingToFirstDayOfTheWeek];
+    
+    return [weekBegin compare:weekBegin2];
 }
 @end

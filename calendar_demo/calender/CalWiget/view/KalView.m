@@ -127,6 +127,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
             return;
         }
         
+        [logic showDate:date];
+
         if(ret>0) {
             [gridView slide:2];
         } else {
