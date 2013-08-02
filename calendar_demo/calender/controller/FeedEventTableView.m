@@ -59,8 +59,10 @@
 
 #pragma mark -
 #pragma mark tableViewDelegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    [super scrollViewDidEndDecelerating:scrollView];
+
     NSArray * indexs = [self indexPathsForVisibleRows];
     
     if(indexs.count > 0) {

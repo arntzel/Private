@@ -33,4 +33,6 @@
 
 -(BOOL) isLoading;
 
+//For subclass overwrited, please don't call it
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 @end
