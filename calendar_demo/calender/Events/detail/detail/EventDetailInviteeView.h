@@ -10,6 +10,8 @@
 
 @interface EventDetailInviteeView : UIView
 
+@property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UILabel *inviteeLabel;
 
 +(EventDetailInviteeView *) creatView;
