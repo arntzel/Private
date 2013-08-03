@@ -26,4 +26,9 @@
     
     return view;
 }
+
+- (void)dealloc {
+    [_title release];
+    [super dealloc];
+}
 @end

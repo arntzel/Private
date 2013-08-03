@@ -55,7 +55,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{152, 22}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="559379812"/>
+						<reference key="NSNextKeyView" ref="491851730"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="749439933">
 							<int key="NSColorSpace">3</int>
@@ -89,7 +89,7 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="559379812">
+					<object class="IBUIImageView" id="491851730">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{7, 69}, {14, 8}}</string>
@@ -102,7 +102,7 @@
 							<string key="NSResourceName">event_detail_invite_icon.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="533528865">
+					<object class="IBUILabel" id="838584937">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{26, 62}, {129, 21}}</string>
@@ -151,7 +151,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">inviteeLabel</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="533528865"/>
+						<reference key="destination" ref="838584937"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -170,8 +170,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="1005461434"/>
 							<reference ref="607653970"/>
-							<reference ref="559379812"/>
-							<reference ref="533528865"/>
+							<reference ref="491851730"/>
+							<reference ref="838584937"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -198,12 +198,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="559379812"/>
+						<reference key="object" ref="491851730"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="533528865"/>
+						<reference key="object" ref="838584937"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

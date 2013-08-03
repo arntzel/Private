@@ -50,7 +50,7 @@
 							<string key="NSResourceName">event_detail_random_header4.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="687774081">
+					<object class="IBUIImageView" id="758574191">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{8, 68}, {7, 11}}</string>
@@ -63,7 +63,7 @@
 							<string key="NSResourceName">event_detail_place_icon.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="258816213">
+					<object class="IBUILabel" id="356992216">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{23, 62}, {129, 21}}</string>
@@ -121,8 +121,8 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="972759948"/>
-							<reference ref="687774081"/>
-							<reference ref="258816213"/>
+							<reference ref="758574191"/>
+							<reference ref="356992216"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -144,12 +144,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="687774081"/>
+						<reference key="object" ref="758574191"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="258816213"/>
+						<reference key="object" ref="356992216"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

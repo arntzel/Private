@@ -11,5 +11,6 @@
 @interface EventDetailTimeLabelView : UIView
 
 +(EventDetailTimeLabelView *) creatView;
+@property (retain, nonatomic) IBOutlet UILabel *title;
 
 @end
