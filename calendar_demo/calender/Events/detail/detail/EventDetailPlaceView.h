@@ -10,4 +10,6 @@
 
 @interface EventDetailPlaceView : UIView
 
++(EventDetailPlaceView *) creatView;
+
 @end

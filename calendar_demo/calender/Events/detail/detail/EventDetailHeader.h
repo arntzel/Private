@@ -17,4 +17,7 @@
 - (void)setTicked;
 - (void)setCrossed;
 
++(EventDetailHeader *) creatView;
+
+
 @end

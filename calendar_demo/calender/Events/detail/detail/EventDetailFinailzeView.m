@@ -33,4 +33,12 @@
     [_removeView release];
     [super dealloc];
 }
+
++(EventDetailFinailzeView *) creatView
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailFinailzeView" owner:self options:nil];
+    EventDetailFinailzeView * view = (EventDetailFinailzeView*)[nibView objectAtIndex:0];
+    
+    return view;
+}
 @end

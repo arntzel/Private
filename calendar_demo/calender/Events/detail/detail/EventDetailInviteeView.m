@@ -19,13 +19,21 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)updateUI
 {
-    // Drawing code
+    
 }
-*/
 
++(EventDetailInviteeView *) creatView
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeView" owner:self options:nil];
+    EventDetailInviteeView * view = (EventDetailInviteeView*)[nibView objectAtIndex:0];
+    
+    return view;
+}
+
+- (void)dealloc {
+    [_inviteeLabel release];
+    [super dealloc];
+}
 @end

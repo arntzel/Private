@@ -33,4 +33,14 @@
     [_titleLabel release];
     [super dealloc];
 }
+
+
++(EventDetailPhotoView *) creatView
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailPhotoView" owner:self options:nil];
+    EventDetailPhotoView * view = (EventDetailPhotoView*)[nibView objectAtIndex:0];
+    
+    return view;
+}
+
 @end

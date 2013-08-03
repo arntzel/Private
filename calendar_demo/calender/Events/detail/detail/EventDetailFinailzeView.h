@@ -12,4 +12,5 @@
 @property (retain, nonatomic) IBOutlet UIView *finailzeView;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 
++(EventDetailFinailzeView *) creatView;
 @end

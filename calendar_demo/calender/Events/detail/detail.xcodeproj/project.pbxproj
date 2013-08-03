@@ -31,6 +31,9 @@
 		7618BF0F17A3B0DA00176977 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF0D17A3B0DA00176977 /* ViewController_iPad.xib */; };
 		7618BF1617A3B12000176977 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF1517A3B12000176977 /* resource */; };
 		7618BF1817A3B20100176977 /* EventDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */; };
+		762CBFC417AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762CBFC317AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib */; };
+		762CBFC617AC9F3100C6C2C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762CBFC517AC9F3000C6C2C9 /* QuartzCore.framework */; };
+		762CBFCC17ACA1AF00C6C2C9 /* EventDetailTimeLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762CBFCB17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.m */; };
 		76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */; };
 		76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */; };
 		76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */; };
@@ -73,6 +76,10 @@
 		7618BF0E17A3B0DA00176977 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		7618BF1517A3B12000176977 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resource; sourceTree = "<group>"; };
 		7618BF1717A3B20100176977 /* EventDetailNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailNavigationBar.xib; sourceTree = "<group>"; };
+		762CBFC317AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailTimeLabelView.xib; sourceTree = "<group>"; };
+		762CBFC517AC9F3000C6C2C9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		762CBFCA17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeLabelView.h; sourceTree = "<group>"; };
+		762CBFCB17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeLabelView.m; sourceTree = "<group>"; };
 		76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailPhotoView.xib; sourceTree = "<group>"; };
 		76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailFinailzeView.xib; path = ../EventDetailFinailzeView.xib; sourceTree = "<group>"; };
 		76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailHeader.xib; sourceTree = "<group>"; };
@@ -83,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762CBFC617AC9F3100C6C2C9 /* QuartzCore.framework in Frameworks */,
 				7618BEF017A3B0D900176977 /* UIKit.framework in Frameworks */,
 				7618BEF217A3B0D900176977 /* Foundation.framework in Frameworks */,
 				7618BEF417A3B0D900176977 /* CoreGraphics.framework in Frameworks */,
@@ -95,6 +103,7 @@
 		7618BEE317A3B0D900176977 = {
 			isa = PBXGroup;
 			children = (
+				762CBFC517AC9F3000C6C2C9 /* QuartzCore.framework */,
 				7618BEF517A3B0D900176977 /* detail */,
 				7618BEEE17A3B0D900176977 /* Frameworks */,
 				7618BEED17A3B0D900176977 /* Products */,
@@ -151,6 +160,9 @@
 				7605E36217AAAC60005B68EB /* EventDetailPlaceView.xib */,
 				7605E36717AAACBE005B68EB /* EventDetailPlaceView.h */,
 				7605E36817AAACBE005B68EB /* EventDetailPlaceView.m */,
+				762CBFC317AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib */,
+				762CBFCA17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.h */,
+				762CBFCB17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.m */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -234,6 +246,7 @@
 				7605E35017AA9E43005B68EB /* EventDetailInviteeConformView.xib in Resources */,
 				7605E36117AAA9C7005B68EB /* EventDetailInviteeView.xib in Resources */,
 				7605E36317AAAC61005B68EB /* EventDetailPlaceView.xib in Resources */,
+				762CBFC417AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +267,7 @@
 				7605E35F17AAA7E6005B68EB /* EventDetailInviteeConformView.m in Sources */,
 				7605E36617AAACA3005B68EB /* EventDetailInviteeView.m in Sources */,
 				7605E36917AAACBE005B68EB /* EventDetailPlaceView.m in Sources */,
+				762CBFCC17ACA1AF00C6C2C9 /* EventDetailTimeLabelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

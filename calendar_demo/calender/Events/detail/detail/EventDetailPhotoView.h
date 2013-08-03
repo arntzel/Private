@@ -12,4 +12,5 @@
 @property (retain, nonatomic) IBOutlet UIImageView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
++(EventDetailPhotoView *) creatView;
 @end

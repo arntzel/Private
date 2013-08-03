@@ -38,4 +38,12 @@
     [_tickView release];
     [super dealloc];
 }
+
++(EventDetailHeader *) creatView
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailHeader" owner:self options:nil];
+    EventDetailHeader * view = (EventDetailHeader*)[nibView objectAtIndex:0];
+    
+    return view;
+}
 @end

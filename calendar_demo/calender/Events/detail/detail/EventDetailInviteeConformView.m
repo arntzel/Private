@@ -53,4 +53,13 @@
     [self.tickedBtn setSelected:NO];
     [self.crossedbtn setSelected:YES];
 }
+
+
++(EventDetailInviteeConformView *) creatView
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeConformView" owner:self options:nil];
+    EventDetailInviteeConformView * view = (EventDetailInviteeConformView*)[nibView objectAtIndex:0];
+    
+    return view;
+}
 @end

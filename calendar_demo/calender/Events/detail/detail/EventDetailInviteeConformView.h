@@ -18,4 +18,6 @@
 
 - (void)setTicked;
 - (void)setCrossed;
+
++(EventDetailInviteeConformView *) creatView;
 @end
