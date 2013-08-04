@@ -7,6 +7,7 @@
 //
 
 #import "EventDetailInviteeConformView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation EventDetailInviteeConformView
 
@@ -24,8 +25,24 @@
 - (void)dealloc {
     [_tickedBtn release];
     [_crossedbtn release];
+    [_contentView release];
     [super dealloc];
 }
+
+- (void)updateUI
+{
+    [self.contentView.layer setCornerRadius:5.0f];
+    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+    [self.contentView.layer setBorderWidth:1.0f];
+    
+    [self.layer setCornerRadius:5.0f];
+    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+    [self.layer setShadowRadius:3.0f];
+    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+    [self.layer setBorderWidth:1.0f];
+}
+
 - (IBAction)tickBtnClick:(id)sender {
     if (!self.tickedBtn.selected) {
         self.tickedBtn.selected = YES;
@@ -59,6 +76,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeConformView" owner:self options:nil];
     EventDetailInviteeConformView * view = (EventDetailInviteeConformView*)[nibView objectAtIndex:0];
+    [view updateUI];
     
     return view;
 }

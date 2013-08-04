@@ -58,6 +58,10 @@
 		762CC00217ACAC3500C6C2C9 /* event_detail_time_titleicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 762CBFEA17ACAC3500C6C2C9 /* event_detail_time_titleicon.png */; };
 		762CC00317ACAC3500C6C2C9 /* event_detail_nav_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 762CBFEC17ACAC3500C6C2C9 /* event_detail_nav_back.png */; };
 		762CC00417ACAC3500C6C2C9 /* event_detail_nav_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 762CBFED17ACAC3500C6C2C9 /* event_detail_nav_more.png */; };
+		7696F46017AE2155009FFEC8 /* EventDetailInviteePlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F45F17AE2155009FFEC8 /* EventDetailInviteePlaceView.m */; };
+		7696F46317AE26EF009FFEC8 /* EventDetailTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F46217AE26EF009FFEC8 /* EventDetailTimeView.m */; };
+		7696F46617AE2A8B009FFEC8 /* EventDetailCommentContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F46517AE2A8B009FFEC8 /* EventDetailCommentContentView.m */; };
+		7696F46817AE33A7009FFEC8 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7696F46717AE33A7009FFEC8 /* 2.png */; };
 		76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */; };
 		76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */; };
 		76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */; };
@@ -129,6 +133,13 @@
 		762CBFEA17ACAC3500C6C2C9 /* event_detail_time_titleicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_time_titleicon.png; sourceTree = "<group>"; };
 		762CBFEC17ACAC3500C6C2C9 /* event_detail_nav_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_nav_back.png; sourceTree = "<group>"; };
 		762CBFED17ACAC3500C6C2C9 /* event_detail_nav_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_nav_more.png; sourceTree = "<group>"; };
+		7696F45E17AE2155009FFEC8 /* EventDetailInviteePlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailInviteePlaceView.h; sourceTree = "<group>"; };
+		7696F45F17AE2155009FFEC8 /* EventDetailInviteePlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailInviteePlaceView.m; sourceTree = "<group>"; };
+		7696F46117AE26EF009FFEC8 /* EventDetailTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeView.h; sourceTree = "<group>"; };
+		7696F46217AE26EF009FFEC8 /* EventDetailTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeView.m; sourceTree = "<group>"; };
+		7696F46417AE2A8B009FFEC8 /* EventDetailCommentContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentContentView.h; sourceTree = "<group>"; };
+		7696F46517AE2A8B009FFEC8 /* EventDetailCommentContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentContentView.m; sourceTree = "<group>"; };
+		7696F46717AE33A7009FFEC8 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailPhotoView.xib; sourceTree = "<group>"; };
 		76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailFinailzeView.xib; path = ../EventDetailFinailzeView.xib; sourceTree = "<group>"; };
 		76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailHeader.xib; sourceTree = "<group>"; };
@@ -209,12 +220,18 @@
 				7605E36217AAAC60005B68EB /* EventDetailPlaceView.xib */,
 				7605E36717AAACBE005B68EB /* EventDetailPlaceView.h */,
 				7605E36817AAACBE005B68EB /* EventDetailPlaceView.m */,
+				7696F45E17AE2155009FFEC8 /* EventDetailInviteePlaceView.h */,
+				7696F45F17AE2155009FFEC8 /* EventDetailInviteePlaceView.m */,
 				762CBFC317AC9AC700C6C2C9 /* EventDetailTimeLabelView.xib */,
 				762CBFCA17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.h */,
 				762CBFCB17ACA1AE00C6C2C9 /* EventDetailTimeLabelView.m */,
 				762CBFCD17ACA4E600C6C2C9 /* EventDetailCommentView.xib */,
 				762CBFCF17ACA51D00C6C2C9 /* EventDetailCommentView.h */,
 				762CBFD017ACA51E00C6C2C9 /* EventDetailCommentView.m */,
+				7696F46117AE26EF009FFEC8 /* EventDetailTimeView.h */,
+				7696F46217AE26EF009FFEC8 /* EventDetailTimeView.m */,
+				7696F46417AE2A8B009FFEC8 /* EventDetailCommentContentView.h */,
+				7696F46517AE2A8B009FFEC8 /* EventDetailCommentContentView.m */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -247,6 +264,7 @@
 		762CBFD317ACAC3500C6C2C9 /* event_detail_invite_place */ = {
 			isa = PBXGroup;
 			children = (
+				7696F46717AE33A7009FFEC8 /* 2.png */,
 				762CBFD417ACAC3500C6C2C9 /* 1.png */,
 				762CBFD517ACAC3500C6C2C9 /* event_detail_invite_icon.png */,
 				762CBFD617ACAC3500C6C2C9 /* event_detail_place_icon.png */,
@@ -384,6 +402,7 @@
 				762CC00217ACAC3500C6C2C9 /* event_detail_time_titleicon.png in Resources */,
 				762CC00317ACAC3500C6C2C9 /* event_detail_nav_back.png in Resources */,
 				762CC00417ACAC3500C6C2C9 /* event_detail_nav_more.png in Resources */,
+				7696F46817AE33A7009FFEC8 /* 2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +425,9 @@
 				7605E36917AAACBE005B68EB /* EventDetailPlaceView.m in Sources */,
 				762CBFCC17ACA1AF00C6C2C9 /* EventDetailTimeLabelView.m in Sources */,
 				762CBFD117ACA51E00C6C2C9 /* EventDetailCommentView.m in Sources */,
+				7696F46017AE2155009FFEC8 /* EventDetailInviteePlaceView.m in Sources */,
+				7696F46317AE26EF009FFEC8 /* EventDetailTimeView.m in Sources */,
+				7696F46617AE2A8B009FFEC8 /* EventDetailCommentContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

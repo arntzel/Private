@@ -12,6 +12,7 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *tickedBtn;
 @property (retain, nonatomic) IBOutlet UIButton *crossedbtn;
+@property (retain, nonatomic) IBOutlet UIView *contentView;
 
 - (IBAction)tickBtnClick:(id)sender;
 - (IBAction)crossBtnClick:(id)sender;

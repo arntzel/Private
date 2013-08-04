@@ -10,29 +10,20 @@
 
 #import "EventDetailNavigationBar.h"
 #import "EventDetailPhotoView.h"
-#import "EventDetailFinailzeView.h"
-#import "EventDetailHeader.h"
-#import "EventDetailInviteeConformView.h"
-#import "EventDetailInviteeView.h"
-#import "EventDetailPlaceView.h"
-#import "EventDetailTimeLabelView.h"
-#import "EventDetailCommentView.h"
 
-
+#import "EventDetailInviteePlaceView.h"
+#import "EventDetailTimeView.h"
+#import "EventDetailCommentContentView.h"
 
 @interface ViewController ()
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
-    EventDetailInviteeView *inviteeView;
-    EventDetailPlaceView *placeView;
-    EventDetailTimeLabelView *timeLabelView;
-    EventDetailFinailzeView *finailzeView;
-    EventDetailInviteeConformView *conformView;
-    EventDetailCommentView *commentView;
     
-    UIView *timeContentView;
-    UIView *commentContentView;
+    EventDetailInviteePlaceView *invitePlaceContentView;
+    EventDetailTimeView *timeContentView;
+    EventDetailCommentContentView *commentContentView;
+    UIScrollView *scrollView;
 }
 @end
 
@@ -42,15 +33,11 @@
 {
     [navBar release];
     [photoView release];
-    [inviteeView release];
-    [placeView release];
-    [timeLabelView release];
-    [finailzeView release];
-    [conformView release];
-    [commentView release];
     
-    [timeContentView release];
+    [invitePlaceContentView release];
+    [timeContentView release];    
     [commentContentView release];
+    [scrollView release];
  
     [super dealloc];
 }
@@ -63,19 +50,22 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0]];
     [self addPhotoView];
     [self addNavBar];
-    [self addInviteeView];
-    [self addPlaceView];
     
-    timeContentView = [[UIView alloc] initWithFrame:CGRectZero];
-    [timeContentView setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
-    [self.view addSubview:timeContentView];
-    [self addTimeLabelView];
-    [self addFinailzeView];
-    [self addConformView];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 524)];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setBounces:NO];
+    [self.view insertSubview:scrollView belowSubview:photoView];
     
-    commentContentView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:commentContentView];
-    [self addCommentView];
+    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
+    [scrollView addSubview:invitePlaceContentView];
+    
+    timeContentView = [[EventDetailTimeView alloc] init];
+    [scrollView addSubview:timeContentView];
+
+    commentContentView = [[EventDetailCommentContentView alloc] init];
+    [scrollView addSubview:commentContentView];
+    
+    [self layOutSubViews];
 }
 
 - (void)addNavBar
@@ -90,82 +80,27 @@
     [self.view addSubview:photoView];
 }
 
-- (void)addInviteeView
+- (void)layOutSubViews
 {
-    inviteeView = [[EventDetailInviteeView creatView] retain];
+    CGFloat offsetY = photoView.frame.size.height - navBar.frame.size.height;
     
-    CGRect frame = inviteeView.frame;
-    frame.origin.x = 5;
-    frame.origin.y = photoView.frame.origin.y + photoView.frame.size.height + 8;
-    inviteeView.frame = frame;
-    
-    [self.view addSubview:inviteeView];
-}
-
-- (void)addPlaceView
-{
-    placeView = [[EventDetailPlaceView creatView] retain];
-    
-    CGRect frame = placeView.frame;
-    frame.origin.x = 5 * 2 + inviteeView.frame.size.width;
-    frame.origin.y = photoView.frame.origin.y + photoView.frame.size.height + 8;
-    placeView.frame = frame;
-        
-    [self.view addSubview:placeView];
-}
-
-- (void)addTimeLabelView
-{
-    timeLabelView = [[EventDetailTimeLabelView creatView] retain];
-    
-    CGRect frame = timeLabelView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = 27;
-    timeLabelView.frame = frame;
-    
-    [timeContentView addSubview:timeLabelView];
-}
-
-- (void)addFinailzeView
-{
-    finailzeView = [[EventDetailFinailzeView creatView] retain];
-    
-    CGRect frame = finailzeView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = timeLabelView.frame.origin.y + timeLabelView.frame.size.height + 7;
-    finailzeView.frame = frame;
-
-    [timeContentView addSubview:finailzeView];
-}
-
-- (void)addConformView
-{
-    conformView = [[EventDetailInviteeConformView creatView] retain];
-    
-    CGRect frame = conformView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 40;
-    conformView.frame = frame;
-    
-    [timeContentView addSubview:conformView];
+    CGRect placeViewFrame = invitePlaceContentView.frame;
+    placeViewFrame.origin = CGPointMake(0, offsetY);
+    invitePlaceContentView.frame = placeViewFrame;
     
     CGRect timeContentViewFrame = timeContentView.frame;
-    timeContentViewFrame.origin = CGPointMake(0, placeView.frame.origin.y + placeView.frame.size.height + 14);
-    timeContentViewFrame.size = CGSizeMake(320, conformView.frame.origin.y + conformView.frame.size.height + 20);
+    timeContentViewFrame.origin = CGPointMake(0, invitePlaceContentView.frame.size.height + invitePlaceContentView.frame.origin.y);
     timeContentView.frame = timeContentViewFrame;
+    
+    CGRect commentContentViewFrame = commentContentView.frame;
+    commentContentViewFrame.origin = CGPointMake(0, timeContentView.frame.origin.y +  timeContentView.frame.size.height);
+    commentContentView.frame = commentContentViewFrame;
+    
+    [scrollView setContentSize:CGSizeMake(320, 1000)];
 }
 
-- (void)addCommentView
-{
-    commentView = [[EventDetailCommentView creatView] retain];
-    
-    CGRect timeContentViewFrame = commentContentView.frame;
-    timeContentViewFrame.origin = CGPointMake(0, timeContentView.frame.origin.y + timeContentView.frame.size.height);
-    timeContentViewFrame.size = CGSizeMake(320, commentView.frame.origin.y + commentView.frame.size.height + 20);
-    commentContentView.frame = timeContentViewFrame;
-    
-    [commentContentView addSubview:commentView];
-}
+
+
 
 - (void)didReceiveMemoryWarning
 {

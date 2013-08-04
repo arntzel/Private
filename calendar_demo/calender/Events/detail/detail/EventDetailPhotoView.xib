@@ -48,7 +48,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">event_detail_random_header1.png</string>
+							<string key="NSResourceName">2.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="528823484">
@@ -207,8 +207,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">event_detail_random_header1.png</string>
-			<string key="NS.object.0">{642, 294}</string>
+			<string key="NS.key.0">2.png</string>
+			<string key="NS.object.0">{640, 294}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
