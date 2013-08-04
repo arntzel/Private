@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface EventDetailPhotoView : UIView
 @property (retain, nonatomic) IBOutlet UIImageView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;

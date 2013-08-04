@@ -7,16 +7,19 @@
 //
 
 #import "EventDetailPhotoView.h"
+#import "DKLiveBlurView.h"
 
 @implementation EventDetailPhotoView
 
-- (id)initWithFrame:(CGRect)frame
+
+- (void)updateUI
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.photoView.frame];
+    [_photoView removeFromSuperview];
+    [_photoView release];
+    
+    self.photoView = blurView;
+    [self insertSubview:blurView belowSubview:_titleLabel];
 }
 
 /*
@@ -39,6 +42,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailPhotoView" owner:self options:nil];
     EventDetailPhotoView * view = (EventDetailPhotoView*)[nibView objectAtIndex:0];
+    [view updateUI];
     
     return view;
 }

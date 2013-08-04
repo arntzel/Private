@@ -15,6 +15,8 @@
 #import "EventDetailTimeView.h"
 #import "EventDetailCommentContentView.h"
 
+#import "DKLiveBlurView.h"
+
 @interface ViewController ()
 {
     EventDetailNavigationBar *navBar;
@@ -54,8 +56,8 @@
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 524)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setBounces:NO];
-    [self.view insertSubview:scrollView belowSubview:photoView];
-    
+    [self.view addSubview:scrollView];
+
     invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
     [scrollView addSubview:invitePlaceContentView];
     
@@ -66,6 +68,12 @@
     [scrollView addSubview:commentContentView];
     
     [self layOutSubViews];
+    
+    DKLiveBlurView *blurView= (DKLiveBlurView *)photoView.photoView;
+    [blurView setOriginalImage:[UIImage imageNamed:@"2.png"]];
+    //    blurView.image = [UIImage imageNamed:@"2.png"];
+    blurView.scrollView = scrollView;
+    blurView.isGlassEffectOn = YES;
 }
 
 - (void)addNavBar
