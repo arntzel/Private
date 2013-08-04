@@ -4,6 +4,7 @@
 #import "menuNavigation.h"
 #import "PedingEventViewController.h"
 #import "BaseMenuViewController.h"
+#import "SettingViewController.h"
 
 #import "Model.h"
 #import "Utils.h"
@@ -19,7 +20,8 @@
 
     FeedViewController * feedViewCtr;
     PedingEventViewController * pendingEventViewCtr;
-
+    SettingViewController * settingViewCtr;
+    
     int currentIndex;
 }
 
@@ -37,7 +39,8 @@
 
     feedViewCtr = [[FeedViewController alloc] init];
     pendingEventViewCtr = [[PedingEventViewController alloc] init];
-
+    settingViewCtr = [[SettingViewController alloc] init];
+    
     self = [super initWithRootViewController:feedViewCtr];
     
     self.leftViewController = leftController;
@@ -97,7 +100,11 @@
             [self setRootController:pendingEventViewCtr animated:YES];
             break;
         }
-            
+
+        case 2: {
+            [self setRootController:settingViewCtr animated:YES];
+            break;
+        }
 
         default:
             break;

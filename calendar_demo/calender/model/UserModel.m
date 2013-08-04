@@ -291,6 +291,11 @@ static UserModel * instance;
     return mloginUser;
 }
 
+-(void) setLoginUser:(User *) user
+{
+    mloginUser = user;
+}
+
 -(void) setAuthHeader:(NSMutableURLRequest *) request
 {
     NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", mloginUser.username, mloginUser.apikey];

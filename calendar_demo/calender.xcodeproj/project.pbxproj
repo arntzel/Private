@@ -305,6 +305,8 @@
 		94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9417A93B82007AFFBC /* Model.xcdatamodeld */; };
 		94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9817A93B9C007AFFBC /* CoreDataModel.m */; };
 		94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9E17A93E1B007AFFBC /* MessageEntity.m */; };
+		94BCB9BF17ADDFE50080A02A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCB9BD17ADDFE50080A02A /* SettingViewController.m */; };
+		94BCB9C017ADDFE50080A02A /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */; };
 		94C4527C178AF0DB00E2E1A1 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */; };
 		94C45280178AF1A200E2E1A1 /* BirthdayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */; };
 		94D43545177DC46A009B20F3 /* EventPendingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43543177DC469009B20F3 /* EventPendingToolbar.m */; };
@@ -866,6 +868,9 @@
 		94977E9817A93B9C007AFFBC /* CoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModel.m; sourceTree = "<group>"; };
 		94977E9D17A93E1B007AFFBC /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
 		94977E9E17A93E1B007AFFBC /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
+		94BCB9BC17ADDFE50080A02A /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		94BCB9BD17ADDFE50080A02A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayEventView.xib; sourceTree = "<group>"; };
 		94C4527E178AF1A200E2E1A1 /* BirthdayEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayEventView.h; sourceTree = "<group>"; };
 		94C4527F178AF1A200E2E1A1 /* BirthdayEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayEventView.m; sourceTree = "<group>"; };
@@ -1360,6 +1365,9 @@
 				7644047B1751F8E300B11BDE /* RootNavContrller.m */,
 				3D046E2E1763022F008EE2DA /* SignupViewController.h */,
 				3D046E2F1763022F008EE2DA /* SignupViewController.m */,
+				94BCB9BC17ADDFE50080A02A /* SettingViewController.h */,
+				94BCB9BD17ADDFE50080A02A /* SettingViewController.m */,
+				94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2031,6 +2039,7 @@
 				76BAB72717A81529008627ED /* shadow_ovlerlay_asset.png in Resources */,
 				3DC59EBE17A9FF6A0068AC79 /* push.caf in Resources */,
 				3DC59EC017AA472E0068AC79 /* push.wav in Resources */,
+				94BCB9C017ADDFE50080A02A /* SettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2192,6 +2201,7 @@
 				94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */,
 				94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */,
 				94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */,
+				94BCB9BF17ADDFE50080A02A /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

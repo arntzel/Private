@@ -6,6 +6,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "googleAPIKey.h"
 #import "SignupViewController.h"
+#import "MainViewController.h"
 
 #import "GPPURLHandler.h"
 
@@ -28,30 +29,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    application.applicationIconBadgeNumber = 0;
-    
     
 #ifndef DEBUG
     [self redirectNSLogToDocumentFolder];
 #endif
-    
+
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
+    application.applicationIconBadgeNumber = 0;
+    [UIApplication sharedApplication].statusBarHidden = YES;
+
+    
     [GMSServices provideAPIKey:(NSString *)googleAPIKey];
-    
-    [application setStatusBarHidden:NO withAnimation:NO];
-    
+
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    SignupViewController *viewController = [[SignupViewController alloc] init];
-    
+
+
+    UIViewController * rootController;
+    NSData * loginUserData = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginUser"];
+    if(loginUserData != nil) {
+        NSError * err;
+        NSDictionary * loginUserDic = [NSJSONSerialization JSONObjectWithData:loginUserData options:kNilOptions error:&err];
+        User * loginUser = [User parseUser:loginUserDic];
+        [[UserModel getInstance] setLoginUser:loginUser];
+
+        rootController = [[MainViewController alloc] init];
+
+    } else {
+        rootController = [[SignupViewController alloc] init];
+
+    }
+
     RootNavContrller *navController = [RootNavContrller defaultInstance];
-    [navController pushViewController:viewController animated:NO];
+    [navController setNavigationBarHidden:YES animated:NO];
 
-
-    [UIApplication sharedApplication].statusBarHidden = YES;
+    [navController pushViewController:rootController animated:NO];
     
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
@@ -152,11 +166,22 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
 
-     NSLog(@"applicationDidEnterBackground");
- 
+    NSLog(@"applicationDidEnterBackground");
+
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+
+    User * loginUser = [[UserModel getInstance] getLoginUser];
+    if(loginUser != nil) {
+        NSDictionary * dic = [User convent2Dic:loginUser];
+        NSError * err;
+        NSData * data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&err];
+        [defaults setObject:data forKey:@"loginUser"];
+        [defaults synchronize];
+    }
+
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+  
     int count = [msgModel getUnreadMsgCount];    
     [defaults setObject:[NSNumber numberWithInt:count] forKey:@"unreadmessagecount"];
     [defaults synchronize];

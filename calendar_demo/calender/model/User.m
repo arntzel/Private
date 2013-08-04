@@ -47,7 +47,12 @@
     [dic setObject:[NSNumber numberWithInt:user.id] forKey:@"id"];
     [dic setObject:user.username forKey:@"username"];
     [dic setObject:user.email forKey:@"email"];
-    
+
+    if(user.avatar_url == nil)
+    {
+        user.avatar_url = @"";
+    }
+
     [dic setObject:user.avatar_url forKey:@"avatar_url"];
     [dic setObject:user.timezone forKey:@"timezone"];
 
