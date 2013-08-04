@@ -175,6 +175,7 @@
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
+    [txtFieldTitle addTarget:self action:@selector(txtDidEnd) forControlEvents:UIControlEventEditingDidEndOnExit];
     
     
     imageUploadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -404,6 +405,11 @@
 
 #pragma mark ScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [txtFieldTitle resignFirstResponder];
+}
+
+- (void)txtDidEnd
 {
     [txtFieldTitle resignFirstResponder];
 }
