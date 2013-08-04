@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 zyax86. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "EventDetailController.h"
 
 #import "EventDetailNavigationBar.h"
 #import "EventDetailPhotoView.h"
@@ -15,9 +15,7 @@
 #import "EventDetailTimeView.h"
 #import "EventDetailCommentContentView.h"
 
-#import "DKLiveBlurView.h"
-
-@interface ViewController ()
+@interface EventDetailController ()<EventDetailNavigationBarDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -29,11 +27,13 @@
 }
 @end
 
-@implementation ViewController
+@implementation EventDetailController
 
 - (void)dealloc
 {
     [navBar release];
+    [photoView setScrollView:nil];
+    [photoView setNavgation:nil];
     [photoView release];
     
     [invitePlaceContentView release];
@@ -55,8 +55,13 @@
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 524)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBounces:NO];
     [self.view addSubview:scrollView];
+    
+    [photoView setImage:[UIImage imageNamed:@"2.png"]];
+    [photoView setScrollView:scrollView];
+    [photoView setNavgation:navBar];
 
     invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
     [scrollView addSubview:invitePlaceContentView];
@@ -68,18 +73,23 @@
     [scrollView addSubview:commentContentView];
     
     [self layOutSubViews];
-    
-    DKLiveBlurView *blurView= (DKLiveBlurView *)photoView.photoView;
-    [blurView setOriginalImage:[UIImage imageNamed:@"2.png"]];
-    //    blurView.image = [UIImage imageNamed:@"2.png"];
-    blurView.scrollView = scrollView;
-    blurView.isGlassEffectOn = YES;
 }
 
 - (void)addNavBar
 {
     navBar = [[EventDetailNavigationBar creatView] retain];
+    navBar.delegate = self;
     [self.view addSubview:navBar];
+}
+
+- (void)leftBtnPress:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)rightBtnPress:(id)sender
+{
+    
 }
 
 - (void)addPhotoView
@@ -104,7 +114,7 @@
     commentContentViewFrame.origin = CGPointMake(0, timeContentView.frame.origin.y +  timeContentView.frame.size.height);
     commentContentView.frame = commentContentViewFrame;
     
-    [scrollView setContentSize:CGSizeMake(320, 1000)];
+    [scrollView setContentSize:CGSizeMake(320, 800)];
 }
 
 

@@ -6,6 +6,7 @@
 #import "Utils.h"
 
 #import "EventDetailViewController.h"
+#import "EventDetailController.h"
 
 #import "RootNavContrller.h"
 
@@ -186,10 +187,10 @@
 {
     LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
 
-    Event * event = [self getEvent:indexPath];
+//    Event * event = [self getEvent:indexPath];
 
-    EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
-    [detailCtl setEvent:event];
+    EventDetailController * detailCtl = [[EventDetailController alloc] init];
+//    [detailCtl setEvent:event];
 
     [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
 }

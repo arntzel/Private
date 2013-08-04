@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DKLiveBlurView.h"
 
 @interface EventDetailPhotoView : UIView
-@property (retain, nonatomic) IBOutlet UIImageView *photoView;
+@property (retain, nonatomic) IBOutlet DKLiveBlurView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
-+(EventDetailPhotoView *) creatView;
+- (void)setImage:(UIImage *)image;
+
+- (void)setScrollView:(UIScrollView *)_scrollView;
+- (void)setNavgation:(UIView *)navigation;
+
++ (EventDetailPhotoView *) creatView;
+
+
 @end
