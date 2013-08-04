@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface EventDetailPlaceView : UIView
+@property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UIImageView *mapView;
 
 +(EventDetailPlaceView *) creatView;
 
