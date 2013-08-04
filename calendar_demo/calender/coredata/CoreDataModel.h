@@ -23,6 +23,11 @@
 -(NSManagedObjectContext *)managedObjectContext;
 
 
+-(id) createEntity:(NSString *) entityName;
+
+
+
 +(CoreDataModel *) getInstance;
+
 
 @end

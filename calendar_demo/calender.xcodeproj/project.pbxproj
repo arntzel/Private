@@ -314,6 +314,12 @@
 		94D43549177DD975009B20F3 /* PendingEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D43548177DD975009B20F3 /* PendingEventViewCell.m */; };
 		94D4354B177DD9A5009B20F3 /* PendingEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */; };
 		94E8E2BE17831A5B000164AB /* PendingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8E2BD17831A5B000164AB /* PendingTableView.m */; };
+		94EB8C1117AE9BC900A072BC /* EventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1017AE9BC900A072BC /* EventEntity.m */; };
+		94EB8C1417AE9BC900A072BC /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1317AE9BC900A072BC /* UserEntity.m */; };
+		94EB8C1717AE9BCA00A072BC /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1617AE9BCA00A072BC /* FeedEventEntity.m */; };
+		94EB8C1A17AE9BCA00A072BC /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1917AE9BCA00A072BC /* LocationEntity.m */; };
+		94EB8C1D17AE9C2E00A072BC /* FeedEventEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1C17AE9C2E00A072BC /* FeedEventEntityExtra.m */; };
+		94EB8C2017AE9F4900A072BC /* UserEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EB8C1F17AE9F4900A072BC /* UserEntityExtra.m */; };
 		94EC2782178C3826009DC3F6 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EC2780178C3826009DC3F6 /* EventDetailViewController.m */; };
 		94EC2783178C3826009DC3F6 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94EC2781178C3826009DC3F6 /* EventDetailViewController.xib */; };
 		94F4A6A41765DA0F009F0094 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F4A6A21765DA0F009F0094 /* LoginNowController.m */; };
@@ -882,6 +888,18 @@
 		94D4354A177DD9A5009B20F3 /* PendingEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingEventViewCell.xib; sourceTree = "<group>"; };
 		94E8E2BC17831A5B000164AB /* PendingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingTableView.h; sourceTree = "<group>"; };
 		94E8E2BD17831A5B000164AB /* PendingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingTableView.m; sourceTree = "<group>"; };
+		94EB8C0F17AE9BC900A072BC /* EventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventEntity.h; sourceTree = "<group>"; };
+		94EB8C1017AE9BC900A072BC /* EventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventEntity.m; sourceTree = "<group>"; };
+		94EB8C1217AE9BC900A072BC /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntity.h; sourceTree = "<group>"; };
+		94EB8C1317AE9BC900A072BC /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
+		94EB8C1517AE9BCA00A072BC /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventEntity.h; sourceTree = "<group>"; };
+		94EB8C1617AE9BCA00A072BC /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventEntity.m; sourceTree = "<group>"; };
+		94EB8C1817AE9BCA00A072BC /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntity.h; sourceTree = "<group>"; };
+		94EB8C1917AE9BCA00A072BC /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntity.m; sourceTree = "<group>"; };
+		94EB8C1B17AE9C2E00A072BC /* FeedEventEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventEntityExtra.h; sourceTree = "<group>"; };
+		94EB8C1C17AE9C2E00A072BC /* FeedEventEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventEntityExtra.m; sourceTree = "<group>"; };
+		94EB8C1E17AE9F4900A072BC /* UserEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntityExtra.h; sourceTree = "<group>"; };
+		94EB8C1F17AE9F4900A072BC /* UserEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntityExtra.m; sourceTree = "<group>"; };
 		94EC277F178C3826009DC3F6 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		94EC2780178C3826009DC3F6 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EventDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		94EC2781178C3826009DC3F6 /* EventDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
@@ -1757,8 +1775,20 @@
 				94977E9D17A93E1B007AFFBC /* MessageEntity.h */,
 				94977E9E17A93E1B007AFFBC /* MessageEntity.m */,
 				94977E9417A93B82007AFFBC /* Model.xcdatamodeld */,
+				94EB8C1817AE9BCA00A072BC /* LocationEntity.h */,
+				94EB8C1917AE9BCA00A072BC /* LocationEntity.m */,
+				94EB8C1517AE9BCA00A072BC /* FeedEventEntity.h */,
+				94EB8C1617AE9BCA00A072BC /* FeedEventEntity.m */,
+				94EB8C1217AE9BC900A072BC /* UserEntity.h */,
+				94EB8C1317AE9BC900A072BC /* UserEntity.m */,
+				94EB8C0F17AE9BC900A072BC /* EventEntity.h */,
+				94EB8C1017AE9BC900A072BC /* EventEntity.m */,
 				94977E9717A93B9C007AFFBC /* CoreDataModel.h */,
 				94977E9817A93B9C007AFFBC /* CoreDataModel.m */,
+				94EB8C1B17AE9C2E00A072BC /* FeedEventEntityExtra.h */,
+				94EB8C1C17AE9C2E00A072BC /* FeedEventEntityExtra.m */,
+				94EB8C1E17AE9F4900A072BC /* UserEntityExtra.h */,
+				94EB8C1F17AE9F4900A072BC /* UserEntityExtra.m */,
 			);
 			name = coredata;
 			path = calender/coredata;
@@ -2202,6 +2232,12 @@
 				94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */,
 				94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */,
 				94BCB9BF17ADDFE50080A02A /* SettingViewController.m in Sources */,
+				94EB8C1117AE9BC900A072BC /* EventEntity.m in Sources */,
+				94EB8C1417AE9BC900A072BC /* UserEntity.m in Sources */,
+				94EB8C1717AE9BCA00A072BC /* FeedEventEntity.m in Sources */,
+				94EB8C1A17AE9BCA00A072BC /* LocationEntity.m in Sources */,
+				94EB8C1D17AE9C2E00A072BC /* FeedEventEntityExtra.m in Sources */,
+				94EB8C2017AE9F4900A072BC /* UserEntityExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

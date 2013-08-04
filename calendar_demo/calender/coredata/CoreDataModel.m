@@ -70,6 +70,10 @@ static CoreDataModel * instance;
     return managedObjectContext;
 }
 
+-(id) createEntity:(NSString *)entityName
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:[self managedObjectContext]];
+}
 
 +(CoreDataModel *) getInstance
 {
