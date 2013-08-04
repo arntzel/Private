@@ -62,6 +62,8 @@
 		7696F46317AE26EF009FFEC8 /* EventDetailTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F46217AE26EF009FFEC8 /* EventDetailTimeView.m */; };
 		7696F46617AE2A8B009FFEC8 /* EventDetailCommentContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F46517AE2A8B009FFEC8 /* EventDetailCommentContentView.m */; };
 		7696F46817AE33A7009FFEC8 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7696F46717AE33A7009FFEC8 /* 2.png */; };
+		7696F46D17AE6FC1009FFEC8 /* DKLiveBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7696F46B17AE6E43009FFEC8 /* DKLiveBlurView.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
+		7696F46F17AE702B009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F46E17AE702B009FFEC8 /* Accelerate.framework */; };
 		76E5C33D17A9577F00ADDF4A /* EventDetailPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */; };
 		76E5C33F17A95B8900ADDF4A /* EventDetailFinailzeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */; };
 		76E5C34117A9638900ADDF4A /* EventDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */; };
@@ -140,6 +142,9 @@
 		7696F46417AE2A8B009FFEC8 /* EventDetailCommentContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentContentView.h; sourceTree = "<group>"; };
 		7696F46517AE2A8B009FFEC8 /* EventDetailCommentContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentContentView.m; sourceTree = "<group>"; };
 		7696F46717AE33A7009FFEC8 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		7696F46A17AE6E43009FFEC8 /* DKLiveBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKLiveBlurView.h; sourceTree = "<group>"; };
+		7696F46B17AE6E43009FFEC8 /* DKLiveBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKLiveBlurView.m; sourceTree = "<group>"; };
+		7696F46E17AE702B009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		76E5C33C17A9577F00ADDF4A /* EventDetailPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailPhotoView.xib; sourceTree = "<group>"; };
 		76E5C33E17A95B8900ADDF4A /* EventDetailFinailzeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailFinailzeView.xib; path = ../EventDetailFinailzeView.xib; sourceTree = "<group>"; };
 		76E5C34017A9638900ADDF4A /* EventDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailHeader.xib; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7696F46F17AE702B009FFEC8 /* Accelerate.framework in Frameworks */,
 				762CBFC617AC9F3100C6C2C9 /* QuartzCore.framework in Frameworks */,
 				7618BEF017A3B0D900176977 /* UIKit.framework in Frameworks */,
 				7618BEF217A3B0D900176977 /* Foundation.framework in Frameworks */,
@@ -163,6 +169,7 @@
 		7618BEE317A3B0D900176977 = {
 			isa = PBXGroup;
 			children = (
+				7696F46E17AE702B009FFEC8 /* Accelerate.framework */,
 				762CBFC517AC9F3000C6C2C9 /* QuartzCore.framework */,
 				7618BEF517A3B0D900176977 /* detail */,
 				7618BEEE17A3B0D900176977 /* Frameworks */,
@@ -191,6 +198,7 @@
 		7618BEF517A3B0D900176977 /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				7696F46917AE6E43009FFEC8 /* FuzzyView */,
 				762CBFD217ACAC3400C6C2C9 /* resource */,
 				7618BEFE17A3B0D900176977 /* AppDelegate.h */,
 				7618BEFF17A3B0D900176977 /* AppDelegate.m */,
@@ -313,6 +321,15 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		7696F46917AE6E43009FFEC8 /* FuzzyView */ = {
+			isa = PBXGroup;
+			children = (
+				7696F46A17AE6E43009FFEC8 /* DKLiveBlurView.h */,
+				7696F46B17AE6E43009FFEC8 /* DKLiveBlurView.m */,
+			);
+			path = FuzzyView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7696F46D17AE6FC1009FFEC8 /* DKLiveBlurView.m in Sources */,
 				7618BEFC17A3B0D900176977 /* main.m in Sources */,
 				7618BF0017A3B0D900176977 /* AppDelegate.m in Sources */,
 				7618BF0917A3B0DA00176977 /* ViewController.m in Sources */,
