@@ -14,6 +14,9 @@
 @interface FeedEventEntity (FeedEventEntityExtra)
 
 
+-(UserEntity*) getCreator;
+
+
 -(void) convertFromEvent:(Event*) event;
 
 

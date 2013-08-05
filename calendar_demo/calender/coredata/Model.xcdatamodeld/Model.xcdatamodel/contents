@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DayFeedEventEntitys" representedClassName="DayFeedEventEntitys" syncable="YES">
+        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeedEventEntity" syncable="YES"/>
+    </entity>
     <entity name="EventEntity" representedClassName="EventEntity" syncable="YES">
         <attribute name="allow_attendee_invite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="allow_new_dt" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -12,10 +17,10 @@
         <attribute name="duration_days" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="duration_hours" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="duration_minutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="end" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="eventType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="is_all_day" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="privilige" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="published" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
@@ -26,12 +31,12 @@
         <attribute name="userstatus" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attendees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" syncable="YES"/>
     </entity>
     <entity name="FeedEventEntity" representedClassName="FeedEventEntity" syncable="YES">
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="confirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="created_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration_days" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -48,7 +53,6 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userstatus" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attendees" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="UserEntity" syncable="YES"/>
-        <relationship name="creator" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="UserEntity" syncable="YES"/>
     </entity>
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -60,6 +64,7 @@
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="apikey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creatorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -68,9 +73,10 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EventEntity" positionX="160" positionY="192" width="128" height="435"/>
-        <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="UserEntity" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="EventEntity" positionX="160" positionY="192" width="128" height="420"/>
         <element name="FeedEventEntity" positionX="160" positionY="192" width="128" height="345"/>
+        <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="DayFeedEventEntitys" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

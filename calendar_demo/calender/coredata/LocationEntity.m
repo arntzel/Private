@@ -2,7 +2,7 @@
 //  LocationEntity.m
 //  calender
 //
-//  Created by xiangfang on 13-8-4.
+//  Created by fang xiang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 

@@ -14,11 +14,24 @@
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
 
+-(UserEntity*) getCreator
+{
+    for(UserEntity * user in self.attendees)
+    {
+        if([user.id isEqualToNumber:self.createorID])
+        {
+            return user;
+        }
+    }
+    
+    return nil;
+}
+
+
 -(void) convertFromEvent:(Event*) event
 {
     self.id = [NSNumber numberWithInt:event.id];
     
-    self.archived =  [NSNumber numberWithInt:event.archived];
     self.archived =  [NSNumber numberWithBool:event.archived];
     self.confirmed =  [NSNumber numberWithBool:event.confirmed];
     self.created_on = event.created_on;
@@ -41,9 +54,10 @@
     self.locationName = event.location.location;
 
 
-    UserEntity * user = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-    [user convertFromUser:event.creator];
-    self.creator = user;
+    //UserEntity * user = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
+    //[user convertFromUser:event.creator];
+    
+    self.createorID = [NSNumber numberWithInt:event.creator.id];
 
     for(EventAttendee * atd in event.attendees) {
 

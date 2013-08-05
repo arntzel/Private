@@ -2,12 +2,11 @@
 //  EventEntity.m
 //  calender
 //
-//  Created by xiangfang on 13-8-4.
+//  Created by fang xiang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
 #import "EventEntity.h"
-#import "LocationEntity.h"
 #import "UserEntity.h"
 
 
@@ -24,7 +23,6 @@
 @dynamic duration_days;
 @dynamic duration_hours;
 @dynamic duration_minutes;
-@dynamic end;
 @dynamic eventType;
 @dynamic id;
 @dynamic is_all_day;
@@ -36,8 +34,8 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic creator;
 @dynamic location;
 @dynamic attendees;
+@dynamic creator;
 
 @end

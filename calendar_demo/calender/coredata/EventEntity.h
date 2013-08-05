@@ -2,14 +2,14 @@
 //  EventEntity.h
 //  calender
 //
-//  Created by xiangfang on 13-8-4.
+//  Created by fang xiang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class LocationEntity, UserEntity;
+@class UserEntity;
 
 @interface EventEntity : NSManagedObject
 
@@ -24,7 +24,6 @@
 @property (nonatomic, retain) NSNumber * duration_days;
 @property (nonatomic, retain) NSNumber * duration_hours;
 @property (nonatomic, retain) NSNumber * duration_minutes;
-@property (nonatomic, retain) NSDate * end;
 @property (nonatomic, retain) NSNumber * eventType;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * is_all_day;
@@ -36,9 +35,9 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
-@property (nonatomic, retain) UserEntity *creator;
-@property (nonatomic, retain) LocationEntity *location;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet *attendees;
+@property (nonatomic, retain) UserEntity *creator;
 @end
 
 @interface EventEntity (CoreDataGeneratedAccessors)

@@ -2,7 +2,7 @@
 //  UserEntity.h
 //  calender
 //
-//  Created by xiangfang on 13-8-4.
+//  Created by fang xiang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSString * last_name;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSNumber * creatorID;
 
 @end
