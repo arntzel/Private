@@ -34,6 +34,10 @@
 
 -(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day;
 
+
+-(int) getDayFeedEventType:(NSString *) day;
+
+
 -(void) addFeedEventEntitys:(NSArray *) entitys;
 
 -(void) addFeedEventEntity:(FeedEventEntity*) entity;

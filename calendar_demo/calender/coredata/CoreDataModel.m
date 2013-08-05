@@ -105,6 +105,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
+    //fetchRequest.propertiesToFetch =
     //[fetchRequest setFetchBatchSize:20];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = '%@')", day];
     [fetchRequest setPredicate:predicate];
@@ -117,6 +118,31 @@ static CoreDataModel * instance;
     
     return nil;
 }
+
+-(int) getDayFeedEventType:(NSString *) day
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+  
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"eventType"]];
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    //[fetchRequest setFetchBatchSize:20];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = '%@')", day];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    if(results.count >0) {
+        NSDictionary * dic = [results objectAtIndex:0];
+        return [[dic objectForKey:@"eventType"] intValue];
+    }
+    
+    return 0;
+
+}
+
 
 -(void) addFeedEventEntitys:(NSArray *) entitys
 {
