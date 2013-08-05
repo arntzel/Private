@@ -2,7 +2,7 @@
 //  FeedEventEntity.m
 //  calender
 //
-//  Created by fang xiang on 13-8-5.
+//  Created by xiangfang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 @dynamic archived;
 @dynamic confirmed;
 @dynamic created_on;
+@dynamic creatorID;
 @dynamic descript;
 @dynamic duration;
 @dynamic duration_days;
@@ -30,7 +31,6 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic createorID;
 @dynamic attendees;
 
 @end

@@ -12,6 +12,18 @@
 
 @implementation UserEntity (UserEntityExtra)
 
+-(NSString *) getReadableUsername
+{
+    if(self.first_name.length > 0 || self.last_name.length >0) {
+
+        return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
+
+    } else {
+        return self.email;
+    }
+}
+
+
 -(void) convertFromUser:(User*) user
 {
 

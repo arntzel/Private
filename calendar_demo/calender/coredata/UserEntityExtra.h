@@ -12,6 +12,7 @@
 
 @interface UserEntity (UserEntityExtra)
 
+-(NSString *) getReadableUsername;
 
 -(void) convertFromUser:(User*) user;
 

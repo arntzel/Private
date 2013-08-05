@@ -111,4 +111,13 @@
     
     return [weekBegin compare:weekBegin2];
 }
+
+-(NSInteger) cc_DaysBetween:(NSDate *) date
+{
+    NSDate * selfDay = [self cc_dateByMovingToBeginningOfDay];
+    NSDate * day = [date cc_dateByMovingToBeginningOfDay];
+
+    return (NSInteger)([day timeIntervalSinceDate:selfDay]/(3600*24));
+}
+
 @end

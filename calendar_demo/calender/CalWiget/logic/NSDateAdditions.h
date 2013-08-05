@@ -27,6 +27,9 @@
 - (NSUInteger)cc_numberOfDaysInMonth;
 
 
+-(NSInteger) cc_DaysBetween:(NSDate *) date;
+
+
 -(int) compareWeek:(NSDate *) date;
 
 @end

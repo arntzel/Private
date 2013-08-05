@@ -26,13 +26,13 @@
 #import "EventDetailViewController.h"
 #import "CustomerIndicatorView.h"
 #import "NSDateAdditions.h"
+#import "CoreDataModel.h"
 
 /*
  FeedViewController show the event list and a calender wiget
  */
 @interface FeedViewController () <UITableViewDataSource,
                                   UITableViewDelegate,
-                                  PullRefreshTableViewDelegate,
                                   KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
@@ -43,8 +43,6 @@
     FeedCalenderView *calendarView;
     FeedEventTableView * tableView;
    
-    EventModel * eventModel;
-
     CustomerIndicatorView * dataLoadingView;
 }
 
@@ -60,10 +58,6 @@
 {
     [super viewDidLoad];
 	
-    eventModel = [[Model getInstance] getEventModel];
-    eventModel.begin = eventModel.end = [NSDate date];
-    [eventModel addDelegate:self];
-
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -77,14 +71,6 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     tableView.feedEventdelegate = self;
-    
-    //[tableView setAllowsSelection:NO];
-    
-    tableView.headerEnabled = YES;
-    tableView.tailerEnabled = YES;
-    tableView.pullRefreshDalegate = self;
-
-    [tableView setEventModel:eventModel];
     
     [self.view addSubview:tableView];
     
@@ -105,21 +91,14 @@
         int filetVal = filterNum.intValue;
         LOG_D(@"Read filterVal:0x %x", filetVal);
         [self.calendarView.filterView setFilter: filetVal];
-        [eventModel setFilter:filetVal];
+        tableView.eventTypeFilters = filetVal;
     } else {
         int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
         [self.calendarView.filterView setFilter:filetVal];
-        [eventModel setFilter:filetVal];
+        tableView.eventTypeFilters = filetVal;
     }
     
     self.calendarView.filterView.delegate = self;
-
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-//    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
-//    selectedYear = [components year];  //当前的年份
-//    selectedMonth = [components month];  //当前的月份
-//    selectedDay = [components day];
 
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
@@ -129,7 +108,12 @@
     
 
     [self.view addSubview:dataLoadingView];
-    [tableView startTailerLoading];
+    //[tableView startTailerLoading];
+
+    NSDate * begin = [NSDate date];
+    //begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+    tableView.beginDate = begin;
+    //[self loadData:begin];
 }
 
 
@@ -139,34 +123,33 @@
     [self.navigationController setNavigationBarHidden:YES];
 }
 
-
--(void) loadDataBegin:(NSDate *) begin andEnd:(NSDate *)end
+-(void) loadData:(NSDate *) begin
 {
-
-    [[Model getInstance] getEventsOfBegin:begin andEnd:end andCallback:^(NSInteger error, NSArray *events) {
+    NSLog(@"loadData begin:%@", begin);
+    
+    [[Model getInstance] getEventsOfBegin:begin andEnd:nil andCallback:^(NSInteger error, NSArray *events) {
 
         LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
 
         if(error == 0) {
 
-            if([begin compare:eventModel.begin] < 0) {
-                eventModel.begin = begin;
+            CoreDataModel * model = [CoreDataModel getInstance];
+
+            for(Event * evt in events) {
+                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                [entity convertFromEvent:evt];
+                [model addFeedEventEntity:entity];
             }
 
-            if([end compare:eventModel.end] > 0) {
-                eventModel.end = end;
-            }
+            [model saveData];
 
-            [eventModel addEvents:events];
+            [tableView reloadData];
 
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
-
-        [tableView stopPullLoading];
-    }];    
+    }];
 }
-
 
 
 #pragma mark -
@@ -174,23 +157,16 @@
 
 - (void)didSelectDate:(KalDate *)date
 {
-    
-    NSString * begin = [Utils formateDay:eventModel.begin];
-    NSString * end = [Utils formateDay:eventModel.end];
 
-    NSString * selectedDate = [Utils formateDay:[date NSDate]];
+    NSDate * selectDate = [date NSDate];
 
-    if([selectedDate compare:begin] >= 0 && [selectedDate compare:end] < 0 ) {
-
-        [self tableviewScroll2SelectDay:selectedDate];
-
-    } else {
-
-        NSDate * begin =  [date NSDate];
-        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:7];
-        [self loadDataBegin:begin andEnd:end];
-        [dataLoadingView startAnim];
+    int day = [tableView.beginDate cc_DaysBetween:selectDate];
+    if(day<0) {
+        day = 0;
     }
+
+    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:day];
+    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -201,80 +177,15 @@
     return YES;
 }
 
--(void) tableviewScroll2SelectDay:(NSString *) selectedDate
-{
-    
-    //NSString * selectedDate = [Utils formate:selectedYear andMonth:selectedMonth andDay:selectedDay];
-    
-    LOG_D(@"tableviewScroll2SelectDay:%@", selectedDate);
-    
-    NSArray * array = [eventModel getAllDays];
-    
-    if(array.count ==0 ) return;
-    
-    int index = 0;
-    for(; index<array.count; index++) {
-        NSString * day = [array objectAtIndex:index];
-        if( [selectedDate compare:day] <= 0 ) {
-            break;
-        }
-    }
-    
-    if(index == array.count) {
-        index--;
-    }
-    
-    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:index];
-    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
 
 #pragma mark -
 #pragma mark KalTileViewDataSource
--(int) getEventType:(KalDate *) date {
-
-    NSString * day = [Utils formate:date.year andMonth:date.month andDay:date.day];
-
-    int eventTypes = [eventModel getEventsTypes:day];
-    eventTypes = (eventTypes & [eventModel getFilter]);
-
-    return eventTypes;
-}
-
-
-
-#pragma mark -
-#pragma mark PullRefreshTableViewDelegate
-- (void) onPullStarted {
-
-
-
-}
-
--(void) onPullStop {
-    
-    [dataLoadingView stopAnim];
-}
-
-- (void) onPullCancelled {
-
-}
-
--(void) onStartLoadData:(BOOL)head
-{
-    if(head) {
-
-        NSDate * end = eventModel.begin;
-        NSDate * begin = [end cc_dateByMovingToThePreviousDayCout:14];
-        [self loadDataBegin:begin andEnd:end];
-        
-    } else {
-
-        NSDate * begin = eventModel.end;
-        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:14];
-        [self loadDataBegin:begin andEnd:end];
-    }
-
-    [dataLoadingView startAnim];
+-(int) getEventType:(KalDate *) date
+{     
+    NSString * day = [Utils formateDay:[date NSDate]];
+    int type =[[CoreDataModel getInstance] getDayFeedEventType:day];
+    type = type & tableView.eventTypeFilters;
+    return type;
 }
 
 
@@ -288,7 +199,9 @@
     [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];
     [defaults synchronize];
 
-    [eventModel setFilter:filters];
+    tableView.eventTypeFilters = filters;
+    [self.calendarView setNeedsDisplay];
+    [tableView reloadData];
 }
 
 //#pragma mark -

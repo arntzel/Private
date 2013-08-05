@@ -18,10 +18,10 @@
     return self;
 }
 
--(void) refreshView:(Event *) event
+-(void) refreshView:(FeedEventEntity *) event
 {
 
-    if(event.is_all_day) {
+    if([event.is_all_day boolValue]) {
         
         self.labTime.text = @"ALL DAY";
         self.labTimeType.hidden = YES;
@@ -50,14 +50,15 @@
         self.labEventDuration.text = event.duration;
     }
 
-    NSString * headerUrl = event.creator.avatar_url;
+    UserEntity * user = [event getCreator];
+    NSString * headerUrl = user.avatar_url;
 
     //Birthday
-    if(event.eventType == 4) {
+    if([event.eventType intValue] == 4) {
         headerUrl = event.thumbnail_url;
     }
 
-    if([headerUrl isKindOfClass: [NSNull class]]) {
+    if(headerUrl == nil) {
         self.imgUser.image = [UIImage imageNamed:@"header.png"];
     } else {
         [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
@@ -66,48 +67,48 @@
 
     //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
     
-    int color = [ViewUtils getEventTypeColor:event.eventType];
+    int color = [ViewUtils getEventTypeColor:[event.eventType intValue]];
     self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
     
-    self.labTitle.text = event.title;
+    self.labTitle.text = [Utils formateDay:event.start];
 }
 
--(NSString *) getEventDutationText:(Event*)event
+-(NSString *) getEventDutationText:(FeedEventEntity*)event
 {
     NSMutableString * duration = [[NSMutableString alloc] init];
 
     if(event.duration_days>0) {
-        [duration appendFormat:@"%dday ", event.duration_days];
+        [duration appendFormat:@"%dday ", [event.duration_days intValue]];
     }
 
     if(event.duration_hours>0) {
-        [duration appendFormat:@"%dhr ", event.duration_hours];
+        [duration appendFormat:@"%dhr ", [event.duration_hours intValue]];
     }
 
     if(event.duration_minutes>0) {
-        [duration appendFormat:@"%dmin ", event.duration_minutes];
+        [duration appendFormat:@"%dmin ", [event.duration_minutes intValue]];
     }
 
     return duration;
 }
 
--(NSString *) getLocationText:(Event *) event
+-(NSString *) getLocationText:(FeedEventEntity *) event
 {
-    Location * location = event.location;
+    NSString * location = event.locationName;
 
-    if(location!= nil && location.location != nil && location.location.length > 0) {
-        return  location.location;
+    if(location!= nil && location.length > 0) {
+        return  location;
     } else {
         return @"No location determined";
     }
 }
 
--(NSString *) getAttendeesText:(Event*) event
+-(NSString *) getAttendeesText:(FeedEventEntity*) event
 {
-    NSArray * attendees = event.attendees;
+    NSSet * attendees = event.attendees;
     if(attendees.count>100) {
         
         return [NSString stringWithFormat:@"%d attendees", attendees.count];
@@ -116,29 +117,37 @@
         
         NSMutableString * str = [[NSMutableString alloc] init];
 
-        EventAttendee * atd = [attendees objectAtIndex:0];
-        [str appendString: [atd.user getReadableUsername]];
-        [str appendString:@" "];
-        
-        atd = [attendees objectAtIndex:1];
-        [str appendString: [atd.user getReadableUsername]];
-       
-        [str appendFormat:@" and %dattendees", attendees.count-2];
+        int count = 0;
+        for(UserEntity * user in attendees) {
 
+            if(count == 0) {
+                [str appendString: [user getReadableUsername]];
+                [str appendString:@" "];
+            } else if(count == 1) {
+                [str appendString: [user getReadableUsername]];
+            } else {
+                break;
+            }
+            count++;
+        }
+
+        [str appendFormat:@" and %dattendees", attendees.count-2];
         return str;
+        
     } else if(attendees.count>0){
 
         NSMutableString * str = [[NSMutableString alloc] init];
 
-        for(int i=0;i<attendees.count;i++) {
-            EventAttendee * atd = [attendees objectAtIndex:i];
-            [str appendString: [atd.user getReadableUsername]];
+        int i =0 ;
+        for(UserEntity * user in attendees) {
+           [str appendString: [user getReadableUsername]];
 
             if(i<attendees.count-1) {
                 [str appendString:@", "];
             }
+            i++;
         }
-
+        
         return str;
     } else {
         return @"No guests invited";

@@ -30,13 +30,32 @@
     user.id = [[jsonData objectForKey:@"id"] intValue];
     user.username = [jsonData objectForKey:@"username"];
     user.email = [jsonData objectForKey:@"email"];
+    
     user.apikey = [jsonData objectForKey:@"apikey"];
+    if([user.apikey isKindOfClass: [NSNull class]]) {
+        user.apikey = nil;
+    }
+
     user.avatar_url = [jsonData objectForKey:@"avatar_url"];
+    if([user.avatar_url isKindOfClass: [NSNull class]]) {
+        user.avatar_url = nil;
+    }
+
     user.timezone = [jsonData objectForKey:@"timezone"];
-
+    if([user.timezone isKindOfClass: [NSNull class]]) {
+        user.timezone = nil;
+    }
+    
     user.first_name = [jsonData objectForKey:@"first_name"];
-    user.last_name = [jsonData objectForKey:@"last_name"];
+    if([user.first_name isKindOfClass: [NSNull class]]) {
+        user.first_name = nil;
+    }
 
+    user.last_name = [jsonData objectForKey:@"last_name"];
+    if([user.last_name isKindOfClass: [NSNull class]]) {
+        user.last_name = nil;
+    }
+    
     return user;
 }
 

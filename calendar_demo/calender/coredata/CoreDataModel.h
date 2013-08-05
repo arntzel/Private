@@ -30,6 +30,7 @@
 
 -(id) createEntity:(NSString *) entityName;
 
+-(FeedEventEntity*) getFeedEventEntity:(int)id;
 
 
 -(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day;

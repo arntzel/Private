@@ -2,7 +2,7 @@
 //  EventEntity.m
 //  calender
 //
-//  Created by fang xiang on 13-8-5.
+//  Created by xiangfang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -26,6 +26,7 @@
 @dynamic eventType;
 @dynamic id;
 @dynamic is_all_day;
+@dynamic location;
 @dynamic privilige;
 @dynamic published;
 @dynamic start;
@@ -34,7 +35,6 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic location;
 @dynamic attendees;
 @dynamic creator;
 

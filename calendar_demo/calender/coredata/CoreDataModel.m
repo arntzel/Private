@@ -91,6 +91,24 @@ static CoreDataModel * instance;
     return managedObjectContext;
 }
 
+-(FeedEventEntity*) getFeedEventEntity:(int) id
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    //fetchRequest.propertiesToFetch =
+    //[fetchRequest setFetchBatchSize:20];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(id = %d)", id];
+    [fetchRequest setPredicate:predicate];
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+    
+    return nil;
+}
 
 -(id) createEntity:(NSString *)entityName
 {
@@ -107,7 +125,7 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     //fetchRequest.propertiesToFetch =
     //[fetchRequest setFetchBatchSize:20];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = '%@')", day];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = %@)", day];
     [fetchRequest setPredicate:predicate];
     
      NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -129,7 +147,7 @@ static CoreDataModel * instance;
     fetchRequest.resultType = NSDictionaryResultType;
     
     //[fetchRequest setFetchBatchSize:20];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = '%@')", day];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day = %@)", day];
     [fetchRequest setPredicate:predicate];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -174,6 +192,13 @@ static CoreDataModel * instance;
     
     
     [dayEntitys addEventsObject:entity];
+
+    int type = 0;
+    for(FeedEventEntity * ent in dayEntitys.events) {
+        type |= 0x00000001 << [ent.eventType intValue];
+    }
+
+    dayEntitys.eventType = [NSNumber numberWithInt:type];
 }
 
 

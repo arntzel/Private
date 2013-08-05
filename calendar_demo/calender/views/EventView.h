@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
-#import "Event.h"
+#import "FeedEventEntityExtra.h"
+#import "UserEntityExtra.h"
 
 #define PlanView_HEIGHT 120
 
@@ -23,7 +24,7 @@
 /*
  Update the date in the View
  */
--(void) refreshView:(Event *) event;
+-(void) refreshView:(FeedEventEntity *) event;
 
 /*
  Create a EventView object with default data

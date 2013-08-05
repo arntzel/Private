@@ -1,19 +1,16 @@
 //
-//  DayFeedEventEntitys.m
+//  DayFeedEventEntitysExtra.h
 //  calender
 //
 //  Created by xiangfang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "DayFeedEventEntitys.h"
-#import "FeedEventEntity.h"
 
+@interface DayFeedEventEntitys (DayFeedEventEntitysExtra)
 
-@implementation DayFeedEventEntitys
-
-@dynamic day;
-@dynamic eventType;
-@dynamic events;
+-(NSArray *) getEvents;
 
 @end

@@ -227,10 +227,14 @@ static Model * instance;
 -(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
 {
     NSString * startDay = [Utils formateDay:begin];
-    NSString * endDay = [Utils formateDay:end];
-
     startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
-    endDay =[NSString stringWithFormat:@"%@T00:00:00", endDay];
+
+
+    NSString * endDay = nil;
+    if(end != nil) {
+        endDay = [Utils formateDay:end];
+        endDay =[NSString stringWithFormat:@"%@T00:00:00", endDay];
+    }
 
     [self getEvents:startDay andEnd:endDay andCallback:callback];
 }
@@ -241,7 +245,12 @@ static Model * instance;
     //start__lt=2013-06-16T00:00:00
 
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
+    NSString * url;
+    if(endDay == nil) {
+        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@", HOST, startDay];
+    } else {
+        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
+    }
     
     LOG_D(@"url=%@", url);
     

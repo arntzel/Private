@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Event.h"
+#import "FeedEventEntityExtra.h"
+#import "UserEntityExtra.h"
 
 #define BirthdayEventView_Height  55
 
@@ -19,7 +20,7 @@
 /*
  Update the date in the View
  */
--(void) refreshView:(Event *) event;
+-(void) refreshView:(FeedEventEntity *) event;
 
 /*
  Create a EventView object with default data

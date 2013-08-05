@@ -36,7 +36,7 @@
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="confirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="created_on" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="createorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="creatorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration_days" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -73,10 +73,10 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="DayFeedEventEntitys" positionX="160" positionY="192" width="128" height="90"/>
         <element name="EventEntity" positionX="160" positionY="192" width="128" height="420"/>
         <element name="FeedEventEntity" positionX="160" positionY="192" width="128" height="345"/>
         <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
         <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="DayFeedEventEntitys" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

@@ -11,11 +11,12 @@
 
 @end
 
-@interface FeedEventTableView : PullRefreshTableView
+@interface FeedEventTableView : UITableView
+
+@property(strong) NSDate * beginDate;
+@property int eventTypeFilters;
 
 @property(assign) id<FeedEventTableViewDelegate> feedEventdelegate;
-
--(void) setEventModel:(EventModel *) eventModel;
 
 
 @end

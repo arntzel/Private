@@ -18,15 +18,13 @@
 }
 
 
--(void) refreshView:(Event *) event
+-(void) refreshView:(FeedEventEntity *) event
 {
     self.labTitle.text = event.title;
-   
-    NSString * headerUrl = event.creator.avatar_url;
 
-    headerUrl = event.thumbnail_url;
+    NSString * headerUrl = event.thumbnail_url;
 
-    if([headerUrl isKindOfClass: [NSNull class]]) {
+    if(headerUrl == nil) {
         self.imgUser.image = [UIImage imageNamed:@"header.png"];
     } else {
         [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
@@ -49,6 +47,5 @@
     
     return view;
 }
-
 
 @end

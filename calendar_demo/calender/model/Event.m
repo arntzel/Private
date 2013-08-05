@@ -48,6 +48,9 @@
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
     event.description = [json objectForKey:@"description"];
+    if([event.description isKindOfClass:[NSNull class]]) {
+        event.description = nil;
+    }
     
     event.duration = [json objectForKey:@"duration"];
 
@@ -73,6 +76,10 @@
     event.status = [json objectForKey:@"status"];
 
     event.thumbnail_url = [json objectForKey:@"thumbnail_url"];
+    if([event.thumbnail_url isKindOfClass:[NSNull class]]) {
+        event.thumbnail_url = nil;
+    }
+        
     event.title = [json objectForKey:@"title"];
     event.timezone = [json objectForKey:@"timezone"];
 

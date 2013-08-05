@@ -2,7 +2,7 @@
 //  EventEntity.h
 //  calender
 //
-//  Created by fang xiang on 13-8-5.
+//  Created by xiangfang on 13-8-5.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSNumber * eventType;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * is_all_day;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * privilige;
 @property (nonatomic, retain) NSNumber * published;
 @property (nonatomic, retain) NSDate * start;
@@ -35,7 +36,6 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
-@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet *attendees;
 @property (nonatomic, retain) UserEntity *creator;
 @end

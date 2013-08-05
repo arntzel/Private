@@ -4,11 +4,16 @@
 #import "EventView.h"
 #import "BirthdayEventView.h"
 #import "Utils.h"
+#import "ViewUtils.h"
 
 #import "EventDetailViewController.h"
 #import "EventDetailController.h"
 
 #import "RootNavContrller.h"
+#import "NSDateAdditions.h"
+#import "CoreDataModel.h"
+#import "DayFeedEventEntitysExtra.h"
+#import "FeedEventEntity.h"
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -16,8 +21,8 @@
 
 
 @implementation FeedEventTableView {
-    EventModel * eventModel;
     NSString * currentFirstDay;
+    CoreDataModel * model;
 }
 
 
@@ -43,18 +48,11 @@
 
 
 -(void) initTableView {
-   
-    self.headerEnabled = YES;
-    self.tailerEnabled = YES;
-
+  
     self.dataSource = self;
     self.delegate = self;
-    
-}
 
--(void) setEventModel:(EventModel *) _eventModel {
-    eventModel = _eventModel;
-    [self reloadData];
+    model = [CoreDataModel getInstance];
 }
 
 
@@ -62,46 +60,51 @@
 #pragma mark tableViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [super scrollViewDidEndDecelerating:scrollView];
 
     NSArray * indexs = [self indexPathsForVisibleRows];
     
     if(indexs.count > 0) {
         NSIndexPath * path = [indexs objectAtIndex:0];
-                
-        NSString * day =  [[eventModel getAllDays] objectAtIndex:path.section];
-        
-        if(currentFirstDay!= nil && ![currentFirstDay isEqualToString:day]) {
-            Event * event = [self getEvent:path];
-            [self.feedEventdelegate onDisplayFirstDayChanged: event.start];
+        NSDate * date = [self.beginDate cc_dateByMovingToTheFollowingDayCout:path.section];
+        if(self.feedEventdelegate != nil) {
+            [self.feedEventdelegate onDisplayFirstDayChanged:date];
         }
-        
-        currentFirstDay = day;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    //LOG_D(@"numberOfRowsInSection:%d", section);
+    DayFeedEventEntitys * entitys = [self getEventEntity:section];
 
-    NSArray * allDays = [eventModel getAllDays];
+    if(entitys == nil) {
+        return 1;
+    }
 
-    NSString * key = [allDays objectAtIndex:section];
-
-    NSArray * array = [eventModel getEventsByDay:key];
-
-    //LOG_D(@"section=%d, count=%d/%d, key=%@", section, array.count, allDays.count, key);
-
-    return array.count;
+    NSArray * events = [self getFeedEvents:entitys];
+    return events.count > 0 ? events.count : 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    Event * event = [self getEvent:indexPath];
+    DayFeedEventEntitys * entitys = [self getEventEntity:indexPath.section];
 
-    if(event.eventType != 4) {
+    if(entitys == nil) {
+        UITableViewCell * cell = (UITableViewCell *)[ViewUtils createView:@"NoEventView"];
+        return cell;
+    }
+
+    NSArray * events = [self getFeedEvents:entitys];
+    if(events.count == 0) {
+        UITableViewCell * cell = (UITableViewCell *)[ViewUtils createView:@"NoEventView"];
+        return cell;
+    }
+
+    
+    FeedEventEntity * event = [events objectAtIndex:indexPath.row];
+    
+    if([event.eventType intValue] != 4) {
         EventView * view = [EventView createEventView];
 
         [view refreshView:event];
@@ -124,10 +127,8 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSArray * allDays = [eventModel getAllDays];
-
-    NSString * sectionName = [allDays objectAtIndex:section];
-
+    NSDate * date = [self.beginDate cc_dateByMovingToTheFollowingDayCout:section];
+    NSString * sectionName = [Utils formateDay:date];
     sectionName = [Utils toReadableDay:sectionName];
 
     CGRect frame = CGRectMake(0, 0, 320, 24);
@@ -162,9 +163,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[eventModel getAllDays] count];
+    NSDate * endData = [self.beginDate cc_dateByMovingToThePreviousDayCout:365];
+    int days  =  [endData cc_DaysBetween:self.beginDate];
+    return days;
 }
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -174,9 +176,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Event * event = [self getEvent:indexPath];
+    DayFeedEventEntitys * entitys = [self getEventEntity:indexPath.section];
 
-    if(event.eventType == 4) {
+    if(entitys == nil) {
+        return 55;
+    }
+
+    NSArray * events = [self getFeedEvents:entitys];
+    if(events.count == 0) {
+        return 55;
+    }
+
+    FeedEventEntity * event = [events objectAtIndex:indexPath.row];
+    
+    if([event.eventType intValue] == 4) {
         return BirthdayEventView_Height;
     } else {
         return PlanView_HEIGHT;
@@ -195,17 +208,36 @@
     [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
 }
 
--(Event *) getEvent:(NSIndexPath*)indexPath
+-(DayFeedEventEntitys *) getEventEntity:(int) section
 {
-    int section = indexPath.section;
-    int row = indexPath.row;
-
-    NSArray * allDays = [eventModel getAllDays];
-
-    NSString * key = [allDays objectAtIndex:section];
-    NSArray * dayEvents = [eventModel getEventsByDay:key];
-    Event * event = [dayEvents objectAtIndex:row];
-
-    return event;
+    NSDate * date = [self.beginDate cc_dateByMovingToTheFollowingDayCout:section];
+    NSString * day = [Utils formateDay:date];
+    DayFeedEventEntitys * entitys =[model getDayFeedEventEntitys:day];
+    return entitys;
 }
+
+-(NSArray *) getFeedEvents:(DayFeedEventEntitys *) entitys
+{
+   
+    NSMutableArray *  events = [[NSMutableArray alloc] init];
+    for(FeedEventEntity * entity in entitys.events) {
+        int type = 0x00000001 << [entity.eventType intValue];;
+        if( (type & self.eventTypeFilters) != 0) {
+            [events addObject:entity];
+        }
+    }
+
+    if(events.count ==0) {
+        return events;
+    }
+
+    NSArray * sortedArray = [events sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        FeedEventEntity * evt1 = obj1;
+        FeedEventEntity * evt2 = obj2;
+        return [evt1.start compare:evt2.start];
+    }];
+    
+    return sortedArray;
+}
+
 @end
