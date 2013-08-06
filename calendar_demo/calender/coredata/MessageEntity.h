@@ -2,7 +2,7 @@
 //  MessageEntity.h
 //  calender
 //
-//  Created by xiangfang on 13-7-31.
+//  Created by fang xiang on 13-8-6.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 

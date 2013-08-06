@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Message.h"
+#import "MessageEntityExtra.h"
 
 @protocol MessageModelDelegate <NSObject>
 
@@ -31,14 +31,15 @@
 -(void) setUnReadMsgCount:(int) count;
 
 
--(NSArray *) getMessages;
+-(int ) getMessagesCount;
+
+-(MessageEntity *) getMessage:(int) offset;
+
 
 -(void) refreshModel:(void (^)(NSInteger error))callback;
 
--(void) loadMoreMsg:(void (^)(NSInteger error))callback;
 
-
--(void) readMessage:(Message *) msg;
+-(void) readMessage:(MessageEntity *) msg;
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback;
 

@@ -12,8 +12,4 @@
 
 @property(nonatomic, weak) id<MenuNavigationDelegate> delegate;
 
-- (UIViewController*)localAlbumController;
-
-- (UIViewController*)cloudAlbumController;
-
 @end

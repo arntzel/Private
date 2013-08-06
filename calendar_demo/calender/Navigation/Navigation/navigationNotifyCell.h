@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "AttributedLabel.h"
-#import "Message.h"
+#import "MessageEntity.h"
 
 @interface navigationNotifyCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UIImageView *headerIcon;
@@ -8,6 +8,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *notifyDateLabel;
 
 
--(void) refreshView:(Message *) msg;
+-(void) refreshView:(MessageEntity *) msg;
 
 @end

@@ -61,6 +61,15 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="MessageEntity" representedClassName="MessageEntity" syncable="YES">
+        <attribute name="eventID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="senderName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="senderUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sendTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unread" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="apikey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,5 +87,6 @@
         <element name="FeedEventEntity" positionX="160" positionY="192" width="128" height="345"/>
         <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
         <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="MessageEntity" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

@@ -8,12 +8,11 @@
 
 #import "MessageModel.h"
 #import "Model.h"
+#import "CoreDataModel.h"
 
 @implementation MessageModel {
     
     NSMutableArray * delegates;
-    
-    NSMutableArray * messages;
     
     int unreadMessageCount;
 
@@ -25,7 +24,6 @@
     self = [super init];
     
     delegates =  [[NSMutableArray alloc] init];
-    messages = [[NSMutableArray alloc] init];
     unreadMessageCount = 0;
     loading = NO;
     
@@ -52,7 +50,6 @@
 -(void) nofifyModelLoadingStatus: (BOOL) isLoading
 {
     for(id<MessageModelDelegate> delegate in delegates) {
-        
         if( [delegate respondsToSelector:@selector(onLoadDataStatusChanged:)]) {
             [delegate onLoadDataStatusChanged:isLoading];
         }
@@ -70,58 +67,55 @@
     [self nofityModelChanged];
 }
 
--(NSArray *) getMessages
+
+-(int ) getMessagesCount
 {
-    return messages;
+    CoreDataModel * dataModel = [CoreDataModel getInstance];
+    return [dataModel getMessageCount];
 }
 
-
--(void) loadMoreMsg:(void (^)(NSInteger error))callback
+-(MessageEntity *) getMessage:(int) offset
 {
-    int offset = [messages count];
-    
-    [[Model getInstance] getMessages:offset andCallback:^(NSInteger error, NSArray * moreMessages) {
-
-        for(Message * msg in moreMessages) {
-            [messages addObject:msg];
-        }
-
-        callback(error);
-    }];
+    CoreDataModel * dataModel = [CoreDataModel getInstance];
+    return [dataModel getMessage:offset];
 }
+
 
 -(void) refreshModel:(void (^)(NSInteger error))callback;
 {
     [self nofifyModelLoadingStatus:YES];
 
-    [[Model getInstance] getMessages:0 andCallback:^(NSInteger error, NSArray * moreMessages) {
-
+    [[Model getInstance] getUnreadMessages:^(NSInteger error, NSArray * messages) {
         [self nofifyModelLoadingStatus:NO];
-
-        Message * oldMsg = nil;
-
-        if(messages.count >0) {
-            oldMsg = [messages objectAtIndex:0];
-        }
-
-        for(int i= moreMessages.count-1; i>=0 ; i--) {
-            Message * msg = [moreMessages objectAtIndex:i];
-
-            if(oldMsg != nil || msg.id > oldMsg.id) {
-                [messages insertObject:msg atIndex:0];
+        
+        if(error != 0 || messages.count == 0) return;
+        
+        
+        CoreDataModel * dataModel = [CoreDataModel getInstance];
+        
+        for(Message * msg in messages) {
+            
+            MessageEntity * entity = [dataModel getMessageByID:msg.id];
+            
+            if(entity == nil) {
+                entity = [dataModel createEntity:@"MessageEntity"];
+                [entity convertFromMessage:msg];
             }
         }
-
+        
+        [dataModel saveData];
+        
         [self nofityModelChanged];
-
+        
         if(callback) callback(error);
     }];
 }
 
--(void) readMessage:(Message *) msg
+-(void) readMessage:(MessageEntity *) msg
 {
     msg.unread = NO;
-    [self nofifyModelLoadingStatus:NO];
+    [[CoreDataModel getInstance] saveData];
+    [self nofityModelChanged];
 }
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback

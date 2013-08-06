@@ -207,6 +207,59 @@ static CoreDataModel * instance;
     [managedObjectContext save:nil];
 }
 
+-(int) getMessageCount
+{
+    NSFetchRequest * fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MessageEntity"];
+    
+    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
+//    [fetchRequest setEntity:entity];
+
+    int count = [managedObjectContext countForFetchRequest:fetchRequest error:NULL];
+    return count;
+}
+
+
+
+-(MessageEntity *) getMessage:(int) offset
+{
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setFetchOffset:offset];
+    [fetchRequest setFetchLimit:1];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sendTime" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
+-(MessageEntity *) getMessageByID:(int) msgID
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(id = %d)", msgID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+    
+    return nil;
+}
 
 +(CoreDataModel *) getInstance
 {

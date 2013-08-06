@@ -391,7 +391,7 @@ static Model * instance;
 
 -(void) getUnreadMessages:(void (^)(NSInteger error, NSArray* messages))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/message?read_at__isnull=true", HOST];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/message?read_at__isnull=true&limit=100", HOST];
     LOG_D(@"url=%@", url);
     [self doGetMessage:url andCallback:callback];
 }

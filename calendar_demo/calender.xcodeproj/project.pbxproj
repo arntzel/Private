@@ -149,6 +149,8 @@
 		3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC59EB817A797F30068AC79 /* MessageModel.m */; };
 		3DC59EBE17A9FF6A0068AC79 /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBD17A9FF6A0068AC79 /* push.caf */; };
 		3DC59EC017AA472E0068AC79 /* push.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBF17AA472E0068AC79 /* push.wav */; };
+		3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */; };
+		3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */; };
 		3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8E174086310071B8EE /* bg_line1@2x.png */; };
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
@@ -359,7 +361,6 @@
 		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
 		94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9417A93B82007AFFBC /* Model.xcdatamodeld */; };
 		94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9817A93B9C007AFFBC /* CoreDataModel.m */; };
-		94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94977E9E17A93E1B007AFFBC /* MessageEntity.m */; };
 		94BCB9BF17ADDFE50080A02A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCB9BD17ADDFE50080A02A /* SettingViewController.m */; };
 		94BCB9C017ADDFE50080A02A /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */; };
 		94C4527C178AF0DB00E2E1A1 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C4527B178AF0DA00E2E1A1 /* BirthdayEventView.xib */; };
@@ -693,6 +694,10 @@
 		3DC59EB817A797F30068AC79 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		3DC59EBD17A9FF6A0068AC79 /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
 		3DC59EBF17AA472E0068AC79 /* push.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = push.wav; sourceTree = "<group>"; };
+		3DD2E9D017B0CE4E009A5D02 /* MessageEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntityExtra.h; sourceTree = "<group>"; };
+		3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntityExtra.m; sourceTree = "<group>"; };
+		3DD2E9D317B0E02F009A5D02 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
+		3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		3DE06C8E174086310071B8EE /* bg_line1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line1@2x.png"; sourceTree = "<group>"; };
 		3DE06C8F174086310071B8EE /* btn_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok@2x.png"; sourceTree = "<group>"; };
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
@@ -998,8 +1003,6 @@
 		94977E9517A93B82007AFFBC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		94977E9717A93B9C007AFFBC /* CoreDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataModel.h; sourceTree = "<group>"; };
 		94977E9817A93B9C007AFFBC /* CoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModel.m; sourceTree = "<group>"; };
-		94977E9D17A93E1B007AFFBC /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
-		94977E9E17A93E1B007AFFBC /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		94BCB9BC17ADDFE50080A02A /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		94BCB9BD17ADDFE50080A02A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -2012,8 +2015,6 @@
 				94EB8C2617AEA17A00A072BC /* FeedEventEntityExtra.m */,
 				94EB8C2D17AEA17A00A072BC /* UserEntityExtra.h */,
 				94EB8C2E17AEA17A00A072BC /* UserEntityExtra.m */,
-				94977E9D17A93E1B007AFFBC /* MessageEntity.h */,
-				94977E9E17A93E1B007AFFBC /* MessageEntity.m */,
 				946B2CAF17AFD12700AD9B7F /* DayFeedEventEntitys.h */,
 				946B2CBB17AFD12800AD9B7F /* EventEntity.h */,
 				946B2CBC17AFD12800AD9B7F /* EventEntity.m */,
@@ -2023,12 +2024,16 @@
 				946B2CB617AFD12700AD9B7F /* LocationEntity.m */,
 				946B2CB017AFD12700AD9B7F /* DayFeedEventEntitys.m */,
 				94977E9417A93B82007AFFBC /* Model.xcdatamodeld */,
+				3DD2E9D317B0E02F009A5D02 /* MessageEntity.h */,
+				3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */,
 				946B2CBE17AFD17900AD9B7F /* FeedEventEntity.h */,
 				946B2CBF17AFD17900AD9B7F /* FeedEventEntity.m */,
 				94977E9717A93B9C007AFFBC /* CoreDataModel.h */,
 				94977E9817A93B9C007AFFBC /* CoreDataModel.m */,
 				946B2CC117AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.h */,
 				946B2CC217AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m */,
+				3DD2E9D017B0CE4E009A5D02 /* MessageEntityExtra.h */,
+				3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */,
 			);
 			name = coredata;
 			path = calender/coredata;
@@ -2509,7 +2514,6 @@
 				3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */,
 				94977E9617A93B82007AFFBC /* Model.xcdatamodeld in Sources */,
 				94977E9917A93B9C007AFFBC /* CoreDataModel.m in Sources */,
-				94977E9F17A93E1B007AFFBC /* MessageEntity.m in Sources */,
 				94BCB9BF17ADDFE50080A02A /* SettingViewController.m in Sources */,
 				7696F52717AE9197009FFEC8 /* EventDetailCommentContentView.m in Sources */,
 				7696F52817AE9197009FFEC8 /* EventDetailCommentView.m in Sources */,
@@ -2533,6 +2537,8 @@
 				946B2CBD17AFD12800AD9B7F /* EventEntity.m in Sources */,
 				946B2CC017AFD17900AD9B7F /* FeedEventEntity.m in Sources */,
 				946B2CC317AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m in Sources */,
+				3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */,
+				3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

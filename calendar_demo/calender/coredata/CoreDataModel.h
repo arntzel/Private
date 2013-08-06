@@ -12,6 +12,7 @@
 #import "FeedEventEntityExtra.h"
 #import "UserEntityExtra.h"
 #import "DayFeedEventEntitys.h"
+#import "MessageEntityExtra.h"
 
 @interface CoreDataModel : NSObject
 
@@ -42,6 +43,15 @@
 -(void) addFeedEventEntitys:(NSArray *) entitys;
 
 -(void) addFeedEventEntity:(FeedEventEntity*) entity;
+
+
+
+-(int) getMessageCount;
+
+-(MessageEntity *) getMessage:(int) offset;
+
+-(MessageEntity *) getMessageByID:(int) msgID;
+
 
 
 -(void) saveData;

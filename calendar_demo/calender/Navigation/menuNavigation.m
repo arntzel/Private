@@ -18,7 +18,6 @@
 #import "PedingEventViewController.h"
 
 #import "Utils.h"
-#import "Model.h"
 #import "EventDetailViewController.h"
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
@@ -28,7 +27,6 @@
     BOOL loading;
     
     MessageModel * msgModel;
-    
 }
 @end
 
@@ -37,15 +35,6 @@
 
 @synthesize tableView=_tableView;
 
-
-- (UIViewController*)localAlbumController
-{    
-    return nil;
-}
-- (UIViewController*)cloudAlbumController
-{
-    return nil;
-}
 
 - (id)init {
     if ((self = [super init])) {
@@ -105,7 +94,7 @@
     }
     else if(section == 1)
     {
-        return  [msgModel getMessages].count;
+        return  [msgModel getMessagesCount];
     }
     return 0;
 }
@@ -158,7 +147,7 @@
             NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifyCell" owner:self options:nil] ;
             cell = [nib objectAtIndex:0];
             
-            Message * msg = [[msgModel getMessages] objectAtIndex:indexPath.row];
+            MessageEntity * msg = [msgModel getMessage:indexPath.row];
             [cell refreshView:msg];
         }
         
@@ -214,30 +203,25 @@
     {
         return nil;
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
-
     LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
 
     if(indexPath.section ==0) {
         [self.delegate onMenuSelected:indexPath.row];
     } else {
-        Message * msg = [[msgModel getMessages] objectAtIndex:indexPath.row];
+        MessageEntity * msg = [msgModel getMessage:indexPath.row];
 
         EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
-        [detailCtl setEventID:msg.id];
+        [detailCtl setEventID: [msg.id intValue]];
 
         [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
         
-        if(msg.unread) {
-            msg.unread = NO;
-            [_tableView reloadData];
+        if([msg.unread boolValue]) {
+            [msgModel readMessage:msg];
         }
-
     }
 }
 
@@ -249,7 +233,7 @@
 -(void) onLoadDataStatusChanged:(BOOL) isLoading
 {
     loading = isLoading;
-    [self.tableView reloadData];
+    [_tableView reloadData];
 }
 
 @end

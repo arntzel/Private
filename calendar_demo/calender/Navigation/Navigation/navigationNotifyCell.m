@@ -51,11 +51,11 @@
     [super dealloc];
 }
 
--(void) refreshView:(Message *) msg
+-(void) refreshView:(MessageEntity *) msg
 {
-    NSString * headerUrl = msg.sender.avatar_url;
+    NSString * headerUrl = msg.senderUrl;
     
-    if([headerUrl isKindOfClass: [NSNull class]]) {
+    if(headerUrl == nil) {
         self.headerIcon.image = [UIImage imageNamed:@"header.png"];
     } else {
         [self.headerIcon setImageWithURL:[NSURL URLWithString:headerUrl]
@@ -75,15 +75,15 @@
 
     self.notifyDateLabel.text = [self getTimeText:msg];
     
-    if(msg.unread) {
+    if([msg.unread boolValue]) {
         self.notifyDateLabel.textColor = [UIColor redColor];
     }
 }
 
 
--(NSString *) getTimeText:(Message *) msg
+-(NSString *) getTimeText:(MessageEntity *) msg
 {
-    NSTimeInterval interval = [msg.sent_at timeIntervalSinceNow];
+    NSTimeInterval interval = [msg.sendTime timeIntervalSinceNow];
 
     int ago = -1*interval/60;
 
@@ -106,7 +106,7 @@
         return [NSString stringWithFormat:@"%d days ago", day];
     }
 
-    return [Utils formateDay:msg.sent_at];
+    return [Utils formateDay:msg.sendTime];
 }
 
 @end
