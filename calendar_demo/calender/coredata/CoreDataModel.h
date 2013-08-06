@@ -11,31 +11,18 @@
 
 #import "FeedEventEntityExtra.h"
 #import "UserEntityExtra.h"
-#import "DayFeedEventEntitys.h"
 #import "MessageEntityExtra.h"
 
 @interface CoreDataModel : NSObject
 
-/*
-
-//初始化Core Data使用的数据库
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-
-//managedObjectModel的初始化赋值函数
--(NSManagedObjectModel *)managedObjectModel;
-
-//managedObjectContext的初始化赋值函数
--(NSManagedObjectContext *)managedObjectContext;
-
-*/
 
 -(id) createEntity:(NSString *) entityName;
 
 -(FeedEventEntity*) getFeedEventEntity:(int)id;
 
 
--(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day;
 
+-(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 -(int) getDayFeedEventType:(NSString *) day;
 
@@ -46,12 +33,13 @@
 
 
 
+//Begin for Message notification
 -(int) getMessageCount;
 
 -(MessageEntity *) getMessage:(int) offset;
 
 -(MessageEntity *) getMessageByID:(int) msgID;
-
+//End for Message notification
 
 
 -(void) saveData;

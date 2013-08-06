@@ -12,7 +12,6 @@
 #import "RootNavContrller.h"
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"
-#import "DayFeedEventEntitysExtra.h"
 #import "FeedEventEntity.h"
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
@@ -74,13 +73,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    DayFeedEventEntitys * entitys = [self getEventEntity:section];
-
-    if(entitys == nil) {
-        return 1;
-    }
-
-    NSArray * events = [self getFeedEvents:entitys];
+    NSArray * events = [self getFeedEventsEntity:section];
     return events.count > 0 ? events.count : 1;
 }
 
@@ -88,14 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    DayFeedEventEntitys * entitys = [self getEventEntity:indexPath.section];
-
-    if(entitys == nil) {
-        UITableViewCell * cell = (UITableViewCell *)[ViewUtils createView:@"NoEventView"];
-        return cell;
-    }
-
-    NSArray * events = [self getFeedEvents:entitys];
+    NSArray * events = [self getFeedEventsEntity:indexPath.section];
     if(events.count == 0) {
         UITableViewCell * cell = (UITableViewCell *)[ViewUtils createView:@"NoEventView"];
         return cell;
@@ -176,13 +162,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DayFeedEventEntitys * entitys = [self getEventEntity:indexPath.section];
-
-    if(entitys == nil) {
-        return 55;
-    }
-
-    NSArray * events = [self getFeedEvents:entitys];
+    NSArray * events = [self getFeedEventsEntity:indexPath.section];
     if(events.count == 0) {
         return 55;
     }
@@ -208,36 +188,12 @@
     [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
 }
 
--(DayFeedEventEntitys *) getEventEntity:(int) section
+-(NSArray *) getFeedEventsEntity:(int) section
 {
     NSDate * date = [self.beginDate cc_dateByMovingToTheFollowingDayCout:section];
     NSString * day = [Utils formateDay:date];
-    DayFeedEventEntitys * entitys =[model getDayFeedEventEntitys:day];
-    return entitys;
-}
-
--(NSArray *) getFeedEvents:(DayFeedEventEntitys *) entitys
-{
-   
-    NSMutableArray *  events = [[NSMutableArray alloc] init];
-    for(FeedEventEntity * entity in entitys.events) {
-        int type = 0x00000001 << [entity.eventType intValue];;
-        if( (type & self.eventTypeFilters) != 0) {
-            [events addObject:entity];
-        }
-    }
-
-    if(events.count ==0) {
-        return events;
-    }
-
-    NSArray * sortedArray = [events sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        FeedEventEntity * evt1 = obj1;
-        FeedEventEntity * evt2 = obj2;
-        return [evt1.start compare:evt2.start];
-    }];
-    
-    return sortedArray;
+    NSArray * events =[model getFeedEvents:day evenTypeFilter:self.eventTypeFilters];
+    return events;
 }
 
 @end

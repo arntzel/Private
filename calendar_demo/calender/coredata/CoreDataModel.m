@@ -8,6 +8,7 @@
 
 #import "CoreDataModel.h"
 #import "Utils.h"
+#import "DayFeedEventEntitysExtra.h"
 
 static CoreDataModel * instance;
 
@@ -136,6 +137,33 @@ static CoreDataModel * instance;
     
     return nil;
 }
+
+-(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
+{
+    DayFeedEventEntitys * entitys = [self getDayFeedEventEntitys:day];
+    
+    if(entitys == nil) return nil;
+     
+    NSMutableArray *  events = [[NSMutableArray alloc] init];
+    for(FeedEventEntity * entity in entitys.events) {
+        int type = 0x00000001 << [entity.eventType intValue];;
+        if( (type & filter) != 0) {
+            [events addObject:entity];
+        }
+    }
+    
+    if(events.count==0) {
+        return events;
+    }
+    
+    NSArray * sortedArray = [events sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        FeedEventEntity * evt1 = obj1;
+        FeedEventEntity * evt2 = obj2;
+        return [evt1.start compare:evt2.start];
+    }];
+
+    return sortedArray;
+} 
 
 -(int) getDayFeedEventType:(NSString *) day
 {
