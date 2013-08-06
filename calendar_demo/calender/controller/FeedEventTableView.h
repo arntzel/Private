@@ -14,6 +14,8 @@
 @interface FeedEventTableView : UITableView
 
 @property(strong) NSDate * beginDate;
+@property(strong) NSDate * lastEventUpdateTime;
+
 @property int eventTypeFilters;
 
 @property(assign) id<FeedEventTableViewDelegate> feedEventdelegate;

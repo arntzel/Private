@@ -73,7 +73,7 @@
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
     
-    self.labTitle.text = [Utils formateDay:event.start];
+    self.labTitle.text = event.title;
 }
 
 -(NSString *) getEventDutationText:(FeedEventEntity*)event

@@ -36,7 +36,6 @@
                                   KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
-                                  EventModelDelegate,
                                   FeedEventTableViewDelegate>
 {
     KalLogic *logic;
@@ -111,9 +110,17 @@
     //[tableView startTailerLoading];
 
     NSDate * begin = [NSDate date];
-    //begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+    begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
     tableView.beginDate = begin;
-    //[self loadData:begin];
+    
+    NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
+
+    if(lastupdatetime == nil) {
+        [self loadData:begin];
+    } else {
+        tableView.lastEventUpdateTime = lastupdatetime;
+        [self scroll2Today];
+    }
 }
 
 
@@ -127,10 +134,14 @@
 {
     NSLog(@"loadData begin:%@", begin);
     
+    [dataLoadingView startAnim];
+    
     [[Model getInstance] getEventsOfBegin:begin andEnd:nil andCallback:^(NSInteger error, NSArray *events) {
 
         LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
 
+        [dataLoadingView stopAnim];
+        
         if(error == 0) {
 
             CoreDataModel * model = [CoreDataModel getInstance];
@@ -144,29 +155,43 @@
             [model saveData];
 
             [tableView reloadData];
-
+            [self.calendarView setNeedsDisplay];
+            [self scroll2Today];
+            
+            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
+            [defaults synchronize];
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
 }
 
+-(void) scroll2Today
+{
+    [self scroll2Date:[NSDate date] animated:NO];
+}
+
+-(void) scroll2Date:(NSDate *) date animated:(BOOL) animated
+{
+    
+    int day = [tableView.beginDate cc_DaysBetween:date];
+    if(day<0) {
+        day = 0;
+    }
+    
+    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:day];
+    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+}
 
 #pragma mark -
 #pragma mark kalViewDelegate
 
 - (void)didSelectDate:(KalDate *)date
 {
-
     NSDate * selectDate = [date NSDate];
-
-    int day = [tableView.beginDate cc_DaysBetween:selectDate];
-    if(day<0) {
-        day = 0;
-    }
-
-    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:day];
-    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self scroll2Date:selectDate animated:YES];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -212,10 +237,6 @@
 //    [tableView reloadData];
 //}
 
--(void) onEventModelChanged {
-    [tableView reloadData];
-    [self.calendarView setNeedsDisplay];
-}
 
 
 #pragma mark -
