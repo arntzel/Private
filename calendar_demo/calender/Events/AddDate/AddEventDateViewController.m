@@ -8,13 +8,13 @@
 #import "NavgationBar.h"
 #import "KalDate.h"
 
-#import "Event.h"
 #import "EventView.h"
 #import "BirthdayEventView.h"
 
-#import "Model.h"
+
 #import "Utils.h"
-#import "Model.h"
+#import "CoreDataModel.h"
+#import "ViewUtils.h"
 
 @interface AddEventDateViewController ()<AddDateCalenderViewDelegate,
                                          KalViewDelegate,
@@ -30,7 +30,6 @@
     
     AddDateCalenderView *calView;
 
-    UIActivityIndicatorView * indicatorView;
     UITableView * feedTableView;
  
     NSArray * dayEvents;
@@ -83,12 +82,9 @@
 
     [self.view addSubview:feedTableView];
 
-    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicatorView.center = feedTableView.center;
-    indicatorView.hidesWhenStopped = YES;
-    [self.view addSubview:indicatorView];
-
     [self refreshTimeString];
+    
+    [self loadEvents:[NSDate date]];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,23 +104,13 @@
 {
 
     if(dayEvents == nil || dayEvents.count == 0) {
-
-        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        label.text = @"No event";
-        label.textColor = [UIColor grayColor];
-        label.font = [UIFont systemFontOfSize:18];
-        label.textAlignment = UITextAlignmentCenter;
-        label.backgroundColor = [UIColor clearColor];
-
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noevent"];
-        [cell addSubview:label];
-        cell.frame = label.frame;
+        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
         return cell;
     }
     
-    Event * event = [dayEvents objectAtIndex:indexPath.row];
+    FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
 
-    if(event.eventType != 4) {
+    if( [event.eventType intValue] != 4) {
         EventView * view = [EventView createEventView];
 
         [view refreshView:event];
@@ -141,7 +127,6 @@
         UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
         [cell addSubview:view];
         return cell;
-
     }
 }
 
@@ -149,12 +134,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(dayEvents == nil || dayEvents.count == 0) {
-        return 50;
+        return 55;
     }
 
-    Event * event = [dayEvents objectAtIndex:indexPath.row];
+    FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
 
-    if(event.eventType == 4) {
+    if([event.eventType intValue] == 4) {
         return BirthdayEventView_Height;
     } else {
         return PlanView_HEIGHT;
@@ -273,32 +258,17 @@
 
 -(void) didSelectDate: (KalDate*) date
 {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
-//    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [parts setYear:date.year];
-    [parts setMonth:date.month];
-    [parts setDay:date.day];
-    NSDate *startDate = [gregorian dateFromComponents:parts];
-    eventDate.start = startDate;
+    [self loadEvents:[date NSDate]];
+}
 
-
-    [indicatorView startAnimating];
-    [[Model getInstance] getEventsOfDay:startDate andCallback:^(NSInteger error, NSArray *events) {
-        [indicatorView stopAnimating];
-        if(error == 0) {
-            dayEvents = events;
-
-            EventModel * eventModel = [[Model getInstance] getEventModel];
-
-            [eventModel addEvents:events];
-            
-            [feedTableView reloadData];
-            [[calView getKalView] setNeedsDisplay];
-        } else {
-            
-        }
-    }];
+-(void) loadEvents: (NSDate*) date
+{
+    NSString * day = [Utils formateDay:date];
+    
+    CoreDataModel * model = [CoreDataModel getInstance];
+    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
+    dayEvents =[model getFeedEvents:day evenTypeFilter:filetVal];
+    [feedTableView reloadData];
 }
 
 - (void)refreshTimeString
@@ -311,12 +281,9 @@
 #pragma mark KalTileViewDataSource
 -(int) getEventType:(KalDate *) date {
 
-    NSString * day = [Utils formate:date.year andMonth:date.month andDay:date.day];
-
-    EventModel * eventModel = [[Model getInstance] getEventModel];
- 
-    int eventTypes = [eventModel getEventsTypes:day];
-    return eventTypes;
+    NSString * day = [Utils formateDay:[date NSDate]];
+    int type =[[CoreDataModel getInstance] getDayFeedEventType:day];
+    return type;
 }
 
 @end
