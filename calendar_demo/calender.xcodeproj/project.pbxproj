@@ -151,6 +151,7 @@
 		3DC59EC017AA472E0068AC79 /* push.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBF17AA472E0068AC79 /* push.wav */; };
 		3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */; };
 		3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */; };
+		3DD2E9D817B0E5A7009A5D02 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D717B0E5A7009A5D02 /* DataCache.m */; };
 		3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8E174086310071B8EE /* bg_line1@2x.png */; };
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
 		3DE06C9317408A4D0071B8EE /* bg_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */; };
@@ -698,6 +699,8 @@
 		3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntityExtra.m; sourceTree = "<group>"; };
 		3DD2E9D317B0E02F009A5D02 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
 		3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
+		3DD2E9D617B0E5A7009A5D02 /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
+		3DD2E9D717B0E5A7009A5D02 /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
 		3DE06C8E174086310071B8EE /* bg_line1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line1@2x.png"; sourceTree = "<group>"; };
 		3DE06C8F174086310071B8EE /* btn_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ok@2x.png"; sourceTree = "<group>"; };
 		3DE06C9217408A4D0071B8EE /* bg_line2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line2@2x.png"; sourceTree = "<group>"; };
@@ -2034,6 +2037,8 @@
 				946B2CC217AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m */,
 				3DD2E9D017B0CE4E009A5D02 /* MessageEntityExtra.h */,
 				3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */,
+				3DD2E9D617B0E5A7009A5D02 /* DataCache.h */,
+				3DD2E9D717B0E5A7009A5D02 /* DataCache.m */,
 			);
 			name = coredata;
 			path = calender/coredata;
@@ -2539,6 +2544,7 @@
 				946B2CC317AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m in Sources */,
 				3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */,
 				3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */,
+				3DD2E9D817B0E5A7009A5D02 /* DataCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

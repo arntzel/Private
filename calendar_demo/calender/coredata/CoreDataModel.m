@@ -9,6 +9,7 @@
 #import "CoreDataModel.h"
 #import "Utils.h"
 #import "DayFeedEventEntitysExtra.h"
+#import "DataCache.h"
 
 static CoreDataModel * instance;
 
@@ -23,6 +24,7 @@ static CoreDataModel * instance;
     //持久性存储区
     NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
+    DataCache * cache;
 }
 
 -(id) init
@@ -51,6 +53,8 @@ static CoreDataModel * instance;
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     
+    
+    cache = [[DataCache alloc] init];
     return self;
 }
 
@@ -94,6 +98,10 @@ static CoreDataModel * instance;
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id
 {
+    
+    NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
+   
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -121,6 +129,9 @@ static CoreDataModel * instance;
 -(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day
 {
     
+    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", day);
+   
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -140,33 +151,42 @@ static CoreDataModel * instance;
 
 -(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
 {
-    DayFeedEventEntitys * entitys = [self getDayFeedEventEntitys:day];
+    NSLog(@"getDayFeedEventEntitys,day=%@, filter=%d", day, filter);
     
-    if(entitys == nil) return nil;
-     
-    NSMutableArray *  events = [[NSMutableArray alloc] init];
-    for(FeedEventEntity * entity in entitys.events) {
-        int type = 0x00000001 << [entity.eventType intValue];;
-        if( (type & filter) != 0) {
-            [events addObject:entity];
+    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
+    
+    if(wrap != nil) {
+        if(wrap.eventTypeFilter != filter) {
+            wrap.eventTypeFilter = filter;
+            [wrap resetSortedEvents];
         }
+        return wrap.sortedEvents;
     }
     
-    if(events.count==0) {
-        return events;
-    }
+    wrap = [[DayFeedEventEntitysWrap alloc] init];
+    DayFeedEventEntitys * entitys = [self getDayFeedEventEntitys:day];
+    wrap.day = day;
+    wrap.dayFeedEvents = entitys;
+    wrap.eventTypeFilter = filter;
+    [wrap resetSortedEvents];
     
-    NSArray * sortedArray = [events sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        FeedEventEntity * evt1 = obj1;
-        FeedEventEntity * evt2 = obj2;
-        return [evt1.start compare:evt2.start];
-    }];
-
-    return sortedArray;
+    [cache putDayFeedEventEntitysWrap:wrap];
+    return wrap.sortedEvents;
 } 
 
 -(int) getDayFeedEventType:(NSString *) day
 {
+    if(day == nil) {
+        return 0;
+    }
+    
+    DayEventTypeWrap * wrap = [cache getDayEventTypeWrap:day];
+    if(wrap != nil) {
+        return wrap.eventType;
+    }
+    
+    NSLog(@"NSFetchRequest: getDayFeedEventType:%@", day);
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -180,13 +200,18 @@ static CoreDataModel * instance;
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
+    int eventType = 0;
     if(results.count >0) {
         NSDictionary * dic = [results objectAtIndex:0];
-        return [[dic objectForKey:@"eventType"] intValue];
+        eventType = [[dic objectForKey:@"eventType"] intValue];
     }
     
-    return 0;
-
+    wrap = [[DayEventTypeWrap alloc] init];
+    wrap.day = day;
+    wrap.eventType = eventType;
+    [cache putDayEventTypeWrap:wrap];
+    
+    return eventType;
 }
 
 
@@ -199,8 +224,9 @@ static CoreDataModel * instance;
 
 -(void) addFeedEventEntity:(FeedEventEntity*) entity
 {
+    NSLog(@"addFeedEventEntity");
     NSString * day = [Utils formateDay:entity.start];
-    
+  
     DayFeedEventEntitys * dayEntitys = [self getDayFeedEventEntitys:day];
     
     if(dayEntitys == nil) {
@@ -227,28 +253,25 @@ static CoreDataModel * instance;
     }
 
     dayEntitys.eventType = [NSNumber numberWithInt:type];
+    
+    
+    DayFeedEventEntitysWrap * oldWrap = [cache getDayFeedEventEntitysWrap:day];
+    if(oldWrap != nil) {
+        oldWrap.dayFeedEvents = dayEntitys;
+        [oldWrap resetSortedEvents];
+    }
 }
 
 
--(void) saveData
-{
-    [managedObjectContext save:nil];
-}
+
+
 
 -(int) getMessageCount
 {
     NSFetchRequest * fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MessageEntity"];
-    
-    
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
-//    [fetchRequest setEntity:entity];
-
     int count = [managedObjectContext countForFetchRequest:fetchRequest error:NULL];
     return count;
 }
-
-
 
 -(MessageEntity *) getMessage:(int) offset
 {
@@ -288,6 +311,13 @@ static CoreDataModel * instance;
     
     return nil;
 }
+
+
+-(void) saveData
+{
+    [managedObjectContext save:nil];
+}
+
 
 +(CoreDataModel *) getInstance
 {

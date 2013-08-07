@@ -73,6 +73,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
+    NSLog(@"numberOfRowsInSection:%d", section);
+    
     NSArray * events = [self getFeedEventsEntity:section];
     return events.count > 0 ? events.count : 1;
 }
@@ -81,6 +83,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    NSLog(@"cellForRowAtIndexPath:%@", indexPath);
+    
+    
     NSArray * events = [self getFeedEventsEntity:indexPath.section];
     if(events.count == 0) {
         UITableViewCell * cell = (UITableViewCell *)[ViewUtils createView:@"NoEventView"];
@@ -149,6 +154,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"numberOfSectionsInTableView");
+    
     NSDate * endData = [self.beginDate cc_dateByMovingToThePreviousDayCout:365];
     int days  =  [endData cc_DaysBetween:self.beginDate];
     return days;
@@ -162,6 +169,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"heightForRowAtIndexPath:%@", indexPath);
+    
     NSArray * events = [self getFeedEventsEntity:indexPath.section];
     if(events.count == 0) {
         return 55;
