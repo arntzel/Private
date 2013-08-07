@@ -104,25 +104,41 @@
     frame.origin.x = 320 + 40;
     frame.origin.y = 55;
     dataLoadingView.frame = frame;
-    
-
+   
     [self.view addSubview:dataLoadingView];
-    //[tableView startTailerLoading];
-
-    NSDate * begin = [NSDate date];
-    begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
-    tableView.beginDate = begin;
+    
     
     NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
 
     if(lastupdatetime == nil) {
+        NSDate * begin = [NSDate date];
+        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
         [self loadData:begin];
     } else {
         tableView.lastEventUpdateTime = lastupdatetime;
+        [self loadInitFeedEvents];
         [self scroll2Today];
     }
 }
 
+-(void) loadInitFeedEvents
+{
+    CoreDataModel * model = [CoreDataModel getInstance];
+    DataCache * cache = [model getCache];
+    
+    NSDate * today = [NSDate date];
+  
+    NSArray * feedEvents = [model getDayFeedEventEntitys:today andPreLimit:10];
+    NSArray * feedEvents2 = [model getDayFeedEventEntitys:today andFollowLimit:10];
+  
+    NSMutableArray * array = [[NSMutableArray alloc] initWithArray:feedEvents];
+    [array addObjectsFromArray:feedEvents2];
+    
+    for(DayFeedEventEntitys * evt in array) {
+        DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
+        [cache putDayFeedEventEntitysWrap:wrap];
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -154,8 +170,11 @@
 
             [model saveData];
 
+            [self loadInitFeedEvents];
+            
             [tableView reloadData];
             [self.calendarView setNeedsDisplay];
+            
             [self scroll2Today];
             
             NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
@@ -175,14 +194,8 @@
 
 -(void) scroll2Date:(NSDate *) date animated:(BOOL) animated
 {
-    
-    int day = [tableView.beginDate cc_DaysBetween:date];
-    if(day<0) {
-        day = 0;
-    }
-    
-    NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:day];
-    [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    NSString * day = [Utils formateDay:date];
+    [tableView scroll2Date:day animated:NO];
 }
 
 #pragma mark -

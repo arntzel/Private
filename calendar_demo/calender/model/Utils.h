@@ -44,6 +44,9 @@
  */
 +(NSString *) formateDay:(NSDate *) time;
 
++(NSDate *) parseNSStringDay:(NSString *) strDay;
+
+
 +(NSString *) formate:(int) year andMonth:(int)month andDay:(int) day;
 
 /*

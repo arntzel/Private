@@ -11,9 +11,14 @@
 
 @interface DayFeedEventEntitysWrap : NSObject
 
+-(id) init:(DayFeedEventEntitys *) entitys;
+
+
 @property NSString * day;
 @property(strong) DayFeedEventEntitys * dayFeedEvents;
 @property int eventTypeFilter;
+
+
 @property NSArray * sortedEvents;
 
 -(void) resetSortedEvents;
@@ -31,9 +36,17 @@
 
 @interface DataCache : NSObject
 
--(void) putDayFeedEventEntitysWrap:(DayFeedEventEntitysWrap *) wrap;
+
+-(NSArray *) allDays;
 
 -(DayFeedEventEntitysWrap *) getDayFeedEventEntitysWrap:(NSString *) day;
+
+-(void) putDayFeedEventEntitysWraps: (NSArray *) wraps;
+
+-(void) putDayFeedEventEntitysWrap:(DayFeedEventEntitysWrap *) wrap;
+
+-(void) removeDayFeedEventEntitysWrap:(NSString *) day;
+
 
 
 -(void) putDayEventTypeWrap:(DayEventTypeWrap *) wrap;

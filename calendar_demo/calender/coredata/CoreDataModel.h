@@ -12,14 +12,16 @@
 #import "FeedEventEntityExtra.h"
 #import "UserEntityExtra.h"
 #import "MessageEntityExtra.h"
+#import "DataCache.h"
 
 @interface CoreDataModel : NSObject
 
+-(DataCache *) getCache;
 
--(id) createEntity:(NSString *) entityName;
 
--(FeedEventEntity*) getFeedEventEntity:(int)id;
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit;
 
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit;
 
 
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
@@ -40,6 +42,9 @@
 
 -(MessageEntity *) getMessageByID:(int) msgID;
 //End for Message notification
+
+
+-(id) createEntity:(NSString *) entityName;
 
 
 -(void) saveData;

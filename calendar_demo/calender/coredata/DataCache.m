@@ -11,6 +11,15 @@
 
 @implementation DayFeedEventEntitysWrap
 
+-(id) init:(DayFeedEventEntitys *) entitys
+{
+    self = [super init];
+    
+    self.day = entitys.day;
+    self.dayFeedEvents = entitys;
+    
+    return  self;
+}
 
 -(void) resetSortedEvents
 {
@@ -51,11 +60,9 @@
 
 @implementation DataCache {
     
-    NSMutableArray * array;
+    NSArray * allDays;
+    
     NSMutableDictionary * dict;
-    
-    
-    NSMutableArray * dayEventTypeWrapArray;
     NSMutableDictionary * dayEventTypeWrapDict;
 }
 
@@ -63,26 +70,40 @@
 {
     self = [super init];
     
-    array = [[NSMutableArray alloc] init];
     dict = [[NSMutableDictionary alloc] init];
-    
-    dayEventTypeWrapArray = [[NSMutableArray alloc] init];
     dayEventTypeWrapDict = [[NSMutableDictionary alloc] init];
     
     
     return self;
 }
 
+
+-(NSArray *) allDays
+{
+    if(allDays == nil) {
+        allDays = [[dict allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString * day1 = (NSString *)obj1;
+            NSString * day2 = (NSString *)obj2;
+            return [day1 compare:day2];
+        }];
+    }
+    
+    return allDays;
+}
+
+-(void) putDayFeedEventEntitysWraps: (NSArray *) wraps
+{
+    for(DayFeedEventEntitysWrap * wrap in wraps) {
+        [dict setObject:wrap forKey:wrap.day];
+    }
+   
+    allDays = nil;
+}
+
 -(void) putDayFeedEventEntitysWrap:(DayFeedEventEntitysWrap *) wrap
 {
-//    if(dict.count > 300) {
-//        DayFeedEventEntitysWrap * first = [array objectAtIndex:0];
-//        [array removeObjectAtIndex:0];
-//        [dict removeObjectForKey:first.day];
-//    }
-    
-    [array addObject:wrap];
     [dict setObject:wrap forKey:wrap.day];
+    allDays = nil;
 }
 
 -(DayFeedEventEntitysWrap *) getDayFeedEventEntitysWrap:(NSString *) day
@@ -90,16 +111,14 @@
     return  [dict objectForKey:day];
 }
 
+-(void) removeDayFeedEventEntitysWrap:(NSString *) day
+{
+    [dayEventTypeWrapDict removeObjectForKey:day];
+    allDays = nil;
+}
 
 -(void) putDayEventTypeWrap:(DayEventTypeWrap *) wrap
 {
-//    if(dayEventTypeWrapDict.count > 300) {
-//        DayEventTypeWrap * first = [dayEventTypeWrapArray objectAtIndex:0];
-//        [dayEventTypeWrapArray removeObjectAtIndex:0];
-//        [dayEventTypeWrapDict removeObjectForKey:first.day];
-//    }
-    
-    [dayEventTypeWrapArray addObject:wrap];
     [dayEventTypeWrapDict setObject:wrap forKey:wrap.day];
 }
 

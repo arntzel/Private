@@ -125,6 +125,69 @@ static CoreDataModel * instance;
 }
 
 
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit
+{
+    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", date);
+    
+    NSString * beginDay = [Utils formateDay:date];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day < %@)", beginDay];
+    [fetchRequest setFetchLimit:limit];
+    [fetchRequest setFetchOffset:0];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"day" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit
+{
+    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", date);
+    
+    NSString * beginDay = [Utils formateDay:date];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@)", beginDay];
+    [fetchRequest setFetchLimit:limit];
+    [fetchRequest setFetchOffset:0];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"day" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) beginDate andEndDay:(NSDate*) endDate
+{
+    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@-%@", beginDate, endDate);
+    
+    NSString * beginDay = [Utils formateDay:beginDate];
+    NSString * endDay = [Utils formateDay:endDate];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@ AND day< %@)", beginDay, endDay];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
 
 -(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day
 {
@@ -148,6 +211,12 @@ static CoreDataModel * instance;
     
     return nil;
 }
+
+-(DataCache *) getCache
+{
+    return cache;
+}
+
 
 -(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
 {
@@ -173,6 +242,8 @@ static CoreDataModel * instance;
     [cache putDayFeedEventEntitysWrap:wrap];
     return wrap.sortedEvents;
 } 
+
+
 
 -(int) getDayFeedEventType:(NSString *) day
 {
@@ -282,7 +353,7 @@ static CoreDataModel * instance;
     [fetchRequest setFetchOffset:offset];
     [fetchRequest setFetchLimit:1];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sendTime" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sendTime" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
     

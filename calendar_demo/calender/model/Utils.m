@@ -77,6 +77,31 @@
     return [dateFormatter stringFromDate:time];
 }
 
++(NSDate *) parseNSStringDay:(NSString *) strDay
+{
+    NSRange range;
+    range.location = 0;
+    range.length = 4;
+    
+    int year = [[strDay substringWithRange:range] intValue];
+    
+    range.location = 5;
+    range.length = 2;
+    int month = [[strDay substringWithRange:range] intValue];
+    
+    range.location = 8;
+    range.length = 2;
+    int day = [[strDay substringWithRange:range] intValue];
+    
+    
+    NSDateComponents *c = [[NSDateComponents alloc] init];
+    c.day = day;
+    c.month = month;
+    c.year = year;
+    return [[NSCalendar currentCalendar] dateFromComponents:c];
+}
+
+
 +(NSString *) formate:(int) year andMonth:(int)month andDay:(int) day
 {
     NSMutableString * str = [[NSMutableString alloc] init];

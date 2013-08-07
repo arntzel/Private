@@ -13,12 +13,13 @@
 
 @interface FeedEventTableView : UITableView
 
-@property(strong) NSDate * beginDate;
 @property(strong) NSDate * lastEventUpdateTime;
 
 @property int eventTypeFilters;
 
 @property(assign) id<FeedEventTableViewDelegate> feedEventdelegate;
 
+
+-(void) scroll2Date:(NSString *) day animated:(BOOL) animated;
 
 @end
