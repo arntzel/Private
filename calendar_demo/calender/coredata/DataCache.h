@@ -52,7 +52,7 @@
 
 
 -(void) putDayEventTypeWrap:(DayEventTypeWrap *) wrap;
-
+-(void) removeDayEventTypeWrap:(NSString *)day;
 -(DayEventTypeWrap *) getDayEventTypeWrap:(NSString *) day;
 
 

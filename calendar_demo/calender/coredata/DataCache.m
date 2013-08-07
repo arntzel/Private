@@ -127,6 +127,11 @@
     [dayEventTypeWrapDict setObject:wrap forKey:wrap.day];
 }
 
+-(void) removeDayEventTypeWrap:(NSString *)day
+{
+    [dayEventTypeWrapDict removeObjectForKey:day];
+}
+
 -(DayEventTypeWrap *) getDayEventTypeWrap:(NSString *) day
 {
     return [dayEventTypeWrapDict objectForKey:day];

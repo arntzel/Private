@@ -243,8 +243,6 @@ static CoreDataModel * instance;
     return wrap.sortedEvents;
 } 
 
-
-
 -(int) getDayFeedEventType:(NSString *) day
 {
     if(day == nil) {
@@ -331,11 +329,9 @@ static CoreDataModel * instance;
         oldWrap.dayFeedEvents = dayEntitys;
         [oldWrap resetSortedEvents];
     }
+    
+    [cache removeDayEventTypeWrap:day];
 }
-
-
-
-
 
 -(int) getMessageCount
 {
