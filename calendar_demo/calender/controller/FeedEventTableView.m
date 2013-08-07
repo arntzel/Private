@@ -59,7 +59,8 @@
 
 #pragma mark -
 #pragma mark tableViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 
     NSArray * indexs = [self indexPathsForVisibleRows];

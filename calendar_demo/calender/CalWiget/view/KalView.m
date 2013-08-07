@@ -100,6 +100,9 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
     NSLog(@"swith2Date:%@", date);
 
+    KalDate * kalDate = [KalDate dateFromNSDate:date];
+    [logic setSelectedDay:kalDate];
+    
     if(KalMode == WEEK_MODE) {
 
         NSDate * showWeek = [logic.showWeek NSDate];
