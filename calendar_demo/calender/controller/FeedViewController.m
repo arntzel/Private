@@ -116,29 +116,11 @@
         [self loadData:begin];
     } else {
         tableView.lastEventUpdateTime = lastupdatetime;
-        [self loadInitFeedEvents];
+        [tableView reloadFeedEventEntitys:[NSDate date]];
         [self scroll2Today];
     }
 }
 
--(void) loadInitFeedEvents
-{
-    CoreDataModel * model = [CoreDataModel getInstance];
-    DataCache * cache = [model getCache];
-    
-    NSDate * today = [NSDate date];
-  
-    NSArray * feedEvents = [model getDayFeedEventEntitys:today andPreLimit:10];
-    NSArray * feedEvents2 = [model getDayFeedEventEntitys:today andFollowLimit:10];
-  
-    NSMutableArray * array = [[NSMutableArray alloc] initWithArray:feedEvents];
-    [array addObjectsFromArray:feedEvents2];
-    
-    for(DayFeedEventEntitys * evt in array) {
-        DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-        [cache putDayFeedEventEntitysWrap:wrap];
-    }
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -170,9 +152,7 @@
 
             [model saveData];
 
-            [self loadInitFeedEvents];
-            
-            [tableView reloadData];
+            [tableView reloadFeedEventEntitys:[NSDate date]];
             [self.calendarView setNeedsDisplay];
             
             [self scroll2Today];
@@ -204,7 +184,8 @@
 - (void)didSelectDate:(KalDate *)date
 {
     NSDate * selectDate = [date NSDate];
-    [self scroll2Date:selectDate animated:YES];
+    NSString * day = [Utils formateDay:selectDate];
+    [tableView scroll2SelectedDate:day];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch

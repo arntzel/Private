@@ -77,6 +77,11 @@
     return self;
 }
 
+-(void) clearAllDayFeedEventEntitys
+{
+    [dict removeAllObjects];
+    allDays = nil;
+}
 
 -(NSArray *) allDays
 {

@@ -66,10 +66,11 @@
     
     if(indexs.count > 0) {
         NSIndexPath * path = [indexs objectAtIndex:0];
-//        NSDate * date = [self.beginDate cc_dateByMovingToTheFollowingDayCout:path.section];
-//        if(self.feedEventdelegate != nil) {
-//            [self.feedEventdelegate onDisplayFirstDayChanged:date];
-//        }
+        NSString * day = [[cache allDays] objectAtIndex:path.section];
+        NSDate * date = [Utils parseNSStringDay:day];
+        if(self.feedEventdelegate != nil) {
+            [self.feedEventdelegate onDisplayFirstDayChanged:date];
+        }
     }
 }
 
@@ -247,6 +248,43 @@
     FeedEventEntity * event = [events objectAtIndex:indexPath.row];
     
     return event;
+}
+
+
+-(void) reloadFeedEventEntitys:(NSDate *) day
+{
+    [cache clearAllDayFeedEventEntitys];
+    
+    NSArray * feedEvents = [model getDayFeedEventEntitys:day andPreLimit:10];
+    NSArray * feedEvents2 = [model getDayFeedEventEntitys:day andFollowLimit:10];
+    
+    NSMutableArray * array = [[NSMutableArray alloc] initWithArray:feedEvents];
+    [array addObjectsFromArray:feedEvents2];
+    
+    for(DayFeedEventEntitys * evt in array) {
+        DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
+        [cache putDayFeedEventEntitysWrap:wrap];
+    }
+    
+    [self reloadData];
+}
+
+-(void)scroll2SelectedDate:(NSString *) day {
+    
+    NSArray * allDays = [cache allDays];
+
+    if(allDays.count==0) return;
+    
+    NSString * firstDay = [allDays objectAtIndex:0];
+    NSString * lastDay = [allDays lastObject];
+    
+    if([firstDay compare:day] > 0 || [lastDay compare:day] < 0) {
+        NSDate * date = [Utils parseNSStringDay:day];
+        [self reloadFeedEventEntitys:date];
+        [self scroll2Date:day animated:YES];
+    } else {
+        [self scroll2Date:day animated:YES];
+    }
 }
 
 -(void) scroll2Date:(NSString *) day

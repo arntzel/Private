@@ -37,6 +37,8 @@
 @interface DataCache : NSObject
 
 
+-(void) clearAllDayFeedEventEntitys;
+
 -(NSArray *) allDays;
 
 -(DayFeedEventEntitysWrap *) getDayFeedEventEntitysWrap:(NSString *) day;
