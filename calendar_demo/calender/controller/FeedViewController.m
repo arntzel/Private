@@ -112,7 +112,7 @@
 
     if(lastupdatetime == nil) {
         NSDate * begin = [NSDate date];
-        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+        //begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
         [self loadData:begin];
     } else {
         tableView.lastEventUpdateTime = lastupdatetime;
@@ -212,25 +212,24 @@
 #pragma mark EventFilterViewDelegate
 -(void) onFilterChanged:(int)filters
 {
-    LOG_D(@"onFilterChanged:0x %x", filters);
+    LOG_D(@"onFilterChanged:0x%x", filters);
 
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];
     [defaults synchronize];
 
     tableView.eventTypeFilters = filters;
+
+    NSDate * date = [tableView getFirstVisibleDay];
+    if (date == nil) {
+        date = [NSDate date];
+    }
+
+    [tableView reloadFeedEventEntitys:date];
+
     [self.calendarView setNeedsDisplay];
     [tableView reloadData];
 }
-
-//#pragma mark -
-//#pragma mark AddEventViewDelegate
-//-(void) onEventCreated:(Event *) event
-//{
-//    [eventModel addNewEvent:event];
-//    [tableView reloadData];
-//}
-
 
 
 #pragma mark -

@@ -150,7 +150,6 @@
 		3DC59EBE17A9FF6A0068AC79 /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBD17A9FF6A0068AC79 /* push.caf */; };
 		3DC59EC017AA472E0068AC79 /* push.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBF17AA472E0068AC79 /* push.wav */; };
 		3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */; };
-		3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */; };
 		3DD2E9D817B0E5A7009A5D02 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E9D717B0E5A7009A5D02 /* DataCache.m */; };
 		3DE06C90174086310071B8EE /* bg_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8E174086310071B8EE /* bg_line1@2x.png */; };
 		3DE06C91174086310071B8EE /* btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE06C8F174086310071B8EE /* btn_ok@2x.png */; };
@@ -357,6 +356,7 @@
 		946B2CC317AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B2CC217AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m */; };
 		946B2CC517AFF0BB00AD9B7F /* NoEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946B2CC417AFF0BB00AD9B7F /* NoEventView.xib */; };
 		9475840D1794375D001C7489 /* CustomerIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475840C1794375D001C7489 /* CustomerIndicatorView.m */; };
+		9481950817B26BDB00F34F61 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9481950717B26BDB00F34F61 /* MessageEntity.m */; };
 		94901DF31785B63000848ACA /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94901DF21785B63000848ACA /* EventFilterView.m */; };
 		94901DF61785B68B00848ACA /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF51785B68B00848ACA /* EventFilterView.xib */; };
 		94901DF81785C06100848ACA /* btn_ok_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94901DF71785C06100848ACA /* btn_ok_selected@2x.png */; };
@@ -697,8 +697,6 @@
 		3DC59EBF17AA472E0068AC79 /* push.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = push.wav; sourceTree = "<group>"; };
 		3DD2E9D017B0CE4E009A5D02 /* MessageEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntityExtra.h; sourceTree = "<group>"; };
 		3DD2E9D117B0CE4F009A5D02 /* MessageEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntityExtra.m; sourceTree = "<group>"; };
-		3DD2E9D317B0E02F009A5D02 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
-		3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		3DD2E9D617B0E5A7009A5D02 /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
 		3DD2E9D717B0E5A7009A5D02 /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
 		3DE06C8E174086310071B8EE /* bg_line1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_line1@2x.png"; sourceTree = "<group>"; };
@@ -999,6 +997,8 @@
 		946B2CC417AFF0BB00AD9B7F /* NoEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoEventView.xib; sourceTree = "<group>"; };
 		9475840B1794375D001C7489 /* CustomerIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerIndicatorView.h; sourceTree = "<group>"; };
 		9475840C1794375D001C7489 /* CustomerIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerIndicatorView.m; sourceTree = "<group>"; };
+		9481950617B26BDB00F34F61 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
+		9481950717B26BDB00F34F61 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		94901DF11785B63000848ACA /* EventFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFilterView.h; sourceTree = "<group>"; };
 		94901DF21785B63000848ACA /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
 		94901DF51785B68B00848ACA /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
@@ -2026,9 +2026,9 @@
 				946B2CB517AFD12700AD9B7F /* LocationEntity.h */,
 				946B2CB617AFD12700AD9B7F /* LocationEntity.m */,
 				946B2CB017AFD12700AD9B7F /* DayFeedEventEntitys.m */,
+				9481950617B26BDB00F34F61 /* MessageEntity.h */,
+				9481950717B26BDB00F34F61 /* MessageEntity.m */,
 				94977E9417A93B82007AFFBC /* Model.xcdatamodeld */,
-				3DD2E9D317B0E02F009A5D02 /* MessageEntity.h */,
-				3DD2E9D417B0E02F009A5D02 /* MessageEntity.m */,
 				946B2CBE17AFD17900AD9B7F /* FeedEventEntity.h */,
 				946B2CBF17AFD17900AD9B7F /* FeedEventEntity.m */,
 				94977E9717A93B9C007AFFBC /* CoreDataModel.h */,
@@ -2543,8 +2543,8 @@
 				946B2CC017AFD17900AD9B7F /* FeedEventEntity.m in Sources */,
 				946B2CC317AFE3AD00AD9B7F /* DayFeedEventEntitysExtra.m in Sources */,
 				3DD2E9D217B0CE4F009A5D02 /* MessageEntityExtra.m in Sources */,
-				3DD2E9D517B0E030009A5D02 /* MessageEntity.m in Sources */,
 				3DD2E9D817B0E5A7009A5D02 /* DataCache.m in Sources */,
+				9481950817B26BDB00F34F61 /* MessageEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

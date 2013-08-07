@@ -14,6 +14,8 @@
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
 
+#define FETECH_DAYS 15
+
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
 @end
@@ -56,22 +58,29 @@
     cache = [model getCache];
 }
 
-
-#pragma mark -
-#pragma mark tableViewDelegate
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(NSDate *) getFirstVisibleDay
 {
-
     NSArray * indexs = [self indexPathsForVisibleRows];
-    
+
     if(indexs.count > 0) {
         NSIndexPath * path = [indexs objectAtIndex:0];
         NSString * day = [[cache allDays] objectAtIndex:path.section];
-        NSDate * date = [Utils parseNSStringDay:day];
-        if(self.feedEventdelegate != nil) {
-            [self.feedEventdelegate onDisplayFirstDayChanged:date];
-        }
+        return [Utils parseNSStringDay:day];
+
+    } else {
+        return  nil;
+    }
+}
+
+#pragma mark -
+#pragma mark tableViewDelegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSDate * date = [self getFirstVisibleDay];
+
+    if(date != nil && self.feedEventdelegate != nil) {
+        [self.feedEventdelegate onDisplayFirstDayChanged:date];
     }
 }
 
@@ -90,7 +99,7 @@
         
         NSDate * date = [Utils parseNSStringDay:firtDay];
         
-        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andPreLimit:10];
+        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
         
         for(DayFeedEventEntitys * evt in dayFeedEntiys) {
             DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
@@ -114,7 +123,7 @@
         
         NSDate * date = [Utils parseNSStringDay:lastDay];
         
-        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:10];
+        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
         
         for(DayFeedEventEntitys * evt in dayFeedEntiys) {
             DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
@@ -243,7 +252,12 @@
     NSArray * allDays = [cache allDays];
     NSString * day = [allDays objectAtIndex:indexPath.section];
     DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
-    
+
+    if(wrap.eventTypeFilter != self.eventTypeFilters) {
+        wrap.eventTypeFilter = self.eventTypeFilters;
+        [wrap resetSortedEvents];
+    }
+
     NSArray * events = [wrap sortedEvents];
     
     FeedEventEntity * event = [events objectAtIndex:indexPath.row];
@@ -256,8 +270,8 @@
 {
     [cache clearAllDayFeedEventEntitys];
     
-    NSArray * feedEvents = [model getDayFeedEventEntitys:day andPreLimit:10];
-    NSArray * feedEvents2 = [model getDayFeedEventEntitys:day andFollowLimit:10];
+    NSArray * feedEvents = [model getDayFeedEventEntitys:day andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+    NSArray * feedEvents2 = [model getDayFeedEventEntitys:day andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
     
     NSMutableArray * array = [[NSMutableArray alloc] initWithArray:feedEvents];
     [array addObjectsFromArray:feedEvents2];
@@ -272,18 +286,11 @@
 
 -(void)scroll2SelectedDate:(NSString *) day {
     
-    NSArray * allDays = [cache allDays];
-
-    if(allDays.count==0) return;
-    
-    NSString * firstDay = [allDays objectAtIndex:0];
-    NSString * lastDay = [allDays lastObject];
-    
-    if([firstDay compare:day] > 0 || [lastDay compare:day] < 0) {
-        NSDate * date = [Utils parseNSStringDay:day];
-        [self reloadFeedEventEntitys:date];
+    if( [cache containDay:day]) {
         [self scroll2Date:day animated:YES];
     } else {
+        NSDate * date = [Utils parseNSStringDay:day];
+        [self reloadFeedEventEntitys:date];
         [self scroll2Date:day animated:YES];
     }
 }

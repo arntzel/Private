@@ -96,6 +96,20 @@
     return allDays;
 }
 
+-(BOOL) containDay:(NSString *) day
+{
+    if(allDays.count==0) return NO;
+    
+    NSString * firstDay = [allDays objectAtIndex:0];
+    NSString * lastDay = [allDays lastObject];
+
+    if([day compare:firstDay] >= 0 && [day compare:lastDay] <= 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps
 {
     for(DayFeedEventEntitysWrap * wrap in wraps) {

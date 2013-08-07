@@ -125,7 +125,7 @@ static CoreDataModel * instance;
 }
 
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter
 {
     NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", date);
     
@@ -135,7 +135,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day < %@)", beginDay];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day < %@) && (eventType & %d)>0", beginDay, eventTypeFilter];
     [fetchRequest setFetchLimit:limit];
     [fetchRequest setFetchOffset:0];
     [fetchRequest setPredicate:predicate];
@@ -148,7 +148,7 @@ static CoreDataModel * instance;
     return results;
 }
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit  andEventTypeFilter:(int) eventTypeFilter
 {
     NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", date);
     
@@ -158,7 +158,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@)", beginDay];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@) and (eventType & %d)>0", beginDay, eventTypeFilter];
     [fetchRequest setFetchLimit:limit];
     [fetchRequest setFetchOffset:0];
     [fetchRequest setPredicate:predicate];
@@ -171,23 +171,23 @@ static CoreDataModel * instance;
     return results;
 }
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) beginDate andEndDay:(NSDate*) endDate
-{
-    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@-%@", beginDate, endDate);
-    
-    NSString * beginDay = [Utils formateDay:beginDate];
-    NSString * endDay = [Utils formateDay:endDate];
-    
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@ AND day< %@)", beginDay, endDay];
-    [fetchRequest setPredicate:predicate];
-    
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    return results;
-}
+//-(NSArray *) getDayFeedEventEntitys:(NSDate *) beginDate andEndDay:(NSDate*) endDate
+//{
+//    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@-%@", beginDate, endDate);
+//    
+//    NSString * beginDay = [Utils formateDay:beginDate];
+//    NSString * endDay = [Utils formateDay:endDate];
+//    
+//    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(day >= %@ AND day< %@)", beginDay, endDay];
+//    [fetchRequest setPredicate:predicate];
+//    
+//    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+//    return results;
+//}
 
 -(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day
 {
@@ -318,7 +318,7 @@ static CoreDataModel * instance;
 
     int type = 0;
     for(FeedEventEntity * ent in dayEntitys.events) {
-        type |= 0x00000001 << [ent.eventType intValue];
+        type |= (0x00000001 << [ent.eventType intValue]);
     }
 
     dayEntitys.eventType = [NSNumber numberWithInt:type];

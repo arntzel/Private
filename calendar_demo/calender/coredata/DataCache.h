@@ -41,6 +41,10 @@
 
 -(NSArray *) allDays;
 
+
+-(BOOL) containDay:(NSString *) day;
+
+
 -(DayFeedEventEntitysWrap *) getDayFeedEventEntitysWrap:(NSString *) day;
 
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps;

@@ -86,7 +86,7 @@
         <element name="EventEntity" positionX="160" positionY="192" width="128" height="420"/>
         <element name="FeedEventEntity" positionX="160" positionY="192" width="128" height="345"/>
         <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
         <element name="MessageEntity" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

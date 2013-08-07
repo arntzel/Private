@@ -2,7 +2,7 @@
 //  MessageEntity.m
 //  calender
 //
-//  Created by fang xiang on 13-8-6.
+//  Created by xiangfang on 13-8-7.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -11,12 +11,12 @@
 
 @implementation MessageEntity
 
-@dynamic id;
-@dynamic subject;
-@dynamic sendTime;
 @dynamic eventID;
+@dynamic id;
 @dynamic senderName;
 @dynamic senderUrl;
+@dynamic sendTime;
+@dynamic subject;
 @dynamic unread;
 
 @end

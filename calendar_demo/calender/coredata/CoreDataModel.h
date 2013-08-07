@@ -19,9 +19,9 @@
 -(DataCache *) getCache;
 
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit;
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit;
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
 
 
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
