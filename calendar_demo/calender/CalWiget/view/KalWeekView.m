@@ -38,6 +38,22 @@ extern const CGSize kTileSize;
     [self setNeedsDisplay];
 }
 
+-(void) setSelectedDate:(KalDate *)_selectedDate
+{
+    for (UIView *view in [self subviews]) {
+        if([view isKindOfClass:[KalTileView class]]) {
+            KalTileView * tileView = (KalTileView *)view;
+            if ([tileView.date isEqual:_selectedDate]) {
+                tileView.selected = YES;
+            } else {
+                tileView.selected = NO;
+            }
+        }
+    }
+
+    [self setNeedsDisplay];
+}
+
 - (void)clearSelectedState
 {
     for (UIView *view in [self subviews]) {

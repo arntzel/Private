@@ -108,6 +108,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         NSDate * showWeek = [logic.showWeek NSDate];
         int ret = [date compareWeek:showWeek];
         if(ret == 0) {
+            [weekGridView.frontWeekView setSelectedDate:kalDate];
             return;
         }
         
@@ -127,6 +128,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         int ret = [kalDate compareMonth:showMonth];
 
         if(ret == 0) {
+            [gridView.frontMonthView setSelectedDate:kalDate];
             return;
         }
         
