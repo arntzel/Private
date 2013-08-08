@@ -14,7 +14,7 @@ const CGSize kTileSize = { 46.f, 44.f };
   if ((self = [super initWithFrame:frame])) {
     [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
       
-    self.clipsToBounds = NO;
+    self.clipsToBounds = YES;
     origin = frame.origin;
     [self resetState];
   }
@@ -27,13 +27,14 @@ const CGSize kTileSize = { 46.f, 44.f };
     CGContextRef ctx=UIGraphicsGetCurrentContext();
     
     UIColor *textColor = nil;
-        if(self.selected) {
+    if(self.selected)
+    {
         textColor = [UIColor whiteColor];
-            CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
+        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
         CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
+        CGContextAddRect(ctx, CGRectMake(0, 1, kTileSize.width - 2, kTileSize.height - 2));
         CGContextFillPath(ctx);
-    } 
+    }
     else if(self.belongsToAdjacentMonth)
     {
         textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1.0];
@@ -198,9 +199,7 @@ const CGSize kTileSize = { 46.f, 44.f };
     [date release];
     date = nil;
     flags.type = KalTileTypeRegular;
-    flags.highlighted = NO;
     flags.selected = NO;
-    flags.marked = NO;
 }
 
 - (void)setDate:(KalDate *)aDate
@@ -217,47 +216,8 @@ const CGSize kTileSize = { 46.f, 44.f };
 - (BOOL)isSelected { return flags.selected; }
 
 - (void)setSelected:(BOOL)selected
-{
-//  if (flags.selected == selected)
-//    return;
-
-  // workaround since I cannot draw outside of the frame in drawRect:
-    CGRect rect = self.frame;
-    if (selected)
-    {
-      rect.origin.x--;
-      rect.size.width++;
-      rect.size.height++;
-    } else {
-      rect.origin.x++;
-      rect.size.width--;
-      rect.size.height--;
-    }
-    self.frame = rect;
-  
+{  
   flags.selected = selected;
-  [self setNeedsDisplay];
-}
-
-- (BOOL)isHighlighted { return flags.highlighted; }
-
-- (void)setHighlighted:(BOOL)highlighted
-{
-  if (flags.highlighted == highlighted)
-    return;
-  
-  flags.highlighted = highlighted;
-  [self setNeedsDisplay];
-}
-
-- (BOOL)isMarked { return flags.marked; }
-
-- (void)setMarked:(BOOL)marked
-{
-  if (flags.marked == marked)
-    return;
-  
-  flags.marked = marked;
   [self setNeedsDisplay];
 }
 
@@ -267,19 +227,6 @@ const CGSize kTileSize = { 46.f, 44.f };
 {
   if (flags.type == tileType)
     return;
-  
-  // workaround since I cannot draw outside of the frame in drawRect:
-  CGRect rect = self.frame;
-  if (tileType == KalTileTypeToday) {
-    rect.origin.x--;
-    rect.size.width++;
-    rect.size.height++;
-  } else if (flags.type == KalTileTypeToday) {
-      rect.origin.x--;
-      rect.size.width++;
-      rect.size.height++;
-  }
-  self.frame = rect;
   
   flags.type = tileType;
   [self setNeedsDisplay];

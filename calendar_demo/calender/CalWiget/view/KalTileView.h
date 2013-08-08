@@ -31,9 +31,7 @@ typedef char KalTileType;
 }
 
 @property (nonatomic, retain) KalDate *date;
-@property (nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (nonatomic, getter=isSelected) BOOL selected;
-@property (nonatomic, getter=isMarked) BOOL marked;
 @property (nonatomic) KalTileType type;
 
 @property (nonatomic, assign) NSObject<KalTileViewDataSource> * datasource;
