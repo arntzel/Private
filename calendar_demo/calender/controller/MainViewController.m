@@ -65,6 +65,7 @@
         [msgModel refreshModel:^(NSInteger error) {
             if(error ==0) {
                 [msgModel updateMessageReadStatus:nil];
+                [msgModel setUnReadMsgCount:0];
             } else {
                 [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
             }

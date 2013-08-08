@@ -88,7 +88,10 @@
     [[Model getInstance] getUnreadMessages:^(NSInteger error, NSArray * messages) {
         [self nofifyModelLoadingStatus:NO];
         
-        if(error != 0 || messages.count == 0) return;
+        if(error != 0 || messages.count == 0) {
+            if(callback) callback(error);
+            return;
+        }
         
         
         CoreDataModel * dataModel = [CoreDataModel getInstance];
