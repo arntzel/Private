@@ -250,7 +250,7 @@
 {
     NSURL * url = [NSURL URLWithString:strurl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setTimeoutInterval:20];
+    [request setTimeoutInterval:30];
 
     [request setHTTPMethod:methood];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
+-(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 
 -(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 

@@ -224,6 +224,57 @@ static Model * instance;
     [self getEvents:startDay andEnd:endDay andCallback:callback];
 }
 
+-(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback
+{
+    
+    NSString * startDay = [Utils formateDay:begin];
+    startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&start__gte=%@", HOST, offset, startDay];
+    
+    
+    LOG_D(@"url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    //[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200 && data != nil) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            
+            int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
+            //LOG_D(@"Event resp:%@", json);
+            
+            NSArray * objects = [json objectForKey:@"objects"];
+            
+            NSMutableArray * events = [[NSMutableArray alloc] init];
+            
+            for(int i=0; i<objects.count;i++) {
+                Event * e = [Event parseEvent:[objects objectAtIndex:i]];
+                [events addObject:e];
+            }
+            
+            callback(ERROCODE_OK, count, events);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+            
+            callback(ERROCODE_SERVER, 0, nil);
+        }
+    }];
+}
+
+
+
 -(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
 {
     NSString * startDay = [Utils formateDay:begin];
@@ -247,9 +298,9 @@ static Model * instance;
     
     NSString * url;
     if(endDay == nil) {
-        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@", HOST, startDay];
+        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@", HOST, startDay];
     } else {
-        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=0&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
+        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
     }
     
     LOG_D(@"url=%@", url);

@@ -36,6 +36,8 @@
 
 -(void) startAnim
 {
+    if(indicatorView.isAnimating) return;
+    
     [indicatorView startAnimating];
 
     [UIView beginAnimations:nil context:NULL];
@@ -50,6 +52,8 @@
 
 -(void) stopAnim
 {
+    if(!indicatorView.isAnimating) return;
+    
     [indicatorView stopAnimating];
 
     [UIView beginAnimations:nil context:NULL];

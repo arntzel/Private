@@ -27,6 +27,8 @@
 #import "CustomerIndicatorView.h"
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"
+#import "LoadingProgressView.h"
+#import "ViewUtils.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -43,6 +45,8 @@
     FeedEventTableView * tableView;
    
     CustomerIndicatorView * dataLoadingView;
+    
+    LoadingProgressView * loadingPrigressView;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -112,8 +116,14 @@
 
     if(lastupdatetime == nil) {
         NSDate * begin = [NSDate date];
-        //begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
-        [self loadData:begin];
+        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+        
+        loadingPrigressView = (LoadingProgressView*)[ViewUtils createView:@"LoadingProgressView"];
+        loadingPrigressView.progressView.progress = 0;
+        loadingPrigressView.center = self.view.center;
+        [self.view addSubview:loadingPrigressView];
+        [self synchronFeedEventFromServer:0 andBeginDate:begin];
+        
     } else {
         tableView.lastEventUpdateTime = lastupdatetime;
         [tableView reloadFeedEventEntitys:[NSDate date]];
@@ -127,6 +137,66 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
+
+
+-(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
+{
+    [dataLoadingView startAnim];
+   
+    [[Model getInstance] getEventsOfBegin:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+        
+        LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
+        
+        
+        if(error == 0) {
+            
+            if(events.count > 0) {
+                CoreDataModel * model = [CoreDataModel getInstance];
+                
+                for(Event * evt in events) {
+                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                    [entity convertFromEvent:evt];
+                    [model addFeedEventEntity:entity];
+                }
+                
+                [model saveData];
+            }
+            
+            //Load event compeleted
+            if(events.count < 20) {
+                
+                [dataLoadingView stopAnim];
+                [loadingPrigressView removeFromSuperview];
+                loadingPrigressView = nil;
+                 
+                [tableView reloadFeedEventEntitys:[NSDate date]];
+                [self.calendarView setNeedsDisplay];
+                
+                [self scroll2Today];
+                
+                NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+                [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
+                [defaults synchronize];
+                
+            } else {
+                
+                float newOffset = (offset + events.count);
+                float progress = newOffset / count;
+                loadingPrigressView.progressView.progress = progress;
+                
+                [self synchronFeedEventFromServer: (offset + events.count) andBeginDate:begin];
+            }
+            
+                        
+        } else {
+            
+            [dataLoadingView stopAnim];
+            
+            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
+        }
+    }];
+}
+
 
 -(void) loadData:(NSDate *) begin
 {

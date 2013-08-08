@@ -254,7 +254,7 @@ static CoreDataModel * instance;
         return wrap.eventType;
     }
     
-    NSLog(@"NSFetchRequest: getDayFeedEventType:%@", day);
+    //NSLog(@"NSFetchRequest: getDayFeedEventType:%@", day);
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DayFeedEventEntitys" inManagedObjectContext:managedObjectContext];

@@ -108,6 +108,8 @@
         [self nofityModelChanged];
         
         if(callback) callback(error);
+        
+        [self updateMessageReadStatus:nil];
     }];
 }
 
