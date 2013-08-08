@@ -17,7 +17,6 @@
 #import "RootNavContrller.h"
 #import "AddEventViewController.h"
 
-#import "EventModel.h"
 
 #import "FeedEventTableView.h"
 
@@ -29,6 +28,8 @@
 #import "CoreDataModel.h"
 #import "LoadingProgressView.h"
 #import "ViewUtils.h"
+#import "EventModel.h"
+
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -39,7 +40,8 @@
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,
-                                  CoreDataModelDelegate>
+                                  CoreDataModelDelegate,
+                                  EventModelDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -123,6 +125,8 @@
         loadingPrigressView.progressView.progress = 0;
         loadingPrigressView.center = self.view.center;
         [self.view addSubview:loadingPrigressView];
+
+        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
         [self synchronFeedEventFromServer:0 andBeginDate:begin];
         
     } else {
@@ -132,11 +136,12 @@
     }
     
     [[CoreDataModel getInstance] addDelegate:self];
-    
+    [[[Model getInstance] getEventModel] addDelegate:self];
 }
 
 -(void)viewDidUnload {
     [[CoreDataModel getInstance] removeDelegate:self];
+    [[[Model getInstance] getEventModel] removeDelegate:self];
     [super viewDidUnload];
 }
 
@@ -149,8 +154,7 @@
 
 -(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
 {
-    [dataLoadingView startAnim];
-   
+       
     [[Model getInstance] getEventsOfBegin:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
         LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
@@ -172,11 +176,14 @@
             
             //Load event compeleted
             if(events.count < 20) {
-                
-                [dataLoadingView stopAnim];
+
+
                 [loadingPrigressView removeFromSuperview];
                 loadingPrigressView = nil;
-                 
+
+                [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+
+                
                 [tableView reloadFeedEventEntitys:[NSDate date]];
                 [self.calendarView setNeedsDisplay];
                 
@@ -322,5 +329,14 @@
 {
     NSLog(@"onDisplayFirstDayChanged:%@", firstDay);
     [self.calendarView.kalView swith2Date:firstDay];
+}
+
+-(void) onEventModelChanged:(BOOL) isSynchronizingData
+{
+    if(isSynchronizingData) {
+        [dataLoadingView startAnim];
+    } else {
+        [dataLoadingView stopAnim];
+    }
 }
 @end

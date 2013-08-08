@@ -1,7 +1,6 @@
 
 
 #import <UIKit/UIKit.h>
-#import "EventModel.h"
 
 #import "PullRefreshTableView.h"
 

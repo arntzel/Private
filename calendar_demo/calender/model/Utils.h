@@ -13,7 +13,7 @@
 
 
 +(NSDate *) convertLocalDate:(NSDate *) gmtDate;
-
++(NSDate *) convertGMTDate:(NSDate *) localDate;
 
 /*
  convert a NSString to NSDate object
