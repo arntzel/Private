@@ -77,8 +77,13 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSDate * date = [self getFirstVisibleDay];
+    [self changeCalOnDisplayDay];
+}
 
+- (void)changeCalOnDisplayDay
+{
+    NSDate * date = [self getFirstVisibleDay];
+    
     if(date != nil && self.feedEventdelegate != nil) {
         [self.feedEventdelegate onDisplayFirstDayChanged:date];
     }
@@ -87,6 +92,9 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (!decelerate) {
+        [self changeCalOnDisplayDay];
+    }
     int y = scrollView.contentOffset.y;
     
     if(y < 60) {
