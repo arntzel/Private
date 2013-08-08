@@ -24,6 +24,8 @@ static CoreDataModel * instance;
     //持久性存储区
     NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
+    NSMutableArray * delegates;
+    
     DataCache * cache;
 }
 
@@ -53,7 +55,7 @@ static CoreDataModel * instance;
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     
-    
+    delegates = [[NSMutableArray alloc] init];
     cache = [[DataCache alloc] init];
     return self;
 }
@@ -94,6 +96,25 @@ static CoreDataModel * instance;
     }
 
     return managedObjectContext;
+}
+
+
+
+-(void) addDelegate:(id<CoreDataModelDelegate>) delegate
+{
+    [delegates addObject:delegate];
+}
+
+-(void) removeDelegate:(id<CoreDataModelDelegate>) delegate
+{
+    [delegates removeObject:delegate];
+}
+
+-(void) notifyModelChange
+{
+    for(id<CoreDataModelDelegate>  delegate in delegates) {
+        [delegate onCoreDataModelChanged];
+    }
 }
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id
@@ -230,6 +251,8 @@ static CoreDataModel * instance;
             [wrap resetSortedEvents];
         }
         return wrap.sortedEvents;
+    } else {
+        return nil;
     }
     
     wrap = [[DayFeedEventEntitysWrap alloc] init];
@@ -239,7 +262,6 @@ static CoreDataModel * instance;
     wrap.eventTypeFilter = filter;
     [wrap resetSortedEvents];
     
-    [cache putDayFeedEventEntitysWrap:wrap];
     return wrap.sortedEvents;
 } 
 
@@ -323,11 +345,15 @@ static CoreDataModel * instance;
 
     dayEntitys.eventType = [NSNumber numberWithInt:type];
     
-    
-    DayFeedEventEntitysWrap * oldWrap = [cache getDayFeedEventEntitysWrap:day];
-    if(oldWrap != nil) {
-        oldWrap.dayFeedEvents = dayEntitys;
-        [oldWrap resetSortedEvents];
+    if([cache containDay:day]) {
+        DayFeedEventEntitysWrap * oldWrap = [cache getDayFeedEventEntitysWrap:day];
+        if(oldWrap != nil) {
+            oldWrap.dayFeedEvents = dayEntitys;
+            [oldWrap resetSortedEvents];
+        } else {
+            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:dayEntitys];
+            [cache putDayFeedEventEntitysWrap:wrap];
+        }
     }
     
     [cache removeDayEventTypeWrap:day];

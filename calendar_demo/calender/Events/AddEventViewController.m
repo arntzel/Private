@@ -31,6 +31,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "Model.h"
+#import "CoreDataModel.h"
+
 #import "Utils.h"
 #import "ViewUtils.h"
 
@@ -544,8 +546,13 @@
         
         if (error == 0) {
 
-            [[[Model getInstance] getEventModel] addNewEvent:newEvent];
-
+            CoreDataModel * model = [CoreDataModel getInstance];
+            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+            [entity convertFromEvent:newEvent];
+            [model addFeedEventEntity:entity];
+            [model saveData];
+            [model notifyModelChange];
+            
             [self.navigationController popViewControllerAnimated:YES];
 
         } else {

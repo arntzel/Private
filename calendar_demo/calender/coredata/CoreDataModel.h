@@ -14,7 +14,23 @@
 #import "MessageEntityExtra.h"
 #import "DataCache.h"
 
+@protocol CoreDataModelDelegate <NSObject>
+
+-(void) onCoreDataModelChanged;
+
+@end
+
+
+
 @interface CoreDataModel : NSObject
+
+
+-(void) addDelegate:(id<CoreDataModelDelegate>) delegate;
+
+-(void) removeDelegate:(id<CoreDataModelDelegate>) delegate;
+
+-(void) notifyModelChange;
+
 
 -(DataCache *) getCache;
 
@@ -22,6 +38,9 @@
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
 
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
+
+
+-(FeedEventEntity*) getFeedEventEntity:(int) id;
 
 
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;

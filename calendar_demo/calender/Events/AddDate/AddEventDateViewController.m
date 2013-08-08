@@ -258,7 +258,8 @@
 
 -(void) didSelectDate: (KalDate*) date
 {
-    [self loadEvents:[date NSDate]];
+    eventDate.start = [date NSDate];
+    [self loadEvents:eventDate.start];
 }
 
 -(void) loadEvents: (NSDate*) date

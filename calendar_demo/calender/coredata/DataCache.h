@@ -14,12 +14,12 @@
 -(id) init:(DayFeedEventEntitys *) entitys;
 
 
-@property NSString * day;
+@property(strong) NSString * day;
 @property(strong) DayFeedEventEntitys * dayFeedEvents;
 @property int eventTypeFilter;
 
 
-@property NSArray * sortedEvents;
+@property(strong) NSArray * sortedEvents;
 
 -(void) resetSortedEvents;
 

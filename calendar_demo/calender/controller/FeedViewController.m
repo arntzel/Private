@@ -38,7 +38,8 @@
                                   KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
-                                  FeedEventTableViewDelegate>
+                                  FeedEventTableViewDelegate,
+                                  CoreDataModelDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -129,8 +130,15 @@
         [tableView reloadFeedEventEntitys:[NSDate date]];
         [self scroll2Today];
     }
+    
+    [[CoreDataModel getInstance] addDelegate:self];
+    
 }
 
+-(void)viewDidUnload {
+    [[CoreDataModel getInstance] removeDelegate:self];
+    [super viewDidUnload];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -266,6 +274,14 @@
     return YES;
 }
 
+
+#pragma mark -
+#pragma mark CoreDataModelDelegate
+-(void) onCoreDataModelChanged
+{
+    [tableView reloadData];
+    [self.calendarView setNeedsDisplay];
+}
 
 #pragma mark -
 #pragma mark KalTileViewDataSource

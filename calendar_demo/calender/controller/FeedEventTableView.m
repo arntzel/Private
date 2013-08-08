@@ -148,9 +148,18 @@
     NSArray * allDays = [cache allDays];
     NSString * day = [allDays objectAtIndex:section];
     DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
-    wrap.eventTypeFilter = self.eventTypeFilters;
-    [wrap resetSortedEvents];
-    return  [wrap sortedEvents].count;
+    if(wrap.eventTypeFilter != self.eventTypeFilters) {
+        wrap.eventTypeFilter = self.eventTypeFilters;
+        [wrap resetSortedEvents];
+    }
+   
+    int count =  [wrap sortedEvents].count;
+    
+    if(count == 0) {
+        int i = 0;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
