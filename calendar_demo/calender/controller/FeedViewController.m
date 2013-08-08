@@ -296,9 +296,7 @@
     }
 
     [tableView reloadFeedEventEntitys:date];
-
     [self.calendarView setNeedsDisplay];
-    [tableView reloadData];
 }
 
 

@@ -148,7 +148,7 @@
     NSArray * allDays = [cache allDays];
     NSString * day = [allDays objectAtIndex:section];
     DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
-    wrap.eventTypeFilter = 0xFFFFFFFF;
+    wrap.eventTypeFilter = self.eventTypeFilters;
     [wrap resetSortedEvents];
     return  [wrap sortedEvents].count;
 }
