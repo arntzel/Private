@@ -163,10 +163,6 @@
    
     int count =  [wrap sortedEvents].count;
     
-    if(count == 0) {
-        int i = 0;
-    }
-    
     return count;
 }
 

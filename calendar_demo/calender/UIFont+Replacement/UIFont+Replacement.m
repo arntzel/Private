@@ -18,7 +18,7 @@ static NSString *italicSystemFontName = @"Helvetica-Italic";
 
 static void initializeReplacementFonts()
 {
-    /*
+    
 	static BOOL initialized = NO;
 	if (initialized)
 		return;
@@ -32,10 +32,8 @@ static void initializeReplacementFonts()
 	NSDictionary *replacementDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ReplacementFonts"];
 	[UIFont setReplacementDictionary:replacementDictionary];
 
-    font = [[UIFont alloc] init];
-    NSString * name = font.fontName;
+    font = [UIFont systemFontOfSize:16];
     LOG_D(@"famili:%@, name:%@", font.familyName, font.fontName);
-     */
 }
 
 + (void) load

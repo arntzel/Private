@@ -133,6 +133,8 @@
     int badge = [[aps objectForKey:@"badge"] integerValue];
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
     //[[[Model getInstance] getMessageModel] refreshModel];
+    
+     [self synchronizedFromServer];
 }
 
 
