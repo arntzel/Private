@@ -16,6 +16,7 @@
 #import "NSDateAdditions.h"
 #import "Utils.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 @implementation AppDelegate
 
@@ -70,23 +71,6 @@
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
 
-
-    NSData * data = [NSData dataWithContentsOfFile:[self getEventsSavePath]];
-
-    if(data != nil && data.length > 0) {
-        NSError * err;
-        NSArray * objects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-        NSMutableArray * events = [[NSMutableArray alloc] init];
-
-        for(int i=0; i<objects.count;i++) {
-            Event * e = [Event parseEvent:[objects objectAtIndex:i]];
-            [events addObject:e];
-        }
-
-        EventModel * model = [[Model getInstance] getEventModel];
-        [model addEvents:events];
-    }
-    
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     NSNumber * count = [defaults objectForKey:@"unreadmessagecount"];
@@ -184,37 +168,10 @@
   
     int count = [msgModel getUnreadMsgCount];    
     [defaults setObject:[NSNumber numberWithInt:count] forKey:@"unreadmessagecount"];
-    [defaults synchronize];
-    
-    //Save event data
-    
-    NSDate * start = [NSDate date];
-    NSDate * end = [start cc_dateByMovingToTheFollowingDayCout:7];
-
-    EventModel * model = [[Model getInstance] getEventModel];
-    NSArray * events =  [model getEventsByBeginDay:start andEndDay:end];
-
-    NSMutableArray * jsonArray = [[NSMutableArray alloc] init];
-    for(Event * event in events) {
-        NSDictionary * json = [event convent2Dic];
-        [jsonArray addObject:json];
-    }
-
-    if (jsonArray.count > 0) {
-
-        NSString * path =  [self getEventsSavePath];
-        NSError * err;
-        NSData * data = [NSJSONSerialization dataWithJSONObject:jsonArray options:NSJSONWritingPrettyPrinted error:&err];
-        [data writeToFile:path atomically:YES];
-    }
+    [defaults synchronize];    
 }
 
--(NSString *) getEventsSavePath
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentDirectory = [paths objectAtIndex:0];
-    return [NSString stringWithFormat:@"%@/events.json", documentDirectory];
-}
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
@@ -240,6 +197,45 @@
     }
     
     [self registerForRemoteNotificationToGetToken];
+
+    [self synchronizedFromServer];
+}
+
+
+-(void) synchronizedFromServer
+{
+    if([[[Model getInstance] getEventModel] isSynchronizeData]) return;
+
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
+
+    if(lastupdatetime == nil) return;
+
+
+    [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+    
+    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+
+        [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+
+        if(events.count > 0) {
+            CoreDataModel * model = [CoreDataModel getInstance];
+
+            for(Event * evt in events) {
+                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                [entity convertFromEvent:evt];
+                [model addFeedEventEntity:entity];
+            }
+
+            [model saveData];
+            [model notifyModelChange];
+
+            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
+            [defaults synchronize];
+        }
+    }];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

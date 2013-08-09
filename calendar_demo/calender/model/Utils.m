@@ -16,6 +16,16 @@
     return localeDate;
 }
 
++(NSDate *) convertGMTDate:(NSDate *) localDate
+{
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: localDate];
+
+    NSDate * gmtDate = [localDate  dateByAddingTimeInterval:-interval];
+
+    return gmtDate;
+}
+
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
     if(strDate == nil || [strDate isKindOfClass:[NSNull class]]) {

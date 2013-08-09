@@ -236,33 +236,52 @@ static Model * instance;
     LOG_D(@"url=%@", url);
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+
+    [self doGetEventsRequest:request andCallback:callback];    
+}
+
+-(void) getUpdatedEvents:(NSDate *) lastmodifyTime andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
+{
+    lastmodifyTime = [Utils convertGMTDate:lastmodifyTime];
     
+    NSString * strLastmodifyTime = [Utils formateDate:lastmodifyTime];
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
+
+    LOG_D(@"url=%@", url);
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+
+    [self doGetEventsRequest:request andCallback:callback];
+}
+
+-(void) doGetEventsRequest:(NSMutableURLRequest *)request andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback
+{
     [[UserModel getInstance] setAuthHeader:request];
-    //[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
-        
+
         if(status == 200 && data != nil) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            
+
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
             //LOG_D(@"Event resp:%@", json);
-            
+
             NSArray * objects = [json objectForKey:@"objects"];
-            
+
             NSMutableArray * events = [[NSMutableArray alloc] init];
-            
+
             for(int i=0; i<objects.count;i++) {
                 Event * e = [Event parseEvent:[objects objectAtIndex:i]];
                 [events addObject:e];
             }
-            
+
             callback(ERROCODE_OK, count, events);
-            
+
         } else {
-            
+
             if(data != nil) {
                 NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
                 LOG_D(@"error=%d, resp:%@", status, aStr);
@@ -272,7 +291,6 @@ static Model * instance;
         }
     }];
 }
-
 
 
 -(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
