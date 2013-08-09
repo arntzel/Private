@@ -2,6 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Location.h"
+#import "BaseUIViewController.h"
 
 @protocol AddLocationViewControllerDelegate <NSObject>
 
@@ -9,7 +10,7 @@
 
 @end
 
-@interface AddLocationViewController : UIViewController
+@interface AddLocationViewController : BaseUIViewController
 @property (weak, nonatomic) IBOutlet UISearchBar *locationSearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *txtSearchTabView;
 @property (weak, nonatomic) IBOutlet UITableView *nearBySearchTabView;

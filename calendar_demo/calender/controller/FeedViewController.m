@@ -33,9 +33,7 @@
 /*
  FeedViewController show the event list and a calender wiget
  */
-@interface FeedViewController () <UITableViewDataSource,
-                                  UITableViewDelegate,
-                                  KalViewDelegate,
+@interface FeedViewController () <KalViewDelegate,
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,

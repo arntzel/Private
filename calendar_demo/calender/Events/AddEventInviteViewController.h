@@ -1,5 +1,7 @@
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
+
 
 @protocol AddEventInviteViewControllerDelegate <NSObject>
 
@@ -7,7 +9,7 @@
 
 @end
 
-@interface AddEventInviteViewController : UIViewController
+@interface AddEventInviteViewController : BaseUIViewController
 
 @property (nonatomic, assign) id<AddEventInviteViewControllerDelegate> delegate;
 

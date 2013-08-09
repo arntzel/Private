@@ -2,6 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Navigation.h"
+#import "BaseUIViewController.h"
 
 @protocol BaseMenuViewControllerDelegate <NSObject>
 
@@ -10,10 +11,13 @@
 @end
 
 
-@interface BaseMenuViewController : UIViewController
+@interface BaseMenuViewController : BaseUIViewController
 
 @property Navigation * navigation;
 
 @property(weak) id<BaseMenuViewControllerDelegate> delegate;
+
+
+-(BOOL)prefersStatusBarHidden;
 
 @end

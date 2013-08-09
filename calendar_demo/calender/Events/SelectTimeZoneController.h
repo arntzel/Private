@@ -1,5 +1,7 @@
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
+
 
 @protocol SelectTimeZoneControllerDelegate <NSObject>
 
@@ -7,7 +9,7 @@
 
 @end
 
-@interface SelectTimeZoneController : UIViewController
+@interface SelectTimeZoneController : BaseUIViewController
 
 @property(retain, nonatomic) IBOutlet UITableView * tableView;
 

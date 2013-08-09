@@ -1,7 +1,8 @@
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
 
-@interface LoginNowController : UIViewController
+@interface LoginNowController : BaseUIViewController
 
 @property IBOutlet UITextField * tvUsername;
 @property IBOutlet UITextField * tvPassword;

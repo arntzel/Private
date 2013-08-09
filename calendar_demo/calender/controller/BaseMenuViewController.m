@@ -47,6 +47,11 @@
     }
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 #pragma mark -
 #pragma mark btnEvent
 - (void)btnAddEvent:(id)sender

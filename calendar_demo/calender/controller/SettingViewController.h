@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : BaseUIViewController
 
 
 -(IBAction) logout:(id)sender;

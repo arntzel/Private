@@ -73,6 +73,10 @@
     }
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 #pragma mark - FeedViewControllerDelegate
 -(void)onBtnMenuClick {

@@ -146,6 +146,7 @@
 		3DB97808174A1424005B462E /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB97806174A1424005B462E /* EventView.m */; };
 		3DB97809174A1424005B462E /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB97807174A1424005B462E /* EventView.xib */; };
 		3DB9780E174A2832005B462E /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9780D174A2832005B462E /* FeedViewController.m */; };
+		3DBEEA3717B4834200959D36 /* BaseUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEEA3617B4834200959D36 /* BaseUIViewController.m */; };
 		3DC59EB917A797F30068AC79 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC59EB817A797F30068AC79 /* MessageModel.m */; };
 		3DC59EBE17A9FF6A0068AC79 /* push.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBD17A9FF6A0068AC79 /* push.caf */; };
 		3DC59EC017AA472E0068AC79 /* push.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DC59EBF17AA472E0068AC79 /* push.wav */; };
@@ -693,6 +694,8 @@
 		3DB97807174A1424005B462E /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		3DB9780C174A2832005B462E /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		3DB9780D174A2832005B462E /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3DBEEA3517B4834200959D36 /* BaseUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUIViewController.h; sourceTree = "<group>"; };
+		3DBEEA3617B4834200959D36 /* BaseUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseUIViewController.m; sourceTree = "<group>"; };
 		3DC59EB717A797F30068AC79 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		3DC59EB817A797F30068AC79 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		3DC59EBD17A9FF6A0068AC79 /* push.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = push.caf; sourceTree = "<group>"; };
@@ -1521,6 +1524,8 @@
 				94BCB9BC17ADDFE50080A02A /* SettingViewController.h */,
 				94BCB9BD17ADDFE50080A02A /* SettingViewController.m */,
 				94BCB9BE17ADDFE50080A02A /* SettingViewController.xib */,
+				3DBEEA3517B4834200959D36 /* BaseUIViewController.h */,
+				3DBEEA3617B4834200959D36 /* BaseUIViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2489,6 +2494,7 @@
 				7656D31D1787176300C90C3B /* LoopPickerView.m in Sources */,
 				7656D31E1787176300C90C3B /* PickerView.m in Sources */,
 				7656D31F1787176300C90C3B /* TimePicker.m in Sources */,
+				3DBEEA3717B4834200959D36 /* BaseUIViewController.m in Sources */,
 				7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */,
 				762002F01787A48400F94023 /* AddEventDateViewController.m in Sources */,
 				762002F61787A7A200F94023 /* AddDateTypeView.m in Sources */,
@@ -2743,7 +2749,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "14566624-019F-41A8-8B87-3B9355CE45DC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "14566624-019F-41A8-8B87-3B9355CE45DC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2770,7 +2775,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "14566624-019F-41A8-8B87-3B9355CE45DC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "14566624-019F-41A8-8B87-3B9355CE45DC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

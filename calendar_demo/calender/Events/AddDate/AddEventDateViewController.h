@@ -1,6 +1,8 @@
 
 #import <UIKit/UIKit.h>
 #import "EventDate.h"
+#import "BaseUIViewController.h"
+
 
 @protocol AddEventDateViewControllerDelegate <NSObject>
 
@@ -8,7 +10,7 @@
 
 @end
 
-@interface AddEventDateViewController : UIViewController
+@interface AddEventDateViewController : BaseUIViewController
 
 - (id)initWithEventDate:(EventDate *)arrangedDate;
 

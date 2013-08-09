@@ -1,8 +1,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "BaseUIViewController.h"
 
 
-@interface AddEventViewController : UIViewController
+@interface AddEventViewController : BaseUIViewController
 
 @end
