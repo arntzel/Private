@@ -136,7 +136,9 @@
     [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
 
     hud = [[ATMHud alloc] initWithDelegate:self];
-	[self.view addSubview:hud.view];    
+	[self.view addSubview:hud.view];
+    
+    [ViewUtils resetUILabelFont:self.view];
 }
 
 - (void)initImagePickerView

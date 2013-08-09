@@ -60,6 +60,23 @@ static void initializeReplacementFonts()
 		method_exchangeImplementations(boldSystemFontOfSize_, replacementBoldSystemFontOfSize_);
     if (italicSystemFontOfSize_ && replacementItalicSystemFontOfSize_ && strcmp(method_getTypeEncoding(italicSystemFontOfSize_), method_getTypeEncoding(replacementItalicSystemFontOfSize_)) == 0)
 		method_exchangeImplementations(italicSystemFontOfSize_, replacementItalicSystemFontOfSize_);
+    
+    
+    Method preferredFontForTextStyle = class_getClassMethod([UIFont class], @selector(preferredFontForTextStyle:));
+    Method replacementPreferredFontForTextStyle = class_getClassMethod([UIFont class], @selector(replacement_preferredFontForTextStyle:));
+	
+    
+    if (preferredFontForTextStyle && replacementPreferredFontForTextStyle)
+    {
+        method_exchangeImplementations(preferredFontForTextStyle, replacementPreferredFontForTextStyle);
+    }
+		
+
+}
+
++ (UIFont *) replacement_preferredFontForTextStyle:(NSString *)style
+{
+    return [self replacement_fontWithName:systemFontName size:10];
 }
 
 + (UIFont *) replacement_systemFontOfSize:(CGFloat)fontSize

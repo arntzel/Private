@@ -13,5 +13,6 @@
 
 + (UIImage*) imageByScalingAndCroppingForSize:(CGSize)targetSize andUIImage:(UIImage *)sourceImage;
 
++(void) resetUILabelFont:(UIView *)view;
 
 @end

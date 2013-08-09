@@ -19,6 +19,8 @@
 #import "GTMOAuth2Authentication.h"
 #import "RegisterNewUserViewController.h"
 
+#import "ViewUtils.h"
+
 @interface SignupViewController () <ShareLoginDelegate, GPPSignInDelegate>
 
   
@@ -96,6 +98,8 @@
                                               nil];
     
     signIn.delegate = self;
+    
+    [ViewUtils resetUILabelFont:self.view];
 }
 
 -(void)login

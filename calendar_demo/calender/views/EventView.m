@@ -166,6 +166,9 @@
     view.imgEventType.layer.masksToBounds = YES;
     
     view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
+    
+    //[ViewUtils resetUILabelFont:view];
+    
     return view;
 }
 

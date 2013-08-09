@@ -106,4 +106,27 @@
     return newImage;
 }  
 
++(void) resetUILabelFont:(UIView *)view
+{
+    for(UIView * subView in [view subviews]) {
+        
+        if([subView isKindOfClass: [UILabel class]] ) {
+            UILabel * label = (UILabel*) subView;
+            UIFont * font = [label font];
+            
+            UIFont * newFont;
+            if([font.fontName isEqualToString:@"Helvetica-Bold"]) {
+                newFont = [UIFont boldSystemFontOfSize:font.ascender];
+                [label setFont:newFont];
+            } else if([font.fontName isEqualToString:@"Helvetica"]) {
+                newFont = [UIFont systemFontOfSize:font.ascender];
+                [label setFont:newFont];
+            }
+            
+        } else {
+            [ViewUtils resetUILabelFont:subView];
+        }
+    }
+}
+
 @end
