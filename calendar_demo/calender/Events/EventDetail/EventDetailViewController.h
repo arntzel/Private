@@ -2,8 +2,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "BaseUIViewController.h"
 
-@interface EventDetailViewController : UIViewController
+@interface EventDetailViewController : BaseUIViewController
 
 @property(strong) IBOutlet UIImageView * imgView;
 
