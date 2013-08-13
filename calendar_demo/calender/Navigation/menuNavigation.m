@@ -127,7 +127,7 @@
             }
             
             cell.detailImageView.image = [UIImage imageNamed:[menuDataSource detailImageAtIndex:indexPath.row]];
-            cell.titleLabel.text = [[UserModel getInstance] getLoginUser].username;
+            cell.titleLabel.text = [[[UserModel getInstance] getLoginUser] getReadableUsername];
             
         } else {
             cell.iconImageView.image = [UIImage imageNamed:[menuDataSource iconImageAtIndex:indexPath.row]];
