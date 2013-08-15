@@ -74,8 +74,8 @@
 
 #pragma mark -
 #pragma mark tableViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self changeCalOnDisplayDay];
 }
@@ -92,9 +92,9 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (!decelerate) {
-        [self changeCalOnDisplayDay];
-    }
+//    if (!decelerate) {
+//        [self changeCalOnDisplayDay];
+//    }
     int y = scrollView.contentOffset.y;
     
     if(y < 60) {
