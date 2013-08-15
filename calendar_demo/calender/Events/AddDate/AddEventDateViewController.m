@@ -258,7 +258,14 @@
 
 -(void) didSelectDate: (KalDate*) date
 {
-    eventDate.start = [date NSDate];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
+    [parts setYear:[date year]];
+    [parts setMonth:[date month]];
+    [parts setDay:[date day]];
+    
+    NSDate *startDate = [gregorian dateFromComponents:parts];
+    eventDate.start = startDate;
     [self loadEvents:eventDate.start];
 }
 

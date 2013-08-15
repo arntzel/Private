@@ -160,6 +160,9 @@
 - (NSInteger)integerOfRowsInPicker:(LoopPickerView *)pickerView AtIndex:(NSInteger)index
 {
     if (pickerView == hourPicker) {
+        if (index == 0) {
+            index += 12;
+        }
         return index;
     }
     else if(pickerView == minPicker)
@@ -175,7 +178,7 @@
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     LOG_D(@"Selected index %d",index);
     if (pickerView == hourPicker) {
-        Hours = index;
+        Hours = index % 12;
     }
     else if(pickerView == minPicker)
     {
