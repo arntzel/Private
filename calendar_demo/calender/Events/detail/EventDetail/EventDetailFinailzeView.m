@@ -9,13 +9,40 @@
 #import "EventDetailFinailzeView.h"
 #import <QuartzCore/QuartzCore.h>
 
+
+static CGFloat const getstureDistance = 50;
+
+@interface EventDetailFinailzeView()<UIGestureRecognizerDelegate>
+{
+    UIPanGestureRecognizer *panGesture;
+}
+
+@property (nonatomic, assign) CGFloat dragStart;
+@end
+
+
 @implementation EventDetailFinailzeView
 
-- (id)initWithFrame:(CGRect)frame
+- (void)dealloc {
+    
+    panGesture.delegate = nil;
+    [panGesture release];
+    
+    [_finailzeView release];
+    [_removeView release];
+    [_contentView release];
+    [super dealloc];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
+        
+        panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHappened:)];
+        panGesture.delegate = self;
+        [self addGestureRecognizer:panGesture];
     }
     return self;
 }
@@ -34,11 +61,105 @@
     [self.layer setBorderWidth:1.0f];
 }
 
-- (void)dealloc {
-    [_finailzeView release];
-    [_removeView release];
-    [_contentView release];
-    [super dealloc];
+- (void)setToFinalizeViewMode
+{
+    [self.finailzeView setHidden:NO];
+    [self.removeView setHidden:YES];
+}
+
+- (void)setToRemoveViewMode
+{
+    [self.finailzeView setHidden:YES];
+    [self.removeView setHidden:NO];
+}
+
+- (void)gestureHappened:(UIPanGestureRecognizer *)sender
+{
+	CGPoint translatedPoint = [sender translationInView:self];
+	switch (sender.state)
+	{
+		case UIGestureRecognizerStatePossible:
+			
+			break;
+		case UIGestureRecognizerStateBegan:
+			self.dragStart = sender.view.center.x;
+			break;
+		case UIGestureRecognizerStateChanged:
+            if (translatedPoint.x >= 0) {
+                self.center = CGPointMake(self.dragStart, self.center.y);
+                break;
+            }
+            else
+            {
+                self.center = CGPointMake(self.dragStart + translatedPoint.x, self.center.y);
+				if (-translatedPoint.x <= getstureDistance)
+				{
+                    [self setToFinalizeViewMode];
+				}
+				else
+				{
+                    [self setToRemoveViewMode];
+				}
+			}
+			break;
+		case UIGestureRecognizerStateEnded:
+		case UIGestureRecognizerStateCancelled:
+			if (translatedPoint.x < 0) {
+                if (translatedPoint.x >= 0) {
+                    self.center = CGPointMake(self.dragStart, self.center.y);
+                }
+                else
+                {
+                    if (-translatedPoint.x <= getstureDistance)
+                    {
+                        [self doResetPostionAnimation];
+                    }
+                    else
+                    {
+                        [self doDismissAnimation];
+                    }
+                }
+            }
+			break;
+		case UIGestureRecognizerStateFailed:
+			
+			break;
+	}
+}
+
+- (void)doResetPostionAnimation
+{
+    CGPoint resetCenterPoint = CGPointMake(self.dragStart, self.center.y);
+    [self animationToCenterPoint:resetCenterPoint];
+}
+
+- (void)doDismissAnimation
+{
+    CGPoint dismissCenterPoint = CGPointMake(self.dragStart - 320, self.center.y);
+    [self animationToCenterPoint:dismissCenterPoint];
+}
+
+- (void)animationToCenterPoint:(CGPoint)centerPoint
+{
+    [self setUserInteractionEnabled:NO];
+	[UIView animateWithDuration:0.25 delay:0
+						options:UIViewAnimationOptionCurveLinear
+					 animations:^{
+                         self.center = centerPoint;
+					 } completion:^(BOOL finished) {
+                         [self setUserInteractionEnabled:YES];
+					 }];
+}
+
+#pragma mark - UIGestureRecognizerDelegate methods
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+	if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
+		return YES;
+	
+	CGPoint translation = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self];
+    return fabs(translation.y) < fabs(translation.x);
 }
 
 +(EventDetailFinailzeView *) creatView

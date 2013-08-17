@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseUIViewController.h"
+//#import "BaseUIViewController.h"
 
-@interface EventDetailController : BaseUIViewController
+@interface EventDetailController : UIViewController
 
 @end
