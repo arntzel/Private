@@ -11,5 +11,10 @@
 @interface EventDetailCommentView : UIView
 
 +(EventDetailCommentView *) creatView;
+@property (retain, nonatomic) IBOutlet UIImageView *commentAutherPhotoView;
+@property (retain, nonatomic) IBOutlet UILabel *commentContentLabel;
+@property (retain, nonatomic) IBOutlet UILabel *commentTimeLabel;
+
+- (void)setHeaderPhoto:(UIImage *)photo;
 
 @end

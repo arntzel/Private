@@ -50,6 +50,8 @@
 - (void)addCommentView
 {
     commentView = [[EventDetailCommentView creatView] retain];
+    [commentView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
+    
     [self addSubview:commentView];
 }
 

@@ -8,6 +8,18 @@
 
 #import "EventDetailInviteeView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "EventDetailHeaderListView.h"
+
+@interface EventDetailInviteeView()
+{
+    EventDetailHeaderListView *headerListView;
+    
+    
+}
+
++(EventDetailInviteeView *) creatView;
+
+@end
 
 @implementation EventDetailInviteeView
 
@@ -39,6 +51,13 @@
     [self.layer setBorderWidth:1.0f];
 }
 
+- (void)addInviteePhotos:(NSArray *)headerPhotos
+{
+    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:headerPhotos andCountLimit:3 ShowArraw:NO ShowSelectedStatu:NO];
+    [headerListView setCenter:CGPointMake(self.frame.size.width / 2, 38)];
+    [self addSubview:headerListView];
+}
+
 +(EventDetailInviteeView *) creatView
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeView" owner:self options:nil];
@@ -48,6 +67,7 @@
 }
 
 - (void)dealloc {
+    [headerListView release];
     [_inviteeLabel release];
     [_contentView release];
     [_bgView release];

@@ -7,16 +7,37 @@
 //
 
 #import "EventDetailHeader.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation EventDetailHeader
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
+
     }
     return self;
+}
+
+- (void)updateUI
+{
+    [self.headerView setClipsToBounds:YES];
+    [self.headerView.layer setCornerRadius:self.headerView.frame.size.width / 2];
+    
+    [self.headerView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+    [self.headerView.layer setShadowRadius:3.0f];
+    [self.headerView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+    [self.headerView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+    [self.headerView.layer setBorderWidth:1.0f];
+
+}
+
+
+- (void)setHeader:(UIImage *)header
+{
+    self.headerView.image = header;
 }
 
 - (void)setTicked
@@ -29,6 +50,12 @@
 - (void)setCrossed
 {
     [self.crossView setHidden:NO];
+    [self.tickView setHidden:YES];
+}
+
+- (void)setTickAndCrossHidden
+{
+    [self.crossView setHidden:YES];
     [self.tickView setHidden:YES];
 }
 

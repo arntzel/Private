@@ -14,9 +14,12 @@
 @property (retain, nonatomic) IBOutlet UIImageView *crossView;
 @property (retain, nonatomic) IBOutlet UIImageView *tickView;
 
+- (void)setHeader:(UIImage *)header;
 - (void)setTicked;
 - (void)setCrossed;
+- (void)setTickAndCrossHidden;
 
+- (void)updateUI;
 +(EventDetailHeader *) creatView;
 
 

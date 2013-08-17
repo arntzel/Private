@@ -16,4 +16,6 @@
 
 +(EventDetailInviteeView *) creatView;
 
+- (void)addInviteePhotos:(NSArray *)headerPhotos;
+
 @end
