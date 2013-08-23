@@ -31,9 +31,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-#ifndef DEBUG
-    [self redirectNSLogToDocumentFolder];
-#endif
+//#ifndef DEBUG
+//    [self redirectNSLogToDocumentFolder];
+//#endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
@@ -180,6 +180,9 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
      NSLog(@"applicationWillEnterForeground");
+    
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 
@@ -201,13 +204,24 @@
     [self registerForRemoteNotificationToGetToken];
 
     [self synchronizedFromServer];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60
+                                           target:self
+                                         selector:@selector(synchronizedFromServer)
+                                         userInfo:nil
+                                          repeats:YES];
 }
 
 
 -(void) synchronizedFromServer
 {
+    NSLog(@"synchronizedFromServer begin");
+
     if([[[Model getInstance] getEventModel] isSynchronizeData]) return;
 
+    NSLog(@"synchronizedFromServer begin2");
+
+    
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
 
