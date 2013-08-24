@@ -60,9 +60,19 @@
     Minutes = minutes_;
     Ampm = hours_/12;
     
-    [hourPicker scrollToIndex:hours_%12 WithAnimation:animation];
+    if (hours_ == 0) {
+        Hours = 12;
+        Ampm = 1;
+    }
+    else if(hours_ == 12)
+    {
+        Hours = 12;
+        Ampm = 0;
+    }
+    
+    [hourPicker scrollToIndex:Hours WithAnimation:animation];
     [minPicker scrollToIndex:minutes_ / 15 WithAnimation:animation];
-    [AMPMPicker scrollToIndex:hours_/12 WithAnimation:animation];
+    [AMPMPicker scrollToIndex:Ampm WithAnimation:animation];
 }
 
 - (void)setStartTimeType:(NSString *)startTimeType
@@ -178,7 +188,7 @@
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     LOG_D(@"Selected index %d",index);
     if (pickerView == hourPicker) {
-        Hours = index % 12;
+        Hours = index;
     }
     else if(pickerView == minPicker)
     {

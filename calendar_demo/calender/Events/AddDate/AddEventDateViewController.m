@@ -233,7 +233,19 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];    
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:eventDate.start];
 //    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [parts setHour:hours + ampm * 12];
+    if (hours == 0 && ampm == 0) {
+        hours = 12;
+        [parts setHour:hours];
+    }
+    else if(hours == 0 && ampm == 1)
+    {
+        hours = 0;
+        [parts setHour:hours];
+    }
+    else
+    {
+        [parts setHour:hours + ampm * 12];
+    }
     [parts setMinute:minutes];
     NSDate *startDate = [gregorian dateFromComponents:parts];
     eventDate.start = startDate;
