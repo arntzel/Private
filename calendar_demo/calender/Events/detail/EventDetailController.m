@@ -13,6 +13,7 @@
 
 #import "EventDetailInviteePlaceView.h"
 #import "EventDetailTimeView.h"
+#import "EventDetailCommentConformView.h"
 #import "EventDetailCommentContentView.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate>

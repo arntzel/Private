@@ -7,11 +7,16 @@
 //
 
 #import "EventDetailCommentContentView.h"
+
 #import "EventDetailCommentView.h"
+#import "EventDetailCommentTextView.h"
+#import "EventDetailCommentConformedView.h"
 
 @interface EventDetailCommentContentView()
 {
     EventDetailCommentView *commentView;
+    EventDetailCommentTextView *commentTextView;
+    EventDetailCommentConformedView *conformedView;
 }
 @end
 
@@ -36,6 +41,8 @@
 - (void)dealloc
 {    
     [commentView release];
+    [commentTextView release];
+    [conformedView release];
     
     [super dealloc];
 }
@@ -45,6 +52,13 @@
     CGRect commentContentViewFrame = self.frame;
     commentContentViewFrame.size = CGSizeMake(320, commentView.frame.size.height);
     self.frame = commentContentViewFrame;
+}
+
+- (void)addTextView
+{
+    commentTextView = [[EventDetailCommentTextView creatView] retain];
+    
+    [self addSubview:commentTextView];
 }
 
 - (void)addCommentView

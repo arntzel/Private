@@ -194,6 +194,14 @@
 		7656D31E1787176300C90C3B /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30C1787176300C90C3B /* PickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D31F1787176300C90C3B /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D30F1787176300C90C3B /* TimePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D3281787188A00C90C3B /* AddDateCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3271787188A00C90C3B /* AddDateCalenderView.m */; };
+		7668F16217C9C576001BEE44 /* EventDetailCommentConformedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7668F16117C9C576001BEE44 /* EventDetailCommentConformedView.xib */; };
+		7668F16517C9C713001BEE44 /* EventDetailCommentConformedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668F16417C9C713001BEE44 /* EventDetailCommentConformedView.m */; };
+		7668F16717C9C8FF001BEE44 /* EventDetailCommentTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7668F16617C9C8FF001BEE44 /* EventDetailCommentTextView.xib */; };
+		7668F16A17C9CB34001BEE44 /* EventDetailCommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668F16917C9CB34001BEE44 /* EventDetailCommentTextView.m */; };
+		7668F16E17C9CE07001BEE44 /* event_detail_comment_conform_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7668F16C17C9CE07001BEE44 /* event_detail_comment_conform_line.png */; };
+		7668F16F17C9CE07001BEE44 /* event_detail_comment_conformed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7668F16D17C9CE07001BEE44 /* event_detail_comment_conformed.png */; };
+		7668F17117C9CE4D001BEE44 /* EventDetailCommentConformView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7668F17017C9CE4D001BEE44 /* EventDetailCommentConformView.xib */; };
+		7668F17417C9D5A0001BEE44 /* EventDetailCommentConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668F17317C9D5A0001BEE44 /* EventDetailCommentConformView.m */; };
 		7672D16B1770925B0053D024 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7672D16A177091520053D024 /* AddLocationViewController.xib */; };
 		7672D16D177093C10053D024 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7672D169177091520053D024 /* AddLocationViewController.m */; };
 		76933FF917BF5C9B00DCF471 /* EventDetailHeaderListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76933FF817BF5C9B00DCF471 /* EventDetailHeaderListView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -777,6 +785,17 @@
 		7656D30F1787176300C90C3B /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		7656D3261787188A00C90C3B /* AddDateCalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDateCalenderView.h; sourceTree = "<group>"; };
 		7656D3271787188A00C90C3B /* AddDateCalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateCalenderView.m; sourceTree = "<group>"; };
+		7668F16117C9C576001BEE44 /* EventDetailCommentConformedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentConformedView.xib; sourceTree = "<group>"; };
+		7668F16317C9C713001BEE44 /* EventDetailCommentConformedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentConformedView.h; sourceTree = "<group>"; };
+		7668F16417C9C713001BEE44 /* EventDetailCommentConformedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentConformedView.m; sourceTree = "<group>"; };
+		7668F16617C9C8FF001BEE44 /* EventDetailCommentTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentTextView.xib; sourceTree = "<group>"; };
+		7668F16817C9CB34001BEE44 /* EventDetailCommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentTextView.h; sourceTree = "<group>"; };
+		7668F16917C9CB34001BEE44 /* EventDetailCommentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentTextView.m; sourceTree = "<group>"; };
+		7668F16C17C9CE07001BEE44 /* event_detail_comment_conform_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_comment_conform_line.png; sourceTree = "<group>"; };
+		7668F16D17C9CE07001BEE44 /* event_detail_comment_conformed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_comment_conformed.png; sourceTree = "<group>"; };
+		7668F17017C9CE4D001BEE44 /* EventDetailCommentConformView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentConformView.xib; sourceTree = "<group>"; };
+		7668F17217C9D59F001BEE44 /* EventDetailCommentConformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentConformView.h; sourceTree = "<group>"; };
+		7668F17317C9D5A0001BEE44 /* EventDetailCommentConformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentConformView.m; sourceTree = "<group>"; };
 		7672D168177091520053D024 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
 		7672D169177091520053D024 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AddLocationViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7672D16A177091520053D024 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
@@ -1613,6 +1632,15 @@
 			path = AddDate;
 			sourceTree = "<group>";
 		};
+		7668F16B17C9CE07001BEE44 /* event_detail_conform */ = {
+			isa = PBXGroup;
+			children = (
+				7668F16C17C9CE07001BEE44 /* event_detail_comment_conform_line.png */,
+				7668F16D17C9CE07001BEE44 /* event_detail_comment_conformed.png */,
+			);
+			path = event_detail_conform;
+			sourceTree = "<group>";
+		};
 		76933FFA17BF5CA600DCF471 /* event_detail_temp_header */ = {
 			isa = PBXGroup;
 			children = (
@@ -1677,11 +1705,6 @@
 			children = (
 				76933FF717BF5C9B00DCF471 /* EventDetailHeaderListView.h */,
 				76933FF817BF5C9B00DCF471 /* EventDetailHeaderListView.m */,
-				7696F4E417AE9197009FFEC8 /* EventDetailCommentContentView.h */,
-				7696F4E517AE9197009FFEC8 /* EventDetailCommentContentView.m */,
-				7696F4E617AE9197009FFEC8 /* EventDetailCommentView.h */,
-				7696F4E717AE9197009FFEC8 /* EventDetailCommentView.m */,
-				7696F4E817AE9197009FFEC8 /* EventDetailCommentView.xib */,
 				7696F4E917AE9197009FFEC8 /* EventDetailFinailzeView.h */,
 				7696F4EA17AE9197009FFEC8 /* EventDetailFinailzeView.m */,
 				7696F4EB17AE9197009FFEC8 /* EventDetailFinailzeView.xib */,
@@ -1710,6 +1733,20 @@
 				7696F50217AE9197009FFEC8 /* EventDetailTimeLabelView.xib */,
 				7696F50317AE9197009FFEC8 /* EventDetailTimeView.h */,
 				7696F50417AE9197009FFEC8 /* EventDetailTimeView.m */,
+				7696F4E417AE9197009FFEC8 /* EventDetailCommentContentView.h */,
+				7696F4E517AE9197009FFEC8 /* EventDetailCommentContentView.m */,
+				7696F4E617AE9197009FFEC8 /* EventDetailCommentView.h */,
+				7696F4E717AE9197009FFEC8 /* EventDetailCommentView.m */,
+				7696F4E817AE9197009FFEC8 /* EventDetailCommentView.xib */,
+				7668F16317C9C713001BEE44 /* EventDetailCommentConformedView.h */,
+				7668F16417C9C713001BEE44 /* EventDetailCommentConformedView.m */,
+				7668F16117C9C576001BEE44 /* EventDetailCommentConformedView.xib */,
+				7668F16817C9CB34001BEE44 /* EventDetailCommentTextView.h */,
+				7668F16917C9CB34001BEE44 /* EventDetailCommentTextView.m */,
+				7668F16617C9C8FF001BEE44 /* EventDetailCommentTextView.xib */,
+				7668F17217C9D59F001BEE44 /* EventDetailCommentConformView.h */,
+				7668F17317C9D5A0001BEE44 /* EventDetailCommentConformView.m */,
+				7668F17017C9CE4D001BEE44 /* EventDetailCommentConformView.xib */,
 			);
 			name = EventDetail;
 			path = calender/Events/detail/EventDetail;
@@ -1728,6 +1765,7 @@
 		7696F50A17AE9197009FFEC8 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				7668F16B17C9CE07001BEE44 /* event_detail_conform */,
 				76933FFA17BF5CA600DCF471 /* event_detail_temp_header */,
 				7696F50B17AE9197009FFEC8 /* event_detail_invite_place */,
 				7696F51017AE9197009FFEC8 /* event_detail_random_header */,
@@ -2430,6 +2468,11 @@
 				7693400D17BF5CA600DCF471 /* header8.jpg in Resources */,
 				7693400E17BF5CA600DCF471 /* header9.jpg in Resources */,
 				7693401017BF5CC000DCF471 /* event_detail_header_list_arraw.png in Resources */,
+				7668F16217C9C576001BEE44 /* EventDetailCommentConformedView.xib in Resources */,
+				7668F16717C9C8FF001BEE44 /* EventDetailCommentTextView.xib in Resources */,
+				7668F16E17C9CE07001BEE44 /* event_detail_comment_conform_line.png in Resources */,
+				7668F16F17C9CE07001BEE44 /* event_detail_comment_conformed.png in Resources */,
+				7668F17117C9CE4D001BEE44 /* EventDetailCommentConformView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2619,6 +2662,9 @@
 				9481950817B26BDB00F34F61 /* MessageEntity.m in Sources */,
 				3DD2E9DB17B33D8F009A5D02 /* LoadingProgressView.m in Sources */,
 				76933FF917BF5C9B00DCF471 /* EventDetailHeaderListView.m in Sources */,
+				7668F16517C9C713001BEE44 /* EventDetailCommentConformedView.m in Sources */,
+				7668F16A17C9CB34001BEE44 /* EventDetailCommentTextView.m in Sources */,
+				7668F17417C9D5A0001BEE44 /* EventDetailCommentConformView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
