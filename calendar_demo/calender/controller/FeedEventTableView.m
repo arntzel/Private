@@ -25,6 +25,8 @@
     NSString * currentFirstDay;
     CoreDataModel * model;
     DataCache * cache;
+
+    NSDate * firstVisibleDay;
 }
 
 
@@ -83,10 +85,30 @@
 - (void)changeCalOnDisplayDay
 {
     NSDate * date = [self getFirstVisibleDay];
-    
-    if(date != nil && self.feedEventdelegate != nil) {
-        [self.feedEventdelegate onDisplayFirstDayChanged:date];
+
+    if( [self isFirstVisibleDayChanged:date] ) {
+        if(date != nil && self.feedEventdelegate != nil) {
+            [self.feedEventdelegate onDisplayFirstDayChanged:date];
+        }
+
+        firstVisibleDay = date;
+    }    
+}
+
+-(BOOL) isFirstVisibleDayChanged:(NSDate *) date
+{
+    if(firstVisibleDay == nil && date == nil) {
+        return NO;
     }
+
+    if(firstVisibleDay==nil || date == nil) {
+        return YES;
+    }
+
+    NSString * day1 = [Utils formateDay:firstVisibleDay];
+    NSString * day2 = [Utils formateDay:date];
+
+    return ![day1 isEqualToString:day2];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -168,27 +190,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    NSLog(@"cellForRowAtIndexPath:%@", indexPath);
-    
     FeedEventEntity * event = [self getFeedEventEntity:indexPath];
     
     if([event.eventType intValue] != 4) {
-        EventView * view = [EventView createEventView];
+
+        UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
+        EventView * view;
+        if(cell == nil) {
+            view = [EventView createEventView];
+            view.tag = 1;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+            [cell addSubview:view];
+        } else {
+            view = (EventView*)[cell viewWithTag:1];
+        }
 
         [view refreshView:event];
 
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-        [cell addSubview:view];
         return cell;
 
     } else {
-        BirthdayEventView * view = [BirthdayEventView createEventView];
+
+        UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"birthdayEventView"];
+        BirthdayEventView * view;
+        if(cell == nil) {
+            view = [BirthdayEventView createEventView];
+            view.tag = 2;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+            [cell addSubview:view];
+        } else {
+            view = (BirthdayEventView*)[cell viewWithTag:2];
+        }
 
         [view refreshView:event];
-
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
-        [cell addSubview:view];
         return cell;
     }
 }
