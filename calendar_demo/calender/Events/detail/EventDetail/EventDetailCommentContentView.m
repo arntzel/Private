@@ -32,7 +32,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self addTextView];
         [self addCommentView];
+        [self addConformedView];
         [self updateUI];
     }
     return self;
@@ -50,14 +52,14 @@
 - (void)updateUI
 {    
     CGRect commentContentViewFrame = self.frame;
-    commentContentViewFrame.size = CGSizeMake(320, commentView.frame.size.height);
+    commentContentViewFrame.size = CGSizeMake(320, conformedView.frame.size.height + conformedView.frame.origin.y);
     self.frame = commentContentViewFrame;
 }
 
 - (void)addTextView
 {
     commentTextView = [[EventDetailCommentTextView creatView] retain];
-    
+    [commentTextView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
     [self addSubview:commentTextView];
 }
 
@@ -66,7 +68,22 @@
     commentView = [[EventDetailCommentView creatView] retain];
     [commentView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
     
+    CGRect commentViewFrame = commentView.frame;
+    commentViewFrame.origin = CGPointMake(0, commentTextView.frame.size.height);
+    commentView.frame = commentViewFrame;
+    
     [self addSubview:commentView];
+}
+
+- (void)addConformedView
+{
+    conformedView = [[EventDetailCommentConformedView creatView] retain];
+    
+    CGRect viewFrame = conformedView.frame;
+    viewFrame.origin = CGPointMake(0, commentView.frame.size.height + commentView.frame.origin.y);
+    conformedView.frame = viewFrame;
+    
+    [self addSubview:conformedView];
 }
 
 

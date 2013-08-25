@@ -89,9 +89,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294
-                                                            longitude:-74.00
-                                                                 zoom:12];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:12];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;

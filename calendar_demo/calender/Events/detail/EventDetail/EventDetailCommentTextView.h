@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *autherPhotoView;
 
+- (void)setHeaderPhoto:(UIImage *)photo;
+
 +(EventDetailCommentTextView *)creatView;
 
 @end

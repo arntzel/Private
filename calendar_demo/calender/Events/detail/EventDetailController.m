@@ -23,6 +23,7 @@
     
     EventDetailInviteePlaceView *invitePlaceContentView;
     EventDetailTimeView *timeContentView;
+    EventDetailCommentConformView *conformView;
     EventDetailCommentContentView *commentContentView;
     UIScrollView *scrollView;
 }
@@ -38,7 +39,8 @@
     [photoView release];
     
     [invitePlaceContentView release];
-    [timeContentView release];    
+    [timeContentView release];
+    [conformView release];
     [commentContentView release];
     [scrollView release];
  
@@ -50,7 +52,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0]];
+//    [self.view setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
     [self addPhotoView];
     [self addNavBar];
     
@@ -69,6 +72,9 @@
     
     timeContentView = [[EventDetailTimeView alloc] init];
     [scrollView addSubview:timeContentView];
+    
+    conformView = [[EventDetailCommentConformView creatView] retain];
+    [scrollView addSubview:conformView];
 
     commentContentView = [[EventDetailCommentContentView alloc] init];
     [scrollView addSubview:commentContentView];
@@ -111,11 +117,15 @@
     timeContentViewFrame.origin = CGPointMake(0, invitePlaceContentView.frame.size.height + invitePlaceContentView.frame.origin.y);
     timeContentView.frame = timeContentViewFrame;
     
+    CGRect conformViewframe = conformView.frame;
+    conformViewframe.origin = CGPointMake(7, timeContentView.frame.size.height + timeContentView.frame.origin.y);
+    conformView.frame = conformViewframe;
+    
     CGRect commentContentViewFrame = commentContentView.frame;
-    commentContentViewFrame.origin = CGPointMake(0, timeContentView.frame.origin.y +  timeContentView.frame.size.height);
+    commentContentViewFrame.origin = CGPointMake(0, conformView.frame.origin.y +  conformView.frame.size.height + 30);
     commentContentView.frame = commentContentViewFrame;
     
-    [scrollView setContentSize:CGSizeMake(320, 800)];
+    [scrollView setContentSize:CGSizeMake(320, commentContentViewFrame.origin.y + commentContentViewFrame.size.height)];
 }
 
 
