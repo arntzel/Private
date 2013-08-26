@@ -121,6 +121,10 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
+		764E870417CBA0AC00E49BF5 /* LoginMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764E86FF17CBA0AC00E49BF5 /* LoginMainView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		764E870517CBA0AC00E49BF5 /* LoginMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764E870017CBA0AC00E49BF5 /* LoginMainView.xib */; };
+		764E870617CBA0AC00E49BF5 /* login_mainview_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 764E870217CBA0AC00E49BF5 /* login_mainview_bg.jpg */; };
+		764E870717CBA0AC00E49BF5 /* login_mainview_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 764E870317CBA0AC00E49BF5 /* login_mainview_title.png */; };
 		7656D31A1787176300C90C3B /* CustomPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3051787176300C90C3B /* CustomPickerCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7656D31B1787176300C90C3B /* CustomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7656D3061787176300C90C3B /* CustomPickerCell.xib */; };
 		7656D31C1787176300C90C3B /* DuringTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656D3081787176300C90C3B /* DuringTimePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -508,6 +512,11 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		764E86FE17CBA0AC00E49BF5 /* LoginMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainView.h; sourceTree = "<group>"; };
+		764E86FF17CBA0AC00E49BF5 /* LoginMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainView.m; sourceTree = "<group>"; };
+		764E870017CBA0AC00E49BF5 /* LoginMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMainView.xib; sourceTree = "<group>"; };
+		764E870217CBA0AC00E49BF5 /* login_mainview_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_mainview_bg.jpg; sourceTree = "<group>"; };
+		764E870317CBA0AC00E49BF5 /* login_mainview_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainview_title.png; sourceTree = "<group>"; };
 		7656D3041787176300C90C3B /* CustomPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerCell.h; sourceTree = "<group>"; };
 		7656D3051787176300C90C3B /* CustomPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerCell.m; sourceTree = "<group>"; };
 		7656D3061787176300C90C3B /* CustomPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerCell.xib; sourceTree = "<group>"; };
@@ -1071,6 +1080,7 @@
 		3D92521217784C4B0066927A /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				764E86FD17CBA0AC00E49BF5 /* Login */,
 				3D92521317784C4B0066927A /* EncryptUtil.h */,
 				3D92521417784C4B0066927A /* EncryptUtil.m */,
 				3D92521517784C4B0066927A /* LoginAccountStore.h */,
@@ -1182,6 +1192,26 @@
 				3D20D03F178E8381008C2F0C /* AddEventInvitePeopleHeaderView.xib */,
 			);
 			path = InvitePeople;
+			sourceTree = "<group>";
+		};
+		764E86FD17CBA0AC00E49BF5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				764E86FE17CBA0AC00E49BF5 /* LoginMainView.h */,
+				764E86FF17CBA0AC00E49BF5 /* LoginMainView.m */,
+				764E870017CBA0AC00E49BF5 /* LoginMainView.xib */,
+				764E870117CBA0AC00E49BF5 /* resource */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		764E870117CBA0AC00E49BF5 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				764E870217CBA0AC00E49BF5 /* login_mainview_bg.jpg */,
+				764E870317CBA0AC00E49BF5 /* login_mainview_title.png */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		7656D2EF1787176300C90C3B /* AddDate */ = {
@@ -2020,6 +2050,9 @@
 				7668F16F17C9CE07001BEE44 /* event_detail_comment_conformed.png in Resources */,
 				7668F17117C9CE4D001BEE44 /* EventDetailCommentConformView.xib in Resources */,
 				3D14A24817CB3A6100ACD8B7 /* GooglePlus.bundle in Resources */,
+				764E870517CBA0AC00E49BF5 /* LoginMainView.xib in Resources */,
+				764E870617CBA0AC00E49BF5 /* login_mainview_bg.jpg in Resources */,
+				764E870717CBA0AC00E49BF5 /* login_mainview_title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2172,6 +2205,7 @@
 				7668F16517C9C713001BEE44 /* EventDetailCommentConformedView.m in Sources */,
 				7668F16A17C9CB34001BEE44 /* EventDetailCommentTextView.m in Sources */,
 				7668F17417C9D5A0001BEE44 /* EventDetailCommentConformView.m in Sources */,
+				764E870417CBA0AC00E49BF5 /* LoginMainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
