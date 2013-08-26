@@ -230,7 +230,7 @@ static Model * instance;
     NSString * startDay = [Utils formateDay:begin];
     startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&start__gte=%@", HOST, offset, startDay];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=50&offset=%d&start__gte=%@", HOST, offset, startDay];
     
     
     LOG_D(@"url=%@", url);
@@ -246,7 +246,7 @@ static Model * instance;
     
     NSString * strLastmodifyTime = [Utils formateDate:lastmodifyTime];
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=1000&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
 
     LOG_D(@"url=%@", url);
 

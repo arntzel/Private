@@ -30,6 +30,7 @@
 #import "ViewUtils.h"
 #import "EventModel.h"
 
+#import "SignupViewController.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -39,7 +40,8 @@
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,
                                   CoreDataModelDelegate,
-                                  EventModelDelegate>
+                                  EventModelDelegate,
+                                  UIAlertViewDelegate >
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -116,13 +118,14 @@
     NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
 
     if(lastupdatetime == nil) {
-        NSDate * begin = [NSDate date];
-        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
-        
+               
         loadingPrigressView = (LoadingProgressView*)[ViewUtils createView:@"LoadingProgressView"];
         loadingPrigressView.progressView.progress = 0;
         loadingPrigressView.center = self.view.center;
         [self.view addSubview:loadingPrigressView];
+
+        NSDate * begin = [NSDate date];
+        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
 
         [[[Model getInstance] getEventModel] setSynchronizeData:YES];
         [self synchronFeedEventFromServer:0 andBeginDate:begin];
@@ -157,7 +160,6 @@
         
         LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
         
-        
         if(error == 0) {
             
             if(events.count > 0) {
@@ -173,7 +175,7 @@
             }
             
             //Load event compeleted
-            if(events.count < 20) {
+            if(events.count < 50) {
 
 
                 [loadingPrigressView removeFromSuperview];
@@ -205,7 +207,13 @@
             
             [dataLoadingView stopAnim];
             
-            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
+            
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                          message:@"Network or server error"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Retry",nil];
+            [alert show];            
         }
     }];
 }
@@ -222,6 +230,7 @@
         LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
 
         [dataLoadingView stopAnim];
+      
         
         if(error == 0) {
 
@@ -259,6 +268,37 @@
 {
     NSString * day = [Utils formateDay:date];
     [tableView scroll2Date:day animated:NO];
+}
+
+#pragma mark -
+#pragma mark kalViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0) {
+        [[UserModel getInstance] setLoginUser:nil];
+        
+        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:@"loginUser"];
+        [defaults synchronize];
+        
+        RootNavContrller *navController = [RootNavContrller defaultInstance];
+        [navController popToRootViewControllerAnimated:NO];
+        
+        SignupViewController* rootController = [[SignupViewController alloc] init];
+        [navController pushViewController:rootController animated:NO];
+        
+    } else {
+        NSDate * begin = [NSDate date];
+        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+        
+        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+        [self synchronFeedEventFromServer:0 andBeginDate:begin];
+    }
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark -
