@@ -14,9 +14,9 @@
 #import "LoginStatusCheck.h"
 #import "LoginAccountStore.h"
 
-#import "GPPSignIn.h"
-#import "GTLPlusConstants.h"
-#import "GTMOAuth2Authentication.h"
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+
 #import "RegisterNewUserViewController.h"
 
 #import "ViewUtils.h"
@@ -194,10 +194,12 @@
             
             [loadingView stopAnimating];
             
+            LOG_D(@"signinFacebook:%d", error);
+            
             if(error == 0) {
                 [self onLogined];
             } else {
-                //TODO::
+                [self showAlert:@"Login with facebook failed."];
             }
         }];
     }
@@ -262,18 +264,33 @@
         [loadingView startAnimating];
         [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
             
+            LOG_D(@"signinGooglePlus:%d", error);
+
+            
             [loadingView stopAnimating];
             
             if(error == 0) {
                 [self onLogined];
             } else {
-                //TODO::
+                [self showAlert:@"Login with google failed."];
             }
         }];
         
     } else {
-        //TODO::
+        [self showAlert:@"Google+ auth failed, please retry again!"];   
     }
+
+}
+
+-(void) showAlert:(NSString *) msg
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Warning"
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
 
 }
 

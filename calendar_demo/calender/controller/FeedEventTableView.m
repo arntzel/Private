@@ -14,7 +14,7 @@
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
 
-#define FETECH_DAYS 15
+#define FETECH_DAYS 5
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -138,9 +138,8 @@
         
         [self reloadData];
         
-        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
-        
-        //[self scroll2Date:firtDay animated:NO];
+        //[self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
+        [self scroll2Date:firtDay animated:NO];
         
     } else if( (y + scrollView.frame.size.height) + 60 > scrollView.contentSize.height) {
         
@@ -162,7 +161,7 @@
         
         [self reloadData];
         
-        [self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
+        //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
     }
 }
 

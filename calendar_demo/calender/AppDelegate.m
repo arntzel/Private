@@ -8,7 +8,7 @@
 #import "SignupViewController.h"
 #import "MainViewController.h"
 
-#import "GPPURLHandler.h"
+#import <GooglePlus/GooglePlus.h>
 
 #import "UIFont+Replacement.h"
 
@@ -32,7 +32,7 @@
 {
     
 //#ifndef DEBUG
-    [self redirectNSLogToDocumentFolder];
+    //[self redirectNSLogToDocumentFolder];
 //#endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
