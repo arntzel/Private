@@ -32,7 +32,7 @@
 {
     
 //#ifndef DEBUG
-    //[self redirectNSLogToDocumentFolder];
+    [self redirectNSLogToDocumentFolder];
 //#endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
