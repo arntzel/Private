@@ -50,6 +50,8 @@
     CustomerIndicatorView * dataLoadingView;
     
     LoadingProgressView * loadingPrigressView;
+    
+    int synchronzieEventOffset;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -128,7 +130,9 @@
         begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
 
         [[[Model getInstance] getEventModel] setSynchronizeData:YES];
-        [self synchronFeedEventFromServer:0 andBeginDate:begin];
+        
+        synchronzieEventOffset = 0;
+        [self synchronFeedEventFromServer:synchronzieEventOffset andBeginDate:begin];
         
     } else {
         tableView.lastEventUpdateTime = lastupdatetime;
@@ -195,11 +199,11 @@
                 
             } else {
                 
-                float newOffset = (offset + events.count);
-                float progress = newOffset / count;
+                synchronzieEventOffset = (offset + events.count);
+                float progress = synchronzieEventOffset / (float)count;
                 loadingPrigressView.progressView.progress = progress;
                 
-                [self synchronFeedEventFromServer: (offset + events.count) andBeginDate:begin];
+                [self synchronFeedEventFromServer: synchronzieEventOffset andBeginDate:begin];
             }
             
                         
@@ -292,7 +296,7 @@
         begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
         
         [[[Model getInstance] getEventModel] setSynchronizeData:YES];
-        [self synchronFeedEventFromServer:0 andBeginDate:begin];
+        [self synchronFeedEventFromServer:synchronzieEventOffset andBeginDate:begin];
     }
 }
 
