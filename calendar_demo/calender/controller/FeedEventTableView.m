@@ -111,15 +111,9 @@
     return ![day1 isEqualToString:day2];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)reloadMoreData:(NSInteger)offsetY
 {
-//    if (!decelerate) {
-//        [self changeCalOnDisplayDay];
-//    }
-    int y = scrollView.contentOffset.y;
-    
-    if(y < 60) {
+    if(offsetY < 60) {
         NSArray * allDay = [cache allDays];
         if(allDay.count == 0) return;
         
@@ -137,11 +131,11 @@
         }
         
         [self reloadData];
-        
-        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
+        [self scroll2Date:firtDay];
+//        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
         //[self scroll2Date:firtDay animated:NO];
         
-    } else if( (y + scrollView.frame.size.height) + 60 > scrollView.contentSize.height) {
+    } else if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
         
         NSArray * allDay = [cache allDays];
         if(allDay.count == 0) return;
@@ -163,6 +157,72 @@
         
         //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int y = scrollView.contentOffset.y;
+    [self reloadMoreData:y];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+    
+//    if (!decelerate) {
+//        [self changeCalOnDisplayDay];
+//    }
+    int y = scrollView.contentOffset.y;
+    if (!decelerate) {
+        [self reloadMoreData:y];
+    }
+    
+    
+//    if(y < 60) {
+//        NSArray * allDay = [cache allDays];
+//        if(allDay.count == 0) return;
+//        
+//        NSString* firtDay = [allDay objectAtIndex:0];
+//        
+//        NSLog(@"scrollViewDidScroll: load pre more events:%@", firtDay);
+//        
+//        NSDate * date = [Utils parseNSStringDay:firtDay];
+//        
+//        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+//        
+//        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
+//            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
+//            [cache putDayFeedEventEntitysWrap:wrap];
+//        }
+//        
+//        [self reloadData];
+//        
+//        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
+//        //[self scroll2Date:firtDay animated:NO];
+//        
+//    } else if( (y + scrollView.frame.size.height) + 60 > scrollView.contentSize.height) {
+//        
+//        NSArray * allDay = [cache allDays];
+//        if(allDay.count == 0) return;
+//        
+//        NSString* lastDay = [allDay lastObject];
+//        
+//        NSLog(@"scrollViewDidScroll: load pre more events:%@", lastDay);
+//        
+//        NSDate * date = [Utils parseNSStringDay:lastDay];
+//        
+//        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+//        
+//        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
+//            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
+//            [cache putDayFeedEventEntitysWrap:wrap];
+//        }
+//        
+//        [self reloadData];
+//        
+//        //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
+//    }
 }
 
 
