@@ -27,6 +27,7 @@
     DataCache * cache;
 
     NSDate * firstVisibleDay;
+    BOOL onDisplayFirstDayChangedNotify;
 }
 
 
@@ -58,6 +59,7 @@
 
     model = [CoreDataModel getInstance];
     cache = [model getCache];
+    onDisplayFirstDayChangedNotify = YES;
 }
 
 -(NSDate *) getFirstVisibleDay
@@ -76,10 +78,12 @@
 
 #pragma mark -
 #pragma mark tableViewDelegate
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self changeCalOnDisplayDay];
+    if(onDisplayFirstDayChangedNotify) {
+        [self changeCalOnDisplayDay];
+    }
 }
 
 - (void)changeCalOnDisplayDay
@@ -163,6 +167,7 @@
 {
     int y = scrollView.contentOffset.y;
     [self reloadMoreData:y];
+    onDisplayFirstDayChangedNotify = YES;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -388,6 +393,12 @@
 }
 
 -(void)scroll2SelectedDate:(NSString *) day {
+    
+    if([self isDecelerating]) {
+        return;
+    }
+    
+    onDisplayFirstDayChangedNotify = NO;
     
     if( [cache containDay:day]) {
         [self scroll2Date:day animated:YES];
