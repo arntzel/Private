@@ -35,6 +35,17 @@ static CoreDataModel * instance;
     managedObjectContext = nil;
     persistentStoreCoordinator = nil;
     
+    //Delete old db file
+    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+    
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtURL:storeUrl error: &error];
+    LOG_D(@"error=%@", error);
+
+    
+    
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
     NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
@@ -46,14 +57,6 @@ static CoreDataModel * instance;
     
     delegates = [[NSMutableArray alloc] init];
     cache = [[DataCache alloc] init];
-    
-    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
-
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:storeUrl error: &error];
-    LOG_D(@"error=%@", error);
 }
 
 -(id) init
