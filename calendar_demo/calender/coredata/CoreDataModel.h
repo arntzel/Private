@@ -72,4 +72,6 @@
 +(CoreDataModel *) getInstance;
 
 
+-(void) reset;
+
 @end

@@ -10,6 +10,8 @@
 #import "UserModel.h"
 #import "SignupViewController.h"
 #import "RootNavContrller.h"
+#import "UserSetting.h"
+#import "CoreDataModel.h"
 
 @interface SettingViewController ()
 
@@ -42,11 +44,9 @@
 {
     [[UserModel getInstance] setLoginUser:nil];
 
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-
-    [defaults removeObjectForKey:@"loginUser"];
-    [defaults synchronize];
-
+    [[UserSetting getInstance] reset];
+    [[CoreDataModel getInstance] reset];
+    
     RootNavContrller *navController = [RootNavContrller defaultInstance];
 
         

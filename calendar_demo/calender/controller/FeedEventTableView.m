@@ -329,9 +329,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"heightForRowAtIndexPath:%@", indexPath);
-    
-  
     FeedEventEntity * event = [self getFeedEventEntity:indexPath];
     
     if([event.eventType intValue] == 4) {

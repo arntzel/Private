@@ -17,6 +17,7 @@
 #import "Utils.h"
 #import "UserModel.h"
 #import "CoreDataModel.h"
+#import "UserSetting.h"
 
 @implementation AppDelegate
 
@@ -32,7 +33,7 @@
 {
     
 //#ifndef DEBUG
-    [self redirectNSLogToDocumentFolder];
+    //[self redirectNSLogToDocumentFolder];
 //#endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -49,18 +50,14 @@
 
 
     UIViewController * rootController;
-    NSData * loginUserData = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginUser"];
-    if(loginUserData != nil) {
-        NSError * err;
-        NSDictionary * loginUserDic = [NSJSONSerialization JSONObjectWithData:loginUserData options:kNilOptions error:&err];
-        User * loginUser = [User parseUser:loginUserDic];
+    User * loginUser = [[UserSetting getInstance] getLoginUserData];
+    if(loginUser != nil) {
+    
         [[UserModel getInstance] setLoginUser:loginUser];
-
         rootController = [[MainViewController alloc] init];
 
     } else {
         rootController = [[SignupViewController alloc] init];
-
     }
 
     RootNavContrller *navController = [RootNavContrller defaultInstance];
@@ -72,11 +69,9 @@
     [self.window makeKeyAndVisible];
 
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    NSNumber * count = [defaults objectForKey:@"unreadmessagecount"];
-    if(count != nil && count.intValue > 0) {
-        [msgModel setUnReadMsgCount:count.intValue];
-    }
+    
+    int count = [[UserSetting getInstance] getUnreadmessagecount];
+    [msgModel setUnReadMsgCount:count];
     
     return YES;
 }
@@ -151,26 +146,18 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
-
     NSLog(@"applicationDidEnterBackground");
-
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
 
     User * loginUser = [[UserModel getInstance] getLoginUser];
     if(loginUser != nil) {
-        NSDictionary * dic = [User convent2Dic:loginUser];
-        NSError * err;
-        NSData * data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&err];
-        [defaults setObject:data forKey:@"loginUser"];
-        [defaults synchronize];
+        [[UserSetting getInstance] saveLoginUser:loginUser];
     }
 
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
   
-    int count = [msgModel getUnreadMsgCount];    
-    [defaults setObject:[NSNumber numberWithInt:count] forKey:@"unreadmessagecount"];
-    [defaults synchronize];    
+    int count = [msgModel getUnreadMsgCount];
+    [[UserSetting getInstance] saveUnreadmessagecount:count];
 }
 
 
@@ -215,15 +202,15 @@
 
 -(void) synchronizedFromServer
 {
-    NSLog(@"synchronizedFromServer begin");
-
+    if (![[UserModel getInstance] isLogined]) {
+        return;
+    }
+  
     if([[[Model getInstance] getEventModel] isSynchronizeData]) return;
 
-    NSLog(@"synchronizedFromServer begin2");
-
-    
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
+    NSLog(@"synchronizedFromServer begin");
+ 
+    NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
 
     if(lastupdatetime == nil) return;
 
@@ -246,12 +233,9 @@
             [model saveData];
             [model notifyModelChange];
 
-            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
-            [defaults synchronize];
+            [[UserSetting getInstance] saveLastUpdatedTime:[NSDate date]];
         }
     }];
-
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

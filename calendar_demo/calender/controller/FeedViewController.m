@@ -32,6 +32,8 @@
 
 #import "SignupViewController.h"
 
+#import "UserSetting.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -92,19 +94,10 @@
     [self.calendarView setKalTileViewDataSource:self];
     [self.view addSubview:self.calendarView];
 
-
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    NSNumber * filterNum = [defaults objectForKey:@"eventfilters"];
-    if(filterNum != nil) {
-        int filetVal = filterNum.intValue;
-        LOG_D(@"Read filterVal:0x %x", filetVal);
-        [self.calendarView.filterView setFilter: filetVal];
-        tableView.eventTypeFilters = filetVal;
-    } else {
-        int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
-        [self.calendarView.filterView setFilter:filetVal];
-        tableView.eventTypeFilters = filetVal;
-    }
+    int filters = [[UserSetting getInstance] getEventfilters];
+    LOG_D(@"Read filterVal:0x %x", filters);
+    [self.calendarView.filterView setFilter:filters];
+    tableView.eventTypeFilters = filters;
     
     self.calendarView.filterView.delegate = self;
 
@@ -117,8 +110,8 @@
     [self.view addSubview:dataLoadingView];
     
     
-    NSDate * lastupdatetime = [defaults objectForKey:@"lastUpdateTime"];
-
+    NSDate * lastupdatetime =  [[UserSetting getInstance] getLastUpdatedTime];
+    
     if(lastupdatetime == nil) {
                
         loadingPrigressView = (LoadingProgressView*)[ViewUtils createView:@"LoadingProgressView"];
@@ -193,9 +186,7 @@
                 
                 [self scroll2Today];
                 
-                NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-                [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
-                [defaults synchronize];
+                [[UserSetting getInstance] saveLastUpdatedTime:[NSDate date]];
                 
             } else {
                 
@@ -222,7 +213,7 @@
     }];
 }
 
-
+/*
 -(void) loadData:(NSDate *) begin
 {
     NSLog(@"loadData begin:%@", begin);
@@ -253,15 +244,14 @@
             
             [self scroll2Today];
             
-            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSDate date] forKey:@"lastUpdateTime"];
-            [defaults synchronize];
+            [[UserSetting getInstance] saveLastUpdatedTime:[NSDate date]];
             
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
 }
+*/
 
 -(void) scroll2Today
 {
@@ -279,11 +269,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0) {
-        [[UserModel getInstance] setLoginUser:nil];
         
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        [defaults removeObjectForKey:@"loginUser"];
-        [defaults synchronize];
+        [[UserModel getInstance] setLoginUser:nil];
+        [[UserSetting getInstance] reset];
+        [[CoreDataModel getInstance] reset];
         
         RootNavContrller *navController = [RootNavContrller defaultInstance];
         [navController popToRootViewControllerAnimated:NO];
@@ -349,10 +338,8 @@
 {
     LOG_D(@"onFilterChanged:0x%x", filters);
 
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    [defaults setObject: [NSNumber numberWithInt:filters] forKey:@"eventfilters"];
-    [defaults synchronize];
-
+    [[UserSetting getInstance] saveEventfilters:filters];
+    
     tableView.eventTypeFilters = filters;
 
     NSDate * date = [tableView getFirstVisibleDay];

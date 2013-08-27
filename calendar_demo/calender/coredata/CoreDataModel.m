@@ -29,25 +29,40 @@ static CoreDataModel * instance;
     DataCache * cache;
 }
 
+-(void) reset {
+ 
+    managedObjectModel = nil;
+    managedObjectContext = nil;
+    persistentStoreCoordinator = nil;
+    
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
+    
+    if (coordinator != nil) {
+        managedObjectContext = [[NSManagedObjectContext alloc]init];
+        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    
+    delegates = [[NSMutableArray alloc] init];
+    cache = [[DataCache alloc] init];
+    
+    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtURL:storeUrl error: &error];
+    LOG_D(@"error=%@", error);
+}
+
 -(id) init
 {
     self = [super init];
     
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
-    //得到数据库的路径
-    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"Model.sqlite"]];
-    
-    NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
-    
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error])
-    {
-        NSLog(@"Error: %@,%@",error,[error userInfo]);
-    }
-    
+       
     NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
     
     if (coordinator != nil) {
@@ -71,7 +86,7 @@ static CoreDataModel * instance;
     //得到数据库的路径
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"coredata.sqlite"]];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
 
