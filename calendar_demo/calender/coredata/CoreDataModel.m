@@ -251,9 +251,7 @@ static CoreDataModel * instance;
             [wrap resetSortedEvents];
         }
         return wrap.sortedEvents;
-    } else {
-        return nil;
-    }
+    } 
     
     wrap = [[DayFeedEventEntitysWrap alloc] init];
     DayFeedEventEntitys * entitys = [self getDayFeedEventEntitys:day];
