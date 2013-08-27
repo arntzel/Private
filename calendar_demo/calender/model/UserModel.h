@@ -57,6 +57,8 @@
 
 -(void) setLoginUser:(User *) user;
 
+-(BOOL) isLogined;
+
 
 /**
  Set the AUTHORIZATION http header on the http request
