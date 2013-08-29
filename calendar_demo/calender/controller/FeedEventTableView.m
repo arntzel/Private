@@ -136,6 +136,8 @@
         
         [self reloadData];
         [self scroll2Date:firtDay];
+        [self flashScrollIndicators];
+        
 //        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
         //[self scroll2Date:firtDay animated:NO];
         
@@ -158,7 +160,8 @@
         }
         
         [self reloadData];
-        
+        [self flashScrollIndicators];
+
         //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
     }
 }
