@@ -100,7 +100,7 @@ static UserSetting * instance;
 -(void) saveEventfilters:(int) filters
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithInt:filters] forKey:KEY_LASTUPDATETIME];
+    [defaults setObject:[NSNumber numberWithInt:filters] forKey:KEY_EVENTFILTERS];
     [defaults synchronize];
 }
 
