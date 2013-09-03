@@ -272,6 +272,8 @@
 		76DD62B31768AEF900C8F6AF /* AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD62B21768AEF900C8F6AF /* AttributedLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76DFD0D61764AF7100B183B7 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D31764AF7100B183B7 /* DDMenuController.m */; };
 		76DFD0D71764AF7100B183B7 /* menuNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DFD0D51764AF7100B183B7 /* menuNavigation.m */; };
+		76EE1DBF17D61A0300BCDF19 /* AddLocationTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EE1DBE17D61A0300BCDF19 /* AddLocationTextView.xib */; };
+		76EE1DC217D61AB800BCDF19 /* AddLocationTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EE1DC117D61AB700BCDF19 /* AddLocationTextView.m */; };
 		76F457B81780667600E4B444 /* KalMonthNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F457B71780667600E4B444 /* KalMonthNameView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9402B069174BB5D400E1C9FD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B068174BB5D400E1C9FD /* Utils.m */; };
 		9402B06C174CFBBB00E1C9FD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402B06B174CFBBA00E1C9FD /* UserModel.m */; };
@@ -732,6 +734,9 @@
 		76DFD0D31764AF7100B183B7 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		76DFD0D41764AF7100B183B7 /* menuNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuNavigation.h; sourceTree = "<group>"; };
 		76DFD0D51764AF7100B183B7 /* menuNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuNavigation.m; sourceTree = "<group>"; };
+		76EE1DBE17D61A0300BCDF19 /* AddLocationTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationTextView.xib; sourceTree = "<group>"; };
+		76EE1DC017D61AB700BCDF19 /* AddLocationTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationTextView.h; sourceTree = "<group>"; };
+		76EE1DC117D61AB700BCDF19 /* AddLocationTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationTextView.m; sourceTree = "<group>"; };
 		76F457B61780667600E4B444 /* KalMonthNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalMonthNameView.h; sourceTree = "<group>"; };
 		76F457B71780667600E4B444 /* KalMonthNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalMonthNameView.m; sourceTree = "<group>"; };
 		9402B067174BB5D400E1C9FD /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -1491,6 +1496,9 @@
 				3D20D051178FD4C4008C2F0C /* SelectTimeZoneController.h */,
 				3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */,
 				3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */,
+				76EE1DBE17D61A0300BCDF19 /* AddLocationTextView.xib */,
+				76EE1DC017D61AB700BCDF19 /* AddLocationTextView.h */,
+				76EE1DC117D61AB700BCDF19 /* AddLocationTextView.m */,
 			);
 			name = Events;
 			path = calender/Events;
@@ -2058,6 +2066,7 @@
 				764E870517CBA0AC00E49BF5 /* LoginMainView.xib in Resources */,
 				764E870617CBA0AC00E49BF5 /* login_mainview_bg.jpg in Resources */,
 				764E870717CBA0AC00E49BF5 /* login_mainview_title.png in Resources */,
+				76EE1DBF17D61A0300BCDF19 /* AddLocationTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2212,6 +2221,7 @@
 				7668F17417C9D5A0001BEE44 /* EventDetailCommentConformView.m in Sources */,
 				764E870417CBA0AC00E49BF5 /* LoginMainView.m in Sources */,
 				3D14A24F17CC824000ACD8B7 /* UserSetting.m in Sources */,
+				76EE1DC217D61AB800BCDF19 /* AddLocationTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
