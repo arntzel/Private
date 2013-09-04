@@ -11,7 +11,7 @@
 //#define NearBySearchRadius 5000
 #define NearBySearchRadius 300
 
-@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate,CLLocationManagerDelegate,NavgationBarDelegate,GMSMapViewDelegate,AddLocationTextViewDelegate>
+@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate,CLLocationManagerDelegate,NavgationBarDelegate,GMSMapViewDelegate>
 {
     BOOL firstLocationUpdate_;
     CLLocationCoordinate2D currentCoordinate;
@@ -30,7 +30,7 @@
     
     CSqlite *m_sqlite;
     
-    AddLocationTextView *textView;
+    //AddLocationTextView *textView;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
 @property (strong, nonatomic) Location* markedLocation;
@@ -64,9 +64,13 @@
         
         m_sqlite = [[CSqlite alloc]init];
         [m_sqlite openSqlite];
+        
+       
     }
     return self;
 }
+
+
 
 - (GMSMarker *)touchedLoacalmarker
 {
@@ -74,8 +78,8 @@
         touchedLoacalmarker = [[GMSMarker alloc] init];
         touchedLoacalmarker.map = self.mapView;
         touchedLoacalmarker.title = @"Selected Location";
-        UIImage *iconImage = [UIImage imageNamed:@"colordot1.png"];
-        touchedLoacalmarker.icon = iconImage;
+        //UIImage *iconImage = [UIImage imageNamed:@"colordot1.png"];
+        touchedLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];;
     }
     return touchedLoacalmarker;
 }
@@ -138,6 +142,10 @@
     self.nearBySearchTabView.delegate = nearByDataSource;
     
     [self addTopBar];
+    
+    self.locationInputField.hidden = YES;
+    [self.locationInputField addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventEditingDidEndOnExit];
+
     
     [self startLocation];
 }
@@ -351,31 +359,37 @@
 #pragma mark - GMSMapViewDelegate
 - (void)mapView:(GMSMapView *)_mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    if (textView == nil) {
-        textView = [AddLocationTextView createView];
-        textView.delegate = self;
-        [self.view addSubview:textView];
-        CGRect frame = textView.frame;
-        frame.origin.x = 0;
-        frame.origin.y = self.locationSearchBar.frame.origin.y + self.locationSearchBar.frame.size.height;
-        textView.frame = frame;
-    }
+//    if (textView == nil) {
+//        textView = [AddLocationTextView createView];
+//        textView.delegate = self;
+//        [self.view addSubview:textView];
+//        CGRect frame = textView.frame;
+//        frame.origin.x = 0;
+//        frame.origin.y = self.locationSearchBar.frame.origin.y + self.locationSearchBar.frame.size.height;
+//        textView.frame = frame;
+//    }
     
+    self.locationInputField.hidden = NO;
+    [self.locationInputField becomeFirstResponder];
     self.touchedLoacalmarker.map = mapView;
     self.touchedLoacalmarker.position = coordinate;
-    [textView show];
+    //[textView show];
 
 }
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
 {
-    [textView dismiss];
+    //[textView dismiss];
+    self.locationInputField.hidden = YES;
+    [self.locationInputField resignFirstResponder];
     self.touchedLoacalmarker.map = nil;
 }
 
 #pragma mark - AddLocationTextViewDelegate
-- (void)addPlace:(NSString *)placeName
+- (void)addPlace
 {
+    NSString * placeName = self.locationInputField.text;
+    
     Location * location = [[Location alloc] init];
     location.location = placeName;
     location.lat = self.touchedLoacalmarker.position.latitude;
