@@ -6,7 +6,6 @@
 #import "Utils.h"
 #import "ViewUtils.h"
 
-#import "EventDetailViewController.h"
 #import "EventDetailController.h"
 
 #import "RootNavContrller.h"

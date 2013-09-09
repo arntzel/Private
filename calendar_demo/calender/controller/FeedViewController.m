@@ -22,7 +22,6 @@
 
 #import "FeedCalenderView.h"
 
-#import "EventDetailViewController.h"
 #import "CustomerIndicatorView.h"
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"

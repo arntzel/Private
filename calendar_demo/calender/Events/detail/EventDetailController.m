@@ -63,7 +63,8 @@
     [self addPhotoView];
     [self addNavBar];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 524)];
+    int height = self.view.frame.size.height - navBar.frame.size.height;
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBounces:NO];
