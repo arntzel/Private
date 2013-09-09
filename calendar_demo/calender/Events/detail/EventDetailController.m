@@ -16,6 +16,8 @@
 #import "EventDetailCommentConformView.h"
 #import "EventDetailCommentContentView.h"
 
+#import "Model.h"
+
 @interface EventDetailController ()<EventDetailNavigationBarDelegate>
 {
     EventDetailNavigationBar *navBar;
@@ -26,6 +28,8 @@
     EventDetailCommentConformView *conformView;
     EventDetailCommentContentView *commentContentView;
     UIScrollView *scrollView;
+    
+    UIActivityIndicatorView * indicatorView;
 }
 @end
 
@@ -44,6 +48,8 @@
     [commentContentView release];
     [scrollView release];
  
+    [indicatorView release];
+    
     [super dealloc];
 }
 
@@ -80,6 +86,44 @@
     [scrollView addSubview:commentContentView];
     
     [self layOutSubViews];
+    
+    [self showIndicatorView];
+    
+    [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event *event) {
+        
+        [self hideIndicatorView];
+        
+        if(error == 0) {
+            
+        } else {
+            UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
+                                                            message:@"Event does't exsit"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil] autorelease];
+            
+            [alert show];
+        }
+    }];
+}
+
+-(void) showIndicatorView
+{
+    if(indicatorView == nil) {
+        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        indicatorView.hidesWhenStopped = YES;
+        indicatorView.center = self.view.center;
+        [self.view addSubview:indicatorView];
+        
+        [indicatorView retain];
+    }
+    
+    indicatorView.hidden = NO;
+}
+
+-(void) hideIndicatorView
+{
+    indicatorView.hidden = YES;
 }
 
 - (void)addNavBar

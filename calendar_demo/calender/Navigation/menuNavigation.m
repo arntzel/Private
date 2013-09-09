@@ -18,7 +18,7 @@
 #import "PedingEventViewController.h"
 
 #import "Utils.h"
-#import "EventDetailViewController.h"
+#import "EventDetailController.h"
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
 {
@@ -214,9 +214,8 @@
     } else {
         MessageEntity * msg = [msgModel getMessage:indexPath.row];
 
-        EventDetailViewController * detailCtl = [[EventDetailViewController alloc] init];
-        [detailCtl setEventID: [msg.id intValue]];
-
+        EventDetailController * detailCtl = [[EventDetailController alloc] init];
+        detailCtl.eventID = [msg.id intValue];
         [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
         
         if([msg.unread boolValue]) {

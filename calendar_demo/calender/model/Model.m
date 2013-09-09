@@ -204,6 +204,38 @@ static Model * instance;
     [self getEvents:iCurYear andMonth:iCurMonth andCallback:callback];
 }
 
+-(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200 && data != nil) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+          
+            Event * e = [Event parseEvent:json];
+            callback(ERROCODE_OK, e);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+            
+            callback(ERROCODE_SERVER, nil);
+        }
+    }];
+}
 
 -(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback
 {

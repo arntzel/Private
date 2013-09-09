@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback;
 
+-(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback;
+
 
 /**
  Call WebService API to get the lastest events.s

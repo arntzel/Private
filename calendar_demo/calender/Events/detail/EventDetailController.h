@@ -11,4 +11,6 @@
 
 @interface EventDetailController : UIViewController
 
+@property int eventID;
+
 @end
