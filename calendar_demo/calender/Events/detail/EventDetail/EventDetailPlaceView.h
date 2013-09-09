@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Location.h"
 
 @interface EventDetailPlaceView : UIView
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UILabel * locationNameLabel;
+
+
+-(void) setLocation:(Location *) location;
+
 
 +(EventDetailPlaceView *) creatView;
 

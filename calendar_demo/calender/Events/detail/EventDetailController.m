@@ -95,6 +95,11 @@
         
         if(error == 0) {
             
+            [photoView setImageUrl:event.thumbnail_url];
+            photoView.titleLabel.text = event.title;
+            
+            [invitePlaceContentView.placeView setLocation:event.location];
+            
         } else {
             UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
                                                             message:@"Event does't exsit"

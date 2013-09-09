@@ -11,13 +11,7 @@
 #import "EventDetailPlaceView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface EventDetailInviteePlaceView()
-{
-    EventDetailInviteeView *inviteeView;
-    EventDetailPlaceView *placeView;
-}
 
-@end
 
 @implementation EventDetailInviteePlaceView
 
@@ -51,13 +45,13 @@
     
     CGRect viewFrame = self.frame;
     viewFrame.size.width = 320;
-    viewFrame.size.height = inviteeView.frame.size.height + 8 + 14;
+    viewFrame.size.height = self.inviteeView.frame.size.height + 8 + 14;
     self.frame = viewFrame;
 }
 
 - (void)addInviteeView
 {
-    inviteeView = [[EventDetailInviteeView creatView] retain];
+    self.inviteeView = [EventDetailInviteeView creatView];
     
     NSArray *headerArray = @[[UIImage imageNamed:@"header10.jpg"],
                              [UIImage imageNamed:@"header9.jpg"],
@@ -68,32 +62,32 @@
                              [UIImage imageNamed:@"header4.jpg"],
                              [UIImage imageNamed:@"header3.jpg"],
                              [UIImage imageNamed:@"header2.jpg"]];
-    [inviteeView addInviteePhotos:headerArray];
+    [self.inviteeView addInviteePhotos:headerArray];
     
-    CGRect frame = inviteeView.frame;
+    CGRect frame = self.inviteeView.frame;
     frame.origin.x = 5;
     frame.origin.y = 8;
-    inviteeView.frame = frame;
+    self.inviteeView.frame = frame;
     
-    [self addSubview:inviteeView];
+    [self addSubview:self.inviteeView];
 }
 
 - (void)addPlaceView
 {
-    placeView = [[EventDetailPlaceView creatView] retain];
+    self.placeView = [EventDetailPlaceView creatView];
     
-    CGRect frame = placeView.frame;
-    frame.origin.x = 5 * 2 + inviteeView.frame.size.width;
+    CGRect frame = self.placeView.frame;
+    frame.origin.x = 5 * 2 + self.inviteeView.frame.size.width;
     frame.origin.y = 8;
-    placeView.frame = frame;
+    self.placeView.frame = frame;
     
-    [self addSubview:placeView];
+    [self addSubview:self.placeView];
 }
 
 - (void)dealloc
 {
-    [inviteeView release];
-    [placeView release];
+    self.inviteeView = nil;
+    self.placeView = nil;
     
     [super dealloc];
 }

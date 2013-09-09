@@ -14,6 +14,7 @@
 @interface EventDetailPlaceView()
 
 @property (retain, nonatomic) GMSMapView *gmsMapView;
+@property(retain, nonatomic) GMSMarker * marker;
 
 @end
 
@@ -58,8 +59,24 @@
     return view;
 }
 
+-(void) setLocation:(Location *) location
+{
+    self.locationNameLabel.text = location.location;
+    
+    // 在map中间做一个标记
+    _marker = [[GMSMarker alloc] init];
+    
+    _marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
+    _marker.map = _gmsMapView;
+    
+    _gmsMapView.userInteractionEnabled = NO;
+}
+
 - (void)dealloc {
     self.gmsMapView = nil;
+    self.locationNameLabel = nil;
+    self.marker = nil;
+    
     [_contentView release];
     [super dealloc];
 }

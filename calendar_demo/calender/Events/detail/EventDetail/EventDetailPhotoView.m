@@ -7,7 +7,8 @@
 //
 
 #import "EventDetailPhotoView.h"
-
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation EventDetailPhotoView
 {
@@ -29,6 +30,14 @@
 - (void)setImage:(UIImage *)image
 {
     [self.photoView setOriginalImage:image];
+}
+
+-(void) setImageUrl:(NSString *) imageUrl
+{
+    if(imageUrl != nil) {
+        UIImage * img = self.photoView.image;
+        [self.photoView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:img];
+    }
 }
 
 - (void)setScrollView:(UIScrollView *)_scrollView

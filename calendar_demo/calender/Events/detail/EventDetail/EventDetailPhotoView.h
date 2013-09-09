@@ -14,6 +14,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (void)setImage:(UIImage *)image;
+-(void) setImageUrl:(NSString *) imageUrl;
 
 - (void)setScrollView:(UIScrollView *)_scrollView;
 - (void)setNavgation:(UIView *)navigation;
