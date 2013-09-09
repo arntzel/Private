@@ -221,11 +221,15 @@
     int height = self.view.frame.size.height - navBar.frame.size.height - keyboardRect.size.height;
     CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
     scrollView.frame = frame;
+    
+    CGPoint  contentOffset = scrollView.contentOffset;
+    contentOffset.y += keyboardRect.size.height;
+    scrollView.contentOffset = contentOffset;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     
-    NSDictionary* userInfo = [notification userInfo];
+    //NSDictionary* userInfo = [notification userInfo];
     /*
      Restore the size of the text view (fill self's view).
      Animate the resize so that it's in sync with the disappearance of the keyboard.

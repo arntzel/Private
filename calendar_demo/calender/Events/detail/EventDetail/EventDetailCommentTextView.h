@@ -11,6 +11,7 @@
 @interface EventDetailCommentTextView : UIView
 
 @property (weak, nonatomic) IBOutlet UIImageView *autherPhotoView;
+@property (weak, nonatomic) IBOutlet UITextField * messageField;
 
 - (void)setHeaderPhoto:(UIImage *)photo;
 
