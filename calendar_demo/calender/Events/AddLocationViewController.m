@@ -146,8 +146,23 @@
     self.locationInputField.hidden = YES;
     [self.locationInputField addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventEditingDidEndOnExit];
 
-    
-    [self startLocation];
+    if(self.location != nil) {
+        
+        self.locationInputField.text = self.location.location;
+        
+        self.locationInputField.hidden = NO;
+        [self.locationInputField becomeFirstResponder];
+        self.touchedLoacalmarker.map = mapView;
+        
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = self.location.lat;
+        coordinate.longitude = self.location.lng;
+        self.touchedLoacalmarker.position = coordinate;
+        
+    } else {
+        [self startLocation];
+
+    }    
 }
 
 - (void)addTopBar

@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) id<AddLocationViewControllerDelegate> delegate;
 
+@property(retain, nonatomic) Location * location;
+
 @end
