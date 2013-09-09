@@ -106,20 +106,20 @@
 - (NSString *)parseStartDateString
 {
     NSArray *monthNameArray = [NSArray arrayWithObjects:
-                               @"jan",
-                               @"feb",
-                               @"march",
-                               @"april",
+                               @"Jan",
+                               @"Feb",
+                               @"March",
+                               @"April",
                                
-                               @"may",
-                               @"june",
-                               @"july",
-                               @"aug",
+                               @"May",
+                               @"June",
+                               @"July",
+                               @"Aug",
                                
-                               @"sep",
-                               @"oct",
-                               @"nov",
-                               @"dec",
+                               @"Sep",
+                               @"Oct",
+                               @"Nov",
+                               @"Dec",
                                nil
                                ];
     
@@ -127,7 +127,7 @@
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.start];
     
     NSString *monthName = [monthNameArray objectAtIndex:parts.month - 1];
-    NSString *preFix = [NSString stringWithFormat:@"%@ %dth",monthName,parts.day];
+    NSString *preFix = [NSString stringWithFormat:@"%@ %d",monthName,parts.day];
     
     return [NSString stringWithFormat:@"%@,%@",preFix,[self parseStartTimeString]];
 }
