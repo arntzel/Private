@@ -37,6 +37,8 @@
 
 - (void)dealloc
 {
+    [self unregisterKeyboardEvents];
+    
     [navBar release];
     [photoView setScrollView:nil];
     [photoView setNavgation:nil];
@@ -51,6 +53,17 @@
     [indicatorView release];
     
     [super dealloc];
+}
+
+-(void) registerKeyboardEvents
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void) unregisterKeyboardEvents
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -89,6 +102,8 @@
     [self layOutSubViews];
     
     [self showIndicatorView];
+    
+    [self registerKeyboardEvents];
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event *event) {
         
@@ -185,6 +200,44 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark Responding to keyboard events
+- (void)keyboardWillShow:(NSNotification *)notification {
+
+    NSDictionary *userInfo = [notification userInfo];
+    // Get the origin of the keyboard when it's displayed.
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
+    CGRect keyboardRect = [aValue CGRectValue];
+    // Get the duration of the animation.
+    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    //NSTimeInterval animationDuration;
+    //[animationDurationValue getValue:&animationDuration];
+    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+    //[self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
+    
+    int height = self.view.frame.size.height - navBar.frame.size.height - keyboardRect.size.height;
+    CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
+    scrollView.frame = frame;
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    NSDictionary* userInfo = [notification userInfo];
+    /*
+     Restore the size of the text view (fill self's view).
+     Animate the resize so that it's in sync with the disappearance of the keyboard.
+     */
+    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    //NSTimeInterval animationDuration;
+    //[animationDurationValue getValue:&animationDuration];
+    //[self moveInputBarWithKeyboardHeight:0.0 withDuration:animationDuration];
+    
+    int height = self.view.frame.size.height - navBar.frame.size.height;
+    CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
+    scrollView.frame = frame;
 }
 
 @end
