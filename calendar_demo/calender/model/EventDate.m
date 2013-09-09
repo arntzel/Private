@@ -1,6 +1,6 @@
 
 #import "EventDate.h"
-
+#import "Utils.h"
 
 @interface EventDate()<NSCopying>
 
@@ -55,39 +55,40 @@
 
 - (NSString *)parseStartTimeString
 {
-    NSDateFormatter *formatHour = [[NSDateFormatter alloc] init];
-    NSDateFormatter *formatMin = [[NSDateFormatter alloc] init];
-    [formatHour setDateFormat:@"HH:mm"];
-    [formatMin setDateFormat:@"mm"];
-    NSString *strHour = [formatHour stringFromDate:self.start];
-    NSString *strMin = [formatMin stringFromDate:self.start];
+//    NSDateFormatter *formatHour = [[NSDateFormatter alloc] init];
+//    NSDateFormatter *formatMin = [[NSDateFormatter alloc] init];
+//    [formatHour setDateFormat:@"HH:mm"];
+//    [formatMin setDateFormat:@"mm"];
+//    NSString *strHour = [formatHour stringFromDate:self.start];
+//    NSString *strMin = [formatMin stringFromDate:self.start];
+//    
+//    NSInteger intHour = [strHour intValue];
+//    NSInteger intMin = [strMin intValue];
+//    
+//    NSString *strAMPM = nil;
+//    
+//    if (intHour / 12) {
+//        strAMPM = @" pm";
+//    }
+//    else
+//    {
+//        strAMPM = @" am";
+//    }
+//    if (intHour == 0) {
+//        intHour = 12;
+//        strAMPM = @" pm";
+//    }
+//    else if(intHour == 12)
+//    {
+//        strAMPM = @" am";
+//    }
+//    else
+//    {
+//        intHour = intHour % 12;
+//    }
     
-    NSInteger intHour = [strHour intValue];
-    NSInteger intMin = [strMin intValue];
-    
-    NSString *strAMPM = nil;
-    
-    if (intHour / 12) {
-        strAMPM = @" pm";
-    }
-    else
-    {
-        strAMPM = @" am";
-    }
-    if (intHour == 0) {
-        intHour = 12;
-        strAMPM = @" pm";
-    }
-    else if(intHour == 12)
-    {
-        strAMPM = @" am";
-    }
-    else
-    {
-        intHour = intHour % 12;
-    }
-    
-    NSString *dateStr = [NSString stringWithFormat:@"%d:%d %@",intHour,intMin,strAMPM];
+    //NSString *dateStr = [NSString stringWithFormat:% %@",intHour,intMin,strAMPM];
+    NSString * dateStr = [Utils formateTimeAMPM:self.start];
     NSString *preStr = @"";
     
     if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
