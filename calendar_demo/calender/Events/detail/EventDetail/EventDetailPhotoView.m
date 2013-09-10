@@ -18,13 +18,14 @@
 
 - (void)updateUI
 {
-    DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.photoView.frame];
+    DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.frame];
     blurView.isGlassEffectOn = YES;
     [_photoView removeFromSuperview];
     [_photoView release];
     
     self.photoView = blurView;
     [self insertSubview:blurView belowSubview:_titleLabel];
+    [blurView release];
 }
 
 - (void)setImage:(UIImage *)image

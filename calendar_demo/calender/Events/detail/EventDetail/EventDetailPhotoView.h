@@ -10,7 +10,7 @@
 #import "DKLiveBlurView.h"
 
 @interface EventDetailPhotoView : UIView
-@property (retain, nonatomic) IBOutlet DKLiveBlurView *photoView;
+@property (retain, nonatomic) DKLiveBlurView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (void)setImage:(UIImage *)image;
