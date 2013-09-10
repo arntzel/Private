@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Comment.h"
 
 @interface EventDetailCommentContentView : UIView
 
 - (id)init;
+
+-(void) updateView:(User *) me andComments:(NSArray *) comments;
+
+-(void) addComment:(Comment *) comment;
+
 
 @end

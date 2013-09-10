@@ -41,6 +41,7 @@
 		3D20D050178EB17A008C2F0C /* AddEventPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D04F178EB17A008C2F0C /* AddEventPlaceView.xib */; };
 		3D20D054178FD4C6008C2F0C /* SelectTimeZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D20D055178FD4C6008C2F0C /* SelectTimeZoneController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */; };
+		3D45C74F17DF145C00A97F8F /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45C74E17DF145C00A97F8F /* Comment.m */; };
 		3D473BD917812A350093FE19 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */; };
 		3D473BDA17812A350093FE19 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */; };
 		3D473BDD17812CDF0093FE19 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473BDC17812CDF0093FE19 /* CreateUser.m */; };
@@ -397,6 +398,8 @@
 		3D20D051178FD4C4008C2F0C /* SelectTimeZoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeZoneController.h; sourceTree = "<group>"; };
 		3D20D052178FD4C5008C2F0C /* SelectTimeZoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SelectTimeZoneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3D20D053178FD4C6008C2F0C /* SelectTimeZoneController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectTimeZoneController.xib; sourceTree = "<group>"; };
+		3D45C74D17DF145C00A97F8F /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		3D45C74E17DF145C00A97F8F /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		3D473BD617812A340093FE19 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
 		3D473BD717812A340093FE19 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
 		3D473BD817812A340093FE19 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
@@ -1050,6 +1053,8 @@
 				76BC526617891FB8005D78E2 /* EventDate.m */,
 				3DC59EB717A797F30068AC79 /* MessageModel.h */,
 				3DC59EB817A797F30068AC79 /* MessageModel.m */,
+				3D45C74D17DF145C00A97F8F /* Comment.h */,
+				3D45C74E17DF145C00A97F8F /* Comment.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2212,6 +2217,7 @@
 				764E870417CBA0AC00E49BF5 /* LoginMainView.m in Sources */,
 				3D14A24F17CC824000ACD8B7 /* UserSetting.m in Sources */,
 				76EE1DC217D61AB800BCDF19 /* AddLocationTextView.m in Sources */,
+				3D45C74F17DF145C00A97F8F /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

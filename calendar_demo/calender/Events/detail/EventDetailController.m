@@ -126,7 +126,11 @@
             
             [invitePlaceContentView.placeView setLocation:event.location];
             
-             
+            
+            [self updatecommentContentView];
+            
+            [self layOutSubViews];
+            
         } else {
             UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
                                                             message:@"Event does't exsit"
@@ -334,4 +338,36 @@
     scrollView.frame = frame;
 }
 
+
+-(void) updatecommentContentView
+{
+   
+    User * me = [[UserModel getInstance] getLoginUser];
+
+    
+    NSMutableArray * comments = [[NSMutableArray alloc] init];
+    
+    for(int i=0;i<10;i++) {
+        
+        Comment * cmt = [[Comment alloc] init];
+        
+        cmt.msg = @"teststddddddddsaadfa";
+        
+        cmt.createTime = [NSDate date];
+        
+        if(i==0) {
+            cmt.commentor = nil;
+        } else {
+            cmt.commentor = me;
+        }
+        
+        [comments addObject:cmt];
+        [cmt release];
+        
+    }
+    
+    
+    [commentContentView updateView:me andComments:comments];
+    [comments release];
+}
 @end

@@ -14,9 +14,9 @@
 
 @interface EventDetailCommentContentView()
 {
-    EventDetailCommentView *commentView;
+    //EventDetailCommentView *commentView;
     EventDetailCommentTextView *commentTextView;
-    EventDetailCommentConformedView *conformedView;
+    //EventDetailCommentConformedView *conformedView;
 }
 @end
 
@@ -32,58 +32,95 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self addTextView];
-        [self addCommentView];
-        [self addConformedView];
-        [self updateUI];
+        //[self addTextView];
+        //[self addCommentView];
+        //[self addConformedView];
+        //[self updateUI];
     }
     return self;
 }
 
+
+-(void) updateView:(User *) me andComments:(NSArray *) comments
+{
+    for(UIView * subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
+    
+    [self addTextView:me];
+    
+    if(comments != nil && comments.count > 0) {
+        for(Comment * cmt in comments) {
+            [self addComment:cmt];
+        }
+    }
+    
+    [self updateFrame];
+}
+
+-(void) addComment:(Comment *) comment
+{
+    if(comment.commentor == nil) {
+        [self addConformedView:comment];
+    } else {
+        [self addCommentView:comment];
+    }
+}
+
+-(void) updateFrame
+{
+    CGRect frame = self.frame;
+    int subViewCount = self.subviews.count;
+    frame.size.height = subViewCount*56;
+    self.frame = frame;
+    
+    for(int i=0;i<subViewCount;i++) {
+        UIView * subView = [self.subviews objectAtIndex:i];
+        frame = subView.frame;
+        frame.origin.y = i*56;
+        subView.frame = frame;
+    }
+}
+
 - (void)dealloc
 {    
-    [commentView release];
+    //[commentView release];
     [commentTextView release];
-    [conformedView release];
+    //[conformedView release];
     
     [super dealloc];
 }
 
-- (void)updateUI
-{    
-    CGRect commentContentViewFrame = self.frame;
-    commentContentViewFrame.size = CGSizeMake(320, conformedView.frame.size.height + conformedView.frame.origin.y);
-    self.frame = commentContentViewFrame;
-}
+//- (void)updateUI
+//{    
+//    CGRect commentContentViewFrame = self.frame;
+//    commentContentViewFrame.size = CGSizeMake(320, conformedView.frame.size.height + conformedView.frame.origin.y);
+//    self.frame = commentContentViewFrame;
+//}
 
-- (void)addTextView
+- (void)addTextView:(User *) user
 {
     commentTextView = [[EventDetailCommentTextView creatView] retain];
-    [commentTextView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
+    //[commentTextView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
+    [commentTextView setHeaderPhotoUrl:user.avatar_url];
     [self addSubview:commentTextView];
 }
 
-- (void)addCommentView
+- (void)addCommentView :(Comment *) cmt
 {
-    commentView = [[EventDetailCommentView creatView] retain];
-    [commentView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
+    EventDetailCommentView * commentView = [EventDetailCommentView creatView];
+    //[commentView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
+    [commentView setHeaderPhotoUrl: cmt.commentor.avatar_url];
     
-    CGRect commentViewFrame = commentView.frame;
-    commentViewFrame.origin = CGPointMake(0, commentTextView.frame.size.height);
-    commentView.frame = commentViewFrame;
-    
-    [self addSubview:commentView];
+
+    [self insertSubview:commentView belowSubview:commentTextView];
 }
 
-- (void)addConformedView
+- (void)addConformedView:(Comment *) cmt
 {
-    conformedView = [[EventDetailCommentConformedView creatView] retain];
+    EventDetailCommentConformedView * conformedView = [EventDetailCommentConformedView creatView];
     
-    CGRect viewFrame = conformedView.frame;
-    viewFrame.origin = CGPointMake(0, commentView.frame.size.height + commentView.frame.origin.y);
-    conformedView.frame = viewFrame;
-    
-    [self addSubview:conformedView];
+    [self insertSubview:conformedView atIndex:1];
 }
 
 

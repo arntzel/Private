@@ -8,6 +8,7 @@
 
 #import "EventDetailCommentView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation EventDetailCommentView
 
@@ -23,6 +24,18 @@
 - (void)setHeaderPhoto:(UIImage *)photo
 {
     [_commentAutherPhotoView setImage:photo];
+}
+
+-(void) setHeaderPhotoUrl:(NSString *) url
+{
+    NSString * headerUrl = url;
+    
+    if(headerUrl == nil) {
+        _commentAutherPhotoView.image = [UIImage imageNamed:@"header.png"];
+    } else {
+        [_commentAutherPhotoView setImageWithURL:[NSURL URLWithString:headerUrl]
+                         placeholderImage:[UIImage imageNamed:@"header.png"]];
+    }
 }
 
 - (void)updateUI

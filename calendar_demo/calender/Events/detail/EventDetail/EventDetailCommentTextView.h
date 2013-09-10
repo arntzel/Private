@@ -15,6 +15,8 @@
 
 - (void)setHeaderPhoto:(UIImage *)photo;
 
+-(void) setHeaderPhotoUrl:(NSString *) url;
+
 +(EventDetailCommentTextView *)creatView;
 
 @end

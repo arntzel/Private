@@ -16,5 +16,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *commentTimeLabel;
 
 - (void)setHeaderPhoto:(UIImage *)photo;
+-(void) setHeaderPhotoUrl:(NSString *) url;
 
 @end
