@@ -10,9 +10,6 @@
 
 @protocol PickerViewProtocal <NSObject>
 
-@property (nonatomic,assign) NSString *UnitString;
-
-- (id)initWithFrame:(CGRect)frame;
 - (void)reloadData;
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation;
 

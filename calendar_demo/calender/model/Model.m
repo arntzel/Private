@@ -788,4 +788,13 @@ static Model * instance;
     return instance;
 }
 
+
+-(void) updateMessageReadStatus: (void (^)(NSInteger error))callback
+{
+    
+}
+
+
+
+
 @end
