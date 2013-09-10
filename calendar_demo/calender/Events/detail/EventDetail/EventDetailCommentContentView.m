@@ -113,7 +113,7 @@
     [commentView setHeaderPhotoUrl: cmt.commentor.avatar_url];
     
 
-    [self insertSubview:commentView belowSubview:commentTextView];
+    [self insertSubview:commentView atIndex:1];
 }
 
 - (void)addConformedView:(Comment *) cmt
