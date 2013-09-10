@@ -17,8 +17,9 @@
 #import "EventDetailCommentContentView.h"
 
 #import "Model.h"
+#import "UserModel.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -30,6 +31,8 @@
     UIScrollView *scrollView;
     
     UIActivityIndicatorView * indicatorView;
+    
+    Event * event;
 }
 @end
 
@@ -51,6 +54,8 @@
     [scrollView release];
  
     [indicatorView release];
+    
+    [event release];
     
     [super dealloc];
 }
@@ -101,21 +106,27 @@
     
     [self layOutSubViews];
     
-    [self showIndicatorView];
     
     [self registerKeyboardEvents];
     
-    [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event *event) {
+    [self showIndicatorView];
+    scrollView.hidden = YES;
+    
+    [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
         [self hideIndicatorView];
+        scrollView.hidden = NO;
         
         if(error == 0) {
+            event = evt;
+            [event retain];
             
             [photoView setImageUrl:event.thumbnail_url];
             photoView.titleLabel.text = event.title;
             
             [invitePlaceContentView.placeView setLocation:event.location];
             
+             
         } else {
             UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
                                                             message:@"Event does't exsit"
@@ -126,6 +137,87 @@
             [alert show];
         }
     }];
+    
+    
+    UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapLocation:)];
+    t.delegate = self;
+    [invitePlaceContentView.placeView addGestureRecognizer:t];
+    [t release];
+    
+    UITapGestureRecognizer *t2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapInvitees:)];
+    t2.delegate = self;
+    [invitePlaceContentView.inviteeView addGestureRecognizer:t2];
+    [t2 release];
+}
+
+-(BOOL) isMyCreatEvent
+{
+    User * user =  [[UserModel getInstance] getLoginUser];
+    User * creator = event.creator;
+    return user.id == creator.id;
+}
+
+-(void) singleTapLocation:(UITapGestureRecognizer*) tap
+{
+    LOG_D(@"singleTapLocation");
+    
+    UIActionSheet *actionSheet = nil;
+    
+    if([self isMyCreatEvent]) {
+        
+        actionSheet = [[UIActionSheet alloc]
+                        initWithTitle:nil
+                        delegate:self
+                        cancelButtonTitle:@"Cancel"
+                        destructiveButtonTitle:nil
+                        otherButtonTitles:@"Change Location", @"View in Maps", nil];
+        actionSheet.tag = 0;
+        
+    } else {
+        
+        actionSheet = [[UIActionSheet alloc]
+                       initWithTitle:nil
+                       delegate:self
+                       cancelButtonTitle:@"Cancel"
+                       destructiveButtonTitle:nil
+                       otherButtonTitles:@"View in Maps", nil];
+        
+        actionSheet.tag = 1;
+    }
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+-(void) singleTapInvitees: (UITapGestureRecognizer*) tap
+{
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(actionSheet.tag == 0) {
+        
+        if(buttonIndex == 0) {
+            [self changeLocation];
+        } else {
+            [self viewInMaps];
+        }
+        
+    } else {
+        [self viewInMaps];
+    }
+}
+
+-(void) changeLocation
+{
+    LOG_D(@"changeLocation");
+
+}
+
+-(void) viewInMaps
+{
+    LOG_D(@"viewInMaps");
 }
 
 -(void) showIndicatorView
@@ -192,8 +284,6 @@
     
     [scrollView setContentSize:CGSizeMake(320, commentContentViewFrame.origin.y + commentContentViewFrame.size.height)];
 }
-
-
 
 
 - (void)didReceiveMemoryWarning
