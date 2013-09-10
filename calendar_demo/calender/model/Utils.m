@@ -3,6 +3,7 @@
 
 #import <Foundation/NSObjCRuntime.h>
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 @implementation Utils
 
@@ -232,7 +233,7 @@
         objc_property_t prop=properties[i];
         const char* propertyName = property_getName(prop);
         [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
-        id value =  [classInstance performSelector:NSSelectorFromString([NSString stringWithUTF8String:propertyName])];
+        id value = objc_msgSend(classInstance, NSSelectorFromString([NSString stringWithUTF8String:propertyName]));
         if(value ==nil)
             [valueArray addObject:@""];
         else {

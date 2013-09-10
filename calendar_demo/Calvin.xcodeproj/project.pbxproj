@@ -235,7 +235,6 @@
 		769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0917DF52090033E677 /* SelectTimeZoneController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB0A17DF52090033E677 /* SelectTimeZoneController.xib */; };
 		769ABB4D17DF53A50033E677 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB4717DF53A40033E677 /* AppDelegate.m */; };
-		769ABB4E17DF53A50033E677 /* Calvin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB4817DF53A40033E677 /* Calvin-Info.plist */; };
 		769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB5117DF53C00033E677 /* InfoPlist.strings */; };
 		769ABB5817DF53C00033E677 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB5417DF53C00033E677 /* Default-568h@2x.png */; };
 		769ABB5917DF53C00033E677 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB5517DF53C00033E677 /* Default.png */; };
@@ -2045,7 +2044,6 @@
 				769ABB4017DF52090033E677 /* AddEventInvitePeopleCell.xib in Resources */,
 				769ABB4217DF52090033E677 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
-				769ABB4E17DF53A50033E677 /* Calvin-Info.plist in Resources */,
 				769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */,
 				769ABB5817DF53C00033E677 /* Default-568h@2x.png in Resources */,
 				769ABB5917DF53C00033E677 /* Default.png in Resources */,
