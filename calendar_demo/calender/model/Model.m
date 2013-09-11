@@ -144,12 +144,10 @@ static Model * instance;
     [dict setObject:[NSNumber numberWithBool:evt.is_all_day] forKey:@"is_all_day"];
     [dict setObject:[NSNumber numberWithBool:true] forKey:@"published"];
 
-    
-    NSString * start = [Utils formateDate:evt.start];
+    NSTimeZone * timezone = [NSTimeZone timeZoneWithName:evt.timezone];
+    NSString * start = [Utils formateDate:evt.start andTimezone: timezone];
     [dict setObject:start forKey:@"start"];
 
-    //FOR TEST
-    [dict setObject:start forKey:@"end"];
     
     [dict setObject:evt.start_type forKey:@"start_type"];
     [dict setObject:evt.thumbnail_url forKey:@"thumbnail_url"];

@@ -49,6 +49,8 @@
 
 +(NSString *) formate:(int) year andMonth:(int)month andDay:(int) day;
 
++(NSString *) formateDate: (NSDate *) time andTimezone:(NSTimeZone *) timezone;
+
 /*
  convert a NSDate to NSString object
  return the date of string format, example: "2013-06-02 12:12:10"

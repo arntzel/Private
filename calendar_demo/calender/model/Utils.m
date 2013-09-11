@@ -152,6 +152,18 @@
     return day;
 }
 
++(NSString *) formateDate: (NSDate *) time andTimezone:(NSTimeZone *) timezone
+{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone =  timezone;
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss ZZZ"];
+    
+    return [dateFormatter stringFromDate:time];
+
+}
+
 
 +(NSString *) formateDate:(NSDate *) time
 {
