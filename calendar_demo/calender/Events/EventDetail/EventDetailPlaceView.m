@@ -62,9 +62,10 @@
 -(void) setLocation:(Location *) location
 {
     self.locationNameLabel.text = location.location;
-    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.lat longitude:location.lng zoom:12];
+    _gmsMapView.camera = camera;
     // 在map中间做一个标记
-    _marker = [[GMSMarker alloc] init];
+    self.marker = [[[GMSMarker alloc] init] autorelease];
     
     _marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
     _marker.map = _gmsMapView;
