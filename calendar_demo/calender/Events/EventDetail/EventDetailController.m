@@ -92,6 +92,10 @@
     [photoView setScrollView:scrollView];
     [photoView setNavgation:navBar];
 
+    height = photoView.frame.size.height - navBar.frame.size.height;
+    UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
+    [scrollView addSubview:emptyView];
+
     invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
     [scrollView addSubview:invitePlaceContentView];
     
@@ -270,7 +274,7 @@
 //垂直方向线性布局
 - (void)layOutSubViews
 {
-    CGFloat offsetY = photoView.frame.size.height - navBar.frame.size.height;
+    CGFloat offsetY = 0;
     
     for(UIView * subView in scrollView.subviews) {
         CGRect frame = subView.frame;
