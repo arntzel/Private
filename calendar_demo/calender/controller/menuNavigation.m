@@ -215,7 +215,7 @@
         MessageEntity * msg = [msgModel getMessage:indexPath.row];
 
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
-        detailCtl.eventID = [msg.id intValue];
+        detailCtl.eventID = [msg.eventID intValue];
         [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
         
         if([msg.unread boolValue]) {
