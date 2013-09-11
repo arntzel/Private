@@ -36,16 +36,16 @@
 
 - (void)updateUI
 {
+//    [self.containtView.layer setCornerRadius:5.0f];
+//    [self.containtView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.containtView.layer setBorderWidth:1.0f];
+    
     [self.containtView.layer setCornerRadius:5.0f];
+    [self.containtView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+    [self.containtView.layer setShadowRadius:3.0f];
+    [self.containtView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.containtView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.containtView.layer setBorderWidth:1.0f];
-    
-    [self.layer setCornerRadius:5.0f];
-    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
-    [self.layer setShadowRadius:3.0f];
-    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
-    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.layer setBorderWidth:1.0f];
 }
 
 +(EventDetailCommentConformView *) creatView

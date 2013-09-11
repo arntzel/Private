@@ -45,6 +45,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{304, 45}</string>
 								<reference key="NSSuperview" ref="890248015"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="833111057"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="553654211">
@@ -56,9 +57,9 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">Propose New Time</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="467312992">
+								<object class="NSColor" key="IBUIHighlightedTitleColor" id="293705930">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
+									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -83,6 +84,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 44}, {304, 42}}</string>
 								<reference key="NSSuperview" ref="890248015"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="553654211"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -90,7 +92,7 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">Decline Event</string>
-								<reference key="IBUIHighlightedTitleColor" ref="467312992"/>
+								<reference key="IBUIHighlightedTitleColor" ref="293705930"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMjk0MTE3NjQ3MSAwLjI5NDExNzY0NzEAA</bytes>
@@ -104,6 +106,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 43}, {304, 1}}</string>
 								<reference key="NSSuperview" ref="890248015"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="321648685"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -114,24 +117,26 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{304, 85}</string>
+						<string key="NSFrame">{{7, 0}, {304, 85}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="315588677"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="553654211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+						</object>
 						<string key="IBUIRestorationIdentifier"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{304, 85}</string>
+				<string key="NSFrameSize">{320, 115}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="890248015"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC45NTI5NDExNzY1IDAuOTUyOTQxMTc2NSAwLjk1Mjk0MTE3NjUAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -217,9 +222,11 @@
 				<string key="1.CustomClassName">EventDetailCommentConformView</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -227,7 +234,32 @@
 			<nil key="sourceID"/>
 			<int key="maxID">12</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">EventDetailCommentConformView</string>
+					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="containtView">UIView</string>
+						<string key="sepLine">UIImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="containtView">
+							<string key="name">containtView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="sepLine">
+							<string key="name">sepLine</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/EventDetailCommentConformView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

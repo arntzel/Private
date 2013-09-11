@@ -100,7 +100,7 @@
     
     conformView = [[EventDetailCommentConformView creatView] retain];
     [scrollView addSubview:conformView];
-
+    
     commentContentView = [[EventDetailCommentContentView alloc] init];
     [scrollView addSubview:commentContentView];
     
@@ -266,27 +266,19 @@
     [self.view addSubview:photoView];
 }
 
+//垂直方向线性布局
 - (void)layOutSubViews
 {
     CGFloat offsetY = photoView.frame.size.height - navBar.frame.size.height;
     
-    CGRect placeViewFrame = invitePlaceContentView.frame;
-    placeViewFrame.origin = CGPointMake(0, offsetY);
-    invitePlaceContentView.frame = placeViewFrame;
+    for(UIView * subView in scrollView.subviews) {
+        CGRect frame = subView.frame;
+        frame.origin = CGPointMake(0, offsetY);
+        subView.frame = frame;
+        offsetY += frame.size.height;
+    }
     
-    CGRect timeContentViewFrame = timeContentView.frame;
-    timeContentViewFrame.origin = CGPointMake(0, invitePlaceContentView.frame.size.height + invitePlaceContentView.frame.origin.y);
-    timeContentView.frame = timeContentViewFrame;
-    
-    CGRect conformViewframe = conformView.frame;
-    conformViewframe.origin = CGPointMake(7, timeContentView.frame.size.height + timeContentView.frame.origin.y);
-    conformView.frame = conformViewframe;
-    
-    CGRect commentContentViewFrame = commentContentView.frame;
-    commentContentViewFrame.origin = CGPointMake(0, conformView.frame.origin.y +  conformView.frame.size.height + 30);
-    commentContentView.frame = commentContentViewFrame;
-    
-    [scrollView setContentSize:CGSizeMake(320, commentContentViewFrame.origin.y + commentContentViewFrame.size.height)];
+    [scrollView setContentSize:CGSizeMake(320, offsetY)];
 }
 
 
