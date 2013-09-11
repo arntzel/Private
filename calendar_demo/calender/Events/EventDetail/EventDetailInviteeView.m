@@ -89,7 +89,12 @@
         
         EventAttendee * attendee = [users objectAtIndex:i];
         User * user = attendee.user;
-        [urls addObject:user.avatar_url];
+
+        if(user.avatar_url == nil) {
+            [urls addObject:@""];
+        } else {
+            [urls addObject:user.avatar_url];
+        }
     }
 
     headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andCountLimit:4 ShowArraw:NO ShowSelectedStatu:NO];
