@@ -51,6 +51,34 @@
     [self.layer setBorderWidth:1.0f];
 }
 
+- (void)updateInvitee:(NSArray *) users
+{
+    self.inviteeLabel.text = [NSString stringWithFormat:@"%d Invitees", users.count];
+    self.inviteeNamesLabel.text = [self getNames:users];
+}
+
+-(NSString *) getNames: (NSArray *) users
+{
+    NSMutableString * names = [[NSMutableString alloc] init];
+    
+    
+    for(int i=0;i<users.count;i++) {
+        
+        EventAttendee * attendee = [users objectAtIndex:i];
+        User * user = attendee.user;
+        
+        if(i== users.count-1) {
+            [names appendString:@"and "];
+            [names appendString: [user getReadableUsername]];
+        } else {
+            [names appendString:[user getReadableUsername]];
+            [names appendString:@", "];
+        }
+    }
+    
+    return [names autorelease];
+}
+
 - (void)addInviteePhotos:(NSArray *)headerPhotos
 {
     headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:headerPhotos andCountLimit:3 ShowArraw:NO ShowSelectedStatu:NO];
@@ -71,6 +99,8 @@
     [_inviteeLabel release];
     [_contentView release];
     [_bgView release];
+    [_inviteeNamesLabel release];
+    
     [super dealloc];
 }
 @end

@@ -34,6 +34,10 @@
 
 }
 
+-(void) setHeaderUrl:(NSString *) url
+{
+    
+}
 
 - (void)setHeader:(UIImage *)header
 {

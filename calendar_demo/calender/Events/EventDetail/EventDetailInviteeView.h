@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "EventAttendee.h"
 
 @interface EventDetailInviteeView : UIView
 
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UILabel *inviteeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *inviteeNamesLabel;
 
 +(EventDetailInviteeView *) creatView;
 
-- (void)addInviteePhotos:(NSArray *)headerPhotos;
+- (void)updateInvitee:(NSArray *) users;
 
 @end

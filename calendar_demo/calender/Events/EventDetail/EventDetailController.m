@@ -124,6 +124,7 @@
             [photoView setImageUrl:event.thumbnail_url];
             photoView.titleLabel.text = event.title;
             
+            [invitePlaceContentView.inviteeView updateInvitee:event.attendees];
             [invitePlaceContentView.placeView setLocation:event.location];
             
             
@@ -347,7 +348,7 @@
         
         cmt.createTime = [NSDate date];
         
-        if(i==0) {
+        if(i==8) {
             cmt.commentor = nil;
         } else {
             cmt.commentor = me;

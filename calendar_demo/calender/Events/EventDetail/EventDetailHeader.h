@@ -15,6 +15,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tickView;
 
 - (void)setHeader:(UIImage *)header;
+-(void) setHeaderUrl:(NSString *) url;
+
 - (void)setTicked;
 - (void)setCrossed;
 - (void)setTickAndCrossHidden;
