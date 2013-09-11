@@ -10,6 +10,7 @@
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
+		3D544B1D17E06F1F0037F334 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D544B1C17E06F1F0037F334 /* icon.png */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -346,6 +347,7 @@
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3D544B1C17E06F1F0037F334 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* Calvin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calvin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -880,6 +882,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				3D544B1C17E06F1F0037F334 /* icon.png */,
 				769ABD0517DF54950033E677 /* Components */,
 				769ABCFA17DF54860033E677 /* Utils */,
 				769ABB7E17DF54290033E677 /* Feed */,
@@ -2077,6 +2080,7 @@
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,
+				3D544B1D17E06F1F0037F334 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
