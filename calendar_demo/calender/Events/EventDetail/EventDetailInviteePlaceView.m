@@ -53,15 +53,15 @@
 {
     self.inviteeView = [EventDetailInviteeView creatView];
     
-    NSArray *headerArray = @[[UIImage imageNamed:@"header10.jpg"],
-                             [UIImage imageNamed:@"header9.jpg"],
-                             [UIImage imageNamed:@"header8.jpg"],
-                             [UIImage imageNamed:@"header7.jpg"],
-                             [UIImage imageNamed:@"header6.jpg"],
-                             [UIImage imageNamed:@"header5.jpg"],
-                             [UIImage imageNamed:@"header4.jpg"],
-                             [UIImage imageNamed:@"header3.jpg"],
-                             [UIImage imageNamed:@"header2.jpg"]];
+//    NSArray *headerArray = @[[UIImage imageNamed:@"header10.jpg"],
+//                             [UIImage imageNamed:@"header9.jpg"],
+//                             [UIImage imageNamed:@"header8.jpg"],
+//                             [UIImage imageNamed:@"header7.jpg"],
+//                             [UIImage imageNamed:@"header6.jpg"],
+//                             [UIImage imageNamed:@"header5.jpg"],
+//                             [UIImage imageNamed:@"header4.jpg"],
+//                             [UIImage imageNamed:@"header3.jpg"],
+//                             [UIImage imageNamed:@"header2.jpg"]];
     //[self.inviteeView addInviteePhotos:headerArray];
     
     CGRect frame = self.inviteeView.frame;
