@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A558" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DayFeedEventEntitys" representedClassName="DayFeedEventEntitys" syncable="YES">
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeedEventEntity" syncable="YES"/>
     </entity>
+    <entity name="Entity" syncable="YES"/>
+    <entity name="Entity1" syncable="YES"/>
     <entity name="EventEntity" representedClassName="EventEntity" syncable="YES">
         <attribute name="allow_attendee_invite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="allow_new_dt" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -88,5 +90,7 @@
         <element name="LocationEntity" positionX="160" positionY="192" width="128" height="120"/>
         <element name="MessageEntity" positionX="160" positionY="192" width="128" height="150"/>
         <element name="UserEntity" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Entity" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="Entity1" positionX="160" positionY="192" width="128" height="45"/>
     </elements>
 </model>
