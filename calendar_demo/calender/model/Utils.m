@@ -27,6 +27,15 @@
     return gmtDate;
 }
 
+
++(NSDate *) convertGMTDate:(NSDate *) date andTimezone:(NSTimeZone *) tinezone
+{
+    NSInteger interval = [tinezone secondsFromGMTForDate:date];
+    NSDate * gmtDate = [date  dateByAddingTimeInterval:-interval];
+    return gmtDate;
+}
+
+
 +(NSDate *) parseNSDate:(NSString*) strDate
 {
     if(strDate == nil || [strDate isKindOfClass:[NSNull class]]) {

@@ -70,7 +70,8 @@
     }
     
     event.start_type = [json objectForKey:@"start_type"];
-    event.start = [Utils parseNSDate:[json objectForKey:@"start"]];
+    NSDate * startDate = [Utils parseNSDate:[json objectForKey:@"start"]];
+    event.start = [Utils convertLocalDate:startDate];
     event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
     event.location = [Location parseLocation: [json objectForKey:@"location"]];
     event.status = [json objectForKey:@"status"];

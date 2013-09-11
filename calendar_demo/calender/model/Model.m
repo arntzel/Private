@@ -145,8 +145,10 @@ static Model * instance;
     [dict setObject:[NSNumber numberWithBool:true] forKey:@"published"];
 
     NSTimeZone * timezone = [NSTimeZone timeZoneWithName:evt.timezone];
-    NSString * start = [Utils formateDate:evt.start andTimezone: timezone];
+    NSDate * startDate = [Utils convertGMTDate:evt.start andTimezone:timezone];
+    NSString * start = [Utils formateDate:startDate];
     [dict setObject:start forKey:@"start"];
+    [dict setObject:start forKey:@"end"];
 
     
     [dict setObject:evt.start_type forKey:@"start_type"];
