@@ -53,8 +53,19 @@
         }
         
         EventDetailHeader *header = [EventDetailHeader creatView];
-        UIImage *image = [self.headers objectAtIndex:index];
-        [header setHeader:image];
+        
+        NSObject * obj = [self.headers objectAtIndex:index];
+        
+        if( [obj isKindOfClass: [UIImage class]]) {
+            UIImage * image = (UIImage*) obj;
+            [header setHeader:image];
+        } else {
+            NSString * url = [self.headers objectAtIndex:index];
+            [header setHeaderUrl:url];
+        }
+        
+       
+        
         if (showSelectedStatus) {
             [header setTicked];
         }

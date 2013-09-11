@@ -62,7 +62,7 @@
                              [UIImage imageNamed:@"header4.jpg"],
                              [UIImage imageNamed:@"header3.jpg"],
                              [UIImage imageNamed:@"header2.jpg"]];
-    [self.inviteeView addInviteePhotos:headerArray];
+    //[self.inviteeView addInviteePhotos:headerArray];
     
     CGRect frame = self.inviteeView.frame;
     frame.origin.x = 5;

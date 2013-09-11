@@ -55,6 +55,8 @@
 {
     self.inviteeLabel.text = [NSString stringWithFormat:@"%d Invitees", users.count];
     self.inviteeNamesLabel.text = [self getNames:users];
+    
+    [self addInviteePhotos:users];
 }
 
 -(NSString *) getNames: (NSArray *) users
@@ -79,11 +81,22 @@
     return [names autorelease];
 }
 
-- (void)addInviteePhotos:(NSArray *)headerPhotos
+- (void)addInviteePhotos:(NSArray *)users
 {
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:headerPhotos andCountLimit:3 ShowArraw:NO ShowSelectedStatu:NO];
+    NSMutableArray * urls = [[NSMutableArray alloc] init];
+    
+    for(int i=0;i<users.count;i++) {
+        
+        EventAttendee * attendee = [users objectAtIndex:i];
+        User * user = attendee.user;
+        [urls addObject:user.avatar_url];
+    }
+
+    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andCountLimit:4 ShowArraw:NO ShowSelectedStatu:NO];
     [headerListView setCenter:CGPointMake(self.frame.size.width / 2, 38)];
     [self addSubview:headerListView];
+    
+    [urls release];
 }
 
 +(EventDetailInviteeView *) creatView

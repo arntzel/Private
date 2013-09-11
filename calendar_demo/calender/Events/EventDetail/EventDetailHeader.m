@@ -8,6 +8,8 @@
 
 #import "EventDetailHeader.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation EventDetailHeader
 
@@ -36,7 +38,11 @@
 
 -(void) setHeaderUrl:(NSString *) url
 {
-    
+    if(url != nil) {
+        [self.headerView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"header.png"]];
+    } else {
+         self.headerView.image = [UIImage imageNamed:@"header.png"];
+    }
 }
 
 - (void)setHeader:(UIImage *)header
