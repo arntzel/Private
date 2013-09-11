@@ -30,6 +30,8 @@
     
     CSqlite *m_sqlite;
     
+    BOOL shouldHiddenTouchedLocation;
+    
     //AddLocationTextView *textView;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
@@ -107,7 +109,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:12];
+    shouldHiddenTouchedLocation = YES;
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:16];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;
@@ -119,18 +123,6 @@
     [self.mapView addSubview:btnMyLocation];
     [btnMyLocation setImage:[UIImage imageNamed:@"map_my_location.png"] forState:UIControlStateNormal];
     [btnMyLocation addTarget:self action:@selector(animationToMyLocation) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    /* google map location
-    [self.mapView addObserver:self
-               forKeyPath:@"myLocation"
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.mapView.myLocationEnabled = YES;
-    });
-     */
 
     self.locationSearchBar.delegate = self;
     
@@ -152,13 +144,14 @@
         
         self.locationInputField.hidden = NO;
         [self.locationInputField becomeFirstResponder];
-        self.touchedLoacalmarker.map = mapView;
-        
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = self.location.lat;
         coordinate.longitude = self.location.lng;
+
+        shouldHiddenTouchedLocation = NO;
+        self.mapView.camera = [GMSCameraPosition cameraWithTarget:coordinate zoom:16];
         self.touchedLoacalmarker.position = coordinate;
-        
+        self.touchedLoacalmarker.map = mapView;        
     } else {
         [self startLocation];
 
@@ -245,7 +238,7 @@
         self.txtSearchTabView.hidden = YES;
         currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                             zoom:18];
+                                                             zoom:16];
         self.nowLoacalmarker.position = currentCoordinate;
         self.nowLoacalmarker.title = location.location;
         
@@ -292,7 +285,13 @@
 
 - (void)animationToMyLocation
 {
-    [mapView animateToLocation:myLocationCoordinate];
+    if (myLocationCoordinate.latitude == 0 && myLocationCoordinate.longitude == 0) {
+        [self startLocation];
+    }
+    else
+    {
+        [mapView animateToLocation:myLocationCoordinate];
+    }
 }
 
 
@@ -373,31 +372,25 @@
 
 #pragma mark - GMSMapViewDelegate
 - (void)mapView:(GMSMapView *)_mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-//    if (textView == nil) {
-//        textView = [AddLocationTextView createView];
-//        textView.delegate = self;
-//        [self.view addSubview:textView];
-//        CGRect frame = textView.frame;
-//        frame.origin.x = 0;
-//        frame.origin.y = self.locationSearchBar.frame.origin.y + self.locationSearchBar.frame.size.height;
-//        textView.frame = frame;
-//    }
-    
+{    
     self.locationInputField.hidden = NO;
     [self.locationInputField becomeFirstResponder];
     self.touchedLoacalmarker.map = mapView;
     self.touchedLoacalmarker.position = coordinate;
-    //[textView show];
-
 }
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
 {
     //[textView dismiss];
-    self.locationInputField.hidden = YES;
-    [self.locationInputField resignFirstResponder];
-    self.touchedLoacalmarker.map = nil;
+    if (shouldHiddenTouchedLocation) {
+        self.locationInputField.hidden = YES;
+        [self.locationInputField resignFirstResponder];
+        self.touchedLoacalmarker.map = nil;
+    }
+    else
+    {
+        shouldHiddenTouchedLocation = YES;
+    }
 }
 
 #pragma mark - AddLocationTextViewDelegate

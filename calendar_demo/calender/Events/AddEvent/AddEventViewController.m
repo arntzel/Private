@@ -398,7 +398,6 @@
 {
     AddLocationViewController *addLocation = [[AddLocationViewController alloc] initWithNibName:@"AddLocationViewController" bundle:nil];
     addLocation.delegate = self;
-    
     addLocation.location = self.locationPlace;
     
     [self.navigationController pushViewController:addLocation animated:YES];
