@@ -19,6 +19,8 @@
 @interface GPlaceApi : NSObject
 - (void)startRequestWithTxtSearchQuery:(NSString *)query;
 
+- (void)startAutoComplitionWithTxtSearchQuery:(NSString *)query;
+
 - (void)startRequestWithNearBySearchQuery:(CGPoint)place Radius:(NSInteger)radius;
 
 @property(nonatomic,weak) id<GPlaceApiDelegate> delegate;

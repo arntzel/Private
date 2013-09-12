@@ -32,9 +32,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-//#ifndef DEBUG
+#ifndef DEBUG
     [self redirectNSLogToDocumentFolder];
-//#endif
+#endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     

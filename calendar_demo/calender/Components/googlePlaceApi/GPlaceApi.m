@@ -9,10 +9,17 @@
 #import "GPlaceApi.h"
 #import "Location.h"
 
+typedef enum {
+    GPlaceApiTypeTextQuery,
+    GPlaceApiTypeAutoComplition,
+    GPlaceApiTypeTextNearBySearch
+}GPlaceApiType;
+
 @interface GPlaceApi()
 {
     NSURLConnection *queryConnect;
     NSMutableData *responseData;
+    GPlaceApiType connectionType;
 }
 
 @end
@@ -38,8 +45,22 @@
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    queryConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connectionType = GPlaceApiTypeTextQuery;
+}
+
+- (void)startAutoComplitionWithTxtSearchQuery:(NSString *)query
+{
+    [queryConnect cancel];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/queryautocomplete/json?input=%@&sensor=true&key=%@",query,googleAPIKey];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
     queryConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connectionType = GPlaceApiTypeAutoComplition;
 }
 
 - (void)startRequestWithNearBySearchQuery:(CGPoint)place Radius:(NSInteger)radius
@@ -53,11 +74,29 @@
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
     queryConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connectionType = GPlaceApiTypeTextNearBySearch;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *err;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&err];
+    
+    switch (connectionType) {
+        case GPlaceApiTypeTextQuery:
+        case GPlaceApiTypeTextNearBySearch:
+            [self TextQueryResult:json];
+            break;
+        case GPlaceApiTypeAutoComplition:
+            [self AutoCompleteResult:json];
+            break;
+        default:
+            break;
+    }
+
+}
+
+- (void)TextQueryResult:(NSDictionary *)json
+{
     NSString *result = [json objectForKey:@"status"];
     if ([result isEqualToString:@"OVER_QUERY_LIMIT"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"QUERY OVER GOOGLE API LIMIT" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -68,12 +107,33 @@
         return;
     }
     NSArray *resultArray = [json objectForKey:@"results"];
-
+    
     NSMutableArray *arrayData = [[NSMutableArray alloc] init];
     for (NSDictionary *json in resultArray) {
         [arrayData addObject:[GPlaceApi parseLocation:json]];
     }
+
+    [self.delegate upDateWithArray:arrayData GPlaceApi:self];
+}
+
+- (void)AutoCompleteResult:(NSDictionary *)json
+{
+    NSString *result = [json objectForKey:@"status"];
+    if ([result isEqualToString:@"OVER_QUERY_LIMIT"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"QUERY OVER GOOGLE API LIMIT" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
+    if (![result isEqualToString:@"OK"]) {
+        return;
+    }
+    NSArray *resultArray = [json objectForKey:@"predictions"];
+    
+    NSMutableArray *arrayData = [[NSMutableArray alloc] init];
+    for (NSDictionary *json in resultArray) {
+        NSString *placeDes = [json objectForKey:@"description"];
+        [arrayData addObject:placeDes];
+    }
 
     [self.delegate upDateWithArray:arrayData GPlaceApi:self];
 }
