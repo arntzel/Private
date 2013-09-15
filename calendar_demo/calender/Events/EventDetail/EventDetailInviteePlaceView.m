@@ -12,7 +12,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@implementation EventDetailInviteePlaceView
+@implementation EventDetailInviteePlaceView {
+    BOOL showAllDescitpion;
+}
 
 - (id)init
 {
@@ -28,7 +30,8 @@
 
         [self addInviteeView];
         [self addPlaceView];
-        
+        showAllDescitpion = NO;
+        [self addDescriptionView];
         [self updateUI];
     }
     return self;
@@ -41,11 +44,25 @@
     [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
+
+    [self updateDescriptionFrame];
     
     CGRect viewFrame = self.frame;
     viewFrame.size.width = 320;
-    viewFrame.size.height = self.inviteeView.frame.size.height + 8 + 14;
+    viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8 + 14;
     self.frame = viewFrame;
+}
+
+- (void) showDesciption:(BOOL) all
+{
+    showAllDescitpion = all;
+
+    [self updateUI];
+}
+
+- (void) toggleDesciptionView
+{
+    [self showDesciption:!showAllDescitpion];
 }
 
 - (void)addInviteeView
@@ -58,6 +75,46 @@
     self.inviteeView.frame = frame;
     
     [self addSubview:self.inviteeView];
+}
+
+-(void) addDescriptionView {
+
+        
+    self.desciptionView = [[UILabel alloc] initWithFrame:CGRectZero];
+
+    [self.desciptionView setFont:[UIFont systemFontOfSize:14]];
+    self.desciptionView.backgroundColor = [UIColor clearColor];
+    self.desciptionView.userInteractionEnabled = YES;
+    [self.desciptionView setLineBreakMode:UILineBreakModeTailTruncation];
+    
+    [self addSubview:self.desciptionView];
+
+    [self.desciptionView release];
+}
+
+- (void) setDesciption:(NSString *) desc
+{
+    self.desciptionView.text = desc;
+    [self updateUI];
+}
+
+-(void) updateDescriptionFrame
+{
+    int y = self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height;
+    y += 10;
+    
+    if(showAllDescitpion) {
+        [self.desciptionView setNumberOfLines:0];
+    } else {
+        [self.desciptionView setNumberOfLines:3];
+    }
+    
+    int lines = showAllDescitpion?0:3;
+    CGRect rect = [self.desciptionView textRectForBounds:CGRectMake(0, 0, 310, 500) limitedToNumberOfLines:lines];
+    
+    CGSize size = rect.size;
+    //CGSize size = [str sizeWithFont:self.desciptionView.font constrainedToSize:CGSizeMake(310, 500) lineBreakMode:UILineBreakModeCharacterWrap];
+    [self.desciptionView setFrame:CGRectMake(5, y, size.width, size.height)];
 }
 
 - (void)addPlaceView
@@ -76,10 +133,8 @@
 {
     self.inviteeView = nil;
     self.placeView = nil;
-    
+    self.desciptionView = nil;
     [super dealloc];
 }
-
-
 
 @end

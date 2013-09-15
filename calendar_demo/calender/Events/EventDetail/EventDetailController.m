@@ -98,7 +98,10 @@
 
     invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
     [scrollView addSubview:invitePlaceContentView];
-    
+
+
+
+
     timeContentView = [[EventDetailTimeView alloc] init];
     [scrollView addSubview:timeContentView];
     
@@ -136,7 +139,7 @@
             
             [invitePlaceContentView.inviteeView updateInvitee:event.attendees];
             [invitePlaceContentView.placeView setLocation:event.location];
-            
+            [invitePlaceContentView setDesciption:event.description];
             
             [self updatecommentContentView];
             
@@ -162,6 +165,12 @@
     UITapGestureRecognizer *t2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapInvitees:)];
     t2.delegate = self;
     [invitePlaceContentView.inviteeView addGestureRecognizer:t2];
+
+    UITapGestureRecognizer *t3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapDescitpion:)];
+    t3.delegate = self;
+    [invitePlaceContentView.desciptionView addGestureRecognizer:t3];
+
+    
     [t2 release];
 }
 
@@ -207,6 +216,17 @@
 -(void) singleTapInvitees: (UITapGestureRecognizer*) tap
 {
     
+}
+
+-(void) singleTapDescitpion: (UITapGestureRecognizer*) tap
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+
+    [invitePlaceContentView toggleDesciptionView];
+    [self layOutSubViews];
+   
+    [UIView commitAnimations];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

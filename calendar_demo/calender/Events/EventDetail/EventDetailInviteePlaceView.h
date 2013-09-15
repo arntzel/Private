@@ -12,11 +12,18 @@
 
 @interface EventDetailInviteePlaceView : UIView
 
-
 @property(retain, nonatomic) EventDetailInviteeView *inviteeView;
 @property(retain, nonatomic) EventDetailPlaceView *placeView;
+@property(retain, nonatomic) UILabel * desciptionView;
+
+- (void) updateUI;
+
+- (void) showDesciption:(BOOL) all;
+
+- (void) toggleDesciptionView;
+
+- (void) setDesciption:(NSString *) desc;
 
 - (id)init;
-
 
 @end
