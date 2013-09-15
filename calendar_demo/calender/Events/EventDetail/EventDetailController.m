@@ -85,15 +85,12 @@
     [super viewDidLoad];
 
     [self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
-    [self addPhotoView];
     [self addNavBar];
-    [navBar setHidden:YES];
     
     [self showIndicatorView];
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         [self configViews];
-        [navBar setHidden:NO];
         [self hideIndicatorView];
         
         if(error == 0) {
@@ -122,6 +119,8 @@
 
 - (void)configViews
 {
+    [self addPhotoView];
+    
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -265,7 +264,7 @@
 - (void)addPhotoView
 {
     photoView = [[EventDetailPhotoView creatView] retain];
-    [self.view addSubview:photoView];
+    [self.view insertSubview:photoView belowSubview:navBar];
 }
 
 //垂直方向线性布局
