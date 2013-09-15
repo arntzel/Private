@@ -28,6 +28,7 @@
     EventDetailTimeView *timeContentView;
     EventDetailCommentConformView *conformView;
     EventDetailCommentContentView *commentContentView;
+    
     UIScrollView *scrollView;
     
     UIActivityIndicatorView * indicatorView;

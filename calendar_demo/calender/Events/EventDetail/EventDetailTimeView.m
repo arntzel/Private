@@ -17,9 +17,11 @@
 {
     EventDetailTimeLabelView *timeLabelView;
     EventDetailFinailzeView *finailzeView;
-    EventDetailInviteeConformView *conformView;
     
     EventDetailHeaderListView *headerListView;
+
+    EventDetailInviteeConformView *conformView;
+
 }
 @end
 
