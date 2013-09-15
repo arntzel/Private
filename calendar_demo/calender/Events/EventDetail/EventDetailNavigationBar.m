@@ -23,7 +23,7 @@
 }
 
 - (IBAction)rightBtnClick:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(rightBtnClick:)]) {
+    if ([self.delegate respondsToSelector:@selector(rightBtnPress:)]) {
         [self.delegate rightBtnPress:sender];
     }
 }

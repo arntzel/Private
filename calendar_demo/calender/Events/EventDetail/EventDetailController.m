@@ -124,6 +124,12 @@
         if(error == 0) {
             event = evt;
             [event retain];
+
+            if([self isMyCreatEvent]) {
+                navBar.rightbtn.hidden = NO;
+            } else {
+                navBar.rightbtn.hidden = YES;
+            }
             
             [photoView setImageUrl:event.thumbnail_url];
             photoView.titleLabel.text = event.title;
@@ -205,6 +211,8 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    LOG_D(@"actionSheet:clickedButtonAtIndex:tag=%d, buttonindex=%d", actionSheet.tag, buttonIndex);
+    
     if(actionSheet.tag == 0) {
         
         if(buttonIndex == 0) {
@@ -213,8 +221,32 @@
             [self viewInMaps];
         }
         
-    } else {
+    } else if(actionSheet.tag == 1){
+
         [self viewInMaps];
+
+    } else if(actionSheet.tag == 2) {
+
+        switch (buttonIndex) {
+            case 0:
+                [self deleteEvent];
+                break;
+
+            case 1:
+                [self shareOnFacebook];
+                break;
+
+            case 2:
+                [self shareViaEmail];
+                break;
+
+            case 3:
+                [self editEvent];
+                break;
+
+            default:
+                break;
+        }
     }
 }
 
@@ -227,6 +259,26 @@
 -(void) viewInMaps
 {
     LOG_D(@"viewInMaps");
+}
+
+-(void) deleteEvent
+{
+     LOG_D(@"deleteEvent");
+}
+
+-(void) editEvent
+{
+     LOG_D(@"editEvent");
+}
+
+-(void) shareOnFacebook
+{
+     LOG_D(@"shareOnFacebook");
+}
+
+-(void) shareViaEmail
+{
+    LOG_D(@"shareViaEmail");
 }
 
 -(void) showIndicatorView
@@ -262,7 +314,22 @@
 
 - (void)rightBtnPress:(id)sender
 {
-    
+
+    LOG_D(@"rightBtnPress");
+
+    UIActionSheet *actionSheet  = [[UIActionSheet alloc]
+                                   initWithTitle:nil
+                                   delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:@"Delete Event"
+                                   otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil];
+
+    actionSheet.tag = 2;
+
+
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+
 }
 
 - (void)addPhotoView
