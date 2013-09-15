@@ -246,14 +246,14 @@
     if(showAllDescitpion) {
         [self.desciptionView setNumberOfLines:0];
     } else {
-        [self.desciptionView setNumberOfLines:3];
+        [self.desciptionView setNumberOfLines:5];
     }
     
-    int lines = showAllDescitpion?0:3;
-    CGRect rect = [self.desciptionView textRectForBounds:CGRectMake(0, 0, 310, 500) limitedToNumberOfLines:lines];
+    int lines = showAllDescitpion ? 0 : 5;
+    CGRect rect = [self.desciptionView textRectForBounds:CGRectMake(0, 0, 304, 1000) limitedToNumberOfLines:lines];
     
     CGSize size = rect.size;
-    [self.desciptionView setFrame:CGRectMake(5, y, size.width, size.height)];
+    [self.desciptionView setFrame:CGRectMake(8, y, size.width, size.height)];
 }
 
 @end

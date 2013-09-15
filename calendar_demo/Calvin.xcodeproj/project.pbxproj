@@ -342,6 +342,8 @@
 		769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABABC17DF52090033E677 /* AddDateEntryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABD5317DF5D440033E677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD5217DF5D440033E677 /* main.m */; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
+		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
+		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -839,6 +841,10 @@
 		769ABD4C17DF579E0033E677 /* EventDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailController.m; sourceTree = "<group>"; };
 		769ABD5217DF5D440033E677 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = calender/main.m; sourceTree = "<group>"; };
 		76C22D89173FCD6700AC7519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9457DF5317E5EF1900C294F7 /* EventTimeVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTimeVote.h; path = calender/model/EventTimeVote.h; sourceTree = SOURCE_ROOT; };
+		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
+		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
+		9457DF5717E5F11C00C294F7 /* EventTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTime.m; path = calender/model/EventTime.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1548,6 +1554,10 @@
 				769ABBB117DF54290033E677 /* UserSetting.m */,
 				769ABBB217DF54290033E677 /* Utils.h */,
 				769ABBB317DF54290033E677 /* Utils.m */,
+				9457DF5317E5EF1900C294F7 /* EventTimeVote.h */,
+				9457DF5417E5EF1900C294F7 /* EventTimeVote.m */,
+				9457DF5617E5F11C00C294F7 /* EventTime.h */,
+				9457DF5717E5F11C00C294F7 /* EventTime.m */,
 			);
 			name = Model;
 			path = calender/Model;
@@ -2243,6 +2253,8 @@
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
 				769ABD5317DF5D440033E677 /* main.m in Sources */,
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
+				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
+				9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
