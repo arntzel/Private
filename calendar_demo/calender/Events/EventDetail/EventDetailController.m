@@ -89,7 +89,7 @@
     [scrollView setBounces:NO];
     [self.view addSubview:scrollView];
     
-    [photoView setImage:[UIImage imageNamed:@"2.png"]];
+    [photoView setImage:[self getRandomPhoto]];
     [photoView setScrollView:scrollView];
     [photoView setNavgation:navBar];
 
@@ -180,6 +180,16 @@
     User * user =  [[UserModel getInstance] getLoginUser];
     User * creator = event.creator;
     return user.id == creator.id;
+}
+
+-(UIImage *) getRandomPhoto
+{
+    //event_detail_random_header1.png
+    int value = (arc4random() % 8) + 1;
+
+    NSString * name = [NSString stringWithFormat:@"event_detail_random_header%d.png", value];
+    UIImage * img = [UIImage imageNamed:name];
+    return img;
 }
 
 -(void) singleTapLocation:(UITapGestureRecognizer*) tap
