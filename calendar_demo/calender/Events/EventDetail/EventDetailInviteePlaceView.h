@@ -10,20 +10,26 @@
 #import "EventDetailInviteeView.h"
 #import "EventDetailPlaceView.h"
 
+@protocol EventDetailInviteePlaceViewDelegate <NSObject>
+
+- (void)changeLocation;
+- (void)viewInMaps;
+- (void)frameDidChanged;
+
+@end
+
 @interface EventDetailInviteePlaceView : UIView
 
-@property(retain, nonatomic) EventDetailInviteeView *inviteeView;
-@property(retain, nonatomic) EventDetailPlaceView *placeView;
-@property(retain, nonatomic) UILabel * desciptionView;
+@property(nonatomic, assign) id<EventDetailInviteePlaceViewDelegate> delegate;
 
 - (void) updateUI;
 
-- (void) showDesciption:(BOOL) all;
-
-- (void) toggleDesciptionView;
-
 - (void) setDesciption:(NSString *) desc;
 
-- (id)init;
+- (id)initByCreator:(BOOL)creator;
+
+- (void)updateInvitee:(NSArray *) users;
+
+- (void) setLocation:(Location*) location;
 
 @end
