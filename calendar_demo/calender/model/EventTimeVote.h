@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface EventTimeVote : NSObject
 
 @property int id;
 
-@property int userId;
+@property (strong) User * user;
 
 @property int vote;
 

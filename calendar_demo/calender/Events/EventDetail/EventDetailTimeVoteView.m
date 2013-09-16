@@ -45,10 +45,10 @@
     if(_isCreator) {
         
         [self addFinalzeView];
-        [self addInviteeListView];
+        [self addInviteeListView:vote];
     } else {
         [self addConformView];
-        [self addInviteeListView];
+        [self addInviteeListView:vote];
     }
     
     [self layOutSubViews];
@@ -66,22 +66,33 @@
     [self addSubview:finailzeView];
 }
 
-- (void)addInviteeListView
+- (void)addInviteeListView:(EventTime *) eventTime
 {
-    NSArray *headerArray = @[[UIImage imageNamed:@"header1.jpg"],
-                             [UIImage imageNamed:@"header2.jpg"],
-                             [UIImage imageNamed:@"header3.jpg"],
-                             [UIImage imageNamed:@"header4.jpg"],
-                             [UIImage imageNamed:@"header5.jpg"],
-                             [UIImage imageNamed:@"header6.jpg"],
-                             [UIImage imageNamed:@"header7.jpg"],
-                             [UIImage imageNamed:@"header8.jpg"],
-                             [UIImage imageNamed:@"header9.jpg"]];
+//    NSArray *headerArray = @[[UIImage imageNamed:@"header1.jpg"],
+//                             [UIImage imageNamed:@"header2.jpg"],
+//                             [UIImage imageNamed:@"header3.jpg"],
+//                             [UIImage imageNamed:@"header4.jpg"],
+//                             [UIImage imageNamed:@"header5.jpg"],
+//                             [UIImage imageNamed:@"header6.jpg"],
+//                             [UIImage imageNamed:@"header7.jpg"],
+//                             [UIImage imageNamed:@"header8.jpg"],
+//                             [UIImage imageNamed:@"header9.jpg"]];
+
+
+    NSMutableArray * urls = [[NSMutableArray alloc] init];
+
+    for(EventTimeVote * vote in eventTime.votes) {
+
+        User * user = vote.user;
+
+        if(user.avatar_url == nil) {
+            [urls addObject:@""];
+        } else {
+            [urls addObject:user.avatar_url];
+        }
+    }
     
-    
-    
-    
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:headerArray andCountLimit:8 ShowArraw:YES ShowSelectedStatu:YES];
+    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andCountLimit:8 ShowArraw:YES ShowSelectedStatu:YES];
     
     CGRect frame = headerListView.frame;
     frame.origin.x = 7;
@@ -116,7 +127,7 @@
     }
     
     frame = self.frame;
-    frame.size.height = offsetY + 5;
+    frame.size.height = offsetY + 20;
     self.frame = frame;
 }
 
