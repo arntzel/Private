@@ -102,7 +102,7 @@
     //cccc
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateFormat:@"cccc MMM dTH"];
+    [dateFormatter setDateFormat:@"cccc MMMM d'TH'"];
 
 
     return [dateFormatter stringFromDate:time];
