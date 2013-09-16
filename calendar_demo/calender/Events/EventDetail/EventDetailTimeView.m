@@ -61,7 +61,7 @@
     EventDetailTimeLabelView * timeLabelView = [EventDetailTimeLabelView creatView];
     
     CGRect frame = timeLabelView.frame;
-    frame.origin.x = 7;
+    frame.origin.x = 0;
     //frame.origin.y = 27;
     timeLabelView.frame = frame;
     
@@ -115,6 +115,8 @@
     
     
     [self layOutSubViews];
+    
+    [self setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
 }
 
 

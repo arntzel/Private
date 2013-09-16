@@ -222,6 +222,22 @@
     [time1 release];
     
     
+    EventTime * time2 = [[EventTime alloc] init];
+    time2.startTime = [NSDate date];
+    time2.endTime = [time1.startTime dateByAddingTimeInterval:3600];
+    votes = [[NSMutableArray alloc] init];
+    for(int i=0;i<3;i++) {
+        EventTimeVote * vote = [[EventTimeVote alloc] init];
+        [votes addObject:vote];
+        [vote release];
+    }
+    
+    time2.votes = votes;
+    [votes release];
+    
+    [array addObject:time2];
+    [time2 release];
+
     
     [timeContentView updateView:isCreator andEventTimes: array];
     

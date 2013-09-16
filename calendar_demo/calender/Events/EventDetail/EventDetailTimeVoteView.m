@@ -109,13 +109,14 @@
     CGRect frame;
     for(UIView * subView in self.subviews) {
         frame = subView.frame;
-        frame.origin = CGPointMake(0, offsetY);
+        frame.origin.y = offsetY;
         subView.frame = frame;
         offsetY += frame.size.height;
+        offsetY += 5;
     }
     
     frame = self.frame;
-    frame.size.height = offsetY;
+    frame.size.height = offsetY + 5;
     self.frame = frame;
 }
 
