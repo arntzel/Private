@@ -56,9 +56,12 @@
         // Initialization code
         [self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
 
+        isCreator = creator;
+        showAllDescitpion = NO;
+        
         [self addInviteeView];
         [self addPlaceView];
-        showAllDescitpion = NO;
+
         [self addDescriptionView];
         [self updateUI];
         

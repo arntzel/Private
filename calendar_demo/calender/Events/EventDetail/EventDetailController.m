@@ -96,18 +96,14 @@
     [self showIndicatorView];
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
-        [self configViews];
+        
         [self hideIndicatorView];
         
         if(error == 0) {
             self.event = evt;
 
-            if([self isMyCreatEvent]) {
-                navBar.rightbtn.hidden = NO;
-            } else {
-                navBar.rightbtn.hidden = YES;
-            }
-            
+
+            [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];
         }
@@ -125,8 +121,11 @@
 
 - (void)configViews
 {
+    BOOL isCreator = [self isMyCreatEvent];
+    navBar.rightbtn.hidden = !isCreator;
+
     [self addPhotoView];
-    
+
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -142,7 +141,7 @@
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
     [scrollView addSubview:emptyView];
     
-    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:[self isMyCreatEvent]];
+    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:isCreator];
     invitePlaceContentView.delegate = self;
     [scrollView addSubview:invitePlaceContentView];
     
