@@ -13,14 +13,15 @@
 #import "EventDetailTimeLabelView.h"
 #import "EventDetailHeaderListView.h"
 
+#import "EventDetailTimeVoteView.h"
+
+#import "Utils.h"
+
 @interface EventDetailTimeView()
 {
-    EventDetailTimeLabelView *timeLabelView;
-    EventDetailFinailzeView *finailzeView;
+    //EventDetailTimeLabelView *timeLabelView;
     
-    EventDetailHeaderListView *headerListView;
-
-    EventDetailInviteeConformView *conformView;
+    
 
 }
 @end
@@ -37,11 +38,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self addTimeLabelView];
-        [self addFinailzeView];
-        [self addInviteeListView];
-        
-        [self addConformView];
+//        [self addTimeLabelView];
+//        [self addFinailzeView];
+//        [self addInviteeListView];
+//        
+//        [self addConformView];
         
         [self updateUI];
     }
@@ -50,83 +51,81 @@
 
 - (void)dealloc
 {    
-    [timeLabelView release];
-    [headerListView release];
-    [finailzeView release];
-    [conformView release];
-    
     [super dealloc];
 }
 
 
 
-- (void)addTimeLabelView
+- (EventDetailTimeLabelView * ) createTimeLabelView
 {
-    timeLabelView = [[EventDetailTimeLabelView creatView] retain];
+    EventDetailTimeLabelView * timeLabelView = [EventDetailTimeLabelView creatView];
     
     CGRect frame = timeLabelView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = 27;
+    frame.origin.x = 0;
+    //frame.origin.y = 27;
     timeLabelView.frame = frame;
     
-    [self addSubview:timeLabelView];
+    //[self addSubview:timeLabelView];
+    
+    return timeLabelView;
 }
 
-- (void)addFinailzeView
+
+
+- (void)layOutSubViews
 {
-    finailzeView = [[EventDetailFinailzeView creatView] retain];
+    CGFloat offsetY = 0;
+    CGRect frame;
+    for(UIView * subView in self.subviews) {
+        frame = subView.frame;
+        frame.origin = CGPointMake(0, offsetY);
+        subView.frame = frame;
+        offsetY += frame.size.height;
+    }
     
-    CGRect frame = finailzeView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = timeLabelView.frame.origin.y + timeLabelView.frame.size.height + 7;
-    finailzeView.frame = frame;
-    
-    [self addSubview:finailzeView];
+    frame = self.frame;
+    frame.size.height = offsetY;
+    self.frame = frame;
 }
 
-- (void)addInviteeListView
+-(void) updateView:(BOOL) isCreator andEventTimes:(NSArray *) times;
 {
-    NSArray *headerArray = @[[UIImage imageNamed:@"header1.jpg"],
-                             [UIImage imageNamed:@"header2.jpg"],
-                             [UIImage imageNamed:@"header3.jpg"],
-                             [UIImage imageNamed:@"header4.jpg"],
-                             [UIImage imageNamed:@"header5.jpg"],
-                             [UIImage imageNamed:@"header6.jpg"],
-                             [UIImage imageNamed:@"header7.jpg"],
-                             [UIImage imageNamed:@"header8.jpg"],
-                             [UIImage imageNamed:@"header9.jpg"]];
+    for(UIView * subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
+    
+    NSString * dayTitle = nil;
+    
+    for(EventTime * eventTime in times) {
+        
+        NSString * day = [Utils formateDay:eventTime.startTime];
+        
+        if(![day isEqualToString:dayTitle]) {
+            EventDetailTimeLabelView * view = [self createTimeLabelView];
+            [self addSubview:view];
+            dayTitle = day;
+            view.title.text = dayTitle;
+        }
+        
+        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] init];
+        [self addSubview:voteView];
+        [voteView updateView:isCreator andEventTimeVote:eventTime];
+        [voteView release];
+    }
     
     
+    [self layOutSubViews];
     
-    
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:headerArray andCountLimit:8 ShowArraw:YES ShowSelectedStatu:YES];
-    
-    CGRect frame = headerListView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 10;
-    headerListView.frame = frame;
-    
-    [self addSubview:headerListView];
+    [self setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
 }
 
-- (void)addConformView
-{
-    conformView = [[EventDetailInviteeConformView creatView] retain];
-    
-    CGRect frame = conformView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
-    conformView.frame = frame;
-    
-    [self addSubview:conformView];
-}
 
 - (void)updateUI
 {
     [self setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
     
-    CGRect timeContentViewFrame = self.frame;
-    timeContentViewFrame.size = CGSizeMake(320, conformView.frame.origin.y + conformView.frame.size.height + 20);
-    self.frame = timeContentViewFrame;
+//    CGRect timeContentViewFrame = self.frame;
+//    timeContentViewFrame.size = CGSizeMake(320, conformView.frame.origin.y + conformView.frame.size.height + 20);
+//    self.frame = timeContentViewFrame;
 }
 @end

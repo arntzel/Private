@@ -18,29 +18,42 @@
 
 #import "Model.h"
 #import "UserModel.h"
+#import "EventTime.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
     
     EventDetailInviteePlaceView *invitePlaceContentView;
+    
     EventDetailTimeView *timeContentView;
+    
+    
     EventDetailCommentConformView *conformView;
+    
     EventDetailCommentContentView *commentContentView;
     
     UIScrollView *scrollView;
     
     UIActivityIndicatorView * indicatorView;
-    
-    Event * event;
 }
+
+@property(nonatomic, retain) UIActionSheet *moreActionSheet;
+@property(nonatomic, retain) Event *event;
 @end
 
 @implementation EventDetailController
+@synthesize event;
+@synthesize moreActionSheet;
 
 - (void)dealloc
 {
+    self.moreActionSheet.delegate = nil;
+    self.moreActionSheet = nil;
+    
+    self.event = nil;
+    
     [self unregisterKeyboardEvents];
     
     [navBar release];
@@ -75,12 +88,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-//    [self.view setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0]];
+
     [self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
-    [self addPhotoView];
     [self addNavBar];
+    
+
+    [self showIndicatorView];
+    
+    [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
+        [self configViews];
+        [self hideIndicatorView];
+        
+        if(error == 0) {
+            self.event = evt;
+
+            if([self isMyCreatEvent]) {
+                navBar.rightbtn.hidden = NO;
+            } else {
+                navBar.rightbtn.hidden = YES;
+            }
+            
+            [self updateUIByEvent];
+            [self layOutSubViews];
+        }
+        else {
+            UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
+                                                            message:@"Event does't exsit"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil] autorelease];
+            
+            [alert show];
+        }
+    }];
+}
+
+- (void)configViews
+{
+    [self addPhotoView];
     
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
@@ -92,17 +137,15 @@
     [photoView setImage:[self getRandomPhoto]];
     [photoView setScrollView:scrollView];
     [photoView setNavgation:navBar];
-
+    
     height = photoView.frame.size.height - navBar.frame.size.height;
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
     [scrollView addSubview:emptyView];
-
-    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] init];
+    
+    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:[self isMyCreatEvent]];
+    invitePlaceContentView.delegate = self;
     [scrollView addSubview:invitePlaceContentView];
-
-
-
-
+    
     timeContentView = [[EventDetailTimeView alloc] init];
     [scrollView addSubview:timeContentView];
     
@@ -116,63 +159,6 @@
     
     
     [self registerKeyboardEvents];
-    
-    [self showIndicatorView];
-    scrollView.hidden = YES;
-    
-    [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
-        
-        [self hideIndicatorView];
-        scrollView.hidden = NO;
-        
-        if(error == 0) {
-            event = evt;
-            [event retain];
-
-            if([self isMyCreatEvent]) {
-                navBar.rightbtn.hidden = NO;
-            } else {
-                navBar.rightbtn.hidden = YES;
-            }
-            
-            [photoView setImageUrl:event.thumbnail_url];
-            photoView.titleLabel.text = event.title;
-            
-            [invitePlaceContentView.inviteeView updateInvitee:event.attendees];
-            [invitePlaceContentView.placeView setLocation:event.location];
-            [invitePlaceContentView setDesciption:event.description];
-            
-            [self updatecommentContentView];
-            
-            [self layOutSubViews];
-            
-        } else {
-            UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"Event does't exsit"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil] autorelease];
-            
-            [alert show];
-        }
-    }];
-    
-    
-    UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapLocation:)];
-    t.delegate = self;
-    [invitePlaceContentView.placeView addGestureRecognizer:t];
-    [t release];
-    
-    UITapGestureRecognizer *t2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapInvitees:)];
-    t2.delegate = self;
-    [invitePlaceContentView.inviteeView addGestureRecognizer:t2];
-
-    UITapGestureRecognizer *t3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapDescitpion:)];
-    t3.delegate = self;
-    [invitePlaceContentView.desciptionView addGestureRecognizer:t3];
-
-    
-    [t2 release];
 }
 
 -(BOOL) isMyCreatEvent
@@ -194,122 +180,110 @@
 
 -(void) singleTapLocation:(UITapGestureRecognizer*) tap
 {
-    LOG_D(@"singleTapLocation");
     
-    UIActionSheet *actionSheet = nil;
+}
+
+- (void)updateUIByEvent
+{
+    [photoView setImageUrl:event.thumbnail_url];
+    photoView.titleLabel.text = event.title;
     
-    if([self isMyCreatEvent]) {
-        
-        actionSheet = [[UIActionSheet alloc]
-                        initWithTitle:nil
-                        delegate:self
-                        cancelButtonTitle:@"Cancel"
-                        destructiveButtonTitle:nil
-                        otherButtonTitles:@"Change Location", @"View in Maps", nil];
-        actionSheet.tag = 0;
-        
-    } else {
-        
-        actionSheet = [[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                       otherButtonTitles:@"View in Maps", nil];
-        
-        actionSheet.tag = 1;
+    [invitePlaceContentView updateInvitee:event.attendees];
+    [invitePlaceContentView setLocation:event.location];
+    [invitePlaceContentView setDesciption:event.description];
+    
+    [self updateEventTimeView];
+    
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    NSMutableArray * comments = [[NSMutableArray alloc] init];
+    
+    for(int i=0;i<10;i++) {
+        Comment * cmt = [[Comment alloc] init];
+        cmt.msg = @"teststddddddddsaadfa";
+        cmt.createTime = [NSDate date];
+        if(i==8) {
+            cmt.commentor = nil;
+        } else {
+            cmt.commentor = me;
+        }
+        [comments addObject:cmt];
+        [cmt release];
     }
     
-    [actionSheet showInView:self.view];
-    [actionSheet release];
+    [commentContentView updateView:me andComments:comments];
+    [comments release];
 }
 
--(void) singleTapInvitees: (UITapGestureRecognizer*) tap
+-(void) updateEventTimeView
 {
+    BOOL isCreator = [self isMyCreatEvent];
     
-}
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    
+    EventTime * time1 = [[EventTime alloc] init];
+    time1.startTime = [NSDate date];
+    time1.endTime = [time1.startTime dateByAddingTimeInterval:3600];
+    NSMutableArray * votes = [[NSMutableArray alloc] init];
+    for(int i=0;i<3;i++) {
+        EventTimeVote * vote = [[EventTimeVote alloc] init];
+        [votes addObject:vote];
+        [vote release];
+    }
+    
+    time1.votes = votes;
+    [votes release];
+    
+    [array addObject:time1];
+    [time1 release];
+    
+    
+    EventTime * time2 = [[EventTime alloc] init];
+    time2.startTime = [NSDate date];
+    time2.endTime = [time1.startTime dateByAddingTimeInterval:3600];
+    votes = [[NSMutableArray alloc] init];
+    for(int i=0;i<3;i++) {
+        EventTimeVote * vote = [[EventTimeVote alloc] init];
+        [votes addObject:vote];
+        [vote release];
+    }
+    
+    time2.votes = votes;
+    [votes release];
+    
+    [array addObject:time2];
+    [time2 release];
 
--(void) singleTapDescitpion: (UITapGestureRecognizer*) tap
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-
-    [invitePlaceContentView toggleDesciptionView];
-    [self layOutSubViews];
-   
-    [UIView commitAnimations];
+    
+    [timeContentView updateView:isCreator andEventTimes: array];
+    
+    [array release];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    LOG_D(@"actionSheet:clickedButtonAtIndex:tag=%d, buttonindex=%d", actionSheet.tag, buttonIndex);
-    
-    if(actionSheet.tag == 0) {
-        
-        if(buttonIndex == 0) {
-            [self changeLocation];
-        } else {
-            [self viewInMaps];
-        }
-        
-    } else if(actionSheet.tag == 1){
-
-        [self viewInMaps];
-
-    } else if(actionSheet.tag == 2) {
-
+    if (actionSheet == moreActionSheet) {
         switch (buttonIndex) {
             case 0:
                 [self deleteEvent];
                 break;
-
+                
             case 1:
                 [self shareOnFacebook];
                 break;
-
+                
             case 2:
                 [self shareViaEmail];
                 break;
-
+                
             case 3:
                 [self editEvent];
                 break;
-
+                
             default:
                 break;
         }
     }
-}
-
--(void) changeLocation
-{
-    LOG_D(@"changeLocation");
-
-}
-
--(void) viewInMaps
-{
-    LOG_D(@"viewInMaps");
-}
-
--(void) deleteEvent
-{
-     LOG_D(@"deleteEvent");
-}
-
--(void) editEvent
-{
-     LOG_D(@"editEvent");
-}
-
--(void) shareOnFacebook
-{
-     LOG_D(@"shareOnFacebook");
-}
-
--(void) shareViaEmail
-{
-    LOG_D(@"shareViaEmail");
 }
 
 -(void) showIndicatorView
@@ -322,12 +296,13 @@
         
         [indicatorView retain];
     }
-    
+    [indicatorView startAnimating];
     indicatorView.hidden = NO;
 }
 
 -(void) hideIndicatorView
 {
+    [indicatorView stopAnimating];
     indicatorView.hidden = YES;
 }
 
@@ -345,31 +320,28 @@
 
 - (void)rightBtnPress:(id)sender
 {
-
     LOG_D(@"rightBtnPress");
-
-    UIActionSheet *actionSheet  = [[UIActionSheet alloc]
+    self.moreActionSheet = [[[UIActionSheet alloc]
                                    initWithTitle:nil
                                    delegate:self
                                    cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:@"Delete Event"
-                                   otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil];
-
-    actionSheet.tag = 2;
-
-
-    [actionSheet showInView:self.view];
-    [actionSheet release];
-
+                             otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil] autorelease];
+    [moreActionSheet showInView:self.view];
 }
 
 - (void)addPhotoView
 {
     photoView = [[EventDetailPhotoView creatView] retain];
-    [self.view addSubview:photoView];
+    [self.view insertSubview:photoView belowSubview:navBar];
 }
 
 //垂直方向线性布局
+- (void)frameDidChanged
+{
+    [self layOutSubViews];
+}
+
 - (void)layOutSubViews
 {
     CGFloat offsetY = 0;
@@ -433,36 +405,38 @@
     scrollView.frame = frame;
 }
 
-
--(void) updatecommentContentView
+#pragma mark -
+#pragma mark DetailMoreAction
+-(void) deleteEvent
 {
-   
-    User * me = [[UserModel getInstance] getLoginUser];
+    LOG_D(@"deleteEvent");
+}
 
+-(void) editEvent
+{
+    LOG_D(@"editEvent");
+}
+
+-(void) shareOnFacebook
+{
+    LOG_D(@"shareOnFacebook");
+}
+
+-(void) shareViaEmail
+{
+    LOG_D(@"shareViaEmail");
+}
+
+#pragma mark -
+#pragma mark EventDetailInviteePlaceViewDelegate
+-(void) changeLocation
+{
+    LOG_D(@"changeLocation");
     
-    NSMutableArray * comments = [[NSMutableArray alloc] init];
-    
-    for(int i=0;i<10;i++) {
-        
-        Comment * cmt = [[Comment alloc] init];
-        
-        cmt.msg = @"teststddddddddsaadfa";
-        
-        cmt.createTime = [NSDate date];
-        
-        if(i==8) {
-            cmt.commentor = nil;
-        } else {
-            cmt.commentor = me;
-        }
-        
-        [comments addObject:cmt];
-        [cmt release];
-        
-    }
-    
-    
-    [commentContentView updateView:me andComments:comments];
-    [comments release];
+}
+
+-(void) viewInMaps
+{
+    LOG_D(@"viewInMaps");
 }
 @end

@@ -10,6 +10,7 @@
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
+		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -350,6 +351,8 @@
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
+		3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeVoteView.m; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* Calvin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calvin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1396,8 +1399,6 @@
 		769ABAD217DF52090033E677 /* EventDetail */ = {
 			isa = PBXGroup;
 			children = (
-				769ABD4B17DF579E0033E677 /* EventDetailController.h */,
-				769ABD4C17DF579E0033E677 /* EventDetailController.m */,
 				769ABAD317DF52090033E677 /* EventDetailCommentConformedView.h */,
 				769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */,
 				769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */,
@@ -1412,6 +1413,8 @@
 				769ABADE17DF52090033E677 /* EventDetailCommentView.h */,
 				769ABADF17DF52090033E677 /* EventDetailCommentView.m */,
 				769ABAE017DF52090033E677 /* EventDetailCommentView.xib */,
+				769ABD4B17DF579E0033E677 /* EventDetailController.h */,
+				769ABD4C17DF579E0033E677 /* EventDetailController.m */,
 				769ABAE117DF52090033E677 /* EventDetailFinailzeView.h */,
 				769ABAE217DF52090033E677 /* EventDetailFinailzeView.m */,
 				769ABAE317DF52090033E677 /* EventDetailFinailzeView.xib */,
@@ -1442,6 +1445,8 @@
 				769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */,
 				769ABAFD17DF52090033E677 /* EventDetailTimeView.h */,
 				769ABAFE17DF52090033E677 /* EventDetailTimeView.m */,
+				3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */,
+				3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */,
 			);
 			path = EventDetail;
 			sourceTree = "<group>";
@@ -1536,6 +1541,10 @@
 				769ABB9F17DF54290033E677 /* EventDate.m */,
 				769ABBA017DF54290033E677 /* EventModel.h */,
 				769ABBA117DF54290033E677 /* EventModel.m */,
+				9457DF5617E5F11C00C294F7 /* EventTime.h */,
+				9457DF5717E5F11C00C294F7 /* EventTime.m */,
+				9457DF5317E5EF1900C294F7 /* EventTimeVote.h */,
+				9457DF5417E5EF1900C294F7 /* EventTimeVote.m */,
 				769ABBA217DF54290033E677 /* Location.h */,
 				769ABBA317DF54290033E677 /* Location.m */,
 				769ABBA417DF54290033E677 /* Message.h */,
@@ -1554,10 +1563,6 @@
 				769ABBB117DF54290033E677 /* UserSetting.m */,
 				769ABBB217DF54290033E677 /* Utils.h */,
 				769ABBB317DF54290033E677 /* Utils.m */,
-				9457DF5317E5EF1900C294F7 /* EventTimeVote.h */,
-				9457DF5417E5EF1900C294F7 /* EventTimeVote.m */,
-				9457DF5617E5F11C00C294F7 /* EventTime.h */,
-				9457DF5717E5F11C00C294F7 /* EventTime.m */,
 			);
 			name = Model;
 			path = calender/Model;
@@ -2255,6 +2260,7 @@
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
 				9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */,
+				3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
