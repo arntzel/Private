@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventTime.h"
 
 @interface EventDetailTimeView : UIView
 
 - (id)init;
+
+-(void) updateView:(BOOL) isCreator andEventTimes:(NSArray *) times;
 
 @end

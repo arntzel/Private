@@ -18,6 +18,7 @@
 
 #import "Model.h"
 #import "UserModel.h"
+#import "EventTime.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate>
 {
@@ -25,8 +26,12 @@
     EventDetailPhotoView *photoView;
     
     EventDetailInviteePlaceView *invitePlaceContentView;
+    
     EventDetailTimeView *timeContentView;
+    
+    
     EventDetailCommentConformView *conformView;
+    
     EventDetailCommentContentView *commentContentView;
     
     UIScrollView *scrollView;
@@ -171,6 +176,9 @@
     [invitePlaceContentView setLocation:event.location];
     [invitePlaceContentView setDesciption:event.description];
     
+    [self updateEventTimeView];
+    
+    
     User * me = [[UserModel getInstance] getLoginUser];
     NSMutableArray * comments = [[NSMutableArray alloc] init];
     
@@ -189,6 +197,35 @@
     
     [commentContentView updateView:me andComments:comments];
     [comments release];
+}
+
+-(void) updateEventTimeView
+{
+    BOOL isCreator = [self isMyCreatEvent];
+    
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    
+    EventTime * time1 = [[EventTime alloc] init];
+    time1.startTime = [NSDate date];
+    time1.endTime = [time1.startTime dateByAddingTimeInterval:3600];
+    NSMutableArray * votes = [[NSMutableArray alloc] init];
+    for(int i=0;i<3;i++) {
+        EventTimeVote * vote = [[EventTimeVote alloc] init];
+        [votes addObject:vote];
+        [vote release];
+    }
+    
+    time1.votes = votes;
+    [votes release];
+    
+    [array addObject:time1];
+    [time1 release];
+    
+    
+    
+    [timeContentView updateView:isCreator andEventTimes: array];
+    
+    [array release];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

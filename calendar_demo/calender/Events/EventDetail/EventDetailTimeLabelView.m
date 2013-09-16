@@ -19,6 +19,7 @@
     return self;
 }
 
+
 +(EventDetailTimeLabelView *) creatView
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailTimeLabelView" owner:self options:nil];
