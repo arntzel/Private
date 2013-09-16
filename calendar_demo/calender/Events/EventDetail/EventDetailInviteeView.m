@@ -97,7 +97,7 @@
         }
     }
 
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andCountLimit:4 ShowArraw:NO ShowSelectedStatu:NO];
+    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:nil andCountLimit:3 ShowArraw:NO];
     [headerListView setCenter:CGPointMake(self.frame.size.width / 2, 38)];
     [self addSubview:headerListView];
     

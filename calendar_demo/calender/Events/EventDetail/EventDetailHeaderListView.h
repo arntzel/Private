@@ -10,6 +10,6 @@
 
 @interface EventDetailHeaderListView : UIView
 
-- (id)initWithHeaderArray:(NSArray *)headerArray andCountLimit:(NSInteger)countLimit ShowArraw:(BOOL)arraw ShowSelectedStatu:(BOOL)selectedStatu;
+- (id)initWithHeaderArray:(NSArray *)headerArray andStatusArray:(NSArray *) statusArray andCountLimit:(NSInteger)countLimit ShowArraw:(BOOL)arraw;
 
 @end

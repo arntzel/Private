@@ -68,21 +68,9 @@
 
 - (void)addInviteeListView:(EventTime *) eventTime
 {
-//    NSArray *headerArray = @[[UIImage imageNamed:@"header1.jpg"],
-//                             [UIImage imageNamed:@"header2.jpg"],
-//                             [UIImage imageNamed:@"header3.jpg"],
-//                             [UIImage imageNamed:@"header4.jpg"],
-//                             [UIImage imageNamed:@"header5.jpg"],
-//                             [UIImage imageNamed:@"header6.jpg"],
-//                             [UIImage imageNamed:@"header7.jpg"],
-//                             [UIImage imageNamed:@"header8.jpg"],
-//                             [UIImage imageNamed:@"header9.jpg"]];
-
-
     NSMutableArray * urls = [[NSMutableArray alloc] init];
-
+    NSMutableArray * statuses = [[NSMutableArray alloc] init];
     for(EventTimeVote * vote in eventTime.votes) {
-
         User * user = vote.user;
 
         if(user.avatar_url == nil) {
@@ -90,13 +78,15 @@
         } else {
             [urls addObject:user.avatar_url];
         }
+
+        [statuses addObject: [NSNumber numberWithInt:vote.vote]];
     }
     
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andCountLimit:8 ShowArraw:YES ShowSelectedStatu:YES];
+    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:statuses andCountLimit:8 ShowArraw:YES];
     
     CGRect frame = headerListView.frame;
     frame.origin.x = 7;
-    frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 10;
+    //frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 10;
     headerListView.frame = frame;
     
     [self addSubview:headerListView];
@@ -108,7 +98,7 @@
     
     CGRect frame = conformView.frame;
     frame.origin.x = 7;
-    frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
+    //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
     conformView.frame = frame;
     
     [self addSubview:conformView];
@@ -127,7 +117,7 @@
     }
     
     frame = self.frame;
-    frame.size.height = offsetY + 20;
+    frame.size.height = offsetY;
     self.frame = frame;
 }
 

@@ -12,38 +12,45 @@
 @interface EventDetailHeaderListView()
 {
     NSInteger limit;
-    
     BOOL showMoreArraw;
-    BOOL showSelectedStatus;
 }
 
 @property(nonatomic,retain) NSArray *headers;
+@property(nonatomic, retain) NSArray * statuses;
 
 @end
 
 @implementation EventDetailHeaderListView
 
-- (id)initWithHeaderArray:(NSArray *)headerArray andCountLimit:(NSInteger)countLimit ShowArraw:(BOOL)arraw ShowSelectedStatu:(BOOL)selectedStatu
+- (id)initWithHeaderArray:(NSArray *)headerArray andStatusArray:(NSArray *) statusArray andCountLimit:(NSInteger)countLimit ShowArraw:(BOOL)arraw
 {
     self = [super init];
     if (self) {
         self = [super initWithFrame:CGRectZero];
         limit = countLimit;
         self.headers = headerArray;
-        showMoreArraw = arraw;
-        showSelectedStatus = selectedStatu;
+        self.statuses = statusArray;
         
+        showMoreArraw = arraw;
+
         [self relayoutList];
     }
     return self;
 }
 
+-(void) dealloc
+{
+    self.statuses = nil;
+    self.headers = nil;
+    [super dealloc];
+}
 
 - (void)relayoutList
 {
     NSInteger index = 0;
     CGFloat gap = 4;
     CGRect viewFrame = CGRectZero;
+    
     for (index = 0; index < [self.headers count]; index++) {
         if (index >= limit) {
             break;
@@ -65,13 +72,18 @@
         }
         
        
-        
-        if (showSelectedStatus) {
-            [header setTicked];
+        if (self.statuses == nil) {
+            [header setTickAndCrossHidden];
         }
         else
         {
-            [header setTickAndCrossHidden];
+            int status = [[self.statuses objectAtIndex:index] intValue];
+
+            if(status == 1) {
+                [header setTicked];
+            } else {
+                [header setCrossed];
+            }
         }
         
         [header updateUI];

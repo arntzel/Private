@@ -228,6 +228,12 @@
         EventTimeVote * vote = [[EventTimeVote alloc] init];
         [votes addObject:vote];
         [vote release];
+
+        if(i==2) {
+            vote.vote = 0;
+        } else {
+            vote.vote = 1;
+        }
     }
     
     time1.votes = votes;
@@ -236,9 +242,11 @@
     [array addObject:time1];
     [time1 release];
 
+    NSDate * startTime =  [[NSDate date] dateByAddingTimeInterval:3600*27];
+    
     for(int i=0;i<3;i++) {
         EventTime * time2 = [[EventTime alloc] init];
-        time2.startTime = [NSDate date];
+        time2.startTime = startTime;
         time2.endTime = [time1.startTime dateByAddingTimeInterval:3600];
         votes = [[NSMutableArray alloc] init];
         for(int i=0;i<3;i++) {
@@ -250,6 +258,12 @@
                 vote.user = atd.user;
             }
 
+            if(i==1) {
+                vote.vote = 1;
+            } else {
+                vote.vote = 0;
+            }
+            
             [votes addObject:vote];
             [vote release];
         }

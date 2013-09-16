@@ -82,7 +82,7 @@
     }
     
     frame = self.frame;
-    frame.size.height = offsetY;
+    frame.size.height = offsetY + 20;
     self.frame = frame;
 }
 
