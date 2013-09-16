@@ -31,6 +31,9 @@ static CGFloat const getstureDistance = 50;
     [_finailzeView release];
     [_removeView release];
     [_contentView release];
+
+    self.eventTimeConflictLabel = nil;
+    self.eventTimeLabel = nil;
     [super dealloc];
 }
 

@@ -12,6 +12,8 @@
 @property (retain, nonatomic) IBOutlet UIView *finailzeView;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
 +(EventDetailFinailzeView *) creatView;
 @end

@@ -13,6 +13,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *tickedBtn;
 @property (retain, nonatomic) IBOutlet UIButton *crossedbtn;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
 - (IBAction)tickBtnClick:(id)sender;
 - (IBAction)crossBtnClick:(id)sender;

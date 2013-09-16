@@ -97,6 +97,17 @@
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formateDay2:(NSDate *) time
+{
+    //cccc
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"cccc MMM dTH"];
+
+
+    return [dateFormatter stringFromDate:time];
+}
+
 +(NSDate *) parseNSStringDay:(NSString *) strDay
 {
     NSRange range;

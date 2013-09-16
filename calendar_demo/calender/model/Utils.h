@@ -45,7 +45,7 @@
  return the day part of the NDDate: example: "2013-06-02"
  */
 +(NSString *) formateDay:(NSDate *) time;
-
++(NSString *) formateDay2:(NSDate *) time;
 +(NSDate *) parseNSStringDay:(NSString *) strDay;
 
 

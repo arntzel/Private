@@ -26,6 +26,9 @@
     [_tickedBtn release];
     [_crossedbtn release];
     [_contentView release];
+
+    self.eventTimeLabel = nil;
+    self.eventTimeConflictLabel = nil;
     [super dealloc];
 }
 

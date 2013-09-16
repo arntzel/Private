@@ -96,7 +96,7 @@
     
     for(EventTime * eventTime in times) {
         
-        NSString * day = [Utils formateDay:eventTime.startTime];
+        NSString * day = [Utils formateDay2:eventTime.startTime];
         
         if(![day isEqualToString:dayTitle]) {
             EventDetailTimeLabelView * view = [self createTimeLabelView];
