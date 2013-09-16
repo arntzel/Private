@@ -72,7 +72,7 @@
 
 - (void)layOutSubViews
 {
-    CGFloat offsetY = 0;
+    CGFloat offsetY = 10;
     CGRect frame;
     for(UIView * subView in self.subviews) {
         frame = subView.frame;
