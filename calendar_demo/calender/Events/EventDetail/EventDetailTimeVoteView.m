@@ -3,6 +3,7 @@
 #import "EventDetailFinailzeView.h"
 #import "EventDetailHeaderListView.h"
 #import "EventDetailInviteeConformView.h"
+#import "Utils.h"
 
 @implementation EventDetailTimeVoteView {
     EventDetailFinailzeView * finailzeView;
@@ -44,17 +45,17 @@
     
     if(_isCreator) {
         
-        [self addFinalzeView];
+        [self addFinalzeView:vote];
         [self addInviteeListView:vote];
     } else {
-        [self addConformView];
+        [self addConformView:vote];
         [self addInviteeListView:vote];
     }
     
     [self layOutSubViews];
 }
 
--(void) addFinalzeView
+-(void) addFinalzeView: (EventTime *) eventTime
 {
     finailzeView = [[EventDetailFinailzeView creatView] retain];
     
@@ -63,7 +64,17 @@
     frame.origin.y = 7;
     finailzeView.frame = frame;
     
+    finailzeView.eventTimeLabel.text = [self getTimeLable:eventTime];
     [self addSubview:finailzeView];
+}
+
+-(NSString *) getTimeLable:(EventTime *) eventTime
+{
+    NSString * startTime = [Utils formateTimeAMPM:eventTime.startTime];
+    NSString * endTime = [Utils formateTimeAMPM:eventTime.endTime];
+    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    
+    return lable;
 }
 
 - (void)addInviteeListView:(EventTime *) eventTime
@@ -92,7 +103,7 @@
     [self addSubview:headerListView];
 }
 
-- (void)addConformView
+- (void)addConformView:(EventTime *) eventTime
 {
     conformView = [[EventDetailInviteeConformView creatView] retain];
     
@@ -100,7 +111,8 @@
     frame.origin.x = 7;
     //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
     conformView.frame = frame;
-    
+    conformView.eventTimeLabel.text = [self getTimeLable:eventTime];
+
     [self addSubview:conformView];
 }
 
