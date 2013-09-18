@@ -105,7 +105,8 @@
             view.title.text = dayTitle;
         }
         
-        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] init];
+        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
+        
         [self addSubview:voteView];
         [voteView updateView:isCreator andEventTimeVote:eventTime];
         [voteView release];

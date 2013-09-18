@@ -151,11 +151,10 @@
     conformView = [[EventDetailCommentConformView creatView] retain];
     [scrollView addSubview:conformView];
     
-    commentContentView = [[EventDetailCommentContentView alloc] init];
+    commentContentView = [[EventDetailCommentContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
     [scrollView addSubview:commentContentView];
     
     [self layOutSubViews];
-    
     
     [self registerKeyboardEvents];
 }
