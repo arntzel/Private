@@ -39,18 +39,18 @@
     UIActivityIndicatorView * indicatorView;
 }
 
-@property(nonatomic, retain) UIActionSheet *moreActionSheet;
+
 @property(nonatomic, retain) Event *event;
 @end
 
 @implementation EventDetailController
+
 @synthesize event;
-@synthesize moreActionSheet;
 
 - (void)dealloc
 {
-    self.moreActionSheet.delegate = nil;
-    self.moreActionSheet = nil;
+    //self.moreActionSheet.delegate = nil;
+    //self.moreActionSheet = nil;
     
     self.event = nil;
     
@@ -123,15 +123,15 @@
 {
     BOOL isCreator = [self isMyCreatEvent];
     navBar.rightbtn.hidden = !isCreator;
-
-    [self addPhotoView];
+    [self addPhotoView:isCreator];
 
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBounces:NO];
-    [self.view addSubview:scrollView];
+    [self.view insertSubview:scrollView belowSubview:photoView];
+    
     
     [photoView setImage:[self getRandomPhoto]];
     [photoView setScrollView:scrollView];
@@ -283,7 +283,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet == moreActionSheet) {
+    if (actionSheet.tag == 1) {
         switch (buttonIndex) {
             case 0:
                 [self deleteEvent];
@@ -304,6 +304,8 @@
             default:
                 break;
         }
+    } else if(actionSheet.tag == 2) {
+        
     }
 }
 
@@ -330,6 +332,7 @@
 - (void)addNavBar
 {
     navBar = [[EventDetailNavigationBar creatView] retain];
+    navBar.rightbtn.hidden = YES;
     navBar.delegate = self;
     [self.view addSubview:navBar];
 }
@@ -342,19 +345,43 @@
 - (void)rightBtnPress:(id)sender
 {
     LOG_D(@"rightBtnPress");
-    self.moreActionSheet = [[[UIActionSheet alloc]
-                                   initWithTitle:nil
-                                   delegate:self
-                                   cancelButtonTitle:@"Cancel"
-                                   destructiveButtonTitle:@"Delete Event"
-                             otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil] autorelease];
+    UIActionSheet * moreActionSheet = [[UIActionSheet alloc]
+                                        initWithTitle:nil
+                                             delegate:self
+                                    cancelButtonTitle:@"Cancel"
+                               destructiveButtonTitle:@"Delete Event"
+                                    otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil];
+    moreActionSheet.tag = 1;
     [moreActionSheet showInView:self.view];
+    [moreActionSheet release];
 }
 
-- (void)addPhotoView
+- (void)addPhotoView:(BOOL) isCreator
 {
     photoView = [[EventDetailPhotoView creatView] retain];
+    photoView.photoView.userInteractionEnabled = YES;
+    
     [self.view insertSubview:photoView belowSubview:navBar];
+
+    if(isCreator) {
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapPhotoView:)];
+        [photoView.photoView addGestureRecognizer:gesture];
+        [gesture release];
+    }
+}
+
+-(void) singleTapPhotoView:(id)sender
+{
+    UIActionSheet * actionSheet = [[UIActionSheet alloc]
+                                       initWithTitle:nil
+                                            delegate:self
+                                    cancelButtonTitle:@"Cancel"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"Add from Camera Roll", @"Use Facebook Cover Photo", @"Take Photo", nil];
+    
+    actionSheet.tag = 2;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
 }
 
 //垂直方向线性布局

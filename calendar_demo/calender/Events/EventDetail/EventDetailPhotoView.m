@@ -14,6 +14,7 @@
 {
     UIView *navBar;
     UIScrollView *scrollView;
+    int orgHeight;
 }
 
 - (void)updateUI
@@ -26,6 +27,9 @@
     self.photoView = blurView;
     [self insertSubview:blurView belowSubview:_titleLabel];
     [blurView release];
+
+    orgHeight = self.frame.size.height;
+    self.clipsToBounds = YES;
 }
 
 - (void)setImage:(UIImage *)image
@@ -62,13 +66,25 @@
     }
     
     CGFloat scrollOffsetY = scrollView.contentOffset.y;
+
+    CGRect frame = self.frame;
+    frame.size.height = orgHeight - scrollOffsetY;
+    if(frame.size.height < navBar.frame.size.height) {
+        frame.size.height = navBar.frame.size.height;
+    }
+    self.frame = frame;
+    
+    
     CGFloat scrollScope = self.frame.size.height - navBar.frame.size.height;
     if (scrollOffsetY > scrollScope) {
         scrollOffsetY = scrollScope;
     }
     
     [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
-    
+
+
+    NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
+
     CGFloat maxFont = 20;
     CGFloat minFont = 13;
     
@@ -106,7 +122,6 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailPhotoView" owner:self options:nil];
     EventDetailPhotoView * view = (EventDetailPhotoView*)[nibView objectAtIndex:0];
     [view updateUI];
-    
     return view;
 }
 
