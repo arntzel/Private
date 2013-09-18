@@ -405,7 +405,11 @@
     scrollView.frame = frame;
     
     CGPoint  contentOffset = scrollView.contentOffset;
-    contentOffset.y += keyboardRect.size.height;
+//    contentOffset.y += keyboardRect.size.height;
+//    scrollView.contentOffset = contentOffset;
+    
+    int y = commentContentView.frame.origin.y;
+    contentOffset.y = y;
     scrollView.contentOffset = contentOffset;
 }
 
