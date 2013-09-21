@@ -12,6 +12,8 @@
 
 @protocol EventDetailInviteePlaceViewDelegate <NSObject>
 
+- (void) onInviteeViewClicked;
+
 - (void)changeLocation;
 - (void)viewInMaps;
 - (void)frameDidChanged;

@@ -10,6 +10,7 @@
     EventDetailInviteeConformView *conformView;
     EventDetailHeaderListView * headerListView;
     BOOL _isCreator;
+    EventTime * _eventTime;
 }
 
 -(void) dealloc {
@@ -35,6 +36,9 @@
     [finailzeView release];
     [conformView release];
     [headerListView release];
+
+    [_eventTime release];
+    _eventTime = nil;
 }
 
 -(void) updateView:(BOOL) isCreator andEventTimeVote:(EventTime *) vote
@@ -42,6 +46,8 @@
     [self clearView];
     
     _isCreator = isCreator;
+    _eventTime = vote;
+    [_eventTime retain];
     
     if(_isCreator) {
         
@@ -101,6 +107,21 @@
     headerListView.frame = frame;
     
     [self addSubview:headerListView];
+
+
+    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapHeaderListView:)];
+    [headerListView addGestureRecognizer:gesture];
+    [gesture release];
+    
+}
+
+-(void) singleTapHeaderListView: (UITapGestureRecognizer*) tap
+{
+    LOG_D(@"singleTapHeaderListView");
+
+    if(self.delegate != nil) {
+        [self.delegate onVoteListClick:nil];
+    }
 }
 
 - (void)addConformView:(EventTime *) eventTime

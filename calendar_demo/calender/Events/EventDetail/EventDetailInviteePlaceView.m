@@ -91,6 +91,10 @@
     self.inviteeView.frame = frame;
     
     [self addSubview:self.inviteeView];
+
+    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapInvitees:)];
+    [self.inviteeView addGestureRecognizer:gesture];
+    [gesture release];
 }
 
 - (void)addPlaceView
@@ -179,7 +183,9 @@
 
 -(void) singleTapInvitees: (UITapGestureRecognizer*) tap
 {
-    
+    if ([self.delegate respondsToSelector:@selector(onInviteeViewClicked)]) {
+        [self.delegate onInviteeViewClicked];
+    }
 }
 
 -(void) singleTapDescitpion: (UITapGestureRecognizer*) tap

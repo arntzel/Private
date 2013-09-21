@@ -30,7 +30,8 @@
         limit = countLimit;
         self.headers = headerArray;
         self.statuses = statusArray;
-        
+        self.userInteractionEnabled = YES;
+
         showMoreArraw = arraw;
 
         [self relayoutList];
@@ -98,7 +99,7 @@
     }
     
     if (showMoreArraw) {
-        if (index >= limit) {
+        //if (index >= limit) {
             viewFrame.size.width += gap;
             UIImage *arrawImage = [UIImage imageNamed:@"event_detail_header_list_arraw.png"];
             UIImageView *arrawView = [[UIImageView alloc] initWithImage:arrawImage];
@@ -106,7 +107,7 @@
             [self addSubview:arrawView];
             [arrawView release];
             viewFrame.size.width += arrawView.frame.size.width;
-        }
+        //}
     }
 
     

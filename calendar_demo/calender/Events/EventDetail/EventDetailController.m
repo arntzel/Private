@@ -176,11 +176,6 @@
     return img;
 }
 
--(void) singleTapLocation:(UITapGestureRecognizer*) tap
-{
-    
-}
-
 - (void)updateUIByEvent
 {
     [photoView setImageUrl:event.thumbnail_url];
@@ -490,5 +485,10 @@
 -(void) viewInMaps
 {
     LOG_D(@"viewInMaps");
+}
+
+- (void) onInviteeViewClicked
+{
+    LOG_D(@"onInviteeViewClicked");
 }
 @end
