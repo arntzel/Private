@@ -3,7 +3,11 @@
 #import "EventDetailFinailzeView.h"
 #import "EventDetailHeaderListView.h"
 #import "EventDetailInviteeConformView.h"
+#import "EventDetailFinailzeView2.h"
+
 #import "Utils.h"
+
+#define ALPHA  0.5;
 
 @implementation EventDetailTimeVoteView {
     EventDetailFinailzeView * finailzeView;
@@ -51,43 +55,54 @@
     
     if(_isCreator) {
         
-        [self addFinalzeView:vote];
-        [self addInviteeListView:vote];
+        [self addFinalzeView];
+        [self addInviteeListView];
     } else {
-        [self addConformView:vote];
-        [self addInviteeListView:vote];
+        [self addConformView];
+        [self addInviteeListView];
     }
     
     [self layOutSubViews];
 }
 
--(void) addFinalzeView: (EventTime *) eventTime
+-(void) addFinalzeView
 {
-    finailzeView = [[EventDetailFinailzeView creatView] retain];
-    
-    CGRect frame = finailzeView.frame;
-    frame.origin.x = 7;
-    frame.origin.y = 7;
-    finailzeView.frame = frame;
-    
-    finailzeView.eventTimeLabel.text = [self getTimeLable:eventTime];
-    [self addSubview:finailzeView];
+    if(_eventTime.finalized == 1) {
+
+       [self addFinalView];
+
+    } else {
+        
+        finailzeView = [[EventDetailFinailzeView creatView] retain];
+
+        CGRect frame = finailzeView.frame;
+        frame.origin.x = 7;
+        frame.origin.y = 7;
+        finailzeView.frame = frame;
+
+        finailzeView.eventTimeLabel.text = [self getTimeLable];
+        [self addSubview:finailzeView];
+
+        if(_eventTime.finalized == 2) {
+            finailzeView.userInteractionEnabled = NO;
+            finailzeView.alpha = ALPHA;
+        }
+    }
 }
 
--(NSString *) getTimeLable:(EventTime *) eventTime
+-(NSString *) getTimeLable
 {
-    NSString * startTime = [Utils formateTimeAMPM:eventTime.startTime];
-    NSString * endTime = [Utils formateTimeAMPM:eventTime.endTime];
+    NSString * startTime = [Utils formateTimeAMPM:_eventTime.startTime];
+    NSString * endTime = [Utils formateTimeAMPM:_eventTime.endTime];
     NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    
     return lable;
 }
 
-- (void)addInviteeListView:(EventTime *) eventTime
+- (void)addInviteeListView
 {
     NSMutableArray * urls = [[NSMutableArray alloc] init];
     NSMutableArray * statuses = [[NSMutableArray alloc] init];
-    for(EventTimeVote * vote in eventTime.votes) {
+    for(EventTimeVote * vote in _eventTime.votes) {
         User * user = vote.user;
 
         if(user.avatar_url == nil) {
@@ -112,7 +127,11 @@
     UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapHeaderListView:)];
     [headerListView addGestureRecognizer:gesture];
     [gesture release];
-    
+
+    if(_eventTime.finalized == 2) {
+        headerListView.userInteractionEnabled = NO;
+        headerListView.alpha = ALPHA;
+    }
 }
 
 -(void) singleTapHeaderListView: (UITapGestureRecognizer*) tap
@@ -124,27 +143,49 @@
     }
 }
 
-- (void)addConformView:(EventTime *) eventTime
+- (void)addConformView
 {
-    conformView = [[EventDetailInviteeConformView creatView] retain];
-    
-    CGRect frame = conformView.frame;
-    frame.origin.x = 7;
-    //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
-    conformView.frame = frame;
-    conformView.eventTimeLabel.text = [self getTimeLable:eventTime];
+    if(_eventTime.finalized == 1) {
 
-    int vote = 0;
-    [conformView setVoteStatus:1];
+        [self addFinalView];
+        
+    } else {
 
-    if(vote == 0) {
-        [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
-        [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
-    }
+        conformView = [[EventDetailInviteeConformView creatView] retain];
 
-    [self addSubview:conformView];
+        CGRect frame = conformView.frame;
+        frame.origin.x = 7;
+        //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
+        conformView.frame = frame;
+        conformView.eventTimeLabel.text = [self getTimeLable];
+
+        int vote = 0;
+        [conformView setVoteStatus:1];
+
+        if(vote == 0) {
+            [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
+            [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        [self addSubview:conformView];
+
+        if(_eventTime.finalized == 2) {
+            conformView.userInteractionEnabled = NO;
+            conformView.alpha = ALPHA;
+        }
+    }    
 }
 
+-(void) addFinalView
+{
+    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatView];
+    CGRect frame = view.frame;
+    frame.origin.x = 7;
+    frame.origin.y = 7;
+    view.frame = frame;
+
+    [self addSubview:view];
+}
 
 -(void) onEventTimtVoteAgree
 {

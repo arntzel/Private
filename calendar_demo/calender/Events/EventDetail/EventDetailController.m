@@ -211,6 +211,8 @@
     EventTime * time1 = [[EventTime alloc] init];
     time1.startTime = [NSDate date];
     time1.endTime = [time1.startTime dateByAddingTimeInterval:3600];
+    time1.finalized = 1;
+    
     NSMutableArray * votes = [[NSMutableArray alloc] init];
     for(int i=0;i<3;i++) {
         EventTimeVote * vote = [[EventTimeVote alloc] init];
@@ -237,6 +239,9 @@
         time2.startTime = startTime;
         time2.endTime = [time1.startTime dateByAddingTimeInterval:3600];
         votes = [[NSMutableArray alloc] init];
+
+        time2.finalized  = 2;
+
         for(int i=0;i<3;i++) {
             EventTimeVote * vote = [[EventTimeVote alloc] init];
             vote.user = event.creator;
