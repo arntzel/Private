@@ -7,6 +7,7 @@
 #import "Event.h"
 #import "Message.h"
 #import "Buddy.h"
+#import "Comment.h"
 
 #import "ASIFormDataRequest.h"
 
@@ -136,6 +137,14 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback;
+
+
+
+
+
+
+-(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback;
+
 
 
 -(EventModel *) getEventModel;

@@ -20,7 +20,7 @@
 #import "UserModel.h"
 #import "EventTime.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -60,10 +60,15 @@
     [photoView setScrollView:nil];
     [photoView setNavgation:nil];
     [photoView release];
-    
+
+    invitePlaceContentView.delegate = nil;
     [invitePlaceContentView release];
+
     [timeContentView release];
+
     [conformView release];
+    
+    commentContentView.delegate = nil;
     [commentContentView release];
     [scrollView release];
  
@@ -152,6 +157,7 @@
     [scrollView addSubview:conformView];
     
     commentContentView = [[EventDetailCommentContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    commentContentView.delegate = self;
     [scrollView addSubview:commentContentView];
     
     [self layOutSubViews];
@@ -187,25 +193,8 @@
     
     [self updateEventTimeView];
     
-    
-    User * me = [[UserModel getInstance] getLoginUser];
-    NSMutableArray * comments = [[NSMutableArray alloc] init];
-    
-    for(int i=0;i<10;i++) {
-        Comment * cmt = [[Comment alloc] init];
-        cmt.msg = @"teststddddddddsaadfa";
-        cmt.createTime = [NSDate date];
-        if(i==8) {
-            cmt.commentor = nil;
-        } else {
-            cmt.commentor = me;
-        }
-        [comments addObject:cmt];
-        [cmt release];
-    }
-    
-    [commentContentView updateView:me andComments:comments];
-    [comments release];
+
+    [commentContentView beginLoadComments];
 }
 
 -(void) updateEventTimeView
@@ -451,6 +440,14 @@
     CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
     scrollView.frame = frame;
 }
+
+#pragma mark -
+#pragma mark EventDetailCommentContentView
+-(void) onEventDetailCommentContentViewFrameChanged
+{
+    [self layOutSubViews];
+}
+
 
 #pragma mark -
 #pragma mark DetailMoreAction

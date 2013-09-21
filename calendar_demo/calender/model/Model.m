@@ -795,6 +795,29 @@ static Model * instance;
 }
 
 
+-(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback
+{
+    [self performSelector:@selector(delNotification:) withObject:callback afterDelay:5.0f];
+}
 
+-(void) delNotification:(void (^)(NSInteger error, NSArray * comments))callback
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    NSMutableArray * comments = [[NSMutableArray alloc] init];
+
+    for(int i=0;i<10;i++) {
+        Comment * cmt = [[Comment alloc] init];
+        cmt.msg = @"teststddddddddsaadfa";
+        cmt.createTime = [NSDate date];
+        if(i==8) {
+            cmt.commentor = nil;
+        } else {
+            cmt.commentor = me;
+        }
+        [comments addObject:cmt];
+    }
+
+    callback(0, comments);
+}
 
 @end

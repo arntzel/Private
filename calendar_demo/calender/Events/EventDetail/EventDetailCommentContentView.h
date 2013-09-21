@@ -10,7 +10,15 @@
 #import "User.h"
 #import "Comment.h"
 
+@protocol EventDetailCommentContentViewDelegate <NSObject>
+
+-(void) onEventDetailCommentContentViewFrameChanged;
+
+@end
+
 @interface EventDetailCommentContentView : UIView
+
+@property(nonatomic, assign) id<EventDetailCommentContentViewDelegate> delegate;
 
 - (id)init;
 
@@ -18,5 +26,6 @@
 
 -(void) addComment:(Comment *) comment;
 
+-(void) beginLoadComments;
 
 @end

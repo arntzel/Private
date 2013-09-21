@@ -12,6 +12,9 @@
 #import "EventDetailCommentTextView.h"
 #import "EventDetailCommentConformedView.h"
 
+#import "Model.h"
+#import "UserModel.h"
+
 @interface EventDetailCommentContentView()
 {
     //EventDetailCommentView *commentView;
@@ -123,5 +126,37 @@
     [self insertSubview:conformedView atIndex:1];
 }
 
+
+-(void) beginLoadComments
+{
+
+    self.frame = CGRectMake(0, 0, 320, 40);
+    
+    UIActivityIndicatorView * indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicatorView startAnimating];
+    indicatorView.center = self.center;
+    [self addSubview:indicatorView];
+    [indicatorView release];
+
+    
+    if(self.delegate != nil) {
+        [self.delegate onEventDetailCommentContentViewFrameChanged];
+    }
+
+    [[Model getInstance] getEventComment:0 andCallback:^(NSInteger error, NSArray *comments) {
+
+        if(error == 0) {
+            User * me = [[UserModel getInstance] getLoginUser];
+            [self updateView:me andComments:comments];
+
+            if(self.delegate != nil) {
+                [self.delegate onEventDetailCommentContentViewFrameChanged];
+            }
+        } else {
+            //TODO::
+        }
+    }];
+
+}
 
 @end
