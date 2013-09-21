@@ -22,5 +22,14 @@
 - (void)setTicked;
 - (void)setCrossed;
 
+/*
+ vote:
+ 0: not vote yet,
+ 1: agree,
+ 2: disagree,
+ 3: decline the event
+ */
+-(void) setVoteStatus:(int) vote;
+
 +(EventDetailInviteeConformView *) creatView;
 @end

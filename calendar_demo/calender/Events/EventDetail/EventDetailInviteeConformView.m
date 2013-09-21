@@ -9,7 +9,9 @@
 #import "EventDetailInviteeConformView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation EventDetailInviteeConformView
+@implementation EventDetailInviteeConformView {
+    int _vote;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -47,17 +49,17 @@
 }
 
 - (IBAction)tickBtnClick:(id)sender {
-    if (!self.tickedBtn.selected) {
-        self.tickedBtn.selected = YES;
-        self.crossedbtn.selected = NO;
-    }
+//    if (!self.tickedBtn.selected) {
+//        self.tickedBtn.selected = YES;
+//        self.crossedbtn.selected = NO;
+//    }
 }
 
 - (IBAction)crossBtnClick:(id)sender {
-    if (!self.crossedbtn.selected) {
-        self.tickedBtn.selected = NO;
-        self.crossedbtn.selected = YES;
-    }
+//    if (!self.crossedbtn.selected) {
+//        self.tickedBtn.selected = NO;
+//        self.crossedbtn.selected = YES;
+//    }
 }
 
 
@@ -74,6 +76,30 @@
     [self.crossedbtn setSelected:YES];
 }
 
+-(void) setVoteStatus:(int) vote
+{
+    _vote = vote;
+    
+    switch (vote) {
+        case 0:
+            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross.png"] forState:UIControlStateNormal];
+            break;
+
+        case 1:
+            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_enable.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_disable.png"] forState:UIControlStateNormal];
+            break;
+            
+        case 2:
+            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_disable.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_enable.png"] forState:UIControlStateNormal];
+            break;
+
+        default:
+            break;
+    }
+}
 
 +(EventDetailInviteeConformView *) creatView
 {

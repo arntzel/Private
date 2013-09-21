@@ -345,6 +345,8 @@
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
 		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
+		94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */; };
+		94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -848,6 +850,8 @@
 		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
 		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
 		9457DF5717E5F11C00C294F7 /* EventTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTime.m; path = calender/model/EventTime.m; sourceTree = SOURCE_ROOT; };
+		94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_cross.png; sourceTree = "<group>"; };
+		94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_tick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1100,6 +1104,8 @@
 		769AB94D17DF51340033E677 /* event_detail_time */ = {
 			isa = PBXGroup;
 			children = (
+				94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */,
+				94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */,
 				769AB94E17DF51340033E677 /* event_detail_header_cross.png */,
 				769AB94F17DF51340033E677 /* event_detail_header_list_arraw.png */,
 				769AB95017DF51340033E677 /* event_detail_header_tick.png */,
@@ -2101,6 +2107,8 @@
 				76318B2B17E09A69000BC88B /* Default.png in Resources */,
 				76318B2C17E09A69000BC88B /* Default@2x.png in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
+				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
+				94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -134,8 +134,36 @@
     conformView.frame = frame;
     conformView.eventTimeLabel.text = [self getTimeLable:eventTime];
 
+    int vote = 0;
+    [conformView setVoteStatus:vote];
+
+    if(vote == 0) {
+        [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
+        [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     [self addSubview:conformView];
 }
+
+
+-(void) onEventTimtVoteAgree
+{
+    LOG_D(@"onEventTimtVoteAgree");
+
+    if(self.delegate != nil) {
+        [self.delegate onVoteTimeConform:_eventTime andChecked:YES];
+    }
+}
+
+-(void) onEventTimtVoteDisagree
+{
+    LOG_D(@"onEventTimtVoteDisagree");
+
+    if(self.delegate != nil) {
+        [self.delegate onVoteTimeConform:_eventTime andChecked:NO];
+    }
+}
+
 
 - (void)layOutSubViews
 {
