@@ -20,7 +20,7 @@
 #import "UserModel.h"
 #import "EventTime.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -66,6 +66,7 @@
 
     [timeContentView release];
 
+    conformView.delegate = nil;
     [conformView release];
     
     commentContentView.delegate = nil;
@@ -153,7 +154,8 @@
     timeContentView = [[EventDetailTimeView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
     [scrollView addSubview:timeContentView];
     
-    conformView = [[EventDetailCommentConformView creatView] retain];
+    conformView = [[EventDetailCommentConformView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    conformView.delegate = self;
     [scrollView addSubview:conformView];
     
     commentContentView = [[EventDetailCommentContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
@@ -192,7 +194,10 @@
     [invitePlaceContentView setDesciption:event.description];
     
     [self updateEventTimeView];
-    
+
+    BOOL isCreator = [self isMyCreatEvent];
+    BOOL can = event.privilige == 0;
+    [conformView updateUI:isCreator andInviteeCanProposeTime:can];
 
     [commentContentView beginLoadComments];
 }
@@ -446,6 +451,23 @@
 -(void) onEventDetailCommentContentViewFrameChanged
 {
     [self layOutSubViews];
+}
+
+#pragma mark -
+#pragma mark EventDetailCommentContentView
+-(void) onProposeNewTime
+{
+    LOG_D(@"onProposeNewTime");
+}
+
+-(void) onAddNewTime
+{
+    LOG_D(@"onAddNewTime");
+}
+
+-(void) onDeclineTime
+{
+    LOG_D(@"onDeclineTime");
 }
 
 

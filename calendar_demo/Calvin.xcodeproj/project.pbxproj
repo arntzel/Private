@@ -208,7 +208,6 @@
 		769ABB2317DF52090033E677 /* EventDetailCommentConformedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */; };
 		769ABB2517DF52090033E677 /* EventDetailCommentConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAD717DF52090033E677 /* EventDetailCommentConformView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB2617DF52090033E677 /* EventDetailCommentConformView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAD817DF52090033E677 /* EventDetailCommentConformView.xib */; };
 		769ABB2717DF52090033E677 /* EventDetailCommentContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABADC17DF52090033E677 /* EventDetailCommentTextView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABADD17DF52090033E677 /* EventDetailCommentTextView.xib */; };
@@ -616,7 +615,6 @@
 		769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentConformedView.xib; sourceTree = "<group>"; };
 		769ABAD617DF52090033E677 /* EventDetailCommentConformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentConformView.h; sourceTree = "<group>"; };
 		769ABAD717DF52090033E677 /* EventDetailCommentConformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentConformView.m; sourceTree = "<group>"; };
-		769ABAD817DF52090033E677 /* EventDetailCommentConformView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentConformView.xib; sourceTree = "<group>"; };
 		769ABAD917DF52090033E677 /* EventDetailCommentContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentContentView.h; sourceTree = "<group>"; };
 		769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentContentView.m; sourceTree = "<group>"; };
 		769ABADB17DF52090033E677 /* EventDetailCommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentTextView.h; sourceTree = "<group>"; };
@@ -1410,7 +1408,6 @@
 				769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */,
 				769ABAD617DF52090033E677 /* EventDetailCommentConformView.h */,
 				769ABAD717DF52090033E677 /* EventDetailCommentConformView.m */,
-				769ABAD817DF52090033E677 /* EventDetailCommentConformView.xib */,
 				769ABAD917DF52090033E677 /* EventDetailCommentContentView.h */,
 				769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */,
 				769ABADB17DF52090033E677 /* EventDetailCommentTextView.h */,
@@ -2059,7 +2056,6 @@
 				769ABB2017DF52090033E677 /* AddLocationTextView.xib in Resources */,
 				769ABB2217DF52090033E677 /* AddLocationViewController.xib in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
-				769ABB2617DF52090033E677 /* EventDetailCommentConformView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,

@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EventDetailCommentConformViewDelegate <NSObject>
+
+-(void) onProposeNewTime;
+-(void) onAddNewTime;
+-(void) onDeclineTime;
+
+@end
+
 @interface EventDetailCommentConformView : UIView
 
-+(EventDetailCommentConformView *)creatView;
+@property(nonatomic, assign) id<EventDetailCommentConformViewDelegate> delegate;
+
+-(void) updateUI:(BOOL) isCreator andInviteeCanProposeTime:(BOOL) can;
+
 
 @end

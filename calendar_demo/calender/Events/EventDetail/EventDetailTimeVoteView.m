@@ -135,7 +135,7 @@
     conformView.eventTimeLabel.text = [self getTimeLable:eventTime];
 
     int vote = 0;
-    [conformView setVoteStatus:vote];
+    [conformView setVoteStatus:1];
 
     if(vote == 0) {
         [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
