@@ -94,6 +94,11 @@
     [super dealloc];
 }
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [commentTextView hideKeyboard];
+}
+
 //- (void)updateUI
 //{    
 //    CGRect commentContentViewFrame = self.frame;
@@ -107,6 +112,30 @@
     //[commentTextView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
     [commentTextView setHeaderPhotoUrl:user.avatar_url];
     [self addSubview:commentTextView];
+    
+    [commentTextView.messageField addTarget:self action:@selector(keySend) forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
+-(void) keySend
+{
+    [commentTextView hideKeyboard];
+    
+    NSString * msg = [commentTextView.messageField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if(msg.length > 0) {
+        Comment * cmt = [[Comment alloc] init];
+        cmt.commentor = [[UserModel getInstance] getLoginUser];
+        cmt.createTime = [NSDate date];
+        cmt.msg = msg;
+        
+        [commentTextView showSending:YES];
+        
+        [[Model getInstance] createComment:cmt andCallback:^(NSInteger error, Comment *cmt) {
+            [cmt release];
+            [commentTextView showSending:NO];
+            
+        }];
+    }    
 }
 
 - (void)addCommentView :(Comment *) cmt

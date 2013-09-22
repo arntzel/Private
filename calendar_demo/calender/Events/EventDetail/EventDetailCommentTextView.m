@@ -16,7 +16,7 @@
 {
     self.autherPhotoView = nil;
     self.messageField = nil;
-    
+    self.indicatorView = nil;
     [super dealloc];
 }
 
@@ -64,13 +64,17 @@
     [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
-    
-    [self.messageField addTarget:self action:@selector(keydone) forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
--(void) keydone
+-(void) hideKeyboard
 {
     [self.messageField resignFirstResponder];
+}
+
+
+-(void) showSending:(BOOL)sending
+{
+    self.indicatorView.hidden = !sending;
 }
 
 +(EventDetailCommentTextView *) creatView

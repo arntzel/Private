@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface EventDetailCommentTextView : UIView
 
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView * indicatorView;
 @property (retain, nonatomic) IBOutlet UIImageView *autherPhotoView;
 @property (retain, nonatomic) IBOutlet UITextField * messageField;
 
 - (void)setHeaderPhoto:(UIImage *)photo;
 
 -(void) setHeaderPhotoUrl:(NSString *) url;
+
+-(void) hideKeyboard;
+
+-(void) showSending:(BOOL)sending;
 
 +(EventDetailCommentTextView *)creatView;
 

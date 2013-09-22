@@ -820,4 +820,14 @@ static Model * instance;
     callback(0, comments);
 }
 
+-(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback
+{
+    [self performSelector:@selector(createComment:andCmt:) withObject:callback afterDelay:2.0f];
+}
+
+-(void) createComment:(void (^)(NSInteger error, Comment * cmt))callback andCmt: (Comment *) cmt
+{
+    callback(0, cmt);
+}
+
 @end

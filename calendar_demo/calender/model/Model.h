@@ -145,6 +145,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback;
 
+-(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback;
 
 
 -(EventModel *) getEventModel;
