@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3A117EA5-53D4-45A9-AC6F-87A891D9598B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>test</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>774A9730-CD85-4CC1-9FB1-A2CA1EEE4BD2</key>
+		<string>https://github.com/xHFT/calvinapp-ios</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>calendar_demo/calender/Account/Login/test/test.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>774A9730-CD85-4CC1-9FB1-A2CA1EEE4BD2</key>
+		<string>../../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/xHFT/calvinapp-ios</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>774A9730-CD85-4CC1-9FB1-A2CA1EEE4BD2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>774A9730-CD85-4CC1-9FB1-A2CA1EEE4BD2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>calvinapp-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
