@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoginMainTitileView.h
 //  login
 //
 //  Created by zyax86 on 9/23/13.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LoginMainTitileView : UIView
+
++(LoginMainTitileView *) creatView;
 
 @end

@@ -13,14 +13,31 @@
 		763B83A817F02C2700B3CC96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 763B83A617F02C2700B3CC96 /* InfoPlist.strings */; };
 		763B83AA17F02C2700B3CC96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B83A917F02C2700B3CC96 /* main.m */; };
 		763B83AE17F02C2700B3CC96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B83AD17F02C2700B3CC96 /* AppDelegate.m */; };
-		763B83B117F02C2700B3CC96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763B83AF17F02C2700B3CC96 /* Main.storyboard */; };
-		763B83B417F02C2700B3CC96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B83B317F02C2700B3CC96 /* ViewController.m */; };
 		763B83B617F02C2700B3CC96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763B83B517F02C2700B3CC96 /* Images.xcassets */; };
 		763B83BD17F02C2700B3CC96 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763B83BC17F02C2700B3CC96 /* XCTest.framework */; };
 		763B83BE17F02C2700B3CC96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763B839D17F02C2700B3CC96 /* Foundation.framework */; };
 		763B83BF17F02C2700B3CC96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763B83A117F02C2700B3CC96 /* UIKit.framework */; };
 		763B83C717F02C2700B3CC96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 763B83C517F02C2700B3CC96 /* InfoPlist.strings */; };
 		763B83C917F02C2700B3CC96 /* loginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B83C817F02C2700B3CC96 /* loginTests.m */; };
+		763B83DA17F02CD400B3CC96 /* login_mainview_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 763B83D817F02CD400B3CC96 /* login_mainview_bg.jpg */; };
+		763B83DB17F02CD400B3CC96 /* login_mainview_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B83D917F02CD400B3CC96 /* login_mainview_title.png */; };
+		763B83E217F0330600B3CC96 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B83E017F0330600B3CC96 /* LoginMainAccessView.m */; };
+		763B83E317F0330600B3CC96 /* LoginMainAccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B83E117F0330600B3CC96 /* LoginMainAccessView.xib */; };
+		763B83E517F0336400B3CC96 /* LoginMainTitileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B83E417F0336400B3CC96 /* LoginMainTitileView.xib */; };
+		763B843017F033B300B3CC96 /* LoginMainTitileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B842F17F033B300B3CC96 /* LoginMainTitileView.m */; };
+		763B843517F036FC00B3CC96 /* login_mainaccess_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843317F036FC00B3CC96 /* login_mainaccess_new.png */; };
+		763B843617F036FC00B3CC96 /* login_mainaccess_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843417F036FC00B3CC96 /* login_mainaccess_signin.png */; };
+		763B844117F03FE100B3CC96 /* login_main_login_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843917F03FE100B3CC96 /* login_main_login_facebook.png */; };
+		763B844217F03FE100B3CC96 /* login_main_login_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843A17F03FE100B3CC96 /* login_main_login_google.png */; };
+		763B844317F03FE100B3CC96 /* login_main_login_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843B17F03FE100B3CC96 /* login_main_login_line.png */; };
+		763B844417F03FE100B3CC96 /* login_main_singnup_addphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843C17F03FE100B3CC96 /* login_main_singnup_addphoto.png */; };
+		763B844517F03FE100B3CC96 /* login_main_singnup_profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843D17F03FE100B3CC96 /* login_main_singnup_profile_bg.png */; };
+		763B844617F03FE100B3CC96 /* login_main_singnup_account_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 763B843E17F03FE100B3CC96 /* login_main_singnup_account_bg.png */; };
+		763B844B17F0405F00B3CC96 /* LoginMainCreatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 763B844A17F0405F00B3CC96 /* LoginMainCreatView.m */; };
+		7662F72617F0636100B64E40 /* LoginMainCreatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7662F72317F0636100B64E40 /* LoginMainCreatView.xib */; };
+		7662F72717F0636100B64E40 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F72517F0636100B64E40 /* LoginMainViewController.m */; };
+		7662F72917F0638A00B64E40 /* LoginMainSignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7662F72817F0638A00B64E40 /* LoginMainSignInView.xib */; };
+		7662F72C17F063AC00B64E40 /* LoginMainSignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F72B17F063AC00B64E40 /* LoginMainSignInView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +61,36 @@
 		763B83AB17F02C2700B3CC96 /* login-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "login-Prefix.pch"; sourceTree = "<group>"; };
 		763B83AC17F02C2700B3CC96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		763B83AD17F02C2700B3CC96 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		763B83B017F02C2700B3CC96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		763B83B217F02C2700B3CC96 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		763B83B317F02C2700B3CC96 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		763B83B517F02C2700B3CC96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		763B83BB17F02C2700B3CC96 /* loginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = loginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		763B83BC17F02C2700B3CC96 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		763B83C417F02C2700B3CC96 /* loginTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "loginTests-Info.plist"; sourceTree = "<group>"; };
 		763B83C617F02C2700B3CC96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		763B83C817F02C2700B3CC96 /* loginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginTests.m; sourceTree = "<group>"; };
+		763B83D817F02CD400B3CC96 /* login_mainview_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_mainview_bg.jpg; sourceTree = "<group>"; };
+		763B83D917F02CD400B3CC96 /* login_mainview_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainview_title.png; sourceTree = "<group>"; };
+		763B83DF17F0330600B3CC96 /* LoginMainAccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainAccessView.h; path = ../../LoginMainAccessView.h; sourceTree = "<group>"; };
+		763B83E017F0330600B3CC96 /* LoginMainAccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainAccessView.m; path = ../../LoginMainAccessView.m; sourceTree = "<group>"; };
+		763B83E117F0330600B3CC96 /* LoginMainAccessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginMainAccessView.xib; path = ../../LoginMainAccessView.xib; sourceTree = "<group>"; };
+		763B83E417F0336400B3CC96 /* LoginMainTitileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginMainTitileView.xib; path = ../../LoginMainTitileView.xib; sourceTree = "<group>"; };
+		763B842E17F033B300B3CC96 /* LoginMainTitileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainTitileView.h; path = ../../LoginMainTitileView.h; sourceTree = "<group>"; };
+		763B842F17F033B300B3CC96 /* LoginMainTitileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainTitileView.m; path = ../../LoginMainTitileView.m; sourceTree = "<group>"; };
+		763B843317F036FC00B3CC96 /* login_mainaccess_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainaccess_new.png; sourceTree = "<group>"; };
+		763B843417F036FC00B3CC96 /* login_mainaccess_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainaccess_signin.png; sourceTree = "<group>"; };
+		763B843917F03FE100B3CC96 /* login_main_login_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_login_facebook.png; sourceTree = "<group>"; };
+		763B843A17F03FE100B3CC96 /* login_main_login_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_login_google.png; sourceTree = "<group>"; };
+		763B843B17F03FE100B3CC96 /* login_main_login_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_login_line.png; sourceTree = "<group>"; };
+		763B843C17F03FE100B3CC96 /* login_main_singnup_addphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_singnup_addphoto.png; sourceTree = "<group>"; };
+		763B843D17F03FE100B3CC96 /* login_main_singnup_profile_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_singnup_profile_bg.png; sourceTree = "<group>"; };
+		763B843E17F03FE100B3CC96 /* login_main_singnup_account_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_singnup_account_bg.png; sourceTree = "<group>"; };
+		763B844917F0405F00B3CC96 /* LoginMainCreatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainCreatView.h; path = ../../LoginMainCreatView.h; sourceTree = "<group>"; };
+		763B844A17F0405F00B3CC96 /* LoginMainCreatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainCreatView.m; path = ../../LoginMainCreatView.m; sourceTree = "<group>"; };
+		7662F72317F0636100B64E40 /* LoginMainCreatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginMainCreatView.xib; path = ../../LoginMainCreatView.xib; sourceTree = "<group>"; };
+		7662F72417F0636100B64E40 /* LoginMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainViewController.h; path = ../../LoginMainViewController.h; sourceTree = "<group>"; };
+		7662F72517F0636100B64E40 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainViewController.m; path = ../../LoginMainViewController.m; sourceTree = "<group>"; };
+		7662F72817F0638A00B64E40 /* LoginMainSignInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginMainSignInView.xib; path = ../../LoginMainSignInView.xib; sourceTree = "<group>"; };
+		7662F72A17F063AC00B64E40 /* LoginMainSignInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainSignInView.h; path = ../../LoginMainSignInView.h; sourceTree = "<group>"; };
+		7662F72B17F063AC00B64E40 /* LoginMainSignInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainSignInView.m; path = ../../LoginMainSignInView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +150,23 @@
 		763B83A317F02C2700B3CC96 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				7662F72A17F063AC00B64E40 /* LoginMainSignInView.h */,
+				7662F72B17F063AC00B64E40 /* LoginMainSignInView.m */,
+				7662F72817F0638A00B64E40 /* LoginMainSignInView.xib */,
+				7662F72417F0636100B64E40 /* LoginMainViewController.h */,
+				7662F72517F0636100B64E40 /* LoginMainViewController.m */,
+				763B842E17F033B300B3CC96 /* LoginMainTitileView.h */,
+				763B842F17F033B300B3CC96 /* LoginMainTitileView.m */,
+				763B83E417F0336400B3CC96 /* LoginMainTitileView.xib */,
+				763B83DF17F0330600B3CC96 /* LoginMainAccessView.h */,
+				763B83E017F0330600B3CC96 /* LoginMainAccessView.m */,
+				763B83E117F0330600B3CC96 /* LoginMainAccessView.xib */,
+				763B844917F0405F00B3CC96 /* LoginMainCreatView.h */,
+				763B844A17F0405F00B3CC96 /* LoginMainCreatView.m */,
+				7662F72317F0636100B64E40 /* LoginMainCreatView.xib */,
+				763B83D717F02CD400B3CC96 /* Login */,
 				763B83AC17F02C2700B3CC96 /* AppDelegate.h */,
 				763B83AD17F02C2700B3CC96 /* AppDelegate.m */,
-				763B83AF17F02C2700B3CC96 /* Main.storyboard */,
-				763B83B217F02C2700B3CC96 /* ViewController.h */,
-				763B83B317F02C2700B3CC96 /* ViewController.m */,
 				763B83B517F02C2700B3CC96 /* Images.xcassets */,
 				763B83A417F02C2700B3CC96 /* Supporting Files */,
 			);
@@ -150,6 +200,24 @@
 				763B83C517F02C2700B3CC96 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		763B83D717F02CD400B3CC96 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				763B843917F03FE100B3CC96 /* login_main_login_facebook.png */,
+				763B843A17F03FE100B3CC96 /* login_main_login_google.png */,
+				763B843B17F03FE100B3CC96 /* login_main_login_line.png */,
+				763B843C17F03FE100B3CC96 /* login_main_singnup_addphoto.png */,
+				763B843D17F03FE100B3CC96 /* login_main_singnup_profile_bg.png */,
+				763B843E17F03FE100B3CC96 /* login_main_singnup_account_bg.png */,
+				763B843317F036FC00B3CC96 /* login_mainaccess_new.png */,
+				763B843417F036FC00B3CC96 /* login_mainaccess_signin.png */,
+				763B83D817F02CD400B3CC96 /* login_mainview_bg.jpg */,
+				763B83D917F02CD400B3CC96 /* login_mainview_title.png */,
+			);
+			name = Login;
+			path = ../../../../Resource/Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +296,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7662F72617F0636100B64E40 /* LoginMainCreatView.xib in Resources */,
+				763B844217F03FE100B3CC96 /* login_main_login_google.png in Resources */,
+				763B844117F03FE100B3CC96 /* login_main_login_facebook.png in Resources */,
+				763B83DA17F02CD400B3CC96 /* login_mainview_bg.jpg in Resources */,
+				763B844617F03FE100B3CC96 /* login_main_singnup_account_bg.png in Resources */,
+				763B843517F036FC00B3CC96 /* login_mainaccess_new.png in Resources */,
+				763B83E317F0330600B3CC96 /* LoginMainAccessView.xib in Resources */,
 				763B83B617F02C2700B3CC96 /* Images.xcassets in Resources */,
+				763B843617F036FC00B3CC96 /* login_mainaccess_signin.png in Resources */,
+				763B844517F03FE100B3CC96 /* login_main_singnup_profile_bg.png in Resources */,
+				763B83DB17F02CD400B3CC96 /* login_mainview_title.png in Resources */,
+				763B844417F03FE100B3CC96 /* login_main_singnup_addphoto.png in Resources */,
 				763B83A817F02C2700B3CC96 /* InfoPlist.strings in Resources */,
-				763B83B117F02C2700B3CC96 /* Main.storyboard in Resources */,
+				763B844317F03FE100B3CC96 /* login_main_login_line.png in Resources */,
+				763B83E517F0336400B3CC96 /* LoginMainTitileView.xib in Resources */,
+				7662F72917F0638A00B64E40 /* LoginMainSignInView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +330,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				763B83B417F02C2700B3CC96 /* ViewController.m in Sources */,
+				7662F72C17F063AC00B64E40 /* LoginMainSignInView.m in Sources */,
 				763B83AE17F02C2700B3CC96 /* AppDelegate.m in Sources */,
+				763B843017F033B300B3CC96 /* LoginMainTitileView.m in Sources */,
+				763B844B17F0405F00B3CC96 /* LoginMainCreatView.m in Sources */,
 				763B83AA17F02C2700B3CC96 /* main.m in Sources */,
+				763B83E217F0330600B3CC96 /* LoginMainAccessView.m in Sources */,
+				7662F72717F0636100B64E40 /* LoginMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +365,6 @@
 				763B83A717F02C2700B3CC96 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		763B83AF17F02C2700B3CC96 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				763B83B017F02C2700B3CC96 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		763B83C517F02C2700B3CC96 /* InfoPlist.strings */ = {
@@ -381,7 +458,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "login/login-Prefix.pch";
 				INFOPLIST_FILE = "login/login-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -394,7 +473,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "login/login-Prefix.pch";
 				INFOPLIST_FILE = "login/login-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -460,6 +541,7 @@
 				763B83CE17F02C2700B3CC96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		763B83CF17F02C2700B3CC96 /* Build configuration list for PBXNativeTarget "loginTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +550,7 @@
 				763B83D117F02C2700B3CC96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
