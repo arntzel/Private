@@ -266,9 +266,44 @@
     [self signupGoogle];
 }
 
-- (void)btnSignUpDidClick
+- (void)btnSignUpDidClickWithName:(NSString *)name Email:(NSString *)_email Password:(NSString *)_password HeadPhoto:(UIImage *)headPhoto
 {
+    NSString * username = name;
+    NSString * email = _email;
+    NSString * password = _password;
+    //{"username":"user1", "password":"111111", "email":"user1@pencilme.com"}
     
+    CreateUser * user = [[CreateUser alloc] init];
+    user.username = username;
+    user.email = email;
+    user.password = password;
+    
+    if (username == nil || password == nil || email == nil) {
+        [self showAlert:@"can't be empty !!"];
+        return;
+    }
+    
+    [loadingView startAnimating];
+    
+    [[UserModel getInstance] createUser:user andCallback:^(NSInteger error, NSString * msg) {
+        [loadingView stopAnimating];
+
+        if(error == 0) {
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+                                                          message:@"Success！"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+                                                          message:msg
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
 }
 
 #pragma mark -
@@ -286,16 +321,14 @@
 
 - (void)btnSignInDidClickWithName:(NSString *)name Password:(NSString *)_password
 {
-    [loadingView startAnimating];
-    
     NSString * username = name;
     NSString * password = _password;
     if (username == nil || password == nil) {
         [self showAlert:@"can't be empty !!"];
-        [loadingView stopAnimating];
         return;
     }
     
+    [loadingView startAnimating];
     [[UserModel getInstance] login:username withPassword:password andCallback:^(NSInteger error, User *user) {
         
         [loadingView stopAnimating];

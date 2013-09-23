@@ -8,6 +8,15 @@
 
 #import "LoginMainCreatView.h"
 
+@interface LoginMainCreatView()
+@property (weak, nonatomic) IBOutlet UITextField *textFirstName;
+@property (weak, nonatomic) IBOutlet UITextField *textLastName;
+@property (weak, nonatomic) IBOutlet UITextField *textEmail;
+@property (weak, nonatomic) IBOutlet UITextField *textPassword;
+
+
+@end
+
 @implementation LoginMainCreatView
 @synthesize delegate;
 
@@ -29,8 +38,9 @@
 }
 
 - (IBAction)btnSignUpClick:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(btnSignUpDidClick)]) {
-        [self.delegate btnSignUpDidClick];
+    if ([self.delegate respondsToSelector:@selector(btnSignUpDidClickWithName:Email:Password:HeadPhoto:)]) {
+        NSString *userName = [NSString stringWithFormat:@"%@%@",self.textFirstName.text,self.textLastName.text];
+        [self.delegate btnSignUpDidClickWithName:userName Email:self.textEmail.text Password:self.textPassword.text HeadPhoto:nil];
     }
 }
 

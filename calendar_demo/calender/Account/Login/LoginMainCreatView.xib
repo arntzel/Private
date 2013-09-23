@@ -105,6 +105,12 @@
                 </textField>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="textEmail" destination="ORq-xe-iKB" id="GeD-6d-ifc"/>
+                <outlet property="textFirstName" destination="EVX-ut-WGS" id="76I-uo-CnI"/>
+                <outlet property="textLastName" destination="JFu-C5-9bY" id="nam-IQ-ooo"/>
+                <outlet property="textPassword" destination="Udh-Yi-Zlb" id="ElZ-8W-umT"/>
+            </connections>
         </view>
     </objects>
     <resources>

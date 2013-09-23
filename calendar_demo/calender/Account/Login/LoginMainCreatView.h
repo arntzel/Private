@@ -14,8 +14,7 @@
 
 - (void)btnGoogleSignUpDidClick;
 
-- (void)btnSignUpDidClick;
-
+- (void)btnSignUpDidClickWithName:(NSString *)name Email:(NSString *)_email Password:(NSString *)_password HeadPhoto:(UIImage *)headPhoto;
 @end
 
 @interface LoginMainCreatView : UIView

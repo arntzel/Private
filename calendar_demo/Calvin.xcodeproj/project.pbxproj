@@ -34,6 +34,7 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
+		765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 765DF0B917F083A8007259DF /* LoginStatusCheck.m */; };
 		7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */; };
 		7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F73217F075F400B64E40 /* LoginMainAccessView.m */; };
 		7662F74017F075F400B64E40 /* LoginMainAccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7662F73317F075F400B64E40 /* LoginMainAccessView.xib */; };
@@ -176,11 +177,6 @@
 		769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1417DF514C0033E677 /* Model.xcdatamodeld */; };
 		769ABA2517DF514C0033E677 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1717DF514C0033E677 /* UserEntity.m */; };
 		769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1917DF514C0033E677 /* UserEntityExtra.m */; };
-		769ABA4D17DF51CE0033E677 /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */; };
-		769ABA4E17DF51CE0033E677 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3417DF51CE0033E677 /* LoginView.m */; };
-		769ABA4F17DF51CE0033E677 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3517DF51CE0033E677 /* LoginView.xib */; };
-		769ABA5017DF51CE0033E677 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */; };
-		769ABA5117DF51CE0033E677 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */; };
 		769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */; };
 		769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5E17DF51EC0033E677 /* BaseUIViewController.m */; };
 		769ABA8D17DF51EC0033E677 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA6017DF51EC0033E677 /* DDMenuController.m */; };
@@ -393,6 +389,8 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		765DF0B817F083A8007259DF /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
+		765DF0B917F083A8007259DF /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		7661E17317E201D700C788D0 /* GPlaceAutoCompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceAutoCompleteSource.h; sourceTree = "<group>"; };
 		7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPlaceAutoCompleteSource.m; sourceTree = "<group>"; };
 		7662F73117F075F400B64E40 /* LoginMainAccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMainAccessView.h; sourceTree = "<group>"; };
@@ -563,14 +561,6 @@
 		769ABA1717DF514C0033E677 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
 		769ABA1817DF514C0033E677 /* UserEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntityExtra.h; sourceTree = "<group>"; };
 		769ABA1917DF514C0033E677 /* UserEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntityExtra.m; sourceTree = "<group>"; };
-		769ABA3117DF51CE0033E677 /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
-		769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
-		769ABA3317DF51CE0033E677 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
-		769ABA3417DF51CE0033E677 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		769ABA3517DF51CE0033E677 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		769ABA3617DF51CE0033E677 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
-		769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
-		769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
 		769ABA5B17DF51EC0033E677 /* BaseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuViewController.h; sourceTree = "<group>"; };
 		769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMenuViewController.m; sourceTree = "<group>"; };
 		769ABA5D17DF51EC0033E677 /* BaseUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUIViewController.h; sourceTree = "<group>"; };
@@ -1022,6 +1012,8 @@
 		7662F75E17F07F2B00B64E40 /* ThirdPartPlatform */ = {
 			isa = PBXGroup;
 			children = (
+				765DF0B817F083A8007259DF /* LoginStatusCheck.h */,
+				765DF0B917F083A8007259DF /* LoginStatusCheck.m */,
 				7662F76317F07F2B00B64E40 /* ShareLoginBase.h */,
 				7662F76417F07F2B00B64E40 /* ShareLoginBase.m */,
 				7662F76517F07F2B00B64E40 /* ShareLoginFacebook.h */,
@@ -1312,14 +1304,6 @@
 				7662F75A17F07F2B00B64E40 /* Setting */,
 				7662F75E17F07F2B00B64E40 /* ThirdPartPlatform */,
 				769ABA2817DF51CE0033E677 /* Login */,
-				769ABA3117DF51CE0033E677 /* LoginStatusCheck.h */,
-				769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */,
-				769ABA3317DF51CE0033E677 /* LoginView.h */,
-				769ABA3417DF51CE0033E677 /* LoginView.m */,
-				769ABA3517DF51CE0033E677 /* LoginView.xib */,
-				769ABA3617DF51CE0033E677 /* RegisterNewUserViewController.h */,
-				769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */,
-				769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */,
 			);
 			name = Account;
 			path = calender/Account;
@@ -2114,8 +2098,6 @@
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
 				769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */,
-				769ABA4F17DF51CE0033E677 /* LoginView.xib in Resources */,
-				769ABA5117DF51CE0033E677 /* RegisterNewUserViewController.xib in Resources */,
 				769ABA9A17DF51EC0033E677 /* navigationMenuCell.xib in Resources */,
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
 				769ABAA217DF51EC0033E677 /* navigationNotifySectionHeader.xib in Resources */,
@@ -2216,9 +2198,6 @@
 				769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */,
 				769ABA2517DF514C0033E677 /* UserEntity.m in Sources */,
 				769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */,
-				769ABA4D17DF51CE0033E677 /* LoginStatusCheck.m in Sources */,
-				769ABA4E17DF51CE0033E677 /* LoginView.m in Sources */,
-				769ABA5017DF51CE0033E677 /* RegisterNewUserViewController.m in Sources */,
 				769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */,
 				769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */,
 				769ABA8D17DF51EC0033E677 /* DDMenuController.m in Sources */,
@@ -2249,6 +2228,7 @@
 				769ABB2717DF52090033E677 /* EventDetailCommentContentView.m in Sources */,
 				769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */,
 				769ABB2A17DF52090033E677 /* EventDetailCommentView.m in Sources */,
+				765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */,
 				769ABB2C17DF52090033E677 /* EventDetailFinailzeView.m in Sources */,
 				769ABB2E17DF52090033E677 /* EventDetailHeader.m in Sources */,
 				7662F74117F075F400B64E40 /* LoginMainCreatView.m in Sources */,
