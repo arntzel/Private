@@ -5,7 +5,7 @@
 #import "RootNavContrller.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "googleAPIKey.h"
-#import "SignupViewController.h"
+#import "LoginMainViewController.h"
 #import "MainViewController.h"
 
 #import <GooglePlus/GooglePlus.h>
@@ -57,7 +57,7 @@
         rootController = [[MainViewController alloc] init];
 
     } else {
-        rootController = [[SignupViewController alloc] init];
+        rootController = [[LoginMainViewController alloc] init];
     }
 
     RootNavContrller *navController = [RootNavContrller defaultInstance];

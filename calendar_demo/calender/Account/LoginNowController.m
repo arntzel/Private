@@ -76,7 +76,6 @@
    
     [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
     [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
-
 }
 
 - (void)didReceiveMemoryWarning

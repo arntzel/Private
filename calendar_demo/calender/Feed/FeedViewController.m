@@ -29,7 +29,7 @@
 #import "ViewUtils.h"
 #import "EventModel.h"
 
-#import "SignupViewController.h"
+#import "LoginMainViewController.h"
 
 #import "UserSetting.h"
 
@@ -276,7 +276,7 @@
         RootNavContrller *navController = [RootNavContrller defaultInstance];
         [navController popToRootViewControllerAnimated:NO];
         
-        SignupViewController* rootController = [[SignupViewController alloc] init];
+        LoginMainViewController* rootController = [[LoginMainViewController alloc] init];
         [navController pushViewController:rootController animated:NO];
         
     } else {

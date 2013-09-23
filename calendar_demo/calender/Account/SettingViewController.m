@@ -8,7 +8,7 @@
 
 #import "SettingViewController.h"
 #import "UserModel.h"
-#import "SignupViewController.h"
+#import "LoginMainViewController.h"
 #import "RootNavContrller.h"
 #import "UserSetting.h"
 #import "CoreDataModel.h"
@@ -52,8 +52,8 @@
         
     [navController popToRootViewControllerAnimated:NO];
 
-    SignupViewController* rootController = [[SignupViewController alloc] init];
-    [navController pushViewController:rootController animated:NO];
+    LoginMainViewController* loginController = [[LoginMainViewController alloc] init];
+    [navController pushViewController:loginController animated:NO];
 }
 
 @end

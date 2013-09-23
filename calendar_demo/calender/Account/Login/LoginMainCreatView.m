@@ -12,15 +12,26 @@
 @synthesize delegate;
 
 - (IBAction)btnFacebookClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnFacebookSignUpDidClick)]) {
+        [self.delegate btnFacebookSignUpDidClick];
+    }
 }
 
 - (IBAction)btnGoogleClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnGoogleSignUpDidClick)]) {
+        [self.delegate btnGoogleSignUpDidClick];
+    }
 }
 
 - (IBAction)btnAddPhotoClick:(id)sender {
+
+    
 }
 
 - (IBAction)btnSignUpClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnSignUpDidClick)]) {
+        [self.delegate btnSignUpDidClick];
+    }
 }
 
 - (void)updateUI

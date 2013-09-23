@@ -12,15 +12,27 @@
 @synthesize delegate;
 
 - (IBAction)btnFacebookClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnFacebookSignInDidClick)]) {
+        [self.delegate btnFacebookSignInDidClick];
+    }
 }
 
 - (IBAction)btnGoogleClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnGoogleSignInDidClick)]) {
+        [self.delegate btnGoogleSignInDidClick];
+    }
 }
 
 - (IBAction)btnSignInClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnSignInDidClick)]) {
+        [self.delegate btnSignInDidClick];
+    }
 }
 
 - (IBAction)btnForgotPasswordClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(btnForgotPasswordDidClick)]) {
+        [self.delegate btnForgotPasswordDidClick];
+    }
 }
 
 
