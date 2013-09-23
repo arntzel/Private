@@ -90,6 +90,10 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="TextPassword" destination="Udh-Yi-Zlb" id="uUJ-Wc-1kZ"/>
+                <outlet property="TextUserName" destination="ORq-xe-iKB" id="wm1-b2-XCJ"/>
+            </connections>
         </view>
     </objects>
     <resources>

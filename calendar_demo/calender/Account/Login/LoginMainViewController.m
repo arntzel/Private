@@ -284,9 +284,28 @@
     [self signupGoogle];
 }
 
-- (void)btnSignInDidClick
+- (void)btnSignInDidClickWithName:(NSString *)name Password:(NSString *)_password
 {
+    [loadingView startAnimating];
     
+    NSString * username = name;
+    NSString * password = _password;
+    if (username == nil || password == nil) {
+        [self showAlert:@"can't be empty !!"];
+        [loadingView stopAnimating];
+        return;
+    }
+    
+    [[UserModel getInstance] login:username withPassword:password andCallback:^(NSInteger error, User *user) {
+        
+        [loadingView stopAnimating];
+        
+        if(error == 0) {
+            [self onLogined];
+        } else {
+            [self showAlert:@"Login failed！"];
+        }
+    }];
 }
 
 - (void)btnForgotPasswordDidClick

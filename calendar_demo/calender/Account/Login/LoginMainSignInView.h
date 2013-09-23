@@ -14,7 +14,7 @@
 
 - (void)btnGoogleSignInDidClick;
 
-- (void)btnSignInDidClick;
+- (void)btnSignInDidClickWithName:(NSString *)name Password:(NSString *)password;
 
 - (void)btnForgotPasswordDidClick;
 

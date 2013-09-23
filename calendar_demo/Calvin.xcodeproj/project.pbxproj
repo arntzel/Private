@@ -53,6 +53,11 @@
 		7662F75717F0761900B64E40 /* login_main_singnup_profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7662F74E17F0761900B64E40 /* login_main_singnup_profile_bg.png */; };
 		7662F75817F0761900B64E40 /* login_mainaccess_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 7662F74F17F0761900B64E40 /* login_mainaccess_new.png */; };
 		7662F75917F0761900B64E40 /* login_mainaccess_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7662F75017F0761900B64E40 /* login_mainaccess_signin.png */; };
+		7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F75C17F07F2B00B64E40 /* SettingViewController.m */; };
+		7662F76A17F07F2B00B64E40 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7662F75D17F07F2B00B64E40 /* SettingViewController.xib */; };
+		7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76417F07F2B00B64E40 /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F77117F080A800B64E40 /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F55617AE929E009FFEC8 /* Accelerate.framework */; };
 		769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 769AB8F917DF50320033E677 /* GoogleOpenSource.framework */; };
@@ -171,19 +176,11 @@
 		769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1417DF514C0033E677 /* Model.xcdatamodeld */; };
 		769ABA2517DF514C0033E677 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1717DF514C0033E677 /* UserEntity.m */; };
 		769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1917DF514C0033E677 /* UserEntityExtra.m */; };
-		769ABA4A17DF51CE0033E677 /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA2D17DF51CE0033E677 /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABA4B17DF51CE0033E677 /* LoginNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA2F17DF51CE0033E677 /* LoginNowController.m */; };
-		769ABA4C17DF51CE0033E677 /* LoginNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3017DF51CE0033E677 /* LoginNowController.xib */; };
 		769ABA4D17DF51CE0033E677 /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */; };
 		769ABA4E17DF51CE0033E677 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3417DF51CE0033E677 /* LoginView.m */; };
 		769ABA4F17DF51CE0033E677 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3517DF51CE0033E677 /* LoginView.xib */; };
 		769ABA5017DF51CE0033E677 /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */; };
 		769ABA5117DF51CE0033E677 /* RegisterNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */; };
-		769ABA5417DF51CE0033E677 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA3E17DF51CE0033E677 /* SettingViewController.m */; };
-		769ABA5517DF51CE0033E677 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABA3F17DF51CE0033E677 /* SettingViewController.xib */; };
-		769ABA5617DF51CE0033E677 /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA4117DF51CE0033E677 /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABA5717DF51CE0033E677 /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA4317DF51CE0033E677 /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABA5917DF51CE0033E677 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA4717DF51CE0033E677 /* SignupViewController.m */; };
 		769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */; };
 		769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5E17DF51EC0033E677 /* BaseUIViewController.m */; };
 		769ABA8D17DF51EC0033E677 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA6017DF51EC0033E677 /* DDMenuController.m */; };
@@ -421,6 +418,15 @@
 		7662F74E17F0761900B64E40 /* login_main_singnup_profile_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_singnup_profile_bg.png; sourceTree = "<group>"; };
 		7662F74F17F0761900B64E40 /* login_mainaccess_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainaccess_new.png; sourceTree = "<group>"; };
 		7662F75017F0761900B64E40 /* login_mainaccess_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_mainaccess_signin.png; sourceTree = "<group>"; };
+		7662F75B17F07F2B00B64E40 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		7662F75C17F07F2B00B64E40 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		7662F75D17F07F2B00B64E40 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		7662F76317F07F2B00B64E40 /* ShareLoginBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginBase.h; sourceTree = "<group>"; };
+		7662F76417F07F2B00B64E40 /* ShareLoginBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginBase.m; sourceTree = "<group>"; };
+		7662F76517F07F2B00B64E40 /* ShareLoginFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginFacebook.h; sourceTree = "<group>"; };
+		7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginFacebook.m; sourceTree = "<group>"; };
+		7662F77017F080A800B64E40 /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
+		7662F77117F080A800B64E40 /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
 		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7696F55617AE929E009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		769AB8F917DF50320033E677 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0/GoogleOpenSource.framework"; sourceTree = "<group>"; };
@@ -557,11 +563,6 @@
 		769ABA1717DF514C0033E677 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
 		769ABA1817DF514C0033E677 /* UserEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntityExtra.h; sourceTree = "<group>"; };
 		769ABA1917DF514C0033E677 /* UserEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntityExtra.m; sourceTree = "<group>"; };
-		769ABA2C17DF51CE0033E677 /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
-		769ABA2D17DF51CE0033E677 /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
-		769ABA2E17DF51CE0033E677 /* LoginNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNowController.h; sourceTree = "<group>"; };
-		769ABA2F17DF51CE0033E677 /* LoginNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNowController.m; sourceTree = "<group>"; };
-		769ABA3017DF51CE0033E677 /* LoginNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginNowController.xib; sourceTree = "<group>"; };
 		769ABA3117DF51CE0033E677 /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
 		769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		769ABA3317DF51CE0033E677 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
@@ -570,15 +571,6 @@
 		769ABA3617DF51CE0033E677 /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
 		769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
 		769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterNewUserViewController.xib; sourceTree = "<group>"; };
-		769ABA3D17DF51CE0033E677 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		769ABA3E17DF51CE0033E677 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		769ABA3F17DF51CE0033E677 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
-		769ABA4017DF51CE0033E677 /* ShareLoginBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginBase.h; sourceTree = "<group>"; };
-		769ABA4117DF51CE0033E677 /* ShareLoginBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginBase.m; sourceTree = "<group>"; };
-		769ABA4217DF51CE0033E677 /* ShareLoginFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLoginFacebook.h; sourceTree = "<group>"; };
-		769ABA4317DF51CE0033E677 /* ShareLoginFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginFacebook.m; sourceTree = "<group>"; };
-		769ABA4617DF51CE0033E677 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
-		769ABA4717DF51CE0033E677 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
 		769ABA5B17DF51EC0033E677 /* BaseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuViewController.h; sourceTree = "<group>"; };
 		769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMenuViewController.m; sourceTree = "<group>"; };
 		769ABA5D17DF51EC0033E677 /* BaseUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUIViewController.h; sourceTree = "<group>"; };
@@ -1017,6 +1009,27 @@
 			path = Xcassets;
 			sourceTree = "<group>";
 		};
+		7662F75A17F07F2B00B64E40 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7662F75B17F07F2B00B64E40 /* SettingViewController.h */,
+				7662F75C17F07F2B00B64E40 /* SettingViewController.m */,
+				7662F75D17F07F2B00B64E40 /* SettingViewController.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7662F75E17F07F2B00B64E40 /* ThirdPartPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				7662F76317F07F2B00B64E40 /* ShareLoginBase.h */,
+				7662F76417F07F2B00B64E40 /* ShareLoginBase.m */,
+				7662F76517F07F2B00B64E40 /* ShareLoginFacebook.h */,
+				7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */,
+			);
+			path = ThirdPartPlatform;
+			sourceTree = "<group>";
+		};
 		769AB90917DF51160033E677 /* Pending */ = {
 			isa = PBXGroup;
 			children = (
@@ -1296,12 +1309,9 @@
 		769ABA2717DF51CE0033E677 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				7662F75A17F07F2B00B64E40 /* Setting */,
+				7662F75E17F07F2B00B64E40 /* ThirdPartPlatform */,
 				769ABA2817DF51CE0033E677 /* Login */,
-				769ABA2C17DF51CE0033E677 /* LoginAccountStore.h */,
-				769ABA2D17DF51CE0033E677 /* LoginAccountStore.m */,
-				769ABA2E17DF51CE0033E677 /* LoginNowController.h */,
-				769ABA2F17DF51CE0033E677 /* LoginNowController.m */,
-				769ABA3017DF51CE0033E677 /* LoginNowController.xib */,
 				769ABA3117DF51CE0033E677 /* LoginStatusCheck.h */,
 				769ABA3217DF51CE0033E677 /* LoginStatusCheck.m */,
 				769ABA3317DF51CE0033E677 /* LoginView.h */,
@@ -1310,13 +1320,6 @@
 				769ABA3617DF51CE0033E677 /* RegisterNewUserViewController.h */,
 				769ABA3717DF51CE0033E677 /* RegisterNewUserViewController.m */,
 				769ABA3817DF51CE0033E677 /* RegisterNewUserViewController.xib */,
-				769ABA3D17DF51CE0033E677 /* SettingViewController.h */,
-				769ABA3E17DF51CE0033E677 /* SettingViewController.m */,
-				769ABA3F17DF51CE0033E677 /* SettingViewController.xib */,
-				769ABA4017DF51CE0033E677 /* ShareLoginBase.h */,
-				769ABA4117DF51CE0033E677 /* ShareLoginBase.m */,
-				769ABA4217DF51CE0033E677 /* ShareLoginFacebook.h */,
-				769ABA4317DF51CE0033E677 /* ShareLoginFacebook.m */,
 			);
 			name = Account;
 			path = calender/Account;
@@ -1325,6 +1328,8 @@
 		769ABA2817DF51CE0033E677 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7662F77017F080A800B64E40 /* LoginAccountStore.h */,
+				7662F77117F080A800B64E40 /* LoginAccountStore.m */,
 				7662F73117F075F400B64E40 /* LoginMainAccessView.h */,
 				7662F73217F075F400B64E40 /* LoginMainAccessView.m */,
 				7662F73317F075F400B64E40 /* LoginMainAccessView.xib */,
@@ -1339,8 +1344,6 @@
 				7662F73C17F075F400B64E40 /* LoginMainTitileView.xib */,
 				7662F73D17F075F400B64E40 /* LoginMainViewController.h */,
 				7662F73E17F075F400B64E40 /* LoginMainViewController.m */,
-				769ABA4617DF51CE0033E677 /* SignupViewController.h */,
-				769ABA4717DF51CE0033E677 /* SignupViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2065,6 +2068,7 @@
 				769AB9D417DF51340033E677 /* arrow_right@2x.png in Resources */,
 				769AB9D517DF51340033E677 /* attendees.png in Resources */,
 				7662F74017F075F400B64E40 /* LoginMainAccessView.xib in Resources */,
+				7662F76A17F07F2B00B64E40 /* SettingViewController.xib in Resources */,
 				769AB9D617DF51340033E677 /* bg_line1@2x.png in Resources */,
 				769AB9D717DF51340033E677 /* bg_line2@2x.png in Resources */,
 				769AB9D817DF51340033E677 /* bg_nav@2x.png in Resources */,
@@ -2110,10 +2114,8 @@
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
 				769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */,
-				769ABA4C17DF51CE0033E677 /* LoginNowController.xib in Resources */,
 				769ABA4F17DF51CE0033E677 /* LoginView.xib in Resources */,
 				769ABA5117DF51CE0033E677 /* RegisterNewUserViewController.xib in Resources */,
-				769ABA5517DF51CE0033E677 /* SettingViewController.xib in Resources */,
 				769ABA9A17DF51EC0033E677 /* navigationMenuCell.xib in Resources */,
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
 				769ABAA217DF51EC0033E677 /* navigationNotifySectionHeader.xib in Resources */,
@@ -2214,15 +2216,9 @@
 				769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */,
 				769ABA2517DF514C0033E677 /* UserEntity.m in Sources */,
 				769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */,
-				769ABA4A17DF51CE0033E677 /* LoginAccountStore.m in Sources */,
-				769ABA4B17DF51CE0033E677 /* LoginNowController.m in Sources */,
 				769ABA4D17DF51CE0033E677 /* LoginStatusCheck.m in Sources */,
 				769ABA4E17DF51CE0033E677 /* LoginView.m in Sources */,
 				769ABA5017DF51CE0033E677 /* RegisterNewUserViewController.m in Sources */,
-				769ABA5417DF51CE0033E677 /* SettingViewController.m in Sources */,
-				769ABA5617DF51CE0033E677 /* ShareLoginBase.m in Sources */,
-				769ABA5717DF51CE0033E677 /* ShareLoginFacebook.m in Sources */,
-				769ABA5917DF51CE0033E677 /* SignupViewController.m in Sources */,
 				769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */,
 				769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */,
 				769ABA8D17DF51EC0033E677 /* DDMenuController.m in Sources */,
@@ -2273,6 +2269,7 @@
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
+				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,
 				769ABC7F17DF542A0033E677 /* FeedEventTableView.m in Sources */,
 				769ABC8017DF542A0033E677 /* FeedViewController.m in Sources */,
 				769ABC8117DF542A0033E677 /* LoadingProgressView.m in Sources */,
@@ -2297,11 +2294,14 @@
 				769ABC9617DF542A0033E677 /* ASIAuthenticationDialog.m in Sources */,
 				769ABC9717DF542A0033E677 /* ASIDataCompressor.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
+				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
 				769ABC9817DF542A0033E677 /* ASIDataDecompressor.m in Sources */,
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
+				7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */,
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
+				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
 				769ABCA017DF542A0033E677 /* ATMHudView.m in Sources */,

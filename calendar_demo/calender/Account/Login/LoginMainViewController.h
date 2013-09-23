@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginMainViewController : UIViewController
+@interface LoginMainViewController : BaseUIViewController
 
 @end

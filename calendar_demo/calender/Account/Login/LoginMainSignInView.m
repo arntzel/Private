@@ -8,6 +8,14 @@
 
 #import "LoginMainSignInView.h"
 
+@interface LoginMainSignInView()
+
+@property (weak, nonatomic) IBOutlet UITextField *TextUserName;
+@property (weak, nonatomic) IBOutlet UITextField *TextPassword;
+
+
+@end
+
 @implementation LoginMainSignInView
 @synthesize delegate;
 
@@ -24,8 +32,8 @@
 }
 
 - (IBAction)btnSignInClick:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(btnSignInDidClick)]) {
-        [self.delegate btnSignInDidClick];
+    if ([self.delegate respondsToSelector:@selector(btnSignInDidClickWithName:Password:)]) {
+        [self.delegate btnSignInDidClickWithName:self.TextUserName.text Password:self.TextPassword.text];
     }
 }
 
