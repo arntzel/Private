@@ -498,7 +498,7 @@
     
     Event *event = [[Event alloc] init];
     event.eventType = 0;
-    event.description = @"test";
+    event.description = @"";
     
     NSMutableArray * attentees = [[NSMutableArray alloc] init];
     for(User * user in self.invitedPeoples) {
