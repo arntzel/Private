@@ -115,7 +115,7 @@
     [self.desciptionView setFont:[UIFont systemFontOfSize:14]];
     self.desciptionView.backgroundColor = [UIColor clearColor];
     self.desciptionView.userInteractionEnabled = YES;
-    [self.desciptionView setLineBreakMode:UILineBreakModeTailTruncation];
+    [self.desciptionView setLineBreakMode:NSLineBreakByTruncatingTail];
     
     [self addSubview:self.desciptionView];
     
