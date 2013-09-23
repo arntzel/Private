@@ -19,14 +19,14 @@
 @synthesize delegate;
 
 - (IBAction)btnCreateAccountClick:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(btnCreateAccountDidClick)]) {
-        [self.delegate btnCreateAccountDidClick];
+    if ([self.delegate respondsToSelector:@selector(btnSignUpSelected)]) {
+        [self.delegate btnSignUpSelected];
     }
 }
 
 - (IBAction)btnSignInClick:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(btnSignInDidClick)]) {
-        [self.delegate btnSignInDidClick];
+    if ([self.delegate respondsToSelector:@selector(btnSignInSelected)]) {
+        [self.delegate btnSignInSelected];
     }
 }
 

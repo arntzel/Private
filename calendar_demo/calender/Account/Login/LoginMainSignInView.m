@@ -9,6 +9,20 @@
 #import "LoginMainSignInView.h"
 
 @implementation LoginMainSignInView
+@synthesize delegate;
+
+- (IBAction)btnFacebookClick:(id)sender {
+}
+
+- (IBAction)btnGoogleClick:(id)sender {
+}
+
+- (IBAction)btnSignInClick:(id)sender {
+}
+
+- (IBAction)btnForgotPasswordClick:(id)sender {
+}
+
 
 - (void)updateUI
 {
@@ -23,5 +37,7 @@
     
     return view;
 }
+
+
 
 @end

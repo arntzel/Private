@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoginMainCreatViewDelegate <NSObject>
+
+- (void)btnFacebookSignUpDidClick;
+
+- (void)btnGoogleSignUpDidClick;
+
+- (void)btnSignUpDidClick;
+
+@end
+
 @interface LoginMainCreatView : UIView
 
 +(LoginMainCreatView *) creatView;
+
+@property(nonatomic,weak) id<LoginMainCreatViewDelegate> delegate;
 
 @end

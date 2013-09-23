@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoginMainSignInViewDelegate <NSObject>
+
+- (void)btnFacebookSignInDidClick;
+
+- (void)btnGoogleSignInDidClick;
+
+- (void)btnSignInDidClick;
+
+- (void)btnForgotPasswordDidClick;
+
+@end
+
 @interface LoginMainSignInView : UIView
 
 +(LoginMainSignInView *) creatView;
+
+@property(nonatomic,weak) id<LoginMainSignInViewDelegate> delegate;
 
 @end

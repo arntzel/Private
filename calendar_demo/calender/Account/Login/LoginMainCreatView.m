@@ -9,6 +9,19 @@
 #import "LoginMainCreatView.h"
 
 @implementation LoginMainCreatView
+@synthesize delegate;
+
+- (IBAction)btnFacebookClick:(id)sender {
+}
+
+- (IBAction)btnGoogleClick:(id)sender {
+}
+
+- (IBAction)btnAddPhotoClick:(id)sender {
+}
+
+- (IBAction)btnSignUpClick:(id)sender {
+}
 
 - (void)updateUI
 {

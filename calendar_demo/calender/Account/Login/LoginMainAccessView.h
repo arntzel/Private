@@ -10,9 +10,9 @@
 
 @protocol LoginMainAccessViewDelegate <NSObject>
 
-- (void)btnCreateAccountDidClick;
+- (void)btnSignUpSelected;
 
-- (void)btnSignInDidClick;
+- (void)btnSignInSelected;
 
 @end
 

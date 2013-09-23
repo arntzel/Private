@@ -38,6 +38,8 @@
 		7662F72717F0636100B64E40 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F72517F0636100B64E40 /* LoginMainViewController.m */; };
 		7662F72917F0638A00B64E40 /* LoginMainSignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7662F72817F0638A00B64E40 /* LoginMainSignInView.xib */; };
 		7662F72C17F063AC00B64E40 /* LoginMainSignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F72B17F063AC00B64E40 /* LoginMainSignInView.m */; };
+		7662F72E17F06B7600B64E40 /* login_main_sign_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7662F72D17F06B7600B64E40 /* login_main_sign_bg.png */; };
+		7662F73017F06FAE00B64E40 /* event_detail_nav_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7662F72F17F06FAE00B64E40 /* event_detail_nav_back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		7662F72817F0638A00B64E40 /* LoginMainSignInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginMainSignInView.xib; path = ../../LoginMainSignInView.xib; sourceTree = "<group>"; };
 		7662F72A17F063AC00B64E40 /* LoginMainSignInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMainSignInView.h; path = ../../LoginMainSignInView.h; sourceTree = "<group>"; };
 		7662F72B17F063AC00B64E40 /* LoginMainSignInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMainSignInView.m; path = ../../LoginMainSignInView.m; sourceTree = "<group>"; };
+		7662F72D17F06B7600B64E40 /* login_main_sign_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_main_sign_bg.png; sourceTree = "<group>"; };
+		7662F72F17F06FAE00B64E40 /* event_detail_nav_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = event_detail_nav_back.png; path = ../../../Resource/Event/EventDetail/Navigation/event_detail_nav_back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 		763B839117F02C2700B3CC96 = {
 			isa = PBXGroup;
 			children = (
+				7662F72F17F06FAE00B64E40 /* event_detail_nav_back.png */,
 				763B83A317F02C2700B3CC96 /* login */,
 				763B83C217F02C2700B3CC96 /* loginTests */,
 				763B839C17F02C2700B3CC96 /* Frameworks */,
@@ -205,6 +210,7 @@
 		763B83D717F02CD400B3CC96 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7662F72D17F06B7600B64E40 /* login_main_sign_bg.png */,
 				763B843917F03FE100B3CC96 /* login_main_login_facebook.png */,
 				763B843A17F03FE100B3CC96 /* login_main_login_google.png */,
 				763B843B17F03FE100B3CC96 /* login_main_login_line.png */,
@@ -304,7 +310,9 @@
 				763B843517F036FC00B3CC96 /* login_mainaccess_new.png in Resources */,
 				763B83E317F0330600B3CC96 /* LoginMainAccessView.xib in Resources */,
 				763B83B617F02C2700B3CC96 /* Images.xcassets in Resources */,
+				7662F72E17F06B7600B64E40 /* login_main_sign_bg.png in Resources */,
 				763B843617F036FC00B3CC96 /* login_mainaccess_signin.png in Resources */,
+				7662F73017F06FAE00B64E40 /* event_detail_nav_back.png in Resources */,
 				763B844517F03FE100B3CC96 /* login_main_singnup_profile_bg.png in Resources */,
 				763B83DB17F02CD400B3CC96 /* login_mainview_title.png in Resources */,
 				763B844417F03FE100B3CC96 /* login_main_singnup_addphoto.png in Resources */,

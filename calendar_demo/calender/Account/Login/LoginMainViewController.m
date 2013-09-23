@@ -12,11 +12,13 @@
 #import "LoginMainCreatView.h"
 #import "LoginMainSignInView.h"
 
-@interface LoginMainViewController ()
+@interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate>
 {
+    
     UIImageView *bgView;
     UIScrollView *scrollView;
     LoginMainTitileView *titleView;
+    UIButton *btnBack;
     
     LoginMainAccessView *accessView;
     LoginMainCreatView *creatView;
@@ -52,11 +54,15 @@
     titleView = [LoginMainTitileView creatView];
     [scrollView addSubview:titleView];
     CGRect frame = titleView.frame;
-    frame.origin.y = 40;
+    frame.origin.y = 20;
     titleView.frame = frame;
     
-    [self configAccessView];
-    [self configCreatView];
+    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(18, 18, 21, 21)];
+    [btnBack setBackgroundImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
+    [self.view addSubview:btnBack];
+    
+//    [self configAccessView];
+//    [self configCreatView];
     [self configSignInView];
 }
 
@@ -64,8 +70,9 @@
 {
     accessView = [LoginMainAccessView creatView];
     [scrollView addSubview:accessView];
+    accessView.delegate = self;
     CGRect frame = accessView.frame;
-    frame.origin.y = self.view.bounds.size.height - frame.size.height - 40;
+    frame.origin.y = self.view.bounds.size.height - frame.size.height - 20;
     accessView.frame = frame;
 }
 
@@ -73,8 +80,9 @@
 {
     creatView = [LoginMainCreatView creatView];
     [scrollView addSubview:creatView];
+    creatView.delegate = self;
     CGRect frame = creatView.frame;
-    frame.origin.y = self.view.bounds.size.height - frame.size.height - 40;
+    frame.origin.y = titleView.frame.size.height + titleView.frame.origin.y + 20;
     creatView.frame = frame;
 }
 
@@ -82,15 +90,65 @@
 {
     signInView = [LoginMainSignInView creatView];
     [scrollView addSubview:signInView];
-    CGRect frame = accessView.frame;
-    frame.origin.y = self.view.bounds.size.height - frame.size.height - 40;
+    signInView.delegate = self;
+    CGRect frame = signInView.frame;
+    frame.origin.y = titleView.frame.size.height + titleView.frame.origin.y + 120;
     signInView.frame = frame;
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark -
+#pragma mark LoginMainAccessViewDelegate
+- (void)btnSignUpSelected
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
+
+- (void)btnSignInSelected
+{
+    
+}
+
+#pragma mark -
+#pragma mark LoginMainCreatViewDelegate
+
+- (void)btnFacebookSignUpDidClick
+{
+    
+}
+
+- (void)btnGoogleSignUpDidClick
+{
+    
+}
+
+- (void)btnSignUpDidClick
+{
+    
+}
+
+#pragma mark -
+#pragma mark LoginMainSignInViewDelegate
+
+- (void)btnFacebookSignInDidClick
+{
+    
+}
+
+- (void)btnGoogleSignInDidClick
+{
+    
+}
+
+- (void)btnSignInDidClick
+{
+    
+}
+
+- (void)btnForgotPasswordDidClick
+{
+    
+}
+
 
 @end
