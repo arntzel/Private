@@ -9,6 +9,7 @@
 #import "EventDetailCommentView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Utils.h"
 
 @implementation EventDetailCommentView
 
@@ -49,6 +50,13 @@
     [_commentAutherPhotoView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [_commentAutherPhotoView.layer setBorderWidth:1.0f];
     
+}
+
+-(void) updateView:(Comment *) cmt
+{
+    [self setHeaderPhotoUrl:cmt.commentor.avatar_url];
+    self.commentContentLabel.text = cmt.msg;
+    self.commentTimeLabel.text = [Utils getTimeText:cmt.createTime];
 }
 
 +(EventDetailCommentView *) creatView

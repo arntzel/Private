@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
 
 @interface EventDetailCommentView : UIView
 
@@ -17,5 +18,7 @@
 
 - (void)setHeaderPhoto:(UIImage *)photo;
 -(void) setHeaderPhotoUrl:(NSString *) url;
+
+-(void) updateView:(Comment *) cmt;
 
 @end

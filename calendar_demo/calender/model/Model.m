@@ -797,7 +797,7 @@ static Model * instance;
 
 -(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback
 {
-    [self performSelector:@selector(delNotification:) withObject:callback afterDelay:5.0f];
+    [self performSelector:@selector(delNotification:) withObject:callback afterDelay:2.0f];
 }
 
 -(void) delNotification:(void (^)(NSInteger error, NSArray * comments))callback
@@ -805,10 +805,10 @@ static Model * instance;
     User * me = [[UserModel getInstance] getLoginUser];
     NSMutableArray * comments = [[NSMutableArray alloc] init];
 
-    for(int i=0;i<10;i++) {
+    for(int i=0;i<5;i++) {
         Comment * cmt = [[Comment alloc] init];
         cmt.msg = @"teststddddddddsaadfa";
-        cmt.createTime = [NSDate date];
+        cmt.createTime = [[NSDate date] dateByAddingTimeInterval:-(5-i)*1800];
         if(i==8) {
             cmt.commentor = nil;
         } else {
@@ -822,12 +822,12 @@ static Model * instance;
 
 -(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback
 {
-    [self performSelector:@selector(createComment:andCmt:) withObject:callback afterDelay:2.0f];
+    [self performSelector:@selector(createComment:) withObject:callback afterDelay:2.0f];
 }
 
--(void) createComment:(void (^)(NSInteger error, Comment * cmt))callback andCmt: (Comment *) cmt
+-(void) createComment:(void (^)(NSInteger error, Comment * cmt))callback
 {
-    callback(0, cmt);
+    callback(0, nil);
 }
 
 @end

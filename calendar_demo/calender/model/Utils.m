@@ -211,6 +211,34 @@
     }
 }
 
++(NSString *) getTimeText:(NSDate *) time
+{
+    NSTimeInterval interval = [time timeIntervalSinceNow];
+    
+    int ago = -1*interval/60;
+    
+    if(ago < 1) {
+        return @"now";
+    }
+    
+    if(ago <= 60) {
+        return [NSString stringWithFormat:@"%d mins ago", ago];
+    }
+    
+    int hour = ago/60;
+    if(hour <= 24) {
+        return [NSString stringWithFormat:@"%d hours ago", hour];
+    }
+    
+    int day = hour/24;
+    
+    if (day<=5) {
+        return [NSString stringWithFormat:@"%d days ago", day];
+    }
+    
+    return [Utils formateDay:time];
+}
+
 +(NSMutableArray *) getEventSectionArray: (NSArray*)events
 {
     NSMutableArray * array = [[NSMutableArray alloc] init];

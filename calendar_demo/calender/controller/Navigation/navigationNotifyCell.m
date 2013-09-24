@@ -73,40 +73,12 @@
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
 
-    self.notifyDateLabel.text = [self getTimeText:msg];
+    self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
     
     if([msg.unread boolValue]) {
         self.notifyDateLabel.textColor = [UIColor redColor];
     }
 }
 
-
--(NSString *) getTimeText:(MessageEntity *) msg
-{
-    NSTimeInterval interval = [msg.sendTime timeIntervalSinceNow];
-
-    int ago = -1*interval/60;
-
-    if(ago < 1) {
-        return @"now";
-    }
-
-    if(ago <= 60) {
-        return [NSString stringWithFormat:@"%d mins ago", ago];
-    }
-
-    int hour = ago/60;
-    if(hour <= 24) {
-        return [NSString stringWithFormat:@"%d hours ago", hour];
-    }
-
-    int day = hour/24;
-
-    if (day<=5) {
-        return [NSString stringWithFormat:@"%d days ago", day];
-    }
-
-    return [Utils formateDay:msg.sendTime];
-}
 
 @end

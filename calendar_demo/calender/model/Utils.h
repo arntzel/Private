@@ -72,6 +72,8 @@
 +(NSString *) formate:(int) year andMonth:(int)month;
 
 
++(NSString *) getTimeText:(NSDate *) time;
+
 /**
  return the date list that the events contained
  */

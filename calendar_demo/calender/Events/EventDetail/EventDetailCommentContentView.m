@@ -130,10 +130,16 @@
         
         [commentTextView showSending:YES];
         
-        [[Model getInstance] createComment:cmt andCallback:^(NSInteger error, Comment *cmt) {
-            [cmt release];
-            [commentTextView showSending:NO];
+        [[Model getInstance] createComment:cmt andCallback:^(NSInteger error, Comment *comment) {
             
+            [commentTextView showSending:NO];
+            commentTextView.messageField.text = @"";
+            
+            [self addComment:cmt];
+            [cmt release];
+            
+            [self updateFrame];
+            [self.delegate onEventDetailCommentContentViewFrameChanged];
         }];
     }    
 }
@@ -142,8 +148,7 @@
 {
     EventDetailCommentView * commentView = [EventDetailCommentView creatView];
     //[commentView setHeaderPhoto:[UIImage imageNamed:@"header10.jpg"]];
-    [commentView setHeaderPhotoUrl: cmt.commentor.avatar_url];
-    
+    [commentView updateView:cmt];
 
     [self insertSubview:commentView atIndex:1];
 }
