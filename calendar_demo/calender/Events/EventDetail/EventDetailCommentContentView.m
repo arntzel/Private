@@ -135,11 +135,17 @@
             [commentTextView showSending:NO];
             commentTextView.messageField.text = @"";
             
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.2];
+            
             [self addComment:cmt];
             [cmt release];
             
             [self updateFrame];
             [self.delegate onEventDetailCommentContentViewFrameChanged];
+            
+            [UIView commitAnimations];
         }];
     }    
 }
