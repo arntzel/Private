@@ -80,8 +80,7 @@
 
 -(void) hideKeyboard
 {
-    [self.TextPassword resignFirstResponder];
-    [self.TextUserName resignFirstResponder];
+     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 - (void)updateUI
