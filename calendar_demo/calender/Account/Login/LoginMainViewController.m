@@ -54,6 +54,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -88,7 +89,59 @@
     [self configAccessView];
     [self configCreatView];
     [self configSignInView];
+    
+    [self registerKeyboardEvents];
 }
+
+-(void) viewDidUnload {
+    [self unregisterKeyboardEvents];
+}
+
+-(void) registerKeyboardEvents
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void) unregisterKeyboardEvents
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+
+
+
+#pragma mark -
+#pragma mark Responding to keyboard events
+- (void)keyboardWillShow:(NSNotification *)notification {
+
+    NSDictionary *userInfo = [notification userInfo];
+    // Get the origin of the keyboard when it's displayed.
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
+    CGRect keyboardRect = [aValue CGRectValue];
+    // Get the duration of the animation.
+    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    //NSTimeInterval animationDuration;
+    //[animationDurationValue getValue:&animationDuration];
+    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+    //[self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
+
+    CGRect frame = self.view.frame;
+    frame.origin.y =  - keyboardRect.size.height;
+    self.view.frame = frame;
+
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+
+    CGRect frame = self.view.frame;
+    frame.origin.y =  0;
+    self.view.frame = frame;
+}
+
+
 
 - (void)configGPPSignIn
 {
@@ -328,10 +381,14 @@
         return;
     }
     
-    [loadingView startAnimating];
+    //[loadingView startAnimating];
+    
+    [signInView showLogining:YES];
     [[UserModel getInstance] login:username withPassword:password andCallback:^(NSInteger error, User *user) {
         
-        [loadingView stopAnimating];
+        //[loadingView stopAnimating];
+        
+        [signInView showLogining:NO];
         
         if(error == 0) {
             [self onLogined];

@@ -26,4 +26,7 @@
 
 @property(nonatomic,weak) id<LoginMainSignInViewDelegate> delegate;
 
+
+-(void) showLogining:(BOOL) logining;
+
 @end
