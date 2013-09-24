@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "BaseUIViewController.h"
+#import "BaseUIViewController.h"
 
-@interface EventDetailController : UIViewController
+@interface EventDetailController : BaseUIViewController
 
 @property int eventID;
 
