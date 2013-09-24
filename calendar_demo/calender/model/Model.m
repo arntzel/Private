@@ -797,7 +797,7 @@ static Model * instance;
 
 -(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d", HOST, eventID];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d&limit=1000", HOST, eventID];
     
     LOG_D(@"url=%@", url);
     
@@ -823,6 +823,7 @@ static Model * instance;
                 [cmts addObject:cmt];
             }
             
+            [cmts sortedArrayUsingSelector:@selector(compare:)];
             callback(ERROCODE_OK, cmts);
             
         } else {

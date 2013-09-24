@@ -22,6 +22,9 @@
 @property(strong) NSDate * createTime;
 
 
+- (NSComparisonResult) compare:(Comment *) cmt;
+
+
 -(NSDictionary*)convent2Dic;
 
 +(Comment *) parseComment:(NSDictionary *) json;
