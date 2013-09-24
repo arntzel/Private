@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		342DBBF117F133FE0094FEFE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 342DBBF017F133FE0094FEFE /* Crashlytics.framework */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -60,6 +59,7 @@
 		7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76417F07F2B00B64E40 /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F77117F080A800B64E40 /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		767812EF17F16D3900965483 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 767812EE17F16D3900965483 /* Crashlytics.framework */; };
 		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F55617AE929E009FFEC8 /* Accelerate.framework */; };
 		769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 769AB8F917DF50320033E677 /* GoogleOpenSource.framework */; };
@@ -361,7 +361,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		342DBBF017F133FE0094FEFE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -427,6 +426,7 @@
 		7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginFacebook.m; sourceTree = "<group>"; };
 		7662F77017F080A800B64E40 /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
 		7662F77117F080A800B64E40 /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
+		767812EE17F16D3900965483 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "calender/Third-Party-Libraries/Crashlytics.framework"; sourceTree = "<group>"; };
 		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7696F55617AE929E009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		769AB8F917DF50320033E677 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0/GoogleOpenSource.framework"; sourceTree = "<group>"; };
@@ -912,7 +912,7 @@
 				769AB90017DF50A00033E677 /* FacebookSDK.framework in Frameworks */,
 				769AB90417DF50CF0033E677 /* SDWebImage.framework in Frameworks */,
 				769AB90617DF50E10033E677 /* GoogleMaps.framework in Frameworks */,
-				342DBBF117F133FE0094FEFE /* Crashlytics.framework in Frameworks */,
+				767812EF17F16D3900965483 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,7 +954,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				342DBBF017F133FE0094FEFE /* Crashlytics.framework */,
+				767812EE17F16D3900965483 /* Crashlytics.framework */,
 				769AB90717DF50F20033E677 /* GoogleMaps.bundle */,
 				769AB90517DF50E10033E677 /* GoogleMaps.framework */,
 				769AB90317DF50CF0033E677 /* SDWebImage.framework */,
@@ -2188,7 +2188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run bf0c5f52126e61ccb51c68eecf9a761324301f9a";
+			shellScript = "./calender/Third-Party-Libraries/Crashlytics.framework/run bf0c5f52126e61ccb51c68eecf9a761324301f9a";
 		};
 /* End PBXShellScriptBuildPhase section */
 
