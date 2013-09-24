@@ -189,7 +189,7 @@
         [self.delegate onEventDetailCommentContentViewFrameChanged];
     }
 
-    [[Model getInstance] getEventComment:0 andCallback:^(NSInteger error, NSArray *comments) {
+    [[Model getInstance] getEventComment:self.eventID andCallback:^(NSInteger error, NSArray *comments) {
 
         if(error == 0) {
             User * me = [[UserModel getInstance] getLoginUser];
