@@ -2,6 +2,7 @@
 
 #import "Event.h"
 #import "Utils.h"
+#import "UserModel.h"
 
 @implementation Event
 
@@ -70,9 +71,16 @@
     }
     
     event.start_type = [json objectForKey:@"start_type"];
+    
     NSDate * startDate = [Utils parseNSDate:[json objectForKey:@"start"]];
-    event.start = [Utils convertLocalDate:startDate];
-    event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
+    
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    NSTimeZone * timezone = [NSTimeZone timeZoneWithName:me.timezone];
+    event.start = [Utils gmtDate2LocatDate:startDate andTimezone:timezone];
+    
+    //event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
+    
     event.location = [Location parseLocation: [json objectForKey:@"location"]];
     event.status = [json objectForKey:@"status"];
 

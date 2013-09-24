@@ -53,6 +53,9 @@
 
 +(NSString *) formateDate: (NSDate *) time andTimezone:(NSTimeZone *) timezone;
 
++(NSDate *) gmtDate2LocatDate:(NSDate *) gmtdate andTimezone:(NSTimeZone *) tinezone;
+
+
 /*
  convert a NSDate to NSString object
  return the date of string format, example: "2013-06-02 12:12:10"
