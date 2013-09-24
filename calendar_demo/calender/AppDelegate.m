@@ -18,6 +18,7 @@
 #import "UserModel.h"
 #import "CoreDataModel.h"
 #import "UserSetting.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -31,7 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    [Crashlytics startWithAPIKey:@"bf0c5f52126e61ccb51c68eecf9a761324301f9a"];
 #ifndef DEBUG
     [self redirectNSLogToDocumentFolder];
 #endif
