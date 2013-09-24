@@ -159,6 +159,7 @@
     [scrollView addSubview:conformView];
     
     commentContentView = [[EventDetailCommentContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    commentContentView.eventID = self.eventID;
     commentContentView.delegate = self;
     [scrollView addSubview:commentContentView];
     
@@ -409,6 +410,8 @@
 #pragma mark Responding to keyboard events
 - (void)keyboardWillShow:(NSNotification *)notification {
 
+    LOG_D(@"EventDetail keyboardWillShow");
+    
     NSDictionary *userInfo = [notification userInfo];
     // Get the origin of the keyboard when it's displayed.
     NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -430,11 +433,15 @@
 //    scrollView.contentOffset = contentOffset;
     
     int y = commentContentView.frame.origin.y;
-    contentOffset.y = y;
+    int maxY = scrollView.contentSize.height - scrollView.frame.size.height;
+    contentOffset.y = y < maxY ? y : maxY;
     scrollView.contentOffset = contentOffset;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
+    
+    LOG_D(@"EventDetail keyboardWillHide");
+
     
     //NSDictionary* userInfo = [notification userInfo];
     /*
@@ -455,6 +462,8 @@
 #pragma mark EventDetailCommentContentView
 -(void) onEventDetailCommentContentViewFrameChanged
 {
+    LOG_D(@"EventDetail onEventDetailCommentContentViewFrameChanged");
+
     [self layOutSubViews];
 }
 

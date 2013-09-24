@@ -13,10 +13,17 @@
 
 @property int id;
 
+@property int eventID;
+
 @property(strong) User * commentor;
 
 @property(strong) NSString * msg;
 
 @property(strong) NSDate * createTime;
+
+
+-(NSDictionary*)convent2Dic;
+
++(Comment *) parseComment:(NSDictionary *) json;
 
 @end

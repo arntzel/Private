@@ -74,7 +74,7 @@
 {
     CGRect frame = self.frame;
     int subViewCount = self.subviews.count;
-    frame.size.height = subViewCount*56;
+    frame.size.height = subViewCount*56 + 10;
     self.frame = frame;
     
     for(int i=0;i<subViewCount;i++) {
@@ -127,25 +127,31 @@
         cmt.commentor = [[UserModel getInstance] getLoginUser];
         cmt.createTime = [NSDate date];
         cmt.msg = msg;
-        
+        cmt.eventID = self.eventID;
         [commentTextView showSending:YES];
         
         [[Model getInstance] createComment:cmt andCallback:^(NSInteger error, Comment *comment) {
             
             [commentTextView showSending:NO];
-            commentTextView.messageField.text = @"";
             
-            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.2];
-            
-            [self addComment:cmt];
-            [cmt release];
-            
-            [self updateFrame];
-            [self.delegate onEventDetailCommentContentViewFrameChanged];
-            
-            [UIView commitAnimations];
+            if(error ==0) {
+    
+                commentTextView.messageField.text = @"";
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.2];
+                
+                [self addComment:comment];
+                [cmt release];
+                
+                [self updateFrame];
+                [self.delegate onEventDetailCommentContentViewFrameChanged];
+                
+                [UIView commitAnimations];
+                
+            } else {
+                //TODO::
+            }
         }];
     }    
 }

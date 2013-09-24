@@ -18,6 +18,8 @@
 
 @interface EventDetailCommentContentView : UIView
 
+@property int eventID;
+
 @property(nonatomic, assign) id<EventDetailCommentContentViewDelegate> delegate;
 
 - (id)init;

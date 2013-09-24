@@ -797,32 +797,79 @@ static Model * instance;
 
 -(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback
 {
-    [self performSelector:@selector(delNotification:) withObject:callback afterDelay:2.0f];
-}
-
--(void) delNotification:(void (^)(NSInteger error, NSArray * comments))callback
-{
-    User * me = [[UserModel getInstance] getLoginUser];
-    NSMutableArray * comments = [[NSMutableArray alloc] init];
-
-    for(int i=0;i<5;i++) {
-        Comment * cmt = [[Comment alloc] init];
-        cmt.msg = @"teststddddddddsaadfa";
-        cmt.createTime = [[NSDate date] dateByAddingTimeInterval:-(5-i)*1800];
-        if(i==8) {
-            cmt.commentor = nil;
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d", HOST, eventID];
+    
+    LOG_D(@"url=%@", url);
+    
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            
+            NSArray * objects = [json objectForKey:@"objects"];
+            
+            NSMutableArray * cmts = [[NSMutableArray alloc] init];
+            
+            for(int i=0; i<objects.count;i++) {
+                Comment * cmt = [Comment parseComment:[objects objectAtIndex:i]];
+                [cmts addObject:cmt];
+            }
+            
+            callback(ERROCODE_OK, cmts);
+            
         } else {
-            cmt.commentor = me;
+            callback(-1, nil);
         }
-        [comments addObject:cmt];
-    }
-
-    callback(0, comments);
+    }];
 }
+
 
 -(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback
 {
-    [self performSelector:@selector(createComment:) withObject:callback afterDelay:2.0f];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment", HOST];
+    
+    LOG_D(@"url=%@", url);
+    
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    NSDictionary * dict = [cmt convent2Dic];
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+       
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 201) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"createComment resp:%@", json);
+            
+            Comment * newCmt = [Comment parseComment:json];
+            callback(0, newCmt);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"createComment error=%@, resp:%@", error, aStr);
+            callback(-1, nil);
+        }
+    }];
+
 }
 
 -(void) createComment:(void (^)(NSInteger error, Comment * cmt))callback
