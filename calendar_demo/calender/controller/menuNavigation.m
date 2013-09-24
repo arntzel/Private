@@ -214,9 +214,11 @@
     } else {
         MessageEntity * msg = [msgModel getMessage:indexPath.row];
 
-        EventDetailController * detailCtl = [[EventDetailController alloc] init];
-        detailCtl.eventID = [msg.eventID intValue];
-        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        if([msg.eventID intValue] > 0) {
+            EventDetailController * detailCtl = [[EventDetailController alloc] init];
+            detailCtl.eventID = [msg.eventID intValue];
+            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        }
         
         if([msg.unread boolValue]) {
             [msgModel readMessage:msg];

@@ -37,13 +37,17 @@
     
     
     NSString * url = [json objectForKey:@"url"];
-    NSString * prefix = @"/schedule/event/";
-    NSRange range;
-    range.location = [prefix length];
-    range.length = [url length] -1 - range.location;
     
-    NSString * strEventID = [url substringWithRange:range];
-    msg.eventID = [strEventID intValue];
+    if(![url isKindOfClass:[NSNull class]]) {
+        NSString * prefix = @"/schedule/event/";
+        NSRange range;
+        range.location = [prefix length];
+        range.length = [url length] -1 - range.location;
+        
+        NSString * strEventID = [url substringWithRange:range];
+        msg.eventID = [strEventID intValue];
+    }
+    
     return msg;
 }
 @end
