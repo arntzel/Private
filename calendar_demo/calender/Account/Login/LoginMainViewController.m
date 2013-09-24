@@ -66,6 +66,7 @@
     [bgView setFrame:self.view.bounds];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 568);
     [self.view addSubview:scrollView];
     
     titleView = [LoginMainTitileView creatView];
@@ -202,7 +203,7 @@
     [scrollView addSubview:signInView];
     signInView.delegate = self;
     CGRect frame = signInView.frame;
-    frame.origin.y = titleView.frame.size.height + titleView.frame.origin.y + 120;
+    frame.origin.y = self.view.frame.size.height - frame.size.height - 15;
     signInView.frame = frame;
     [signInView setAlpha:0.0f];
 }
