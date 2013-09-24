@@ -374,10 +374,10 @@
 
 - (void)btnSignInDidClickWithName:(NSString *)name Password:(NSString *)_password
 {
-    NSString * username = name;
+    NSString * username = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString * password = _password;
-    if (username == nil || password == nil) {
-        [self showAlert:@"can't be empty !!"];
+    if (username.length == 0 || password.length == 0) {
+        [self showAlert:@"Email and password can't be empty!"];
         return;
     }
     
