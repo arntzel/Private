@@ -19,8 +19,8 @@
 
 @interface SettingViewController ()
 
-//@property (nonatomic, strong) UIScrollView *scroller;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIScrollView *scroller;
+
 @end
 
 @implementation SettingViewController
@@ -58,21 +58,17 @@
     self.navigation.titleLable.text = @"Accounts & Settings";
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.navigation];
-    float tableViewY = CGRectGetMaxY(self.navigation.frame);
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, tableViewY, self.view.frame.size.width, self.view.frame.size.height - tableViewY) style:UITableViewStyleGrouped];
     
-    [self.view addSubview:self.tableView];
+    float scrollerY = CGRectGetMaxY(self.navigation.frame);
+    self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
+    self.scroller.backgroundColor = [UIColor clearColor];
     
-//    float scrollerY = CGRectGetMaxY(self.navigation.frame);
-//    self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
-//    self.scroller.backgroundColor = [UIColor clearColor];
-//    
-//    SettingsContentView *t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
-//    t_settingsContentView.backgroundColor = [UIColor clearColor];
-//    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, t_settingsContentView.frame.size.height);
-//    
-//    [self.scroller addSubview:t_settingsContentView];
-//    [self.view addSubview:self.scroller];
+    SettingsContentView *t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
+    t_settingsContentView.backgroundColor = [UIColor clearColor];
+    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, t_settingsContentView.frame.size.height);
+    
+    [self.scroller addSubview:t_settingsContentView];
+    [self.view addSubview:self.scroller];
     
     
 }
