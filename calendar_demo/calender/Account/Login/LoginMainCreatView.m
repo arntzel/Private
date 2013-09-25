@@ -50,10 +50,7 @@
 
 - (void)updateUI
 {
-    UITapGestureRecognizer* singleTapRecognizer;
-    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
-    [self addGestureRecognizer:singleTapRecognizer];
+
 }
 
 +(LoginMainCreatView *) creatView
