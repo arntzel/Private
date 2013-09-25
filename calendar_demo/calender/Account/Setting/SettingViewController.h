@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BaseMenuViewController.h"
 
-@interface SettingViewController : BaseMenuViewController
+@interface SettingViewController : BaseUIViewController
 
+@property Navigation * navigation;
+
+@property(weak) id<BaseMenuViewControllerDelegate> delegate;
 
 -(IBAction) logout:(id)sender;
 

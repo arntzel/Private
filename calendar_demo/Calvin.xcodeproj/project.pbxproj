@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340FF3F117F2C7CE00E02410 /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 340FF3F017F2C7CE00E02410 /* UIView+LoadFromNib.m */; };
+		340FF3F317F2CC1900E02410 /* SettingsContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340FF3F217F2CC1900E02410 /* SettingsContentView.xib */; };
+		340FF3F717F2CE9E00E02410 /* SettingsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 340FF3F617F2CE9D00E02410 /* SettingsContentView.m */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -361,6 +364,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		340FF3EF17F2C7CE00E02410 /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
+		340FF3F017F2C7CE00E02410 /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
+		340FF3F217F2CC1900E02410 /* SettingsContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsContentView.xib; sourceTree = "<group>"; };
+		340FF3F517F2CE9D00E02410 /* SettingsContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsContentView.h; sourceTree = "<group>"; };
+		340FF3F617F2CE9D00E02410 /* SettingsContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsContentView.m; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1009,6 +1017,11 @@
 				7662F75B17F07F2B00B64E40 /* SettingViewController.h */,
 				7662F75C17F07F2B00B64E40 /* SettingViewController.m */,
 				7662F75D17F07F2B00B64E40 /* SettingViewController.xib */,
+				340FF3EF17F2C7CE00E02410 /* UIView+LoadFromNib.h */,
+				340FF3F017F2C7CE00E02410 /* UIView+LoadFromNib.m */,
+				340FF3F517F2CE9D00E02410 /* SettingsContentView.h */,
+				340FF3F617F2CE9D00E02410 /* SettingsContentView.m */,
+				340FF3F217F2CC1900E02410 /* SettingsContentView.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2127,6 +2140,7 @@
 				769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */,
 				769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */,
 				769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */,
+				340FF3F317F2CC1900E02410 /* SettingsContentView.xib in Resources */,
 				769ABB4017DF52090033E677 /* AddEventInvitePeopleCell.xib in Resources */,
 				769ABB4217DF52090033E677 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
@@ -2293,6 +2307,7 @@
 				7662F74517F075F400B64E40 /* LoginMainTitileView.m in Sources */,
 				769ABC9517DF542A0033E677 /* Utils.m in Sources */,
 				769ABC9617DF542A0033E677 /* ASIAuthenticationDialog.m in Sources */,
+				340FF3F717F2CE9E00E02410 /* SettingsContentView.m in Sources */,
 				769ABC9717DF542A0033E677 /* ASIDataCompressor.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
@@ -2325,6 +2340,7 @@
 				769ABD3817DF54950033E677 /* KalDate.m in Sources */,
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
+				340FF3F117F2C7CE00E02410 /* UIView+LoadFromNib.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
 				769ABD3C17DF54950033E677 /* KalGridView.m in Sources */,
