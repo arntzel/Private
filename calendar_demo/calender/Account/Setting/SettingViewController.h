@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseUIViewController.h"
+#import "BaseMenuViewController.h"
 
-@interface SettingViewController : BaseUIViewController
+@interface SettingViewController : BaseMenuViewController
 
 
 -(IBAction) logout:(id)sender;

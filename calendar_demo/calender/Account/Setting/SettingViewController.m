@@ -31,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupViews];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -38,6 +40,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Layout Helper
+- (void)setupViews
+{
+    self.navigation.rightBtn.hidden = YES;
+    self.navigation.titleLable.text = @"Accounts & Settings";
 }
 
 -(IBAction) logout:(id)sender

@@ -47,7 +47,7 @@
     
     feedViewCtr.delegate = self;
     pendingEventViewCtr.delegate = self;
-    
+    settingViewCtr.delegate = self;
     
 
     currentIndex = 0;
