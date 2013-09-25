@@ -34,6 +34,9 @@
 		764404C417523C5700B11BDE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C317523C5700B11BDE /* libicucore.dylib */; };
 		764404C617523C6200B11BDE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C517523C6200B11BDE /* OpenGLES.framework */; };
 		764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404C717523C6E00B11BDE /* SystemConfiguration.framework */; };
+		764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764C3F8517F326960014B8B1 /* TPKeyboardAvoidingScrollView.m */; };
+		764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764C3F8817F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m */; };
+		764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764C3F8A17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m */; };
 		765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 765DF0B917F083A8007259DF /* LoginStatusCheck.m */; };
 		7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */; };
 		7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F73217F075F400B64E40 /* LoginMainAccessView.m */; };
@@ -390,6 +393,12 @@
 		764404C317523C5700B11BDE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		764404C517523C6200B11BDE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		764404C717523C6E00B11BDE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		764C3F8417F326960014B8B1 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		764C3F8517F326960014B8B1 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		764C3F8717F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		764C3F8817F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		764C3F8917F326C30014B8B1 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		764C3F8A17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		765DF0B817F083A8007259DF /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
 		765DF0B917F083A8007259DF /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		7661E17317E201D700C788D0 /* GPlaceAutoCompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceAutoCompleteSource.h; sourceTree = "<group>"; };
@@ -1001,6 +1010,19 @@
 				76318B2917E09A69000BC88B /* Icon@2x.png */,
 			);
 			path = Xcassets;
+			sourceTree = "<group>";
+		};
+		764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				764C3F8717F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.h */,
+				764C3F8817F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m */,
+				764C3F8917F326C30014B8B1 /* TPKeyboardAvoidingTableView.h */,
+				764C3F8A17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m */,
+				764C3F8417F326960014B8B1 /* TPKeyboardAvoidingScrollView.h */,
+				764C3F8517F326960014B8B1 /* TPKeyboardAvoidingScrollView.m */,
+			);
+			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 		7662F75A17F07F2B00B64E40 /* Setting */ = {
@@ -1629,6 +1651,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */,
 				769ABBB517DF54290033E677 /* ASIHTTPRequest */,
 				769ABBCA17DF54290033E677 /* ATMHud */,
 				769ABBDC17DF54290033E677 /* AttributedLabel.h */,
@@ -2198,6 +2221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */,
+				764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				769ABD5017DF5C020033E677 /* AddLocationViewController.m in Sources */,
 				769ABD4E17DF58C20033E677 /* AddLocationTextView.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
@@ -2303,6 +2327,7 @@
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
+				764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
 				769ABCA017DF542A0033E677 /* ATMHudView.m in Sources */,
@@ -2326,6 +2351,7 @@
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
+				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
 				769ABD3C17DF54950033E677 /* KalGridView.m in Sources */,
 				769ABD3D17DF54950033E677 /* KalMonthNameView.m in Sources */,

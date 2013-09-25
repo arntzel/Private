@@ -23,11 +23,13 @@
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
 
+#import "TPKeyboardAvoidingScrollView.h"
+
 @interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate>
 {
     
     UIImageView *bgView;
-    UIScrollView *scrollView;
+    TPKeyboardAvoidingScrollView *scrollView;
     LoginMainTitileView *titleView;
     UIButton *btnBack;
     
@@ -65,7 +67,7 @@
     [bgView setContentMode:UIViewContentModeScaleAspectFill];
     [bgView setFrame:self.view.bounds];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 568);
     [self.view addSubview:scrollView];
     
@@ -90,59 +92,7 @@
     [self configAccessView];
     [self configCreatView];
     [self configSignInView];
-    
-    [self registerKeyboardEvents];
 }
-
--(void) viewDidUnload {
-    [self unregisterKeyboardEvents];
-}
-
--(void) registerKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void) unregisterKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-
-
-
-#pragma mark -
-#pragma mark Responding to keyboard events
-- (void)keyboardWillShow:(NSNotification *)notification {
-
-    NSDictionary *userInfo = [notification userInfo];
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    // Get the duration of the animation.
-    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    //NSTimeInterval animationDuration;
-    //[animationDurationValue getValue:&animationDuration];
-    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
-    //[self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
-
-    CGRect frame = self.view.frame;
-    frame.origin.y =  - keyboardRect.size.height;
-    self.view.frame = frame;
-
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-
-    CGRect frame = self.view.frame;
-    frame.origin.y =  0;
-    self.view.frame = frame;
-}
-
-
 
 - (void)configGPPSignIn
 {
@@ -210,6 +160,7 @@
 
 - (void)backToAccessView
 {
+    [self.view endEditing:YES];
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         if (!creatView.hidden) {
             creatView.alpha = 0.0f;

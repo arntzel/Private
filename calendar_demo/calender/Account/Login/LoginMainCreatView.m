@@ -22,17 +22,12 @@
 
 - (IBAction)btnFacebookClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if ([self.delegate respondsToSelector:@selector(btnFacebookSignUpDidClick)]) {
         [self.delegate btnFacebookSignUpDidClick];
     }
 }
 
 - (IBAction)btnGoogleClick:(id)sender {
-    
-    [self hideKeyboard];
-    
     
     if ([self.delegate respondsToSelector:@selector(btnGoogleSignUpDidClick)]) {
         [self.delegate btnGoogleSignUpDidClick];
@@ -41,23 +36,16 @@
 
 - (IBAction)btnAddPhotoClick:(id)sender {
 
-    [self hideKeyboard];
+    [self endEditing:YES];
     
 }
 
 - (IBAction)btnSignUpClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if ([self.delegate respondsToSelector:@selector(btnSignUpDidClickWithName:Email:Password:HeadPhoto:)]) {
         NSString *userName = [NSString stringWithFormat:@"%@%@",self.textFirstName.text,self.textLastName.text];
         [self.delegate btnSignUpDidClickWithName:userName Email:self.textEmail.text Password:self.textPassword.text HeadPhoto:nil];
     }
-}
-
--(void) hideKeyboard
-{
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 - (void)updateUI

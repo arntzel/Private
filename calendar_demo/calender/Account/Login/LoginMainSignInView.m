@@ -26,8 +26,6 @@
 
 - (IBAction)btnFacebookClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if(isLogining) {
         return;
     }
@@ -39,8 +37,6 @@
 
 - (IBAction)btnGoogleClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if(isLogining) {
         return;
     }
@@ -51,9 +47,7 @@
 }
 
 - (IBAction)btnSignInClick:(id)sender {
-    
-    [self hideKeyboard];
-    
+
     if(isLogining) {
         return;
     }
@@ -64,9 +58,7 @@
 }
 
 - (IBAction)btnForgotPasswordClick:(id)sender {
-    
-    [self hideKeyboard];
-    
+        
     if(isLogining) {
         return;
     }
@@ -74,13 +66,6 @@
     if ([self.delegate respondsToSelector:@selector(btnForgotPasswordDidClick)]) {
         [self.delegate btnForgotPasswordDidClick];
     }
-}
-
-
-
--(void) hideKeyboard
-{
-     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 - (void)updateUI
