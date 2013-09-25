@@ -21,6 +21,6 @@
 
 +(LoginMainCreatView *) creatView;
 
-@property(nonatomic,weak) id<LoginMainCreatViewDelegate> delegate;
+@property(nonatomic,weak) UIViewController<LoginMainCreatViewDelegate> *delegate;
 
 @end

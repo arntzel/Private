@@ -68,17 +68,10 @@
                         <action selector="btnSignUpClick:" destination="1" eventType="touchUpInside" id="cGW-xI-fLX"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j6I-M3-dYv">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bm1-JJ-3w3">
                     <rect key="frame" x="23" y="138" width="79" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Button" image="login_main_singnup_addphoto.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnAddPhotoClick:" destination="1" eventType="touchUpInside" id="Jy5-f4-Daz"/>
-                    </connections>
-                </button>
+                </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" id="EVX-ut-WGS">
                     <rect key="frame" x="127" y="138" width="164" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,6 +99,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="imageViewAddPhoto" destination="bm1-JJ-3w3" id="THm-Kl-ovb"/>
                 <outlet property="textEmail" destination="ORq-xe-iKB" id="GeD-6d-ifc"/>
                 <outlet property="textFirstName" destination="EVX-ut-WGS" id="76I-uo-CnI"/>
                 <outlet property="textLastName" destination="JFu-C5-9bY" id="nam-IQ-ooo"/>
@@ -119,7 +113,6 @@
         <image name="login_main_login_line.png" width="578" height="18"/>
         <image name="login_main_sign_bg.png" width="584" height="94"/>
         <image name="login_main_singnup_account_bg.png" width="580" height="180"/>
-        <image name="login_main_singnup_addphoto.png" width="158" height="158"/>
         <image name="login_main_singnup_profile_bg.png" width="580" height="203"/>
     </resources>
 </document>
