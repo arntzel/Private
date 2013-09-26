@@ -180,6 +180,20 @@
     }];
 }
 
+-(void) swithFromCreateViewToSigninView
+{
+    
+    
+    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        creatView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            btnBack.alpha = 1.0f;
+            signInView.alpha = 1.0f;
+        } completion:nil];
+    }];
+}
+
 - (void)switchToCreatView
 {
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
@@ -301,6 +315,9 @@
             
             alert.tag = 1;
             [alert show];
+            
+            [signInView setEmail:createUser.email andPass:createUser.password];
+            
         } else {
             UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
                                                           message:msg
@@ -370,7 +387,7 @@
 {
     if(alertView.tag == 1) {
         //Create new user success;
-        [self backToAccessView];
+        [self swithFromCreateViewToSigninView];
     } else {
         if (buttonIndex == 1) {
             NSLog(@"%@", self.alertTextField.text);

@@ -84,6 +84,11 @@
     }
 }
 
+-(void) setEmail:(NSString *) email andPass:(NSString *) pass
+{
+    self.TextUserName.text = email;
+    self.TextPassword.text = pass;
+}
 
 +(LoginMainSignInView *) creatView
 {
