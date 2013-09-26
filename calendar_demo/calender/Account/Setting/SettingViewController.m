@@ -14,10 +14,11 @@
 #import "CoreDataModel.h"
 #import "UIView+LoadFromNib.h"
 #import "SettingsContentView.h"
-#import "DeviceInfo.h"
 
-
-@interface SettingViewController ()
+#import "EmailChangeViewController.h"
+#import "RootNavContrller.h"
+#import <MessageUI/MessageUI.h>
+@interface SettingViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
@@ -53,13 +54,12 @@
 #pragma mark - Layout Helper
 - (void)setupViews
 {
-    self.view.frame = [DeviceInfo fullScreenFrame];
     
-    self.navigation = [Navigation createNavigationView];
     self.navigation.rightBtn.hidden = YES;
     self.navigation.titleLable.text = @"Accounts & Settings";
+    
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.navigation];
+    
     
     float scrollerY = CGRectGetMaxY(self.navigation.frame);
     self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
@@ -68,9 +68,17 @@
     self.t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
     self.t_settingsContentView.backgroundColor = [UIColor clearColor];
     [self.t_settingsContentView addTarget:self action:@selector(dismissKeyBoard:) forControlEvents:UIControlEventTouchUpInside];
+    __weak SettingViewController *weakSelf = self;
+    self.t_settingsContentView.pushDetailViewBlock = ^(int row)
+    {
+        [weakSelf pushDetail:row];
+    };
+    
     self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
     [self.scroller addSubview:self.t_settingsContentView];
     [self.view addSubview:self.scroller];
+    
+    
     
     
 }
@@ -107,6 +115,75 @@
     [navController pushViewController:loginController animated:NO];
 }
 
+- (void)pushDetail:(int)row
+{
+    
+    if (row <= aboutUsViewTag)
+    {
+        UIViewController *viewCtr = nil;
+        switch (row)
+        {
+            case emailViewTag:
+                viewCtr = [[EmailChangeViewController alloc] initWithNibName:@"EmailChangeViewController" bundle:[NSBundle mainBundle]];
+                break;
+            case pwdViewTag:
+                
+                break;
+            case fbViewTag:
+                
+                break;
+            case googleViewTag:
+                
+                break;
+            case notificationViewTag:
+                
+                break;
+            case termViewTag:
+                
+                break;
+            case policyViewTag:
+                
+                break;
+            case aboutUsViewTag:
+                
+                break;
+            default:
+                break;
+        }
+        
+        [[RootNavContrller defaultInstance] pushViewController:viewCtr animated:YES];
+    }
+    else if (row == logoutBtnTag || row == deleteAccountBtnTag)
+    {
+        NSString *destructiveButtonTitle = row==logoutBtnTag ? @"Log Out":@"Delete Account";
+    
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+        [sheet showInView:self.view];
+    }
+    else if (row == sendFeedBackBtnTag)
+    {
+        [self   sendEmail];
+    }
+    
+}
+
+-(void)sendEmail
+{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+
+        mailView.mailComposeDelegate = self;
+        [mailView setSubject:@"Calvin Feedback"];
+        [mailView setToRecipients:@[@"feedback@calvinapp.com"]];
+        [self presentViewController:mailView animated:YES completion:nil];
+        
+    }
+    else
+    {
+        
+    }
+}
 #pragma mark - Data Helper
 
 - (void)getUserInfo
@@ -119,5 +196,28 @@
     self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
     self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
     self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    
+    
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            break;
+        case MFMailComposeResultSent:
+            break;
+        case MFMailComposeResultFailed:
+            break;
+            
+        default:
+            break;
+    }
+ 
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

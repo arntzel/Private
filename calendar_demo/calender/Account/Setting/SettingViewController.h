@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseMenuViewController.h"
+#import "SettingsBaseViewController.h"
 
-@interface SettingViewController : BaseUIViewController
+@interface SettingViewController : SettingsBaseViewController 
 
-@property Navigation * navigation;
+
 
 @property(weak) id<BaseMenuViewControllerDelegate> delegate;
 

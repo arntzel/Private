@@ -40,6 +40,10 @@
 		344193B917F3DEC500C796C8 /* settings_main_middle_row@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 344193B317F3DEC500C796C8 /* settings_main_middle_row@2x.png */; };
 		344193BA17F3DEC500C796C8 /* settings_main_top_row.png in Resources */ = {isa = PBXBuildFile; fileRef = 344193B417F3DEC500C796C8 /* settings_main_top_row.png */; };
 		344193BB17F3DEC500C796C8 /* settings_main_top_row@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 344193B517F3DEC500C796C8 /* settings_main_top_row@2x.png */; };
+		3441949517F475C900C796C8 /* EmailChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3441949317F475C900C796C8 /* EmailChangeViewController.m */; };
+		3441949617F475C900C796C8 /* EmailChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3441949417F475C900C796C8 /* EmailChangeViewController.xib */; };
+		3441949917F47BAF00C796C8 /* SettingsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */; };
+		3441949B17F48A2800C796C8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3441949A17F48A2800C796C8 /* MessageUI.framework */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -429,6 +433,12 @@
 		344193B317F3DEC500C796C8 /* settings_main_middle_row@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_main_middle_row@2x.png"; sourceTree = "<group>"; };
 		344193B417F3DEC500C796C8 /* settings_main_top_row.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_main_top_row.png; sourceTree = "<group>"; };
 		344193B517F3DEC500C796C8 /* settings_main_top_row@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_main_top_row@2x.png"; sourceTree = "<group>"; };
+		3441949217F475C900C796C8 /* EmailChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailChangeViewController.h; sourceTree = "<group>"; };
+		3441949317F475C900C796C8 /* EmailChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailChangeViewController.m; sourceTree = "<group>"; };
+		3441949417F475C900C796C8 /* EmailChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailChangeViewController.xib; sourceTree = "<group>"; };
+		3441949717F47BAF00C796C8 /* SettingsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsBaseViewController.h; sourceTree = "<group>"; };
+		3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsBaseViewController.m; sourceTree = "<group>"; };
+		3441949A17F48A2800C796C8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -950,6 +960,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3441949B17F48A2800C796C8 /* MessageUI.framework in Frameworks */,
 				7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */,
 				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
 				3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */,
@@ -1024,6 +1035,16 @@
 			path = Settings_Img;
 			sourceTree = "<group>";
 		};
+		3441949117F475A800C796C8 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3441949217F475C900C796C8 /* EmailChangeViewController.h */,
+				3441949317F475C900C796C8 /* EmailChangeViewController.m */,
+				3441949417F475C900C796C8 /* EmailChangeViewController.xib */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
@@ -1059,6 +1080,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3441949A17F48A2800C796C8 /* MessageUI.framework */,
 				767812EE17F16D3900965483 /* Crashlytics.framework */,
 				769AB90717DF50F20033E677 /* GoogleMaps.bundle */,
 				769AB90517DF50E10033E677 /* GoogleMaps.framework */,
@@ -1111,7 +1133,8 @@
 		7662F75A17F07F2B00B64E40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				340FF3F817F2E6F000E02410 /* Settings_Img */,
+				3441949717F47BAF00C796C8 /* SettingsBaseViewController.h */,
+				3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */,
 				7662F75B17F07F2B00B64E40 /* SettingViewController.h */,
 				7662F75C17F07F2B00B64E40 /* SettingViewController.m */,
 				7662F75D17F07F2B00B64E40 /* SettingViewController.xib */,
@@ -1120,6 +1143,8 @@
 				340FF3F517F2CE9D00E02410 /* SettingsContentView.h */,
 				340FF3F617F2CE9D00E02410 /* SettingsContentView.m */,
 				340FF3F217F2CC1900E02410 /* SettingsContentView.xib */,
+				340FF3F817F2E6F000E02410 /* Settings_Img */,
+				3441949117F475A800C796C8 /* Detail */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2125,6 +2150,7 @@
 				769AB92217DF51160033E677 /* PendingEventViewCell.xib in Resources */,
 				769AB92417DF51160033E677 /* PendingEventViewCell2.xib in Resources */,
 				769AB99A17DF51340033E677 /* push.caf in Resources */,
+				3441949617F475C900C796C8 /* EmailChangeViewController.xib in Resources */,
 				769AB99B17DF51340033E677 /* push.wav in Resources */,
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				340FF41F17F2E79800E02410 /* settings_main_gmail_icon.png in Resources */,
@@ -2445,6 +2471,7 @@
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
+				3441949917F47BAF00C796C8 /* SettingsBaseViewController.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
@@ -2486,6 +2513,7 @@
 				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
 				769ABD5317DF5D440033E677 /* main.m in Sources */,
+				3441949517F475C900C796C8 /* EmailChangeViewController.m in Sources */,
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
 				9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */,
