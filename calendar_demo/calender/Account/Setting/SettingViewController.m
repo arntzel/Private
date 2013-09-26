@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
+@property (nonatomic, strong) User *loginUser;
 @end
 
 @implementation SettingViewController
@@ -38,7 +39,8 @@
 {
     [super viewDidLoad];
     [self setupViews];
-    
+    [self getUserInfo];
+    [self setValueForViews];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -65,8 +67,8 @@
     
     self.t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
     self.t_settingsContentView.backgroundColor = [UIColor clearColor];
-    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
     [self.t_settingsContentView addTarget:self action:@selector(dismissKeyBoard:) forControlEvents:UIControlEventTouchUpInside];
+    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
     [self.scroller addSubview:self.t_settingsContentView];
     [self.view addSubview:self.scroller];
     
@@ -88,6 +90,7 @@
     [self.t_settingsContentView.firstNameField resignFirstResponder];
     [self.t_settingsContentView.lastNameField resignFirstResponder];
 }
+
 -(IBAction) logout:(id)sender
 {
     [[UserModel getInstance] setLoginUser:nil];
@@ -104,4 +107,17 @@
     [navController pushViewController:loginController animated:NO];
 }
 
+#pragma mark - Data Helper
+
+- (void)getUserInfo
+{
+    self.loginUser = [[UserSetting getInstance] getLoginUserData];
+}
+
+- (void)setValueForViews
+{
+    self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
+    self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
+    self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+}
 @end
