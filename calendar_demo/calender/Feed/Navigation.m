@@ -20,13 +20,17 @@
     return self;
 }
 
--(id) initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    
-    
-    
-    return self;
-}
+//-(id) initWithCoder:(NSCoder *)aDecoder {
+//    self = [super initWithCoder:aDecoder];
+//    
+//    
+//    
+//    return self;
+//}
+//
+//-(void) awakeFromNib {
+//    LOG_D(@"awakeFromNib");
+//}
 
 +(Navigation *) createNavigationView
 {
