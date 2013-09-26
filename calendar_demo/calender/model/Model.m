@@ -36,7 +36,7 @@ static Model * instance;
         [self.delegate onUploadCompleted:0 andUrl:imgUrl];
         
     } else {
-        [self requestFinished:request];
+        [self requestFailed:request];
     }
     
 }
@@ -823,8 +823,7 @@ static Model * instance;
                 [cmts addObject:cmt];
             }
             
-            [cmts sortedArrayUsingSelector:@selector(compare:)];
-            callback(ERROCODE_OK, cmts);
+            callback(ERROCODE_OK, [cmts sortedArrayUsingSelector:@selector(compare:)]);
             
         } else {
             callback(-1, nil);
