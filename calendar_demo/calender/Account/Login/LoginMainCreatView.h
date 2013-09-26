@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateUser.h"
 
 @protocol LoginMainCreatViewDelegate <NSObject>
 
@@ -14,10 +15,15 @@
 
 - (void)btnGoogleSignUpDidClick;
 
-- (void)btnSignUpDidClickWithName:(NSString *)name Email:(NSString *)_email Password:(NSString *)_password HeadPhoto:(UIImage *)headPhoto;
+- (void)btnSignUpDidClickWithName:(CreateUser *) createUser;
+
 @end
 
 @interface LoginMainCreatView : UIView
+
+
+-(void) showLoadingAnimation:(BOOL)show;
+
 
 +(LoginMainCreatView *) creatView;
 

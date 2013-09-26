@@ -25,7 +25,7 @@
 
 #import "TPKeyboardAvoidingScrollView.h"
 
-@interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate>
+@interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
     
     UIImageView *bgView;
@@ -79,8 +79,10 @@
     frame.origin.y = 20;
     titleView.frame = frame;
     
-    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(18, 18, 21, 21)];
-    [btnBack setBackgroundImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
+    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    btnBack.contentEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
+    [btnBack setImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
+    
     [self.view addSubview:btnBack];
     [btnBack addTarget:self action:@selector(backToAccessView) forControlEvents:UIControlEventTouchUpInside];
     [btnBack setAlpha:0.0f];
@@ -273,34 +275,31 @@
     [self signupGoogle];
 }
 
-- (void)btnSignUpDidClickWithName:(NSString *)name Email:(NSString *)_email Password:(NSString *)_password HeadPhoto:(UIImage *)headPhoto
+- (void)btnSignUpDidClickWithName:(CreateUser *) createUser
 {
-    NSString * username = name;
-    NSString * email = _email;
-    NSString * password = _password;
-    //{"username":"user1", "password":"111111", "email":"user1@pencilme.com"}
-    
-    CreateUser * user = [[CreateUser alloc] init];
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    
-    if (username == nil || password == nil || email == nil) {
-        [self showAlert:@"can't be empty !!"];
+    if (createUser.email == nil || createUser.password == nil) {
+        [self showAlert:@"Email and Password can't be empty !!"];
         return;
     }
     
-    [loadingView startAnimating];
     
-    [[UserModel getInstance] createUser:user andCallback:^(NSInteger error, NSString * msg) {
-        [loadingView stopAnimating];
-
+    
+    
+    
+    [creatView showLoadingAnimation:YES];
+    
+    [[UserModel getInstance] createUser:createUser andCallback:^(NSInteger error, NSString * msg) {
+        
+        [creatView showLoadingAnimation:NO];
+    
         if(error == 0) {
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
                                                           message:@"Success！"
-                                                         delegate:nil
+                                                         delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
+            
+            alert.tag = 1;
             [alert show];
         } else {
             UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
@@ -369,8 +368,13 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        NSLog(@"%@", self.alertTextField.text);
+    if(alertView.tag == 1) {
+        //Create new user success;
+        [self backToAccessView];
+    } else {
+        if (buttonIndex == 1) {
+            NSLog(@"%@", self.alertTextField.text);
+        }
     }
 }
 
@@ -457,4 +461,5 @@
 {
     LOG_D(@"didDisconnectWithError:%@", error);
 }
+
 @end
