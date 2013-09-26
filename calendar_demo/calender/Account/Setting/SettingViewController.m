@@ -20,7 +20,7 @@
 @interface SettingViewController ()
 
 @property (nonatomic, strong) UIScrollView *scroller;
-
+@property (nonatomic, strong) SettingsContentView *t_settingsContentView;
 @end
 
 @implementation SettingViewController
@@ -63,11 +63,11 @@
     self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
     self.scroller.backgroundColor = [UIColor clearColor];
     
-    SettingsContentView *t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
-    t_settingsContentView.backgroundColor = [UIColor clearColor];
-    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, t_settingsContentView.frame.size.height);
-    
-    [self.scroller addSubview:t_settingsContentView];
+    self.t_settingsContentView = [SettingsContentView tt_viewFromNibNamed:@"SettingsContentView" owner:self];
+    self.t_settingsContentView.backgroundColor = [UIColor clearColor];
+    self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
+    [self.t_settingsContentView addTarget:self action:@selector(dismissKeyBoard:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scroller addSubview:self.t_settingsContentView];
     [self.view addSubview:self.scroller];
     
     
@@ -77,10 +77,17 @@
 - (void)btnMenu:(id)sender
 {
     if(self.delegate != nil) {
+        
         [self.delegate onBtnMenuClick];
+        [self dismissKeyBoard:nil];
     }
 }
 
+- (void)dismissKeyBoard:(id)sender
+{
+    [self.t_settingsContentView.firstNameField resignFirstResponder];
+    [self.t_settingsContentView.lastNameField resignFirstResponder];
+}
 -(IBAction) logout:(id)sender
 {
     [[UserModel getInstance] setLoginUser:nil];
