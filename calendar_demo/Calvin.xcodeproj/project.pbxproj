@@ -359,6 +359,8 @@
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
 		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
+		94FAFFD517F5BA6F0010601F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD317F5BA6F0010601F /* Contact.m */; };
+		94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD617F5C16A0010601F /* ProposeStart.m */; };
 		94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */; };
 		94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */; };
 /* End PBXBuildFile section */
@@ -882,6 +884,10 @@
 		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
 		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
 		9457DF5717E5F11C00C294F7 /* EventTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTime.m; path = calender/model/EventTime.m; sourceTree = SOURCE_ROOT; };
+		94FAFFD217F5BA6F0010601F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contact.h; path = calender/model/Contact.h; sourceTree = SOURCE_ROOT; };
+		94FAFFD317F5BA6F0010601F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contact.m; path = calender/model/Contact.m; sourceTree = SOURCE_ROOT; };
+		94FAFFD417F5BA6F0010601F /* ProposeStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStart.h; path = calender/model/ProposeStart.h; sourceTree = SOURCE_ROOT; };
+		94FAFFD617F5C16A0010601F /* ProposeStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposeStart.m; path = calender/model/ProposeStart.m; sourceTree = SOURCE_ROOT; };
 		94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_cross.png; sourceTree = "<group>"; };
 		94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_tick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1611,6 +1617,8 @@
 				769ABB9517DF54290033E677 /* Buddy.m */,
 				769ABB9617DF54290033E677 /* Comment.h */,
 				769ABB9717DF54290033E677 /* Comment.m */,
+				94FAFFD217F5BA6F0010601F /* Contact.h */,
+				94FAFFD317F5BA6F0010601F /* Contact.m */,
 				769ABB9817DF54290033E677 /* CreateUser.h */,
 				769ABB9917DF54290033E677 /* CreateUser.m */,
 				769ABB9A17DF54290033E677 /* Event.h */,
@@ -1633,6 +1641,8 @@
 				769ABBA717DF54290033E677 /* MessageModel.m */,
 				769ABBA817DF54290033E677 /* Model.h */,
 				769ABBA917DF54290033E677 /* Model.m */,
+				94FAFFD417F5BA6F0010601F /* ProposeStart.h */,
+				94FAFFD617F5C16A0010601F /* ProposeStart.m */,
 				769ABBAA17DF54290033E677 /* User.h */,
 				769ABBAB17DF54290033E677 /* User.m */,
 				769ABBAC17DF54290033E677 /* UserModel.h */,
@@ -2324,6 +2334,7 @@
 				769ABC9617DF542A0033E677 /* ASIAuthenticationDialog.m in Sources */,
 				769ABC9717DF542A0033E677 /* ASIDataCompressor.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
+				94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
 				769ABC9817DF542A0033E677 /* ASIDataDecompressor.m in Sources */,
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
@@ -2377,6 +2388,7 @@
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
 				9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */,
 				7662F74717F075F400B64E40 /* LoginMainViewController.m in Sources */,
+				94FAFFD517F5BA6F0010601F /* Contact.m in Sources */,
 				3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */,
 				9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */,
 			);

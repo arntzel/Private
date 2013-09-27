@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EventTimeVote.h"
 
 @interface ProposeStart : NSObject
 
@@ -18,5 +19,11 @@
 
 //EventTimeVote list
 @property(strong) NSArray * votes;
+
+
+-(NSDictionary*) convent2Dic;
+
++(ProposeStart *) parse:(NSDictionary *) json;
+
 
 @end

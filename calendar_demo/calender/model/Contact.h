@@ -24,6 +24,10 @@
 
 @property(strong) NSString * last_name;
 
+@property BOOL calvinUser;
+
+
+
 
 -(NSString *) getReadableUsername;
 

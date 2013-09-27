@@ -111,5 +111,6 @@
 
 +(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
 
++(id) chekcNullClass:(id) obj;
 
 @end

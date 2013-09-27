@@ -51,7 +51,10 @@
     }
 
     user.phone = [jsonData objectForKey:@"phone"];
-    
+
+    NSString * owner = [jsonData objectForKey:@"owner"];
+    user.calvinUser = [owner isKindOfClass:[NSNull class]];
+
     return user;
 }
 

@@ -372,4 +372,13 @@
     [alert show];
 
 }
+
++(id) chekcNullClass:(id) obj
+{
+    if([obj isKindOfClass: [NSNull class]]) {
+        return nil;
+    } else {
+        return obj;
+    }
+}
 @end

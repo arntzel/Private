@@ -7,21 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "Contact.h"
 
 @interface EventTimeVote : NSObject
 
 @property int id;
 
-@property (strong) User * user;
+@property (strong) NSString * email;
 
-/*
- vote:
- 0: not vote yet,
- 1: agree,
- 2: disagree,
- 3: decline the event
- */
-@property int vote;
+@property int status;
+
+
+-(NSDictionary*) convent2Dic;
+
++(EventTimeVote *) parse:(NSDictionary *) json;
+
 
 @end
