@@ -5,7 +5,7 @@
 #import "EventDate.h"
 #import "Location.h"
 #import "EventAttendee.h"
-
+#import "ProposeStart.h"
 
 #define FILTER_IMCOMPLETE  0X00000001
 #define FILTER_GOOGLE      0X00000002

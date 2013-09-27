@@ -46,10 +46,8 @@
 
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
-    event.description = [json objectForKey:@"description"];
-    if([event.description isKindOfClass:[NSNull class]]) {
-        event.description = nil;
-    }
+    event.description = [Utils chekcNullClass:[json objectForKey:@"description"]];
+
     
     event.duration = [json objectForKey:@"duration"];
 
@@ -59,14 +57,13 @@
     }
 
     obj = [json objectForKey:@"duration_hours"];
-    if(![obj isKindOfClass:[NSNull class]]) {
-        event.duration_hours = [obj intValue];
-    }
+    obj = [Utils chekcNullClass:obj];
+    event.duration_hours = [obj intValue];
+
 
     obj = [json objectForKey:@"duration_minutes"];
-    if(![obj isKindOfClass:[NSNull class]]) {
-        event.duration_minutes = [obj intValue];
-    }
+    obj = [Utils chekcNullClass:obj];
+    event.duration_minutes = [obj intValue];
     
     event.start_type = [json objectForKey:@"start_type"];
     
@@ -78,19 +75,20 @@
     event.start = [Utils gmtDate2LocatDate:startDate andTimezone:timezone];
     
     //event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
-    
-    event.location = [Location parseLocation: [json objectForKey:@"location"]];
+
+    NSDictionary * locationDic = [Utils chekcNullClass:[json objectForKey:@"location"]];
+    if(locationDic != nil) {
+       event.location = [Location parseLocation:locationDic];
+    }
+
     event.status = [json objectForKey:@"status"];
 
-    event.thumbnail_url = [json objectForKey:@"thumbnail_url"];
-    if([event.thumbnail_url isKindOfClass:[NSNull class]]) {
-        event.thumbnail_url = nil;
-    }
+    event.thumbnail_url = [Utils chekcNullClass:[json objectForKey:@"thumbnail_url"]];
         
     event.title = [json objectForKey:@"title"];
     event.timezone = [json objectForKey:@"timezone"];
 
-    event.userstatus = [json objectForKey:@"userstatus"];
+    event.userstatus = [[json objectForKey:@"userstatus"] boolValue];
 
     NSArray * attendeedDic = [json objectForKey:@"attendees"];
     NSMutableArray * attendees = [[NSMutableArray alloc] init];
@@ -98,12 +96,21 @@
         NSDictionary * dic = [attendeedDic objectAtIndex:i];
         EventAttendee * attendee = [EventAttendee parseEventAttendee:dic];
 
-        if (![@"OWNER" isEqualToString:attendee.distinction]) {
-            [attendees addObject:attendee];
+        if(!attendee.is_owner) {
+           [attendees addObject:attendee];
         }
     }
 
     event.attendees = attendees;
+
+
+    NSArray * propose_startsDics = [json objectForKey:@"propose_starts"];
+    NSMutableArray * proposes = [[NSMutableArray alloc] init];
+    for(NSDictionary * dic in propose_startsDics) {
+        [proposes addObject:[ProposeStart parse:dic]];
+    }
+    event.propose_starts = proposes;
+
 
     event.eventType = [[json objectForKey:@"event_type"] intValue];
 
@@ -125,8 +132,10 @@
     [dic setObject:[NSNumber numberWithBool:self.published]               forKey:@"published"];
     [dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
 
-    NSString * created_on = [Utils formateDate:self.created_on];
-    [dic setObject:created_on forKey:@"created_on"];
+//    NSString * created_on = [Utils formateDate:self.created_on];
+//    [dic setObject:created_on forKey:@"created_on"];
+
+
     [dic setObject:[self.creator convent2Dic] forKey:@"creator"];
     [dic setObject:self.description forKey:@"description"];
 
@@ -148,10 +157,8 @@
 
     [dic setObject:self.thumbnail_url forKey:@"thumbnail_url"];
     [dic setObject:self.title forKey:@"title"];
-    [dic setObject:self.userstatus forKey:@"userstatus"];
     [dic setObject:self.timezone forKey:@"timezone"];
 
-    [dic setObject:[NSNumber numberWithInt:self.privilige] forKey:@"privilige"];
     [dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"event_type"];
 
     NSMutableArray * jsonarray = [[NSMutableArray alloc] init];

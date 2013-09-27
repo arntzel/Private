@@ -8,6 +8,9 @@
 
 @property BOOL is_owner;
 
+/*
+ -1 : decline event
+ */
 @property int status;
 
 @property(strong) Contact * contact;
