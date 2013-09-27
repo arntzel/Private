@@ -7,29 +7,27 @@
 @implementation Event
 
 
--(int) getPendingUserCount
-{
-    NSArray * atendees = self.attendees;
-
-    int respCount = 0;
-    int allCount = atendees.count;
-
-    for(int i=0;i<allCount;i++) {
-        EventAttendee * atd = [atendees objectAtIndex:i];
-        if([atd.status isEqualToString:@"PENDING"]) {
-            respCount ++;
-        }
-    }
-
-    return respCount;
-}
+//-(int) getPendingUserCount
+//{
+//    NSArray * atendees = self.attendees;
+//
+//    int respCount = 0;
+//    int allCount = atendees.count;
+//
+//    for(int i=0;i<allCount;i++) {
+//        EventAttendee * atd = [atendees objectAtIndex:i];
+//        if([atd.status isEqualToString:@"PENDING"]) {
+//            respCount ++;
+//        }
+//    }
+//
+//    return respCount;
+//}
 
 
 -(BOOL) isPendingStatus
 {
-    if(self.confirmed) return false;
-
-    return [self getPendingUserCount] > 0;
+    return !self.confirmed;
 }
 
 +(Event *) parseEvent:(NSDictionary *) json

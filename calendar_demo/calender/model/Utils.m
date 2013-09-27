@@ -352,7 +352,7 @@
         
         EventAttendee * atd = [atendees objectAtIndex:i];
         
-        if([atd.status isEqualToString:@"ACCEPT"]) {
+        if(atd.status != 0) {
             respCount ++;
         }
     }

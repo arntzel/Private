@@ -18,7 +18,7 @@
     event.archived = [[json objectForKey:@"archived"] intValue];
     event.send = [[json objectForKey:@"send"] intValue];
     
-    event.status = [json objectForKey:@"status"];
+    event.status = [[json objectForKey:@"status"] intValue];
 
     //LOG_D(@"Status:%@", event.status);
     
@@ -42,7 +42,7 @@
     [dic setObject:[NSNumber numberWithInt:self.archived] forKey:@"archived"];
     [dic setObject:[NSNumber numberWithInt:self.send] forKey:@"send"];
 
-    [dic setObject:self.status forKey:@"status"];
+    [dic setObject:[NSNumber numberWithInt:self.status] forKey:@"status"];
     [dic setObject:[self.user convent2Dic] forKey:@"user"];
 
     return dic;

@@ -7,8 +7,12 @@
 @property int id;
 @property int archived;
 @property int send;
+@property BOOL is_owner;
 
-@property(strong) NSString * status;
+/*
+ 
+ */
+@property int status;
 
 @property(strong) NSString * distinction;
 
