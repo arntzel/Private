@@ -18,6 +18,8 @@
 #import "EmailChangeViewController.h"
 #import "RootNavContrller.h"
 #import <MessageUI/MessageUI.h>
+#import "PwdChangeViewController.h"
+#import "ConnectAccountViewController.h"
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
@@ -117,8 +119,12 @@
 
 - (void)pushDetail:(int)row
 {
-    
-    if (row <= aboutUsViewTag)
+    if (row == emailViewTag
+        ||row == pwdViewTag
+        ||row == connectFacebookBtnTag
+        ||row == connectGoogleBtnTag
+        
+        )
     {
         UIViewController *viewCtr = nil;
         switch (row)
@@ -127,13 +133,15 @@
                 viewCtr = [[EmailChangeViewController alloc] initWithNibName:@"EmailChangeViewController" bundle:[NSBundle mainBundle]];
                 break;
             case pwdViewTag:
-                
+                viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
                 break;
-            case fbViewTag:
-                
+            case connectFacebookBtnTag:
+                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
+                [(ConnectAccountViewController *)viewCtr setType:ConnectFacebook];
                 break;
-            case googleViewTag:
-                
+            case connectGoogleBtnTag:
+                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
+                [(ConnectAccountViewController *)viewCtr setType:ConnectGoogle];
                 break;
             case notificationViewTag:
                 
@@ -153,10 +161,17 @@
         
         [[RootNavContrller defaultInstance] pushViewController:viewCtr animated:YES];
     }
+
     else if (row == logoutBtnTag || row == deleteAccountBtnTag)
     {
         NSString *destructiveButtonTitle = row==logoutBtnTag ? @"Log Out":@"Delete Account";
     
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+        [sheet showInView:self.view];
+    }
+    else if (row == fbViewTag || row == googleViewTag)
+    {
+         NSString *destructiveButtonTitle = row==fbViewTag ? @"Unlink Facebook":@"Unlink Google";
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
         [sheet showInView:self.view];
     }

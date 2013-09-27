@@ -76,7 +76,7 @@
                         <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="i0K-GP-9lG"/>
                     </connections>
                 </view>
-                <view userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" id="asA-8X-6xu" userLabel="pwdView" customClass="UIControl">
+                <view tag="2" contentMode="scaleToFill" id="asA-8X-6xu" userLabel="pwdView" customClass="UIControl">
                     <rect key="frame" x="15" y="179" width="290" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -91,7 +91,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" minimumFontSize="17" id="qFh-Ed-pI1" userLabel="pwdTextField">
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" minimumFontSize="17" id="qFh-Ed-pI1" userLabel="pwdTextField">
                             <rect key="frame" x="91" y="6" width="157" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -100,7 +100,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="Yl1-kW-IeV"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="tx2-sy-xmO"/>
                     </connections>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_main_arrow.png" id="SNS-Ie-viV">
@@ -137,7 +137,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W4M-rV-WHS">
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W4M-rV-WHS">
                             <rect key="frame" x="199" y="8" width="67" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -145,11 +145,14 @@
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="kru-zk-MuQ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="2TT-4w-ygk"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="K24-JH-4JJ"/>
                     </connections>
                 </view>
                 <view tag="4" contentMode="scaleToFill" id="Q40-RU-kK4" userLabel="googleView" customClass="UIControl">
@@ -171,7 +174,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hLV-Qu-d0L">
+                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hLV-Qu-d0L">
                             <rect key="frame" x="199" y="8" width="67" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -179,11 +182,14 @@
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="5J6-eD-DWQ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="iVS-X7-3if"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="PEl-y1-nIf"/>
                     </connections>
                 </view>
                 <view tag="5" contentMode="scaleToFill" id="mHF-hK-Rd0" userLabel="notificationView" customClass="UIControl">
@@ -208,7 +214,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="B3W-nv-MTy"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="woE-jR-fM0"/>
                     </connections>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lcd-aY-AVp">
@@ -240,7 +246,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="h40-L2-UHL"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="TRb-zA-QQY"/>
                     </connections>
                 </view>
                 <view tag="7" contentMode="scaleToFill" id="iwx-js-kXJ" userLabel="policyView" customClass="UIControl">
@@ -265,7 +271,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="hJa-Vn-z4g"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="B0a-cm-eUR"/>
                     </connections>
                 </view>
                 <view tag="8" contentMode="scaleToFill" id="v3B-6y-XFM" userLabel="aboutUsView" customClass="UIControl">
@@ -290,7 +296,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="valueChanged" id="qEx-pc-c6R"/>
+                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="Ddx-9S-mog"/>
                     </connections>
                 </view>
                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3x-M8-fTO">

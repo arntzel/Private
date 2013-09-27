@@ -18,6 +18,8 @@
 #define logoutBtnTag 9
 #define sendFeedBackBtnTag 10
 #define deleteAccountBtnTag 11
+#define connectFacebookBtnTag 12
+#define connectGoogleBtnTag 13
 @interface SettingsContentView : UIControl  
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;

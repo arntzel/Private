@@ -22,6 +22,8 @@
 - (IBAction)viewClicked:(id)sender
 {
     UIView *view = (UIView *)sender;
+    NSLog(@"view tag %d", view.tag);
+    
     if (self.pushDetailViewBlock)
     {
         self.pushDetailViewBlock(view.tag);

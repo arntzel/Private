@@ -44,6 +44,10 @@
 		3441949617F475C900C796C8 /* EmailChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3441949417F475C900C796C8 /* EmailChangeViewController.xib */; };
 		3441949917F47BAF00C796C8 /* SettingsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */; };
 		3441949B17F48A2800C796C8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3441949A17F48A2800C796C8 /* MessageUI.framework */; };
+		3468AE3817F514AA000F00E5 /* PwdChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468AE3617F514AA000F00E5 /* PwdChangeViewController.m */; };
+		3468AE3917F514AA000F00E5 /* PwdChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE3717F514AA000F00E5 /* PwdChangeViewController.xib */; };
+		3468AE3D17F52967000F00E5 /* ConnectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */; };
+		3468AE3E17F52967000F00E5 /* ConnectAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -439,6 +443,12 @@
 		3441949717F47BAF00C796C8 /* SettingsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsBaseViewController.h; sourceTree = "<group>"; };
 		3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsBaseViewController.m; sourceTree = "<group>"; };
 		3441949A17F48A2800C796C8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3468AE3517F514AA000F00E5 /* PwdChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwdChangeViewController.h; sourceTree = "<group>"; };
+		3468AE3617F514AA000F00E5 /* PwdChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwdChangeViewController.m; sourceTree = "<group>"; };
+		3468AE3717F514AA000F00E5 /* PwdChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PwdChangeViewController.xib; sourceTree = "<group>"; };
+		3468AE3A17F52967000F00E5 /* ConnectAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectAccountViewController.h; sourceTree = "<group>"; };
+		3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectAccountViewController.m; sourceTree = "<group>"; };
+		3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectAccountViewController.xib; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1041,6 +1051,12 @@
 				3441949217F475C900C796C8 /* EmailChangeViewController.h */,
 				3441949317F475C900C796C8 /* EmailChangeViewController.m */,
 				3441949417F475C900C796C8 /* EmailChangeViewController.xib */,
+				3468AE3517F514AA000F00E5 /* PwdChangeViewController.h */,
+				3468AE3617F514AA000F00E5 /* PwdChangeViewController.m */,
+				3468AE3717F514AA000F00E5 /* PwdChangeViewController.xib */,
+				3468AE3A17F52967000F00E5 /* ConnectAccountViewController.h */,
+				3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */,
+				3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -2151,6 +2167,7 @@
 				769AB92417DF51160033E677 /* PendingEventViewCell2.xib in Resources */,
 				769AB99A17DF51340033E677 /* push.caf in Resources */,
 				3441949617F475C900C796C8 /* EmailChangeViewController.xib in Resources */,
+				3468AE3E17F52967000F00E5 /* ConnectAccountViewController.xib in Resources */,
 				769AB99B17DF51340033E677 /* push.wav in Resources */,
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				340FF41F17F2E79800E02410 /* settings_main_gmail_icon.png in Resources */,
@@ -2290,6 +2307,7 @@
 				769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */,
 				769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */,
 				769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */,
+				3468AE3917F514AA000F00E5 /* PwdChangeViewController.xib in Resources */,
 				340FF3F317F2CC1900E02410 /* SettingsContentView.xib in Resources */,
 				769ABB4017DF52090033E677 /* AddEventInvitePeopleCell.xib in Resources */,
 				769ABB4217DF52090033E677 /* AddEventInvitePeopleHeaderView.xib in Resources */,
@@ -2377,6 +2395,7 @@
 				769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */,
 				769ABA1B17DF514C0033E677 /* DataCache.m in Sources */,
 				769ABA1C17DF514C0033E677 /* DayFeedEventEntitys.m in Sources */,
+				3468AE3817F514AA000F00E5 /* PwdChangeViewController.m in Sources */,
 				769ABA1D17DF514C0033E677 /* DayFeedEventEntitysExtra.m in Sources */,
 				769ABA1E17DF514C0033E677 /* EventEntity.m in Sources */,
 				769ABA1F17DF514C0033E677 /* FeedEventEntity.m in Sources */,
@@ -2419,6 +2438,7 @@
 				769ABB2A17DF52090033E677 /* EventDetailCommentView.m in Sources */,
 				765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */,
 				769ABB2C17DF52090033E677 /* EventDetailFinailzeView.m in Sources */,
+				3468AE3D17F52967000F00E5 /* ConnectAccountViewController.m in Sources */,
 				769ABB2E17DF52090033E677 /* EventDetailHeader.m in Sources */,
 				7662F74117F075F400B64E40 /* LoginMainCreatView.m in Sources */,
 				769ABB3017DF52090033E677 /* EventDetailHeaderListView.m in Sources */,

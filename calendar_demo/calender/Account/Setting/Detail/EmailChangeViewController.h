@@ -9,5 +9,7 @@
 #import "SettingsBaseViewController.h"
 
 @interface EmailChangeViewController : SettingsBaseViewController
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmEmailField;
 
 @end

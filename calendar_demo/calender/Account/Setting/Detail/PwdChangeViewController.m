@@ -1,22 +1,23 @@
 //
-//  EmailChangeViewController.m
+//  PwdChangeViewController.m
 //  Calvin
 //
-//  Created by tu changwei on 13-9-26.
+//  Created by tu changwei on 13-9-27.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
-#import "EmailChangeViewController.h"
-#import "DeviceInfo.h"
-#define emailViewTag 1
-#define confirmViewTag 2
-@interface EmailChangeViewController ()
+#import "PwdChangeViewController.h"
+#define oldPwdViewTag 1
+#define newPwdViwTag 2
+#define rePwdViewTag 3
+
+@interface PwdChangeViewController ()
 
 - (IBAction)showKeyboard:(UITapGestureRecognizer *)sender;
 
 @end
 
-@implementation EmailChangeViewController
+@implementation PwdChangeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +32,7 @@
 {
     [super viewDidLoad];
     [self setupViews];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,11 +40,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Setup Views
 - (void)setupViews
 {
-    self.navigation.titleLable.text = @"Email";
+    self.navigation.titleLable.text = @"Change Password";
     self.navigation.leftBtn.frame = CGRectMake(8, 9, 67, 26);
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -51,13 +52,15 @@
     [self.navigation.rightBtn setTitle:@"Save" forState:UIControlStateNormal];
     [self.navigation.rightBtn addTarget:self action:@selector(rightNavBtnBeClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.emailField becomeFirstResponder];
+    [self.oldPwdField becomeFirstResponder];
 }
 
 #pragma mark - User Interaction
 - (void)leftNavBtnClicked:(UIButton *)btn
 {
-    [self.emailField resignFirstResponder];
+    [self.oldPwdField resignFirstResponder];
+    [self.pwdField resignFirstResponder];
+    [self.rePwdField resignFirstResponder];
     [super  leftNavBtnClicked:btn];
 }
 - (void)rightNavBtnBeClicked:(UIButton *)btn
@@ -69,16 +72,18 @@
 {
     switch (sender.view.tag)
     {
-        case emailViewTag:
-            [self.emailField becomeFirstResponder];
+        case oldPwdViewTag:
+            [self.oldPwdField becomeFirstResponder];
             break;
-        case  confirmViewTag:
-            [self.confirmEmailField becomeFirstResponder];
+        case newPwdViwTag:
+            [self.pwdField becomeFirstResponder];
+            break;
+        case rePwdViewTag:
+            [self.rePwdField becomeFirstResponder];
             break;
             
         default:
             break;
     }
-
 }
 @end
