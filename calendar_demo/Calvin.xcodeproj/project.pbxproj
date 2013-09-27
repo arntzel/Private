@@ -52,6 +52,8 @@
 		3468AE4317F56877000F00E5 /* NotificaitonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */; };
 		3468AE4617F57272000F00E5 /* settings_detail_noti_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */; };
 		3468AE4717F57272000F00E5 /* settings_detail_noti_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */; };
+		3468AE4B17F5759D000F00E5 /* LegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468AE4917F5759D000F00E5 /* LegalViewController.m */; };
+		3468AE4C17F5759D000F00E5 /* LegalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4A17F5759D000F00E5 /* LegalViewController.xib */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -458,6 +460,9 @@
 		3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificaitonViewController.xib; sourceTree = "<group>"; };
 		3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_detail_noti_back.png; sourceTree = "<group>"; };
 		3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_detail_noti_back@2x.png"; sourceTree = "<group>"; };
+		3468AE4817F5759D000F00E5 /* LegalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalViewController.h; sourceTree = "<group>"; };
+		3468AE4917F5759D000F00E5 /* LegalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalViewController.m; sourceTree = "<group>"; };
+		3468AE4A17F5759D000F00E5 /* LegalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LegalViewController.xib; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1071,6 +1076,9 @@
 				3468AE3F17F56877000F00E5 /* NotificaitonViewController.h */,
 				3468AE4017F56877000F00E5 /* NotificaitonViewController.m */,
 				3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */,
+				3468AE4817F5759D000F00E5 /* LegalViewController.h */,
+				3468AE4917F5759D000F00E5 /* LegalViewController.m */,
+				3468AE4A17F5759D000F00E5 /* LegalViewController.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -2202,6 +2210,7 @@
 				769AB9AB17DF51340033E677 /* event_detail_random_header5.png in Resources */,
 				769AB9AC17DF51340033E677 /* event_detail_random_header6.png in Resources */,
 				769AB9AD17DF51340033E677 /* event_detail_random_header7.png in Resources */,
+				3468AE4C17F5759D000F00E5 /* LegalViewController.xib in Resources */,
 				340FF42617F2E79800E02410 /* settings_main_two_row@2x.png in Resources */,
 				340FF41117F2E79800E02410 /* settings_detail_cancel_btn.png in Resources */,
 				769AB9AE17DF51340033E677 /* event_detail_random_header8.png in Resources */,
@@ -2508,6 +2517,7 @@
 				7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */,
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
+				3468AE4B17F5759D000F00E5 /* LegalViewController.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				3441949917F47BAF00C796C8 /* SettingsBaseViewController.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,

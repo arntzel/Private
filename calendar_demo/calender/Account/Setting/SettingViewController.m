@@ -21,7 +21,7 @@
 #import "PwdChangeViewController.h"
 #import "ConnectAccountViewController.h"
 #import "NotificaitonViewController.h"
-
+#import "LegalViewController.h"
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
@@ -128,6 +128,9 @@
         ||row == connectFacebookBtnTag
         ||row == connectGoogleBtnTag
         ||row == notificationViewTag
+        ||row == termViewTag
+        ||row == policyViewTag
+        ||row == aboutUsViewTag
         )
     {
         UIViewController *viewCtr = nil;
@@ -152,13 +155,16 @@
 
                 break;
             case termViewTag:
-                
+                viewCtr = [[LegalViewController alloc] initWithNibName:@"LegalViewController" bundle:[NSBundle mainBundle]];
+                [(LegalViewController *)viewCtr setType:TermsOfUs];
                 break;
             case policyViewTag:
-                
+                viewCtr = [[LegalViewController alloc] initWithNibName:@"LegalViewController" bundle:[NSBundle mainBundle]];
+                [(LegalViewController *)viewCtr setType:PrivacyPolicy];
                 break;
             case aboutUsViewTag:
-                
+                viewCtr = [[LegalViewController alloc] initWithNibName:@"LegalViewController" bundle:[NSBundle mainBundle]];
+                [(LegalViewController *)viewCtr setType:AboutUs];
                 break;
             default:
                 break;
