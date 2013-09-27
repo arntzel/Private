@@ -48,6 +48,10 @@
 		3468AE3917F514AA000F00E5 /* PwdChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE3717F514AA000F00E5 /* PwdChangeViewController.xib */; };
 		3468AE3D17F52967000F00E5 /* ConnectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */; };
 		3468AE3E17F52967000F00E5 /* ConnectAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */; };
+		3468AE4217F56877000F00E5 /* NotificaitonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3468AE4017F56877000F00E5 /* NotificaitonViewController.m */; };
+		3468AE4317F56877000F00E5 /* NotificaitonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */; };
+		3468AE4617F57272000F00E5 /* settings_detail_noti_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */; };
+		3468AE4717F57272000F00E5 /* settings_detail_noti_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -449,6 +453,11 @@
 		3468AE3A17F52967000F00E5 /* ConnectAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectAccountViewController.h; sourceTree = "<group>"; };
 		3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectAccountViewController.m; sourceTree = "<group>"; };
 		3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectAccountViewController.xib; sourceTree = "<group>"; };
+		3468AE3F17F56877000F00E5 /* NotificaitonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificaitonViewController.h; sourceTree = "<group>"; };
+		3468AE4017F56877000F00E5 /* NotificaitonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificaitonViewController.m; sourceTree = "<group>"; };
+		3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificaitonViewController.xib; sourceTree = "<group>"; };
+		3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_detail_noti_back.png; sourceTree = "<group>"; };
+		3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_detail_noti_back@2x.png"; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1011,6 +1020,8 @@
 		340FF3F817F2E6F000E02410 /* Settings_Img */ = {
 			isa = PBXGroup;
 			children = (
+				3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */,
+				3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */,
 				344193B017F3DEC500C796C8 /* settings_main_bottom_row.png */,
 				344193B117F3DEC500C796C8 /* settings_main_bottom_row@2x.png */,
 				344193B217F3DEC500C796C8 /* settings_main_middle_row.png */,
@@ -1057,6 +1068,9 @@
 				3468AE3A17F52967000F00E5 /* ConnectAccountViewController.h */,
 				3468AE3B17F52967000F00E5 /* ConnectAccountViewController.m */,
 				3468AE3C17F52967000F00E5 /* ConnectAccountViewController.xib */,
+				3468AE3F17F56877000F00E5 /* NotificaitonViewController.h */,
+				3468AE4017F56877000F00E5 /* NotificaitonViewController.m */,
+				3468AE4117F56877000F00E5 /* NotificaitonViewController.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -2172,6 +2186,7 @@
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				340FF41F17F2E79800E02410 /* settings_main_gmail_icon.png in Resources */,
 				769AB9A217DF51340033E677 /* event_detail_comment_conformed.png in Resources */,
+				3468AE4717F57272000F00E5 /* settings_detail_noti_back@2x.png in Resources */,
 				769AB9A317DF51340033E677 /* 1.png in Resources */,
 				769AB9A417DF51340033E677 /* 2.png in Resources */,
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
@@ -2211,6 +2226,7 @@
 				340FF41617F2E79800E02410 /* settings_detail_full_circle@2x.png in Resources */,
 				7662F75817F0761900B64E40 /* login_mainaccess_new.png in Resources */,
 				340FF42017F2E79800E02410 /* settings_main_gmail_icon@2x.png in Resources */,
+				3468AE4317F56877000F00E5 /* NotificaitonViewController.xib in Resources */,
 				769AB9BC17DF51340033E677 /* event_detail_invitee_sepline.png in Resources */,
 				769AB9BD17DF51340033E677 /* event_detail_invitee_time_cross_disable.png in Resources */,
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
@@ -2322,6 +2338,7 @@
 				769ABB7317DF54000033E677 /* eventSetingBg2.png in Resources */,
 				769ABB7417DF54000033E677 /* eventSetingBg3.png in Resources */,
 				769ABB7517DF54000033E677 /* eventSettingLine.png in Resources */,
+				3468AE4617F57272000F00E5 /* settings_detail_noti_back.png in Resources */,
 				769ABB7617DF54000033E677 /* imagePicker_bg.jpg in Resources */,
 				769ABB7717DF54000033E677 /* imagePickerIcon.png in Resources */,
 				769ABB7817DF54000033E677 /* imagePickerTitleBg.png in Resources */,
@@ -2386,6 +2403,7 @@
 				769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */,
 				769ABD5017DF5C020033E677 /* AddLocationViewController.m in Sources */,
 				769ABD4E17DF58C20033E677 /* AddLocationTextView.m in Sources */,
+				3468AE4217F56877000F00E5 /* NotificaitonViewController.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,

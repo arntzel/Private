@@ -20,6 +20,8 @@
 #import <MessageUI/MessageUI.h>
 #import "PwdChangeViewController.h"
 #import "ConnectAccountViewController.h"
+#import "NotificaitonViewController.h"
+
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
@@ -119,11 +121,13 @@
 
 - (void)pushDetail:(int)row
 {
+    [self dismissKeyBoard:nil];
+    
     if (row == emailViewTag
         ||row == pwdViewTag
         ||row == connectFacebookBtnTag
         ||row == connectGoogleBtnTag
-        
+        ||row == notificationViewTag
         )
     {
         UIViewController *viewCtr = nil;
@@ -144,7 +148,8 @@
                 [(ConnectAccountViewController *)viewCtr setType:ConnectGoogle];
                 break;
             case notificationViewTag:
-                
+                viewCtr = [[NotificaitonViewController alloc] initWithNibName:@"NotificaitonViewController" bundle:[NSBundle mainBundle]];
+
                 break;
             case termViewTag:
                 
