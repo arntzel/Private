@@ -1,8 +1,8 @@
 //
 //  MessageEntity.m
-//  calender
+//  Calvin
 //
-//  Created by xiangfang on 13-8-7.
+//  Created by xiangfang on 13-9-27.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 

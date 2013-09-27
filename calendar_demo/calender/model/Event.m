@@ -95,10 +95,7 @@
     for(int i=0;i<attendeedDic.count;i++) {
         NSDictionary * dic = [attendeedDic objectAtIndex:i];
         EventAttendee * attendee = [EventAttendee parseEventAttendee:dic];
-
-        if(!attendee.is_owner) {
-           [attendees addObject:attendee];
-        }
+        [attendees addObject:attendee];
     }
 
     event.attendees = attendees;

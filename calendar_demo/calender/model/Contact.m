@@ -7,6 +7,7 @@
 //
 
 #import "Contact.h"
+#import "Utils.h"
 
 @implementation Contact
 
@@ -52,8 +53,8 @@
 
     user.phone = [jsonData objectForKey:@"phone"];
 
-    NSString * owner = [jsonData objectForKey:@"owner"];
-    user.calvinUser = [owner isKindOfClass:[NSNull class]];
+    NSString * owner = [jsonData objectForKey:@"user"];
+    user.calvinUser = [Utils chekcNullClass:owner] != nil;
 
     return user;
 }

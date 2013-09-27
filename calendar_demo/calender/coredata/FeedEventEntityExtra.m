@@ -61,21 +61,10 @@
     NSNumber * creatorID = [NSNumber numberWithInt:event.creator.id];;
     self.creatorID = creatorID;
 
-    BOOL creatorInAttendee = NO;
     for(EventAttendee * atd in event.attendees) {
-
+        
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:atd.user];
-        [self addAttendeesObject:entity];
-
-        if(atd.user.id == event.creator.id) {
-            creatorInAttendee = YES;
-        }
-    }
-
-    if(creatorInAttendee == NO) {
-        UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:event.creator];
+        [entity convertFromUser:atd.contact];
         [self addAttendeesObject:entity];
     }
 }

@@ -1,8 +1,8 @@
 //
 //  UserEntity.h
-//  calender
+//  Calvin
 //
-//  Created by xiangfang on 13-8-5.
+//  Created by xiangfang on 13-9-27.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSString * last_name;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSNumber * calvinUser;
 
 @end

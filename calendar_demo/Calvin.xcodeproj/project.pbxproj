@@ -172,14 +172,9 @@
 		769ABA1B17DF514C0033E677 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0317DF514C0033E677 /* DataCache.m */; };
 		769ABA1C17DF514C0033E677 /* DayFeedEventEntitys.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */; };
 		769ABA1D17DF514C0033E677 /* DayFeedEventEntitysExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */; };
-		769ABA1E17DF514C0033E677 /* EventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0917DF514C0033E677 /* EventEntity.m */; };
-		769ABA1F17DF514C0033E677 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0B17DF514C0033E677 /* FeedEventEntity.m */; };
 		769ABA2017DF514C0033E677 /* FeedEventEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */; };
-		769ABA2117DF514C0033E677 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0F17DF514C0033E677 /* LocationEntity.m */; };
-		769ABA2217DF514C0033E677 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1117DF514C0033E677 /* MessageEntity.m */; };
 		769ABA2317DF514C0033E677 /* MessageEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1317DF514C0033E677 /* MessageEntityExtra.m */; };
 		769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1417DF514C0033E677 /* Model.xcdatamodeld */; };
-		769ABA2517DF514C0033E677 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1717DF514C0033E677 /* UserEntity.m */; };
 		769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1917DF514C0033E677 /* UserEntityExtra.m */; };
 		769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */; };
 		769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA5E17DF51EC0033E677 /* BaseUIViewController.m */; };
@@ -361,6 +356,10 @@
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
 		94FAFFD517F5BA6F0010601F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD317F5BA6F0010601F /* Contact.m */; };
 		94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD617F5C16A0010601F /* ProposeStart.m */; };
+		94FAFFDA17F5D1AE0010601F /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD917F5D1AE0010601F /* FeedEventEntity.m */; };
+		94FAFFDD17F5D1AF0010601F /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFDC17F5D1AF0010601F /* UserEntity.m */; };
+		94FAFFE017F5D1AF0010601F /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFDF17F5D1AF0010601F /* MessageEntity.m */; };
+		94FAFFE317F5D1AF0010601F /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFE217F5D1AF0010601F /* LocationEntity.m */; };
 		94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */; };
 		94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */; };
 /* End PBXBuildFile section */
@@ -557,21 +556,11 @@
 		769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayFeedEventEntitys.m; sourceTree = "<group>"; };
 		769ABA0617DF514C0033E677 /* DayFeedEventEntitysExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayFeedEventEntitysExtra.h; sourceTree = "<group>"; };
 		769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayFeedEventEntitysExtra.m; sourceTree = "<group>"; };
-		769ABA0817DF514C0033E677 /* EventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventEntity.h; sourceTree = "<group>"; };
-		769ABA0917DF514C0033E677 /* EventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventEntity.m; sourceTree = "<group>"; };
-		769ABA0A17DF514C0033E677 /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventEntity.h; sourceTree = "<group>"; };
-		769ABA0B17DF514C0033E677 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventEntity.m; sourceTree = "<group>"; };
 		769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventEntityExtra.h; sourceTree = "<group>"; };
 		769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventEntityExtra.m; sourceTree = "<group>"; };
-		769ABA0E17DF514C0033E677 /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntity.h; sourceTree = "<group>"; };
-		769ABA0F17DF514C0033E677 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntity.m; sourceTree = "<group>"; };
-		769ABA1017DF514C0033E677 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntity.h; sourceTree = "<group>"; };
-		769ABA1117DF514C0033E677 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntity.m; sourceTree = "<group>"; };
 		769ABA1217DF514C0033E677 /* MessageEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntityExtra.h; sourceTree = "<group>"; };
 		769ABA1317DF514C0033E677 /* MessageEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageEntityExtra.m; sourceTree = "<group>"; };
 		769ABA1517DF514C0033E677 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		769ABA1617DF514C0033E677 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntity.h; sourceTree = "<group>"; };
-		769ABA1717DF514C0033E677 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
 		769ABA1817DF514C0033E677 /* UserEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntityExtra.h; sourceTree = "<group>"; };
 		769ABA1917DF514C0033E677 /* UserEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntityExtra.m; sourceTree = "<group>"; };
 		769ABA5B17DF51EC0033E677 /* BaseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuViewController.h; sourceTree = "<group>"; };
@@ -888,6 +877,14 @@
 		94FAFFD317F5BA6F0010601F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contact.m; path = calender/model/Contact.m; sourceTree = SOURCE_ROOT; };
 		94FAFFD417F5BA6F0010601F /* ProposeStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStart.h; path = calender/model/ProposeStart.h; sourceTree = SOURCE_ROOT; };
 		94FAFFD617F5C16A0010601F /* ProposeStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposeStart.m; path = calender/model/ProposeStart.m; sourceTree = SOURCE_ROOT; };
+		94FAFFD817F5D1AE0010601F /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedEventEntity.h; path = calender/coredata/FeedEventEntity.h; sourceTree = SOURCE_ROOT; };
+		94FAFFD917F5D1AE0010601F /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
+		94FAFFDB17F5D1AF0010601F /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
+		94FAFFDC17F5D1AF0010601F /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
+		94FAFFDE17F5D1AF0010601F /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = calender/coredata/MessageEntity.h; sourceTree = SOURCE_ROOT; };
+		94FAFFDF17F5D1AF0010601F /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
+		94FAFFE117F5D1AF0010601F /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationEntity.h; path = calender/coredata/LocationEntity.h; sourceTree = SOURCE_ROOT; };
+		94FAFFE217F5D1AF0010601F /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_cross.png; sourceTree = "<group>"; };
 		94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_invitee_time_tick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1308,21 +1305,19 @@
 				769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */,
 				769ABA0617DF514C0033E677 /* DayFeedEventEntitysExtra.h */,
 				769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */,
-				769ABA0817DF514C0033E677 /* EventEntity.h */,
-				769ABA0917DF514C0033E677 /* EventEntity.m */,
-				769ABA0A17DF514C0033E677 /* FeedEventEntity.h */,
-				769ABA0B17DF514C0033E677 /* FeedEventEntity.m */,
+				94FAFFD817F5D1AE0010601F /* FeedEventEntity.h */,
+				94FAFFD917F5D1AE0010601F /* FeedEventEntity.m */,
 				769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */,
 				769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */,
-				769ABA0E17DF514C0033E677 /* LocationEntity.h */,
-				769ABA0F17DF514C0033E677 /* LocationEntity.m */,
-				769ABA1017DF514C0033E677 /* MessageEntity.h */,
-				769ABA1117DF514C0033E677 /* MessageEntity.m */,
+				94FAFFE117F5D1AF0010601F /* LocationEntity.h */,
+				94FAFFE217F5D1AF0010601F /* LocationEntity.m */,
+				94FAFFDE17F5D1AF0010601F /* MessageEntity.h */,
+				94FAFFDF17F5D1AF0010601F /* MessageEntity.m */,
 				769ABA1217DF514C0033E677 /* MessageEntityExtra.h */,
 				769ABA1317DF514C0033E677 /* MessageEntityExtra.m */,
 				769ABA1417DF514C0033E677 /* Model.xcdatamodeld */,
-				769ABA1617DF514C0033E677 /* UserEntity.h */,
-				769ABA1717DF514C0033E677 /* UserEntity.m */,
+				94FAFFDB17F5D1AF0010601F /* UserEntity.h */,
+				94FAFFDC17F5D1AF0010601F /* UserEntity.m */,
 				769ABA1817DF514C0033E677 /* UserEntityExtra.h */,
 				769ABA1917DF514C0033E677 /* UserEntityExtra.m */,
 			);
@@ -2249,14 +2244,9 @@
 				769ABA1B17DF514C0033E677 /* DataCache.m in Sources */,
 				769ABA1C17DF514C0033E677 /* DayFeedEventEntitys.m in Sources */,
 				769ABA1D17DF514C0033E677 /* DayFeedEventEntitysExtra.m in Sources */,
-				769ABA1E17DF514C0033E677 /* EventEntity.m in Sources */,
-				769ABA1F17DF514C0033E677 /* FeedEventEntity.m in Sources */,
 				769ABA2017DF514C0033E677 /* FeedEventEntityExtra.m in Sources */,
-				769ABA2117DF514C0033E677 /* LocationEntity.m in Sources */,
-				769ABA2217DF514C0033E677 /* MessageEntity.m in Sources */,
 				769ABA2317DF514C0033E677 /* MessageEntityExtra.m in Sources */,
 				769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */,
-				769ABA2517DF514C0033E677 /* UserEntity.m in Sources */,
 				769ABA2617DF514C0033E677 /* UserEntityExtra.m in Sources */,
 				769ABA8B17DF51EC0033E677 /* BaseMenuViewController.m in Sources */,
 				769ABA8C17DF51EC0033E677 /* BaseUIViewController.m in Sources */,
@@ -2277,6 +2267,7 @@
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
+				94FAFFE017F5D1AF0010601F /* MessageEntity.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,
 				769ABB1617DF52090033E677 /* AddEventInviteView.m in Sources */,
 				769ABB1817DF52090033E677 /* AddEventInviteViewController.m in Sources */,
@@ -2304,6 +2295,7 @@
 				769ABB3F17DF52090033E677 /* AddEventInvitePeopleCell.m in Sources */,
 				769ABB4117DF52090033E677 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				769ABB4317DF52090033E677 /* NavgationBar.m in Sources */,
+				94FAFFDD17F5D1AF0010601F /* UserEntity.m in Sources */,
 				769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */,
 				769ABB4D17DF53A50033E677 /* AppDelegate.m in Sources */,
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
@@ -2334,9 +2326,11 @@
 				769ABC9617DF542A0033E677 /* ASIAuthenticationDialog.m in Sources */,
 				769ABC9717DF542A0033E677 /* ASIDataCompressor.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
+				94FAFFE317F5D1AF0010601F /* LocationEntity.m in Sources */,
 				94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
 				769ABC9817DF542A0033E677 /* ASIDataDecompressor.m in Sources */,
+				94FAFFDA17F5D1AE0010601F /* FeedEventEntity.m in Sources */,
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
 				7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */,
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,

@@ -1,8 +1,8 @@
 //
 //  FeedEventEntity.h
-//  calender
+//  Calvin
 //
-//  Created by xiangfang on 13-8-5.
+//  Created by xiangfang on 13-9-27.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -32,7 +32,9 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
+
 @property (nonatomic, retain) NSSet *attendees;
+
 @end
 
 @interface FeedEventEntity (CoreDataGeneratedAccessors)

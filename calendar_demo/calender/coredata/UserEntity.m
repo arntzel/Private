@@ -1,8 +1,8 @@
 //
 //  UserEntity.m
-//  calender
+//  Calvin
 //
-//  Created by xiangfang on 13-8-5.
+//  Created by xiangfang on 13-9-27.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -20,5 +20,6 @@
 @dynamic last_name;
 @dynamic timezone;
 @dynamic username;
+@dynamic calvinUser;
 
 @end
