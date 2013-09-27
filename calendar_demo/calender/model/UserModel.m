@@ -29,14 +29,13 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
 
-    NSString * postContent = [Utils convertObj2Json:user];
-    //NSString * postContent = @"{\"username\":\"user123\", \"password\":\"111111\", \"email\":\"user123@pencilme.com\"}";
+    NSDictionary * dict = [user convent2Dic];
+    NSString * postContent = [Utils dictionary2String:dict];
     
     LOG_D(@"postContent=%@", postContent);
 
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
-    
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
 

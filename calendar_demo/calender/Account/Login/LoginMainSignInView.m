@@ -26,8 +26,6 @@
 
 - (IBAction)btnFacebookClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if(isLogining) {
         return;
     }
@@ -39,8 +37,6 @@
 
 - (IBAction)btnGoogleClick:(id)sender {
     
-    [self hideKeyboard];
-    
     if(isLogining) {
         return;
     }
@@ -51,9 +47,7 @@
 }
 
 - (IBAction)btnSignInClick:(id)sender {
-    
-    [self hideKeyboard];
-    
+
     if(isLogining) {
         return;
     }
@@ -64,9 +58,7 @@
 }
 
 - (IBAction)btnForgotPasswordClick:(id)sender {
-    
-    [self hideKeyboard];
-    
+        
     if(isLogining) {
         return;
     }
@@ -76,19 +68,9 @@
     }
 }
 
-
-
--(void) hideKeyboard
-{
-     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-}
-
 - (void)updateUI
 {
-    UITapGestureRecognizer* singleTapRecognizer;
-    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
-    [self addGestureRecognizer:singleTapRecognizer];
+    
 }
 
 -(void) showLogining:(BOOL) logining
@@ -102,6 +84,11 @@
     }
 }
 
+-(void) setEmail:(NSString *) email andPass:(NSString *) pass
+{
+    self.TextUserName.text = email;
+    self.TextPassword.text = pass;
+}
 
 +(LoginMainSignInView *) creatView
 {

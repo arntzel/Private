@@ -23,11 +23,13 @@
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
 
-@interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate>
+#import "TPKeyboardAvoidingScrollView.h"
+
+@interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
     
     UIImageView *bgView;
-    UIScrollView *scrollView;
+    TPKeyboardAvoidingScrollView *scrollView;
     LoginMainTitileView *titleView;
     UIButton *btnBack;
     
@@ -40,6 +42,8 @@
     int loginType;
     UIActivityIndicatorView * loadingView;
 }
+
+@property(nonatomic, strong) UITextField *alertTextField;
 
 @end
 
@@ -65,7 +69,7 @@
     [bgView setContentMode:UIViewContentModeScaleAspectFill];
     [bgView setFrame:self.view.bounds];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 568);
     [self.view addSubview:scrollView];
     
@@ -75,8 +79,10 @@
     frame.origin.y = 20;
     titleView.frame = frame;
     
-    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(18, 18, 21, 21)];
-    [btnBack setBackgroundImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
+    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    btnBack.contentEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
+    [btnBack setImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
+    
     [self.view addSubview:btnBack];
     [btnBack addTarget:self action:@selector(backToAccessView) forControlEvents:UIControlEventTouchUpInside];
     [btnBack setAlpha:0.0f];
@@ -90,59 +96,7 @@
     [self configAccessView];
     [self configCreatView];
     [self configSignInView];
-    
-    [self registerKeyboardEvents];
 }
-
--(void) viewDidUnload {
-    [self unregisterKeyboardEvents];
-}
-
--(void) registerKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void) unregisterKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-
-
-
-#pragma mark -
-#pragma mark Responding to keyboard events
-- (void)keyboardWillShow:(NSNotification *)notification {
-
-    NSDictionary *userInfo = [notification userInfo];
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    // Get the duration of the animation.
-    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    //NSTimeInterval animationDuration;
-    //[animationDurationValue getValue:&animationDuration];
-    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
-    //[self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
-
-    CGRect frame = self.view.frame;
-    frame.origin.y =  - keyboardRect.size.height;
-    self.view.frame = frame;
-
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-
-    CGRect frame = self.view.frame;
-    frame.origin.y =  0;
-    self.view.frame = frame;
-}
-
-
 
 - (void)configGPPSignIn
 {
@@ -210,6 +164,7 @@
 
 - (void)backToAccessView
 {
+    [self.view endEditing:YES];
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         if (!creatView.hidden) {
             creatView.alpha = 0.0f;
@@ -221,6 +176,20 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             accessView.alpha = 1.0f;
+        } completion:nil];
+    }];
+}
+
+-(void) swithFromCreateViewToSigninView
+{
+    
+    
+    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        creatView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            btnBack.alpha = 1.0f;
+            signInView.alpha = 1.0f;
         } completion:nil];
     }];
 }
@@ -320,35 +289,35 @@
     [self signupGoogle];
 }
 
-- (void)btnSignUpDidClickWithName:(NSString *)name Email:(NSString *)_email Password:(NSString *)_password HeadPhoto:(UIImage *)headPhoto
+- (void)btnSignUpDidClickWithName:(CreateUser *) createUser
 {
-    NSString * username = name;
-    NSString * email = _email;
-    NSString * password = _password;
-    //{"username":"user1", "password":"111111", "email":"user1@pencilme.com"}
-    
-    CreateUser * user = [[CreateUser alloc] init];
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    
-    if (username == nil || password == nil || email == nil) {
-        [self showAlert:@"can't be empty !!"];
+    if (createUser.email == nil || createUser.password == nil) {
+        [self showAlert:@"Email and Password can't be empty !!"];
         return;
     }
     
-    [loadingView startAnimating];
     
-    [[UserModel getInstance] createUser:user andCallback:^(NSInteger error, NSString * msg) {
-        [loadingView stopAnimating];
-
+    
+    
+    
+    [creatView showLoadingAnimation:YES];
+    
+    [[UserModel getInstance] createUser:createUser andCallback:^(NSInteger error, NSString * msg) {
+        
+        [creatView showLoadingAnimation:NO];
+    
         if(error == 0) {
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
                                                           message:@"Success！"
-                                                         delegate:nil
+                                                         delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
+            
+            alert.tag = 1;
             [alert show];
+            
+            [signInView setEmail:createUser.email andPass:createUser.password];
+            
         } else {
             UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
                                                           message:msg
@@ -401,7 +370,29 @@
 
 - (void)btnForgotPasswordDidClick
 {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password" message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     
+
+    
+//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+    
+    self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 25)];
+    [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
+    [self.alertTextField setPlaceholder:@"email"];
+    [alertView addSubview:self.alertTextField];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag == 1) {
+        //Create new user success;
+        [self swithFromCreateViewToSigninView];
+    } else {
+        if (buttonIndex == 1) {
+            NSLog(@"%@", self.alertTextField.text);
+        }
+    }
 }
 
 #pragma mark -
@@ -487,4 +478,5 @@
 {
     LOG_D(@"didDisconnectWithError:%@", error);
 }
+
 @end

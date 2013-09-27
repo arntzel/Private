@@ -7,22 +7,43 @@
 //
 
 #import "LoginMainCreatView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ViewUtils.h"
+#import "Model.h"
+#import "CreateUser.h"
 
-@interface LoginMainCreatView()
+@interface LoginMainCreatView()<UIActionSheetDelegate, UIImagePickerControllerDelegate ,UINavigationControllerDelegate, UploadImageDelegate>
+{
+    UITapGestureRecognizer *tapGesture;
+    ASIFormDataRequest * request;
+    NSString * imageUrl;
+}
+
 @property (weak, nonatomic) IBOutlet UITextField *textFirstName;
 @property (weak, nonatomic) IBOutlet UITextField *textLastName;
 @property (weak, nonatomic) IBOutlet UITextField *textEmail;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
-
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewAddPhoto;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end
 
 @implementation LoginMainCreatView
 @synthesize delegate;
 
-- (IBAction)btnFacebookClick:(id)sender {
+- (void)dealloc
+{
+    [self.imageViewAddPhoto removeGestureRecognizer:tapGesture];
     
-    [self hideKeyboard];
+    if(request != nil) {
+        [request cancel];
+        request = nil;
+    }
+    
+    imageUrl = nil;
+}
+
+- (IBAction)btnFacebookClick:(id)sender {
     
     if ([self.delegate respondsToSelector:@selector(btnFacebookSignUpDidClick)]) {
         [self.delegate btnFacebookSignUpDidClick];
@@ -31,42 +52,155 @@
 
 - (IBAction)btnGoogleClick:(id)sender {
     
-    [self hideKeyboard];
-    
-    
     if ([self.delegate respondsToSelector:@selector(btnGoogleSignUpDidClick)]) {
         [self.delegate btnGoogleSignUpDidClick];
     }
 }
 
-- (IBAction)btnAddPhotoClick:(id)sender {
-
-    [self hideKeyboard];
-    
-}
-
 - (IBAction)btnSignUpClick:(id)sender {
     
-    [self hideKeyboard];
+    if( ![self isValidateEmail:self.textEmail.text]) {
+        return;
+    }
     
-    if ([self.delegate respondsToSelector:@selector(btnSignUpDidClickWithName:Email:Password:HeadPhoto:)]) {
-        NSString *userName = [NSString stringWithFormat:@"%@%@",self.textFirstName.text,self.textLastName.text];
-        [self.delegate btnSignUpDidClickWithName:userName Email:self.textEmail.text Password:self.textPassword.text HeadPhoto:nil];
+    if ([self.delegate respondsToSelector:@selector(btnSignUpDidClickWithName:)]) {
+        
+        CreateUser * createUser = [[CreateUser alloc] init];
+        createUser.first_name = self.textFirstName.text;
+        createUser.last_name = self.textLastName.text;
+        createUser.avatar_url = imageUrl;
+        createUser.email = self.textEmail.text;
+        createUser.username = createUser.email;
+        createUser.password = self.textPassword.text;
+        
+        [self.delegate btnSignUpDidClickWithName:createUser];
     }
 }
 
--(void) hideKeyboard
+-(void) showLoadingAnimation:(BOOL)show
 {
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    self.indicator.hidden = !show;
 }
 
 - (void)updateUI
 {
-    UITapGestureRecognizer* singleTapRecognizer;
-    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
-    [self addGestureRecognizer:singleTapRecognizer];
+
+    [self.textEmail addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    
+    UIColor *bordColor = [UIColor colorWithRed:134.0/255.0f green:134.0/255.0f blue:134.0/255.0f alpha:1.0f];
+    [self.imageViewAddPhoto.layer setBorderColor:bordColor.CGColor];
+    UIColor *bgColor = [UIColor colorWithRed:186/255.0f green:186/255.0f blue:186/255.0f alpha:0.34f];
+    self.imageViewAddPhoto.backgroundColor = bgColor;
+    [self.imageViewAddPhoto.layer setCornerRadius:self.imageViewAddPhoto.frame.size.width / 2];
+    [self.imageViewAddPhoto.layer setBorderWidth:2.0f];
+    self.imageViewAddPhoto.image = [UIImage imageNamed:@"login_main_singnup_addphoto.png"];
+    
+    [self.imageViewAddPhoto setUserInteractionEnabled:YES];
+    [self.imageViewAddPhoto setClipsToBounds:YES];
+    tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addPhotoTap)];
+    [self.imageViewAddPhoto addGestureRecognizer:tapGesture];
 }
+
+- (void) textFieldDidChange:(UITextField *) TextField
+{
+    if ([self isValidateEmail:TextField.text]) {
+        TextField.textColor = [UIColor blackColor];
+    } else {
+        TextField.textColor = [UIColor redColor];
+    }
+}
+
+#pragma mark Add Photo
+- (void)addPhotoTap
+{
+    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
+    [menu showInView:self];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    else if(buttonIndex == 1)
+    {
+        [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
+- (void)getImageFrom:(UIImagePickerControllerSourceType)type
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = type;
+    ipc.delegate = self;
+    [self.delegate presentModalViewController:ipc animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    CGSize targetSize = self.imageViewAddPhoto.frame.size;
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
+    
+    self.imageViewAddPhoto.image = newImage;
+    self.imageViewAddPhoto.alpha = 0.5;
+    [self uploadImage:newImage];
+    
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+-(void) uploadImage:(UIImage *) img
+{
+
+    if(request != nil)
+    {
+        [request cancel];
+        request = nil;
+    }
+    
+    if(imageUrl != nil) {
+        imageUrl = nil;
+    }
+    
+    request =[[Model getInstance] uploadImage:img andCallback:self];
+}
+
+-(void) onUploadStart
+{
+    
+}
+
+-(void) onUploadProgress: (long long) progress andSize: (long long) Size
+{
+    float prg = (float)progress / (float)Size;
+    self.imageViewAddPhoto.alpha = 0.3 + prg*0.7;
+    LOG_D(@"onUploadProgress: progress=%f", prg);
+}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    LOG_D(@"onUploadCompleted: url=%@", url);
+    
+    self.imageViewAddPhoto.alpha = 1;
+    
+    if(error == 0) {
+        imageUrl = url;
+    } else {
+        self.imageViewAddPhoto.image = nil;
+    }
+}
+
+-(BOOL)isValidateEmail:(NSString *)email
+
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
+    return [emailTest evaluateWithObject:email];
+    
+}
+
 
 +(LoginMainCreatView *) creatView
 {
@@ -76,5 +210,7 @@
     
     return view;
 }
+
+
 
 @end
