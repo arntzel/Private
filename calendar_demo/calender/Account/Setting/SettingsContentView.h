@@ -21,11 +21,14 @@
 #define connectFacebookBtnTag 12
 #define connectGoogleBtnTag 13
 #define headPortraitBtnTag 14
+#define headPortraitImgViewTag 15
 @interface SettingsContentView : UIControl  
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *headPortaitBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *headPortraitImgView;
+
 
 @property (nonatomic, copy) void (^pushDetailViewBlock)(int row);
 

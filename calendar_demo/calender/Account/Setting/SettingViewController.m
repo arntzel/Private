@@ -24,12 +24,15 @@
 #import "LegalViewController.h"
 #import "ViewUtils.h"
 #import "UIImage+CirCle.h"
-
-@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "Model.h"
+#import <SDWebImage/UIButton+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
 @property (nonatomic, strong) User *loginUser;
+@property (nonatomic, strong) ASIFormDataRequest * request;
 @end
 
 @implementation SettingViewController
@@ -80,6 +83,9 @@
     {
         [weakSelf pushDetail:row];
     };
+    
+    [self.t_settingsContentView.headPortaitBtn.layer setMasksToBounds:YES];
+    self.t_settingsContentView.headPortaitBtn.layer.cornerRadius = self.t_settingsContentView.headPortaitBtn.frame.size.width/2;
     
     self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
     [self.scroller addSubview:self.t_settingsContentView];
@@ -262,19 +268,61 @@
 {
     
     CGSize targetSize = self.t_settingsContentView.headPortaitBtn.frame.size;
-    UIImage * newImage = [[ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image] circleImage:self.t_settingsContentView.headPortaitBtn.bounds];
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
     
     [self.t_settingsContentView.headPortaitBtn setImage:newImage forState:UIControlStateNormal];
     [picker dismissModalViewControllerAnimated:YES];
     
-    //[self uploadImage];
+    [self uploadImage:newImage];
+}
+
+-(void) uploadImage:(UIImage *) img
+{
+    
+    if(self.request != nil)
+    {
+        [self.request cancel];
+        self.request = nil;
+    }
+    
+    self.request =[[Model getInstance] uploadImage:img andCallback:self];
+}
+
+-(void) onUploadStart
+{
+    
+}
+
+-(void) onUploadProgress: (long long) progress andSize: (long long) Size
+{
+    float prg = (float)progress / (float)Size;
+    //self.t_settingsContentView.headPortaitBtn.alpha = 0.3 + prg*0.7;
+    LOG_D(@"onUploadProgress: progress=%f", prg);
+}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    LOG_D(@"onUploadCompleted: url=%@", url);
+    
+    //self.t_settingsContentView.headPortaitBtn.alpha = 1;
+    
+    if(error == 0)
+    {
+        self.loginUser.avatar_url = url;
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Upload Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Data Helper
-
 - (void)getUserInfo
 {
-    self.loginUser = [[UserSetting getInstance] getLoginUserData];
+    //self.loginUser = [[UserSetting getInstance] getLoginUserData];
+    self.loginUser  = [[UserModel getInstance] getLoginUser];
 }
 
 - (void)setValueForViews
@@ -282,6 +330,16 @@
     self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
     self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
     self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+    
+    [self.t_settingsContentView.headPortaitBtn setImageWithURL:[NSURL URLWithString:self.loginUser.avatar_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"settings_main_head_portait_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+        if (error)
+        {
+            [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
+            LOG_D(@"get avatar from remote failed.");
+        }
+    }];
+
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
