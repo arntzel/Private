@@ -226,7 +226,12 @@
             CoreDataModel * model = [CoreDataModel getInstance];
 
             for(Event * evt in events) {
-                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                
+                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                }
+                
                 [entity convertFromEvent:evt];
                 [model addFeedEventEntity:entity];
             }

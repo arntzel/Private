@@ -171,8 +171,6 @@
 		769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB99917DF51340033E677 /* manuNavSetting.png */; };
 		769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0117DF514C0033E677 /* CoreDataModel.m */; };
 		769ABA1B17DF514C0033E677 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0317DF514C0033E677 /* DataCache.m */; };
-		769ABA1C17DF514C0033E677 /* DayFeedEventEntitys.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */; };
-		769ABA1D17DF514C0033E677 /* DayFeedEventEntitysExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */; };
 		769ABA2017DF514C0033E677 /* FeedEventEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */; };
 		769ABA2317DF514C0033E677 /* MessageEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1317DF514C0033E677 /* MessageEntityExtra.m */; };
 		769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 769ABA1417DF514C0033E677 /* Model.xcdatamodeld */; };
@@ -555,10 +553,6 @@
 		769ABA0117DF514C0033E677 /* CoreDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModel.m; sourceTree = "<group>"; };
 		769ABA0217DF514C0033E677 /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
 		769ABA0317DF514C0033E677 /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
-		769ABA0417DF514C0033E677 /* DayFeedEventEntitys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayFeedEventEntitys.h; sourceTree = "<group>"; };
-		769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayFeedEventEntitys.m; sourceTree = "<group>"; };
-		769ABA0617DF514C0033E677 /* DayFeedEventEntitysExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayFeedEventEntitysExtra.h; sourceTree = "<group>"; };
-		769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayFeedEventEntitysExtra.m; sourceTree = "<group>"; };
 		769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventEntityExtra.h; sourceTree = "<group>"; };
 		769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventEntityExtra.m; sourceTree = "<group>"; };
 		769ABA1217DF514C0033E677 /* MessageEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageEntityExtra.h; sourceTree = "<group>"; };
@@ -1304,10 +1298,6 @@
 				769ABA0117DF514C0033E677 /* CoreDataModel.m */,
 				769ABA0217DF514C0033E677 /* DataCache.h */,
 				769ABA0317DF514C0033E677 /* DataCache.m */,
-				769ABA0417DF514C0033E677 /* DayFeedEventEntitys.h */,
-				769ABA0517DF514C0033E677 /* DayFeedEventEntitys.m */,
-				769ABA0617DF514C0033E677 /* DayFeedEventEntitysExtra.h */,
-				769ABA0717DF514C0033E677 /* DayFeedEventEntitysExtra.m */,
 				94FAFFD817F5D1AE0010601F /* FeedEventEntity.h */,
 				94FAFFD917F5D1AE0010601F /* FeedEventEntity.m */,
 				769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */,
@@ -2247,8 +2237,6 @@
 				769AB92517DF51160033E677 /* PendingTableView.m in Sources */,
 				769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */,
 				769ABA1B17DF514C0033E677 /* DataCache.m in Sources */,
-				769ABA1C17DF514C0033E677 /* DayFeedEventEntitys.m in Sources */,
-				769ABA1D17DF514C0033E677 /* DayFeedEventEntitysExtra.m in Sources */,
 				769ABA2017DF514C0033E677 /* FeedEventEntityExtra.m in Sources */,
 				769ABA2317DF514C0033E677 /* MessageEntityExtra.m in Sources */,
 				769ABA2417DF514C0033E677 /* Model.xcdatamodeld in Sources */,

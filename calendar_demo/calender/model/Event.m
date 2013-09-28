@@ -134,21 +134,20 @@
 
 
     //[dic setObject:[self.creator convent2Dic] forKey:@"creator"];
-    [dic setObject:self.description forKey:@"description"];
-
-    [dic setObject:self.duration forKey:@"duration"];
+   
+    //[dic setObject:self.duration forKey:@"duration"];
     [dic setObject:[NSNumber numberWithInt:self.duration_days]    forKey:@"duration_days"];
     [dic setObject:[NSNumber numberWithInt:self.duration_hours]   forKey:@"duration_hours"];
     [dic setObject:[NSNumber numberWithInt:self.duration_minutes] forKey:@"duration_minutes"];
 
-    if(self.start_type != nil) {
-        [dic setObject:self.start_type forKey:@"start_type"];
-    }
+//    if(self.start_type != nil) {
+//        [dic setObject:self.start_type forKey:@"start_type"];
+//    }
     
-    if(self.start != nil) {
-        NSString * start = [Utils formateDate:self.start];
-        [dic setObject:start forKey:@"start"];
-    }
+//    if(self.start != nil) {
+//        NSString * start = [Utils formateDate:self.start];
+//        [dic setObject:start forKey:@"start"];
+//    }
     
 
     if(self.location != nil) {
@@ -159,11 +158,12 @@
 
     [dic setObject:self.thumbnail_url forKey:@"thumbnail_url"];
     [dic setObject:self.title forKey:@"title"];
+    [dic setObject:self.description forKey:@"description"];
     [dic setObject:self.timezone forKey:@"timezone"];
 
     //[dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"event_type"];
 
-    if(self.invitees != nil) {
+    if(self.invitees != nil && self.invitees.count > 0) {
         NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
         for(Invitee * invitee in self.invitees) {
             [jsonarray addObject:[invitee convent2Dic]];
@@ -173,7 +173,7 @@
     }
     
     
-    if(self.propose_starts != nil)
+    if(self.propose_starts != nil && self.propose_starts.count > 0)
     {
         NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
         for(ProposeStart * start in self.propose_starts) {

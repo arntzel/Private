@@ -7,23 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DayFeedEventEntitysExtra.h"
+#import "FeedEventEntity.h"
 
 @interface DayFeedEventEntitysWrap : NSObject
 
--(id) init:(DayFeedEventEntitys *) entitys;
+-(id) init:(NSString *) day andFeedEvents:(NSArray *) feedEvents;
 
 
 @property(strong) NSString * day;
-@property(strong) DayFeedEventEntitys * dayFeedEvents;
+
 @property int eventTypeFilter;
 
+@property (strong) NSNumber * eventType;
+@property (strong) NSMutableArray *events;
 
 @property(strong) NSArray * sortedEvents;
+
+
+-(void) removeEventsObject:(FeedEventEntity*) evt;
+
+-(void) addEventsObject:(FeedEventEntity*) evt;
 
 -(void) resetSortedEvents;
 
 @end
+
 
 
 @interface DayEventTypeWrap : NSObject
@@ -32,6 +40,8 @@
 @property int eventType;
 
 @end
+
+
 
 
 @interface DataCache : NSObject
@@ -46,6 +56,13 @@
 
 
 -(DayFeedEventEntitysWrap *) getDayFeedEventEntitysWrap:(NSString *) day;
+
+
+-(void) putFeedEventEntitys:(NSArray *) feedEvents;
+
+-(void) putFeedEventEntity:(FeedEventEntity *) feedEvent;
+
+
 
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps;
 
