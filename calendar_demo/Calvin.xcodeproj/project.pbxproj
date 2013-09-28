@@ -14,6 +14,7 @@
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
+		3D71D40E17F669D000121A85 /* Invitee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D71D40D17F669D000121A85 /* Invitee.m */; };
 		3D92520B17784A100066927A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520A17784A100066927A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520C17784A430066927A /* libsqlite3.0.dylib */; };
 		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -374,6 +375,8 @@
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D6151A71734A391003D72B0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3D71D40C17F669D000121A85 /* Invitee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invitee.h; path = calender/model/Invitee.h; sourceTree = SOURCE_ROOT; };
+		3D71D40D17F669D000121A85 /* Invitee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invitee.m; path = calender/model/Invitee.m; sourceTree = SOURCE_ROOT; };
 		3D92520A17784A100066927A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3D92520C17784A430066927A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -1628,6 +1631,8 @@
 				9457DF5717E5F11C00C294F7 /* EventTime.m */,
 				9457DF5317E5EF1900C294F7 /* EventTimeVote.h */,
 				9457DF5417E5EF1900C294F7 /* EventTimeVote.m */,
+				3D71D40C17F669D000121A85 /* Invitee.h */,
+				3D71D40D17F669D000121A85 /* Invitee.m */,
 				769ABBA217DF54290033E677 /* Location.h */,
 				769ABBA317DF54290033E677 /* Location.m */,
 				769ABBA417DF54290033E677 /* Message.h */,
@@ -2266,6 +2271,7 @@
 				769ABB0E17DF52090033E677 /* CustomPickerCell.m in Sources */,
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
+				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
 				94FAFFE017F5D1AF0010601F /* MessageEntity.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,

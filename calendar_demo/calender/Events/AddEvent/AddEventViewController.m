@@ -500,13 +500,16 @@
     event.eventType = 0;
     event.description = @"";
     
-    NSMutableArray * attentees = [[NSMutableArray alloc] init];
+    NSMutableArray * invitees = [[NSMutableArray alloc] init];
     for(User * user in self.invitedPeoples) {
-        EventAttendee * atd = [[EventAttendee alloc] init];
-        atd.user = user;
-        [attentees addObject:atd];
+        Invitee * invitee = [[Invitee alloc] init];
+        invitee.email = user.email;
+        [invitees addObject:invitee];
     }
-    event.attendees = attentees;
+    
+    event.invitees = invitees;
+    
+    
     event.duration_days = arrangedDate.duration_days;
     event.duration_hours = arrangedDate.duration_hours;
     event.duration_minutes = arrangedDate.duration_minutes;

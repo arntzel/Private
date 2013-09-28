@@ -102,17 +102,17 @@
 {
     NSMutableArray * urls = [[NSMutableArray alloc] init];
     NSMutableArray * statuses = [[NSMutableArray alloc] init];
-    for(EventTimeVote * vote in _eventTime.votes) {
-        User * user = vote.user;
-
-        if(user.avatar_url == nil) {
-            [urls addObject:@""];
-        } else {
-            [urls addObject:user.avatar_url];
-        }
-
-        [statuses addObject: [NSNumber numberWithInt:vote.vote]];
-    }
+//    for(EventTimeVote * vote in _eventTime.votes) {
+//        User * user = vote.user;
+//
+//        if(user.avatar_url == nil) {
+//            [urls addObject:@""];
+//        } else {
+//            [urls addObject:user.avatar_url];
+//        }
+//
+//        [statuses addObject: [NSNumber numberWithInt:vote.vote]];
+//    }
     
     headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:statuses andCountLimit:8 ShowArraw:YES];
     

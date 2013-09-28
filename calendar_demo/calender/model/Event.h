@@ -6,6 +6,7 @@
 #import "Location.h"
 #import "EventAttendee.h"
 #import "ProposeStart.h"
+#import "Invitee.h"
 
 #define FILTER_IMCOMPLETE  0X00000001
 #define FILTER_GOOGLE      0X00000002
@@ -69,6 +70,10 @@
 @property BOOL userstatus;
 @property(strong) NSString * timezone;
 
+
+//Only for create events
+//Invitee List
+@property(strong) NSArray * invitees;
 
 //EventAttendee list
 @property(strong) NSArray * attendees;

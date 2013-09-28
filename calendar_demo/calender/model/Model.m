@@ -102,12 +102,29 @@ static Model * instance;
  */
 -(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback
 {
-    
+    /*
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
     [dict setObject:[NSNumber numberWithBool:evt.allow_attendee_invite] forKey:@"allow_attendee_invite"];
     [dict setObject:[NSNumber numberWithBool:evt.allow_new_dt] forKey:@"allow_new_dt"];
 
+    
+    NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
+    for(Invitee * invitee in evt.invitees) {
+        [jsonarray addObject:[invitee convent2Dic]];
+    }
+    
+    [dic setObject:jsonarray forKey:@"invitees"];
+    
+    
+    jsonarray = [[NSMutableArray alloc] init];
+    for(ProposeStart * start in self.propose_starts) {
+        [jsonarray addObject:[start convent2Dic]];
+    }
+    
+    [dic setObject:jsonarray forKey:@"propose_starts"];
+    
+    
 
     if(evt.attendees != nil) {
         NSMutableArray * invitees =  [[NSMutableArray alloc] init];
@@ -155,7 +172,10 @@ static Model * instance;
     [dict setObject:evt.thumbnail_url forKey:@"thumbnail_url"];
     [dict setObject:evt.title forKey:@"title"];
     [dict setObject:evt.timezone forKey:@"timezone"];
-
+    */
+    
+    NSDictionary * dict = [evt convent2Dic];
+     
     NSString * postContent = [Utils dictionary2String:dict];
 
     LOG_D(@"createEvent, postContent:%@", postContent);

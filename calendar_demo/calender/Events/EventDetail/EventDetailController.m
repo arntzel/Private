@@ -197,8 +197,8 @@
     [self updateEventTimeView];
 
     BOOL isCreator = [self isMyCreatEvent];
-    BOOL can = event.privilige == 0;
-    [conformView updateUI:isCreator andInviteeCanProposeTime:can];
+    
+    [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
 
     [commentContentView beginLoadComments];
 }
@@ -221,9 +221,9 @@
         [vote release];
 
         if(i==2) {
-            vote.vote = 0;
+            vote.status = -1;
         } else {
-            vote.vote = 1;
+            vote.status = 1;
         }
     }
     
@@ -245,17 +245,17 @@
 
         for(int i=0;i<3;i++) {
             EventTimeVote * vote = [[EventTimeVote alloc] init];
-            vote.user = event.creator;
+            vote.email = event.creator.email;
 
             if(event.attendees.count >0) {
                 EventAttendee * atd = [event.attendees objectAtIndex:0];
-                vote.user = atd.user;
+                vote.email = atd.contact.email;
             }
 
             if(i==1) {
-                vote.vote = 1;
+                vote.status = 1;
             } else {
-                vote.vote = 0;
+                vote.status = 0;
             }
             
             [votes addObject:vote];
