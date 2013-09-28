@@ -108,7 +108,6 @@
         if(error == 0) {
             self.event = evt;
 
-
             [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];

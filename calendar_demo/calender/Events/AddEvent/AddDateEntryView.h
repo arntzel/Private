@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface AddDateEntryView : UIView
+
 @property (retain, nonatomic) IBOutlet UIImageView *DateResultView;
-@property (retain, nonatomic) IBOutlet UIImageView *AddDateView;
-
-@property (retain, nonatomic) IBOutlet UIButton *btnAddDate;
-
-+(AddDateEntryView *) createDateEntryView;
-
 @property (retain, nonatomic) IBOutlet UILabel *startTimeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *duringTimeLabel;
+
++(AddDateEntryView *) createDateEntryView;
 
 @end

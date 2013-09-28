@@ -355,6 +355,9 @@
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
+		9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9441400B17F719230059BCBA /* AddEventTimeButton.xib */; };
+		9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441400E17F71B830059BCBA /* AddEventTimeButton.m */; };
+		9441401217F720530059BCBA /* AddEventTimesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441401117F720530059BCBA /* AddEventTimesView.m */; };
 		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
 		94FAFFD517F5BA6F0010601F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD317F5BA6F0010601F /* Contact.m */; };
@@ -874,6 +877,11 @@
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
+		9441400B17F719230059BCBA /* AddEventTimeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventTimeButton.xib; sourceTree = "<group>"; };
+		9441400D17F71B830059BCBA /* AddEventTimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventTimeButton.h; sourceTree = "<group>"; };
+		9441400E17F71B830059BCBA /* AddEventTimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventTimeButton.m; sourceTree = "<group>"; };
+		9441401017F720530059BCBA /* AddEventTimesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventTimesView.h; sourceTree = "<group>"; };
+		9441401117F720530059BCBA /* AddEventTimesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventTimesView.m; sourceTree = "<group>"; };
 		9457DF5317E5EF1900C294F7 /* EventTimeVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTimeVote.h; path = calender/model/EventTimeVote.h; sourceTree = SOURCE_ROOT; };
 		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
 		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
@@ -1456,6 +1464,11 @@
 				769ABAC717DF52090033E677 /* AddEventSettingView.h */,
 				769ABAC817DF52090033E677 /* AddEventSettingView.m */,
 				769ABAC917DF52090033E677 /* AddEventSettingView.xib */,
+				9441400D17F71B830059BCBA /* AddEventTimeButton.h */,
+				9441400E17F71B830059BCBA /* AddEventTimeButton.m */,
+				9441400B17F719230059BCBA /* AddEventTimeButton.xib */,
+				9441401017F720530059BCBA /* AddEventTimesView.h */,
+				9441401117F720530059BCBA /* AddEventTimesView.m */,
 				769ABACA17DF52090033E677 /* AddEventViewController.h */,
 				769ABACB17DF52090033E677 /* AddEventViewController.m */,
 				769ABACC17DF52090033E677 /* AddLocationTextView.h */,
@@ -2095,6 +2108,7 @@
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
 				769AB9DD17DF51340033E677 /* btn_login_google@2x.png in Resources */,
 				769AB9DE17DF51340033E677 /* btn_menu@2x.png in Resources */,
+				9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */,
 				769AB9DF17DF51340033E677 /* btn_ok@2x.png in Resources */,
 				769AB9E017DF51340033E677 /* btn_ok_selected@2x.png in Resources */,
 				7662F75517F0761900B64E40 /* login_main_singnup_account_bg.png in Resources */,
@@ -2207,14 +2221,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		342DBBEF17F133730094FEFE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "./calender/Third-Party-Libraries/Crashlytics.framework/run bf0c5f52126e61ccb51c68eecf9a761324301f9a";
 		};
@@ -2227,6 +2241,8 @@
 			files = (
 				769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */,
 				764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
+				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
 				769ABD5017DF5C020033E677 /* AddLocationViewController.m in Sources */,
 				769ABD4E17DF58C20033E677 /* AddLocationTextView.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,

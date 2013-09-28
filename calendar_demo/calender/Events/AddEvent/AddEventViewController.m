@@ -9,8 +9,7 @@
 #import "AddEventViewController.h"
 
 #import "NavgationBar.h"
-#import "AddDateEntryView.h"
-#import "AddEventSettingView.h"
+
 
 #import "Model.h"
 #import "AddEventViewController.h"
@@ -22,6 +21,10 @@
 
 #import "AddEventInviteView.h"
 #import "AddEventPlaceView.h"
+#import "AddEventTimesView.h"
+#import "AddEventSettingView.h"
+
+
 #import "ViewUtils.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
@@ -54,7 +57,7 @@
     UIButton *imagePickerbtn;
     UITextField *txtFieldTitle;
 
-    AddDateEntryView *addDateView;
+    AddEventTimesView * timesView;
     AddEventSettingView *settingView;
     
     ATMHud *hud;
@@ -72,14 +75,13 @@
 
 @property(nonatomic, retain) NSArray *invitedPeoples;
 @property(nonatomic, retain) Location *locationPlace;
-@property(nonatomic, retain) EventDate *arrangedDate;
 @end
 
 @implementation AddEventViewController
 
 @synthesize invitedPeoples;
 @synthesize locationPlace;
-@synthesize arrangedDate;
+
 
 - (void)dealloc
 {
@@ -97,7 +99,7 @@
     [inviteView release];
     [placeView release];
 
-    [addDateView release];
+    [timesView release];
     [settingView release];
     
     [imageUrl release];
@@ -120,6 +122,7 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:237.0f/255.0f blue:237.0f/255.0f alpha:1.0f]];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, [DeviceInfo fullScreenHeight] - 44)];
+    scrollView.autoresizesSubviews = NO;
     [self.view addSubview:scrollView];
     scrollView.delegate = self;
     
@@ -130,15 +133,31 @@
     [self initImagePickerView];
     [self initInviteAndPlaceView];
     [self initAddDateView];
-    [self refreshTimeString];
     [self initSettingView];
-    
-    [scrollView setContentSize:CGSizeMake(320, settingView.frame.size.height + settingView.frame.origin.y + 10)];
+
+    [self layOutSubViews];
+
 
     hud = [[ATMHud alloc] initWithDelegate:self];
 	[self.view addSubview:hud.view];
     
     [ViewUtils resetUILabelFont:self.view];
+}
+
+- (void)layOutSubViews
+{
+    CGFloat offsetY = 0;
+
+    for(UIView * subView in scrollView.subviews) {
+        CGRect frame = subView.frame;
+        frame.origin = CGPointMake(0, offsetY);
+        subView.frame = frame;
+        offsetY += frame.size.height;
+    }
+
+    offsetY += 10;
+
+    [scrollView setContentSize:CGSizeMake(320, offsetY)];
 }
 
 - (void)initImagePickerView
@@ -147,6 +166,7 @@
     [imagePickerView setUserInteractionEnabled:YES];
     [imagePickerView setFrame:CGRectMake(0, 0, 320, 165)];
     [scrollView addSubview:imagePickerView];
+
     [imagePickerView setContentMode:UIViewContentModeScaleAspectFill];
     [imagePickerView setClipsToBounds:YES];
     
@@ -161,7 +181,7 @@
     [imagePickerView addSubview:imagePickerIcon];
     
     imagePickerbtn = [[UIButton alloc] initWithFrame:imagePickerView.frame];
-    [scrollView addSubview:imagePickerbtn];
+    [imagePickerView addSubview:imagePickerbtn];
     CGRect frame = imagePickerView.frame;
     frame.size.height -= (frame.size.height - 110);
     [imagePickerbtn setFrame:frame];
@@ -174,7 +194,7 @@
     
     txtFieldTitle = [[UITextField alloc] initWithFrame:CGRectMake(imageTitleBgView.frame.origin.x, imageTitleBgView.frame.origin.y + 10, imageTitleBgView.frame.size.width, 36)];
     [imagePickerView addSubview:txtFieldTitle];
-    [txtFieldTitle setPlaceholder:@"add event title..."];
+    [txtFieldTitle setPlaceholder:@"Add event title..."];
     [txtFieldTitle setFont:[UIFont systemFontOfSize:18]];
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
@@ -190,26 +210,31 @@
 
 - (void)initInviteAndPlaceView
 {
-    int y = imagePickerView.frame.size.height;
-    
+
+    UIView * subView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [scrollView addSubview:subView];
+    [subView release];
+
+
     inviteView = (AddEventInviteView*)[ViewUtils createView:@"AddEventInviteView"];
     [inviteView retain];
     CGRect frame = inviteView.frame;
     frame.origin.x = 8;
-    frame.origin.y = y + 5;
+    frame.origin.y = 5;
+
     inviteView.frame = frame;
-    
-    [scrollView addSubview:inviteView];
-    
+
+    [subView addSubview:inviteView];
+
     placeView = (AddEventPlaceView*)[ViewUtils createView:@"AddEventPlaceView"];
     [placeView retain];
 
     frame = placeView.frame;
     frame.origin.x = 162;
-    frame.origin.y = y + 5;
+    frame.origin.y = 5;
     placeView.frame = frame;
     
-    [scrollView addSubview:placeView];
+    [subView addSubview:placeView];
     
     inviteView.layer.cornerRadius = 4;
     inviteView.layer.masksToBounds = YES;
@@ -220,98 +245,20 @@
 
     [inviteView.btnInvite addTarget:self action:@selector(invitePeople:) forControlEvents:UIControlEventTouchUpInside];
     [placeView.btnPick addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
-    
-
-    
-     
-    /*
-    inviteAndPlaceView = [[UIView alloc] initWithFrame:CGRectMake(0, imagePickerView.frame.size.height, 320, 143)];
-    [scrollView addSubview:inviteAndPlaceView];
-    
-    UIImage *bgImage = [UIImage imageNamed:@"addEventBtnBg.png"];
-    bgImage = [bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
-    
-    UIImageView *invitePeopleView = [[UIImageView alloc] initWithFrame:CGRectMake(7, 10, 150, 133)];
-    [inviteAndPlaceView addSubview:invitePeopleView];
-    [invitePeopleView setUserInteractionEnabled:YES];
-    [invitePeopleView release];
-    invitePeopleView.image = bgImage;
-    
-    UIImageView *invitePeopleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [invitePeopleIcon setCenter:CGPointMake(75, 18)];
-    invitePeopleIcon.image = [UIImage imageNamed:@"invitePeopleIcon.png"];
-    [invitePeopleView addSubview:invitePeopleIcon];
-    
-    UILabel *labInvitePeople = [[UILabel alloc] initWithFrame:CGRectMake(42, 48, 66, 60)];
-    [labInvitePeople setBackgroundColor:[UIColor clearColor]];
-    [labInvitePeople setText:@"Invite People"];
-    [labInvitePeople setTextColor:[UIColor colorWithRed:148.0/255.0f green:148.0/255.0f blue:148.0/255.0f alpha:1.0f]];
-    [labInvitePeople setFont:[UIFont boldSystemFontOfSize:15.0f]];
-    [invitePeopleView addSubview:labInvitePeople];
-    [labInvitePeople setMultipleTouchEnabled:YES];
-    labInvitePeople.textAlignment = NSTextAlignmentCenter;
-    labInvitePeople.lineBreakMode = NSLineBreakByWordWrapping;
-    labInvitePeople.numberOfLines = 2;
-    [labInvitePeople release];
-    
-    invitePeoplebtn = [[UIButton alloc] initWithFrame:invitePeopleView.frame];
-    [inviteAndPlaceView addSubview:invitePeoplebtn];
-    [invitePeoplebtn addTarget:self action:@selector(invitePeople:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    UIImageView *addLocationView = [[UIImageView alloc] initWithFrame:CGRectMake(164, 10, 150, 133)];
-    [inviteAndPlaceView addSubview:addLocationView];
-    [addLocationView setUserInteractionEnabled:YES];
-    [addLocationView release];
-    addLocationView.image = bgImage;
-    
-    UIImageView *addLocationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [addLocationIcon setCenter:CGPointMake(75, 18)];
-    addLocationIcon.image = [UIImage imageNamed:@"addLocationIcon"];
-    [addLocationView addSubview:addLocationIcon];
-    
-    UILabel *labAddLocation = [[UILabel alloc] initWithFrame:CGRectMake(39, 48, 72, 60)];
-    [labAddLocation setBackgroundColor:[UIColor clearColor]];
-    [labAddLocation setText:@"Add Location"];
-    [labAddLocation setTextColor:[UIColor colorWithRed:148.0/255.0f green:148.0/255.0f blue:148.0/255.0f alpha:1.0f]];
-    [labAddLocation setFont:[UIFont boldSystemFontOfSize:15.0f]];
-    [addLocationView addSubview:labAddLocation];
-    [labAddLocation setMultipleTouchEnabled:YES];
-    labAddLocation.textAlignment = NSTextAlignmentCenter;
-    labAddLocation.lineBreakMode = NSLineBreakByWordWrapping;
-    labAddLocation.numberOfLines = 2;
-    [labAddLocation release];
-    
-    addLocationbtn = [[UIButton alloc] initWithFrame:addLocationView.frame];
-    [inviteAndPlaceView addSubview:addLocationbtn];
-    [addLocationbtn addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
-     */
 }
 
 - (void)initAddDateView
 {
-    addDateView = [[AddDateEntryView createDateEntryView] retain];
-    CGRect frame = addDateView.frame;
-    frame.origin.y = inviteView.frame.origin.y + inviteView.frame.size.height + 5;
-    addDateView.frame = frame;
-    [scrollView addSubview:addDateView];
-    [addDateView.btnAddDate addTarget:self action:@selector(addDate:) forControlEvents:UIControlEventTouchUpInside];
-    
-    EventDate *tempEventDate = [[EventDate alloc] init];
-    [tempEventDate convertMinToQuarterMode];
-    tempEventDate.duration_hours = 1;
-    self.arrangedDate = tempEventDate;
-    
-    [tempEventDate release];
+    timesView = [[AddEventTimesView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    [scrollView addSubview:timesView];
+
+    [timesView addBtnTarget:self action:@selector(addDate:)];
+    [timesView updateView:[NSArray array]];
 }
 
 - (void)initSettingView
 {
     settingView = [[AddEventSettingView createEventSettingView] retain];
-    CGRect frame = settingView.frame;
-    frame.origin.y = addDateView.frame.origin.y + addDateView.frame.size.height;
-    settingView.frame = frame;
     [scrollView addSubview:settingView];
 }
 
@@ -356,25 +303,29 @@
 #pragma mark Add Date
 - (void)addDate:(id)sender
 {
-    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:arrangedDate];
+    EventDate *tempEventDate = [[EventDate alloc] init];
+    [tempEventDate convertMinToQuarterMode];
+    tempEventDate.duration_hours = 1;
+
+    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
+
+    [tempEventDate release];
 }
 
+//Add new EventDate
 - (void)setEventDate:(EventDate *)eventDate_
 {
-    self.arrangedDate = eventDate_;
+    [timesView addEventDate:eventDate_];
+    [self layOutSubViews];
 }
 
-- (void)refreshTimeString
-{
-    addDateView.startTimeLabel.text = [arrangedDate parseStartDateString];
-    addDateView.duringTimeLabel.text = [arrangedDate parseDuringDateString];
-}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self refreshTimeString];
+
 }
 
 #pragma mark Add People
@@ -474,13 +425,15 @@
 
 - (BOOL)timeIsInFuture
 {
-    if ([arrangedDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
+//    if ([arrangedDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+//        return YES;
+//    }
+//    else
+//    {
+//        return NO;
+//    }
+
+    return YES;
 }
 
 - (BOOL)canCreateEvent
@@ -510,14 +463,14 @@
     event.invitees = invitees;
     
     
-    event.duration_days = arrangedDate.duration_days;
-    event.duration_hours = arrangedDate.duration_hours;
-    event.duration_minutes = arrangedDate.duration_minutes;
-    event.is_all_day = arrangedDate.is_all_day;
+//    event.duration_days = arrangedDate.duration_days;
+//    event.duration_hours = arrangedDate.duration_hours;
+//    event.duration_minutes = arrangedDate.duration_minutes;
+//    event.is_all_day = arrangedDate.is_all_day;
+//    event.start = arrangedDate.start;
+//    event.start_type = arrangedDate.start_type;
 
-    event.start = arrangedDate.start;
 
-    event.start_type = arrangedDate.start_type;
     event.location = self.locationPlace;
 
 
