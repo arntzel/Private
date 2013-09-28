@@ -2092,6 +2092,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "fang xiang";
+				TargetAttributes = {
+					3D61519F1734A391003D72B0 = {
+						DevelopmentTeam = GGN58EVK65;
+					};
+				};
 			};
 			buildConfigurationList = 3D61519B1734A391003D72B0 /* Build configuration list for PBXProject "Calvin" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2675,8 +2680,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender\"",
@@ -2700,8 +2705,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender\"",
@@ -2715,8 +2720,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "0D1C34A4-A6CA-43AF-A0D3-88EFE71C0E8A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0D1C34A4-A6CA-43AF-A0D3-88EFE71C0E8A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -370,14 +370,15 @@
 
 - (void)btnForgotPasswordDidClick
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password" message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password" message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     
 
     
 //    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
     
-    self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 25)];
+    self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 30)];
+    [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
     [self.alertTextField setPlaceholder:@"email"];
     [alertView addSubview:self.alertTextField];
