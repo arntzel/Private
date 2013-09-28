@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Event.h"
+#import "FeedEventEntityExtra.h"
 
 #define COLOR_A(color)  (((color)&(0xFF000000))>>24)
 #define COLOR_R(color)  (((color)&(0x00FF0000))>>16)
@@ -107,7 +108,7 @@
  */
 +(NSMutableURLRequest *) createHttpRequest:(NSString *) url andMethod:(NSString *) methood;
 
-+(NSString *) getAttendeeText:(Event*)event;
++(NSString *) getAttendeeText:(FeedEventEntity*)event;
 
 +(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
 

@@ -341,20 +341,20 @@
 }
 
 
-+(NSString *) getAttendeeText:(Event*)event {
++(NSString *) getAttendeeText:(FeedEventEntity*)event {
     
-    NSArray * atendees = event.attendees;
+    //NSArray * atendees = event.attendees;
     
     int respCount = 0;
-    int allCount = atendees.count;
+    int allCount = event.attendees.count;
     
-    for(int i=0;i<allCount;i++) {
+    
+    for(UserEntity * entity in event.attendees) {
         
-        EventAttendee * atd = [atendees objectAtIndex:i];
-        
-        if(atd.status != 0) {
+        if([entity.status intValue] != 0) {
             respCount ++;
         }
+        
     }
     
     return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];

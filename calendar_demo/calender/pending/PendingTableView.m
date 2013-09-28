@@ -48,8 +48,8 @@
     sectionHeader = @"";
 
     //self.backgroundColor = [UIColor grayColor];
-    self.headerEnabled = YES;
-    self.tailerEnabled = NO;
+    //self.headerEnabled = YES;
+    //self.tailerEnabled = NO;
     
     self.dataSource = self;
     self.delegate = self;
@@ -98,7 +98,7 @@
 
     NSArray * eventList = [self getEventsList:section];
     
-    Event * evt = nil;
+    FeedEventEntity * evt = nil;
     if(eventList.count>0) {
         evt = [eventList objectAtIndex:row];
     } 

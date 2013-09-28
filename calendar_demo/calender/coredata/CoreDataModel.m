@@ -169,7 +169,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start IS NULL"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start = NULL"];
     [fetchRequest setPredicate:predicate];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_on" ascending:NO];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FeedEventEntity.h"
-
+#import "UserEntity.h"
 #import "Event.h"
 
 @interface FeedEventEntity (FeedEventEntityExtra)
@@ -17,8 +17,10 @@
 -(UserEntity*) getCreator;
 
 
--(void) convertFromEvent:(Event*) event;
+-(BOOL) isAllAttendeeResped;
 
+
+-(void) convertFromEvent:(Event*) event;
 
 
 @end

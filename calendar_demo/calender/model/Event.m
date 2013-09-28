@@ -7,29 +7,6 @@
 @implementation Event
 
 
-//-(int) getPendingUserCount
-//{
-//    NSArray * atendees = self.attendees;
-//
-//    int respCount = 0;
-//    int allCount = atendees.count;
-//
-//    for(int i=0;i<allCount;i++) {
-//        EventAttendee * atd = [atendees objectAtIndex:i];
-//        if([atd.status isEqualToString:@"PENDING"]) {
-//            respCount ++;
-//        }
-//    }
-//
-//    return respCount;
-//}
-
-
--(BOOL) isPendingStatus
-{
-    return !self.confirmed;
-}
-
 +(Event *) parseEvent:(NSDictionary *) json
 {
     Event * event = [[Event alloc] init];
@@ -156,10 +133,10 @@
     
     //[dic setObject:self.status forKey:@"status"];
 
-    [dic setObject:self.thumbnail_url forKey:@"thumbnail_url"];
-    [dic setObject:self.title forKey:@"title"];
-    [dic setObject:self.description forKey:@"description"];
-    [dic setObject:self.timezone forKey:@"timezone"];
+    [dic setObject:self.thumbnail_url   forKey:@"thumbnail_url"];
+    [dic setObject:self.title           forKey:@"title"];
+    [dic setObject:self.description     forKey:@"description"];
+    [dic setObject:self.timezone        forKey:@"timezone"];
 
     //[dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"event_type"];
 

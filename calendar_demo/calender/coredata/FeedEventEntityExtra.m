@@ -28,6 +28,18 @@
 }
 
 
+-(BOOL) isAllAttendeeResped
+{
+    for(UserEntity * user in self.attendees)
+    {
+        if([user.status intValue] != 1) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 -(void) convertFromEvent:(Event*) event
 {
     self.id = [NSNumber numberWithInt:event.id];

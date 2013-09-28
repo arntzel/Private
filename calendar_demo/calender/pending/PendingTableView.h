@@ -1,12 +1,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Event.h"
-#import "PullRefreshTableView.h"
+#import "FeedEventEntity.h"
 
-
-
-@interface PendingTableView : PullRefreshTableView
+@interface PendingTableView : UITableView
 
 
 -(void) setSectionHeader:(NSString *) header;

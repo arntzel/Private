@@ -95,11 +95,6 @@
 
 
 
--(int) getPendingUserCount;
-
--(BOOL) isPendingStatus;
-
-
 -(NSDictionary*)convent2Dic;
 
 

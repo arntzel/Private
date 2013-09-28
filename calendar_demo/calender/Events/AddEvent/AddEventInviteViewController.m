@@ -102,7 +102,7 @@
 
 - (void)getInvitePeopleData
 {
-    UserModel *model = [UserModel getInstance];
+    UserModel * model = [UserModel getInstance];
     [self.indicatorView startAnimating];
     [model getUsers:0 andCallback:^(NSInteger error, NSArray *userArray) {
         [self.indicatorView stopAnimating];
