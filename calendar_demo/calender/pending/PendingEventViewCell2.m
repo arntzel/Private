@@ -12,6 +12,11 @@
     
     if(event == nil) {
         self.lableEmpty.hidden = NO;
+
+        self.imgView.hidden = YES;
+        self.labelTitle.hidden = YES;
+        self.labelAttendees.hidden = YES;
+
         return;
     }
     

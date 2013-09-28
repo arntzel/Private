@@ -14,7 +14,7 @@
 #import "CustomerIndicatorView.h"
 #import "CoreDataModel.h"
 
-@interface PedingEventViewController () <EventPendingToolbarDelegate>
+@interface PedingEventViewController () <EventPendingToolbarDelegate, CoreDataModelDelegate>
 
 @end
 
@@ -67,13 +67,13 @@
 
     table1 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [table1 setAllowsSelection:NO];
+    //[table1 setAllowsSelection:NO];
     [table1 setSectionHeader:@"WAITING FOR FINALIZATION"];
     [self.view addSubview:table1];
 
     table2 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [table2 setAllowsSelection:NO];
+    //[table2 setAllowsSelection:NO];
     [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];
 
@@ -89,8 +89,16 @@
     dataLoadingView.frame = frame;
 
     [self.view addSubview:dataLoadingView];
-    
+
+    [[CoreDataModel getInstance] addDelegate:self];
+
     [self loadData];
+}
+
+-(void) viewDidUnload
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
+    [super viewDidUnload];
 }
 
 -(void) loadData
@@ -151,4 +159,9 @@
     }
 }
 
+
+-(void) onCoreDataModelChanged
+{
+    [self loadData];
+}
 @end

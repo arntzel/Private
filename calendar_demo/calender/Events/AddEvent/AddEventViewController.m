@@ -543,7 +543,9 @@
     event.allow_new_dt = settingView.btnInvite1.selected;
     event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
     event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
-    
+
+    event.created_on = [Utils convertGMTDate:[NSDate date]];
+
     Model *model = [Model getInstance];
 
     [self startIndicator];

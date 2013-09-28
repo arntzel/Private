@@ -173,7 +173,7 @@ static Model * instance;
     [dict setObject:evt.title forKey:@"title"];
     [dict setObject:evt.timezone forKey:@"timezone"];
     */
-    
+
     NSDictionary * dict = [evt convent2Dic];
      
     NSString * postContent = [Utils dictionary2String:dict];
