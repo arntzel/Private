@@ -22,7 +22,10 @@
 #import "ConnectAccountViewController.h"
 #import "NotificaitonViewController.h"
 #import "LegalViewController.h"
-@interface SettingViewController ()<MFMailComposeViewControllerDelegate>
+#import "ViewUtils.h"
+#import "UIImage+CirCle.h"
+
+@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
@@ -182,17 +185,20 @@
     }
     else if (row == fbViewTag || row == googleViewTag)
     {
-         NSString *destructiveButtonTitle = row==fbViewTag ? @"Unlink Facebook":@"Unlink Google";
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
-        [sheet showInView:self.view];
+        [self createActionSheetWithRow:row];
     }
     else if (row == sendFeedBackBtnTag)
     {
         [self   sendEmail];
     }
+    else if (row == headPortraitBtnTag)
+    {
+        [self createActionSheetWithRow:headPortraitBtnTag];
+    }
     
 }
 
+#pragma mark - Logic Helper
 -(void)sendEmail
 {
     if ([MFMailComposeViewController canSendMail])
@@ -210,6 +216,60 @@
         
     }
 }
+
+- (void)createActionSheetWithRow:(int)row
+{
+    UIActionSheet *sheet = nil;
+    if (row == headPortraitBtnTag)
+    {
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
+
+    }
+    else
+    {
+        NSString *destructiveButtonTitle = row==fbViewTag ? @"Unlink Facebook":@"Unlink Google";
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+    }
+    
+    sheet.tag = row;
+    [sheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (actionSheet.tag == headPortraitBtnTag)
+    {
+        if (buttonIndex == 0) {
+            [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+        }
+        else if(buttonIndex == 1)
+        {
+            [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
+        }
+    }
+    
+}
+
+- (void)getImageFrom:(UIImagePickerControllerSourceType)type
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = type;
+    ipc.delegate = self;
+    [self presentModalViewController:ipc animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    CGSize targetSize = self.t_settingsContentView.headPortaitBtn.frame.size;
+    UIImage * newImage = [[ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image] circleImage:self.t_settingsContentView.headPortaitBtn.bounds];
+    
+    [self.t_settingsContentView.headPortaitBtn setImage:newImage forState:UIControlStateNormal];
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    //[self uploadImage];
+}
+
 #pragma mark - Data Helper
 
 - (void)getUserInfo

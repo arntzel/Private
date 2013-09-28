@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340B48EF17F67FED009E32E2 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 340B48EE17F67FED009E32E2 /* UIImage+CirCle.m */; };
+		340B48F217F6854E009E32E2 /* settings_main_head_portait_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 340B48F017F6854E009E32E2 /* settings_main_head_portait_default.png */; };
+		340B48F317F6854E009E32E2 /* settings_main_head_portait_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 340B48F117F6854E009E32E2 /* settings_main_head_portait_default@2x.png */; };
 		340FF3F117F2C7CE00E02410 /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 340FF3F017F2C7CE00E02410 /* UIView+LoadFromNib.m */; };
 		340FF3F317F2CC1900E02410 /* SettingsContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340FF3F217F2CC1900E02410 /* SettingsContentView.xib */; };
 		340FF3F717F2CE9E00E02410 /* SettingsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 340FF3F617F2CE9D00E02410 /* SettingsContentView.m */; };
@@ -411,6 +414,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		340B48ED17F67FED009E32E2 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
+		340B48EE17F67FED009E32E2 /* UIImage+CirCle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CirCle.m"; sourceTree = "<group>"; };
+		340B48F017F6854E009E32E2 /* settings_main_head_portait_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_main_head_portait_default.png; sourceTree = "<group>"; };
+		340B48F117F6854E009E32E2 /* settings_main_head_portait_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_main_head_portait_default@2x.png"; sourceTree = "<group>"; };
 		340FF3EF17F2C7CE00E02410 /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
 		340FF3F017F2C7CE00E02410 /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		340FF3F217F2CC1900E02410 /* SettingsContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsContentView.xib; sourceTree = "<group>"; };
@@ -1031,9 +1038,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340B48EC17F67FCA009E32E2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				340B48ED17F67FED009E32E2 /* UIImage+CirCle.h */,
+				340B48EE17F67FED009E32E2 /* UIImage+CirCle.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		340FF3F817F2E6F000E02410 /* Settings_Img */ = {
 			isa = PBXGroup;
 			children = (
+				340B48F017F6854E009E32E2 /* settings_main_head_portait_default.png */,
+				340B48F117F6854E009E32E2 /* settings_main_head_portait_default@2x.png */,
 				3468AE4417F57272000F00E5 /* settings_detail_noti_back.png */,
 				3468AE4517F57272000F00E5 /* settings_detail_noti_back@2x.png */,
 				344193B017F3DEC500C796C8 /* settings_main_bottom_row.png */,
@@ -1193,6 +1211,7 @@
 		7662F75A17F07F2B00B64E40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				340B48EC17F67FCA009E32E2 /* Categories */,
 				3441949717F47BAF00C796C8 /* SettingsBaseViewController.h */,
 				3441949817F47BAF00C796C8 /* SettingsBaseViewController.m */,
 				7662F75B17F07F2B00B64E40 /* SettingViewController.h */,
@@ -2257,6 +2276,7 @@
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				769AB9B817DF51340033E677 /* header9.jpg in Resources */,
 				340FF41E17F2E79800E02410 /* settings_main_facebook_icon@2x.png in Resources */,
+				340B48F217F6854E009E32E2 /* settings_main_head_portait_default.png in Resources */,
 				769AB9B917DF51340033E677 /* event_detail_header_cross.png in Resources */,
 				769AB9BA17DF51340033E677 /* event_detail_header_list_arraw.png in Resources */,
 				769AB9BB17DF51340033E677 /* event_detail_header_tick.png in Resources */,
@@ -2273,6 +2293,7 @@
 				344193B617F3DEC500C796C8 /* settings_main_bottom_row.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
+				340B48F317F6854E009E32E2 /* settings_main_head_portait_default@2x.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
 				769AB9C517DF51340033E677 /* event_detail_nav_more.png in Resources */,
 				769AB9D217DF51340033E677 /* arrow.png in Resources */,
@@ -2571,6 +2592,7 @@
 				769ABD3617DF54950033E677 /* AddDateCalenderView.m in Sources */,
 				769ABD3717DF54950033E677 /* FeedCalenderView.m in Sources */,
 				769ABD3817DF54950033E677 /* KalDate.m in Sources */,
+				340B48EF17F67FED009E32E2 /* UIImage+CirCle.m in Sources */,
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
 				340FF3F117F2C7CE00E02410 /* UIView+LoadFromNib.m in Sources */,
@@ -2680,8 +2702,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender\"",
