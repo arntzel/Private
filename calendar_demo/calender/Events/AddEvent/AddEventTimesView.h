@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "EventDate.h"
+#import "ProposeStart.h"
 
 
 @interface AddEventTimesView : UIView
 
 -(void)addBtnTarget:(id)target action:(SEL)action;
 
--(void) addEventDate:(EventDate *) eventDate;
+-(void) addEventDate:(ProposeStart *) eventDate;
 
 -(void) updateView:(NSArray *) eventDates;
 

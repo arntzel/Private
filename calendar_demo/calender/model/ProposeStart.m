@@ -18,6 +18,12 @@
     [dic setObject:[Utils formateDate:self.start] forKey:@"start"];
     [dic setObject:self.start_type forKey:@"start_type"];
 
+    [dic setObject:[NSNumber numberWithBool:self.is_all_day] forKey:@"is_all_day"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_days] forKey:@"duration_days"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_hours] forKey:@"duration_hours"];
+    [dic setObject:[NSNumber numberWithInt:self.duration_minutes] forKey:@"duration_minutes"];
+    
+    
     NSMutableArray * voteJsons = [[NSMutableArray alloc] init];
 
     for(EventTimeVote * vote in self.votes)
@@ -38,7 +44,28 @@
     start.start = [Utils parseNSDate:[json objectForKey:@"start"]];
     start.start_type = [json objectForKey:@"start_type"];
 
-
+    
+    NSNumber * num = [Utils chekcNullClass:[json objectForKey:@"is_all_day"]];
+    if(num != nil) {
+        start.is_all_day = [num boolValue];
+    }
+    
+    num = [Utils chekcNullClass:[json objectForKey:@"duration_days"]];
+    if(num != nil) {
+        start.duration_days = [num boolValue];
+    }
+    
+    num = [Utils chekcNullClass:[json objectForKey:@"duration_hours"]];
+    if(num != nil) {
+        start.duration_hours = [num boolValue];
+    }
+    
+    num = [Utils chekcNullClass:[json objectForKey:@"duration_minutes"]];
+    if(num != nil) {
+        start.duration_minutes = [num boolValue];
+    }
+    
+    
     NSArray *  voteJsons = [json objectForKey:@"vote"];
 
     NSMutableArray * votes = [[NSMutableArray alloc] init];
@@ -50,5 +77,99 @@
     start.votes = votes;
     return  start;
 }
+
+
+
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    ProposeStart *newDate = [[ProposeStart alloc] init];
+    newDate.start = [self.start copy];
+    newDate.is_all_day = self.is_all_day;
+    newDate.start_type = [self.start_type copy];
+    
+    newDate.duration_days = self.duration_days;
+    newDate.duration_minutes = self.duration_minutes;
+    newDate.duration_hours = self.duration_hours;
+    
+    return newDate;
+}
+
+- (void)convertMinToQuarterMode
+{
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:self.start];
+    parts.minute += 14;
+    
+    NSInteger min = [parts minute];
+    parts.minute = (min / 15) * 15;
+    
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:parts];
+    self.start = date;
+}
+
+
+- (NSString *)parseStartTimeString
+{
+    
+    //NSString *dateStr = [NSString stringWithFormat:% %@",intHour,intMin,strAMPM];
+    NSString * dateStr = [Utils formateTimeAMPM:self.start];
+    NSString *preStr = @"";
+    
+    if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+        preStr = @"exactly at ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEWITHIN]) {
+        preStr = @"within an hour of ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEAFTER]) {
+        preStr = @"anytime after ";
+    }
+    
+    return [preStr stringByAppendingString:dateStr];
+}
+
+- (NSString *)parseStartDateString
+{
+    NSArray *monthNameArray = [NSArray arrayWithObjects:
+                               @"Jan",
+                               @"Feb",
+                               @"March",
+                               @"April",
+                               
+                               @"May",
+                               @"June",
+                               @"July",
+                               @"Aug",
+                               
+                               @"Sep",
+                               @"Oct",
+                               @"Nov",
+                               @"Dec",
+                               nil
+                               ];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.start];
+    
+    NSString *monthName = [monthNameArray objectAtIndex:parts.month - 1];
+    NSString *preFix = [NSString stringWithFormat:@"%@ %d",monthName,parts.day];
+    
+    return [NSString stringWithFormat:@"%@,%@",preFix,[self parseStartTimeString]];
+}
+
+- (NSString *)parseDuringDateString
+{
+    
+    if (self.is_all_day) {
+        return @"all day";
+    }
+    
+    NSString *duringDateString = [NSString stringWithFormat:@"%d hours %d minutes", self.duration_hours, self.duration_minutes];
+    
+    return duringDateString;
+}
+
 
 @end

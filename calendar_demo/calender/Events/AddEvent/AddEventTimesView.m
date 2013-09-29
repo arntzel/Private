@@ -39,7 +39,7 @@
     return _eventDates;
 }
 
--(void) addEventDate:(EventDate *) eventDate
+-(void) addEventDate:(ProposeStart *) eventDate
 {
     [_eventDates addObject:eventDate];
 
@@ -47,9 +47,8 @@
     view.startTimeLabel.text = [eventDate parseStartDateString];
     view.duringTimeLabel.text = [eventDate parseDuringDateString];
 
-    int index = self.subviews.count-1;
-    [self insertSubview:view atIndex:index];
-
+    //int index = self.subviews.count-1;
+    [self insertSubview:view atIndex:0];
     [self layOutSubViews];
 }
 
@@ -61,7 +60,7 @@
 
     _eventDates = [NSMutableArray arrayWithArray:eventDates];
 
-    for(EventDate * date in eventDates) {
+    for(ProposeStart * date in eventDates) {
         AddDateEntryView * view = [AddDateEntryView createDateEntryView];
         view.startTimeLabel.text = [date parseStartDateString];
         view.duringTimeLabel.text = [date parseDuringDateString];

@@ -287,7 +287,6 @@
 		769ABC8817DF542A0033E677 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9917DF54290033E677 /* CreateUser.m */; };
 		769ABC8917DF542A0033E677 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9B17DF54290033E677 /* Event.m */; };
 		769ABC8A17DF542A0033E677 /* EventAttendee.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9D17DF54290033E677 /* EventAttendee.m */; };
-		769ABC8B17DF542A0033E677 /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9F17DF54290033E677 /* EventDate.m */; };
 		769ABC8C17DF542A0033E677 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABBA117DF54290033E677 /* EventModel.m */; };
 		769ABC8D17DF542A0033E677 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABBA317DF54290033E677 /* Location.m */; };
 		769ABC8E17DF542A0033E677 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABBA517DF54290033E677 /* Message.m */; };
@@ -746,8 +745,6 @@
 		769ABB9B17DF54290033E677 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		769ABB9C17DF54290033E677 /* EventAttendee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAttendee.h; sourceTree = "<group>"; };
 		769ABB9D17DF54290033E677 /* EventAttendee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAttendee.m; sourceTree = "<group>"; };
-		769ABB9E17DF54290033E677 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
-		769ABB9F17DF54290033E677 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
 		769ABBA017DF54290033E677 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
 		769ABBA117DF54290033E677 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		769ABBA217DF54290033E677 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
@@ -1626,8 +1623,6 @@
 				769ABB9B17DF54290033E677 /* Event.m */,
 				769ABB9C17DF54290033E677 /* EventAttendee.h */,
 				769ABB9D17DF54290033E677 /* EventAttendee.m */,
-				769ABB9E17DF54290033E677 /* EventDate.h */,
-				769ABB9F17DF54290033E677 /* EventDate.m */,
 				769ABBA017DF54290033E677 /* EventModel.h */,
 				769ABBA117DF54290033E677 /* EventModel.m */,
 				9457DF5617E5F11C00C294F7 /* EventTime.h */,
@@ -2322,7 +2317,6 @@
 				769ABC8817DF542A0033E677 /* CreateUser.m in Sources */,
 				769ABC8917DF542A0033E677 /* Event.m in Sources */,
 				769ABC8A17DF542A0033E677 /* EventAttendee.m in Sources */,
-				769ABC8B17DF542A0033E677 /* EventDate.m in Sources */,
 				769ABC8C17DF542A0033E677 /* EventModel.m in Sources */,
 				769ABC8D17DF542A0033E677 /* Location.m in Sources */,
 				769ABC8E17DF542A0033E677 /* Message.m in Sources */,

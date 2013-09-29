@@ -96,7 +96,7 @@
 {
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
 
-    [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
+    //[dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
 
     [dic setObject:[NSNumber numberWithBool:self.allow_attendee_invite]   forKey:@"allow_attendee_invite"];
     [dic setObject:[NSNumber numberWithBool:self.allow_new_dt]            forKey:@"allow_new_dt"];
@@ -113,9 +113,9 @@
     //[dic setObject:[self.creator convent2Dic] forKey:@"creator"];
    
     //[dic setObject:self.duration forKey:@"duration"];
-    [dic setObject:[NSNumber numberWithInt:self.duration_days]    forKey:@"duration_days"];
-    [dic setObject:[NSNumber numberWithInt:self.duration_hours]   forKey:@"duration_hours"];
-    [dic setObject:[NSNumber numberWithInt:self.duration_minutes] forKey:@"duration_minutes"];
+    //[dic setObject:[NSNumber numberWithInt:self.duration_days]    forKey:@"duration_days"];
+    //[dic setObject:[NSNumber numberWithInt:self.duration_hours]   forKey:@"duration_hours"];
+    //[dic setObject:[NSNumber numberWithInt:self.duration_minutes] forKey:@"duration_minutes"];
 
 //    if(self.start_type != nil) {
 //        [dic setObject:self.start_type forKey:@"start_type"];

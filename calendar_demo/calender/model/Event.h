@@ -2,7 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
-#import "EventDate.h"
+#import "ProposeStart.h"
 #import "Location.h"
 #import "EventAttendee.h"
 #import "ProposeStart.h"

@@ -162,26 +162,30 @@
 
 - (void)initImagePickerView
 {
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 165)];
+    [scrollView addSubview:view];
+    [view release];
+    
     imagePickerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePicker_bg.jpg"]];
     [imagePickerView setUserInteractionEnabled:YES];
-    [imagePickerView setFrame:CGRectMake(0, 0, 320, 165)];
-    [scrollView addSubview:imagePickerView];
+    [imagePickerView setFrame:view.bounds];
+    [view addSubview:imagePickerView];
 
     [imagePickerView setContentMode:UIViewContentModeScaleAspectFill];
     [imagePickerView setClipsToBounds:YES];
     
     UIImageView *maskImageView = [[UIImageView alloc] initWithFrame:imagePickerView.bounds];
     maskImageView.image = [UIImage imageNamed:@"shadow_ovlerlay_asset.png"];
-    [imagePickerView addSubview:maskImageView];
+    [view addSubview:maskImageView];
     [maskImageView release];
     
     
     UIImageView *imagePickerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerIcon.png"]];
     [imagePickerIcon setFrame:CGRectMake((320 - 36) / 2 , 47, 36, 31)];
-    [imagePickerView addSubview:imagePickerIcon];
+    [view addSubview:imagePickerIcon];
     
     imagePickerbtn = [[UIButton alloc] initWithFrame:imagePickerView.frame];
-    [imagePickerView addSubview:imagePickerbtn];
+    [view addSubview:imagePickerbtn];
     CGRect frame = imagePickerView.frame;
     frame.size.height -= (frame.size.height - 110);
     [imagePickerbtn setFrame:frame];
@@ -190,10 +194,10 @@
     
     UIImageView *imageTitleBgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerTitleBg.png"]];
     [imageTitleBgView setFrame:CGRectMake(6, 110, 308, 46)];
-    [imagePickerView addSubview:imageTitleBgView];
+    [view addSubview:imageTitleBgView];
     
     txtFieldTitle = [[UITextField alloc] initWithFrame:CGRectMake(imageTitleBgView.frame.origin.x, imageTitleBgView.frame.origin.y + 10, imageTitleBgView.frame.size.width, 36)];
-    [imagePickerView addSubview:txtFieldTitle];
+    [view addSubview:txtFieldTitle];
     [txtFieldTitle setPlaceholder:@"Add event title..."];
     [txtFieldTitle setFont:[UIFont systemFontOfSize:18]];
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
@@ -205,7 +209,7 @@
     imageUploadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     imageUploadingIndicator.hidesWhenStopped = YES;
     imageUploadingIndicator.center = CGPointMake(20, 20);
-    [imagePickerView addSubview:imageUploadingIndicator];
+    [view addSubview:imageUploadingIndicator];
 }
 
 - (void)initInviteAndPlaceView
@@ -303,10 +307,12 @@
 #pragma mark Add Date
 - (void)addDate:(id)sender
 {
-    EventDate *tempEventDate = [[EventDate alloc] init];
-    [tempEventDate convertMinToQuarterMode];
+    ProposeStart *tempEventDate = [[ProposeStart alloc] init];
     tempEventDate.duration_hours = 1;
-
+    tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
+    tempEventDate.start_type = START_TYPEEXACTLYAT;
+    [tempEventDate convertMinToQuarterMode];
+    
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
@@ -315,7 +321,7 @@
 }
 
 //Add new EventDate
-- (void)setEventDate:(EventDate *)eventDate_
+- (void)setEventDate:(ProposeStart *)eventDate_
 {
     [timesView addEventDate:eventDate_];
     [self layOutSubViews];
@@ -471,6 +477,9 @@
 //    event.start_type = arrangedDate.start_type;
 
 
+    
+    event.propose_starts = [timesView getEventDates];
+    
     event.location = self.locationPlace;
 
 

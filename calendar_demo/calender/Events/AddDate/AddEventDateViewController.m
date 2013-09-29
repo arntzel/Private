@@ -26,7 +26,7 @@
                                          UITableViewDelegate>
 {
     KalLogic *logic;
-    EventDate *eventDate;
+    ProposeStart * eventDate;
     
     AddDateCalenderView *calView;
 
@@ -35,14 +35,14 @@
     NSArray * dayEvents;
 }
 
-@property(nonatomic,copy) EventDate *eventDate;
+@property(nonatomic,copy) ProposeStart *eventDate;
 @end
 
 @implementation AddEventDateViewController
 @synthesize delegate;
 @synthesize eventDate;
 
-- (id)initWithEventDate:(EventDate *)arrangedDate
+- (id)initWithEventDate:(ProposeStart *)arrangedDate
 {
     if (self = [super init]) {
         self.eventDate = arrangedDate;
