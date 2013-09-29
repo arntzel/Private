@@ -27,12 +27,22 @@
 #import "Model.h"
 #import <SDWebImage/UIButton+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate>
+
+
+#import "ShareLoginFacebook.h"
+#import "LoginStatusCheck.h"
+#import "LoginAccountStore.h"
+
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+
+@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
 @property (nonatomic, strong) User *loginUser;
 @property (nonatomic, strong) ASIFormDataRequest * request;
+@property (nonatomic, strong) ShareLoginFacebook *snsLogin;
 @end
 
 @implementation SettingViewController
@@ -96,6 +106,30 @@
     
 }
 
+#pragma mark - Data Helper
+- (void)getUserInfo
+{
+    //self.loginUser = [[UserSetting getInstance] getLoginUserData];
+    self.loginUser  = [[UserModel getInstance] getLoginUser];
+}
+
+- (void)setValueForViews
+{
+    self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
+    self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
+    self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+    
+    [self.t_settingsContentView.headPortaitBtn setImageWithURL:[NSURL URLWithString:self.loginUser.avatar_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"settings_main_head_portait_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+        if (error)
+        {
+            [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
+            LOG_D(@"get avatar from remote failed.");
+        }
+    }];
+    
+}
+
 #pragma mark - User Interaction Helper
 - (void)btnMenu:(id)sender
 {
@@ -152,12 +186,14 @@
                 viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
                 break;
             case connectFacebookBtnTag:
-                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
-                [(ConnectAccountViewController *)viewCtr setType:ConnectFacebook];
+//                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
+//                [(ConnectAccountViewController *)viewCtr setType:ConnectFacebook];
+                [self connectFacebook];
                 break;
             case connectGoogleBtnTag:
-                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
-                [(ConnectAccountViewController *)viewCtr setType:ConnectGoogle];
+//                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
+//                [(ConnectAccountViewController *)viewCtr setType:ConnectGoogle];
+                [self connectGoogle];
                 break;
             case notificationViewTag:
                 viewCtr = [[NotificaitonViewController alloc] initWithNibName:@"NotificaitonViewController" bundle:[NSBundle mainBundle]];
@@ -184,10 +220,7 @@
 
     else if (row == logoutBtnTag || row == deleteAccountBtnTag)
     {
-        NSString *destructiveButtonTitle = row==logoutBtnTag ? @"Log Out":@"Delete Account";
-    
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
-        [sheet showInView:self.view];
+        [self createActionSheetWithRow:row];
     }
     else if (row == fbViewTag || row == googleViewTag)
     {
@@ -199,7 +232,7 @@
     }
     else if (row == headPortraitBtnTag)
     {
-        [self createActionSheetWithRow:headPortraitBtnTag];
+        [self createActionSheetWithRow:row];
     }
     
 }
@@ -231,30 +264,22 @@
         sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
 
     }
-    else
+    else if (row == fbViewTag || row == googleViewTag)
     {
         NSString *destructiveButtonTitle = row==fbViewTag ? @"Unlink Facebook":@"Unlink Google";
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+    }
+    else if (row == logoutBtnTag || row == deleteAccountBtnTag)
+    {
+        NSString *destructiveButtonTitle = row==logoutBtnTag ? @"Log Out":@"Delete Account";
+        
         sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
     }
     
     sheet.tag = row;
     [sheet showInView:self.view];
 }
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (actionSheet.tag == headPortraitBtnTag)
-    {
-        if (buttonIndex == 0) {
-            [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
-        }
-        else if(buttonIndex == 1)
-        {
-            [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
-        }
-    }
-    
-}
+
 
 - (void)getImageFrom:(UIImagePickerControllerSourceType)type
 {
@@ -262,18 +287,6 @@
     ipc.sourceType = type;
     ipc.delegate = self;
     [self presentModalViewController:ipc animated:YES];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    
-    CGSize targetSize = self.t_settingsContentView.headPortaitBtn.frame.size;
-    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
-    
-    [self.t_settingsContentView.headPortaitBtn setImage:newImage forState:UIControlStateNormal];
-    [picker dismissModalViewControllerAnimated:YES];
-    
-    [self uploadImage:newImage];
 }
 
 -(void) uploadImage:(UIImage *) img
@@ -288,6 +301,61 @@
     self.request =[[Model getInstance] uploadImage:img andCallback:self];
 }
 
+- (void)connectGoogle
+{
+    [self configGPPSignIn];
+    [[GPPSignIn sharedInstance] signOut];
+    [[GPPSignIn sharedInstance] authenticate];
+}
+
+- (void)configGPPSignIn
+{
+    //Google sign in init
+    GPPSignIn * signIn = [GPPSignIn sharedInstance];
+    signIn.clientID = @"925583491857-13g9a7inud7m0083m5jfbjinn3mp58ch.apps.googleusercontent.com";
+    //signIn.clientID = @"1031805047217.apps.googleusercontent.com";
+    //signIn.clientID = @"413114824893.apps.googleusercontent.com";
+    
+    signIn.shouldFetchGoogleUserEmail = YES;
+    
+    signIn.actions = [NSArray arrayWithObjects:
+                      @"http://schemas.google.com/AddActivity",
+                      @"http://schemas.google.com/BuyActivity",
+                      @"http://schemas.google.com/CheckInActivity",
+                      @"http://schemas.google.com/CommentActivity",
+                      @"http://schemas.google.com/CreateActivity",
+                      @"http://schemas.google.com/ListenActivity",
+                      @"http://schemas.google.com/ReserveActivity",
+                      @"http://schemas.google.com/ReviewActivity",
+                      nil];
+    
+    signIn.scopes = [NSArray arrayWithObjects:
+                     kGTLAuthScopePlusLogin,
+                     kGTLAuthScopePlusMe,
+                     @"https://www.googleapis.com/auth/calendar",
+                     @"https://www.googleapis.com/auth/userinfo.profile",
+                     @"https://www.googleapis.com/auth/userinfo.email",
+                     @"https://www.google.com/m8/feeds",
+                     nil];
+    signIn.delegate = self;
+}
+- (void)connectFacebook
+{
+    //loginType
+    if(![LoginStatusCheck isFacebookAccountLoginIn])
+    {
+        self.snsLogin = [[ShareLoginFacebook alloc]init];
+        self.snsLogin.delegate = self;
+        [self.snsLogin shareLogin];
+    }
+    else
+    {
+        [self shareDidLogin:nil];
+    }
+
+}
+
+#pragma mark - UploadImageDelegate
 -(void) onUploadStart
 {
     
@@ -318,35 +386,110 @@
     }
 }
 
-#pragma mark - Data Helper
-- (void)getUserInfo
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    //self.loginUser = [[UserSetting getInstance] getLoginUserData];
-    self.loginUser  = [[UserModel getInstance] getLoginUser];
+    
+    if (actionSheet.tag == headPortraitBtnTag)
+    {
+        if (buttonIndex == 0)
+        {
+            [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+        }
+        else if(buttonIndex == 1)
+        {
+            [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
+        }
+    }
+    else if (actionSheet.tag == logoutBtnTag)
+    {
+        if (buttonIndex == 0)
+        {
+            [self logout:nil];
+        }
+    }
+    
 }
 
-- (void)setValueForViews
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
-    self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
-    self.t_settingsContentView.emailLabel.text = self.loginUser.email;
     
-    [self.t_settingsContentView.headPortaitBtn setImageWithURL:[NSURL URLWithString:self.loginUser.avatar_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"settings_main_head_portait_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        
-        if (error)
-        {
-            [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
-            LOG_D(@"get avatar from remote failed.");
-        }
-    }];
+    CGSize targetSize = self.t_settingsContentView.headPortaitBtn.frame.size;
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
+    
+    [self.t_settingsContentView.headPortaitBtn setImage:newImage forState:UIControlStateNormal];
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    [self uploadImage:newImage];
+}
 
+#pragma mark GPPSignInDelegate
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
+                   error:(NSError *)error
+{
+    LOG_D(@"finishedWithAuth:%@", error);
+    
+    if(error == nil) {
+        //        NSString  * acesssToken  = auth.accessToken;
+        //        LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
+        //        //[loadingView startAnimating];
+        //        [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
+        //
+        //            LOG_D(@"signinGooglePlus:%d", error);
+        //
+        //
+        //            //[loadingView stopAnimating];
+        //
+        //            if(error == 0) {
+        //                //[self onLogined];
+        //
+        //            } else {
+        //                //[self showAlert:@"Login with google failed."];
+        //            }
+        //        }];
+    }
+    else
+    {
+        LOG_D(@"%@",error);
+    }
+}
+
+- (void)didDisconnectWithError:(NSError *)error
+{
+    LOG_D(@"didDisconnectWithError:%@", error);
+}
+
+#pragma mark ShareLoginDelegate
+- (void)shareDidLogin:(ShareLoginBase *)shareLogin
+{
+    
+    LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
+    
+    
+        NSString * accessToken = store.facebookAccessToken;
+        
+        LOG_D(@"shareDidLogin:%@", accessToken);
+        
+    
+        [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
+            
+            
+            
+            LOG_D(@"signinFacebook:%d", error);
+            
+            if(error == 0) {
+               
+            } else {
+               
+            }
+        }];
+    
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
 - (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-    
-    
     switch (result)
     {
         case MFMailComposeResultCancelled:
