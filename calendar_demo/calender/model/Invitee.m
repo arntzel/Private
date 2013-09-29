@@ -13,7 +13,7 @@
 -(NSDictionary*)convent2Dic
 {
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:self.email forKey:@"email"];
+    [dic setObject:self.email forKey:@"username_or_email"];
     return dic;
 }
 

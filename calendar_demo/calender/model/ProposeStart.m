@@ -11,6 +11,12 @@
 
 @implementation ProposeStart
 
+-(NSDate *) getEndTime
+{
+    int durationSeconds =  self.duration_minutes*60 + self.duration_hours*3600 + self.duration_days*3600*24;
+    return [self.start dateByAddingTimeInterval:durationSeconds];
+}
+
 -(NSDictionary*) convent2Dic
 {
 

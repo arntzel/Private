@@ -101,10 +101,10 @@
     [dic setObject:[NSNumber numberWithBool:self.allow_attendee_invite]   forKey:@"allow_attendee_invite"];
     [dic setObject:[NSNumber numberWithBool:self.allow_new_dt]            forKey:@"allow_new_dt"];
     [dic setObject:[NSNumber numberWithBool:self.allow_new_location]      forKey:@"allow_new_location"];
-    [dic setObject:[NSNumber numberWithBool:self.archived]                forKey:@"archived"];
-    [dic setObject:[NSNumber numberWithBool:self.is_all_day]              forKey:@"is_all_day"];
+    //[dic setObject:[NSNumber numberWithBool:self.archived]                forKey:@"archived"];
+    //[dic setObject:[NSNumber numberWithBool:self.is_all_day]              forKey:@"is_all_day"];
     [dic setObject:[NSNumber numberWithBool:self.published]               forKey:@"published"];
-    [dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
+    //[dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
 
     NSString * created_on = [Utils formateDate:self.created_on];
     [dic setObject:created_on forKey:@"created_on"];

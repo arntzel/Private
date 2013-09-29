@@ -162,7 +162,6 @@
     commentContentView.delegate = self;
     [scrollView addSubview:commentContentView];
     
-    [self layOutSubViews];
     
     [self registerKeyboardEvents];
 }
@@ -206,73 +205,7 @@
 {
     BOOL isCreator = [self isMyCreatEvent];
     
-    NSMutableArray * array = [[NSMutableArray alloc] init];
-    
-    EventTime * time1 = [[EventTime alloc] init];
-    time1.startTime = [NSDate date];
-    time1.endTime = [time1.startTime dateByAddingTimeInterval:3600];
-    time1.finalized = 1;
-    
-    NSMutableArray * votes = [[NSMutableArray alloc] init];
-    for(int i=0;i<3;i++) {
-        EventTimeVote * vote = [[EventTimeVote alloc] init];
-        [votes addObject:vote];
-        [vote release];
-
-        if(i==2) {
-            vote.status = -1;
-        } else {
-            vote.status = 1;
-        }
-    }
-    
-    time1.votes = votes;
-    [votes release];
-    
-    [array addObject:time1];
-    [time1 release];
-
-    NSDate * startTime =  [[NSDate date] dateByAddingTimeInterval:3600*27];
-    
-    for(int i=0;i<3;i++) {
-        EventTime * time2 = [[EventTime alloc] init];
-        time2.startTime = startTime;
-        time2.endTime = [time1.startTime dateByAddingTimeInterval:3600];
-        votes = [[NSMutableArray alloc] init];
-
-        time2.finalized  = 2;
-
-        for(int i=0;i<3;i++) {
-            EventTimeVote * vote = [[EventTimeVote alloc] init];
-            vote.email = event.creator.email;
-
-            if(event.attendees.count >0) {
-                EventAttendee * atd = [event.attendees objectAtIndex:0];
-                vote.email = atd.contact.email;
-            }
-
-            if(i==1) {
-                vote.status = 1;
-            } else {
-                vote.status = 0;
-            }
-            
-            [votes addObject:vote];
-            [vote release];
-        }
-
-        time2.votes = votes;
-        [votes release];
-
-        [array addObject:time2];
-        [time2 release];
-
-    }
-    
-    
-    [timeContentView updateView:isCreator andEventTimes: array];
-    
-    [array release];
+    [timeContentView updateView:isCreator andEventTimes: event.propose_starts];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

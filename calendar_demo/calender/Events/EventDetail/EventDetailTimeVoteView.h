@@ -1,19 +1,19 @@
 
 
 #import <UIKit/UIKit.h>
-#import "EventTime.h"
+#import "ProposeStart.h"
 
 @protocol EventDetailTimeVoteViewDelegate <NSObject>
 
--(void) onVoteListClick:(EventTime *) eventTime;
+-(void) onVoteListClick:(ProposeStart *) eventTime;
 
--(void) onVoteTimeClick:(EventTime *) eventTime;
+-(void) onVoteTimeClick:(ProposeStart *) eventTime;
 
--(void) onVoteTimeFinalize:(EventTime *) eventTime;
+-(void) onVoteTimeFinalize:(ProposeStart *) eventTime;
 
--(void) onVoteTimeDelete:(EventTime *) eventTime;
+-(void) onVoteTimeDelete:(ProposeStart *) eventTime;
 
--(void) onVoteTimeConform:(EventTime *) eventTime andChecked:(BOOL) checked;
+-(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked;
 
 
 @end
@@ -22,6 +22,6 @@
 
 @property(nonatomic, assign) id<EventDetailTimeVoteViewDelegate> delegate;
 
--(void) updateView:(BOOL) isCreator andEventTimeVote:(EventTime *) vote;
+-(void) updateView:(BOOL) isCreator andEventTimeVote:(ProposeStart *) vote;
 
 @end

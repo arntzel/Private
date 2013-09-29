@@ -34,13 +34,16 @@
 @property BOOL is_all_day;
 
 
+//Is the final time of the event
+@property BOOL finalized;
+
 - (NSString *)parseStartTimeString;
 - (NSString *)parseStartDateString;
 - (NSString *)parseDuringDateString;
 
 - (void)convertMinToQuarterMode;
 
-
+-(NSDate *) getEndTime;
 
 -(NSDictionary*) convent2Dic;
 

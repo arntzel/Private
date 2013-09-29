@@ -64,10 +64,14 @@
     NSMutableString * names = [[NSMutableString alloc] init];
     
     
+    [names appendFormat:@"You "];
+    
     for(int i=0;i<users.count;i++) {
         
         EventAttendee * attendee = [users objectAtIndex:i];
         Contact * user = attendee.contact;
+        
+        if(attendee.is_owner) continue;
         
         if(i== users.count-1) {
             [names appendString:@"and "];

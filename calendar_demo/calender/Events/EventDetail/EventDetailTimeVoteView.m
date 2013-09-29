@@ -14,7 +14,7 @@
     EventDetailInviteeConformView *conformView;
     EventDetailHeaderListView * headerListView;
     BOOL _isCreator;
-    EventTime * _eventTime;
+    ProposeStart * _eventTime;
 }
 
 -(void) dealloc {
@@ -45,12 +45,12 @@
     _eventTime = nil;
 }
 
--(void) updateView:(BOOL) isCreator andEventTimeVote:(EventTime *) vote
+-(void) updateView:(BOOL) isCreator andEventTimeVote:(ProposeStart *) time
 {
     [self clearView];
     
     _isCreator = isCreator;
-    _eventTime = vote;
+    _eventTime = time;
     [_eventTime retain];
     
     if(_isCreator) {
@@ -92,8 +92,8 @@
 
 -(NSString *) getTimeLable
 {
-    NSString * startTime = [Utils formateTimeAMPM:_eventTime.startTime];
-    NSString * endTime = [Utils formateTimeAMPM:_eventTime.endTime];
+    NSString * startTime = [Utils formateTimeAMPM:_eventTime.start];
+    NSString * endTime = [Utils formateTimeAMPM:[_eventTime getEndTime]];
     NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
     return lable;
 }
