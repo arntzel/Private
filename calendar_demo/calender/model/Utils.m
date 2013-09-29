@@ -351,10 +351,14 @@
     
     for(UserEntity * entity in event.attendees) {
         
-        if([entity.status intValue] != 0) {
-            respCount ++;
+        if([[entity is_owner] boolValue]) {
+            respCount++;
+            continue;
         }
         
+        if([entity.status intValue] == 3 || [entity.status intValue] == -1) {
+            respCount ++;
+        }
     }
     
     return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];

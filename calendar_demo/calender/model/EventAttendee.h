@@ -9,7 +9,11 @@
 @property BOOL is_owner;
 
 /*
- -1 : decline event
+ (-1, _(u'Declined')),
+ (0, _(u'Added')),
+ (1, _(u'Sent')),
+ (2, _(u'Opened')),
+ (3, _(u'Responded')),
  */
 @property int status;
 

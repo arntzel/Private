@@ -32,7 +32,11 @@
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.status intValue] != 1) {
+        if([user.is_owner boolValue]) {
+            continue;
+        }
+        
+        if( [user.status intValue] != -1 && [user.status intValue] != 3) {
             return NO;
         }
     }
@@ -73,6 +77,8 @@
     NSNumber * creatorID = [NSNumber numberWithInt:event.creator.id];;
     self.creatorID = creatorID;
 
+    [self clearAttendee];
+    
     for(EventAttendee * atd in event.attendees) {
         
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
@@ -81,4 +87,8 @@
     }
 }
 
+-(void)clearAttendee
+{
+    [self removeAttendees:self.attendees];
+}
 @end
