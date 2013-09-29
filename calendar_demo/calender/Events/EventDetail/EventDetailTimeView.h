@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EventTime.h"
+#import "Event.h"
+
+@protocol EventDetailTimeViewDelegate <NSObject>
+
+-(void) onEventDetailTimeViewFrameChanged;
+
+@end
 
 @interface EventDetailTimeView : UIView
 
+@property(assign)  id<EventDetailTimeViewDelegate> delegate;
+
 - (id)init;
 
--(void) updateView:(BOOL) isCreator andEventTimes:(NSArray *) times;
+-(void) updateView:(BOOL) isCreator andEvent:(Event *) event;
 
 @end

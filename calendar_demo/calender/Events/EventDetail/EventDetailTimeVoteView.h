@@ -1,6 +1,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 #import "ProposeStart.h"
 
 @protocol EventDetailTimeVoteViewDelegate <NSObject>
@@ -22,6 +23,6 @@
 
 @property(nonatomic, assign) id<EventDetailTimeVoteViewDelegate> delegate;
 
--(void) updateView:(BOOL) isCreator andEventTimeVote:(ProposeStart *) vote;
+-(void) updateView:(BOOL) isCreator andEvent:(Event*) event andEventTimeVote:(ProposeStart *) start;
 
 @end

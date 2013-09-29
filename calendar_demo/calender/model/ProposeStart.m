@@ -21,6 +21,11 @@
 {
 
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+
+    if(self.id > 0) {
+        [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
+    }
+
     [dic setObject:[Utils formateDate:self.start] forKey:@"start"];
     [dic setObject:self.start_type forKey:@"start_type"];
 
@@ -90,6 +95,8 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     ProposeStart *newDate = [[ProposeStart alloc] init];
+    newDate.id = self.id;
+
     newDate.start = [self.start copy];
     newDate.is_all_day = self.is_all_day;
     newDate.start_type = [self.start_type copy];

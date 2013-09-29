@@ -7,6 +7,8 @@
 
 #import "Utils.h"
 
+#import "UserModel.h"
+
 #define ALPHA  0.5;
 
 @implementation EventDetailTimeVoteView {
@@ -45,23 +47,21 @@
     _eventTime = nil;
 }
 
--(void) updateView:(BOOL) isCreator andEventTimeVote:(ProposeStart *) time
+-(void) updateView:(BOOL) isCreator andEvent:(Event*) event andEventTimeVote:(ProposeStart *) start;
 {
     [self clearView];
     
     _isCreator = isCreator;
-    _eventTime = time;
+    _eventTime = start;
     [_eventTime retain];
     
     if(_isCreator) {
-        
         [self addFinalzeView];
-        [self addInviteeListView];
     } else {
         [self addConformView];
-        [self addInviteeListView];
     }
-    
+
+    [self addInviteeListView:event];
     [self layOutSubViews];
 }
 
@@ -98,23 +98,29 @@
     return lable;
 }
 
-- (void)addInviteeListView
+- (void)addInviteeListView:(Event *) event
 {
     NSMutableArray * urls = [[NSMutableArray alloc] init];
     NSMutableArray * statuses = [[NSMutableArray alloc] init];
-//    for(EventTimeVote * vote in _eventTime.votes) {
-//        User * user = vote.user;
-//
-//        if(user.avatar_url == nil) {
-//            [urls addObject:@""];
-//        } else {
-//            [urls addObject:user.avatar_url];
-//        }
-//
-//        [statuses addObject: [NSNumber numberWithInt:vote.vote]];
-//    }
     
+    for(EventTimeVote * vote in _eventTime.votes) {
+
+        EventAttendee * attendee = [[event getAttendeesDic] objectForKey:vote.email];
+        Contact * contact = attendee.contact;
+
+        if(contact.avatar_url == nil) {
+            [urls addObject:@""];
+        } else {
+            [urls addObject:contact.avatar_url];
+        }
+
+        [statuses addObject: [NSNumber numberWithInt:vote.status]];
+    }
+
     headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:statuses andCountLimit:8 ShowArraw:YES];
+
+    [urls release];
+    [statuses release];
     
     CGRect frame = headerListView.frame;
     frame.origin.x = 7;
@@ -159,12 +165,24 @@
         conformView.frame = frame;
         conformView.eventTimeLabel.text = [self getTimeLable];
 
-        int vote = 0;
-        [conformView setVoteStatus:1];
+        int status = 0;
+        User * me = [[UserModel getInstance] getLoginUser];
 
-        if(vote == 0) {
+        for (EventTimeVote * vote in _eventTime.votes) {
+            if([me.email isEqualToString:vote.email]) {
+                status = vote.status;
+                break;
+            }
+        }
+
+
+        [conformView setVoteStatus:status];
+
+        if(status == 0) {
             [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
             [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            conformView.userInteractionEnabled = NO;
         }
 
         [self addSubview:conformView];

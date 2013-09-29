@@ -20,7 +20,7 @@
 #import "UserModel.h"
 #import "EventTime.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -64,6 +64,7 @@
     invitePlaceContentView.delegate = nil;
     [invitePlaceContentView release];
 
+    timeContentView.delegate = nil;
     [timeContentView release];
 
     conformView.delegate = nil;
@@ -151,6 +152,8 @@
     [scrollView addSubview:invitePlaceContentView];
     
     timeContentView = [[EventDetailTimeView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    timeContentView.delegate = self;
+
     [scrollView addSubview:timeContentView];
     
     conformView = [[EventDetailCommentConformView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
@@ -204,8 +207,7 @@
 -(void) updateEventTimeView
 {
     BOOL isCreator = [self isMyCreatEvent];
-    
-    [timeContentView updateView:isCreator andEventTimes: event.propose_starts];
+    [timeContentView updateView:isCreator andEvent:event];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -396,6 +398,11 @@
 {
     LOG_D(@"EventDetail onEventDetailCommentContentViewFrameChanged");
 
+    [self layOutSubViews];
+}
+
+-(void) onEventDetailTimeViewFrameChanged {
+    LOG_D(@"EventDetail onEventDetailCommentContentViewFrameChanged");
     [self layOutSubViews];
 }
 

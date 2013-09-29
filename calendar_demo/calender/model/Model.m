@@ -897,4 +897,62 @@ static Model * instance;
     callback(0, nil);
 }
 
+
+-(void) createOrUpdateProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback
+{
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+
+    LOG_D(@"url=%@", url);
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    [[UserModel getInstance] setAuthHeader:request];
+
+    NSDictionary * dict = [proposeStat convent2Dic];
+
+    NSArray * array = [NSArray arrayWithObject:dict];
+    NSDictionary * jsonDic = [NSDictionary dictionaryWithObject:array forKey:@"propose_starts"];
+
+    NSString * postContent = [Utils dictionary2String:jsonDic];
+
+
+    LOG_D(@"postContent: %@", postContent);
+
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+
+        if(status == 200 && data != nil) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+
+            Event * e = [Event parseEvent:json];
+
+            for(ProposeStart * p in e.propose_starts) {
+                if([p.start isEqualToDate:proposeStat.start]) {
+                    callback(ERROCODE_OK, p);
+                    return;
+                }
+            }
+
+            callback(ERROCODE_SERVER, nil);
+
+        } else {
+
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+
+            callback(ERROCODE_SERVER, nil);
+        }
+    }];
+
+
+}
 @end

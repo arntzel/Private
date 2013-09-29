@@ -91,7 +91,7 @@
             [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_disable.png"] forState:UIControlStateNormal];
             break;
             
-        case 2:
+        case -1:
             [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_disable.png"] forState:UIControlStateNormal];
             [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_enable.png"] forState:UIControlStateNormal];
             break;

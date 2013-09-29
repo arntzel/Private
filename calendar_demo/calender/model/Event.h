@@ -93,6 +93,8 @@
 @property int eventType;
 
 
+//Emai -> EventAttendee
+-(NSDictionary *) getAttendeesDic;
 
 
 -(NSDictionary*)convent2Dic;

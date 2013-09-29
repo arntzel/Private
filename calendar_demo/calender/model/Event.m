@@ -4,8 +4,22 @@
 #import "Utils.h"
 #import "UserModel.h"
 
-@implementation Event
+@implementation Event  {
 
+    NSMutableDictionary * attendeesDic;
+}
+
+-(NSDictionary *) getAttendeesDic {
+
+    if(attendeesDic == nil) {
+        attendeesDic = [[NSMutableDictionary alloc] init];
+        for(EventAttendee * atd in self.attendees) {
+            [attendeesDic setObject:atd forKey:atd.contact.email];
+        }
+    }
+
+    return attendeesDic;
+}
 
 +(Event *) parseEvent:(NSDictionary *) json
 {
