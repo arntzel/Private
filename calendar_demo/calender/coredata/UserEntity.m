@@ -20,5 +20,6 @@
 @dynamic last_name;
 @dynamic timezone;
 @dynamic status;
+@dynamic is_owner;
 
 @end

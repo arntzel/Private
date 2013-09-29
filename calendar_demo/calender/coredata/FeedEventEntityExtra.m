@@ -76,7 +76,7 @@
     for(EventAttendee * atd in event.attendees) {
         
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:atd.contact];
+        [entity convertFromUser:atd];
         [self addAttendeesObject:entity];
     }
 }

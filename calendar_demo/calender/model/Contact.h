@@ -27,8 +27,6 @@
 @property BOOL calvinUser;
 
 
-
-
 -(NSString *) getReadableUsername;
 
 -(NSDictionary*)convent2Dic;

@@ -52,7 +52,7 @@
     }
 
     user.phone = [jsonData objectForKey:@"phone"];
-
+    
     NSString * owner = [jsonData objectForKey:@"user"];
     user.calvinUser = [Utils chekcNullClass:owner] != nil;
 
