@@ -7,6 +7,7 @@
 //
 
 #import "PwdChangeViewController.h"
+#import "SettingsModel.h"
 #define oldPwdViewTag 1
 #define newPwdViwTag 2
 #define rePwdViewTag 3
@@ -65,7 +66,8 @@
 }
 - (void)rightNavBtnBeClicked:(UIButton *)btn
 {
-    [self leftNavBtnClicked:nil];
+    [self changePwd];
+    
 }
 
 - (IBAction)showKeyboard:(UITapGestureRecognizer *)sender
@@ -86,4 +88,59 @@
             break;
     }
 }
+
+#pragma mark - Logic Helper
+- (void)changePwd
+{
+    
+    if ([self canContinue])
+    {
+        UIActivityIndicatorView *indi = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        indi.center = self.view.center;
+        [self.view addSubview:indi];
+        [indi startAnimating];
+        SettingsModel *settingsModel = [[SettingsModel alloc] init];
+        NSMutableDictionary *dic  = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.oldPwdField.text,@"oldpassword",self.pwdField.text,@"newpassword",nil];
+        [settingsModel updateUserPwd:dic andCallback:^(NSInteger error) {
+            
+            [indi stopAnimating];
+            [indi removeFromSuperview];
+            if (error == -1)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Change Password Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                
+            }
+            else
+            {
+                [self leftNavBtnClicked:nil];
+            }
+        }];
+    }
+    
+}
+
+- (BOOL)canContinue
+{
+    if (self.oldPwdField.text == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Old Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    if (self.pwdField.text == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"New Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    if (self.rePwdField.text == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Re-type Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    return YES;
+}
+
 @end

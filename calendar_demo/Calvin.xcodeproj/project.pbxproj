@@ -57,6 +57,7 @@
 		34B1F1D017F8FCE200AA5C97 /* SettingsContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B1F19E17F8FCE200AA5C97 /* SettingsContentView.xib */; };
 		34B1F1D117F8FCE200AA5C97 /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F1A017F8FCE200AA5C97 /* UIView+LoadFromNib.m */; };
 		34B1F1D317F8FD3F00AA5C97 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */; };
+		34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F1D517F9062E00AA5C97 /* SettingsModel.m */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -475,6 +476,8 @@
 		34B1F19F17F8FCE200AA5C97 /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
 		34B1F1A017F8FCE200AA5C97 /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		34B1F1D417F9062E00AA5C97 /* SettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsModel.h; sourceTree = "<group>"; };
+		34B1F1D517F9062E00AA5C97 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1229,6 +1232,8 @@
 				7662F75B17F07F2B00B64E40 /* SettingViewController.h */,
 				7662F75C17F07F2B00B64E40 /* SettingViewController.m */,
 				7662F75D17F07F2B00B64E40 /* SettingViewController.xib */,
+				34B1F1D417F9062E00AA5C97 /* SettingsModel.h */,
+				34B1F1D517F9062E00AA5C97 /* SettingsModel.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2506,6 +2511,7 @@
 				769ABB0E17DF52090033E677 /* CustomPickerCell.m in Sources */,
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
+				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
 				3D71D41417F6E18700121A85 /* UserEntity.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,

@@ -30,7 +30,6 @@
     
     // Create a new, logged out session.
     FBSession.activeSession = [[FBSession alloc] init];
-        
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             @"user_likes",
                             @"publish_actions",

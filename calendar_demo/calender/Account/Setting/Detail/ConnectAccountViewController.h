@@ -7,15 +7,16 @@
 //
 
 #import "SettingsBaseViewController.h"
-typedef enum ConnectType
-{
-    ConnectGoogle = 1,
-    ConnectFacebook,
-    
-}connectType;
+#import "SettingsModel.h"
+//typedef enum
+//{
+//    ConnectGoogle = 1,
+//    ConnectFacebook,
+//    
+//}ConnectType;
 
 @interface ConnectAccountViewController : SettingsBaseViewController
 
-@property (assign, nonatomic) connectType type;
+@property (assign, nonatomic) ConnectType type;
 
 @end

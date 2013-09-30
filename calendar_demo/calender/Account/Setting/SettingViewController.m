@@ -35,6 +35,7 @@
 
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
+#import "SettingsModel.h"
 
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate>
 
@@ -355,12 +356,54 @@
 
 }
 
+- (void)disconnect:(ConnectType) type
+{
+    SettingsModel *model = [[SettingsModel alloc] init];
+    NSString * accessToken = @"";
+    if (type == ConnectFacebook)
+    {
+        LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
+        accessToken = store.facebookAccessToken;
+    }
+    [model updateConnect:type tokenVale:accessToken IsConnectOrNot:NO andCallback:^(NSInteger error) {
+        
+        NSString *msg = @"";
+        if (type == ConnectGoogle)
+        {
+            if (error == -1)
+            {
+                msg = @"disconnect Google Failed";
+                
+            }
+            else
+            {
+                msg = @"disconnect Google Successed";
+            }
+        }
+        else
+        {
+            if (error == -1)
+            {
+                msg = @"disconnect Facebook Failed";
+                
+            }
+            else
+            {
+                msg = @"disconnect Facebook Successed";
+            }
+        }
+        
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+    }];
+}
 #pragma mark - UploadImageDelegate
 -(void) onUploadStart
 {
     
 }
-
 -(void) onUploadProgress: (long long) progress andSize: (long long) Size
 {
     float prg = (float)progress / (float)Size;
@@ -408,6 +451,14 @@
             [self logout:nil];
         }
     }
+    else if (actionSheet.tag ==  fbViewTag)
+    {
+        [self disconnect:ConnectFacebook];
+    }
+    else if (actionSheet.tag ==  googleViewTag)
+    {
+        [self disconnect:ConnectGoogle];
+    }
     
 }
 
@@ -431,23 +482,25 @@
     LOG_D(@"finishedWithAuth:%@", error);
     
     if(error == nil) {
-        //        NSString  * acesssToken  = auth.accessToken;
-        //        LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
-        //        //[loadingView startAnimating];
-        //        [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
-        //
-        //            LOG_D(@"signinGooglePlus:%d", error);
-        //
-        //
-        //            //[loadingView stopAnimating];
-        //
-        //            if(error == 0) {
-        //                //[self onLogined];
-        //
-        //            } else {
-        //                //[self showAlert:@"Login with google failed."];
-        //            }
-        //        }];
+        NSString  * acesssToken  = auth.accessToken;
+        LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
+        SettingsModel *settingsModel = [[SettingsModel alloc] init];
+        [settingsModel updateConnect:ConnectGoogle tokenVale:acesssToken IsConnectOrNot:YES andCallback:^(NSInteger error) {
+            
+            NSString *msg = @"";
+            if (error == -1)
+            {
+                msg = @"Connect Google Failed";
+                
+            }
+            else
+            {
+                msg = @"Connect Google Successed";
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }];
     }
     else
     {
@@ -463,27 +516,27 @@
 #pragma mark ShareLoginDelegate
 - (void)shareDidLogin:(ShareLoginBase *)shareLogin
 {
-    
     LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
-    
-    
-        NSString * accessToken = store.facebookAccessToken;
+    NSString * accessToken = store.facebookAccessToken;
+    LOG_D(@"shareDidLogin:%@", accessToken);
+    SettingsModel *settingsModel = [[SettingsModel alloc] init];
+    [settingsModel updateConnect:ConnectFacebook tokenVale:accessToken IsConnectOrNot:YES andCallback:^(NSInteger error) {
         
-        LOG_D(@"shareDidLogin:%@", accessToken);
+        NSString *msg = @"";
+        if (error == -1)
+        {
+            msg = @"Connect Facebook Failed";
+            
+        }
+        else
+        {
+            msg = @"Connect Facebook Successed";
+        }
         
-    
-        [[UserModel getInstance] signinFacebook:accessToken andCallback:^(NSInteger error, User *user) {
-            
-            
-            
-            LOG_D(@"signinFacebook:%d", error);
-            
-            if(error == 0) {
-               
-            } else {
-               
-            }
-        }];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+    }];
     
 }
 

@@ -8,6 +8,7 @@
 
 #import "EmailChangeViewController.h"
 #import "DeviceInfo.h"
+#import "SettingsModel.h"
 #define emailViewTag 1
 #define confirmViewTag 2
 @interface EmailChangeViewController ()
@@ -62,7 +63,8 @@
 }
 - (void)rightNavBtnBeClicked:(UIButton *)btn
 {
-    [self leftNavBtnClicked:nil];
+    
+    [self changeEmail];
 }
 
 - (IBAction)showKeyboard:(UITapGestureRecognizer *)sender
@@ -80,5 +82,62 @@
             break;
     }
 
+}
+
+#pragma mark - Logic Helper
+- (void)changeEmail
+{
+    
+    if ([self canContinue])
+    {
+        UIActivityIndicatorView *indi = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        indi.center = self.view.center;
+        [self.view addSubview:indi];
+        [indi startAnimating];
+        SettingsModel *settingsModel = [[SettingsModel alloc] init];
+        [settingsModel updateUserEmail:self.emailField.text andCallback:^(NSInteger error) {
+            
+            [indi stopAnimating];
+            [indi removeFromSuperview];
+            if (error == -1)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Change Email Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                
+            }
+            else
+            {
+                [self leftNavBtnClicked:nil];
+            }
+        }];
+    }
+    
+}
+
+-(BOOL)isValidateEmail:(NSString *)email
+
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
+    return [emailTest evaluateWithObject:email];
+    
+}
+- (BOOL)canContinue
+{
+    if (![self isValidateEmail:self.emailField.text] || ![self isValidateEmail:self.confirmEmailField.text])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Email format is not legal" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    NSString *email = self.emailField.text;
+    NSString *confirmEmail = self.confirmEmailField.text;
+    if (![email isEqualToString:confirmEmail])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Two input is inconsistent" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    return YES;
 }
 @end
