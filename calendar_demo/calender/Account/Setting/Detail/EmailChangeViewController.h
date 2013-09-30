@@ -11,5 +11,5 @@
 @interface EmailChangeViewController : SettingsBaseViewController
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmEmailField;
-
+@property (nonatomic, copy) void(^emailChangedBlock)(void);
 @end

@@ -9,6 +9,7 @@
 #import "EmailChangeViewController.h"
 #import "DeviceInfo.h"
 #import "SettingsModel.h"
+#import "UserModel.h"
 #define emailViewTag 1
 #define confirmViewTag 2
 @interface EmailChangeViewController ()
@@ -107,6 +108,11 @@
             }
             else
             {
+                if (self.emailChangedBlock)
+                {
+                    [[UserModel getInstance] getLoginUser].email = self.emailField.text;
+                    self.emailChangedBlock();
+                }
                 [self leftNavBtnClicked:nil];
             }
         }];

@@ -183,8 +183,14 @@
         switch (row)
         {
             case emailViewTag:
+            {
                 viewCtr = [[EmailChangeViewController alloc] initWithNibName:@"EmailChangeViewController" bundle:[NSBundle mainBundle]];
+                ((EmailChangeViewController *)viewCtr).emailChangedBlock = ^{
+                    
+                    self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+                };
                 break;
+            }
             case pwdViewTag:
                 viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
                 break;
