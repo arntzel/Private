@@ -897,22 +897,81 @@ static Model * instance;
     callback(0, nil);
 }
 
+-(void) createVote:(int) proposeStartID andVoteStatus:(int) status andCallback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetimevote/", HOST];
+    
+    LOG_D(@"url=%@", url);
+    
+  
+    
+    NSMutableDictionary * jsonDic = [[NSMutableDictionary alloc] init];
+    [jsonDic setObject:[NSNumber numberWithInt:status] forKey:@"status"];
+    
+    NSString * eventTimeUrl = [NSString stringWithFormat:@"/api/v1/eventdatetime/%d", proposeStartID];
+    [jsonDic setObject:eventTimeUrl forKey:@"event_datetime"];
+    
+    
+    NSString * postContent = [Utils dictionary2String:jsonDic];
+    
 
--(void) createOrUpdateProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback
+    LOG_D(@"postContent: %@", postContent);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    [[UserModel getInstance] setAuthHeader:request];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 201) {
+           
+            callback(ERROCODE_OK);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+            
+            callback(ERROCODE_SERVER);
+        }
+    }];
+}
+
+-(void) createProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback
 {
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    /*
+     start: date time(UTC), format: YYYY-MM-DDTHH24:MI:SS
+     start_type: choice from "exactly_at", "within_an_hour", "anytime_after"
+     event: the event resource uri, for example: /api/v1/event/6161
+     contact: the contact resource uri, for example: /api/v1/contact/17, this field means who create the date time. You can get the contact uri from event api.
+     is_all_day: optional, true or false
+     duration_days: optional, if the is_all_day is true, this value should be >=1
+     duration_hours: optional, if the is_all_day is false, this value can be >=1 and <24
+     duration_minutes: optional, if the is_all_day is false, can be >=0
+     */
+    
+    
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetime/", HOST];
 
     LOG_D(@"url=%@", url);
 
-    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
     [[UserModel getInstance] setAuthHeader:request];
 
     NSDictionary * dict = [proposeStat convent2Dic];
-
-    NSArray * array = [NSArray arrayWithObject:dict];
-    NSDictionary * jsonDic = [NSDictionary dictionaryWithObject:array forKey:@"propose_starts"];
-
+    
+    NSMutableDictionary * jsonDic =  [NSMutableDictionary dictionaryWithDictionary:dict];
+    NSString * eventUri = [NSString stringWithFormat:@"/api/v1/event/%d", eventID];
+    [jsonDic setObject:eventUri forKey:@"event"];
+    
     NSString * postContent = [Utils dictionary2String:jsonDic];
 
 
@@ -921,26 +980,19 @@ static Model * instance;
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
 
-        if(status == 200 && data != nil) {
+        if(status == 201 && data != nil) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
-            Event * e = [Event parseEvent:json];
-
-            for(ProposeStart * p in e.propose_starts) {
-                if([p.start isEqualToDate:proposeStat.start]) {
-                    callback(ERROCODE_OK, p);
-                    return;
-                }
-            }
-
-            callback(ERROCODE_SERVER, nil);
+            int pId = [[json objectForKey:@"id"] intValue];
+            proposeStat.id = pId;
+            
+            callback(ERROCODE_OK, proposeStat);
 
         } else {
 
@@ -952,7 +1004,31 @@ static Model * instance;
             callback(ERROCODE_SERVER, nil);
         }
     }];
-
-
 }
+
+-(void) deleteProposeStart:(int) proposeStatID andCallback:(void (^)(NSInteger error))callback
+{
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetime/%d", HOST, proposeStatID];
+    
+    LOG_D(@"url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 204) {
+            
+            callback(ERROCODE_OK);
+            
+        } else {
+            callback(ERROCODE_SERVER);
+        }
+    }];
+}
+
 @end

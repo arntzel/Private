@@ -190,61 +190,80 @@
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
+    
+    [eventTime retain];
+    
+    int pid = eventTime.id;
+    
+    [self showIndicatorView:YES];
+    
+    [[Model getInstance] deleteProposeStart:pid andCallback:^(NSInteger error) {
+        
+        [self showIndicatorView:NO];
 
+        if(error == 0) {
+            
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            for(ProposeStart * p in _event.propose_starts) {
+                if(p.id != eventTime.id) {
+                    [array addObject:eventTime];
+                }
+            }
+            
+            _event.propose_starts = array;
+            [array release];
+            
+            
+        }
+        
+        [eventTime release];
+        
+        [self updateView];
+    }];
 }
 
 -(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked
 {
-    ProposeStart * start = [eventTime copy];
-    EventTimeVote * vote = [[EventTimeVote alloc] init];
-    vote.email = [[UserModel getInstance] getLoginUser].email;
-    vote.status = checked ? 1 : -1;
-
-
-    NSMutableArray * votes = [NSMutableArray arrayWithObject:vote];
-    start.votes = votes;
-
-    [start retain];
-
-
+    
+    [eventTime retain];
+    
+    int status = checked ? 1 : -1;
+ 
     [self showIndicatorView:YES];
-
-    [[Model getInstance] createOrUpdateProposeStart:_event.id andPropose:start andCallback:^(NSInteger error, ProposeStart *proposeStat) {
-
+    
+    [[Model getInstance] createVote:eventTime.id andVoteStatus:status andCallback:^(NSInteger error) {
+        
         [self showIndicatorView:NO];
-
-        for(ProposeStart * p in _event.propose_starts) {
-            if(p.id == start.id) {
-                NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
-                [array addObject:vote];
-                p.votes = array;
-                break;
+        
+        if (error == 0) {
+            
+            for(ProposeStart * p in _event.propose_starts) {
+                
+                if(p.id == eventTime.id) {
+                    NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
+                    
+                    EventTimeVote * vote = [[EventTimeVote alloc] init];
+                    vote.email = [[UserModel getInstance] getLoginUser].email;
+                    vote.status = status;
+                    
+                    [array addObject:vote];
+                    p.votes = array;
+                    
+                    [vote release];
+                    
+                    break;
+                }
             }
+            
+            [self updateView];
+            
+        } else {
+            
         }
-
-        [vote release];
-        [start release];
-
-        [self updateView];
-
-//        if(error == 0) {
-//
-//            for(ProposeStart * p in _event.propose_starts) {
-//                if(p.id == start.id) {
-//                    NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
-//                    [array addObject:vote];
-//                    p.votes = array;
-//                    break;
-//                }
-//            }
-//
-//            [self updateView];
-//            
-//        } else {
-//            //TODO::
-//        }
+        
+        [eventTime release];
+        
     }];
-
 }
 
 @end

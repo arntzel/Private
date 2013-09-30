@@ -19,8 +19,9 @@
 #import "Model.h"
 #import "UserModel.h"
 #import "EventTime.h"
+#import "AddEventDateViewController.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -411,11 +412,29 @@
 -(void) onProposeNewTime
 {
     LOG_D(@"onProposeNewTime");
+    [self onAddNewTime];
 }
 
 -(void) onAddNewTime
 {
     LOG_D(@"onAddNewTime");
+    
+    ProposeStart *tempEventDate = [[ProposeStart alloc] init];
+    tempEventDate.duration_hours = 1;
+    tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
+    tempEventDate.start_type = START_TYPEEXACTLYAT;
+    [tempEventDate convertMinToQuarterMode];
+    
+    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
+    addDate.delegate = self;
+    [self.navigationController pushViewController:addDate animated:YES];
+    
+    [tempEventDate release];
+}
+
+- (void)setEventDate:(ProposeStart *)eventDate
+{
+    //self.event ad
 }
 
 -(void) onDeclineTime
