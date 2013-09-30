@@ -33,11 +33,14 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Vale" minimumFontSize="17" id="znu-iB-weZ" userLabel="firstNameField">
+                <textField opaque="NO" clipsSubviews="YES" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Vale" minimumFontSize="17" id="znu-iB-weZ" userLabel="firstNameField">
                     <rect key="frame" x="213" y="31" width="80" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Zkv-dP-eVs"/>
+                    </connections>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyh-tc-4kr" userLabel="lastNameLabel">
                     <rect key="frame" x="116" y="80" width="84" height="30"/>
@@ -46,11 +49,14 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tu" minimumFontSize="17" id="l4X-pD-Jcg" userLabel="lastNameField">
+                <textField opaque="NO" clipsSubviews="YES" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tu" minimumFontSize="17" id="l4X-pD-Jcg" userLabel="lastNameField">
                     <rect key="frame" x="213" y="80" width="80" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="vnN-GS-gcV"/>
+                    </connections>
                 </textField>
                 <view tag="1" contentMode="scaleToFill" id="0rr-aa-891" userLabel="emailView" customClass="UIControl">
                     <rect key="frame" x="15" y="135" width="290" height="45"/>
@@ -351,26 +357,13 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
         <image name="settings_main_bottom_row.png" width="306" height="46"/>
-        <image name="settings_main_bottom_row.png" width="306" height="46"/>
-        <image name="settings_main_bottom_row.png" width="306" height="46"/>
-        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
         <image name="settings_main_middle_row.png" width="306" height="49"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_top_row.png" width="304" height="52"/>
-        <image name="settings_main_top_row.png" width="304" height="52"/>
         <image name="settings_main_top_row.png" width="304" height="52"/>
         <image name="settings_main_userinfo_bg.png" width="307" height="102"/>
     </resources>

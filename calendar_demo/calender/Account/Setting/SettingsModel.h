@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 //typedef NS_ENUM(NSInteger, ERROCODE) {
 //    ERROCODE_OK = 0,   //OK
 //    ERROCODE_NETWORK,  //network error
@@ -24,4 +25,5 @@ typedef enum
 - (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error))callback;
 - (void)updateUserPwd:(NSMutableDictionary *)dic andCallback:(void (^)(NSInteger error))callback;
 - (void)updateConnect:(ConnectType )connectType tokenVale:(NSString *)token IsConnectOrNot:(BOOL)isConnect andCallback:(void (^)(NSInteger error))callback;
+- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback;
 @end

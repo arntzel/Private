@@ -10,10 +10,6 @@
 #import "Utils.h"
 
 @interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
-
-   
-
-
 @end
 
 @implementation MainViewController {
@@ -48,7 +44,10 @@
     feedViewCtr.delegate = self;
     pendingEventViewCtr.delegate = self;
     settingViewCtr.delegate = self;
-    
+    settingViewCtr.updataLeftNavBlock = ^{
+     
+        [leftController.tableView reloadData];
+    };
 
     currentIndex = 0;
     
@@ -71,6 +70,12 @@
             }
         }];
     }
+    if (settingViewCtr.nameChanged)
+    {
+        [settingViewCtr updataUserProfile:nil];
+        settingViewCtr.nameChanged = NO;
+    }
+    [settingViewCtr dismissKeyBoard:nil];
 }
 
 -(BOOL)prefersStatusBarHidden

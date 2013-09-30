@@ -10,6 +10,7 @@
 #import "UserModel.h"
 #import "Model.h"
 #import "Utils.h"
+
 @implementation SettingsModel
 - (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error))callback
 {
@@ -127,6 +128,47 @@
         }
         NSLog(@"url:%@ \nconnectType:%d token:%@ IsConnectOrNot:%d",url,connectType,token,isConnect);
     }];
+    
+}
+
+- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/userprofile/%d", HOST,user.id];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"PUT"];
+    [self setAuthHeader:request];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *dic;
+    if (user.avatar_url == nil)
+    {
+        dic = @{@"first_name":user.first_name,@"last_name":user.last_name};
+    }
+    else
+    {
+        dic = @{@"avatar_url": user.avatar_url,@"first_name":user.first_name,@"last_name":user.last_name};
+        
+    }
+    NSString *jsonStr = [Utils dictionary2String:dic];
+    NSData * postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 202)
+        {
+            callback(ERROCODE_OK);
+        }
+        else
+        {
+            
+            callback(-1);
+        }
+        LOG_D(@"update userprofile : %@",[[NSString alloc] initWithData:data encoding:4]);
+    }];
+
     
 }
 - (void) setAuthHeader:(NSMutableURLRequest *) request

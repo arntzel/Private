@@ -44,6 +44,7 @@
 @property (nonatomic, strong) User *loginUser;
 @property (nonatomic, strong) ASIFormDataRequest * request;
 @property (nonatomic, strong) ShareLoginFacebook *snsLogin;
+
 @end
 
 @implementation SettingViewController
@@ -75,7 +76,6 @@
 #pragma mark - Layout Helper
 - (void)setupViews
 {
-    
     self.navigation.rightBtn.hidden = YES;
     self.navigation.titleLable.text = @"Accounts & Settings";
     
@@ -97,10 +97,13 @@
     
     [self.t_settingsContentView.headPortaitBtn.layer setMasksToBounds:YES];
     self.t_settingsContentView.headPortaitBtn.layer.cornerRadius = self.t_settingsContentView.headPortaitBtn.frame.size.width/2;
+    [self.t_settingsContentView.firstNameField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+    [self.t_settingsContentView.lastNameField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     
     self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
     [self.scroller addSubview:self.t_settingsContentView];
     [self.view addSubview:self.scroller];
+    
     
     
     
@@ -137,7 +140,6 @@
     if(self.delegate != nil) {
         
         [self.delegate onBtnMenuClick];
-        [self dismissKeyBoard:nil];
     }
 }
 
@@ -235,7 +237,7 @@
     {
         [self createActionSheetWithRow:row];
     }
-    
+   
 }
 
 #pragma mark - Logic Helper
@@ -399,6 +401,51 @@
         
     }];
 }
+
+- (void)updataUserProfile:(NSString *)avatar_url
+{
+    SettingsModel *model = [[SettingsModel alloc] init];
+    User *tmpUser = [[User alloc] init];
+    tmpUser.id = self.loginUser.id;
+    tmpUser.first_name = self.t_settingsContentView.firstNameField.text;
+    tmpUser.last_name = self.t_settingsContentView.lastNameField.text;
+    tmpUser.avatar_url =  avatar_url;
+    if (!tmpUser.first_name)
+    {
+        tmpUser.first_name = @"";
+    }
+    if (!tmpUser.last_name)
+    {
+        tmpUser.last_name = @"";
+    }
+
+    [model updateUserProfile:tmpUser andCallback:^(NSInteger error) {
+        
+        if (error == -1)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Update Profile Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+        }
+        else
+        {
+            self.loginUser.first_name = tmpUser.first_name;
+            self.loginUser.last_name = tmpUser.last_name;
+            if (tmpUser.avatar_url)
+            {
+                self.loginUser.avatar_url = tmpUser.avatar_url;
+            }
+            
+            if (self.updataLeftNavBlock)
+            {
+                self.updataLeftNavBlock();
+            }
+        }
+    }];
+}
+- (void)textFieldValueChange:(UITextField *)field
+{
+    self.nameChanged = YES;
+}
 #pragma mark - UploadImageDelegate
 -(void) onUploadStart
 {
@@ -419,7 +466,8 @@
     
     if(error == 0)
     {
-        self.loginUser.avatar_url = url;
+        
+        [self updataUserProfile:url];
     }
     else
     {

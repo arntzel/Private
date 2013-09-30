@@ -22,6 +22,8 @@
 #define connectGoogleBtnTag 13
 #define headPortraitBtnTag 14
 #define headPortraitImgViewTag 15
+#define firstNameFieldTag 16
+#define lastNameFieldTag 17
 @interface SettingsContentView : UIControl  
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
