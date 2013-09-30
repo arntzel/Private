@@ -190,7 +190,36 @@
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
+    
+    [eventTime retain];
+    
+    int pid = eventTime.id;
+    
+    [self showIndicatorView:YES];
+    
+    [[Model getInstance] deleteProposeStart:pid andCallback:^(NSInteger error) {
+        
+        [self showIndicatorView:NO];
 
+        if(error == 0) {
+            
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            for(ProposeStart * p in _event.propose_starts) {
+                if(p.id != eventTime.id) {
+                    [array addObject:eventTime];
+                }
+            }
+            
+            _event.propose_starts = array;
+            [array release];
+            
+            
+        }
+        
+        [eventTime release];
+        
+        [self updateView];
+    }];
 }
 
 -(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked

@@ -957,7 +957,6 @@ static Model * instance;
      duration_minutes: optional, if the is_all_day is false, can be >=0
      */
     
-    //Location: http://localhost:8000/api/v1/eventdatetime/46
     
     
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetime/", HOST];
@@ -986,20 +985,14 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
 
-        if(status == 200 && data != nil) {
+        if(status == 201 && data != nil) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
-            Event * e = [Event parseEvent:json];
-
-            for(ProposeStart * p in e.propose_starts) {
-                if([p.start isEqualToDate:proposeStat.start]) {
-                    callback(ERROCODE_OK, p);
-                    return;
-                }
-            }
-
-            callback(ERROCODE_SERVER, nil);
+            int pId = [[json objectForKey:@"id"] intValue];
+            proposeStat.id = pId;
+            
+            callback(ERROCODE_OK, proposeStat);
 
         } else {
 
@@ -1011,7 +1004,31 @@ static Model * instance;
             callback(ERROCODE_SERVER, nil);
         }
     }];
-
-
 }
+
+-(void) deleteProposeStart:(int) proposeStatID andCallback:(void (^)(NSInteger error))callback
+{
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetime/%d", HOST, proposeStatID];
+    
+    LOG_D(@"url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 204) {
+            
+            callback(ERROCODE_OK);
+            
+        } else {
+            callback(ERROCODE_SERVER);
+        }
+    }];
+}
+
 @end
