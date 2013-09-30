@@ -435,6 +435,25 @@
 - (void)setEventDate:(ProposeStart *)eventDate
 {
     //self.event ad
+    [eventDate retain];
+    [[Model getInstance] createProposeStart:self.eventID andPropose:eventDate andCallback:^(NSInteger error, ProposeStart *proposeStat) {
+        
+        if(error == 0) {
+            NSMutableArray * array = [NSMutableArray arrayWithArray:self.event.propose_starts];
+            [array addObject:proposeStat];
+            
+            self.event.propose_starts = array;
+            
+            
+            
+        } else {
+            
+        }
+        
+        [timeContentView updateView:[self isMyCreatEvent] andEvent:self.event];
+        
+        [eventDate release];
+    }];
 }
 
 -(void) onDeclineTime

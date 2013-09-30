@@ -971,6 +971,8 @@ static Model * instance;
     NSMutableDictionary * jsonDic =  [NSMutableDictionary dictionaryWithDictionary:dict];
     NSString * eventUri = [NSString stringWithFormat:@"/api/v1/event/%d", eventID];
     [jsonDic setObject:eventUri forKey:@"event"];
+    [jsonDic setObject:@"/api/v1/contact/17" forKey:@"contact"];
+    [jsonDic removeObjectForKey:@"vote"];
     
     NSString * postContent = [Utils dictionary2String:jsonDic];
 
