@@ -28,6 +28,22 @@
 }
 
 
+-(BOOL) isAllAttendeeResped
+{
+    for(UserEntity * user in self.attendees)
+    {
+        if([user.is_owner boolValue]) {
+            continue;
+        }
+        
+        if( [user.status intValue] != -1 && [user.status intValue] != 3) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 -(void) convertFromEvent:(Event*) event
 {
     self.id = [NSNumber numberWithInt:event.id];
@@ -61,23 +77,18 @@
     NSNumber * creatorID = [NSNumber numberWithInt:event.creator.id];;
     self.creatorID = creatorID;
 
-    BOOL creatorInAttendee = NO;
+    [self clearAttendee];
+    
     for(EventAttendee * atd in event.attendees) {
-
+        
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:atd.user];
-        [self addAttendeesObject:entity];
-
-        if(atd.user.id == event.creator.id) {
-            creatorInAttendee = YES;
-        }
-    }
-
-    if(creatorInAttendee == NO) {
-        UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:event.creator];
+        [entity convertFromUser:atd];
         [self addAttendeesObject:entity];
     }
 }
 
+-(void)clearAttendee
+{
+    [self removeAttendees:self.attendees];
+}
 @end

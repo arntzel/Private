@@ -48,6 +48,12 @@
 
 - (void)relayoutList
 {
+    if(self.headers.count == 0) {
+        self.frame = CGRectZero;
+        return;
+    }
+
+
     NSInteger index = 0;
     CGFloat gap = 4;
     CGRect viewFrame = CGRectZero;

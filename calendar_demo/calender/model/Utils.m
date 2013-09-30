@@ -341,18 +341,22 @@
 }
 
 
-+(NSString *) getAttendeeText:(Event*)event {
++(NSString *) getAttendeeText:(FeedEventEntity*)event {
     
-    NSArray * atendees = event.attendees;
+    //NSArray * atendees = event.attendees;
     
     int respCount = 0;
-    int allCount = atendees.count;
+    int allCount = event.attendees.count;
     
-    for(int i=0;i<allCount;i++) {
+    
+    for(UserEntity * entity in event.attendees) {
         
-        EventAttendee * atd = [atendees objectAtIndex:i];
+        if([[entity is_owner] boolValue]) {
+            respCount++;
+            continue;
+        }
         
-        if([atd.status isEqualToString:@"ACCEPT"]) {
+        if([entity.status intValue] == 3 || [entity.status intValue] == -1) {
             respCount ++;
         }
     }
@@ -371,5 +375,14 @@
 
     [alert show];
 
+}
+
++(id) chekcNullClass:(id) obj
+{
+    if([obj isKindOfClass: [NSNull class]]) {
+        return nil;
+    } else {
+        return obj;
+    }
 }
 @end

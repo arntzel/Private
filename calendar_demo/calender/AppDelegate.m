@@ -34,7 +34,7 @@
 {
 #ifndef DEBUG
     [Crashlytics startWithAPIKey:@"bf0c5f52126e61ccb51c68eecf9a761324301f9a"];
-    [self redirectNSLogToDocumentFolder];
+    //[self redirectNSLogToDocumentFolder];
 #endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -226,7 +226,12 @@
             CoreDataModel * model = [CoreDataModel getInstance];
 
             for(Event * evt in events) {
-                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                
+                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                }
+                
                 [entity convertFromEvent:evt];
                 [model addFeedEventEntity:entity];
             }

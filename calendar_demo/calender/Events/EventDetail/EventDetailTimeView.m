@@ -16,15 +16,22 @@
 #import "EventDetailTimeVoteView.h"
 
 #import "Utils.h"
+#import "Model.h"
+#import "UserModel.h"
 
-@interface EventDetailTimeView()
+@interface EventDetailTimeView() <EventDetailTimeVoteViewDelegate>
 {
 
 
 }
 @end
 
-@implementation EventDetailTimeView
+@implementation EventDetailTimeView {
+    BOOL _isCreator;
+    Event * _event;
+
+    UIActivityIndicatorView * _indicatorView;
+}
 
 - (id)init
 {
@@ -48,11 +55,31 @@
 }
 
 - (void)dealloc
-{    
+{
+    [_event release];
+    [_indicatorView release];
     [super dealloc];
 }
 
+-(void) showIndicatorView:(BOOL) show
+{
+    if(_indicatorView == nil) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicatorView.hidesWhenStopped = YES;
+        [self addSubview:_indicatorView];
+    }
 
+    if(show) {
+        _indicatorView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        [_indicatorView startAnimating];
+        self.userInteractionEnabled = NO;
+        self.alpha = 0.5;
+    } else {
+        [_indicatorView stopAnimating];
+        self.userInteractionEnabled = YES;
+        self.alpha = 1;
+    }
+}
 
 - (EventDetailTimeLabelView * ) createTimeLabelView
 {
@@ -75,6 +102,9 @@
     CGFloat offsetY = 10;
     CGRect frame;
     for(UIView * subView in self.subviews) {
+
+        if(subView.hidden == YES) continue;
+
         frame = subView.frame;
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
@@ -84,19 +114,32 @@
     frame = self.frame;
     frame.size.height = offsetY + 20;
     self.frame = frame;
+
+    [self.delegate onEventDetailTimeViewFrameChanged];
 }
 
--(void) updateView:(BOOL) isCreator andEventTimes:(NSArray *) times;
+-(void) updateView:(BOOL) isCreator andEvent:(Event *) event
+{
+    _isCreator = isCreator;
+    [_event release];
+    _event = [event retain];
+
+    [self updateView];
+}
+
+-(void) updateView
 {
     for(UIView * subView in self.subviews) {
         [subView removeFromSuperview];
     }
     
     NSString * dayTitle = nil;
-    
-    for(EventTime * eventTime in times) {
+
+    NSArray * times = _event.propose_starts;
+
+    for(ProposeStart * eventTime in times) {
         
-        NSString * day = [Utils formateDay2:eventTime.startTime];
+        NSString * day = [Utils formateDay2:eventTime.start];
         
         if(![day isEqualToString:dayTitle]) {
             EventDetailTimeLabelView * view = [self createTimeLabelView];
@@ -106,15 +149,15 @@
         }
         
         EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
-        
         [self addSubview:voteView];
-        [voteView updateView:isCreator andEventTimeVote:eventTime];
+        voteView.delegate = self;
+
+        [voteView updateView:_isCreator andEvent:_event andEventTimeVote:eventTime];
         [voteView release];
     }
     
     
     [self layOutSubViews];
-    
 }
 
 
@@ -126,4 +169,82 @@
 //    timeContentViewFrame.size = CGSizeMake(320, conformView.frame.origin.y + conformView.frame.size.height + 20);
 //    self.frame = timeContentViewFrame;
 }
+
+
+#pragma mark -
+#pragma mark EventDetailTimeVoteViewDelegate
+-(void) onVoteListClick:(ProposeStart *) eventTime
+{
+
+}
+
+-(void) onVoteTimeClick:(ProposeStart *) eventTime
+{
+
+}
+
+-(void) onVoteTimeFinalize:(ProposeStart *) eventTime
+{
+
+}
+
+-(void) onVoteTimeDelete:(ProposeStart *) eventTime
+{
+
+}
+
+-(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked
+{
+    ProposeStart * start = [eventTime copy];
+    EventTimeVote * vote = [[EventTimeVote alloc] init];
+    vote.email = [[UserModel getInstance] getLoginUser].email;
+    vote.status = checked ? 1 : -1;
+
+
+    NSMutableArray * votes = [NSMutableArray arrayWithObject:vote];
+    start.votes = votes;
+
+    [start retain];
+
+
+    [self showIndicatorView:YES];
+
+    [[Model getInstance] createOrUpdateProposeStart:_event.id andPropose:start andCallback:^(NSInteger error, ProposeStart *proposeStat) {
+
+        [self showIndicatorView:NO];
+
+        for(ProposeStart * p in _event.propose_starts) {
+            if(p.id == start.id) {
+                NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
+                [array addObject:vote];
+                p.votes = array;
+                break;
+            }
+        }
+
+        [vote release];
+        [start release];
+
+        [self updateView];
+
+//        if(error == 0) {
+//
+//            for(ProposeStart * p in _event.propose_starts) {
+//                if(p.id == start.id) {
+//                    NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
+//                    [array addObject:vote];
+//                    p.votes = array;
+//                    break;
+//                }
+//            }
+//
+//            [self updateView];
+//            
+//        } else {
+//            //TODO::
+//        }
+    }];
+
+}
+
 @end

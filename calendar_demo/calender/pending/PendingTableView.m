@@ -3,7 +3,8 @@
 #import "PendingTableView.h"
 #import "PendingEventViewCell.h"
 #import "PendingEventViewCell2.h"
-
+#import "EventDetailController.h"
+#import "RootNavContrller.h"
 
 
 @interface PendingTableView() <UITableViewDataSource, UITableViewDelegate>
@@ -48,8 +49,8 @@
     sectionHeader = @"";
 
     //self.backgroundColor = [UIColor grayColor];
-    self.headerEnabled = YES;
-    self.tailerEnabled = NO;
+    //self.headerEnabled = YES;
+    //self.tailerEnabled = NO;
     
     self.dataSource = self;
     self.delegate = self;
@@ -98,7 +99,7 @@
 
     NSArray * eventList = [self getEventsList:section];
     
-    Event * evt = nil;
+    FeedEventEntity * evt = nil;
     if(eventList.count>0) {
         evt = [eventList objectAtIndex:row];
     } 
@@ -150,6 +151,23 @@
         return 75;
     } else {
         return 60;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
+
+    int section = indexPath.section;
+    int row = indexPath.row;
+
+    NSArray * eventList = [self getEventsList:section];
+
+    if(eventList.count>0) {
+        FeedEventEntity * event = [eventList objectAtIndex:row];
+        EventDetailController * detailCtl = [[EventDetailController alloc] init];
+        detailCtl.eventID = [event.id intValue];
+        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
     }
 }
 

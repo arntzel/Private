@@ -151,8 +151,10 @@
 
 -(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
 {
+    
+    //[Model getInstance] getUpdatedEvents:<#(NSDate *)#> andOffset:<#(int)#> andCallback:<#^(NSInteger error, NSInteger count, NSArray *events)callback#>
        
-    [[Model getInstance] getEventsOfBegin:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+    [[Model getInstance] getUpdatedEvents:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
         LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
         

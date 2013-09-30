@@ -126,19 +126,14 @@
         
         NSDate * date = [Utils parseNSStringDay:firtDay];
         
-        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+        NSArray * feedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
         
-        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
-            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-            [cache putDayFeedEventEntitysWrap:wrap];
-        }
+        [cache putFeedEventEntitys:feedEntiys];
         
         [self reloadData];
         [self scroll2Date:firtDay];
         [self flashScrollIndicators];
         
-//        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
-        //[self scroll2Date:firtDay animated:NO];
         
     } else if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
         
@@ -151,17 +146,13 @@
         
         NSDate * date = [Utils parseNSStringDay:lastDay];
         
-        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+        NSArray * feedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
         
-        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
-            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-            [cache putDayFeedEventEntitysWrap:wrap];
-        }
+        [cache putFeedEventEntitys:feedEntiys];
         
         [self reloadData];
         [self flashScrollIndicators];
 
-        //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
     }
 }
 
@@ -382,13 +373,10 @@
     NSArray * feedEvents = [model getDayFeedEventEntitys:day andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
     NSArray * feedEvents2 = [model getDayFeedEventEntitys:day andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
     
-    NSMutableArray * array = [[NSMutableArray alloc] initWithArray:feedEvents];
-    [array addObjectsFromArray:feedEvents2];
     
-    for(DayFeedEventEntitys * evt in array) {
-        DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-        [cache putDayFeedEventEntitysWrap:wrap];
-    }
+    [cache putFeedEventEntitys:feedEvents];
+    [cache putFeedEventEntitys:feedEvents2];
+    
     
     [self reloadData];
 }

@@ -25,11 +25,17 @@
 }
 
 
--(void) refreshView:(Event*) event
+-(void) refreshView:(FeedEventEntity*) event
 {
 
     if(event == nil) {
         self.lableEmpty.hidden = NO;
+
+        self.imgView.hidden = YES;
+        self.labelTitle.hidden = YES;
+        self.labelAttendees.hidden = YES;
+        self.lableFinalTime.hidden = YES;
+
         return;
     }
     
@@ -37,7 +43,7 @@
     
     self.labelTitle.text = event.title;
 
-    NSString * headerUrl = event.creator.avatar_url;
+    NSString * headerUrl = [event getCreator].avatar_url;
 
     [self.imgView.layer setCornerRadius:self.imgView.frame.size.width / 2];
     self.imgView.layer.masksToBounds = YES;

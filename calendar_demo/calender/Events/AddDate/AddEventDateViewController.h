@@ -1,18 +1,18 @@
 
 #import <UIKit/UIKit.h>
-#import "EventDate.h"
+#import "ProposeStart.h"
 #import "BaseUIViewController.h"
 
 
 @protocol AddEventDateViewControllerDelegate <NSObject>
 
-- (void)setEventDate:(EventDate *)eventDate;
+- (void)setEventDate:(ProposeStart *)eventDate;
 
 @end
 
 @interface AddEventDateViewController : BaseUIViewController
 
-- (id)initWithEventDate:(EventDate *)arrangedDate;
+- (id)initWithEventDate:(ProposeStart *)arrangedDate;
 
 @property(nonatomic,assign) id<AddEventDateViewControllerDelegate> delegate;
 

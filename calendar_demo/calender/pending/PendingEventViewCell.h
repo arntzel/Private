@@ -1,5 +1,5 @@
 
-#import "Event.h"
+#import "FeedEventEntityExtra.h"
 #import <UIKit/UIKit.h>
 
 @interface PendingEventViewCell : UITableViewCell
@@ -12,7 +12,7 @@
 @property IBOutlet UILabel * lableEmpty;
 
 
--(void) refreshView:(Event*) event;
+-(void) refreshView:(FeedEventEntity*) event;
 
 
 +(PendingEventViewCell *) createView;

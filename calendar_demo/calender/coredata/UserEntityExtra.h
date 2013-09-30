@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "UserEntity.h"
-#import "User.h"
+#import "EventAttendee.h"
 
 @interface UserEntity (UserEntityExtra)
 
 -(NSString *) getReadableUsername;
 
--(void) convertFromUser:(User*) user;
+-(void) convertFromUser:(EventAttendee*) user;
 
 
 @end

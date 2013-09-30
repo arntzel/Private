@@ -12,8 +12,9 @@
 #import "Model.h"
 
 #import "CustomerIndicatorView.h"
+#import "CoreDataModel.h"
 
-@interface PedingEventViewController () <PullRefreshTableViewDelegate, EventPendingToolbarDelegate>
+@interface PedingEventViewController () <EventPendingToolbarDelegate, CoreDataModelDelegate>
 
 @end
 
@@ -66,22 +67,20 @@
 
     table1 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [table1 setAllowsSelection:NO];
+    //[table1 setAllowsSelection:NO];
     [table1 setSectionHeader:@"WAITING FOR FINALIZATION"];
     [self.view addSubview:table1];
 
     table2 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [table2 setAllowsSelection:NO];
+    //[table2 setAllowsSelection:NO];
     [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];
 
     table1.hidden = NO;
     table2.hidden = YES;
 
-    table1.pullRefreshDalegate = self;
-    table2.pullRefreshDalegate = self;
-
+  
 
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
@@ -90,36 +89,22 @@
     dataLoadingView.frame = frame;
 
     [self.view addSubview:dataLoadingView];
-    
-    [table1 startHeaderLoading];
+
+    [[CoreDataModel getInstance] addDelegate:self];
+
+    [self loadData];
+}
+
+-(void) viewDidUnload
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
+    [super viewDidUnload];
 }
 
 -(void) loadData
 {
-    //[indicator startAnimating];
-
-    [[Model getInstance] getEventsOfPending:^(NSInteger error, NSArray *events) {
-        //[indicator stopAnimating];
-        LOG_D(@"getEventsOfPending callback");
-
-        if(error == 0) {
-
-            [self resetEventsModel:events];
-
-        } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"network or server error!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-
-            [alert show];
-        }
-
-        [table1 stopPullLoading];
-        [table2 stopPullLoading];
-    }];
-
+    NSArray *events = [[CoreDataModel getInstance] getPendingFeedEventEntitys];
+    [self resetEventsModel:events];
 }
 
 -(void) resetEventsModel: (NSArray *) events
@@ -129,24 +114,22 @@
     [invitedCompletedEvents removeAllObjects];
     [invitedPedingEvents removeAllObjects];
 
-    for(int i=0; i<events.count;i++) {
-
-        Event * evt = [events objectAtIndex:i];
+    for(FeedEventEntity * evt in events) {
 
         if([self isMyEvent:evt]) {
 
-            if([evt isPendingStatus]) {
-                [yourPendingEvents addObject:evt];
-            } else {
+            if([evt isAllAttendeeResped]) {
                 [yourCompletedEvents addObject:evt];
+            } else {
+                [yourPendingEvents addObject:evt];
             }
 
         } else {
 
-            if([evt isPendingStatus]) {
-                [invitedPedingEvents addObject:evt];
-            } else {
+            if([evt isAllAttendeeResped]) {
                 [invitedCompletedEvents addObject:evt];
+            } else {
+                [invitedPedingEvents addObject:evt];
             }
         }
     }
@@ -158,9 +141,9 @@
     [table2 reloadData];
 }
 
--(BOOL) isMyEvent:(Event *) event
+-(BOOL) isMyEvent:(FeedEventEntity *) event
 {
-    return event.creator.id == [[UserModel getInstance] getLoginUser].id;
+    return [event.creatorID intValue] == [[UserModel getInstance] getLoginUser].id;
 }
 
 -(void) onButtonSelected:(int)index
@@ -177,24 +160,8 @@
 }
 
 
-#pragma mark -
-#pragma mark PullRefreshTableViewDelegate
-- (void) onPullStarted {
-    
-}
-
-- (void) onPullCancelled {
-    
-}
-
--(void) onStartLoadData:(BOOL)head
+-(void) onCoreDataModelChanged
 {
-    [dataLoadingView startAnim];
-
     [self loadData];
-}
-
--(void) onPullStop {
-    [dataLoadingView stopAnim];
 }
 @end

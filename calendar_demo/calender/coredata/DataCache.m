@@ -8,29 +8,48 @@
 
 #import "DataCache.h"
 #import "FeedEventEntity.h"
+#import "Utils.h"
 
 @implementation DayFeedEventEntitysWrap
 
--(id) init:(DayFeedEventEntitys *) entitys
+-(id) init:(NSString *) day andFeedEvents:(NSArray *) feedEvents
 {
     self = [super init];
     
-    self.day = entitys.day;
-    self.dayFeedEvents = entitys;
+    self.day = day;
+    self.events = [NSMutableArray arrayWithArray:feedEvents];
     
-    return  self;
+    return self;
 }
+
+
+-(void) removeEventsObject:(FeedEventEntity*) evt
+{
+    for(FeedEventEntity * ent in self.events) {
+        if([ent.id isEqualToNumber:evt.id]) {
+            [self.events removeObject:ent];
+            break;
+        }
+    }
+    
+}
+
+-(void) addEventsObject:(FeedEventEntity*) evt
+{
+    [self.events addObject:evt];
+}
+
 
 -(void) resetSortedEvents
 {
-    if(self.dayFeedEvents == nil)
+    if(self.events == nil)
     {
         self.sortedEvents = nil;
         return;
     }
     
     NSMutableArray *  events = [[NSMutableArray alloc] init];
-    for(FeedEventEntity * entity in self.dayFeedEvents.events) {
+    for(FeedEventEntity * entity in self.events) {
         int type = 0x00000001 << [entity.eventType intValue];;
         if( (type & self.eventTypeFilter) != 0) {
             [events addObject:entity];
@@ -50,6 +69,7 @@
     
     self.sortedEvents = sortedArray;
 }
+
 
 @end
 
@@ -109,6 +129,31 @@
         return NO;
     }
 }
+
+
+-(void) putFeedEventEntitys:(NSArray *) feedEvents
+{
+    for(FeedEventEntity * feedEvent in feedEvents) {
+        [self putFeedEventEntity:feedEvent];
+    }
+}
+
+
+-(void) putFeedEventEntity:(FeedEventEntity *) feedEvent
+{
+    NSString * day = [Utils formateDay:feedEvent.start];
+    
+    DayFeedEventEntitysWrap * wrap = [self getDayFeedEventEntitysWrap:day];
+    
+    if(wrap == nil) {
+        NSArray * array = [NSArray arrayWithObject:feedEvent];
+        wrap = [[DayFeedEventEntitysWrap alloc] init:day andFeedEvents:array];
+        [dict setObject:wrap forKey:day];
+    } else {
+        [wrap addEventsObject:feedEvent];
+    }
+}
+
 
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps
 {

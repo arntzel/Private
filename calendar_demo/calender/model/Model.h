@@ -148,10 +148,16 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback;
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//For EventTimeVote
+-(void) createOrUpdateProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback;
+
+
+
 -(EventModel *) getEventModel;
 
 -(MessageModel *) getMessageModel;
-
 
 /*
  Get the single instance of Model object

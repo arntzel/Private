@@ -1,22 +1,24 @@
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "Contact.h"
 
 @interface EventAttendee : NSObject
 
 @property int id;
-@property int archived;
-@property int send;
 
-@property(strong) NSString * status;
+@property BOOL is_owner;
 
-@property(strong) NSString * distinction;
+/*
+ (-1, _(u'Declined')),
+ (0, _(u'Added')),
+ (1, _(u'Sent')),
+ (2, _(u'Opened')),
+ (3, _(u'Responded')),
+ */
+@property int status;
 
-@property(strong) NSString * suggest_end_datetime;
-@property(strong) NSString * suggest_location;
-@property(strong) NSString * suggest_start_datetime;
+@property(strong) Contact * contact;
 
-@property(strong) User * user;
 
 
 -(NSDictionary*)convent2Dic;

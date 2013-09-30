@@ -12,24 +12,14 @@
 
 +(EventAttendee *) parseEventAttendee:(NSDictionary *) json
 {
-    EventAttendee * event = [[EventAttendee alloc] init];
+    EventAttendee * atd = [[EventAttendee alloc] init];
 
-    event.id = [[json objectForKey:@"id"] intValue];
-    event.archived = [[json objectForKey:@"archived"] intValue];
-    event.send = [[json objectForKey:@"send"] intValue];
-    
-    event.status = [json objectForKey:@"status"];
+    atd.id = [[json objectForKey:@"id"] intValue];
+    atd.is_owner = [[json objectForKey:@"is_owner"] boolValue];
+    atd.status = [[json objectForKey:@"status"] intValue];
+    atd.contact  = [Contact parseContact:[json objectForKey:@"contact"]];
 
-    //LOG_D(@"Status:%@", event.status);
-    
-    event.distinction = [json objectForKey:@"distinction"];
-    event.suggest_end_datetime = [json objectForKey:@"suggest_end_datetime"];
-    event.suggest_location = [json objectForKey:@"suggest_location"];
-    event.suggest_start_datetime = [json objectForKey:@"suggest_start_datetime"];
-
-    event.user  = [User parseUser: [json objectForKey:@"user"]];
-
-    return event;
+    return atd;
 }
 
 -(NSDictionary*) convent2Dic
@@ -37,13 +27,8 @@
 
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
 
-    
     [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
-    [dic setObject:[NSNumber numberWithInt:self.archived] forKey:@"archived"];
-    [dic setObject:[NSNumber numberWithInt:self.send] forKey:@"send"];
-
-    [dic setObject:self.status forKey:@"status"];
-    [dic setObject:[self.user convent2Dic] forKey:@"user"];
+    [dic setObject:[NSNumber numberWithInt:self.status] forKey:@"status"];
 
     return dic;
 }
