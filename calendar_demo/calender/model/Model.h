@@ -151,8 +151,10 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //For EventTimeVote
--(void) createOrUpdateProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback;
 
+-(void) createVote:(int) proposeStartID andVoteStatus:(int) status andCallback:(void (^)(NSInteger error))callback;
+
+-(void) createProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback;
 
 
 -(EventModel *) getEventModel;
