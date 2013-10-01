@@ -97,9 +97,8 @@
     for(NSDictionary * dic in propose_startsDics) {
         [proposes addObject:[ProposeStart parse:dic]];
     }
-    event.propose_starts = proposes;
-
-
+    event.propose_starts = [proposes sortedArrayUsingSelector:@selector(compare:)];
+    
     event.eventType = [[json objectForKey:@"event_type"] intValue];
 
     return event;

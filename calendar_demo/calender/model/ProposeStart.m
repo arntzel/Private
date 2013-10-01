@@ -185,4 +185,10 @@
 }
 
 
+#pragma mark -
+- (NSComparisonResult)compare:(id)inObject {
+    ProposeStart * ps = (ProposeStart *) inObject;
+    return [self.start compare:ps.start];
+}
+
 @end

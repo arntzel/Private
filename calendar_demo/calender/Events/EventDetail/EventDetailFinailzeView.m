@@ -7,6 +7,9 @@
 //
 
 #import "EventDetailFinailzeView.h"
+#import "EventDetailTimeVoteView.h"
+#import "Utils.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -24,7 +27,7 @@ static CGFloat const getstureDistance = 50;
 @implementation EventDetailFinailzeView
 
 - (void)dealloc {
-    
+
     panGesture.delegate = nil;
     [panGesture release];
     
@@ -48,6 +51,29 @@ static CGFloat const getstureDistance = 50;
         [self addGestureRecognizer:panGesture];
     }
     return self;
+}
+
+-(void) updateView:(ProposeStart *) eventTime
+{
+    CGRect frame = self.frame;
+    frame.origin.x = 7;
+    frame.origin.y = 7;
+    self.frame = frame;
+
+    self.eventTimeLabel.text = [self getTimeLable:eventTime];
+    
+    if(eventTime.finalized == 2) {
+        self.userInteractionEnabled = NO;
+        self.alpha = ALPHA;
+    }
+}
+
+-(NSString *) getTimeLable:(ProposeStart *) eventTime
+{
+    NSString * startTime = [Utils formateTimeAMPM:eventTime.start];
+    NSString * endTime = [Utils formateTimeAMPM:[eventTime getEndTime]];
+    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    return lable;
 }
 
 - (void)updateUI
@@ -140,6 +166,8 @@ static CGFloat const getstureDistance = 50;
 {
     CGPoint dismissCenterPoint = CGPointMake(self.dragStart - 320, self.center.y);
     [self animationToCenterPoint:dismissCenterPoint];
+
+    [self.delegate onRemovePropseStart];
 }
 
 - (void)animationToCenterPoint:(CGPoint)centerPoint

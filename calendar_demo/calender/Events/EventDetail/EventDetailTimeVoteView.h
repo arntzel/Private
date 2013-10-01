@@ -4,6 +4,8 @@
 #import "Event.h"
 #import "ProposeStart.h"
 
+#define ALPHA  0.5;
+
 @protocol EventDetailTimeVoteViewDelegate <NSObject>
 
 -(void) onVoteListClick:(ProposeStart *) eventTime;

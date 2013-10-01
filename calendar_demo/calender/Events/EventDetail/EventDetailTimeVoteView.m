@@ -9,7 +9,10 @@
 
 #import "UserModel.h"
 
-#define ALPHA  0.5;
+@interface EventDetailTimeVoteView() <EventDetailFinailzeViewDelegate>
+
+@end
+
 
 @implementation EventDetailTimeVoteView {
     EventDetailFinailzeView * finailzeView;
@@ -52,6 +55,7 @@
     [self clearView];
     
     _isCreator = isCreator;
+
     _eventTime = start;
     [_eventTime retain];
     
@@ -74,19 +78,9 @@
     } else {
         
         finailzeView = [[EventDetailFinailzeView creatView] retain];
-
-        CGRect frame = finailzeView.frame;
-        frame.origin.x = 7;
-        frame.origin.y = 7;
-        finailzeView.frame = frame;
-
-        finailzeView.eventTimeLabel.text = [self getTimeLable];
+        [finailzeView updateView:_eventTime];
+        finailzeView.delegate = self;
         [self addSubview:finailzeView];
-
-        if(_eventTime.finalized == 2) {
-            finailzeView.userInteractionEnabled = NO;
-            finailzeView.alpha = ALPHA;
-        }
     }
 }
 
@@ -241,4 +235,9 @@
     self.frame = frame;
 }
 
+
+-(void) onRemovePropseStart
+{
+    [self.delegate onVoteTimeDelete:_eventTime];
+}
 @end
