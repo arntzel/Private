@@ -127,6 +127,7 @@
             callback(-1);
         }
         NSLog(@"url:%@ \nconnectType:%d token:%@ IsConnectOrNot:%d",url,connectType,token,isConnect);
+        NSLog(@"connect data :%@",[[NSString alloc] initWithData:data encoding:4]);
     }];
     
 }

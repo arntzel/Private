@@ -13,7 +13,7 @@
 //facebook login info
 @property(nonatomic,copy) NSString *facebookAccessToken;
 @property(nonatomic,copy) NSDate *facebookExpireDate;
-
+@property (nonatomic, strong) NSString *facebookEmail;
 //twitter login info
 @property(nonatomic,copy) NSString *twitterAccessToken;
 @property(nonatomic,copy) NSString *twitterAccessSecret;

@@ -21,7 +21,15 @@
 
 - (IBAction)viewClicked:(id)sender
 {
-    UIView *view = (UIView *)sender;
+    UIView *view;
+    if ([sender isKindOfClass:[UITapGestureRecognizer class]])
+    {
+        view = ((UITapGestureRecognizer *)sender).view;
+    }
+    else
+    {
+       view = (UIView *)sender;
+    }
     NSLog(@"view tag %d", view.tag);
     
     if (self.pushDetailViewBlock)

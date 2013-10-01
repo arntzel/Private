@@ -140,7 +140,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faceboook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SiY-VG-eCb">
-                            <rect key="frame" x="48" y="12" width="104" height="21"/>
+                            <rect key="frame" x="44" y="12" width="104" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,10 +158,17 @@
                                 <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="kru-zk-MuQ"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qqk-oA-bnf" userLabel="fbLabel">
+                            <rect key="frame" x="125" y="6" width="160" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="K24-JH-4JJ"/>
+                        <outletCollection property="gestureRecognizers" destination="jCe-Nu-ye7" appends="YES" id="ufW-0Q-ki9"/>
                     </connections>
                 </view>
                 <view tag="4" contentMode="scaleToFill" id="Q40-RU-kK4" userLabel="googleView" customClass="UIControl">
@@ -177,7 +184,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QvF-kO-3To">
-                            <rect key="frame" x="49" y="12" width="84" height="21"/>
+                            <rect key="frame" x="45" y="12" width="84" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,10 +202,17 @@
                                 <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="5J6-eD-DWQ"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Evd-lr-JAo" userLabel="googleLabel">
+                            <rect key="frame" x="124" y="6" width="160" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <connections>
-                        <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="PEl-y1-nIf"/>
+                        <outletCollection property="gestureRecognizers" destination="YsF-Wn-5Nu" appends="YES" id="K4b-vJ-IWJ"/>
                     </connections>
                 </view>
                 <view tag="5" contentMode="scaleToFill" id="mHF-hK-Rd0" userLabel="notificationView" customClass="UIControl">
@@ -349,11 +363,31 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="emailLabel" destination="kn8-tI-uR8" id="KS1-a6-L2L"/>
+                <outlet property="fbConnectBtn" destination="W4M-rV-WHS" id="sSs-j6-unC"/>
+                <outlet property="fbLabel" destination="Qqk-oA-bnf" id="5ZC-kM-37k"/>
+                <outlet property="fbTapGesture" destination="jCe-Nu-ye7" id="2y1-6S-P12"/>
+                <outlet property="fbView" destination="aO0-WU-48M" id="cgi-hP-e0E"/>
                 <outlet property="firstNameField" destination="znu-iB-weZ" id="8Gc-Wu-RsS"/>
+                <outlet property="googleConnectBtn" destination="hLV-Qu-d0L" id="E5v-sw-EeY"/>
+                <outlet property="googleLabel" destination="Evd-lr-JAo" id="1ah-m2-HYx"/>
+                <outlet property="googleTapGesture" destination="YsF-Wn-5Nu" id="Ll8-uj-Eg7"/>
+                <outlet property="googleView" destination="Q40-RU-kK4" id="P9d-4v-eMV"/>
                 <outlet property="headPortaitBtn" destination="9ww-T9-j3y" id="ViW-oH-pqB"/>
                 <outlet property="lastNameField" destination="l4X-pD-Jcg" id="z1C-2C-Wqd"/>
             </connections>
         </view>
+        <tapGestureRecognizer id="jCe-Nu-ye7">
+            <connections>
+                <action selector="viewClicked:" destination="1" id="UMq-jd-G6Q"/>
+                <outlet property="delegate" destination="-1" id="KJm-OY-0Xf"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="YsF-Wn-5Nu">
+            <connections>
+                <action selector="viewClicked:" destination="1" id="vNc-8G-xAJ"/>
+                <outlet property="delegate" destination="-1" id="M7B-Lo-0y1"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>

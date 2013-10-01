@@ -31,6 +31,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *headPortaitBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headPortraitImgView;
 
+@property (weak, nonatomic) IBOutlet UIButton *fbConnectBtn;
+@property (weak, nonatomic) IBOutlet UIButton *googleConnectBtn;
+@property (weak, nonatomic) IBOutlet UILabel *fbLabel;
+@property (weak, nonatomic) IBOutlet UILabel *googleLabel;
+@property (weak, nonatomic) IBOutlet UIControl *fbView;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *fbTapGesture;
+@property (weak, nonatomic) IBOutlet UIControl *googleView;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *googleTapGesture;
+
 
 @property (nonatomic, copy) void (^pushDetailViewBlock)(int row);
 
