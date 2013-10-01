@@ -434,20 +434,23 @@
 
 - (void)setEventDate:(ProposeStart *)eventDate
 {
-    //self.event ad
+
     [eventDate retain];
-    [[Model getInstance] createProposeStart:self.eventID andPropose:eventDate andCallback:^(NSInteger error, ProposeStart *proposeStat) {
-        
+
+    [timeContentView showIndicatorView:YES];
+
+    [[Model getInstance] createProposeStart:self.event andPropose:eventDate andCallback:^(NSInteger error, ProposeStart *proposeStat) {
+
+        [timeContentView showIndicatorView:NO];
+
         if(error == 0) {
             NSMutableArray * array = [NSMutableArray arrayWithArray:self.event.propose_starts];
             [array addObject:proposeStat];
-            
-            self.event.propose_starts = array;
-            
-            
-            
+
+            self.event.propose_starts = [array sortedArrayUsingSelector:@selector(compare:)];
+
         } else {
-            
+            //TODO::
         }
         
         [timeContentView updateView:[self isMyCreatEvent] andEvent:self.event];

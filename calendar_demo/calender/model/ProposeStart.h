@@ -43,6 +43,10 @@
 
 - (void)convertMinToQuarterMode;
 
+
+- (NSComparisonResult)compare:(id)inObject;
+
+
 -(NSDate *) getEndTime;
 
 -(NSDictionary*) convent2Dic;

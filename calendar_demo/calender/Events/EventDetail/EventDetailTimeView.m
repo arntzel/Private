@@ -206,14 +206,12 @@
             NSMutableArray * array = [[NSMutableArray alloc] init];
             for(ProposeStart * p in _event.propose_starts) {
                 if(p.id != eventTime.id) {
-                    [array addObject:eventTime];
+                    [array addObject:p];
                 }
             }
             
             _event.propose_starts = array;
             [array release];
-            
-            
         }
         
         [eventTime release];

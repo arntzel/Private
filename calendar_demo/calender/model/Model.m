@@ -943,7 +943,7 @@ static Model * instance;
     }];
 }
 
--(void) createProposeStart:(int) eventID andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback
+-(void) createProposeStart:(Event *) event andPropose:(ProposeStart *) proposeStat andCallback:(void (^)(NSInteger error, ProposeStart * proposeStat))callback
 {
 
     /*
@@ -969,10 +969,16 @@ static Model * instance;
     NSDictionary * dict = [proposeStat convent2Dic];
     
     NSMutableDictionary * jsonDic =  [NSMutableDictionary dictionaryWithDictionary:dict];
-    NSString * eventUri = [NSString stringWithFormat:@"/api/v1/event/%d", eventID];
+    NSString * eventUri = [NSString stringWithFormat:@"/api/v1/event/%d", event.id];
     [jsonDic setObject:eventUri forKey:@"event"];
-    [jsonDic setObject:@"/api/v1/contact/17" forKey:@"contact"];
-    [jsonDic removeObjectForKey:@"vote"];
+
+    User * me = [[UserModel getInstance] getLoginUser];
+    EventAttendee * atd = [[event getAttendeesDic] objectForKey:me.email];
+    int contactID = atd.contact.id;
+
+    NSString * contactUri = [NSString stringWithFormat:@"/api/v1/contact/%d", contactID];
+    [jsonDic setObject:contactUri forKey:@"contact"];
+    //[jsonDic removeObjectForKey:@"vote"];
     
     NSString * postContent = [Utils dictionary2String:jsonDic];
 

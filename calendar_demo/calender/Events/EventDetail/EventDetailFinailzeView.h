@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProposeStart.h"
+
+@protocol EventDetailFinailzeViewDelegate <NSObject>
+
+-(void) onRemovePropseStart;
+
+@end
 
 @interface EventDetailFinailzeView : UIView
 @property (retain, nonatomic) IBOutlet UIView *finailzeView;
@@ -15,5 +22,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
+@property(assign) id<EventDetailFinailzeViewDelegate> delegate;
+
+-(void) updateView:(ProposeStart *) eventTime;
+
 +(EventDetailFinailzeView *) creatView;
+
 @end

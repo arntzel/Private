@@ -23,4 +23,6 @@
 
 -(void) updateView:(BOOL) isCreator andEvent:(Event *) event;
 
+-(void) showIndicatorView:(BOOL) show;
+
 @end
