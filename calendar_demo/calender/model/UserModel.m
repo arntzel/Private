@@ -92,9 +92,12 @@ static UserModel * instance;
     
     
     LOG_D(@"url=%@", url);
-    
-    
-    NSString * postContent = [NSString stringWithFormat:@"access_token=%@&device_token=%@", accessToken, self.device_token];
+
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    if(self.device_token == nil) {
+        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+    }
+
     LOG_D(@"postContent=%@", postContent);
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -114,11 +117,12 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
     
-    //NSString * postContent = [NSString stringWithFormat:@"access_token=%@&access_token_secret=oamFLl00vCTo7bAKmqTf1TIB", accessToken];
-    NSString * postContent = [NSString stringWithFormat:@"access_token=%@&device_token=%@", accessToken, self.device_token];
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    if(self.device_token == nil) {
+        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+    }
 
     LOG_D(@"signinGooglePlus, postContent=%@", postContent);
-
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setHTTPBody:postData];
