@@ -206,9 +206,11 @@ static CoreDataModel * instance;
     
     if(follow) {
         predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
+        //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
     } else {
         predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@) AND (eventType & %d)>0", date, eventTypeFilter];
+        //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
     }
     

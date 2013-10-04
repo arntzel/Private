@@ -59,9 +59,9 @@
     self.duration_hours = [NSNumber numberWithInt:event.duration_hours];
     self.duration_minutes = [NSNumber numberWithInt:event.duration_minutes];
 
-    self.eventType = [NSNumber numberWithInt:event.eventType];
+    int eventType = 0x00000001 << event.eventType;
+    self.eventType = [NSNumber numberWithInt:eventType];
     self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
-
 
     self.start = event.start;
     self.start_type = event.start_type;
