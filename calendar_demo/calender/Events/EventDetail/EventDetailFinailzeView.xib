@@ -37,6 +37,12 @@
                             <rect key="frame" x="219" y="0.0" width="87" height="52"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="efU-rd-bVg">
+                                    <rect key="frame" x="0.0" y="0.0" width="87" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.0039215686269999999" green="0.73333333329999995" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Finailze" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="14">
                                     <rect key="frame" x="28" y="15" width="55" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,9 +55,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" red="0.0039215686269999999" green="0.73333333329999995" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="5:30PM -  6:00PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24">
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="5:30PM -  6:00PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24">
                             <rect key="frame" x="10" y="0.0" width="192" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
@@ -74,6 +80,7 @@
                 <outlet property="contentView" destination="22" id="23"/>
                 <outlet property="eventTimeConflictLabel" destination="26" id="28"/>
                 <outlet property="eventTimeLabel" destination="24" id="27"/>
+                <outlet property="finailzeBtn" destination="efU-rd-bVg" id="AWj-6F-2w0"/>
                 <outlet property="finailzeView" destination="13" id="20"/>
                 <outlet property="removeView" destination="17" id="21"/>
             </connections>

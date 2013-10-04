@@ -13,6 +13,8 @@
 
 -(void) onEventDetailTimeViewFrameChanged;
 
+-(void) onEventChanged:(Event *) event;
+
 @end
 
 @interface EventDetailTimeView : UIView

@@ -199,8 +199,13 @@
     [self updateEventTimeView];
 
     BOOL isCreator = [self isMyCreatEvent];
-    
-    [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
+
+    if(self.event.confirmed) {
+        conformView.hidden = YES;
+    } else {
+        conformView.hidden = NO;
+        [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
+    }
 
     [commentContentView beginLoadComments];
 }
@@ -325,6 +330,9 @@
     CGFloat offsetY = 0;
     
     for(UIView * subView in scrollView.subviews) {
+
+        if(subView.hidden == YES) continue;
+
         CGRect frame = subView.frame;
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
@@ -405,6 +413,13 @@
 -(void) onEventDetailTimeViewFrameChanged {
     LOG_D(@"EventDetail onEventDetailCommentContentViewFrameChanged");
     [self layOutSubViews];
+}
+
+
+-(void) onEventChanged:(Event *) newEvent;
+{
+    self.event = newEvent;
+    [self updateUIByEvent];
 }
 
 #pragma mark -

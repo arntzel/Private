@@ -81,6 +81,10 @@
         [finailzeView updateView:_eventTime];
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
+
+        UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+        [finailzeView.eventTimeLabel addGestureRecognizer:tapGestureTel];
+        [tapGestureTel release];
     }
 }
 
@@ -134,12 +138,21 @@
     }
 }
 
+-(void) singleTapEventTimeLabel: (UITapGestureRecognizer*) tap
+{
+    LOG_D(@"singleTapEventTimeLabel");
+
+    if(self.delegate != nil) {
+        [self.delegate onVoteTimeClick:_eventTime];
+    }
+}
+
 -(void) singleTapHeaderListView: (UITapGestureRecognizer*) tap
 {
     LOG_D(@"singleTapHeaderListView");
 
     if(self.delegate != nil) {
-        [self.delegate onVoteListClick:nil];
+        [self.delegate onVoteListClick:_eventTime];
     }
 }
 
@@ -196,7 +209,14 @@
     frame.origin.y = 7;
     view.frame = frame;
 
+    view.eventTimeLabel.text = [self getTimeLable];
+    
     [self addSubview:view];
+
+
+    UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+    [view.eventTimeLabel addGestureRecognizer:tapGestureTel];
+    [tapGestureTel release];
 }
 
 -(void) onEventTimtVoteAgree
@@ -239,5 +259,10 @@
 -(void) onRemovePropseStart
 {
     [self.delegate onVoteTimeDelete:_eventTime];
+}
+
+-(void) onSetFinilzeTime
+{
+    [self.delegate onVoteTimeFinalize:_eventTime];
 }
 @end

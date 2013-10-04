@@ -32,6 +32,7 @@ static CGFloat const getstureDistance = 50;
     [panGesture release];
     
     [_finailzeView release];
+    [_finailzeBtn release];
     [_removeView release];
     [_contentView release];
 
@@ -88,7 +89,17 @@ static CGFloat const getstureDistance = 50;
     [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
+
+    [_finailzeBtn addTarget:self action:@selector(setFinalze:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+-(void) setFinalze:(id)sender
+{
+    if(self.delegate != nil) {
+        [self.delegate onSetFinilzeTime];
+    }
+}
+
 
 - (void)setToFinalizeViewMode
 {

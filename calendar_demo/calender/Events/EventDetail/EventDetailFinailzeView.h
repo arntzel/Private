@@ -13,10 +13,13 @@
 
 -(void) onRemovePropseStart;
 
+-(void) onSetFinilzeTime;
+
 @end
 
 @interface EventDetailFinailzeView : UIView
 @property (retain, nonatomic) IBOutlet UIView *finailzeView;
+@property (retain, nonatomic) IBOutlet UIButton *finailzeBtn;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;

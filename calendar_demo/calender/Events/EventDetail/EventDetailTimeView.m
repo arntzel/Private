@@ -121,8 +121,10 @@
 -(void) updateView:(BOOL) isCreator andEvent:(Event *) event
 {
     _isCreator = isCreator;
+
+    [event retain];
     [_event release];
-    _event = [event retain];
+    _event = event;
 
     [self updateView];
 }
@@ -138,7 +140,20 @@
     NSArray * times = _event.propose_starts;
 
     for(ProposeStart * eventTime in times) {
-        
+
+        if(_event.confirmed) {
+
+            if([eventTime.start isEqualToDate:_event.start]) {
+                eventTime.finalized = 1;
+            } else {
+                eventTime.finalized = 2;
+            }
+        } else {
+            eventTime.finalized = 0;
+        }
+
+
+
         NSString * day = [Utils formateDay2:eventTime.start];
         
         if(![day isEqualToString:dayTitle]) {
@@ -175,22 +190,43 @@
 #pragma mark EventDetailTimeVoteViewDelegate
 -(void) onVoteListClick:(ProposeStart *) eventTime
 {
-
+     LOG_D(@"onVoteListClick");
 }
 
 -(void) onVoteTimeClick:(ProposeStart *) eventTime
 {
-
+    LOG_D(@"onVoteTimeClick");
 }
 
 -(void) onVoteTimeFinalize:(ProposeStart *) eventTime
 {
+    LOG_D(@"onVoteTimeFinalize");
 
+    int eventID = _event.id;
+
+    [self showIndicatorView:YES];
+
+    [[Model getInstance] finalizeProposeStart:eventID ProposeStart:eventTime andCallback:^(NSInteger error, Event * newEvent) {
+        [self showIndicatorView:NO];
+
+        if(error == 0) {
+            [self.delegate onEventChanged:newEvent];
+        } else {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                            message:@"Server or network error!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+        }
+    }];
 }
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
-    
+    LOG_D(@"onVoteTimeDelete");
+
     [eventTime retain];
     
     int pid = eventTime.id;
@@ -222,7 +258,8 @@
 
 -(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked
 {
-    
+    LOG_D(@"onVoteTimeConform, %d", checked);
+
     [eventTime retain];
     
     int status = checked ? 1 : -1;

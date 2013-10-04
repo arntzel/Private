@@ -1039,4 +1039,53 @@ static Model * instance;
     }];
 }
 
+-(void) finalizeProposeStart:(int) eventID ProposeStart:(ProposeStart *) proposeStart andCallback:(void (^)(NSInteger error, Event * event))callback
+{
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+
+    LOG_D(@"url=%@", url);
+
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+
+    //{"body": "Hey~Hey", "email": "user1@pencilme.com", "sent_at": "2012-12-12T12:12:12", "subject": "new subject"}
+
+    NSDictionary * proposeStartDic = [proposeStart convent2Dic];
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:proposeStartDic];
+    [dict removeObjectForKey:@"id"];
+    [dict removeObjectForKey:@"vote"];
+    [dict setObject:[NSNumber numberWithBool:YES] forKey:@"confirmed"];
+    
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [[UserModel getInstance] setAuthHeader:request];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+
+        if(status == 202) {
+
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"createEvent resp:%@", json);
+
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
+
+        } else {
+
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+
+            callback(-1, nil);
+        }
+
+    }];
+}
+
+
 @end
