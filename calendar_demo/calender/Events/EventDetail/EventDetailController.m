@@ -20,6 +20,7 @@
 #import "UserModel.h"
 #import "EventTime.h"
 #import "AddEventDateViewController.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate>
 {
@@ -35,7 +36,7 @@
     
     EventDetailCommentContentView *commentContentView;
     
-    UIScrollView *scrollView;
+    TPKeyboardAvoidingScrollView *scrollView;
     
     UIActivityIndicatorView * indicatorView;
 }
@@ -54,8 +55,6 @@
     //self.moreActionSheet = nil;
     
     self.event = nil;
-    
-    [self unregisterKeyboardEvents];
     
     [navBar release];
     [photoView setScrollView:nil];
@@ -80,17 +79,6 @@
     [event release];
     
     [super dealloc];
-}
-
--(void) registerKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void) unregisterKeyboardEvents
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -133,10 +121,11 @@
     [self addPhotoView:isCreator];
 
     int height = self.view.frame.size.height - navBar.frame.size.height;
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
+    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBounces:NO];
+    [scrollView setClipsToBounds:YES];
     [self.view insertSubview:scrollView belowSubview:photoView];
     
     
@@ -165,9 +154,6 @@
     commentContentView.eventID = self.eventID;
     commentContentView.delegate = self;
     [scrollView addSubview:commentContentView];
-    
-    
-    [self registerKeyboardEvents];
 }
 
 -(BOOL) isMyCreatEvent
@@ -339,7 +325,11 @@
         offsetY += frame.size.height;
     }
     
+    [scrollView setContentInset:UIEdgeInsetsZero];
+    LOG_D(@"scrollView.contentInset :%f,%f",scrollView.contentInset.top,scrollView.contentInset.bottom);
+    
     [scrollView setContentSize:CGSizeMake(320, offsetY)];
+//    [scrollView contentSizeToFit];
 }
 
 
@@ -347,58 +337,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark Responding to keyboard events
-- (void)keyboardWillShow:(NSNotification *)notification {
-
-    LOG_D(@"EventDetail keyboardWillShow");
-    
-    NSDictionary *userInfo = [notification userInfo];
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    // Get the duration of the animation.
-    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    //NSTimeInterval animationDuration;
-    //[animationDurationValue getValue:&animationDuration];
-    // Animate the resize of the text view's frame in sync with the keyboard's appearance.
-    //[self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
-    
-    int height = self.view.frame.size.height - navBar.frame.size.height - keyboardRect.size.height;
-    CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
-    scrollView.frame = frame;
-    
-    CGPoint  contentOffset = scrollView.contentOffset;
-//    contentOffset.y += keyboardRect.size.height;
-//    scrollView.contentOffset = contentOffset;
-    
-    int y = commentContentView.frame.origin.y;
-    int maxY = scrollView.contentSize.height - scrollView.frame.size.height;
-    contentOffset.y = y < maxY ? y : maxY;
-    scrollView.contentOffset = contentOffset;
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    
-    LOG_D(@"EventDetail keyboardWillHide");
-
-    
-    //NSDictionary* userInfo = [notification userInfo];
-    /*
-     Restore the size of the text view (fill self's view).
-     Animate the resize so that it's in sync with the disappearance of the keyboard.
-     */
-    //NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    //NSTimeInterval animationDuration;
-    //[animationDurationValue getValue:&animationDuration];
-    //[self moveInputBarWithKeyboardHeight:0.0 withDuration:animationDuration];
-    
-    int height = self.view.frame.size.height - navBar.frame.size.height;
-    CGRect frame = CGRectMake(0, navBar.frame.size.height, 320, height);
-    scrollView.frame = frame;
 }
 
 #pragma mark -
@@ -411,7 +349,7 @@
 }
 
 -(void) onEventDetailTimeViewFrameChanged {
-    LOG_D(@"EventDetail onEventDetailCommentContentViewFrameChanged");
+    LOG_D(@"EventDetail onEventDetailTimeViewFrameChanged");
     [self layOutSubViews];
 }
 

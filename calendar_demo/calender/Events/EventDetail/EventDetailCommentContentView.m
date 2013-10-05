@@ -99,13 +99,6 @@
     [commentTextView hideKeyboard];
 }
 
-//- (void)updateUI
-//{    
-//    CGRect commentContentViewFrame = self.frame;
-//    commentContentViewFrame.size = CGSizeMake(320, conformedView.frame.size.height + conformedView.frame.origin.y);
-//    self.frame = commentContentViewFrame;
-//}
-
 - (void)addTextView:(User *) user
 {
     commentTextView = [[EventDetailCommentTextView creatView] retain];
@@ -113,12 +106,12 @@
     [commentTextView setHeaderPhotoUrl:user.avatar_url];
     [self addSubview:commentTextView];
     
-    [commentTextView.messageField addTarget:self action:@selector(keySend) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [commentTextView.messageField addTarget:self action:@selector(keySend) forControlEvents:UIControlEventEditingDidEnd];
 }
 
 -(void) keySend
 {
-    [commentTextView hideKeyboard];
+//    [commentTextView hideKeyboard];
     
     NSString * msg = [commentTextView.messageField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -145,10 +138,10 @@
                 [cmt release];
                 
                 [self updateFrame];
+                
                 [self.delegate onEventDetailCommentContentViewFrameChanged];
                 
                 [UIView commitAnimations];
-                
             } else {
                 //TODO::
             }
