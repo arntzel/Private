@@ -68,9 +68,6 @@
     mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView.settings.compassButton = YES;
     [self.view addSubview:mapView];
-    
-    
-    
 }
 
 - (void)updatePlaceWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude

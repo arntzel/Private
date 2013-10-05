@@ -23,8 +23,10 @@
 #import "TPKeyboardAvoidingScrollView.h"
 
 #import "EventLocationViewController.h"
+#import "Location.h"
+#import "AddLocationViewController.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -447,7 +449,14 @@
 -(void) changeLocation
 {
     LOG_D(@"changeLocation");
-    
+    AddLocationViewController * changeLocationController = [[AddLocationViewController alloc] init];
+    [self.navigationController pushViewController:changeLocationController animated:YES];
+
+    Location *location = [self.event.location copy];
+    changeLocationController.location = location;
+    [location release];
+    changeLocationController.delegate = self;
+    [changeLocationController release];
 }
 
 -(void) viewInMaps
@@ -463,5 +472,13 @@
 - (void) onInviteeViewClicked
 {
     LOG_D(@"onInviteeViewClicked");
+}
+
+#pragma mark -
+#pragma mark AddLocationViewControllerDelegate
+- (void)setLocation:(Location *)location
+{
+    [invitePlaceContentView setLocation:location];
+    //TODO: 
 }
 @end

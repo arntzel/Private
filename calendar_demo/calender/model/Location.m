@@ -10,6 +10,17 @@
 
 @implementation Location
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    Location *copy = [[Location alloc] init];
+    copy.photo = [self.photo copy];
+    copy.location = [self.location copy];
+    copy.lat = self.lat;
+    copy.lng = self.lng;
+    
+    return copy;
+}
+
 
 +(Location *) parseLocation:(NSDictionary *) json
 {

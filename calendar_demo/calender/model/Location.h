@@ -2,7 +2,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Location : NSObject
+@interface Location : NSObject<NSCopying>
 
 @property int id;
 @property(strong) NSString * location;
