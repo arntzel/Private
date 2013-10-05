@@ -10,4 +10,6 @@
 
 @interface EventLocationViewController : UIViewController
 
+- (void)updatePlaceWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
+
 @end

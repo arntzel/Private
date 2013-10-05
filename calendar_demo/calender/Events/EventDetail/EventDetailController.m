@@ -455,6 +455,7 @@
     LOG_D(@"viewInMaps");
     EventLocationViewController * mapViewController = [[EventLocationViewController alloc] init];
     [self.navigationController pushViewController:mapViewController animated:YES];
+    [mapViewController updatePlaceWithLatitude:self.event.location.lat longitude:self.event.location.lng];
     [mapViewController release];
     
 }
