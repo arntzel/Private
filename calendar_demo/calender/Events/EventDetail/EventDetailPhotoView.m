@@ -9,6 +9,10 @@
 #import "EventDetailPhotoView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ViewUtils.h"
+
+@interface EventDetailPhotoView()<UIActionSheetDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
+@end
 
 @implementation EventDetailPhotoView
 {
@@ -17,6 +21,8 @@
     CGFloat orgHeight;
     CGFloat scrollScope;
 }
+
+@synthesize controller;
 
 - (void)updateUI
 {
@@ -33,9 +39,80 @@
     self.clipsToBounds = YES;
 }
 
+- (void)addCreatorAction
+{
+    self.photoView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapPhotoView:)];
+    [self.photoView addGestureRecognizer:gesture];
+    [gesture release];
+}
+
+
+
+#pragma mark Add Photo
+-(void) singleTapPhotoView:(id)sender
+{
+    UIActionSheet * actionSheet = [[UIActionSheet alloc]
+                                   initWithTitle:nil
+                                   delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:nil
+                                   otherButtonTitles:@"Add from Camera Roll", @"Use Facebook Cover Photo", @"Take Photo", nil];
+    [actionSheet showInView:self];
+    [actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
+    }
+    else if(buttonIndex == 2)
+    {
+        [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+}
+
+- (void)getImageFrom:(UIImagePickerControllerSourceType)type
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = type;
+    ipc.delegate = self;
+    [self.controller presentModalViewController:ipc animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    CGSize targetSize = self.photoView.frame.size;
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
+    
+    [self setImage:newImage];
+    if ([self.controller respondsToSelector:@selector(detailPhotoDidChanged:)]) {
+        [self.controller detailPhotoDidChanged:newImage];
+    }
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+
 - (void)setImage:(UIImage *)image
 {
     [self.photoView setOriginalImage:image];
+}
+
+- (void)setDefaultImage
+{
+    [self setImage:[self getRandomPhoto]];
+}
+
+-(UIImage *) getRandomPhoto
+{
+    //event_detail_random_header1.png
+    int value = (arc4random() % 8) + 1;
+    
+    NSString * name = [NSString stringWithFormat:@"event_detail_random_header%d.png", value];
+    UIImage * img = [UIImage imageNamed:name];
+    return img;
 }
 
 -(void) setImageUrl:(NSString *) imageUrl
@@ -71,8 +148,6 @@
         frame.size.height = navBar.frame.size.height;
     }
     self.frame = frame;
-    
-    
     
     if (scrollOffsetY > scrollScope) {
         scrollOffsetY = scrollScope;
@@ -110,6 +185,7 @@
 */
 
 - (void)dealloc {
+    self.controller = nil;
     [_photoView release];
     [_titleLabel release];
     [super dealloc];

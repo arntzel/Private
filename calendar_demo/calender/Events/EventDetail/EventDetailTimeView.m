@@ -43,11 +43,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        [self addTimeLabelView];
-//        [self addFinailzeView];
-//        [self addInviteeListView];
-//        
-//        [self addConformView];
         
         [self updateUI];
     }
@@ -179,10 +174,6 @@
 - (void)updateUI
 {
     [self setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
-    
-//    CGRect timeContentViewFrame = self.frame;
-//    timeContentViewFrame.size = CGSizeMake(320, conformView.frame.origin.y + conformView.frame.size.height + 20);
-//    self.frame = timeContentViewFrame;
 }
 
 

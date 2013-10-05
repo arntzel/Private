@@ -26,7 +26,7 @@
 #import "Location.h"
 #import "AddLocationViewController.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -120,10 +120,14 @@
 
 - (void)configViews
 {
+    
     BOOL isCreator = [self isMyCreatEvent];
     navBar.rightbtn.hidden = !isCreator;
-    [self addPhotoView:isCreator];
-
+    [self addPhotoView];
+    if (isCreator) {
+        [photoView addCreatorAction];
+    }
+    
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -131,11 +135,7 @@
     [scrollView setBounces:NO];
     [scrollView setClipsToBounds:YES];
     [self.view insertSubview:scrollView belowSubview:photoView];
-    
-    
-    [photoView setImage:[self getRandomPhoto]];
     [photoView setScrollView:scrollView];
-    [photoView setNavgation:navBar];
     
     height = photoView.frame.size.height - navBar.frame.size.height;
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
@@ -165,16 +165,6 @@
     User * user =  [[UserModel getInstance] getLoginUser];
     User * creator = event.creator;
     return user.id == creator.id;
-}
-
--(UIImage *) getRandomPhoto
-{
-    //event_detail_random_header1.png
-    int value = (arc4random() % 8) + 1;
-
-    NSString * name = [NSString stringWithFormat:@"event_detail_random_header%d.png", value];
-    UIImage * img = [UIImage imageNamed:name];
-    return img;
 }
 
 - (void)updateUIByEvent
@@ -281,32 +271,13 @@
     [moreActionSheet release];
 }
 
-- (void)addPhotoView:(BOOL) isCreator
+- (void)addPhotoView
 {
     photoView = [[EventDetailPhotoView creatView] retain];
-    photoView.photoView.userInteractionEnabled = YES;
-    
     [self.view insertSubview:photoView belowSubview:navBar];
-
-    if(isCreator) {
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapPhotoView:)];
-        [photoView.photoView addGestureRecognizer:gesture];
-        [gesture release];
-    }
-}
-
--(void) singleTapPhotoView:(id)sender
-{
-    UIActionSheet * actionSheet = [[UIActionSheet alloc]
-                                       initWithTitle:nil
-                                            delegate:self
-                                    cancelButtonTitle:@"Cancel"
-                               destructiveButtonTitle:nil
-                                    otherButtonTitles:@"Add from Camera Roll", @"Use Facebook Cover Photo", @"Take Photo", nil];
-    
-    actionSheet.tag = 2;
-    [actionSheet showInView:self.view];
-    [actionSheet release];
+    photoView.controller = self;
+    [photoView setDefaultImage];
+    [photoView setNavgation:navBar];
 }
 
 //垂直方向线性布局
@@ -365,7 +336,7 @@
 }
 
 #pragma mark -
-#pragma mark EventDetailCommentContentView
+#pragma mark EventDetailCommentConformViewDelegate
 -(void) onProposeNewTime
 {
     LOG_D(@"onProposeNewTime");
@@ -479,6 +450,13 @@
 - (void)setLocation:(Location *)location
 {
     [invitePlaceContentView setLocation:location];
-    //TODO: 
+    //TODO:
+}
+
+#pragma mark -
+#pragma mark EventDetailPhotoViewDelegate
+- (void)detailPhotoDidChanged:(UIImage *)image
+{
+    //TODO:
 }
 @end
