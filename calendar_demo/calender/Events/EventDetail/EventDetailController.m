@@ -22,6 +22,8 @@
 #import "AddEventDateViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
+#import "EventLocationViewController.h"
+
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
@@ -451,6 +453,10 @@
 -(void) viewInMaps
 {
     LOG_D(@"viewInMaps");
+    EventLocationViewController * mapViewController = [[EventLocationViewController alloc] init];
+    [self.navigationController pushViewController:mapViewController animated:YES];
+    [mapViewController release];
+    
 }
 
 - (void) onInviteeViewClicked

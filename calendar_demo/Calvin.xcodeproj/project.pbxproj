@@ -43,6 +43,18 @@
 		764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764C3F8817F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m */; };
 		764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764C3F8A17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m */; };
 		76591A7D17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A7C17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		76591A8517FFB09A00DE3AB2 /* AddLocationTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A8017FFB09A00DE3AB2 /* AddLocationTextView.m */; };
+		76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8117FFB09A00DE3AB2 /* AddLocationTextView.xib */; };
+		76591A8717FFB09A00DE3AB2 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A8317FFB09A00DE3AB2 /* AddLocationViewController.m */; };
+		76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8417FFB09A00DE3AB2 /* AddLocationViewController.xib */; };
+		76591A9317FFB12900DE3AB2 /* AddEventInvitePeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A8B17FFB12900DE3AB2 /* AddEventInvitePeopleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76591A9417FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8C17FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib */; };
+		76591A9517FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A8E17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m */; };
+		76591A9617FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8F17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib */; };
+		76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9117FFB12900DE3AB2 /* AddEventInviteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76591A9817FFB12900DE3AB2 /* AddEventInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9217FFB12900DE3AB2 /* AddEventInviteViewController.xib */; };
+		76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */; };
+		76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */; };
 		765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 765DF0B917F083A8007259DF /* LoginStatusCheck.m */; };
 		7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */; };
 		7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F73217F075F400B64E40 /* LoginMainAccessView.m */; };
@@ -208,15 +220,11 @@
 		769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABABD17DF52090033E677 /* AddDateEntryView.xib */; };
 		769ABB1617DF52090033E677 /* AddEventInviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABABF17DF52090033E677 /* AddEventInviteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAC017DF52090033E677 /* AddEventInviteView.xib */; };
-		769ABB1817DF52090033E677 /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAC217DF52090033E677 /* AddEventInviteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB1917DF52090033E677 /* AddEventInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAC317DF52090033E677 /* AddEventInviteViewController.xib */; };
 		769ABB1A17DF52090033E677 /* AddEventPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAC517DF52090033E677 /* AddEventPlaceView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAC617DF52090033E677 /* AddEventPlaceView.xib */; };
 		769ABB1C17DF52090033E677 /* AddEventSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAC817DF52090033E677 /* AddEventSettingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAC917DF52090033E677 /* AddEventSettingView.xib */; };
 		769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABACB17DF52090033E677 /* AddEventViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB2017DF52090033E677 /* AddLocationTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABACE17DF52090033E677 /* AddLocationTextView.xib */; };
-		769ABB2217DF52090033E677 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAD117DF52090033E677 /* AddLocationViewController.xib */; };
 		769ABB2317DF52090033E677 /* EventDetailCommentConformedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */; };
 		769ABB2517DF52090033E677 /* EventDetailCommentConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAD717DF52090033E677 /* EventDetailCommentConformView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -244,10 +252,6 @@
 		769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAFB17DF52090033E677 /* EventDetailTimeLabelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */; };
 		769ABB3E17DF52090033E677 /* EventDetailTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAFE17DF52090033E677 /* EventDetailTimeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB3F17DF52090033E677 /* AddEventInvitePeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0117DF52090033E677 /* AddEventInvitePeopleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB4017DF52090033E677 /* AddEventInvitePeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB0217DF52090033E677 /* AddEventInvitePeopleCell.xib */; };
-		769ABB4117DF52090033E677 /* AddEventInvitePeopleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0417DF52090033E677 /* AddEventInvitePeopleHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB4217DF52090033E677 /* AddEventInvitePeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB0517DF52090033E677 /* AddEventInvitePeopleHeaderView.xib */; };
 		769ABB4317DF52090033E677 /* NavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0717DF52090033E677 /* NavgationBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0917DF52090033E677 /* SelectTimeZoneController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB0A17DF52090033E677 /* SelectTimeZoneController.xib */; };
@@ -348,8 +352,6 @@
 		769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD3317DF54950033E677 /* GPlaceDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD3517DF54950033E677 /* PullRefreshTableView.m */; };
 		769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD4C17DF579E0033E677 /* EventDetailController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABD4E17DF58C20033E677 /* AddLocationTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABACD17DF52090033E677 /* AddLocationTextView.m */; };
-		769ABD5017DF5C020033E677 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAD017DF52090033E677 /* AddLocationViewController.m */; };
 		769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABABC17DF52090033E677 /* AddDateEntryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABD5317DF5D440033E677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD5217DF5D440033E677 /* main.m */; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
@@ -414,6 +416,24 @@
 		764C3F8A17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		76591A7B17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		76591A7C17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		76591A7F17FFB09A00DE3AB2 /* AddLocationTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationTextView.h; sourceTree = "<group>"; };
+		76591A8017FFB09A00DE3AB2 /* AddLocationTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationTextView.m; sourceTree = "<group>"; };
+		76591A8117FFB09A00DE3AB2 /* AddLocationTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationTextView.xib; sourceTree = "<group>"; };
+		76591A8217FFB09A00DE3AB2 /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		76591A8317FFB09A00DE3AB2 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		76591A8417FFB09A00DE3AB2 /* AddLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
+		76591A8A17FFB12900DE3AB2 /* AddEventInvitePeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInvitePeopleCell.h; sourceTree = "<group>"; };
+		76591A8B17FFB12900DE3AB2 /* AddEventInvitePeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInvitePeopleCell.m; sourceTree = "<group>"; };
+		76591A8C17FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInvitePeopleCell.xib; sourceTree = "<group>"; };
+		76591A8D17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInvitePeopleHeaderView.h; sourceTree = "<group>"; };
+		76591A8E17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInvitePeopleHeaderView.m; sourceTree = "<group>"; };
+		76591A8F17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInvitePeopleHeaderView.xib; sourceTree = "<group>"; };
+		76591A9017FFB12900DE3AB2 /* AddEventInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInviteViewController.h; sourceTree = "<group>"; };
+		76591A9117FFB12900DE3AB2 /* AddEventInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInviteViewController.m; sourceTree = "<group>"; };
+		76591A9217FFB12900DE3AB2 /* AddEventInviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInviteViewController.xib; sourceTree = "<group>"; };
+		76591A9917FFB23200DE3AB2 /* EventLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationViewController.h; sourceTree = "<group>"; };
+		76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationViewController.m; sourceTree = "<group>"; };
+		76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventLocationViewController.xib; sourceTree = "<group>"; };
 		765DF0B817F083A8007259DF /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
 		765DF0B917F083A8007259DF /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		7661E17317E201D700C788D0 /* GPlaceAutoCompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceAutoCompleteSource.h; sourceTree = "<group>"; };
@@ -625,9 +645,6 @@
 		769ABABE17DF52090033E677 /* AddEventInviteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInviteView.h; sourceTree = "<group>"; };
 		769ABABF17DF52090033E677 /* AddEventInviteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInviteView.m; sourceTree = "<group>"; };
 		769ABAC017DF52090033E677 /* AddEventInviteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInviteView.xib; sourceTree = "<group>"; };
-		769ABAC117DF52090033E677 /* AddEventInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInviteViewController.h; sourceTree = "<group>"; };
-		769ABAC217DF52090033E677 /* AddEventInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInviteViewController.m; sourceTree = "<group>"; };
-		769ABAC317DF52090033E677 /* AddEventInviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInviteViewController.xib; sourceTree = "<group>"; };
 		769ABAC417DF52090033E677 /* AddEventPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventPlaceView.h; sourceTree = "<group>"; };
 		769ABAC517DF52090033E677 /* AddEventPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventPlaceView.m; sourceTree = "<group>"; };
 		769ABAC617DF52090033E677 /* AddEventPlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventPlaceView.xib; sourceTree = "<group>"; };
@@ -636,12 +653,6 @@
 		769ABAC917DF52090033E677 /* AddEventSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventSettingView.xib; sourceTree = "<group>"; };
 		769ABACA17DF52090033E677 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		769ABACB17DF52090033E677 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
-		769ABACC17DF52090033E677 /* AddLocationTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationTextView.h; sourceTree = "<group>"; };
-		769ABACD17DF52090033E677 /* AddLocationTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationTextView.m; sourceTree = "<group>"; };
-		769ABACE17DF52090033E677 /* AddLocationTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationTextView.xib; sourceTree = "<group>"; };
-		769ABACF17DF52090033E677 /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
-		769ABAD017DF52090033E677 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
-		769ABAD117DF52090033E677 /* AddLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
 		769ABAD317DF52090033E677 /* EventDetailCommentConformedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentConformedView.h; sourceTree = "<group>"; };
 		769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentConformedView.m; sourceTree = "<group>"; };
 		769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailCommentConformedView.xib; sourceTree = "<group>"; };
@@ -685,12 +696,6 @@
 		769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailTimeLabelView.xib; sourceTree = "<group>"; };
 		769ABAFD17DF52090033E677 /* EventDetailTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeView.h; sourceTree = "<group>"; };
 		769ABAFE17DF52090033E677 /* EventDetailTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeView.m; sourceTree = "<group>"; };
-		769ABB0017DF52090033E677 /* AddEventInvitePeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInvitePeopleCell.h; sourceTree = "<group>"; };
-		769ABB0117DF52090033E677 /* AddEventInvitePeopleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInvitePeopleCell.m; sourceTree = "<group>"; };
-		769ABB0217DF52090033E677 /* AddEventInvitePeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInvitePeopleCell.xib; sourceTree = "<group>"; };
-		769ABB0317DF52090033E677 /* AddEventInvitePeopleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventInvitePeopleHeaderView.h; sourceTree = "<group>"; };
-		769ABB0417DF52090033E677 /* AddEventInvitePeopleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventInvitePeopleHeaderView.m; sourceTree = "<group>"; };
-		769ABB0517DF52090033E677 /* AddEventInvitePeopleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventInvitePeopleHeaderView.xib; sourceTree = "<group>"; };
 		769ABB0617DF52090033E677 /* NavgationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavgationBar.h; sourceTree = "<group>"; };
 		769ABB0717DF52090033E677 /* NavgationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavgationBar.m; sourceTree = "<group>"; };
 		769ABB0817DF52090033E677 /* SelectTimeZoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeZoneController.h; sourceTree = "<group>"; };
@@ -1033,6 +1038,38 @@
 				764C3F8517F326960014B8B1 /* TPKeyboardAvoidingScrollView.m */,
 			);
 			path = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
+		76591A7E17FFB09A00DE3AB2 /* EventPlace */ = {
+			isa = PBXGroup;
+			children = (
+				76591A7F17FFB09A00DE3AB2 /* AddLocationTextView.h */,
+				76591A8017FFB09A00DE3AB2 /* AddLocationTextView.m */,
+				76591A8117FFB09A00DE3AB2 /* AddLocationTextView.xib */,
+				76591A8217FFB09A00DE3AB2 /* AddLocationViewController.h */,
+				76591A8317FFB09A00DE3AB2 /* AddLocationViewController.m */,
+				76591A8417FFB09A00DE3AB2 /* AddLocationViewController.xib */,
+				76591A9917FFB23200DE3AB2 /* EventLocationViewController.h */,
+				76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */,
+				76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */,
+			);
+			path = EventPlace;
+			sourceTree = "<group>";
+		};
+		76591A8917FFB12900DE3AB2 /* EventPeople */ = {
+			isa = PBXGroup;
+			children = (
+				76591A8A17FFB12900DE3AB2 /* AddEventInvitePeopleCell.h */,
+				76591A8B17FFB12900DE3AB2 /* AddEventInvitePeopleCell.m */,
+				76591A8C17FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib */,
+				76591A8D17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.h */,
+				76591A8E17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m */,
+				76591A8F17FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib */,
+				76591A9017FFB12900DE3AB2 /* AddEventInviteViewController.h */,
+				76591A9117FFB12900DE3AB2 /* AddEventInviteViewController.m */,
+				76591A9217FFB12900DE3AB2 /* AddEventInviteViewController.xib */,
+			);
+			path = EventPeople;
 			sourceTree = "<group>";
 		};
 		7662F75A17F07F2B00B64E40 /* Setting */ = {
@@ -1410,10 +1447,11 @@
 		769ABAA717DF52090033E677 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				76591A8917FFB12900DE3AB2 /* EventPeople */,
+				76591A7E17FFB09A00DE3AB2 /* EventPlace */,
 				769ABAA817DF52090033E677 /* AddDate */,
 				769ABABA17DF52090033E677 /* AddEvent */,
 				769ABAD217DF52090033E677 /* EventDetail */,
-				769ABAFF17DF52090033E677 /* InvitePeople */,
 				769ABB0617DF52090033E677 /* NavgationBar.h */,
 				769ABB0717DF52090033E677 /* NavgationBar.m */,
 				769ABB0817DF52090033E677 /* SelectTimeZoneController.h */,
@@ -1457,9 +1495,6 @@
 				769ABABE17DF52090033E677 /* AddEventInviteView.h */,
 				769ABABF17DF52090033E677 /* AddEventInviteView.m */,
 				769ABAC017DF52090033E677 /* AddEventInviteView.xib */,
-				769ABAC117DF52090033E677 /* AddEventInviteViewController.h */,
-				769ABAC217DF52090033E677 /* AddEventInviteViewController.m */,
-				769ABAC317DF52090033E677 /* AddEventInviteViewController.xib */,
 				769ABAC417DF52090033E677 /* AddEventPlaceView.h */,
 				769ABAC517DF52090033E677 /* AddEventPlaceView.m */,
 				769ABAC617DF52090033E677 /* AddEventPlaceView.xib */,
@@ -1473,12 +1508,6 @@
 				9441401117F720530059BCBA /* AddEventTimesView.m */,
 				769ABACA17DF52090033E677 /* AddEventViewController.h */,
 				769ABACB17DF52090033E677 /* AddEventViewController.m */,
-				769ABACC17DF52090033E677 /* AddLocationTextView.h */,
-				769ABACD17DF52090033E677 /* AddLocationTextView.m */,
-				769ABACE17DF52090033E677 /* AddLocationTextView.xib */,
-				769ABACF17DF52090033E677 /* AddLocationViewController.h */,
-				769ABAD017DF52090033E677 /* AddLocationViewController.m */,
-				769ABAD117DF52090033E677 /* AddLocationViewController.xib */,
 			);
 			path = AddEvent;
 			sourceTree = "<group>";
@@ -1538,19 +1567,6 @@
 				3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */,
 			);
 			path = EventDetail;
-			sourceTree = "<group>";
-		};
-		769ABAFF17DF52090033E677 /* InvitePeople */ = {
-			isa = PBXGroup;
-			children = (
-				769ABB0017DF52090033E677 /* AddEventInvitePeopleCell.h */,
-				769ABB0117DF52090033E677 /* AddEventInvitePeopleCell.m */,
-				769ABB0217DF52090033E677 /* AddEventInvitePeopleCell.xib */,
-				769ABB0317DF52090033E677 /* AddEventInvitePeopleHeaderView.h */,
-				769ABB0417DF52090033E677 /* AddEventInvitePeopleHeaderView.m */,
-				769ABB0517DF52090033E677 /* AddEventInvitePeopleHeaderView.xib */,
-			);
-			path = InvitePeople;
 			sourceTree = "<group>";
 		};
 		769ABB5017DF53C00033E677 /* en.lproj */ = {
@@ -2059,6 +2075,7 @@
 				769AB9A417DF51340033E677 /* 2.png in Resources */,
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
 				769AB9A617DF51340033E677 /* event_detail_place_icon.png in Resources */,
+				76591A9817FFB12900DE3AB2 /* AddEventInviteViewController.xib in Resources */,
 				769AB9A717DF51340033E677 /* event_detail_random_header1.png in Resources */,
 				769AB9A817DF51340033E677 /* event_detail_random_header2.png in Resources */,
 				7662F75717F0761900B64E40 /* login_main_singnup_profile_bg.png in Resources */,
@@ -2086,12 +2103,14 @@
 				769AB9BC17DF51340033E677 /* event_detail_invitee_sepline.png in Resources */,
 				769AB9BD17DF51340033E677 /* event_detail_invitee_time_cross_disable.png in Resources */,
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
+				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
+				76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */,
 				769AB9C517DF51340033E677 /* event_detail_nav_more.png in Resources */,
 				769AB9D217DF51340033E677 /* arrow.png in Resources */,
 				769AB9D317DF51340033E677 /* arrow_right.png in Resources */,
@@ -2126,6 +2145,7 @@
 				7662F75117F0761900B64E40 /* login_main_login_facebook.png in Resources */,
 				769AB9EB17DF51340033E677 /* dot.png in Resources */,
 				769AB9EC17DF51340033E677 /* email@2x.png in Resources */,
+				76591A9617FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
 				769AB9EE17DF51340033E677 /* google@2x.png in Resources */,
 				769AB9EF17DF51340033E677 /* header.png in Resources */,
@@ -2133,6 +2153,7 @@
 				769AB9F117DF51340033E677 /* location.png in Resources */,
 				769AB9F217DF51340033E677 /* login_background@2x.png in Resources */,
 				769AB9F317DF51340033E677 /* leftMenu-corner-right.png in Resources */,
+				76591A9417FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib in Resources */,
 				769AB9F417DF51340033E677 /* leftMenu-corner-right@2x.png in Resources */,
 				769AB9F517DF51340033E677 /* tab1.png in Resources */,
 				769AB9F617DF51340033E677 /* tab2.png in Resources */,
@@ -2152,11 +2173,8 @@
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
-				769ABB1917DF52090033E677 /* AddEventInviteViewController.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
-				769ABB2017DF52090033E677 /* AddLocationTextView.xib in Resources */,
-				769ABB2217DF52090033E677 /* AddLocationViewController.xib in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
@@ -2169,8 +2187,6 @@
 				769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */,
 				769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */,
 				769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */,
-				769ABB4017DF52090033E677 /* AddEventInvitePeopleCell.xib in Resources */,
-				769ABB4217DF52090033E677 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
 				769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */,
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
@@ -2211,6 +2227,7 @@
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */,
+				76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */,
 				7662F75417F0761900B64E40 /* login_main_sign_bg.png in Resources */,
 				9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */,
 			);
@@ -2243,8 +2260,6 @@
 				764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
 				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
-				769ABD5017DF5C020033E677 /* AddLocationViewController.m in Sources */,
-				769ABD4E17DF58C20033E677 /* AddLocationTextView.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
@@ -2277,12 +2292,12 @@
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
 				3D71D41417F6E18700121A85 /* UserEntity.m in Sources */,
+				76591A9317FFB12900DE3AB2 /* AddEventInvitePeopleCell.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,
 				3D71D41717F6E18700121A85 /* FeedEventEntity.m in Sources */,
 				769ABB1617DF52090033E677 /* AddEventInviteView.m in Sources */,
-				769ABB1817DF52090033E677 /* AddEventInviteViewController.m in Sources */,
 				769ABB1A17DF52090033E677 /* AddEventPlaceView.m in Sources */,
 				769ABB1C17DF52090033E677 /* AddEventSettingView.m in Sources */,
 				769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */,
@@ -2292,9 +2307,11 @@
 				769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */,
 				769ABB2A17DF52090033E677 /* EventDetailCommentView.m in Sources */,
 				765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */,
+				76591A8717FFB09A00DE3AB2 /* AddLocationViewController.m in Sources */,
 				769ABB2C17DF52090033E677 /* EventDetailFinailzeView.m in Sources */,
 				769ABB2E17DF52090033E677 /* EventDetailHeader.m in Sources */,
 				7662F74117F075F400B64E40 /* LoginMainCreatView.m in Sources */,
+				76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */,
 				769ABB3017DF52090033E677 /* EventDetailHeaderListView.m in Sources */,
 				769ABB3117DF52090033E677 /* EventDetailInviteeConformView.m in Sources */,
 				769ABB3317DF52090033E677 /* EventDetailInviteePlaceView.m in Sources */,
@@ -2304,13 +2321,13 @@
 				769ABB3A17DF52090033E677 /* EventDetailPlaceView.m in Sources */,
 				769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */,
 				769ABB3E17DF52090033E677 /* EventDetailTimeView.m in Sources */,
-				769ABB3F17DF52090033E677 /* AddEventInvitePeopleCell.m in Sources */,
-				769ABB4117DF52090033E677 /* AddEventInvitePeopleHeaderView.m in Sources */,
+				76591A8517FFB09A00DE3AB2 /* AddLocationTextView.m in Sources */,
 				769ABB4317DF52090033E677 /* NavgationBar.m in Sources */,
 				769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */,
 				769ABB4D17DF53A50033E677 /* AppDelegate.m in Sources */,
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
+				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
 				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,
 				769ABC7F17DF542A0033E677 /* FeedEventTableView.m in Sources */,
@@ -2368,6 +2385,7 @@
 				769ABD3717DF54950033E677 /* FeedCalenderView.m in Sources */,
 				769ABD3817DF54950033E677 /* KalDate.m in Sources */,
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
+				76591A9517FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -2385,8 +2403,8 @@
 				769ABD4517DF54950033E677 /* CustomSwitch.m in Sources */,
 				769ABD4817DF54950033E677 /* GPlaceApi.m in Sources */,
 				769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */,
-				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
+				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
 				769ABD5317DF5D440033E677 /* main.m in Sources */,
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,

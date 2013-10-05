@@ -155,7 +155,7 @@
             if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
                 [self.delegate changeLocation];
             }
-        } else {
+        } else if(index == 1){
             if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
                 [self.delegate viewInMaps];
             }
