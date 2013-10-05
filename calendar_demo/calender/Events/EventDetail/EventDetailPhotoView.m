@@ -14,7 +14,8 @@
 {
     UIView *navBar;
     UIScrollView *scrollView;
-    int orgHeight;
+    CGFloat orgHeight;
+    CGFloat scrollScope;
 }
 
 - (void)updateUI
@@ -61,9 +62,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context{
-    if (!navBar) {
-        return;
-    }
     
     CGFloat scrollOffsetY = scrollView.contentOffset.y;
 
@@ -75,7 +73,7 @@
     self.frame = frame;
     
     
-    CGFloat scrollScope = self.frame.size.height - navBar.frame.size.height;
+    
     if (scrollOffsetY > scrollScope) {
         scrollOffsetY = scrollScope;
     }
@@ -99,6 +97,7 @@
 {
     navBar = nil;
     navBar = navigation;
+    scrollScope = orgHeight - navBar.frame.size.height;
 }
 
 /*
