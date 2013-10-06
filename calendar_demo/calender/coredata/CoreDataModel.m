@@ -179,22 +179,22 @@ static CoreDataModel * instance;
     return results;
 }
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter
 {
     NSLog(@"NSFetchRequest: getDayFeedEventEntitys:andPreLimit:%@", date);
     
-    NSArray * results = [self getFeedEventEntitys:date andFollow:NO andLimit:limit andEventTypeFilter:eventTypeFilter];
+    NSArray * results = [self getFeedEventEntitys:date andFollow:NO andLimit:limit andOffset:offset andEventTypeFilter:eventTypeFilter];
     return results;
 }
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit  andEventTypeFilter:(int) eventTypeFilter
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit  andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter
 {
     NSLog(@"NSFetchRequest: getDayFeedEventEntitys:andFollowLimit :%@", date);
-    NSArray * results = [self getFeedEventEntitys:date andFollow:YES andLimit:limit andEventTypeFilter:eventTypeFilter];
+    NSArray * results = [self getFeedEventEntitys:date andFollow:YES andLimit:limit andOffset:offset andEventTypeFilter:eventTypeFilter];
     return results;
 }
 
--(NSArray *) getFeedEventEntitys:(NSDate *) date andFollow:(BOOL)follow andLimit:(int) limit  andEventTypeFilter:(int) eventTypeFilter
+-(NSArray *) getFeedEventEntitys:(NSDate *) date andFollow:(BOOL)follow andLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter
 {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -213,9 +213,8 @@ static CoreDataModel * instance;
         //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
     }
-    
-    
-    [fetchRequest setFetchOffset:0];
+
+    [fetchRequest setFetchOffset:offset];
     [fetchRequest setFetchLimit:limit];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [fetchRequest setPredicate:predicate];

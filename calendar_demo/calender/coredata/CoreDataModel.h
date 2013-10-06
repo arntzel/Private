@@ -38,9 +38,9 @@
 -(NSArray *) getPendingFeedEventEntitys;
 
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
 
--(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andEventTypeFilter:(int) eventTypeFilter;
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
 
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;

@@ -136,6 +136,8 @@
     for(FeedEventEntity * feedEvent in feedEvents) {
         [self putFeedEventEntity:feedEvent];
     }
+
+    allDays = nil;
 }
 
 

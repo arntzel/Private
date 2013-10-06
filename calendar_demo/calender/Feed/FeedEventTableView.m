@@ -13,7 +13,7 @@
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
 
-#define FETECH_DAYS 10
+#define FETECH_EVENTS 5
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -122,14 +122,13 @@
         
         NSString* firtDay = [allDay objectAtIndex:0];
         
-        NSLog(@"scrollViewDidScroll: load pre more events:%@", firtDay);
-        
-        NSDate * date = [Utils parseNSStringDay:firtDay];
-        
-        NSArray * feedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+        NSLog(@"scrollViewDidScroll: load pre more events:%@, %d", cache.date, cache.preCount);
+
+        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:cache.preCount andEventTypeFilter:self.eventTypeFilters];
         
         [cache putFeedEventEntitys:feedEntiys];
-        
+        cache.preCount += feedEntiys.count;
+
         [self reloadData];
         [self scroll2Date:firtDay];
         [self flashScrollIndicators];
@@ -137,18 +136,16 @@
         
     } else if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
         
-        NSArray * allDay = [cache allDays];
-        if(allDay.count == 0) return;
+        //NSArray * allDay = [cache allDays];
+        //if(allDay.count == 0) return;
+
+        NSLog(@"scrollViewDidScroll: load pre more events:%@，%d", cache.date, cache.followCount);
         
-        NSString* lastDay = [allDay lastObject];
-        
-        NSLog(@"scrollViewDidScroll: load pre more events:%@", lastDay);
-        
-        NSDate * date = [Utils parseNSStringDay:lastDay];
-        
-        NSArray * feedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
+
+        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:cache.followCount andEventTypeFilter:self.eventTypeFilters];
         
         [cache putFeedEventEntitys:feedEntiys];
+        cache.followCount += feedEntiys.count;
         
         [self reloadData];
         [self flashScrollIndicators];
@@ -369,14 +366,18 @@
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
     [cache clearAllDayFeedEventEntitys];
-    
-    NSArray * feedEvents = [model getDayFeedEventEntitys:day andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
-    NSArray * feedEvents2 = [model getDayFeedEventEntitys:day andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
-    
-    
+    cache.date = day;
+    cache.preCount = 0;
+    cache.followCount = 0;
+
+
+    NSArray * feedEvents = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
     [cache putFeedEventEntitys:feedEvents];
+    cache.preCount += feedEvents.count;
+
+    NSArray * feedEvents2 = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
     [cache putFeedEventEntitys:feedEvents2];
-    
+    cache.followCount += feedEvents2.count;
     
     [self reloadData];
 }

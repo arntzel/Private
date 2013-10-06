@@ -47,6 +47,11 @@
 @interface DataCache : NSObject
 
 
+@property(strong) NSDate * date;
+@property int followCount;
+@property int preCount;
+
+
 -(void) clearAllDayFeedEventEntitys;
 
 -(NSArray *) allDays;
