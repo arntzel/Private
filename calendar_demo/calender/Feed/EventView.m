@@ -67,13 +67,34 @@
 
     //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
     
-    int color = [ViewUtils getEventTypeColor:[event.eventType intValue]];
+    int color = [self getEventTypeColor:[event.eventType intValue]];
     self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
     
     self.labTitle.text = event.title;
+}
+
+-(int) getEventTypeColor:(int) eventType
+{
+    if( (eventType & FILTER_IMCOMPLETE) != 0) {
+        return  0xFFF44258;
+    }
+
+    if( (eventType & FILTER_GOOGLE) != 0) {
+        return  0xFFD5AD3E;
+    }
+
+    if( (eventType & FILTER_FB) != 0) {
+        return  0xFF477DBD;
+    }
+
+    if( (eventType & FILTER_BIRTHDAY) != 0) {
+        return  0xFF71A189;
+    }
+
+    return 0x00000000;
 }
 
 -(NSString *) getEventDutationText:(FeedEventEntity*)event
