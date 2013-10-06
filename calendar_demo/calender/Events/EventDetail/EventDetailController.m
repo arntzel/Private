@@ -25,6 +25,7 @@
 #import "EventLocationViewController.h"
 #import "Location.h"
 #import "AddLocationViewController.h"
+#import "DetailInviteesController.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
 {
@@ -443,6 +444,10 @@
 - (void) onInviteeViewClicked
 {
     LOG_D(@"onInviteeViewClicked");
+    
+    DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
+    [self.navigationController pushViewController:inviteesController animated:YES];
+    [inviteesController release];
 }
 
 #pragma mark -

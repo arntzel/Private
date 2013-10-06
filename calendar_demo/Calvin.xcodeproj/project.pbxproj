@@ -81,6 +81,12 @@
 		7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F77117F080A800B64E40 /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		767812EF17F16D3900965483 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 767812EE17F16D3900965483 /* Crashlytics.framework */; };
+		768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404B51800FD5200C69240 /* DetailInviteesController.m */; };
+		768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404B61800FD5200C69240 /* DetailInviteesController.xib */; };
+		768404BC180104B100C69240 /* DetailDeclinedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404BA180104B100C69240 /* DetailDeclinedCell.m */; };
+		768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404BB180104B100C69240 /* DetailDeclinedCell.xib */; };
+		768404C1180107F700C69240 /* DetailRespondedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404BF180107F700C69240 /* DetailRespondedCell.m */; };
+		768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404C0180107F700C69240 /* DetailRespondedCell.xib */; };
 		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F55617AE929E009FFEC8 /* Accelerate.framework */; };
 		769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 769AB8F917DF50320033E677 /* GoogleOpenSource.framework */; };
@@ -471,6 +477,15 @@
 		7662F77017F080A800B64E40 /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
 		7662F77117F080A800B64E40 /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
 		767812EE17F16D3900965483 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "calender/Third-Party-Libraries/Crashlytics.framework"; sourceTree = "<group>"; };
+		768404B41800FD5200C69240 /* DetailInviteesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInviteesController.h; sourceTree = "<group>"; };
+		768404B51800FD5200C69240 /* DetailInviteesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInviteesController.m; sourceTree = "<group>"; };
+		768404B61800FD5200C69240 /* DetailInviteesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailInviteesController.xib; sourceTree = "<group>"; };
+		768404B9180104B100C69240 /* DetailDeclinedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDeclinedCell.h; sourceTree = "<group>"; };
+		768404BA180104B100C69240 /* DetailDeclinedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDeclinedCell.m; sourceTree = "<group>"; };
+		768404BB180104B100C69240 /* DetailDeclinedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailDeclinedCell.xib; sourceTree = "<group>"; };
+		768404BE180107F700C69240 /* DetailRespondedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailRespondedCell.h; sourceTree = "<group>"; };
+		768404BF180107F700C69240 /* DetailRespondedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailRespondedCell.m; sourceTree = "<group>"; };
+		768404C0180107F700C69240 /* DetailRespondedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailRespondedCell.xib; sourceTree = "<group>"; };
 		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7696F55617AE929E009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		769AB8F917DF50320033E677 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0/GoogleOpenSource.framework"; sourceTree = "<group>"; };
@@ -1059,6 +1074,15 @@
 		76591A8917FFB12900DE3AB2 /* EventPeople */ = {
 			isa = PBXGroup;
 			children = (
+				768404BE180107F700C69240 /* DetailRespondedCell.h */,
+				768404BF180107F700C69240 /* DetailRespondedCell.m */,
+				768404C0180107F700C69240 /* DetailRespondedCell.xib */,
+				768404B9180104B100C69240 /* DetailDeclinedCell.h */,
+				768404BA180104B100C69240 /* DetailDeclinedCell.m */,
+				768404BB180104B100C69240 /* DetailDeclinedCell.xib */,
+				768404B41800FD5200C69240 /* DetailInviteesController.h */,
+				768404B51800FD5200C69240 /* DetailInviteesController.m */,
+				768404B61800FD5200C69240 /* DetailInviteesController.xib */,
 				76591A8A17FFB12900DE3AB2 /* AddEventInvitePeopleCell.h */,
 				76591A8B17FFB12900DE3AB2 /* AddEventInvitePeopleCell.m */,
 				76591A8C17FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib */,
@@ -2097,6 +2121,7 @@
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				769AB9B817DF51340033E677 /* header9.jpg in Resources */,
 				769AB9B917DF51340033E677 /* event_detail_header_cross.png in Resources */,
+				768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */,
 				769AB9BA17DF51340033E677 /* event_detail_header_list_arraw.png in Resources */,
 				769AB9BB17DF51340033E677 /* event_detail_header_tick.png in Resources */,
 				7662F75817F0761900B64E40 /* login_mainaccess_new.png in Resources */,
@@ -2108,6 +2133,7 @@
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
+				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
 				76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */,
@@ -2173,6 +2199,7 @@
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
+				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
@@ -2325,6 +2352,7 @@
 				769ABB4317DF52090033E677 /* NavgationBar.m in Sources */,
 				769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */,
 				769ABB4D17DF53A50033E677 /* AppDelegate.m in Sources */,
+				768404BC180104B100C69240 /* DetailDeclinedCell.m in Sources */,
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
 				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
@@ -2360,6 +2388,7 @@
 				7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */,
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
+				768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				3D71D41A17F6E18700121A85 /* LocationEntity.m in Sources */,
@@ -2408,6 +2437,7 @@
 				769ABD5317DF5D440033E677 /* main.m in Sources */,
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
+				768404C1180107F700C69240 /* DetailRespondedCell.m in Sources */,
 				9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */,
 				7662F74717F075F400B64E40 /* LoginMainViewController.m in Sources */,
 				94FAFFD517F5BA6F0010601F /* Contact.m in Sources */,

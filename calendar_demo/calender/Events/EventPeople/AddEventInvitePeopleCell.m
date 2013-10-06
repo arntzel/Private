@@ -24,6 +24,12 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    self.peopleHeader.layer.cornerRadius = self.peopleHeader.frame.size.width/2;
+    self.peopleHeader.layer.masksToBounds = YES;
+}
+
 - (void) refreshView: (AddEventInvitePeople*) iuser
 {
     if(iuser == nil) {
@@ -49,9 +55,6 @@
         [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
                           placeholderImage:[UIImage imageNamed:@"header.png"]];
     }
-    
-    self.peopleHeader.layer.cornerRadius = self.peopleHeader.frame.size.width/2;
-    self.peopleHeader.layer.masksToBounds = YES;
 
     //self.btnSelect.selected = iuser.selected;
     
