@@ -90,7 +90,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 48;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -146,8 +147,11 @@
     if (section == 0) {
         DetailRespondedCell *cell = (DetailRespondedCell *)[ViewUtils createView:@"DetailRespondedCell"];
         respondedInfo *responded = [respondedArray objectAtIndex:row];
-        cell.peopleName.text = responded.name;
-        cell.peopleHeader.image = responded.headPhoto;
+        [cell setName:responded.name];
+        [cell setHeaderImage:responded.headPhoto];
+        [cell setAgreeTime:responded.agreeTimeArray];
+        [cell setDeclindTime:responded.declinedTimeArray];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -155,9 +159,9 @@
         DetailDeclinedCell *cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
         
         respondedInfo *responded = [declinedArray objectAtIndex:row];
-        cell.peopleName.text = responded.name;
-        cell.peopleHeader.image = responded.headPhoto;
-        cell.declinedTime.text = responded.declinedTime;
+        [cell setName:responded.name];
+        [cell setHeaderImage:responded.headPhoto];
+        [cell setDeclinedTimeString:responded.declinedTime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

@@ -3,7 +3,14 @@
 
 @interface DetailRespondedCell: UITableViewCell
 
-@property (retain, nonatomic) IBOutlet UIImageView * peopleHeader;
-@property (retain, nonatomic) IBOutlet UILabel * peopleName;
+- (void)setHeaderImage:(UIImage *)image;
+
+- (void)setHeaderImageUrl:(NSString *)url;
+
+- (void)setName:(NSString *)name;
+
+- (void)setAgreeTime:(NSArray*)array;
+
+- (void)setDeclindTime:(NSArray*)array;
 
 @end
