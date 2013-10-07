@@ -176,7 +176,7 @@
 {
     
     if (self.is_all_day) {
-        return @"all day";
+        return [NSString stringWithFormat:@"all %d days",self.duration_days];
     }
     
     NSString *duringDateString = [NSString stringWithFormat:@"%d hours %d minutes", self.duration_hours, self.duration_minutes];

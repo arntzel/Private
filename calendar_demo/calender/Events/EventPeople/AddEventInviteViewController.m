@@ -69,6 +69,7 @@
     
     searchBar = [[JSTokenField alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 44)];
     [self.view addSubview:searchBar];
+    [searchBar setBackgroundColor:[UIColor whiteColor]];
     searchBar.delegate = self;
     
     calvinUsers = [[NSMutableArray alloc] init];

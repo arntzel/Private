@@ -216,7 +216,7 @@
     picker.delegate = self;
     [picker setHours:eventDate.duration_hours Minutes:eventDate.duration_minutes Animation:NO];
     [picker setisAllDate:eventDate.is_all_day];
-    
+    [picker setAllDays:eventDate.duration_days Animation:NO];
     [self.view addSubview:picker];
 }
 
@@ -257,6 +257,12 @@
 {
     eventDate.is_all_day = allDay;
     
+    [self refreshTimeString];
+}
+
+- (void)setDurationDays:(NSInteger)days
+{
+    eventDate.duration_days = days;
     [self refreshTimeString];
 }
 

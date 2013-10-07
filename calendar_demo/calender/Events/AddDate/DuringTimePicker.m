@@ -13,12 +13,14 @@
 
 @interface DuringTimePicker()<PickerViewDelegate>
 {
+    LoopPickerView *allDayPicker;
     LoopPickerView *hourPicker;
     LoopPickerView *minPicker;
     CustomSwitch *isAllDaySwitch;
     
     UIView *toolBar;
     
+    NSInteger allDays;
     NSInteger hours;
     NSInteger minutes;
 }
@@ -29,6 +31,8 @@
 
 - (void)dealloc
 {
+    allDayPicker.delegate = nil;
+    [allDayPicker release];
     hourPicker.delegate = nil;
     [hourPicker release];
     minPicker.delegate = nil;
@@ -55,15 +59,23 @@
     [minPicker scrollToIndex:minutes_ / 15 WithAnimation:animation];
 }
 
+- (void)setAllDays:(NSInteger)allDays_ Animation:(BOOL)animation
+{
+    allDays = allDays_;
+    [allDayPicker scrollToIndex:allDays - 1 WithAnimation:animation];
+}
+
 - (void)setisAllDate:(BOOL)isAllDay
 {
     if(isAllDay)
     {
         [isAllDaySwitch selectIndex:0];
+        [self switchToAllDayView];
     }
     else
     {
         [isAllDaySwitch selectIndex:1];
+        [self switchToHourView];
     }
 }
 
@@ -99,6 +111,15 @@
         [minPicker setUnitString:@"minutes"];
         [minPicker reloadData];
         [minPicker scrollToIndex:30 WithAnimation:NO];
+        
+        allDayPicker = [[LoopPickerView alloc] initWithFrame:CGRectMake(0, [DeviceInfo fullScreenHeight] - toolBar.frame.size.height - 161, 320, 160)];
+        [self addSubview:allDayPicker];
+        [allDayPicker setHidden:YES];
+        [allDayPicker setDelegate:self];
+        [allDayPicker setUnitOffset:170];
+        [allDayPicker setUnitString:@"Days"];
+        [allDayPicker reloadData];
+        [allDayPicker scrollToIndex:1 WithAnimation:NO];
     }
     return self;
 }
@@ -132,9 +153,13 @@
     if (pickerView == hourPicker) {
         return 24;
     }
-    else
+    else if (pickerView == minPicker)
     {
         return 4;
+    }
+    else
+    {
+        return 10;
     }
 }
 
@@ -149,19 +174,28 @@
     }
     else
     {
-        return 0;
+        return index + 1;
     }
 }
 
 - (void)Picker:(LoopPickerView *)pickerView didSelectRowAtIndex:(NSInteger)index {
     LOG_D(@"Selected index %d",index);
-    if (pickerView == hourPicker) {
+    if(pickerView == allDayPicker)
+    {
+        allDays = index + 1;
+        if ([self.delegate respondsToSelector:@selector(setDurationDays:)]) {
+            [self.delegate setDurationDays:allDays];
+        }
+        return;
+    }
+    else if (pickerView == hourPicker) {
         hours = index;
     }
     else if(pickerView == minPicker)
     {
         minutes = index * 15;
     }
+    
     if ([self.delegate respondsToSelector:@selector(setDurationHours:Minutes:)]) {
         [self.delegate setDurationHours:hours Minutes:minutes];
     }
@@ -179,10 +213,27 @@
     
     if (index == 0) {
         [self.delegate setDurationAllDay:YES];
+        [self switchToAllDayView];
     }
     else if(index == 1)
     {
         [self.delegate setDurationAllDay:NO];
+        [self switchToHourView];
     }
 }
+
+- (void)switchToAllDayView
+{
+    [hourPicker setHidden:YES];
+    [minPicker setHidden:YES];
+    [allDayPicker setHidden:NO];
+}
+
+- (void)switchToHourView
+{
+    [hourPicker setHidden:NO];
+    [minPicker setHidden:NO];
+    [allDayPicker setHidden:YES];
+}
+
 @end

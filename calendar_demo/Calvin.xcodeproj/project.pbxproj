@@ -1539,8 +1539,6 @@
 				769ABAAE17DF52090033E677 /* CustomPickerCell.h */,
 				769ABAAF17DF52090033E677 /* CustomPickerCell.m */,
 				769ABAB017DF52090033E677 /* CustomPickerCell.xib */,
-				769ABAB117DF52090033E677 /* DuringTimePicker.h */,
-				769ABAB217DF52090033E677 /* DuringTimePicker.m */,
 				769ABAB317DF52090033E677 /* LoopPickerView.h */,
 				769ABAB417DF52090033E677 /* LoopPickerView.m */,
 				769ABAB517DF52090033E677 /* PickerView.h */,
@@ -1548,6 +1546,8 @@
 				769ABAB717DF52090033E677 /* PickerViewProtocal.h */,
 				769ABAB817DF52090033E677 /* TimePicker.h */,
 				769ABAB917DF52090033E677 /* TimePicker.m */,
+				769ABAB117DF52090033E677 /* DuringTimePicker.h */,
+				769ABAB217DF52090033E677 /* DuringTimePicker.m */,
 			);
 			path = AddDate;
 			sourceTree = "<group>";

@@ -11,6 +11,7 @@
 @protocol DuringTimePickerDelegate <NSObject>
 
 - (void)setDurationAllDay:(BOOL)allDay;
+- (void)setDurationDays:(NSInteger)days;
 - (void)setDurationHours:(NSInteger)hours Minutes:(NSInteger)minutes;
 
 @end
@@ -21,6 +22,7 @@
 - (id)init;
 
 - (void)setHours:(NSInteger)hours_ Minutes:(NSInteger)minutes_ Animation:(BOOL)animation;
+- (void)setAllDays:(NSInteger)allDays_ Animation:(BOOL)animation;
 - (void)setisAllDate:(BOOL)isAllDay;
 
 @end
