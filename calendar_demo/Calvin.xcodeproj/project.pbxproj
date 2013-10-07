@@ -55,6 +55,7 @@
 		76591A9817FFB12900DE3AB2 /* AddEventInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9217FFB12900DE3AB2 /* AddEventInviteViewController.xib */; };
 		76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */; };
 		76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */; };
+		765B24F71802684D00B01A0A /* JSBackspaceReportingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 765DF0B917F083A8007259DF /* LoginStatusCheck.m */; };
 		7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */; };
 		7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F73217F075F400B64E40 /* LoginMainAccessView.m */; };
@@ -87,6 +88,8 @@
 		768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404BB180104B100C69240 /* DetailDeclinedCell.xib */; };
 		768404C1180107F700C69240 /* DetailRespondedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404BF180107F700C69240 /* DetailRespondedCell.m */; };
 		768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404C0180107F700C69240 /* DetailRespondedCell.xib */; };
+		768404C8180115B200C69240 /* JSTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404C5180115B200C69240 /* JSTokenButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		768404C9180115B200C69240 /* JSTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404C7180115B200C69240 /* JSTokenField.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F55617AE929E009FFEC8 /* Accelerate.framework */; };
 		769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 769AB8F917DF50320033E677 /* GoogleOpenSource.framework */; };
@@ -440,6 +443,8 @@
 		76591A9917FFB23200DE3AB2 /* EventLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationViewController.h; sourceTree = "<group>"; };
 		76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationViewController.m; sourceTree = "<group>"; };
 		76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventLocationViewController.xib; sourceTree = "<group>"; };
+		765B24F51802684D00B01A0A /* JSBackspaceReportingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBackspaceReportingTextField.h; sourceTree = "<group>"; };
+		765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBackspaceReportingTextField.m; sourceTree = "<group>"; };
 		765DF0B817F083A8007259DF /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
 		765DF0B917F083A8007259DF /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		7661E17317E201D700C788D0 /* GPlaceAutoCompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceAutoCompleteSource.h; sourceTree = "<group>"; };
@@ -486,6 +491,10 @@
 		768404BE180107F700C69240 /* DetailRespondedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailRespondedCell.h; sourceTree = "<group>"; };
 		768404BF180107F700C69240 /* DetailRespondedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailRespondedCell.m; sourceTree = "<group>"; };
 		768404C0180107F700C69240 /* DetailRespondedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailRespondedCell.xib; sourceTree = "<group>"; };
+		768404C4180115B200C69240 /* JSTokenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenButton.h; sourceTree = "<group>"; };
+		768404C5180115B200C69240 /* JSTokenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenButton.m; sourceTree = "<group>"; };
+		768404C6180115B200C69240 /* JSTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenField.h; sourceTree = "<group>"; };
+		768404C7180115B200C69240 /* JSTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenField.m; sourceTree = "<group>"; };
 		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7696F55617AE929E009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		769AB8F917DF50320033E677 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0/GoogleOpenSource.framework"; sourceTree = "<group>"; };
@@ -1119,6 +1128,19 @@
 			path = ThirdPartPlatform;
 			sourceTree = "<group>";
 		};
+		768404C3180115B200C69240 /* JSTokenField */ = {
+			isa = PBXGroup;
+			children = (
+				765B24F51802684D00B01A0A /* JSBackspaceReportingTextField.h */,
+				765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */,
+				768404C4180115B200C69240 /* JSTokenButton.h */,
+				768404C5180115B200C69240 /* JSTokenButton.m */,
+				768404C6180115B200C69240 /* JSTokenField.h */,
+				768404C7180115B200C69240 /* JSTokenField.m */,
+			);
+			path = JSTokenField;
+			sourceTree = "<group>";
+		};
 		769AB90917DF51160033E677 /* Pending */ = {
 			isa = PBXGroup;
 			children = (
@@ -1704,6 +1726,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				768404C3180115B200C69240 /* JSTokenField */,
 				764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */,
 				769ABBB517DF54290033E677 /* ASIHTTPRequest */,
 				769ABBCA17DF54290033E677 /* ATMHud */,
@@ -2380,6 +2403,7 @@
 				769ABC9517DF542A0033E677 /* Utils.m in Sources */,
 				769ABC9617DF542A0033E677 /* ASIAuthenticationDialog.m in Sources */,
 				769ABC9717DF542A0033E677 /* ASIDataCompressor.m in Sources */,
+				765B24F71802684D00B01A0A /* JSBackspaceReportingTextField.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
 				94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
@@ -2389,6 +2413,7 @@
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
 				768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */,
+				768404C8180115B200C69240 /* JSTokenButton.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				3D71D41A17F6E18700121A85 /* LocationEntity.m in Sources */,
@@ -2409,6 +2434,7 @@
 				769ABD0217DF54860033E677 /* DeviceInfo.m in Sources */,
 				769ABD0317DF54860033E677 /* EncryptUtil.m in Sources */,
 				769ABD0417DF54860033E677 /* ViewUtils.m in Sources */,
+				768404C9180115B200C69240 /* JSTokenField.m in Sources */,
 				7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */,
 				769ABD3617DF54950033E677 /* AddDateCalenderView.m in Sources */,
 				769ABD3717DF54950033E677 /* FeedCalenderView.m in Sources */,

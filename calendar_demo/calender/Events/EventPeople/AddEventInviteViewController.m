@@ -7,17 +7,15 @@
 
 #import "ViewUtils.h"
 #import "Utils.h"
+
 #import "NavgationBar.h"
-#import "UserModel.h"
+
 
 @interface AddEventInviteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
-                                           UISearchBarDelegate,
+                                           JSTokenFieldDelegate,
                                            NavgationBarDelegate>
 {
-    NSMutableArray * recentInvitePeople;
-    NSMutableDictionary * recentInvitePeopleDic;
-    
     NSMutableArray * users;
     NSMutableArray * searchUsers;
 
@@ -30,10 +28,6 @@
 
 - (void)dealloc
 {
-        
-    [recentInvitePeople release];
-    [recentInvitePeopleDic release];
-    
     [users release];
     [searchUsers release];
     [selectedUsersDic release];
@@ -68,26 +62,6 @@
     [self.view addSubview:navBar];
     navBar.delegate = self;
     [navBar release];
-    
-    recentInvitePeople = [[NSMutableArray alloc] init];
-    recentInvitePeopleDic = [[NSMutableDictionary alloc] init];
-
-    NSArray * recentUsers = [self readRecentUsers];
-    for (User *user in recentUsers) {
-        
-        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-        people.user = user;
-        if([selectedUsersDic objectForKey:user.username] != nil) {
-            people.selected = YES;
-        } else {
-            people.selected = NO;
-        }
-        
-        [recentInvitePeople addObject:people];
-        [recentInvitePeopleDic setObject:people forKey:people.user.username ];
-        [people release];
-    }
-
     
     users = [[NSMutableArray alloc] init];
     searchUsers = [[NSMutableArray alloc] init];
@@ -124,10 +98,6 @@
             //exclude creator in the event
             continue;
         }
-
-        if([recentInvitePeopleDic objectForKey:user.username] != nil) {
-            continue;
-        }
         
         AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
         
@@ -143,8 +113,7 @@
         [people release];
     }
 
-    NSString * searchText = self.searchBar.text;
-
+    NSString * searchText = self.searchBar.textField.text;
     [self searchUser:searchText];
 }
 
@@ -184,7 +153,7 @@
     AddEventInvitePeopleHeaderView * header = (AddEventInvitePeopleHeaderView *)[ViewUtils createView:@"AddEventInvitePeopleHeaderView"];
     
     if(section == 0) {
-        header.label.text = @"RECENT";
+        header.label.text = @"CALVIN USER";
     } else {
         header.label.text = @"CONTACTS";
     }
@@ -195,8 +164,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0) {
-        int count = [recentInvitePeople count];
-        return count > 0 ? count : 1;
+        return [searchUsers count];
     } else {
         return [searchUsers count];
     }
@@ -227,12 +195,7 @@
     int section = indexPath.section;
     
     if(section == 0) {
-        
-        if(recentInvitePeople.count==0) {
-            return nil;
-        }
-        
-        people = [recentInvitePeople objectAtIndex:indexPath.row];
+        people = [searchUsers objectAtIndex:indexPath.row];
     } else {
         people = [searchUsers objectAtIndex:indexPath.row];
     }
@@ -250,67 +213,10 @@
         }
     }
     
-    for (AddEventInvitePeople *people in recentInvitePeople) {
-        if (people.selected) {
-            [selectedArray addObject:people.user];
-        }
-    }
-    
     return [selectedArray autorelease];
 }
 
 
--(NSArray *) readRecentUsers
-{
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    
-    NSString * json = [defaults objectForKey:@"readRecentUsers"];
-    if(json == nil) {
-        return nil;
-    }
-
-    NSMutableArray * recentUsers = [[NSMutableArray alloc] init];
-    
-    NSError * err;
-    NSArray * array = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&err];
-    
-    for(NSDictionary * dic in array) {
-        User * user = [User parseUser:dic];
-        [recentUsers addObject:user];
-    }
-        
-    return [recentUsers autorelease];
-}
-
-
--(void) saveRecentUsers:(NSArray *) recentUsers
-{
-    NSMutableString * saveData = [[NSMutableString alloc] init];
-    
-    [saveData appendString:@"["];
-    
-    for(int i=0;i<recentUsers.count;i++) {
-        User * user = [recentUsers objectAtIndex:i];
-        
-        NSDictionary * dic = [User convent2Dic:user];
-        NSString * json = [Utils dictionary2String:dic];
-        [saveData appendString:json];
-        
-        if(i<recentUsers.count-1) {
-            [saveData appendString:@",\n"];
-        }
-    }
-    
-    [saveData appendString:@"]"];
-       
-    LOG_D(@"saveRecentUsers: json:%@", saveData);
-    
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    [defaults setObject:saveData forKey:@"readRecentUsers"];
-    [defaults synchronize];
-    
-    [saveData release];
-}
 
 - (void)leftNavBtnClick
 {
@@ -319,20 +225,11 @@
 }
 
 - (void)rightNavBtnClick
-{
+{    
     NSArray * selectUsers = [self getSelectedUsers];
-    
-    [self saveRecentUsers:selectUsers];
     
     [self.delegate setInVitePeopleArray:selectUsers];
     [self.navigationController popViewControllerAnimated:YES];
-
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self searchUser:searchText];
-    [self.tableView reloadData];
 }
 
 -(void) searchUser:(NSString *) searchText
@@ -356,9 +253,39 @@
     }
 }
 
+
+
+
+#pragma mark --
+#pragma mark JSTokenFieldDelegate
+
+- (void)tokenField:(JSTokenField *)tokenField didAddToken:(NSString *)title representedObject:(id)obj
+{
+    
+}
+
+- (void)tokenField:(JSTokenField *)tokenField didRemoveToken:(NSString *)title representedObject:(id)obj
+{
+    
+}
+- (BOOL)tokenField:(JSTokenField *)tokenField shouldRemoveToken:(NSString *)title representedObject:(id)obj
+{
+    
+}
+
+- (void)tokenFieldTextDidChange:(JSTokenField *)tokenField
+{
+    [self searchUser:tokenField.textField.text];
+    [self.tableView reloadData];
+}
+
+- (BOOL)tokenFieldShouldReturn:(JSTokenField *)tokenField
+{
+    
+}
+- (void)tokenFieldDidEndEditing:(JSTokenField *)tokenField
+{
+    
+}
+
 @end
-
-
-
-
-
