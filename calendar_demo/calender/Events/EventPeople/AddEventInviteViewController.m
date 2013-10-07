@@ -9,17 +9,23 @@
 #import "Utils.h"
 
 #import "NavgationBar.h"
-
+#import "JSTokenButton.h"
+#import "JSTokenField.h"
 
 @interface AddEventInviteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
                                            JSTokenFieldDelegate,
                                            NavgationBarDelegate>
 {
-    NSMutableArray * users;
-    NSMutableArray * searchUsers;
-
-    NSMutableDictionary * selectedUsersDic;
+    JSTokenField *searchBar;
+    NSArray * selectedUsers;
+    
+    NSMutableArray * calvinUsers;
+    NSMutableArray * calvinSearchedUsers;
+    
+    NSMutableArray * contactUsers;
+    NSMutableArray * contactSearchedUsers;
+    
 }
 
 @end
@@ -28,32 +34,30 @@
 
 - (void)dealloc
 {
-    [users release];
-    [searchUsers release];
-    [selectedUsersDic release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [selectedUsers release];
+    [calvinUsers release];
+    [calvinSearchedUsers release];
+    
+    [contactUsers release];
+    [contactSearchedUsers release];
     
     self.tableView = nil;
     self.indicatorView = nil;
-    self.searchBar = nil;
+    
+    searchBar.delegate = nil;
+    [searchBar release];
     
     [super dealloc];
 }
 
--(void) setSelectedUser:(NSArray *) selectedUsers
-{
-    [selectedUsersDic release];
-    selectedUsersDic = [[NSMutableDictionary alloc] init];
-    
-    for(User * user in selectedUsers) {
-        [selectedUsersDic setObject:user forKey:user.username];
-    }
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
+
     NavgationBar * navBar = [[NavgationBar alloc] init];
     [navBar setTitle:@"Invite People"];
     [navBar setLeftBtnText:@"Cancel"];
@@ -63,15 +67,27 @@
     navBar.delegate = self;
     [navBar release];
     
-    users = [[NSMutableArray alloc] init];
-    searchUsers = [[NSMutableArray alloc] init];
+    searchBar = [[JSTokenField alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 44)];
+    [self.view addSubview:searchBar];
+    searchBar.delegate = self;
+    
+    calvinUsers = [[NSMutableArray alloc] init];
+    calvinSearchedUsers = [[NSMutableArray alloc] init];
+    
+    contactUsers = [[NSMutableArray alloc] init];
+    contactSearchedUsers = [[NSMutableArray alloc] init];
     
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
 
-    self.searchBar.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTokenFieldFrameDidChange:)
+												 name:JSTokenFieldFrameDidChangeNotification
+											   object:nil];
     
     [self getInvitePeopleData];
+    
 }
 
 - (void)getInvitePeopleData
@@ -80,16 +96,21 @@
     [self.indicatorView startAnimating];
     [model getUsers:0 andCallback:^(NSInteger error, NSArray *userArray) {
         [self.indicatorView stopAnimating];
-        [self resetData:userArray];
+        [self updateCalvinUser:userArray];
+        [self updateContactUser:userArray];
         [self.tableView reloadData];
     }];
 }
 
-
--(void) resetData:(NSArray *) userArray
+-(void) setSelectedUser:(NSArray *) _selectedUsers
 {
-    [users removeAllObjects];
+    selectedUsers = [_selectedUsers retain];
+}
 
+
+-(void) updateCalvinUser:(NSArray *) userArray
+{
+    [calvinUsers removeAllObjects];
     User * me = [[UserModel getInstance] getLoginUser];
 
     for (User *user in userArray) {
@@ -98,23 +119,69 @@
             //exclude creator in the event
             continue;
         }
-        
         AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
         
-        if([selectedUsersDic objectForKey:user.username] != nil) {
-            people.selected = YES;
-        } else {
-            people.selected = NO;
+        people.user = user;
+        people.selected = [self isUserSelected:user];
+        if (people.selected) {
+             [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
         }
         
-        people.user = user;
-        
-        [users addObject:people];
+        [calvinUsers addObject:people];
         [people release];
     }
 
-    NSString * searchText = self.searchBar.textField.text;
+    [self refreshTableView];
+}
+
+-(void) updateContactUser:(NSArray *) userArray
+{
+    //TODO:
+}
+
+- (BOOL)isUserSelected:(User *)user
+{
+    for (AddEventInvitePeople* selectedPeople in selectedUsers) {
+        if (selectedPeople.user.id == user.id) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)refreshTableView
+{
+    NSString * searchText = searchBar.textField.text;
     [self searchUser:searchText];
+    [self.tableView reloadData];
+}
+
+-(void) searchUser:(NSString *) searchText
+{
+    [calvinSearchedUsers removeAllObjects];
+    [contactSearchedUsers removeAllObjects];
+    
+    if(searchText == nil || searchText.length == 0) {
+        [calvinSearchedUsers addObjectsFromArray:calvinUsers];
+        [contactSearchedUsers addObjectsFromArray:contactUsers];
+        return;
+    }
+    
+    searchText = [searchText lowercaseString];
+    
+    for(AddEventInvitePeople * people in calvinUsers) {
+        NSString * username = [people.user.username lowercaseString];
+        if( [username hasPrefix:searchText]) {
+            [calvinSearchedUsers addObject:people];
+        }
+    }
+    
+    for(AddEventInvitePeople * people in contactUsers) {
+        NSString * username = [people.user.username lowercaseString];
+        if( [username hasPrefix:searchText]) {
+            [contactSearchedUsers addObject:people];
+        }
+    }
 }
 
 
@@ -123,6 +190,10 @@
     [super viewDidUnload];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,18 +205,33 @@
     return 20;
 }
 
+-(AddEventInvitePeople *) getPeople:(NSIndexPath*)indexPath
+{
+    AddEventInvitePeople *people = nil;
+    
+    int section = indexPath.section;
+    
+    if(section == 0) {
+        people = [calvinSearchedUsers objectAtIndex:indexPath.row];
+    } else {
+        people = [contactSearchedUsers objectAtIndex:indexPath.row];
+    }
+    
+    return people;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AddEventInvitePeople * people = [self getPeople:indexPath];
     people.selected = !people.selected;
-    [tableView reloadData];
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    AddEventInvitePeople * people = [self getPeople:indexPath];
-    people.selected = NO;
-    [tableView reloadData];
+    
+    if (people.selected) {
+         [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+    }
+    else
+    {
+        [self removeObjFromTokenField:people];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -164,9 +250,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0) {
-        return [searchUsers count];
+        return [calvinSearchedUsers count];
     } else {
-        return [searchUsers count];
+        return [contactSearchedUsers count];
     }
 }
 
@@ -180,48 +266,26 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.searchBar resignFirstResponder];
+    [searchBar endEditing:YES];
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
--(AddEventInvitePeople *) getPeople:(NSIndexPath*)indexPath
-{
-    AddEventInvitePeople *people;
-    
-    int section = indexPath.section;
-    
-    if(section == 0) {
-        people = [searchUsers objectAtIndex:indexPath.row];
-    } else {
-        people = [searchUsers objectAtIndex:indexPath.row];
-    }
-    
-    return people;
-}
-
-
-- (NSArray *)getSelectedUsers
-{
-    NSMutableArray *selectedArray = [[NSMutableArray alloc] init];
-    for (AddEventInvitePeople *people in users) {
-        if (people.selected) {
-            [selectedArray addObject:people.user];
-        }
-    }
-    
-    return [selectedArray autorelease];
-}
-
 
 
 - (void)leftNavBtnClick
 {
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+- (NSArray *)getSelectedUsers
+{
+    NSMutableArray *selectedArray = [NSMutableArray array];
+    for (JSTokenButton *token in searchBar.tokens)
+    {
+        AddEventInvitePeople *people = [token representedObject];
+        [selectedArray addObject:people];
+    }
+    
+    return selectedArray;
 }
 
 - (void)rightNavBtnClick
@@ -232,32 +296,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void) searchUser:(NSString *) searchText
-{
-    [searchUsers removeAllObjects];
-
-    if(searchText==nil || searchText.length == 0) {
-        [searchUsers addObjectsFromArray:users];
-        return;
-    }
-
-    searchText = [searchText lowercaseString];
-    
-    for(AddEventInvitePeople * people in users) {
-
-        NSString * username = [people.user.username lowercaseString];
-        
-        if( [username hasPrefix:searchText]) {
-            [searchUsers addObject:people];
-        }
-    }
-}
-
-
-
-
 #pragma mark --
 #pragma mark JSTokenFieldDelegate
+
+- (void)handleTokenFieldFrameDidChange:(NSNotification *)note
+{
+    [self.tableView setFrame:CGRectMake(0, searchBar.frame.size.height + searchBar.frame.origin.y, self.tableView.frame.size.width, self.view.frame.size.height - searchBar.frame.size.height - searchBar.frame.origin.y)];
+}
 
 - (void)tokenField:(JSTokenField *)tokenField didAddToken:(NSString *)title representedObject:(id)obj
 {
@@ -266,23 +311,70 @@
 
 - (void)tokenField:(JSTokenField *)tokenField didRemoveToken:(NSString *)title representedObject:(id)obj
 {
+    AddEventInvitePeople * people = (AddEventInvitePeople *)obj;
+    people.selected = NO;
     
+    [self.tableView reloadData];
 }
+
 - (BOOL)tokenField:(JSTokenField *)tokenField shouldRemoveToken:(NSString *)title representedObject:(id)obj
 {
-    
+    return YES;
 }
 
 - (void)tokenFieldTextDidChange:(JSTokenField *)tokenField
 {
-    [self searchUser:tokenField.textField.text];
-    [self.tableView reloadData];
+    LOG_D(@"tokenFieldTextDidChange:%@", tokenField.textField.text);
+    [self refreshTableView];
+}
+
+- (void)addOjbToTokenFieldName:(NSString *)string Obj:(id)obj
+{
+    AddEventInvitePeople *people = nil;
+    
+    if (!obj) {
+        people = [[AddEventInvitePeople alloc] init];
+        people.user = [[User alloc] init];
+        people.user.first_name = string;
+    }
+    else
+    {
+        people = (AddEventInvitePeople *)obj;
+    }
+    
+    if ([string length])
+	{
+		[searchBar addTokenWithTitle:string representedObject:people];
+        searchBar.textField.text = @"";
+        [self refreshTableView];
+	}
+}
+
+- (void)removeObjFromTokenField:(id)obj
+{
+    if (obj)
+	{
+		[searchBar removeTokenWithRepresentedObject:obj];
+        [self refreshTableView];
+	}
+}
+
+- (void)removeStringFromTokenField:(NSString *)string
+{
+    if ([string length])
+	{
+		[searchBar removeTokenForString:string];
+        [self refreshTableView];
+	}
 }
 
 - (BOOL)tokenFieldShouldReturn:(JSTokenField *)tokenField
 {
-    
+    [self addOjbToTokenFieldName:searchBar.textField.text Obj:nil];
+
+    return NO;
 }
+
 - (void)tokenFieldDidEndEditing:(JSTokenField *)tokenField
 {
     

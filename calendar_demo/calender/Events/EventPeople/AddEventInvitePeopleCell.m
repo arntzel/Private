@@ -38,7 +38,7 @@
     } else {
         self.labNoData.hidden = YES;
     }
-    
+    [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
     self.selectedBackgroundView = view;
     [view setBackgroundColor:[UIColor clearColor]];

@@ -56,6 +56,10 @@
 		76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */; };
 		76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */; };
 		765B24F71802684D00B01A0A /* JSBackspaceReportingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		765B24FD1802965D00B01A0A /* tokenHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 765B24F91802965D00B01A0A /* tokenHighlighted.png */; };
+		765B24FE1802965D00B01A0A /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 765B24FA1802965D00B01A0A /* tokenHighlighted@2x.png */; };
+		765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 765B24FB1802965D00B01A0A /* tokenNormal.png */; };
+		765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 765B24FC1802965D00B01A0A /* tokenNormal@2x.png */; };
 		765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 765DF0B917F083A8007259DF /* LoginStatusCheck.m */; };
 		7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661E17417E201D700C788D0 /* GPlaceAutoCompleteSource.m */; };
 		7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F73217F075F400B64E40 /* LoginMainAccessView.m */; };
@@ -445,6 +449,10 @@
 		76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventLocationViewController.xib; sourceTree = "<group>"; };
 		765B24F51802684D00B01A0A /* JSBackspaceReportingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBackspaceReportingTextField.h; sourceTree = "<group>"; };
 		765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBackspaceReportingTextField.m; sourceTree = "<group>"; };
+		765B24F91802965D00B01A0A /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
+		765B24FA1802965D00B01A0A /* tokenHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenHighlighted@2x.png"; sourceTree = "<group>"; };
+		765B24FB1802965D00B01A0A /* tokenNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenNormal.png; sourceTree = "<group>"; };
+		765B24FC1802965D00B01A0A /* tokenNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenNormal@2x.png"; sourceTree = "<group>"; };
 		765DF0B817F083A8007259DF /* LoginStatusCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatusCheck.h; sourceTree = "<group>"; };
 		765DF0B917F083A8007259DF /* LoginStatusCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatusCheck.m; sourceTree = "<group>"; };
 		7661E17317E201D700C788D0 /* GPlaceAutoCompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlaceAutoCompleteSource.h; sourceTree = "<group>"; };
@@ -1105,6 +1113,17 @@
 			path = EventPeople;
 			sourceTree = "<group>";
 		};
+		765B24F81802965D00B01A0A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				765B24F91802965D00B01A0A /* tokenHighlighted.png */,
+				765B24FA1802965D00B01A0A /* tokenHighlighted@2x.png */,
+				765B24FB1802965D00B01A0A /* tokenNormal.png */,
+				765B24FC1802965D00B01A0A /* tokenNormal@2x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		7662F75A17F07F2B00B64E40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1131,6 +1150,7 @@
 		768404C3180115B200C69240 /* JSTokenField */ = {
 			isa = PBXGroup;
 			children = (
+				765B24F81802965D00B01A0A /* Resource */,
 				765B24F51802684D00B01A0A /* JSBackspaceReportingTextField.h */,
 				765B24F61802684D00B01A0A /* JSBackspaceReportingTextField.m */,
 				768404C4180115B200C69240 /* JSTokenButton.h */,
@@ -2132,6 +2152,7 @@
 				769AB9AC17DF51340033E677 /* event_detail_random_header6.png in Resources */,
 				769AB9AD17DF51340033E677 /* event_detail_random_header7.png in Resources */,
 				769AB9AE17DF51340033E677 /* event_detail_random_header8.png in Resources */,
+				765B24FD1802965D00B01A0A /* tokenHighlighted.png in Resources */,
 				769AB9AF17DF51340033E677 /* header1.jpg in Resources */,
 				769AB9B017DF51340033E677 /* header10.jpg in Resources */,
 				769AB9B117DF51340033E677 /* header2.jpg in Resources */,
@@ -2240,8 +2261,10 @@
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
 				769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */,
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
+				765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */,
 				769ABB6E17DF54000033E677 /* addEventBtnBg.png in Resources */,
 				769ABB6F17DF54000033E677 /* addEventSettingIcon.png in Resources */,
+				765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */,
 				769ABB7017DF54000033E677 /* addLocationIcon.png in Resources */,
 				769ABB7117DF54000033E677 /* arraw.png in Resources */,
 				769ABB7217DF54000033E677 /* eventSetingBg1.png in Resources */,
@@ -2255,6 +2278,7 @@
 				769ABB7A17DF54000033E677 /* map_my_location.png in Resources */,
 				769ABB7B17DF54000033E677 /* navBar_bg.png in Resources */,
 				769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */,
+				765B24FE1802965D00B01A0A /* tokenHighlighted@2x.png in Resources */,
 				7662F75917F0761900B64E40 /* login_mainaccess_signin.png in Resources */,
 				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
