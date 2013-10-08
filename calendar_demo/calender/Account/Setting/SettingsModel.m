@@ -11,7 +11,58 @@
 #import "Model.h"
 #import "Utils.h"
 
+
 @implementation SettingsModel
+
+- (void)updateAvatar:(UIImage *)avatar andCallback:(void (^)(NSInteger error, NSString *url))callback1
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/avatar/upload/", HOST];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [self setAuthHeader:request];
+    
+    
+	NSString *stringBoundary = @"0xKhTmLbOuNdArY";
+    
+    NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; charset=%@; boundary=%@", charset, stringBoundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    NSMutableString *body = [NSMutableString string];
+    NSString *startBoundary = [NSString stringWithFormat:@"--%@\r\n",stringBoundary];
+    //NSString *spliteBoundary = [NSString stringWithFormat:@"\r\n--%@\r\n",stringBoundary];
+    NSString *endBoundary = [NSString stringWithFormat:@"\r\n--%@--\r\n",stringBoundary];
+    [body appendString:startBoundary];
+    
+    [body appendString:@"Content-Disposition: form-data; name=\"file\"; filename=\"123.png\"\r\n"];
+    [body appendString:@"Content-Type: image/png\r\n\r\n"];
+    NSMutableData *postData = [NSMutableData data];
+    [postData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:UIImagePNGRepresentation(avatar)];
+    [postData appendData:[endBoundary dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 200)
+        {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            NSString *urlStr = [json objectForKey:@"thumbnail_url"];
+            callback1(ERROCODE_OK,urlStr);
+        }
+        else
+        {
+            NSLog(@"change avatar error :%@",error);
+            callback1(-1,nil);
+        }
+    }];
+}
 - (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/email/change/", HOST];
@@ -134,11 +185,14 @@
 
 - (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/userprofile/%d", HOST,user.id];
+    NSString * url = [NSString stringWithFormat:@"%s%@", HOST,user.profileUrl];
+    LOG_D(@"update user profile url:%@",url);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"PUT"];
     [self setAuthHeader:request];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
     NSDictionary *dic;
     if (user.avatar_url == nil)
     {

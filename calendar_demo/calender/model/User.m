@@ -55,7 +55,7 @@
     if([user.last_name isKindOfClass: [NSNull class]]) {
         user.last_name = nil;
     }
-    
+    user.profileUrl = [jsonData objectForKey:@"profile"];
     return user;
 }
 

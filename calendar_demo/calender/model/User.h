@@ -18,7 +18,7 @@
 @property(strong) NSString * first_name;
 
 @property(strong) NSString * last_name;
-
+@property (nonatomic, strong) NSString *profileUrl;
 
 -(NSString *) getReadableUsername;
 

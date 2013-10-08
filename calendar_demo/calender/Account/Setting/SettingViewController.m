@@ -199,6 +199,10 @@
                 ((EmailChangeViewController *)viewCtr).emailChangedBlock = ^{
                     
                     self.t_settingsContentView.emailLabel.text = self.loginUser.email;
+                    if (self.updataLeftNavBlock)
+                    {
+                        self.updataLeftNavBlock();
+                    }
                 };
                 break;
             }
@@ -311,14 +315,21 @@
 
 -(void) uploadImage:(UIImage *) img
 {
-    
-    if(self.request != nil)
-    {
-        [self.request cancel];
-        self.request = nil;
-    }
-    
-    self.request =[[Model getInstance] uploadImage:img andCallback:self];
+    SettingsModel *model = [[SettingsModel alloc] init];
+    [model updateAvatar:img andCallback:^(NSInteger error, NSString *url) {
+        
+        if(error == 0)
+        {
+            
+            [self updataUserProfile:url];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Upload Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+            [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
+        }
+    }];
 }
 
 - (void)connectGoogle
@@ -422,6 +433,7 @@
     SettingsModel *model = [[SettingsModel alloc] init];
     User *tmpUser = [[User alloc] init];
     tmpUser.id = self.loginUser.id;
+    tmpUser.profileUrl = self.loginUser.profileUrl;
     tmpUser.first_name = self.t_settingsContentView.firstNameField.text;
     tmpUser.last_name = self.t_settingsContentView.lastNameField.text;
     tmpUser.avatar_url =  avatar_url;
@@ -440,6 +452,17 @@
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Update Profile Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alert show];
+            [self.t_settingsContentView.headPortaitBtn setImageWithURL:[NSURL URLWithString:self.loginUser.avatar_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"settings_main_head_portait_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                
+                if (error)
+                {
+                    [self.t_settingsContentView.headPortaitBtn setImage:[UIImage imageNamed:@"settings_main_head_portait_default"] forState:UIControlStateNormal];
+                    LOG_D(@"get avatar from remote failed.");
+                }
+            }];
+            self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
+            self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
+            
         }
         else
         {
