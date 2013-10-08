@@ -423,7 +423,10 @@
     }
     
     NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:i];
-    [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    if (i > 0) {
+        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    }
+    
 }
 
 @end
