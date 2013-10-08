@@ -56,6 +56,10 @@
         user.last_name = nil;
     }
     user.profileUrl = [jsonData objectForKey:@"profile"];
+    
+    user.facebook = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"];
+    user.google = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"];
+    
     return user;
 }
 

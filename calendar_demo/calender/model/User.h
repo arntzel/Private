@@ -18,7 +18,12 @@
 @property(strong) NSString * first_name;
 
 @property(strong) NSString * last_name;
+
 @property (nonatomic, strong) NSString *profileUrl;
+
+@property (nonatomic, strong) NSString *facebook;
+
+@property (nonatomic, strong) NSString *google;
 
 -(NSString *) getReadableUsername;
 
