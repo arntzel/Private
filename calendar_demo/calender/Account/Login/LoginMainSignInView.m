@@ -70,8 +70,8 @@
 
 - (void)updateUI
 {
-    self.TextUserName.text = @"fx.fangxiang@gmail.com";
-    self.TextPassword.text = @"111111";
+//    self.TextUserName.text = @"fx.fangxiang@gmail.com";
+//    self.TextPassword.text = @"111111";
 }
 
 -(void) showLogining:(BOOL) logining
