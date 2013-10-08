@@ -2332,13 +2332,14 @@
 				769AB99B17DF51340033E677 /* push.wav in Resources */,
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				769AB9A217DF51340033E677 /* event_detail_comment_conformed.png in Resources */,
-
+<<<<<<< HEAD
+=======
 				34B1F1B917F8FCE200AA5C97 /* settings_main_bottom_row@2x.png in Resources */,
 				769AB9A317DF51340033E677 /* 1.png in Resources */,
 				34B1F1CD17F8FCE200AA5C97 /* settings_main_userinfo_bg@2x.png in Resources */,
 				34B1F1BF17F8FCE200AA5C97 /* settings_main_gmail_icon@2x.png in Resources */,
 				769AB9A417DF51340033E677 /* 2.png in Resources */,
-
+>>>>>>> settings
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
 				34B1F1B017F8FCE200AA5C97 /* settings_detail_full_circle.png in Resources */,
 				34B1F1B417F8FCE200AA5C97 /* settings_main_arrow.png in Resources */,
@@ -2370,11 +2371,11 @@
 				34B1F1C217F8FCE200AA5C97 /* settings_main_middle_row.png in Resources */,
 				769AB9B817DF51340033E677 /* header9.jpg in Resources */,
 				769AB9B917DF51340033E677 /* event_detail_header_cross.png in Resources */,
-
+<<<<<<< HEAD
 				768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */,
-
+=======
 				34B1F1AF17F8FCE200AA5C97 /* settings_detail_empty_circle@2x.png in Resources */,
-
+>>>>>>> settings
 				769AB9BA17DF51340033E677 /* event_detail_header_list_arraw.png in Resources */,
 				769AB9BB17DF51340033E677 /* event_detail_header_tick.png in Resources */,
 				34B1F1C417F8FCE200AA5C97 /* settings_main_one_row.png in Resources */,
@@ -2468,11 +2469,11 @@
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
-
+<<<<<<< HEAD
 				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
-
+=======
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
 				769ABB1917DF52090033E677 /* AddEventInviteViewController.xib in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
@@ -2481,7 +2482,7 @@
 				769ABB2017DF52090033E677 /* AddLocationTextView.xib in Resources */,
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
 				769ABB2217DF52090033E677 /* AddLocationViewController.xib in Resources */,
-
+>>>>>>> settings
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
@@ -2498,11 +2499,11 @@
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
 				769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */,
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
-
+<<<<<<< HEAD
 				765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */,
-
+=======
 				34B1F1C817F8FCE200AA5C97 /* settings_main_top_row.png in Resources */,
-
+>>>>>>> settings
 				769ABB6E17DF54000033E677 /* addEventBtnBg.png in Resources */,
 				769ABB6F17DF54000033E677 /* addEventSettingIcon.png in Resources */,
 				765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */,
@@ -2548,11 +2549,11 @@
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,
 				94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */,
-
+<<<<<<< HEAD
 				76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */,
-
+=======
 				34B1F1BB17F8FCE200AA5C97 /* settings_main_connect_btn@2x.png in Resources */,
-
+>>>>>>> settings
 				7662F75417F0761900B64E40 /* login_main_sign_bg.png in Resources */,
 				9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */,
 			);
@@ -2835,10 +2836,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-
+<<<<<<< HEAD
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+=======
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
-
+>>>>>>> settings
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender\"",
