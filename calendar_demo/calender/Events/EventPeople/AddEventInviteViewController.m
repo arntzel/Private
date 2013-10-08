@@ -142,8 +142,8 @@
 
 - (BOOL)isUserSelected:(User *)user
 {
-    for (AddEventInvitePeople* selectedPeople in selectedUsers) {
-        if (selectedPeople.user.id == user.id) {
+    for (User* selectedUser in selectedUsers) {
+        if (selectedUser.id == user.id) {
             return YES;
         }
     }
@@ -283,7 +283,7 @@
     for (JSTokenButton *token in searchBar.tokens)
     {
         AddEventInvitePeople *people = [token representedObject];
-        [selectedArray addObject:people];
+        [selectedArray addObject:people.user];
     }
     
     return selectedArray;
