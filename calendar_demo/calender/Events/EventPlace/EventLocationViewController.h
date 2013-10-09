@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
 
-@interface EventLocationViewController : UIViewController
+@interface EventLocationViewController : BaseUIViewController
 
 - (void)updatePlaceWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
