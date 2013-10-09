@@ -58,7 +58,7 @@
         }
         else
         {
-            NSLog(@"change avatar error :%@",error);
+            LOG_D(@"change avatar error :%@",error);
             callback1(-1,nil);
         }
     }];
@@ -87,7 +87,7 @@
         }
         else
         {
-            NSLog(@"change email error :%@",error);
+            LOG_D(@"change email error :%@",error);
             callback(-1,nil);
         }
     }];
@@ -119,9 +119,10 @@
         }
         else
         {
-            NSLog(@"change pwd error :%@",error);
+            LOG_D(@"change pwd error :%@",error);
             callback(-1);
         }
+        LOG_D(@"change pwd receive data:%@",[[NSString alloc] initWithData:data encoding:4]);
     }];
     
 }
@@ -175,8 +176,8 @@
             
             callback(-1,nil);
         }
-        NSLog(@"url:%@ \nconnectType:%d token:%@ IsConnectOrNot:%d",url,connectType,token,isConnect);
-        NSLog(@"connect data :%@",[[NSString alloc] initWithData:data encoding:4]);
+        LOG_D(@"url:%@ \nconnectType:%d token:%@ IsConnectOrNot:%d",url,connectType,token,isConnect);
+        LOG_D(@"connect data :%@",[[NSString alloc] initWithData:data encoding:4]);
     }];
     
 }

@@ -30,7 +30,7 @@
     {
        view = (UIView *)sender;
     }
-    NSLog(@"view tag %d", view.tag);
+    LOG_D(@"view tag %d", view.tag);
     
     if (self.pushDetailViewBlock)
     {
