@@ -55,12 +55,12 @@
     if([user.last_name isKindOfClass: [NSNull class]]) {
         user.last_name = nil;
     }
-    if (![jsonData objectForKey:@"profile"])
+    if (![[jsonData objectForKey:@"profile"]isKindOfClass:[NSNull class]])
     {
         user.profileUrl = [jsonData objectForKey:@"profile"];
     }
     
-    if (![jsonData objectForKey:@"social_access_token"])
+    if (![[jsonData objectForKey:@"social_access_token"]isKindOfClass:[NSNull class]])
     {
         if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] isKindOfClass:[NSNull class]])
         {
