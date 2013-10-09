@@ -56,9 +56,17 @@
         user.last_name = nil;
     }
     user.profileUrl = [jsonData objectForKey:@"profile"];
-    
-    user.facebook = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"];
-    user.google = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"];
+    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] isKindOfClass:[NSNull class]])
+    {
+        user.facebookToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"token"];
+        user.facebookEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"email"];
+    }
+    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] isKindOfClass:[NSNull class]])
+    {
+        user.googleToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"token"];
+        user.googleEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"email"];
+    }
+   
     
     return user;
 }
@@ -70,7 +78,6 @@
     [dic setObject:[NSNumber numberWithInt:user.id] forKey:@"id"];
     [dic setObject:user.username forKey:@"username"];
     [dic setObject:user.email forKey:@"email"];
-
     if(user.avatar_url == nil)
     {
         user.avatar_url = @"";
@@ -90,7 +97,26 @@
     if(user.last_name != nil) {
         [dic setObject:user.last_name forKey:@"last_name"];
     }
-       
+    
+    [dic setObject:user.profileUrl forKey:@"profileUrl"];
+    if (user.facebookToken != nil)
+    {
+        [dic setObject:user.facebookToken forKey:@"facebookToken"];
+    }
+    if (user.facebookEmail != nil)
+    {
+        [dic setObject:user.facebookEmail forKey:@"facebookEmail"];
+    }
+    
+    if (user.googleToken != nil)
+    {
+        [dic setObject:user.googleToken forKey:@"googleToken"];
+    }
+    if (user.googleEmail != nil)
+    {
+        [dic setObject:user.googleEmail forKey:@"googleEmail"];
+    }
+    
     return dic;
 }
 

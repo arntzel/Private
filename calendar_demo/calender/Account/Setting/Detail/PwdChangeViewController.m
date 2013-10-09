@@ -122,21 +122,27 @@
 
 - (BOOL)canContinue
 {
-    if (self.oldPwdField.text == nil)
+    if (self.oldPwdField.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Old Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
-    if (self.pwdField.text == nil)
+    if (self.pwdField.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"New Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
-    if (self.rePwdField.text == nil)
+    if (self.rePwdField.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Re-type Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    if (![self.pwdField.text isEqualToString:self.rePwdField.text])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Re-type Password is not same with New Password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }

@@ -99,8 +99,7 @@
     self.t_settingsContentView.headPortaitBtn.layer.cornerRadius = self.t_settingsContentView.headPortaitBtn.frame.size.width/2;
     [self.t_settingsContentView.firstNameField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     [self.t_settingsContentView.lastNameField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
-    [self fbviewChangeWithConnectStatus:NO];
-    [self googleviewChangeWithConnectStatus:NO];
+    
     
     
     self.scroller.contentSize = CGSizeMake(self.view.frame.size.width, self.t_settingsContentView.frame.size.height);
@@ -114,12 +113,20 @@
     self.t_settingsContentView.fbTapGesture.enabled = isConnect;
     self.t_settingsContentView.fbLabel.hidden = !isConnect;
     self.t_settingsContentView.fbConnectBtn.hidden = isConnect;
+    if (isConnect)
+    {
+        self.t_settingsContentView.fbLabel.text = self.loginUser.facebookEmail;
+    }
 }
 - (void)googleviewChangeWithConnectStatus:(BOOL)isConnect
 {
     self.t_settingsContentView.googleTapGesture.enabled = isConnect;
     self.t_settingsContentView.googleLabel.hidden = !isConnect;
     self.t_settingsContentView.googleConnectBtn.hidden = isConnect;
+    if (isConnect)
+    {
+        self.t_settingsContentView.googleLabel.text = self.loginUser.googleEmail;
+    }
 }
 #pragma mark - Data Helper
 - (void)getUserInfo
@@ -143,6 +150,22 @@
         }
     }];
     
+    if (self.loginUser.facebookEmail)
+    {
+        [self fbviewChangeWithConnectStatus:YES];
+    }
+    else
+    {
+        [self fbviewChangeWithConnectStatus:NO];
+    }
+    if (self.loginUser.googleEmail)
+    {
+        [self googleviewChangeWithConnectStatus:YES];
+    }
+    else
+    {
+        [self googleviewChangeWithConnectStatus:NO];
+    }
 }
 
 #pragma mark - User Interaction Helper
@@ -390,7 +413,7 @@
         LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
         accessToken = store.facebookAccessToken;
     }
-    [model updateConnect:type tokenVale:accessToken IsConnectOrNot:NO andCallback:^(NSInteger error) {
+    [model updateConnect:type tokenVale:accessToken IsConnectOrNot:NO andCallback:^(NSInteger error,NSString *message) {
         
         NSString *msg = @"";
         if (type == ConnectGoogle)
@@ -402,8 +425,17 @@
             }
             else
             {
-                msg = @"disconnect Google Successed";
-                [self googleviewChangeWithConnectStatus:NO];
+                if (message)
+                {
+                    msg = message;
+                }
+                else
+                {
+                    msg = @"disconnect Google Successed";
+                    [self googleviewChangeWithConnectStatus:NO];
+                }
+                
+                
         
             }
         }
@@ -416,8 +448,16 @@
             }
             else
             {
-                msg = @"disconnect Facebook Successed";
-                [self fbviewChangeWithConnectStatus:NO];
+                if (message)
+                {
+                    msg = message;
+                }
+                else
+                {
+                    msg = @"disconnect Facebook Successed";
+                    [self fbviewChangeWithConnectStatus:NO];
+                }
+                
             }
         }
         
@@ -579,7 +619,7 @@
         NSString  * acesssToken  = auth.accessToken;
         LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
         SettingsModel *settingsModel = [[SettingsModel alloc] init];
-        [settingsModel updateConnect:ConnectGoogle tokenVale:acesssToken IsConnectOrNot:YES andCallback:^(NSInteger error) {
+        [settingsModel updateConnect:ConnectGoogle tokenVale:acesssToken IsConnectOrNot:YES andCallback:^(NSInteger error, NSString *message) {
             
             NSString *msg = @"";
             if (error == -1)
@@ -589,11 +629,16 @@
             }
             else
             {
-                msg = @"Connect Google Successed";
-                [self googleviewChangeWithConnectStatus:YES];
-                self.t_settingsContentView.googleLabel.text = auth.userEmail;
-                
-               
+                if (message)
+                {
+                    msg = message;
+                }
+                else
+                {
+                    msg = @"Connect Google Successed";
+                    self.loginUser.googleEmail = auth.userEmail;
+                    [self googleviewChangeWithConnectStatus:YES];
+                }
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -618,7 +663,7 @@
     NSString * accessToken = store.facebookAccessToken;
     LOG_D(@"shareDidLogin:%@", accessToken);
     SettingsModel *settingsModel = [[SettingsModel alloc] init];
-    [settingsModel updateConnect:ConnectFacebook tokenVale:accessToken IsConnectOrNot:YES andCallback:^(NSInteger error) {
+    [settingsModel updateConnect:ConnectFacebook tokenVale:accessToken IsConnectOrNot:YES andCallback:^(NSInteger error,NSString *message) {
         
         NSString *msg = @"";
         if (error == -1)
@@ -628,9 +673,16 @@
         }
         else
         {
-            msg = @"Connect Facebook Successed";
-            [self fbviewChangeWithConnectStatus:YES];
-            self.t_settingsContentView.fbLabel.text = store.facebookEmail;
+            if (message)
+            {
+                msg = message;
+            }
+            else
+            {
+                msg = @"Connect Facebook Successed";
+                self.loginUser.facebookEmail = store.facebookEmail;
+                [self fbviewChangeWithConnectStatus:YES];
+            }
            
         }
         

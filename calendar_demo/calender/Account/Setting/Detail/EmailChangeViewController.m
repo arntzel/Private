@@ -96,7 +96,7 @@
         [self.view addSubview:indi];
         [indi startAnimating];
         SettingsModel *settingsModel = [[SettingsModel alloc] init];
-        [settingsModel updateUserEmail:self.emailField.text andCallback:^(NSInteger error) {
+        [settingsModel updateUserEmail:self.emailField.text andCallback:^(NSInteger error,NSString *message) {
             
             [indi stopAnimating];
             [indi removeFromSuperview];
@@ -108,12 +108,22 @@
             }
             else
             {
-                if (self.emailChangedBlock)
+                if (message)
                 {
-                    [[UserModel getInstance] getLoginUser].email = self.emailField.text;
-                    self.emailChangedBlock();
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
                 }
-                [self leftNavBtnClicked:nil];
+                else
+                {
+                    if (self.emailChangedBlock)
+                    {
+                        [[UserModel getInstance] getLoginUser].email = self.emailField.text;
+                        self.emailChangedBlock();
+                    }
+                    [self leftNavBtnClicked:nil];
+                }
+                
             }
         }];
     }

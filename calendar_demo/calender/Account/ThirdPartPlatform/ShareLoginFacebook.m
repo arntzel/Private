@@ -74,6 +74,8 @@
                         accountStore.facebookAccessToken = session.accessToken;
                         accountStore.facebookExpireDate = session.expirationDate;
                         accountStore.facebookEmail = [user objectForKey:@"email"];
+                        
+                        
                         if([self.delegate respondsToSelector:@selector(shareDidLogin:)])
                             [self.delegate shareDidLogin:self];
                     }
