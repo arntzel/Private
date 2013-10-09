@@ -59,12 +59,11 @@
     event.start_type = [json objectForKey:@"start_type"];
     
     NSDate * startDate = [Utils parseNSDate:[json objectForKey:@"start"]];
-    
-    
-    User * me = [[UserModel getInstance] getLoginUser];
-    NSTimeZone * timezone = [NSTimeZone timeZoneWithName:me.timezone];
-    event.start = [Utils gmtDate2LocatDate:startDate andTimezone:timezone];
-    
+    event.start = startDate;
+
+    //User * me = [[UserModel getInstance] getLoginUser];
+    //NSTimeZone * timezone = [NSTimeZone timeZoneWithName:me.timezone];
+    //event.start = [Utils gmtDate2LocatDate:startDate andTimezone:timezone];
     //event.end = [Utils parseNSDate:[json objectForKey:@"end"]];
 
     NSDictionary * locationDic = [Utils chekcNullClass:[json objectForKey:@"location"]];

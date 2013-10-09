@@ -241,7 +241,9 @@ static Model * instance;
         if(status == 200 && data != nil) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-          
+
+            LOG_D(@"json=%@", json);
+
             Event * e = [Event parseEvent:json];
             callback(ERROCODE_OK, e);
             
@@ -854,7 +856,7 @@ static Model * instance;
 
 -(void) createComment:(Comment *) cmt andCallback:(void (^)(NSInteger error, Comment * cmt))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment", HOST];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/", HOST];
     
     LOG_D(@"url=%@", url);
     
@@ -1059,6 +1061,9 @@ static Model * instance;
     
     NSString * postContent = [Utils dictionary2String:dict];
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+
+    LOG_D(@"finalizeProposeStart: %@", postContent);
+
     [request setHTTPBody:postData];
 
     [[UserModel getInstance] setAuthHeader:request];
