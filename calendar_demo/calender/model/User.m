@@ -55,17 +55,25 @@
     if([user.last_name isKindOfClass: [NSNull class]]) {
         user.last_name = nil;
     }
-    user.profileUrl = [jsonData objectForKey:@"profile"];
-    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] isKindOfClass:[NSNull class]])
+    if (![jsonData objectForKey:@"profile"])
     {
-        user.facebookToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"token"];
-        user.facebookEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"email"];
+        user.profileUrl = [jsonData objectForKey:@"profile"];
     }
-    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] isKindOfClass:[NSNull class]])
+    
+    if (![jsonData objectForKey:@"social_access_token"])
     {
-        user.googleToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"token"];
-        user.googleEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"email"];
+        if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] isKindOfClass:[NSNull class]])
+        {
+            user.facebookToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"token"];
+            user.facebookEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"email"];
+        }
+        if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] isKindOfClass:[NSNull class]])
+        {
+            user.googleToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"token"];
+            user.googleEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"email"];
+        }
     }
+    
    
     
     return user;
@@ -98,7 +106,10 @@
         [dic setObject:user.last_name forKey:@"last_name"];
     }
     
-    [dic setObject:user.profileUrl forKey:@"profileUrl"];
+    if (user.profileUrl != nil)
+    {
+        [dic setObject:user.profileUrl forKey:@"profileUrl"];
+    }
     if (user.facebookToken != nil)
     {
         [dic setObject:user.facebookToken forKey:@"facebookToken"];
