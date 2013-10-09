@@ -11,11 +11,11 @@
 #import "ViewUtils.h"
 #import "Model.h"
 #import "CreateUser.h"
+#import "SettingsModel.h"
 
-@interface LoginMainCreatView()<UIActionSheetDelegate, UIImagePickerControllerDelegate ,UINavigationControllerDelegate, UploadImageDelegate>
+@interface LoginMainCreatView()<UIActionSheetDelegate, UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 {
     UITapGestureRecognizer *tapGesture;
-    ASIFormDataRequest * request;
     NSString * imageUrl;
 }
 
@@ -28,18 +28,15 @@
 
 @end
 
-@implementation LoginMainCreatView
+@implementation LoginMainCreatView {
+    SettingsModel * settingModel;
+}
+
 @synthesize delegate;
 
 - (void)dealloc
 {
     [self.imageViewAddPhoto removeGestureRecognizer:tapGesture];
-    
-    if(request != nil) {
-        [request cancel];
-        request = nil;
-    }
-    
     imageUrl = nil;
 }
 
@@ -100,6 +97,8 @@
     [self.imageViewAddPhoto setClipsToBounds:YES];
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addPhotoTap)];
     [self.imageViewAddPhoto addGestureRecognizer:tapGesture];
+
+    settingModel = [[SettingsModel alloc] init];
 }
 
 - (void) textFieldDidChange:(UITextField *) TextField
@@ -153,31 +152,28 @@
 
 -(void) uploadImage:(UIImage *) img
 {
-
-    if(request != nil)
-    {
-        [request cancel];
-        request = nil;
-    }
-    
     if(imageUrl != nil) {
         imageUrl = nil;
     }
-    
-    request =[[Model getInstance] uploadImage:img andCallback:self];
+
+    self.imageViewAddPhoto.alpha = 0.3;
+
+    [settingModel updateAvatar:img andCallback:^(NSInteger error, NSString *url) {
+        [self onUploadCompleted:error andUrl:url];
+    }];
 }
 
--(void) onUploadStart
-{
-    
-}
-
--(void) onUploadProgress: (long long) progress andSize: (long long) Size
-{
-    float prg = (float)progress / (float)Size;
-    self.imageViewAddPhoto.alpha = 0.3 + prg*0.7;
-    LOG_D(@"onUploadProgress: progress=%f", prg);
-}
+//-(void) onUploadStart
+//{
+//    
+//}
+//
+//-(void) onUploadProgress: (long long) progress andSize: (long long) Size
+//{
+//    float prg = (float)progress / (float)Size;
+//    self.imageViewAddPhoto.alpha = 0.3 + prg*0.7;
+//    LOG_D(@"onUploadProgress: progress=%f", prg);
+//}
 
 -(void) onUploadCompleted: (int) error andUrl:(NSString *) url
 {
