@@ -13,7 +13,7 @@
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
 
-#define FETECH_EVENTS 5
+#define FETECH_EVENTS 20
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
