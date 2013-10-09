@@ -338,10 +338,14 @@
     LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
 
     FeedEventEntity * event = [self getFeedEventEntity:indexPath];
-    EventDetailController * detailCtl = [[EventDetailController alloc] init];
-    detailCtl.eventID = [event.id intValue];
-    
-    [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+
+    if( ([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
+
+        EventDetailController * detailCtl = [[EventDetailController alloc] init];
+        detailCtl.eventID = [event.id intValue];
+
+        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+    }
 }
 
 -(FeedEventEntity *) getFeedEventEntity:(NSIndexPath *)indexPath
