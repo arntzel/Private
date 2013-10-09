@@ -50,7 +50,7 @@
     
     NSMutableArray *  events = [[NSMutableArray alloc] init];
     for(FeedEventEntity * entity in self.events) {
-        int type = 0x00000001 << [entity.eventType intValue];;
+        int type = [entity.eventType intValue];;
         if( (type & self.eventTypeFilter) != 0) {
             [events addObject:entity];
         }

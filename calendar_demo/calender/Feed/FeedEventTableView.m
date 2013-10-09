@@ -13,7 +13,7 @@
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
 
-#define FETECH_EVENTS 5
+#define FETECH_EVENTS 20
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -366,7 +366,8 @@
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
     [cache clearAllDayFeedEventEntitys];
-    cache.date = day;
+    
+    cache.date = [day cc_dateByMovingToBeginningOfDay];
     cache.preCount = 0;
     cache.followCount = 0;
 
@@ -423,7 +424,10 @@
     }
     
     NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:i];
-    [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    if (i > 0) {
+        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    }
+    
 }
 
 @end
