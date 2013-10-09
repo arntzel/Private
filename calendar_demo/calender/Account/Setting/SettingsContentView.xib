@@ -117,7 +117,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_main_arrow.png" id="1rf-mL-xKV">
-                    <rect key="frame" x="284" y="201" width="9" height="14"/>
+                    <rect key="frame" x="284" y="195" width="9" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LINKED ACCOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2e4-si-sPm">
@@ -147,7 +147,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W4M-rV-WHS">
-                            <rect key="frame" x="199" y="8" width="67" height="30"/>
+                            <rect key="frame" x="170" y="8" width="96" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Connect" backgroundImage="settings_main_connect_btn.png">
@@ -191,7 +191,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hLV-Qu-d0L">
-                            <rect key="frame" x="199" y="8" width="67" height="30"/>
+                            <rect key="frame" x="170" y="8" width="96" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Connect" backgroundImage="settings_main_connect_btn.png">

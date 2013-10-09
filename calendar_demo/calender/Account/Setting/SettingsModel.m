@@ -63,7 +63,7 @@
         }
     }];
 }
-- (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error))callback
+- (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error,NSString *message))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/email/change/", HOST];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -74,9 +74,6 @@
     NSString * postContent = [NSString stringWithFormat:@"email=%@",email];
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
-    
-    
-    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
         
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
@@ -85,12 +82,13 @@
         
         if(status == 200)
         {
-            callback(ERROCODE_OK);
+            callback(ERROCODE_OK,[self parsedJsonMessage:data]);
+            
         }
         else
         {
             NSLog(@"change email error :%@",error);
-            callback(-1);
+            callback(-1,nil);
         }
     }];
     
@@ -128,7 +126,7 @@
     
 }
 
-- (void)updateConnect:(ConnectType )connectType tokenVale:(NSString *)token IsConnectOrNot:(BOOL)isConnect andCallback:(void (^)(NSInteger error))callback
+- (void)updateConnect:(ConnectType )connectType tokenVale:(NSString *)token IsConnectOrNot:(BOOL)isConnect andCallback:(void (^)(NSInteger error, NSString *message))callback
 {
     NSString * url = @"";
     if (connectType == ConnectFacebook)
@@ -170,12 +168,12 @@
         
         if(status == 200)
         {
-            callback(ERROCODE_OK);
+            callback(ERROCODE_OK,[self parsedJsonMessage:data]);
         }
         else
         {
             
-            callback(-1);
+            callback(-1,nil);
         }
         NSLog(@"url:%@ \nconnectType:%d token:%@ IsConnectOrNot:%d",url,connectType,token,isConnect);
         NSLog(@"connect data :%@",[[NSString alloc] initWithData:data encoding:4]);
@@ -232,4 +230,20 @@
     LOG_D(@"authHeader:%@", authHeader);
     [request addValue:authHeader forHTTPHeaderField:@"AUTHORIZATION"];
 }
+
+- (NSString *)parsedJsonMessage:(NSData *)respData
+{
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:respData options:NSJSONReadingMutableContainers error:nil];
+    NSString  *status = [dic  objectForKey:@"status"];
+    if ([status isEqualToString:@"success"])
+    {
+        return nil;
+    }
+    else
+    {
+        NSString *message = [dic objectForKey:@"message"];
+        return message;
+    }
+}
+
 @end

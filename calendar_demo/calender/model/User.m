@@ -56,9 +56,17 @@
         user.last_name = nil;
     }
     user.profileUrl = [jsonData objectForKey:@"profile"];
-    
-    user.facebook = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"];
-    user.google = [[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"];
+    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] isKindOfClass:[NSNull class]])
+    {
+        user.facebookToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"token"];
+        user.facebookEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"facebook"] objectForKey:@"email"];
+    }
+    if (![[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] isKindOfClass:[NSNull class]])
+    {
+        user.googleToken = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"token"];
+        user.googleEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"email"];
+    }
+   
     
     return user;
 }

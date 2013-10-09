@@ -21,9 +21,10 @@
 
 @property (nonatomic, strong) NSString *profileUrl;
 
-@property (nonatomic, strong) NSString *facebook;
-
-@property (nonatomic, strong) NSString *google;
+@property (nonatomic, strong) NSString *facebookToken;
+@property (nonatomic, strong) NSString *facebookEmail;
+@property (nonatomic, strong) NSString *googleToken;
+@property (nonatomic, strong) NSString *googleEmail;
 
 -(NSString *) getReadableUsername;
 
