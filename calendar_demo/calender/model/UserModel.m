@@ -46,11 +46,15 @@ static UserModel * instance;
             callback(ERROCODE_OK, nil);
         } else {
             
-            NSError * err;
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            
-            LOG_D(@"error=%d, resp:%@", status, json);
-            callback(-1, [json objectForKey:@"error"]);
+            if(data != nil) {
+                NSError * err;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                
+                LOG_D(@"error=%d, resp:%@", status, json);
+                callback(-1, [json objectForKey:@"error"]);
+            } else {
+                callback(ERROCODE_SERVER, nil);
+            }
         }
     }];
 }
