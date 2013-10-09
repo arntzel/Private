@@ -366,7 +366,8 @@
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
     [cache clearAllDayFeedEventEntitys];
-    cache.date = day;
+    
+    cache.date = [day cc_dateByMovingToBeginningOfDay];
     cache.preCount = 0;
     cache.followCount = 0;
 
