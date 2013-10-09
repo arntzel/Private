@@ -4,7 +4,7 @@
 #import "Event.h"
 #import "ProposeStart.h"
 
-#define ALPHA  0.5;
+#define ALPHA  0.2;
 
 @protocol EventDetailTimeVoteViewDelegate <NSObject>
 
