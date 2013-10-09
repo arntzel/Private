@@ -98,7 +98,7 @@ static UserModel * instance;
     LOG_D(@"url=%@", url);
 
     NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
-    if(self.device_token == nil) {
+    if(self.device_token != nil) {
         [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
     }
 
@@ -122,7 +122,7 @@ static UserModel * instance;
     LOG_D(@"url=%@", url);
     
     NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
-    if(self.device_token == nil) {
+    if(self.device_token != nil) {
         [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
     }
 
