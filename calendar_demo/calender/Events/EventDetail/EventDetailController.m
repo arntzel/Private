@@ -26,6 +26,7 @@
 #import "Location.h"
 #import "AddLocationViewController.h"
 #import "DetailInviteesController.h"
+#import "DetailVoteViewController.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
 {
@@ -337,7 +338,7 @@
 }
 
 #pragma mark -
-#pragma mark EventDetailCommentConformViewDelegate
+#pragma mark EventDetailTimeViewDelegate
 -(void) onProposeNewTime
 {
     LOG_D(@"onProposeNewTime");
@@ -360,6 +361,19 @@
     
     [tempEventDate release];
 }
+
+-(void) onVoteListClick
+{
+    DetailVoteViewController *controller = [[DetailVoteViewController alloc] initWithNibName:@"DetailVoteViewController" bundle:Nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+-(void) onVoteTimeClick
+{
+    
+}
+
 
 - (void)setEventDate:(ProposeStart *)eventDate
 {

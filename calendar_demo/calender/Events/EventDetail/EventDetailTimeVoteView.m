@@ -143,7 +143,7 @@
     LOG_D(@"singleTapEventTimeLabel");
 
     if(self.delegate != nil) {
-        [self.delegate onVoteTimeClick:_eventTime];
+        [self.delegate onVoteTimeClick];
     }
 }
 
@@ -152,7 +152,7 @@
     LOG_D(@"singleTapHeaderListView");
 
     if(self.delegate != nil) {
-        [self.delegate onVoteListClick:_eventTime];
+        [self.delegate onVoteListClick];
     }
 }
 

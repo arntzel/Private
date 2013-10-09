@@ -15,6 +15,10 @@
 
 -(void) onEventChanged:(Event *) event;
 
+-(void) onVoteListClick;
+
+-(void) onVoteTimeClick;
+
 @end
 
 @interface EventDetailTimeView : UIView
