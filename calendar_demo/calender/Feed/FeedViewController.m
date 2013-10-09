@@ -318,7 +318,12 @@
 #pragma mark CoreDataModelDelegate
 -(void) onCoreDataModelChanged
 {
-    [tableView reloadData];
+    NSDate * date = [tableView getFirstVisibleDay];
+    if (date == nil) {
+        date = [NSDate date];
+    }
+    
+    [tableView reloadFeedEventEntitys:date];
     [self.calendarView setNeedsDisplay];
 }
 
