@@ -171,6 +171,13 @@
     return user.id == creator.id;
 }
 
+-(BOOL) isDeclineEvent
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    EventAttendee * atd = [[self.event getAttendeesDic] objectForKey:me.email];
+    return atd.status == -1;
+}
+
 - (void)updateUIByEvent
 {
     [photoView setImageUrl:event.thumbnail_url];
@@ -184,7 +191,8 @@
 
     BOOL isCreator = [self isMyCreatEvent];
 
-    if(self.event.confirmed) {
+    
+    if(self.event.confirmed || [self isDeclineEvent]) {
         conformView.hidden = YES;
     } else {
         conformView.hidden = NO;
@@ -193,6 +201,7 @@
 
     [commentContentView beginLoadComments];
 }
+
 
 -(void) updateEventTimeView
 {
