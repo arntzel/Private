@@ -9,6 +9,7 @@
 #import "LoginMainCreatView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ViewUtils.h"
+#import "Utils.h"
 #import "Model.h"
 #import "CreateUser.h"
 #import "SettingsModel.h"
@@ -56,7 +57,7 @@
 
 - (IBAction)btnSignUpClick:(id)sender {
     
-    if( ![self isValidateEmail:self.textEmail.text]) {
+    if( ![Utils isValidateEmail:self.textEmail.text]) {
         return;
     }
     
@@ -103,7 +104,7 @@
 
 - (void) textFieldDidChange:(UITextField *) TextField
 {
-    if ([self isValidateEmail:TextField.text]) {
+    if ([Utils isValidateEmail:TextField.text]) {
         TextField.textColor = [UIColor blackColor];
     } else {
         TextField.textColor = [UIColor redColor];
@@ -186,15 +187,6 @@
     } else {
         self.imageViewAddPhoto.image = nil;
     }
-}
-
--(BOOL)isValidateEmail:(NSString *)email
-
-{
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
-    return [emailTest evaluateWithObject:email];
-    
 }
 
 

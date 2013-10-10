@@ -25,6 +25,8 @@
 
 #import "TPKeyboardAvoidingScrollView.h"
 
+#import "Utils.h"
+
 @interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
     
@@ -370,19 +372,36 @@
 
 - (void)btnForgotPasswordDidClick
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password" message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password"
+                                                        message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n\n"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
     
 
-    
 //    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
-    
+
     self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 30)];
     [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
-    [self.alertTextField setPlaceholder:@"email"];
+    [self.alertTextField setPlaceholder:@"Please input your email"];
+
+    [self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+
     [alertView addSubview:self.alertTextField];
 }
+
+
+- (void) textFieldDidChange:(UITextField *) TextField
+{
+    if ([Utils isValidateEmail:TextField.text]) {
+        TextField.textColor = [UIColor blackColor];
+    } else {
+        TextField.textColor = [UIColor redColor];
+    }
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -391,7 +410,23 @@
         [self swithFromCreateViewToSigninView];
     } else {
         if (buttonIndex == 1) {
+
+            NSString * email = self.alertTextField.text;
+
             NSLog(@"%@", self.alertTextField.text);
+
+            [[UserModel getInstance] resetpassword:email andCallback:^(NSInteger error) {
+
+                if(error == 0) {
+
+                    NSString * msg = @"We have sent you an e-mail. If you do not receive it within a few minutes, contact us at feedback@calvinapp.com";
+
+                    [Utils showUIAlertView:@"" andMessage:msg];
+
+                } else {
+                     [Utils showUIAlertView:@"Warning" andMessage:@"Reset password failed, please try again."];
+                }
+            }];
         }
     }
 }

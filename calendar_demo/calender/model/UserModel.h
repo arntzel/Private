@@ -72,4 +72,7 @@
 
 -(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback;
 
+
+-(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback;
+
 @end
