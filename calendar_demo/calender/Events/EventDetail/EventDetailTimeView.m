@@ -16,10 +16,11 @@
 #import "EventDetailTimeVoteView.h"
 
 #import "Utils.h"
+#import "LogUtil.h"
 #import "Model.h"
 #import "UserModel.h"
 
-@interface EventDetailTimeView() <EventDetailTimeVoteViewDelegate>
+@interface EventDetailTimeView() <EventDetailTimeVoteViewDelegate, UIAlertViewDelegate>
 {
 
 
@@ -31,6 +32,8 @@
     Event * _event;
 
     UIActivityIndicatorView * _indicatorView;
+    
+    ProposeStart * _finalizeTime;
 }
 
 - (id)init
@@ -53,6 +56,7 @@
 {
     [_event release];
     [_indicatorView release];
+    [_finalizeTime release];
     [super dealloc];
 }
 
@@ -197,6 +201,25 @@
 
 -(void) onVoteTimeFinalize:(ProposeStart *) eventTime
 {
+    
+    if(_finalizeTime != nil) {
+        [_finalizeTime release];
+    }
+    
+    _finalizeTime = [eventTime retain];
+    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to finalize this event?"
+                                                  message:@"Finalizing this event will add it to all invitee's calendars"
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                        otherButtonTitles:@"Finalize",nil];
+    
+    [alert show];
+    [alert release];
+}
+
+-(void) finalizeEvent:(ProposeStart *) eventTime
+{
     LOG_D(@"onVoteTimeFinalize");
 
     int eventID = _event.id;
@@ -209,16 +232,12 @@
         if(error == 0) {
             [self.delegate onEventChanged:newEvent];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"Server or network error!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
+            [Utils showUIAlertView:@"Error" andMessage:@"Server or network error!"];
         }
     }];
 }
+
+
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
@@ -245,6 +264,8 @@
             
             _event.propose_starts = array;
             [array release];
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Delete failed, please try again!"];
         }
         
         [eventTime release];
@@ -290,7 +311,7 @@
             [self updateView];
             
         } else {
-            
+            [Utils showUIAlertView:@"Error" andMessage:@"Vote failed, please try again!"];
         }
         
         [eventTime release];
@@ -298,4 +319,15 @@
     }];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LOG_D(@"alertView, buttonIndex=%d", buttonIndex);
+    
+    if(buttonIndex == 1) {
+        [self finalizeEvent:_finalizeTime];
+    } else {
+        [_finalizeTime release];
+        _finalizeTime = nil;
+    }
+}
 @end

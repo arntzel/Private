@@ -866,6 +866,10 @@ static Model * instance;
     
     NSDictionary * dict = [cmt convent2Dic];
     NSString * postContent = [Utils dictionary2String:dict];
+    
+    LOG_D(@"createComment postContent=%@", postContent);
+
+    
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
