@@ -123,6 +123,15 @@
 }
 
 
+-(NSString *) getVoteTimeLabel
+{
+    NSString * startTime = [Utils formateTimeAMPM:self.start];
+    NSString * endTime = [Utils formateTimeAMPM:[self getEndTime]];
+    NSString * day =  [Utils formateDay:self.start];
+    NSString * lable = [NSString stringWithFormat:@"%@-%@ %@", startTime, endTime, day];
+    return lable;
+}
+
 - (NSString *)parseStartTimeString
 {
     

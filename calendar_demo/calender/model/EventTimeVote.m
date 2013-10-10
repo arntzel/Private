@@ -7,6 +7,7 @@
 //
 
 #import "EventTimeVote.h"
+#import "Utils.h"
 
 @implementation EventTimeVote
 

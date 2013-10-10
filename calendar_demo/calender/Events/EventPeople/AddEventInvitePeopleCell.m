@@ -71,4 +71,9 @@
     [super setSelected:selected animated:NO];
 }
 
+- (void)setHeaderImageUrl:(NSString *)url
+{
+     [self.peopleHeader setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"header.png"]];
+}
+
 @end

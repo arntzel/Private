@@ -300,7 +300,7 @@ static Model * instance;
     
     NSString * strLastmodifyTime = [Utils formateDate:lastmodifyTime];
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=1000&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=50&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
 
     LOG_D(@"url=%@", url);
 

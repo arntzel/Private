@@ -475,6 +475,8 @@
     LOG_D(@"onInviteeViewClicked");
     
     DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
+    inviteesController.event = self.event;
+    
     [self.navigationController pushViewController:inviteesController animated:YES];
     [inviteesController release];
 }

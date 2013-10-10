@@ -23,5 +23,6 @@
 
 - (void) refreshView: (AddEventInvitePeople*) user;
 
+- (void)setHeaderImageUrl:(NSString *)url;
 
 @end

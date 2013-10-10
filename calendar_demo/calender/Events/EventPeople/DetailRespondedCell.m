@@ -43,7 +43,7 @@
 
 - (void)setHeaderImageUrl:(NSString *)url
 {
-    [self.peopleHeader setImageWithURL:[NSURL URLWithString:url]];
+    [self.peopleHeader setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"header.png"]];
 }
 
 - (void)setName:(NSString *)name
@@ -78,6 +78,9 @@
         frame = self.frame;
         frame.size.height = self.agreeTimeLabel.frame.origin.y + self.agreeTimeLabel.frame.size.height + 10;
         self.frame = frame;
+        
+
+        self.agreeTimeLabel.text = [self getTimesLabel:array];
     }
 }
 
@@ -115,7 +118,22 @@
             frame.size.height = self.declindTimeLabel.frame.origin.y + self.declindTimeLabel.frame.size.height + 10;
             self.frame = frame;
         }
+        
+        self.declindTimeLabel.text = [self getTimesLabel:array];
     }
 }
 
+-(NSString *) getTimesLabel:(NSArray *) times
+{
+    NSMutableString * label = [[NSMutableString alloc] init];
+    
+    for (int i=0; i<times.count;i++) {
+        [label appendString: [times objectAtIndex:i]];
+        if(i != times.count-1) {
+            [label appendString: @", "];
+        }
+    }
+
+    return label;
+}
 @end

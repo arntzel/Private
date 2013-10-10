@@ -30,7 +30,7 @@
 
 - (void)setHeaderImageUrl:(NSString *)url
 {
-    [self.peopleHeader setImageWithURL:[NSURL URLWithString:url]];
+     [self.peopleHeader setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"header.png"]];
 }
 
 - (void)setName:(NSString *)name

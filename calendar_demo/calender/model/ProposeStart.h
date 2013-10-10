@@ -49,6 +49,8 @@
 
 -(NSDate *) getEndTime;
 
+-(NSString *) getVoteTimeLabel;
+
 -(NSDictionary*) convent2Dic;
 
 +(ProposeStart *) parse:(NSDictionary *) json;

@@ -6,6 +6,7 @@
 #import "ViewUtils.h"
 #import "DetailDeclinedCell.h"
 #import "DetailRespondedCell.h"
+#import "ViewUtils.h"
 
 @interface respondedInfo:NSObject
 
@@ -67,26 +68,54 @@
     declinedArray = [NSMutableArray array];
     notRespondedArray = [NSMutableArray array];
     
-    for (NSInteger index = 0; index < 5; index++) {
-        respondedInfo *responded = [[respondedInfo alloc] init];
-        responded.name = @"Dov Mamann";
-        responded.headPhoto = [UIImage imageNamed:[NSString stringWithFormat: @"header%d.jpg", index + 1]];
-        responded.declinedTime = @"Declined 3 hours ago";
+    
+    for(EventAttendee * atd in self.event.attendees) {
+        
+        Contact * contact = atd.contact;
+        respondedInfo * responded = [[respondedInfo alloc] init];
+        
+        responded.name = [contact getReadableUsername];
+        responded.headPhotoUrl = contact.avatar_url;
+        
         
         responded.declinedTimeArray = [NSMutableArray array];
         responded.agreeTimeArray = [NSMutableArray array];
         
-        for (NSInteger i = 0; i < 3; i++) {
-            [responded.declinedTimeArray addObject:@"12:30pm-1:45pm"];
-            [responded.agreeTimeArray addObject:@"5:30pm-7:45pm"];
+        
+        if(atd.status == -1) {
+            //Decline
+            responded.declinedTime = @"Decline";
+            [declinedArray addObject:responded];
+            continue;
         }
         
-        [respondedArray addObject:responded];
-        [declinedArray addObject:responded];
-        [notRespondedArray addObject:responded];
+        BOOL responsed = NO;
+        
+        for(ProposeStart * start in self.event.propose_starts) {
+            for(EventTimeVote * vote in start.votes) {
+                
+                if([vote.email isEqualToString:contact.email]) {
+                    
+                    if(vote.status == 1) {
+                        [responded.agreeTimeArray addObject: [start getVoteTimeLabel]];
+                    } else {
+                        [responded.declinedTimeArray addObject: [start getVoteTimeLabel]];
+                    }
+                    
+                    responsed = YES;
+                    break;
+                }
+            }
+        }
+        
+        if(responsed) {
+            [respondedArray addObject:responded];
+        } else {
+            [notRespondedArray addObject:responded];
+        }
     }
-    
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -127,17 +156,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int count = 0;
     if(section == 0) {
-        return [respondedArray count];
+        count = [respondedArray count];
     }
     else if(section == 1)
     {
-        return [declinedArray count];
+        count = [declinedArray count];
     }
     else
     {
-        return [notRespondedArray count];
+        count = [notRespondedArray count];
     }
+    
+    return count > 0 ? count : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,10 +177,16 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     if (section == 0) {
+        
+        if(respondedArray.count == 0) {
+            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+        }
+        
+        
         DetailRespondedCell *cell = (DetailRespondedCell *)[ViewUtils createView:@"DetailRespondedCell"];
         respondedInfo *responded = [respondedArray objectAtIndex:row];
         [cell setName:responded.name];
-        [cell setHeaderImage:responded.headPhoto];
+        [cell setHeaderImageUrl:responded.headPhotoUrl];
         [cell setAgreeTime:responded.agreeTimeArray];
         [cell setDeclindTime:responded.declinedTimeArray];
         
@@ -156,22 +194,31 @@
         return cell;
     }
     else if(section == 1) {
+        
+        if(declinedArray.count == 0) {
+            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+        }
+        
         DetailDeclinedCell *cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
         
         respondedInfo *responded = [declinedArray objectAtIndex:row];
         [cell setName:responded.name];
-        [cell setHeaderImage:responded.headPhoto];
+        [cell setHeaderImageUrl:responded.headPhotoUrl];
         [cell setDeclinedTimeString:responded.declinedTime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else
     {
+        if(notRespondedArray.count == 0) {
+            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+        }
+        
         AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
         
         respondedInfo *responded = [notRespondedArray objectAtIndex:row];
         cell.peopleName.text = responded.name;
-        cell.peopleHeader.image = responded.headPhoto;
+        [cell setHeaderImageUrl:responded.headPhotoUrl];
         [cell.btnSelect setHidden:YES];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
