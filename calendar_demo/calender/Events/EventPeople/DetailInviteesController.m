@@ -7,6 +7,7 @@
 #import "DetailDeclinedCell.h"
 #import "DetailRespondedCell.h"
 #import "ViewUtils.h"
+#import "Utils.h"
 
 @interface respondedInfo:NSObject
 
@@ -84,7 +85,9 @@
         
         if(atd.status == -1) {
             //Decline
-            responded.declinedTime = @"Decline";
+            
+            NSString * time = [Utils getTimeText:atd.modified];
+            responded.declinedTime = [NSString stringWithFormat:@"Declined %@", time];
             [declinedArray addObject:responded];
             continue;
         }
