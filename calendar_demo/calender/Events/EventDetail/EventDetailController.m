@@ -420,8 +420,35 @@
 -(void) onDeclineTime
 {
     LOG_D(@"onDeclineTime");
+    
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    for(EventAttendee * atd in self.event.attendees) {
+        
+        if([atd.contact.email isEqualToString:me.email]) {
+            [self declineEvent:atd];
+            break;
+        }
+    }
 }
 
+-(void) declineEvent:(EventAttendee *) atd
+{
+    [self showIndicatorView];
+    
+    [[Model getInstance] updateEventAttendeeStatus:atd.id andInviteeKey:atd.invite_key andStatus:-1 andCallback:^(NSInteger error) {
+        
+        [self hideIndicatorView];
+        
+        if(error == 0) {
+            atd.status = -1;
+            [self updateUIByEvent];
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
+        }
+    }];
+}
 
 #pragma mark -
 #pragma mark DetailMoreAction

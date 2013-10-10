@@ -21,6 +21,7 @@
 
 @property(strong) NSDate * modified;
 
+@property(strong) NSString * invite_key;
 
 -(NSDictionary*)convent2Dic;
 

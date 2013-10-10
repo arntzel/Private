@@ -21,7 +21,7 @@
     atd.contact  = [Contact parseContact:[json objectForKey:@"contact"]];
 
     atd.modified = [Utils parseNSDate:[json objectForKey:@"modified"]];
-
+    atd.invite_key = [json objectForKey:@"invite_key"];
     return atd;
 }
 

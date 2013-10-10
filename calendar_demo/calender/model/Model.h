@@ -164,6 +164,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) updateLocation:(int) eventID Location:(Location *) location andCallback:(void (^)(NSInteger error))callback;
 
+-(void) updateEventAttendeeStatus:(int) atdID andInviteeKey:(NSString *) invite_key andStatus:(int) status andCallback:(void (^)(NSInteger error))callback;
 
 
 -(EventModel *) getEventModel;
