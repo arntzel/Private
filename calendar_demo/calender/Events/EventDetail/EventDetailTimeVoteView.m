@@ -101,6 +101,31 @@
     NSMutableArray * urls = [[NSMutableArray alloc] init];
     NSMutableArray * statuses = [[NSMutableArray alloc] init];
     
+    //如果creator finalize一个event, 那么相当于他也为这个time投票了
+    if(_eventTime.finalized == 1) {
+        
+        NSString * email = event.creator.email;
+        BOOL voted = NO;
+        for(EventTimeVote * vote in _eventTime.votes) {
+            if([email isEqualToString:vote.email]) {
+                voted = YES;
+                break;
+            }
+        }
+        
+        if(!voted) {
+            if(event.creator.avatar_url == nil) {
+                [urls addObject: @""];
+            } else {
+                [urls addObject: event.creator.avatar_url];
+            }
+            
+            [statuses addObject: [NSNumber numberWithInt:1]];
+        }
+    }
+    
+    
+    
     for(EventTimeVote * vote in _eventTime.votes) {
 
         EventAttendee * attendee = [[event getAttendeesDic] objectForKey:vote.email];

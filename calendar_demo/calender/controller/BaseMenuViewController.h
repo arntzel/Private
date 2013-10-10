@@ -3,6 +3,7 @@
 #import <UIKit/UIKit.h>
 #import "Navigation.h"
 #import "BaseUIViewController.h"
+#import "LogUtil.h"
 
 @protocol BaseMenuViewControllerDelegate <NSObject>
 

@@ -35,7 +35,7 @@
 
 
 //Is the final time of the event
-@property BOOL finalized;
+@property int finalized;
 
 - (NSString *)parseStartTimeString;
 - (NSString *)parseStartDateString;
