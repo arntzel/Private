@@ -19,6 +19,7 @@
 
 @property(strong) Contact * contact;
 
+@property(strong) NSDate * modified;
 
 
 -(NSDictionary*)convent2Dic;

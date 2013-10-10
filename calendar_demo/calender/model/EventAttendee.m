@@ -7,6 +7,7 @@
 //
 
 #import "EventAttendee.h"
+#import "Utils.h"
 
 @implementation EventAttendee
 
@@ -18,6 +19,8 @@
     atd.is_owner = [[json objectForKey:@"is_owner"] boolValue];
     atd.status = [[json objectForKey:@"status"] intValue];
     atd.contact  = [Contact parseContact:[json objectForKey:@"contact"]];
+
+    atd.modified = [Utils parseNSDate:[json objectForKey:@"modified"]];
 
     return atd;
 }
