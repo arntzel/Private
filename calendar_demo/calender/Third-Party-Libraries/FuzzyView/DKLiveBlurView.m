@@ -160,14 +160,16 @@
                         change:(NSDictionary *)change context:(void *)context {
     
     // closer to zero, less blur applied
-    [self setBlurLevel:(self.scrollView.contentOffset.y + self.scrollView.contentInset.top) / (2 * CGRectGetHeight(self.bounds) / 3)];
+    CGFloat blurLevel = (self.scrollView.contentOffset.y + self.scrollView.contentInset.top) / (2 * CGRectGetHeight(self.bounds) / 3);
+    [self setBlurLevel:blurLevel];
 }
 
 - (void)setBlurLevel:(float)blurLevel {
     self.backgroundImageView.alpha = blurLevel;
     
     if (self.isGlassEffectOn) {
-        self.backgroundGlassView.alpha = MAX(0.0, MIN(self.backgroundImageView.alpha - self.initialGlassLevel, self.initialGlassLevel));
+        CGFloat blurAlpha = MAX(0.0, MIN(self.backgroundImageView.alpha - self.initialGlassLevel, self.initialGlassLevel));
+        self.backgroundGlassView.alpha = blurAlpha;
     }
 }
 

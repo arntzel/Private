@@ -24,6 +24,7 @@
 - (void)addCreatorAction;
 
 - (void)setImage:(UIImage *)image;
+- (UIImage *)getImage;
 - (void)setImageUrl:(NSString *) imageUrl;
 
 - (void)setScrollView:(UIScrollView *)_scrollView;

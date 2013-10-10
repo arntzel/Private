@@ -10,5 +10,6 @@
 
 @property(retain, nonatomic) Event * event;
 @property(retain, nonatomic) ProposeStart * eventTime;
+@property(retain, nonatomic) UIImage *titleBgImage;
 
 @end

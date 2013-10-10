@@ -1,5 +1,5 @@
 
-#import "NavgationBar.h"
+#import "EventDateNavigationBar+GlassStyle.h"
 #import "DetailVoteViewController.h"
 
 #import "AddEventInvitePeopleHeaderView.h"
@@ -14,22 +14,27 @@
 
 @interface DetailVoteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
-                                           NavgationBarDelegate>
+                                           EventDateNavigationBarDelegate>
 {
     NSMutableArray *availablePeople;
     NSMutableArray *unAvailablePeople;
+    
+    EventDateNavigationBar * navBar;
 }
 
 @end
 
 @implementation DetailVoteViewController
 
-
-
+- (void)awakeFromNib
+{
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor clearColor]];
     [self initData];
     
     NSString * startTime = [Utils formateTimeAMPM: self.eventTime.start];
@@ -38,14 +43,10 @@
     NSString * time = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
     NSString * day = [Utils formateDay2:self.eventTime.start];
     
-    NSString * title = [NSString stringWithFormat:@"%@\n%@", time , day];
-    
-    NavgationBar * navBar = [[NavgationBar alloc] init];
-    [navBar setTitle:title];
-    
-    [navBar setLeftBtnText:@"Cancel"];
-    [navBar setRightBtnHidden:YES];
-    
+    navBar = [EventDateNavigationBar creatView];
+    [navBar setTitle:time];
+    [navBar setDescription:day];
+    [navBar setGlassImage:self.titleBgImage];
     [self.view addSubview:navBar];
     navBar.delegate = self;
 
@@ -176,14 +177,9 @@
     return 2;
 }
 
-- (void)leftNavBtnClick
+- (void)leftBtnPress:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)rightNavBtnClick
-{
-
 }
 
 @end

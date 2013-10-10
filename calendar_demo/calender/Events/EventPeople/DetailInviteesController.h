@@ -15,6 +15,8 @@
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (retain, nonatomic) UIImage *titleBgImage;
+
 
 @property (nonatomic, retain) Event * event;
 

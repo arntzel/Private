@@ -100,6 +100,11 @@
     [self.photoView setOriginalImage:image];
 }
 
+- (UIImage *)getImage
+{
+    return self.photoView.originalImage;
+}
+
 - (void)setDefaultImage
 {
     [self setImage:[self getRandomPhoto]];

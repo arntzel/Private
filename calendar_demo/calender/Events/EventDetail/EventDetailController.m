@@ -380,6 +380,7 @@
     DetailVoteViewController *controller = [[DetailVoteViewController alloc] initWithNibName:@"DetailVoteViewController" bundle:nil];
     controller.eventTime = eventTime;
     controller.event = self.event;
+    controller.titleBgImage = [photoView getImage];
     
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
@@ -512,6 +513,7 @@
     
     DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
     inviteesController.event = self.event;
+    inviteesController.titleBgImage = [photoView getImage];
     
     [self.navigationController pushViewController:inviteesController animated:YES];
     [inviteesController release];

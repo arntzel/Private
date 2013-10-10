@@ -1,5 +1,5 @@
 
-#import "NavgationBar.h"
+#import "EventNavigationBar+GlassStyle.h"
 #import "DetailInviteesController.h"
 #import "AddEventInvitePeopleHeaderView.h"
 #import "AddEventInvitePeopleCell.h"
@@ -27,7 +27,7 @@
 
 @interface DetailInviteesController ()<UITableViewDelegate,
                                            UITableViewDataSource,
-                                           NavgationBarDelegate>
+                                           EventNavigationBarDelegate>
 {
     NSMutableArray *respondedArray;
     NSMutableArray *declinedArray;
@@ -43,10 +43,10 @@
     [super viewDidLoad];
     [self initData];
     
-    NavgationBar * navBar = [[NavgationBar alloc] init];
+    EventNavigationBar * navBar = [EventNavigationBar creatView];
     [navBar setTitle:@"Invitees"];
-    [navBar setLeftBtnText:@"Cancel"];
-    [navBar setRightBtnText:@"Add"];
+    [navBar setGlassImage:self.titleBgImage];
+    
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -233,14 +233,9 @@
     return 3;
 }
 
-- (void)leftNavBtnClick
+- (void)leftBtnPress:(id)sender;
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)rightNavBtnClick
-{
-
 }
 
 @end
