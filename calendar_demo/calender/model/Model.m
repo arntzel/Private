@@ -1093,4 +1093,45 @@ static Model * instance;
 }
 
 
+-(void) updateLocation:(int) eventID Location:(Location *) location andCallback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"updateLocation url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSDictionary * loctionDic = [location convent2Dic];
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:loctionDic forKey:@"location"];
+    
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    LOG_D(@"updateLocation: %@", postContent);
+    
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 202) {
+            
+            callback(ERROCODE_OK);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+            
+            callback(ERROCODE_NETWORK);
+        }
+        
+    }];
+}
+
 @end

@@ -5,6 +5,8 @@
 //  Created by zyax86 on 13-7-27.
 //  Copyright (c) 2013年 zyax86. All rights reserved.
 //
+#import "LogUtil.h"
+#import "Utils.h"
 
 #import "EventDetailController.h"
 
@@ -468,8 +470,22 @@
 #pragma mark AddLocationViewControllerDelegate
 - (void)setLocation:(Location *)location
 {
-    [invitePlaceContentView setLocation:location];
-    //TODO:
+    
+    [self showIndicatorView];
+    
+    [location retain];
+    [[Model getInstance] updateLocation:self.eventID Location:location andCallback:^(NSInteger error) {
+        
+        if(error == 0) {
+            [invitePlaceContentView setLocation:location];
+            self.event.location = location;
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Update Location Error!"];
+        }
+        
+        [self hideIndicatorView];
+        [location release];
+    }];
 }
 
 #pragma mark -
