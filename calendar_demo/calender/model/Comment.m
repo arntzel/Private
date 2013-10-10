@@ -17,7 +17,7 @@
     NSDate* d1 = self.createTime;
     NSDate* d2 = cmt.createTime;
     
-    return [d2 compare:d1];
+    return [d1 compare:d2];
 }
 
 -(NSDictionary*)convent2Dic
