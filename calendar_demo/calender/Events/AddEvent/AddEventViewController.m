@@ -323,6 +323,13 @@
 //Add new EventDate
 - (void)setEventDate:(ProposeStart *)eventDate_
 {
+    for(ProposeStart * p in [timesView getEventDates]) {
+        if([eventDate_.start isEqualToDate:p.start]) {
+            [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
+            return;
+        }
+    }
+    
     [timesView addEventDate:eventDate_];
     [self layOutSubViews];
 }

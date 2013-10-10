@@ -379,6 +379,14 @@
 
 - (void)setEventDate:(ProposeStart *)eventDate
 {
+    
+    for(ProposeStart * p in self.event.propose_starts) {
+        if([eventDate.start isEqualToDate:p.start]) {
+            [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
+            return;
+        }
+    }
+    
 
     [eventDate retain];
 
@@ -395,7 +403,7 @@
             self.event.propose_starts = [array sortedArrayUsingSelector:@selector(compare:)];
 
         } else {
-            //TODO::
+            [Utils showUIAlertView:@"Error" andMessage:@"Add new event time failed, please try again!"];
         }
         
         [timeContentView updateView:[self isMyCreatEvent] andEvent:self.event];
