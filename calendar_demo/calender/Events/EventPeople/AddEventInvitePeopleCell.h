@@ -1,11 +1,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "User.h"
+#import "Contact.h"
 
 @interface AddEventInvitePeople : NSObject
 
-@property(nonatomic, retain) User *user;
+@property(nonatomic, retain) Contact *user;
 @property(nonatomic, assign) BOOL selected;
 
 

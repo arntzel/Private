@@ -15,9 +15,9 @@
 
 -(void) onEventChanged:(Event *) event;
 
--(void) onVoteListClick;
+-(void) onVoteListClick:(ProposeStart *) eventTime;
 
--(void) onVoteTimeClick;
+-(void) onVoteTimeClick:(ProposeStart *) eventTime;
 
 @end
 

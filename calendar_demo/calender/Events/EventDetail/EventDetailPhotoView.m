@@ -156,7 +156,7 @@
     [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
 
 
-    NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
+    //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
 
     CGFloat maxFont = 20;
     CGFloat minFont = 13;

@@ -183,20 +183,16 @@
 
 #pragma mark -
 #pragma mark EventDetailTimeVoteViewDelegate
--(void) onVoteListClick
+-(void) onVoteListClick:(ProposeStart *) eventTime
 {
     LOG_D(@"onVoteListClick");
-    if ([self.delegate respondsToSelector:@selector(onVoteListClick)]) {
-        [self.delegate onVoteListClick];
-    }
+    [self.delegate onVoteListClick:eventTime];
 }
 
--(void) onVoteTimeClick
+-(void) onVoteTimeClick:(ProposeStart *) eventTime
 {
     LOG_D(@"onVoteTimeClick");
-    if ([self.delegate respondsToSelector:@selector(onVoteTimeClick)]) {
-        [self.delegate onVoteTimeClick];
-    }
+    [self.delegate onVoteTimeClick:eventTime];
 }
 
 -(void) onVoteTimeFinalize:(ProposeStart *) eventTime

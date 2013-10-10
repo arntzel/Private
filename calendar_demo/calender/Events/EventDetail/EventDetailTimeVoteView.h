@@ -8,9 +8,9 @@
 
 @protocol EventDetailTimeVoteViewDelegate <NSObject>
 
--(void) onVoteListClick;
+-(void) onVoteListClick:(ProposeStart *) eventTime;
 
--(void) onVoteTimeClick;
+-(void) onVoteTimeClick:(ProposeStart *) eventTime;
 
 -(void) onVoteTimeFinalize:(ProposeStart *) eventTime;
 

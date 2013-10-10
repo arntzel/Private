@@ -364,16 +364,21 @@
     [tempEventDate release];
 }
 
--(void) onVoteListClick
+-(void) onVoteListClick:(ProposeStart *) eventTime
 {
-    DetailVoteViewController *controller = [[DetailVoteViewController alloc] initWithNibName:@"DetailVoteViewController" bundle:Nil];
+    LOG_D(@"EventDetailController onVoteListClick");
+    
+    DetailVoteViewController *controller = [[DetailVoteViewController alloc] initWithNibName:@"DetailVoteViewController" bundle:nil];
+    controller.eventTime = eventTime;
+    controller.event = self.event;
+    
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
 
--(void) onVoteTimeClick
+-(void) onVoteTimeClick:(ProposeStart *) eventTime
 {
-    
+    LOG_D(@"EventDetailController onVoteTimeClick");
 }
 
 

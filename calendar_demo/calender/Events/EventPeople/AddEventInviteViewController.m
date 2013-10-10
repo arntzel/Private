@@ -114,7 +114,7 @@
     [calvinUsers removeAllObjects];
     User * me = [[UserModel getInstance] getLoginUser];
 
-    for (User *user in userArray) {
+    for (Contact *user in userArray) {
 
         if(user.id == me.id) {
             //exclude creator in the event
@@ -140,9 +140,9 @@
     //TODO:
 }
 
-- (BOOL)isUserSelected:(User *)user
+- (BOOL)isUserSelected:(Contact *)user
 {
-    for (User* selectedUser in selectedUsers) {
+    for (Contact* selectedUser in selectedUsers) {
         if (selectedUser.id == user.id) {
             return YES;
         }
@@ -171,14 +171,14 @@
     searchText = [searchText lowercaseString];
     
     for(AddEventInvitePeople * people in calvinUsers) {
-        NSString * username = [people.user.username lowercaseString];
+        NSString * username = [people.user.email lowercaseString];
         if( [username hasPrefix:searchText]) {
             [calvinSearchedUsers addObject:people];
         }
     }
     
     for(AddEventInvitePeople * people in contactUsers) {
-        NSString * username = [people.user.username lowercaseString];
+        NSString * username = [people.user.email lowercaseString];
         if( [username hasPrefix:searchText]) {
             [contactSearchedUsers addObject:people];
         }
@@ -335,7 +335,7 @@
     
     if (!obj) {
         people = [[AddEventInvitePeople alloc] init];
-        people.user = [[User alloc] init];
+        people.user = [[Contact alloc] init];
         people.user.first_name = string;
     }
     else

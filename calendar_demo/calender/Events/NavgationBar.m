@@ -40,6 +40,12 @@
         
         labelTitle = [[UILabel alloc] initWithFrame:frame];
         [labelTitle setBackgroundColor:[UIColor clearColor]];
+        
+        labelTitle.textAlignment = UITextAlignmentCenter;
+        //自动折行设置
+        labelTitle.lineBreakMode = UILineBreakModeWordWrap;
+        labelTitle.numberOfLines = 0;
+        
         [self addSubview:labelTitle];
         labelTitle.text = @"NEW EVENT";
         [labelTitle setTextAlignment:NSTextAlignmentCenter];

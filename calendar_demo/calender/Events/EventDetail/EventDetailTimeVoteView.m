@@ -6,7 +6,7 @@
 #import "EventDetailFinailzeView2.h"
 
 #import "Utils.h"
-
+#import "LogUtil.h"
 #import "UserModel.h"
 
 @interface EventDetailTimeVoteView() <EventDetailFinailzeViewDelegate>
@@ -168,7 +168,7 @@
     LOG_D(@"singleTapEventTimeLabel");
 
     if(self.delegate != nil) {
-        [self.delegate onVoteTimeClick];
+        [self.delegate onVoteTimeClick:_eventTime];
     }
 }
 
@@ -177,7 +177,7 @@
     LOG_D(@"singleTapHeaderListView");
 
     if(self.delegate != nil) {
-        [self.delegate onVoteListClick];
+        [self.delegate onVoteListClick:_eventTime];
     }
 }
 

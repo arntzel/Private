@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LogUtil.h"
 
 @interface BaseUIViewController : UIViewController
 

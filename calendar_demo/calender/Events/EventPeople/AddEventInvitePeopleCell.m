@@ -38,18 +38,19 @@
     } else {
         self.labNoData.hidden = YES;
     }
+    
     [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
     self.selectedBackgroundView = view;
     [view setBackgroundColor:[UIColor clearColor]];
     
-    User * user = iuser.user;
+    Contact * user = iuser.user;
     
     self.peopleName.text = [user getReadableUsername];
     
     NSString * headerUrl = user.avatar_url;
     
-    if([headerUrl isKindOfClass: [NSNull class]]) {
+    if(headerUrl == nil) {
         self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
     } else {
         [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
@@ -62,7 +63,7 @@
         self.btnSelect.image = [UIImage imageNamed:@"btn_ok_selected"];
     } else {
         self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
-    }
+    }    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

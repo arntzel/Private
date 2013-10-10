@@ -8,18 +8,8 @@
 #import "DetailVoteCell.h"
 #import "DetailVoteCreatorCell.h"
 
-@interface respondedPeople:NSObject
-
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) UIImage *headPhoto;
-@property(nonatomic,assign) BOOL available;
-@property(nonatomic,assign) BOOL isCreator;
-
-@end
-
-@implementation respondedPeople
-
-@end
+#import "Utils.h"
+#import "LogUtil.h"
 
 
 @interface DetailVoteViewController ()<UITableViewDelegate,
@@ -34,13 +24,25 @@
 
 @implementation DetailVoteViewController
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initData];
     
+    NSString * startTime = [Utils formateTimeAMPM: self.eventTime.start];
+    NSString * endTime = [Utils formateTimeAMPM: [self.eventTime getEndTime]];
+    
+    NSString * time = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    NSString * day = [Utils formateDay2:self.eventTime.start];
+    
+    NSString * title = [NSString stringWithFormat:@"%@\n%@", time , day];
+    
     NavgationBar * navBar = [[NavgationBar alloc] init];
-    [navBar setTitle:@"Vote"];
+    [navBar setTitle:title];
+    
     [navBar setLeftBtnText:@"Cancel"];
     [navBar setRightBtnHidden:YES];
     
@@ -53,28 +55,25 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidUnload {
-    [self setTableView:nil];
-    [super viewDidUnload];
-}
-
 
 - (void)initData
 {
     availablePeople = [NSMutableArray array];
     unAvailablePeople = [NSMutableArray array];
     
-    for (NSInteger index = 0; index < 5; index++) {
-
-        respondedPeople *responded = [[respondedPeople alloc] init];
-        if (index == 0) {
-            responded.isCreator = YES;
-        }
-        responded.name = @"Dov Mamann";
-        responded.headPhoto = [UIImage imageNamed:[NSString stringWithFormat: @"header%d.jpg", index + 1]];
+    
+    for(EventTimeVote * vote in self.eventTime.votes) {
+        EventAttendee * attendee = [[self.event getAttendeesDic] objectForKey:vote.email];
+        Contact * contact = attendee.contact;
         
-        [availablePeople addObject:responded];
-        [unAvailablePeople addObject:responded];
+        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+        people.user = contact;
+        
+        if(vote.status == 1) {
+            [availablePeople addObject:people];
+        } else {
+            [unAvailablePeople addObject:people];
+        }
     }
 }
 
@@ -113,50 +112,61 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int count = 0;
     if(section == 0) {
-        return [availablePeople count];
+        count =  [availablePeople count] + 1;
     }
     else
     {
-        return [unAvailablePeople count];
+        count = [unAvailablePeople count];
     }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
+    
     if (section == 0) {
-        respondedPeople *responded = [availablePeople objectAtIndex:row];
-        if (responded.isCreator) {
-            DetailDeclinedCell *cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
-            [cell setName:responded.name];
-            [cell setHeaderImage:responded.headPhoto];
+        
+        if(row == 0) {
+            
+            User * creator = self.event.creator;
+            
+            DetailDeclinedCell * cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
+            [cell setName: [creator getReadableUsername]];
+            [cell setHeaderImageUrl:creator.avatar_url];
             [cell setAvaliable:YES];
             cell.declinedTime.text = @"Event Creator";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
-        }
-        else
-        {
+            
+        } else {
+            AddEventInvitePeople * people = [availablePeople objectAtIndex:row-1];
+            
             AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
-            cell.peopleName.text = responded.name;
-            cell.peopleHeader.image = responded.headPhoto;
+            [cell refreshView:people];
+            [cell.btnSelect setHidden:YES];
+            
             [cell setAvaliable:YES];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            [cell.btnSelect setHidden:YES];
+            
+            
             return cell;
         }
     }
     else
     {
-        respondedPeople *responded = [availablePeople objectAtIndex:row];
+        AddEventInvitePeople * people = [unAvailablePeople objectAtIndex:row];
         AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
-        cell.peopleName.text = responded.name;
-        cell.peopleHeader.image = responded.headPhoto;
+        [cell refreshView:people];
+        [cell.btnSelect setHidden:YES];
+        
         [cell setAvaliable:NO];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [cell.btnSelect setHidden:YES];
+
         return cell;
     }
 }
