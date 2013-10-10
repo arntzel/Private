@@ -317,5 +317,24 @@ static UserModel * instance;
 
 
 
+-(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback
+{
 
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/password/reset/", HOST];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+
+    NSString * postContent = [NSString stringWithFormat:@"email=%@", email];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        if(status == 200) {
+            callback(ERROCODE_OK);
+        } else {
+            callback(-1);
+        }
+    }];
+}
 @end

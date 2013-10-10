@@ -115,7 +115,7 @@
 {
     int count = 0;
     if(section == 0) {
-        count =  [availablePeople count] + 1;
+        count =  [availablePeople count];
     }
     else
     {
@@ -131,11 +131,13 @@
     NSInteger row = indexPath.row;
     
     if (section == 0) {
-        
-        if(row == 0) {
-            
-            User * creator = self.event.creator;
-            
+
+        AddEventInvitePeople * people = [availablePeople objectAtIndex:row];
+
+        User * creator = self.event.creator;
+
+        if([people.user.email isEqualToString:creator.email]) {
+
             DetailDeclinedCell * cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
             [cell setName: [creator getReadableUsername]];
             [cell setHeaderImageUrl:creator.avatar_url];
@@ -143,18 +145,16 @@
             cell.declinedTime.text = @"Event Creator";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
-            
+
         } else {
-            AddEventInvitePeople * people = [availablePeople objectAtIndex:row-1];
-            
-            AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
+
+            AddEventInvitePeopleCell * cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
             [cell refreshView:people];
             [cell.btnSelect setHidden:YES];
-            
+
             [cell setAvaliable:YES];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            
-            
+
             return cell;
         }
     }

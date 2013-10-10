@@ -114,4 +114,6 @@
 
 +(id) chekcNullClass:(id) obj;
 
++(BOOL)isValidateEmail:(NSString *)email;
+
 @end

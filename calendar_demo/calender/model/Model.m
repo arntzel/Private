@@ -1003,9 +1003,17 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
+            LOG_D(@"RESP: %@", json);
+
             int pId = [[json objectForKey:@"id"] intValue];
             proposeStat.id = pId;
-            
+
+            EventTimeVote * vote = [[EventTimeVote alloc] init];
+            vote.email = [[UserModel getInstance] getLoginUser].email;
+            vote.status = 1;
+
+            proposeStat.votes = [NSMutableArray arrayWithObject:vote];
+
             callback(ERROCODE_OK, proposeStat);
 
         } else {
