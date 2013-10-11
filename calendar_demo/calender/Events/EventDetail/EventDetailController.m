@@ -457,6 +457,7 @@
         if(error == 0) {
             atd.status = -1;
             [self updateUIByEvent];
+            [self layOutSubViews];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }
