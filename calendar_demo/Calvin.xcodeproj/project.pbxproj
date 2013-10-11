@@ -80,6 +80,7 @@
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
 		76318B2C17E09A69000BC88B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2817E09A69000BC88B /* Default@2x.png */; };
 		76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2917E09A69000BC88B /* Icon@2x.png */; };
+		76411AF5180830D1001C2125 /* ExtendArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 76411AF4180830D1001C2125 /* ExtendArray.m */; };
 		76431DF81806E02B009DAFFE /* EventDateNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76431DF61806E02B009DAFFE /* EventDateNavigationBar.m */; };
 		76431DF91806E02B009DAFFE /* EventDateNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76431DF71806E02B009DAFFE /* EventDateNavigationBar.xib */; };
 		76431DFC1806E680009DAFFE /* nav_bg_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 76431DFB1806E680009DAFFE /* nav_bg_green.png */; };
@@ -534,6 +535,8 @@
 		76318B2717E09A69000BC88B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		76318B2817E09A69000BC88B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		76318B2917E09A69000BC88B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		76411AF3180830D1001C2125 /* ExtendArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendArray.h; sourceTree = "<group>"; };
+		76411AF4180830D1001C2125 /* ExtendArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendArray.m; sourceTree = "<group>"; };
 		76431DF51806E02B009DAFFE /* EventDateNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDateNavigationBar.h; sourceTree = "<group>"; };
 		76431DF61806E02B009DAFFE /* EventDateNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDateNavigationBar.m; sourceTree = "<group>"; };
 		76431DF71806E02B009DAFFE /* EventDateNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDateNavigationBar.xib; sourceTree = "<group>"; };
@@ -2141,6 +2144,8 @@
 				769ABCFF17DF54860033E677 /* LogUtil.h */,
 				769ABD0017DF54860033E677 /* ViewUtils.h */,
 				769ABD0117DF54860033E677 /* ViewUtils.m */,
+				76411AF3180830D1001C2125 /* ExtendArray.h */,
+				76411AF4180830D1001C2125 /* ExtendArray.m */,
 			);
 			name = Utils;
 			path = calender/Utils;
@@ -2647,6 +2652,7 @@
 				769AB92117DF51160033E677 /* PendingEventViewCell.m in Sources */,
 				769AB92317DF51160033E677 /* PendingEventViewCell2.m in Sources */,
 				769AB92517DF51160033E677 /* PendingTableView.m in Sources */,
+				76411AF5180830D1001C2125 /* ExtendArray.m in Sources */,
 				769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */,
 				769ABA1B17DF514C0033E677 /* DataCache.m in Sources */,
 				769ABA2017DF514C0033E677 /* FeedEventEntityExtra.m in Sources */,
