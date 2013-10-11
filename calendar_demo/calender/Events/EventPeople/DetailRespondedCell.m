@@ -66,21 +66,18 @@
         [self upUserNamePlace];
         
         CGRect frame = self.agreeTimeMark.frame;
-        frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 7;
+        frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 5;
         self.agreeTimeMark.frame = frame;
         
+        self.agreeTimeLabel.text = [self getTimesLabel:array];
         frame = self.agreeTimeLabel.frame;
         frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 4;
+        frame.size = [self resizeLabel:self.agreeTimeLabel];
         self.agreeTimeLabel.frame = frame;
-        
-        
         
         frame = self.frame;
         frame.size.height = self.agreeTimeLabel.frame.origin.y + self.agreeTimeLabel.frame.size.height + 10;
         self.frame = frame;
-        
-
-        self.agreeTimeLabel.text = [self getTimesLabel:array];
     }
 }
 
@@ -89,15 +86,17 @@
     if ([array count] > 0) {
         [self.declindTimeMark setHidden:NO];
         [self.declindTimeLabel setHidden:NO];
+        self.declindTimeLabel.text = [self getTimesLabel:array];
         if (self.agreeTimeLabel.hidden == YES) {
             [self upUserNamePlace];
             
             CGRect frame = self.declindTimeMark.frame;
-            frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 7;
+            frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 5;
             self.declindTimeMark.frame = frame;
             
             frame = self.declindTimeLabel.frame;
             frame.origin.y = self.peopleName.frame.origin.y + self.peopleName.frame.size.height + 4;
+            frame.size = [self resizeLabel:self.declindTimeLabel];
             self.declindTimeLabel.frame = frame;
             
             frame = self.frame;
@@ -107,20 +106,26 @@
         else
         {
             CGRect frame = self.declindTimeMark.frame;
-            frame.origin.y = self.agreeTimeLabel.frame.origin.y + self.agreeTimeLabel.frame.size.height + 7;
+            frame.origin.y = self.agreeTimeLabel.frame.origin.y + self.agreeTimeLabel.frame.size.height + 5;
             self.declindTimeMark.frame = frame;
             
             frame = self.declindTimeLabel.frame;
             frame.origin.y = self.agreeTimeLabel.frame.origin.y + self.agreeTimeLabel.frame.size.height + 4;
+            frame.size = [self resizeLabel:self.declindTimeLabel];
             self.declindTimeLabel.frame = frame;
             
             frame = self.frame;
             frame.size.height = self.declindTimeLabel.frame.origin.y + self.declindTimeLabel.frame.size.height + 10;
             self.frame = frame;
         }
-        
-        self.declindTimeLabel.text = [self getTimesLabel:array];
     }
+}
+
+- (CGSize)resizeLabel:(UILabel *)label
+{
+    CGSize size = CGSizeMake(label.frame.size.width, 2000);
+    CGSize labelsize = [label.text sizeWithFont:label.font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+    return labelsize;
 }
 
 -(NSString *) getTimesLabel:(NSArray *) times
@@ -130,7 +135,7 @@
     for (int i=0; i<times.count;i++) {
         [label appendString: [times objectAtIndex:i]];
         if(i != times.count-1) {
-            [label appendString: @", "];
+            [label appendString: @"\n"];
         }
     }
 
