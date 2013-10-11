@@ -346,6 +346,8 @@
 {
     self.event = newEvent;
     [self updateUIByEvent];
+    
+    [[[Model getInstance] getEventModel] synchronizedFromServer];
 }
 
 #pragma mark -
@@ -384,6 +386,7 @@
     
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+    
 }
 
 -(void) onVoteTimeClick:(ProposeStart *) eventTime

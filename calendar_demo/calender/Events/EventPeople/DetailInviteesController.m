@@ -86,7 +86,8 @@
         if(atd.status == -1) {
             //Decline
             
-            NSString * time = [Utils getTimeText:atd.modified];
+            NSDate * localTime = [Utils convertLocalDate:atd.modified];
+            NSString * time = [Utils getTimeText:localTime];
             responded.declinedTime = [NSString stringWithFormat:@"Declined %@", time];
             [declinedArray addObject:responded];
             continue;
