@@ -248,6 +248,8 @@ static Model * instance;
             Event * e = [Event parseEvent:json];
             callback(ERROCODE_OK, e);
             
+        } else if(status == 404) {
+            callback(ERROCODE_EVENT_NOTEXITED, nil);
         } else {
             
             if(data != nil) {

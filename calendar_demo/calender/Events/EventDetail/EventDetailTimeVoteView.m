@@ -62,7 +62,7 @@
     if(_isCreator) {
         [self addFinalzeView];
     } else {
-        [self addConformView];
+        [self addConformView:event];
     }
 
     [self addInviteeListView:event];
@@ -181,7 +181,7 @@
     }
 }
 
-- (void)addConformView
+- (void)addConformView:(Event *)event
 {
     if(_eventTime.finalized == 1) {
 
@@ -211,8 +211,15 @@
         [conformView setVoteStatus:status];
 
         if(status == 0) {
-            [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
-            [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
+
+            if([event isDeclineEvent]) {
+                conformView.tickedBtn.userInteractionEnabled = NO;
+                conformView.crossedbtn.userInteractionEnabled = NO;
+            } else {
+                [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
+                [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
+            }
+
         } else {
             conformView.userInteractionEnabled = NO;
         }
@@ -225,6 +232,8 @@
         }
     }    
 }
+
+
 
 -(void) addFinalView
 {

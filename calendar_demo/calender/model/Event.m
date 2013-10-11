@@ -176,4 +176,12 @@
     return dic;
 }
 
+
+-(BOOL) isDeclineEvent
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    EventAttendee * atd = [[self getAttendeesDic] objectForKey:me.email];
+    return atd.status == -1;
+}
+
 @end
