@@ -29,6 +29,7 @@
 #import "AddLocationViewController.h"
 #import "DetailInviteesController.h"
 #import "DetailVoteViewController.h"
+#import "CoreDataModel.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
 {
@@ -470,6 +471,21 @@
 -(void) deleteEvent
 {
     LOG_D(@"deleteEvent");
+    
+    [self showIndicatorView];
+    [[Model getInstance] deleteEvent:self.eventID andCallback:^(NSInteger error) {
+        
+        [self hideIndicatorView];
+        
+        if(error == 0) {
+            
+            [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Delete event failed."];
+        }
+    }];
 }
 
 -(void) editEvent

@@ -156,6 +156,20 @@
     }
 }
 
+-(void) removeFeedEventEntity:(FeedEventEntity *) feedEvent
+{
+    NSString * day = [Utils formateDay:feedEvent.start];
+    
+    DayFeedEventEntitysWrap * wrap = [self getDayFeedEventEntitysWrap:day];
+    
+    if(wrap != nil) {
+        [wrap removeEventsObject:feedEvent];
+        if(wrap.events.count == 0) {
+            [dict removeObjectForKey:day];
+            allDays = nil;
+        }
+    }
+}
 
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps
 {

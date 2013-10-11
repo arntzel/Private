@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 /**
  Call WebService API to Delete a event
  */
--(void) deleteEvent:(Event *) event andCallback:(void (^)(NSInteger error))callback;
+-(void) deleteEvent:(int) eventID andCallback:(void (^)(NSInteger error))callback;
 
 
 -(void) getUnreadMessages:(void (^)(NSInteger error, NSArray* messages))callback;

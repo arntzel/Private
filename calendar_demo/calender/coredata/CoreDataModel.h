@@ -57,6 +57,8 @@
 -(void) addFeedEventEntity:(FeedEventEntity*) entity;
 
 
+-(void) deleteFeedEventEntity:(int) eventID;
+
 
 //Begin for Message notification
 -(int) getMessageCount;

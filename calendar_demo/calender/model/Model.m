@@ -490,9 +490,9 @@ static Model * instance;
 }
 
 
--(void) deleteEvent:(Event *) event andCallback:(void (^)(NSInteger error))callback
+-(void) deleteEvent:(int) eventID andCallback:(void (^)(NSInteger error))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, event.id];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
 
     LOG_D(@"url=%@", url);
 

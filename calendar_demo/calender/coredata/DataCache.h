@@ -67,6 +67,7 @@
 
 -(void) putFeedEventEntity:(FeedEventEntity *) feedEvent;
 
+-(void) removeFeedEventEntity:(FeedEventEntity *) feedEvent;
 
 
 -(void) putDayFeedEventEntitysWraps: (NSArray *) wraps;

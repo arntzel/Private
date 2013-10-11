@@ -384,6 +384,17 @@ static CoreDataModel * instance;
 }
 
 
+-(void) deleteFeedEventEntity:(int) eventID
+{
+    FeedEventEntity * entity = [self getFeedEventEntity:eventID];
+    
+    if(entity  != nil) {
+        [cache removeFeedEventEntity:entity];
+        [managedObjectContext deleteObject:entity];
+        [self saveData];
+        [self notifyModelChange];
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //For Message
