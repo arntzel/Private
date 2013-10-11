@@ -20,6 +20,8 @@
 
 @property int eventID;
 
+@property BOOL loaded;
+
 @property(nonatomic, assign) id<EventDetailCommentContentViewDelegate> delegate;
 
 - (id)init;

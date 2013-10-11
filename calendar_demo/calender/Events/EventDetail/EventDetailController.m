@@ -199,7 +199,9 @@
         [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
     }
 
-    [commentContentView beginLoadComments];
+    if(commentContentView.loaded == NO) {
+        [commentContentView beginLoadComments];
+    }
 }
 
 

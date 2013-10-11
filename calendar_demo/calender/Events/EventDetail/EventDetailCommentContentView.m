@@ -185,6 +185,7 @@
     [[Model getInstance] getEventComment:self.eventID andCallback:^(NSInteger error, NSArray *comments) {
 
         if(error == 0) {
+            self.loaded = YES;
             User * me = [[UserModel getInstance] getLoginUser];
             [self updateView:me andComments:comments];
 
