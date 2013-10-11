@@ -65,7 +65,6 @@ static CGFloat const getstureDistance = 50;
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
-        [self.removeView setHidden:YES];
         self.alpha = ALPHA;
     }
 }
@@ -92,6 +91,7 @@ static CGFloat const getstureDistance = 50;
     [self.layer setBorderWidth:1.0f];
 
     [_finailzeBtn addTarget:self action:@selector(setFinalze:) forControlEvents:UIControlEventTouchUpInside];
+    [self.removeView setHidden:YES];
 }
 
 -(void) setFinalze:(id)sender
