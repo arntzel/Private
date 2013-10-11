@@ -73,6 +73,9 @@
         [self setSynchronizeData:NO];
         
         if(events.count > 0) {
+
+            LOG_D(@"getUpdatedEvents, count:%d", events.count);
+
             CoreDataModel * model = [CoreDataModel getInstance];
             
             for(Event * evt in events) {
