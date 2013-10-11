@@ -1,6 +1,10 @@
 
 #import "EventModel.h"
 #import "Utils.h"
+#import "Model.h"
+#import "CoreDataModel.h"
+#import "UserSetting.h"
+#import "UserModel.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
@@ -44,5 +48,53 @@
     synchronizingData = loading;
     [self nofityModelChanged];
 }
+
+-(void) synchronizedFromServer
+{
+    if (![[UserModel getInstance] isLogined]) {
+        return;
+    }
+    
+    if([self isSynchronizeData]) return;
+    
+    NSLog(@"synchronizedFromServer begin");
+    
+    NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
+    
+    if(lastupdatetime == nil) return;
+    
+    
+    [self setSynchronizeData:YES];
+    
+    NSDate * currentTime = [Utils convertGMTDate:[NSDate date]];
+    
+    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+        
+        [self setSynchronizeData:NO];
+        
+        if(events.count > 0) {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            
+            for(Event * evt in events) {
+                
+                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                } else {
+                    [entity removeAttendees:entity.attendees];
+                }
+                
+                [entity convertFromEvent:evt];
+                [model addFeedEventEntity:entity];
+            }
+            
+            [model saveData];
+            [model notifyModelChange];
+            
+            [[UserSetting getInstance] saveLastUpdatedTime:currentTime];
+        }
+    }];
+}
+
 
 @end

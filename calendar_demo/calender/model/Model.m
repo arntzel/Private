@@ -4,6 +4,7 @@
 #import "UserModel.h"
 #import "Utils.h"
 #import "NSDateAdditions.h"
+#import "UserSetting.h"
 
 static Model * instance;
 
@@ -1187,4 +1188,7 @@ static Model * instance;
     }];
 
 }
+
+
+
 @end

@@ -203,45 +203,8 @@
 
 -(void) synchronizedFromServer
 {
-    if (![[UserModel getInstance] isLogined]) {
-        return;
-    }
-  
-    if([[[Model getInstance] getEventModel] isSynchronizeData]) return;
 
-    NSLog(@"synchronizedFromServer begin");
- 
-    NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
-
-    if(lastupdatetime == nil) return;
-
-
-    [[[Model getInstance] getEventModel] setSynchronizeData:YES];
-    
-    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-
-        [[[Model getInstance] getEventModel] setSynchronizeData:NO];
-
-        if(events.count > 0) {
-            CoreDataModel * model = [CoreDataModel getInstance];
-
-            for(Event * evt in events) {
-                
-                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-                if(entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                }
-                
-                [entity convertFromEvent:evt];
-                [model addFeedEventEntity:entity];
-            }
-
-            [model saveData];
-            [model notifyModelChange];
-
-            [[UserSetting getInstance] saveLastUpdatedTime:[NSDate date]];
-        }
-    }];
+    [[[Model getInstance] getEventModel] synchronizedFromServer];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

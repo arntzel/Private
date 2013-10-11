@@ -25,4 +25,6 @@
 -(void) setSynchronizeData:(BOOL) loading;
 
 
+-(void) synchronizedFromServer;
+
 @end
