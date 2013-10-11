@@ -396,23 +396,16 @@
 
 - (void)rightNavBtnClick
 {
-    if ([self canCreateEvent]) {
-        if ([self timeIsInFuture]) {
-            //[self uploadImage];
-            if(request != nil) {
-                return;
-            } else {
-                [self createEvent:imageUrl];
-            }
-        }
-        else
-        {
-            [self showTimeErrorWarning];
-        }
-    }
-    else
-    {
+    if (![self canCreateEvent]) {
         [self showEventContentWarning];
+        return;
+    }
+    
+    //[self uploadImage];
+    if(request != nil) {
+        return;
+    } else {
+        [self createEvent:imageUrl];
     }
 }
 
@@ -451,9 +444,18 @@
 
 - (BOOL)canCreateEvent
 {
-    if (txtFieldTitle.text == nil) {
+    NSString *title = txtFieldTitle.text;
+    
+    if (title == nil) {
         return NO;
     }
+    
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if(title.length == 0) {
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -461,6 +463,8 @@
 {
    
     NSString *title = txtFieldTitle.text;
+    
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     Event *event = [[Event alloc] init];
     event.eventType = 0;
