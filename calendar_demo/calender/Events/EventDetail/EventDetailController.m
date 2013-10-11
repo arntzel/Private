@@ -103,22 +103,25 @@
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
         [self hideIndicatorView];
-        
+
+        if(error == ERROCODE_EVENT_NOTEXITED) {
+
+            [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
+            [self.navigationController popViewControllerAnimated:YES];
+
+            [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted"];
+
+            return;
+        }
+
         if(error == 0) {
             self.event = evt;
 
             [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];
-        }
-        else {
-            UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"Event does't exsit"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil] autorelease];
-            
-            [alert show];
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
 }
