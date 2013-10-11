@@ -172,12 +172,6 @@
     return user.id == creator.id;
 }
 
--(BOOL) isDeclineEvent
-{
-    User * me = [[UserModel getInstance] getLoginUser];
-    EventAttendee * atd = [[self.event getAttendeesDic] objectForKey:me.email];
-    return atd.status == -1;
-}
 
 - (void)updateUIByEvent
 {
@@ -193,7 +187,7 @@
     BOOL isCreator = [self isMyCreatEvent];
 
     
-    if(self.event.confirmed || [self isDeclineEvent]) {
+    if(self.event.confirmed || [self.event isDeclineEvent]) {
         conformView.hidden = YES;
     } else {
         conformView.hidden = NO;
