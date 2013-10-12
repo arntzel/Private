@@ -372,26 +372,54 @@
 
 - (void)btnForgotPasswordDidClick
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password"
-                                                        message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n\n"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"OK", nil];
     
-
-//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-
-    self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 30)];
-    [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
-    [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
-    [self.alertTextField setPlaceholder:@"Please input your email"];
-
-    [self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-
-    [alertView addSubview:self.alertTextField];
+    if([self isIOS7]) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password"
+                                                            message:@"Enter the email associated with your account and we’ll send you a reset password link."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"OK", nil];
+        
+        CGRect frame = alertView.frame;
+        frame.size.height = 300;
+        alertView.frame = frame;
+        
+        [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [alertView show];
+        
+        UITextField * alertTextField = [alertView textFieldAtIndex:0];
+        
+        [alertTextField setPlaceholder:@"Please input your email"];
+        [alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        
+    } else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password"
+                                                            message:@"Enter the email associated with your account and we’ll send you a reset password link\n\n\n"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"OK", nil];
+        
+        
+        [alertView show];
+        
+        self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 30)];
+        [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
+        [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
+        [self.alertTextField setPlaceholder:@"Please input your email"];
+        
+        [self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        
+        [alertView addSubview:self.alertTextField];
+    }
 }
 
+-(BOOL) isIOS7
+{
+    double version = [[UIDevice currentDevice].systemVersion doubleValue];//判定系统版本。
+    return version>=7.0f;
+}
 
 - (void) textFieldDidChange:(UITextField *) TextField
 {
@@ -411,20 +439,24 @@
     } else {
         if (buttonIndex == 1) {
 
-            NSString * email = self.alertTextField.text;
-
-            NSLog(@"%@", self.alertTextField.text);
+            NSString * email;
+            if([self isIOS7]) {
+                email = [alertView textFieldAtIndex:0].text;
+            } else {
+                email = self.alertTextField.text;
+            }
+            
+            NSLog(@"%@", email);
 
             [[UserModel getInstance] resetpassword:email andCallback:^(NSInteger error) {
 
                 if(error == 0) {
 
                     NSString * msg = @"We have sent you an e-mail. If you do not receive it within a few minutes, contact us at feedback@calvinapp.com";
-
                     [Utils showUIAlertView:@"" andMessage:msg];
 
                 } else {
-                     [Utils showUIAlertView:@"Warning" andMessage:@"Reset password failed, please try again."];
+                    [Utils showUIAlertView:@"Warning" andMessage:@"Reset password failed, please try again."];
                 }
             }];
         }
