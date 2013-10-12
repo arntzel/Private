@@ -80,8 +80,6 @@
                 FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
                 if(entity == nil) {
                     entity = [model createEntity:@"FeedEventEntity"];
-                } else {
-                    [entity removeAttendees:entity.attendees];
                 }
                 
                 [entity convertFromEvent:evt];

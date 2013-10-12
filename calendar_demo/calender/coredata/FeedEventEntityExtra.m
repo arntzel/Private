@@ -89,6 +89,9 @@
 
 -(void)clearAttendee
 {
-    [self removeAttendees:self.attendees];
+    if(self.attendees.count > 0) {
+        NSSet * attendees = [[NSSet alloc] initWithSet:self.attendees];
+        [self removeAttendees:attendees];
+    }
 }
 @end
