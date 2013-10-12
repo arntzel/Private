@@ -28,6 +28,7 @@
 #import "ViewUtils.h"
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
+#import "ExtendTextField.h"
 
 
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -55,7 +56,7 @@
     
     UIImageView *imagePickerView;
     UIButton *imagePickerbtn;
-    UITextField *txtFieldTitle;
+    ExtendTextField *txtFieldTitle;
 
     AddEventTimesView * timesView;
     AddEventSettingView *settingView;
@@ -196,7 +197,7 @@
     [imageTitleBgView setFrame:CGRectMake(6, 110, 308, 46)];
     [view addSubview:imageTitleBgView];
     
-    txtFieldTitle = [[UITextField alloc] initWithFrame:CGRectMake(imageTitleBgView.frame.origin.x, imageTitleBgView.frame.origin.y + 10, imageTitleBgView.frame.size.width, 36)];
+    txtFieldTitle = [[ExtendTextField alloc] initWithFrame:CGRectMake(imageTitleBgView.frame.origin.x, imageTitleBgView.frame.origin.y + 10, imageTitleBgView.frame.size.width, 30)];
     [view addSubview:txtFieldTitle];
     [txtFieldTitle setPlaceholder:@"Add event title..."];
     [txtFieldTitle setFont:[UIFont systemFontOfSize:18]];
