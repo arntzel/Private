@@ -82,8 +82,8 @@
     
     switch (vote) {
         case 0:
-            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick.png"] forState:UIControlStateNormal];
-            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross.png"] forState:UIControlStateNormal];
+            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_black.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_black.png"] forState:UIControlStateNormal];
             break;
 
         case 1:

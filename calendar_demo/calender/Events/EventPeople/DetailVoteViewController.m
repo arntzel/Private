@@ -10,14 +10,22 @@
 
 #import "Utils.h"
 #import "LogUtil.h"
+#import "ExtendArray.h"
 
+typedef enum
+{
+    DetailVoteAvilable = 0,
+    DetailVoteUnAvilable = 1,
+}DetailVoteState;
 
 @interface DetailVoteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
                                            EventDateNavigationBarDelegate>
 {
-    NSMutableArray *availablePeople;
-    NSMutableArray *unAvailablePeople;
+    ExtendArray *availablePeople;
+    ExtendArray *unAvailablePeople;
+    
+    NSMutableArray *dataArray;
     
     EventDateNavigationBar * navBar;
 }
@@ -59,8 +67,12 @@
 
 - (void)initData
 {
-    availablePeople = [NSMutableArray array];
-    unAvailablePeople = [NSMutableArray array];
+    dataArray = [NSMutableArray array];
+    
+    availablePeople = [ExtendArray array];
+    availablePeople.tag = DetailVoteAvilable;
+    unAvailablePeople = [ExtendArray array];
+    unAvailablePeople.tag = DetailVoteUnAvilable;
     
     
     for(EventTimeVote * vote in self.eventTime.votes) {
@@ -75,6 +87,13 @@
         } else {
             [unAvailablePeople addObject:people];
         }
+    }
+    
+    if ([availablePeople count] > 0) {
+        [dataArray addObject:availablePeople];
+    }
+    if ([unAvailablePeople count] > 0) {
+        [dataArray addObject:unAvailablePeople];
     }
 }
 
@@ -102,10 +121,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     AddEventInvitePeopleHeaderView * header = (AddEventInvitePeopleHeaderView *)[ViewUtils createView:@"AddEventInvitePeopleHeaderView"];
-    
-    if(section == 0) {
+    ExtendArray *array = [dataArray objectAtIndex:section];
+    if(array.tag == DetailVoteAvilable) {
         header.label.text = @"AVAILABLE";
-    } else if(section == 1){
+    }
+    else
+    {
         header.label.text = @"UNAVAILABLE";
     }
     return header;
@@ -113,68 +134,65 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = 0;
-    if(section == 0) {
-        count =  [availablePeople count];
-    }
-    else
-    {
-        count = [unAvailablePeople count];
-    }
-    
-    return count;
+    NSMutableArray *array = [dataArray objectAtIndex:section];
+    return [array count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
-    if (section == 0) {
-
-        AddEventInvitePeople * people = [availablePeople objectAtIndex:row];
-
-        User * creator = self.event.creator;
-
-        if([people.user.email isEqualToString:creator.email]) {
-
-            DetailDeclinedCell * cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
-            [cell setName: [creator getReadableUsername]];
-            [cell setHeaderImageUrl:creator.avatar_url];
-            [cell setAvaliable:YES];
-            cell.declinedTime.text = @"Event Creator";
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return cell;
-
-        } else {
-
-            AddEventInvitePeopleCell * cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
+    ExtendArray *array = [dataArray objectAtIndex:section];
+    switch (array.tag) {
+        case DetailVoteAvilable:
+        {
+            AddEventInvitePeople * people = [availablePeople objectAtIndex:row];
+            
+            User * creator = self.event.creator;
+            
+            if([people.user.email isEqualToString:creator.email]) {
+                
+                DetailDeclinedCell * cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
+                [cell setName: [creator getReadableUsername]];
+                [cell setHeaderImageUrl:creator.avatar_url];
+                [cell setAvaliable:YES];
+                cell.declinedTime.text = @"Event Creator";
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                return cell;
+                
+            } else {
+                
+                AddEventInvitePeopleCell * cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
+                [cell refreshView:people];
+                [cell.btnSelect setHidden:YES];
+                
+                [cell setAvaliable:YES];
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                
+                return cell;
+            }
+        }
+            break;
+        case DetailVoteUnAvilable:
+        default:
+        {
+            AddEventInvitePeople * people = [unAvailablePeople objectAtIndex:row];
+            AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
             [cell refreshView:people];
             [cell.btnSelect setHidden:YES];
-
-            [cell setAvaliable:YES];
+            
+            [cell setAvaliable:NO];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-
+            
             return cell;
         }
-    }
-    else
-    {
-        AddEventInvitePeople * people = [unAvailablePeople objectAtIndex:row];
-        AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
-        [cell refreshView:people];
-        [cell.btnSelect setHidden:YES];
-        
-        [cell setAvaliable:NO];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-
-        return cell;
+            break;
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return [dataArray count];
 }
 
 - (void)leftBtnPress:(id)sender

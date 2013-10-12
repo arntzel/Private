@@ -8,6 +8,14 @@
 #import "DetailRespondedCell.h"
 #import "ViewUtils.h"
 #import "Utils.h"
+#import "ExtendArray.h"
+
+typedef enum
+{
+    DetailInviteesResponsed = 0,
+    DetailInviteesDeclined = 1,
+    DetailInviteesNotRespond = 2,
+}DetailInviteesState;
 
 @interface respondedInfo:NSObject
 
@@ -29,9 +37,11 @@
                                            UITableViewDataSource,
                                            EventNavigationBarDelegate>
 {
-    NSMutableArray *respondedArray;
-    NSMutableArray *declinedArray;
-    NSMutableArray *notRespondedArray;
+    ExtendArray *respondedArray;
+    ExtendArray *declinedArray;
+    ExtendArray *notRespondedArray;
+    
+    NSMutableArray *dataArray;
 }
 
 @end
@@ -46,7 +56,6 @@
     EventNavigationBar * navBar = [EventNavigationBar creatView];
     [navBar setTitle:@"Invitees"];
     [navBar setGlassImage:self.titleBgImage];
-    
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -65,11 +74,17 @@
 
 - (void)initData
 {
-    respondedArray = [NSMutableArray array];
-    declinedArray = [NSMutableArray array];
-    notRespondedArray = [NSMutableArray array];
+    dataArray = [NSMutableArray array];
     
+    respondedArray = [ExtendArray array];
+    respondedArray.tag = DetailInviteesResponsed;
     
+    declinedArray = [ExtendArray array];
+    declinedArray.tag = DetailInviteesDeclined;
+    
+    notRespondedArray = [ExtendArray array];
+    notRespondedArray.tag = DetailInviteesNotRespond;
+
     for(EventAttendee * atd in self.event.attendees) {
         
         Contact * contact = atd.contact;
@@ -118,6 +133,16 @@
             [notRespondedArray addObject:responded];
         }
     }
+    
+    if ([respondedArray count] > 0) {
+        [dataArray addObject:respondedArray];
+    }
+    if ([declinedArray count] > 0) {
+        [dataArray addObject:declinedArray];
+    }
+    if ([notRespondedArray count] > 0) {
+        [dataArray addObject:notRespondedArray];
+    }
 }
 
 
@@ -146,9 +171,10 @@
 {
     AddEventInvitePeopleHeaderView * header = (AddEventInvitePeopleHeaderView *)[ViewUtils createView:@"AddEventInvitePeopleHeaderView"];
     
-    if(section == 0) {
+    ExtendArray *array = [dataArray objectAtIndex:section];
+    if(array.tag == DetailInviteesResponsed) {
         header.label.text = @"RESPONDED";
-    } else if(section == 1){
+    } else if(array.tag == DetailInviteesDeclined){
         header.label.text = @"DECLINED EVENT";
     }
     else{
@@ -160,78 +186,60 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = 0;
-    if(section == 0) {
-        count = [respondedArray count];
-    }
-    else if(section == 1)
-    {
-        count = [declinedArray count];
-    }
-    else
-    {
-        count = [notRespondedArray count];
-    }
-    
-    return count > 0 ? count : 1;
+    NSMutableArray *array = [dataArray objectAtIndex:section];
+    return [array count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    if (section == 0) {
-        
-        if(respondedArray.count == 0) {
-            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+    ExtendArray *array = [dataArray objectAtIndex:section];
+    switch (array.tag) {
+        case DetailInviteesResponsed:
+        {
+            DetailRespondedCell *cell = (DetailRespondedCell *)[ViewUtils createView:@"DetailRespondedCell"];
+            respondedInfo *responded = [array objectAtIndex:row];
+            [cell setName:responded.name];
+            [cell setHeaderImageUrl:responded.headPhotoUrl];
+            [cell setAgreeTime:responded.agreeTimeArray];
+            [cell setDeclindTime:responded.declinedTimeArray];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
-        
-        
-        DetailRespondedCell *cell = (DetailRespondedCell *)[ViewUtils createView:@"DetailRespondedCell"];
-        respondedInfo *responded = [respondedArray objectAtIndex:row];
-        [cell setName:responded.name];
-        [cell setHeaderImageUrl:responded.headPhotoUrl];
-        [cell setAgreeTime:responded.agreeTimeArray];
-        [cell setDeclindTime:responded.declinedTimeArray];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    else if(section == 1) {
-        
-        if(declinedArray.count == 0) {
-            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+            break;
+        case DetailInviteesDeclined:
+        {
+            DetailDeclinedCell *cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
+            
+            respondedInfo *responded = [array objectAtIndex:row];
+            [cell setName:responded.name];
+            [cell setHeaderImageUrl:responded.headPhotoUrl];
+            [cell setDeclinedTimeString:responded.declinedTime];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
-        
-        DetailDeclinedCell *cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
-        
-        respondedInfo *responded = [declinedArray objectAtIndex:row];
-        [cell setName:responded.name];
-        [cell setHeaderImageUrl:responded.headPhotoUrl];
-        [cell setDeclinedTimeString:responded.declinedTime];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    else
-    {
-        if(notRespondedArray.count == 0) {
-            return (UITableViewCell *)[ViewUtils createView:@"EmptyCell"];
+            break;
+        case DetailInviteesNotRespond:
+        default:
+        {
+            AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
+            
+            respondedInfo *responded = [array objectAtIndex:row];
+            cell.peopleName.text = responded.name;
+            [cell setHeaderImageUrl:responded.headPhotoUrl];
+            [cell.btnSelect setHidden:YES];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
-        
-        AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
-        
-        respondedInfo *responded = [notRespondedArray objectAtIndex:row];
-        cell.peopleName.text = responded.name;
-        [cell setHeaderImageUrl:responded.headPhotoUrl];
-        [cell.btnSelect setHidden:YES];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+            break;
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return [dataArray count];
 }
 
 - (void)leftBtnPress:(id)sender;

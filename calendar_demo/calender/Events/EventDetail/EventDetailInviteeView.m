@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EventDetailHeaderListView.h"
 
+#import "UserModel.h"
+
 @interface EventDetailInviteeView()
 {
     EventDetailHeaderListView *headerListView;
@@ -88,11 +90,20 @@
 - (void)addInviteePhotos:(NSArray *)users
 {
     NSMutableArray * urls = [[NSMutableArray alloc] init];
-    
+
+    User * me = [[UserModel getInstance] getLoginUser];
+    if(me.avatar_url == nil) {
+        [urls addObject:@""];
+    } else {
+        [urls addObject:me.avatar_url];
+    }
+
     for(int i=0;i<users.count;i++) {
         
         EventAttendee * attendee = [users objectAtIndex:i];
         Contact * user = attendee.contact;
+
+        if([user.email isEqualToString:me.email]) continue;
 
         if(user.avatar_url == nil) {
             [urls addObject:@""];

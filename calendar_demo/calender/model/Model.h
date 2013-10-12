@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
     ERROCODE_NETWORK,  //network error
     ERROCODE_SERVER,   //server errir
     ERROCODE_UNAUTHORIZED, //unauthorized
+    ERROCODE_EVENT_NOTEXITED,
 };
 
 

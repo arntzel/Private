@@ -103,22 +103,25 @@
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
         [self hideIndicatorView];
-        
+
+        if(error == ERROCODE_EVENT_NOTEXITED) {
+
+            [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
+            [self.navigationController popViewControllerAnimated:YES];
+
+            [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted"];
+
+            return;
+        }
+
         if(error == 0) {
             self.event = evt;
 
             [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];
-        }
-        else {
-            UIAlertView * alert = [[[UIAlertView alloc]initWithTitle:@"Error"
-                                                            message:@"Event does't exsit"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil] autorelease];
-            
-            [alert show];
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
 }
@@ -172,12 +175,6 @@
     return user.id == creator.id;
 }
 
--(BOOL) isDeclineEvent
-{
-    User * me = [[UserModel getInstance] getLoginUser];
-    EventAttendee * atd = [[self.event getAttendeesDic] objectForKey:me.email];
-    return atd.status == -1;
-}
 
 - (void)updateUIByEvent
 {
@@ -193,7 +190,7 @@
     BOOL isCreator = [self isMyCreatEvent];
 
     
-    if(self.event.confirmed || [self isDeclineEvent]) {
+    if(self.event.confirmed || [self.event isDeclineEvent]) {
         conformView.hidden = YES;
     } else {
         conformView.hidden = NO;
@@ -461,6 +458,7 @@
             atd.status = -1;
             atd.modified = [Utils convertGMTDate:[NSDate date]];
             [self updateUIByEvent];
+            [self layOutSubViews];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }

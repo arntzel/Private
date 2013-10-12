@@ -73,6 +73,9 @@
         [self setSynchronizeData:NO];
         
         if(events.count > 0) {
+
+            LOG_D(@"getUpdatedEvents, count:%d", events.count);
+
             CoreDataModel * model = [CoreDataModel getInstance];
             
             for(Event * evt in events) {
@@ -80,10 +83,12 @@
                 FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
                 if(entity == nil) {
                     entity = [model createEntity:@"FeedEventEntity"];
+                    [entity convertFromEvent:evt];
+                    [model addFeedEventEntity:entity];
+                } else {
+                    [entity removeAttendees:entity.attendees];
+                    [entity convertFromEvent:evt];
                 }
-                
-                [entity convertFromEvent:evt];
-                [model addFeedEventEntity:entity];
             }
             
             [model saveData];

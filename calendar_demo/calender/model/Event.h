@@ -93,6 +93,8 @@
 @property int eventType;
 
 
+-(BOOL) isDeclineEvent;
+
 //Emai -> EventAttendee
 -(NSDictionary *) getAttendeesDic;
 
