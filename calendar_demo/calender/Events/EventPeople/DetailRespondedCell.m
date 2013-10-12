@@ -123,8 +123,17 @@
 
 - (CGSize)resizeLabel:(UILabel *)label
 {
-    CGSize size = CGSizeMake(label.frame.size.width, 2000);
-    CGSize labelsize = [label.text sizeWithFont:label.font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize size = CGSizeMake(235, 2000);
+    CGSize labelsize = [label.text sizeWithFont:label.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+
+//    CGSize labelsize = [label.text boundingRectWithSize:size
+//                                                options:NSStringDrawingUsesLineFragmentOrigin
+//                                             attributes:@{NSFontAttributeName: label.font}
+//                                                context:nil].size;
+    
+    labelsize.width = 235;
+    labelsize.height += 1;
+
     return labelsize;
 }
 
