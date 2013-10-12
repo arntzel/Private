@@ -31,7 +31,7 @@
 #import "DetailVoteViewController.h"
 #import "CoreDataModel.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, UIAlertViewDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -469,7 +469,20 @@
 
 #pragma mark -
 #pragma mark DetailMoreAction
+
 -(void) deleteEvent
+{
+     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                          message:@"Are you sure delete this event?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Yes", nil];
+    
+    [alertView show];
+    [alertView release];
+}
+
+-(void) begindeleteEvent
 {
     LOG_D(@"deleteEvent");
     
@@ -488,6 +501,8 @@
         }
     }];
 }
+
+
 
 -(void) editEvent
 {
@@ -569,4 +584,14 @@
 {
     //TODO:
 }
+
+#pragma mark -
+#pragma mark UIAlertViewDeletegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1) {
+        [self begindeleteEvent];
+    }
+}
+
 @end
