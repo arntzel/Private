@@ -335,6 +335,9 @@ static CoreDataModel * instance;
         return wrap.eventType;
     }
     
+    
+    LOG_D(@"getDayFeedEventType：%@", day);
+    
     NSDate * date = [Utils parseNSStringDay:day];
     NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
     NSDate * endDate = [date cc_dateByMovingToEndOfDay];
@@ -373,11 +376,7 @@ static CoreDataModel * instance;
 
 -(void) updateFeedEventEntity:(FeedEventEntity*) entity
 {
-    if(entity.start != nil) {
-        NSDate * localTime = [Utils convertLocalDate:entity.start];
-        NSString * day = [Utils formateDay:localTime];
-        [cache removeDayEventTypeWrap:day];
-    }
+    [cache clearDayEventTypeWrap];
 }
 
 -(void) addFeedEventEntitys:(NSArray *) entitys

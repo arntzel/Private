@@ -82,5 +82,6 @@
 -(void) removeDayEventTypeWrap:(NSString *)day;
 -(DayEventTypeWrap *) getDayEventTypeWrap:(NSString *) day;
 
+-(void) clearDayEventTypeWrap;
 
 @end

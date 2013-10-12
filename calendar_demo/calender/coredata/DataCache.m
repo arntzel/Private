@@ -212,4 +212,8 @@
     return [dayEventTypeWrapDict objectForKey:day];
 }
 
+-(void) clearDayEventTypeWrap
+{
+    [dayEventTypeWrapDict removeAllObjects];
+}
 @end
