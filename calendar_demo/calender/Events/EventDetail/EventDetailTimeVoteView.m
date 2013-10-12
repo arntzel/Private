@@ -8,6 +8,7 @@
 #import "Utils.h"
 #import "LogUtil.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 @interface EventDetailTimeVoteView() <EventDetailFinailzeViewDelegate>
 
@@ -79,6 +80,7 @@
         
         finailzeView = [[EventDetailFinailzeView creatView] retain];
         [finailzeView updateView:_eventTime];
+        finailzeView.eventTimeConflictLabel.text = [self getConfilictEventCount];
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
 
@@ -94,6 +96,14 @@
     NSString * endTime = [Utils formateTimeAMPM:[_eventTime getEndTime]];
     NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
     return lable;
+}
+
+-(NSString *) getConfilictEventCount
+{
+    NSDate * start = _eventTime.start;
+    NSDate * end = [_eventTime getEndTime];
+    int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
+    return [NSString stringWithFormat:@"%d CONFLICT", count];
 }
 
 - (void)addInviteeListView:(Event *) event
@@ -196,7 +206,8 @@
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
         conformView.eventTimeLabel.text = [self getTimeLable];
-
+        conformView.eventTimeConflictLabel.text = [self getConfilictEventCount];
+        
         int status = 0;
         User * me = [[UserModel getInstance] getLoginUser];
 

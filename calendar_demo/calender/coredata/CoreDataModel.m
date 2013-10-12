@@ -310,6 +310,20 @@ static CoreDataModel * instance;
     return wrap.sortedEvents;
 } 
 
+
+-(int) getFeedEventCountByStart:(NSDate *) start andEnd:(NSDate *) end;
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(start >= %@) AND (start <= %@) AND (eventType & %d)>0", start,  end, FILTER_IMCOMPLETE];
+    [fetchRequest setPredicate:predicate];
+    return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
+}
+
+
 -(int) getDayFeedEventType:(NSString *) day
 {
     if(day == nil) {

@@ -49,6 +49,10 @@
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 
+-(int) getFeedEventCountByStart:(NSDate *) start andEnd:(NSDate *) end;
+
+
+
 -(int) getDayFeedEventType:(NSString *) day;
 
 
