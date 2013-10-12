@@ -20,6 +20,7 @@
     //EventDetailCommentView *commentView;
     EventDetailCommentTextView *commentTextView;
     //EventDetailCommentConformedView *conformedView;
+    BOOL _declined;
 }
 @end
 
@@ -79,6 +80,9 @@
     
     for(int i=0;i<subViewCount;i++) {
         UIView * subView = [self.subviews objectAtIndex:i];
+        
+        if(subView.hidden == YES) continue;
+        
         frame = subView.frame;
         frame.origin.y = i*56;
         subView.frame = frame;
@@ -107,6 +111,12 @@
     [self addSubview:commentTextView];
     
     [commentTextView.messageField addTarget:self action:@selector(keySend) forControlEvents:UIControlEventEditingDidEnd];
+    
+    if(_declined) {
+        commentTextView.hidden = YES;
+    } else {
+        commentTextView.hidden = NO;
+    }
 }
 
 -(void) keySend
@@ -199,4 +209,15 @@
 
 }
 
+-(void) setDecliend:(BOOL) declined
+{
+    _declined = declined;
+    if(declined) {
+        commentTextView.hidden = YES;
+    } else {
+        commentTextView.hidden = NO;
+    }
+    
+    [self updateFrame];
+}
 @end

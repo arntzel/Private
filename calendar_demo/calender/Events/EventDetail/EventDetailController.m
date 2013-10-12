@@ -188,15 +188,17 @@
     [self updateEventTimeView];
 
     BOOL isCreator = [self isMyCreatEvent];
-
+    BOOL isDecline = [self.event isDeclineEvent];
     
-    if(self.event.confirmed || [self.event isDeclineEvent]) {
+    if(self.event.confirmed || isDecline) {
         conformView.hidden = YES;
     } else {
         conformView.hidden = NO;
         [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
     }
 
+    [commentContentView setDecliend:isDecline];
+    
     if(commentContentView.loaded == NO) {
         [commentContentView beginLoadComments];
     }

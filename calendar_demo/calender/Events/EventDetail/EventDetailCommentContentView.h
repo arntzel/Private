@@ -30,6 +30,8 @@
 
 -(void) addComment:(Comment *) comment;
 
+-(void) setDecliend:(BOOL) declined;
+
 -(void) beginLoadComments;
 
 @end
