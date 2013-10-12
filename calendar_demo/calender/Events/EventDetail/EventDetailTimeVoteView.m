@@ -232,15 +232,23 @@
             }
 
         } else {
-            conformView.userInteractionEnabled = NO;
+            conformView.tickedBtn.userInteractionEnabled = NO;
+            conformView.crossedbtn.userInteractionEnabled = NO;
         }
 
         [self addSubview:conformView];
 
         if(_eventTime.finalized == 2) {
-            conformView.userInteractionEnabled = NO;
+            conformView.tickedBtn.userInteractionEnabled = NO;
+            conformView.crossedbtn.userInteractionEnabled = NO;
             conformView.alpha = ALPHA;
         }
+        
+        
+        UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+        conformView.eventTimeLabel.userInteractionEnabled = YES;
+        [conformView.eventTimeLabel addGestureRecognizer:tapGestureTel];
+        [tapGestureTel release];
     }    
 }
 

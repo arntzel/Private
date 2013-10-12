@@ -9,7 +9,7 @@
 #import "Utils.h"
 
 #import "EventDetailController.h"
-
+#import "EventTimeDetailViewController.h"
 #import "EventDetailNavigationBar.h"
 #import "EventDetailPhotoView.h"
 
@@ -394,6 +394,13 @@
 -(void) onVoteTimeClick:(ProposeStart *) eventTime
 {
     LOG_D(@"EventDetailController onVoteTimeClick");
+    
+    EventTimeDetailViewController * controller = [[EventTimeDetailViewController alloc] init];
+    controller.eventTime = eventTime;
+    controller.titleBgImage = [photoView getImage];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 
