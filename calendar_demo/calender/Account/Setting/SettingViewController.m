@@ -420,7 +420,7 @@
         {
             if (error == -1)
             {
-                msg = @"disconnect Google Failed";
+                msg = @"Disconnect Google Failed";
                 
             }
             else
@@ -431,7 +431,7 @@
                 }
                 else
                 {
-                    msg = @"disconnect Google Successed";
+                    msg = @"Disconnect Google Succeeded";
                     [self googleviewChangeWithConnectStatus:NO];
                 }
                 
@@ -443,7 +443,7 @@
         {
             if (error == -1)
             {
-                msg = @"disconnect Facebook Failed";
+                msg = @"Disconnect Facebook Failed";
                 
             }
             else
@@ -454,7 +454,7 @@
                 }
                 else
                 {
-                    msg = @"disconnect Facebook Successed";
+                    msg = @"Disconnect Facebook Succeeded";
                     [self fbviewChangeWithConnectStatus:NO];
                 }
                 
@@ -635,7 +635,7 @@
                 }
                 else
                 {
-                    msg = @"Connect Google Successed";
+                    msg = @"Connect Google Succeeded";
                     self.loginUser.googleEmail = auth.userEmail;
                     [self googleviewChangeWithConnectStatus:YES];
                 }
@@ -679,7 +679,7 @@
             }
             else
             {
-                msg = @"Connect Facebook Successed";
+                msg = @"Connect Facebook Succeeded";
                 self.loginUser.facebookEmail = store.facebookEmail;
                 [self fbviewChangeWithConnectStatus:YES];
             }
