@@ -26,6 +26,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 
 #import "Utils.h"
+#import "SysInfo.h"
 
 @interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
@@ -373,7 +374,7 @@
 - (void)btnForgotPasswordDidClick
 {
     
-    if([self isIOS7]) {
+    if([SysInfo version] >= 7.0) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Forgot Password"
                                                             message:@"Enter the email associated with your account and we’ll send you a reset password link."
@@ -415,12 +416,6 @@
     }
 }
 
--(BOOL) isIOS7
-{
-    double version = [[UIDevice currentDevice].systemVersion doubleValue];//判定系统版本。
-    return version>=7.0f;
-}
-
 - (void) textFieldDidChange:(UITextField *) TextField
 {
     if ([Utils isValidateEmail:TextField.text]) {
@@ -440,7 +435,7 @@
         if (buttonIndex == 1) {
 
             NSString * email;
-            if([self isIOS7]) {
+            if(([SysInfo version] >= 7.0)) {
                 email = [alertView textFieldAtIndex:0].text;
             } else {
                 email = self.alertTextField.text;

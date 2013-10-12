@@ -159,6 +159,7 @@
 		768404C8180115B200C69240 /* JSTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404C5180115B200C69240 /* JSTokenButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		768404C9180115B200C69240 /* JSTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404C7180115B200C69240 /* JSTokenField.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		768DAC96180989EE000A3CB6 /* ExtendTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 768DAC95180989EE000A3CB6 /* ExtendTextField.m */; };
+		768DAC9918098E8D000A3CB6 /* SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 768DAC9818098E8D000A3CB6 /* SysInfo.m */; };
 		76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76943B6517925AED0006FCA9 /* AudioToolbox.framework */; };
 		7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7696F55617AE929E009FFEC8 /* Accelerate.framework */; };
 		769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 769AB8F917DF50320033E677 /* GoogleOpenSource.framework */; };
@@ -652,6 +653,8 @@
 		768404C7180115B200C69240 /* JSTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenField.m; sourceTree = "<group>"; };
 		768DAC94180989EE000A3CB6 /* ExtendTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendTextField.h; sourceTree = "<group>"; };
 		768DAC95180989EE000A3CB6 /* ExtendTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendTextField.m; sourceTree = "<group>"; };
+		768DAC9718098E8D000A3CB6 /* SysInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysInfo.h; sourceTree = "<group>"; };
+		768DAC9818098E8D000A3CB6 /* SysInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysInfo.m; sourceTree = "<group>"; };
 		76943B6517925AED0006FCA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7696F55617AE929E009FFEC8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		769AB8F917DF50320033E677 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0/GoogleOpenSource.framework"; sourceTree = "<group>"; };
@@ -2151,6 +2154,8 @@
 		769ABCFA17DF54860033E677 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				768DAC9718098E8D000A3CB6 /* SysInfo.h */,
+				768DAC9818098E8D000A3CB6 /* SysInfo.m */,
 				769ABCFB17DF54860033E677 /* DeviceInfo.h */,
 				769ABCFC17DF54860033E677 /* DeviceInfo.m */,
 				769ABCFD17DF54860033E677 /* EncryptUtil.h */,
@@ -2731,6 +2736,7 @@
 				769ABB3617DF52090033E677 /* EventDetailNavigationBar.m in Sources */,
 				769ABB3817DF52090033E677 /* EventDetailPhotoView.m in Sources */,
 				76431DF81806E02B009DAFFE /* EventDateNavigationBar.m in Sources */,
+				768DAC9918098E8D000A3CB6 /* SysInfo.m in Sources */,
 				769ABB3A17DF52090033E677 /* EventDetailPlaceView.m in Sources */,
 				769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */,
 				769ABB3E17DF52090033E677 /* EventDetailTimeView.m in Sources */,
