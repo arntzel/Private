@@ -68,6 +68,8 @@
 {
     [super viewDidLoad];
 	
+    LOG_D(@"FeedViewController viewDidLoad");
+    
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -156,7 +158,7 @@
     
     //[Model getInstance] getUpdatedEvents:<#(NSDate *)#> andOffset:<#(int)#> andCallback:<#^(NSInteger error, NSInteger count, NSArray *events)callback#>
     
-    
+    LOG_D(@"synchronFeedEventFromServer");
     
     [[Model getInstance] getUpdatedEvents:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         

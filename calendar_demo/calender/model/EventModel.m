@@ -66,16 +66,16 @@
     
     [self setSynchronizeData:YES];
     
-    NSDate * currentTime = [Utils convertGMTDate:[NSDate date]];
+    NSDate * currentTime = [NSDate date];
     
     [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
         [self setSynchronizeData:NO];
         
+        LOG_D(@"synchronizedFromServer begin end, updated event count:%d", events.count);
+
         if(events.count > 0) {
-
-            LOG_D(@"getUpdatedEvents, count:%d", events.count);
-
+           
             CoreDataModel * model = [CoreDataModel getInstance];
             
             for(Event * evt in events) {
@@ -83,6 +83,12 @@
                 FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
                 if(entity == nil) {
                     entity = [model createEntity:@"FeedEventEntity"];
+                } else {
+                    for(UserEntity * user in entity.attendees) {
+                        [model deleteEntity:user];
+                    }
+                    
+                    [entity clearAttendee];
                 }
                 
                 [entity convertFromEvent:evt];
@@ -90,9 +96,9 @@
             
             [model saveData];
             [model notifyModelChange];
-            
-            [[UserSetting getInstance] saveLastUpdatedTime:currentTime];
         }
+        
+        [[UserSetting getInstance] saveLastUpdatedTime:currentTime];
     }];
 }
 

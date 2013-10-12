@@ -162,6 +162,13 @@ static CoreDataModel * instance;
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
 }
 
+
+-(void) deleteEntity:(NSManagedObject *) entity
+{
+    [managedObjectContext deleteObject:entity];
+}
+
+
 -(NSArray *) getPendingFeedEventEntitys
 {
     NSLog(@"NSFetchRequest: getPendingFeedEventEntitys");

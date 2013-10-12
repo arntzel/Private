@@ -13,6 +13,8 @@
 
 @interface FeedEventEntity (FeedEventEntityExtra)
 
+-(void)clearAttendee;
+
 
 -(UserEntity*) getCreator;
 

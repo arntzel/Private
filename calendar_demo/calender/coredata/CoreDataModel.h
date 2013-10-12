@@ -71,6 +71,7 @@
 
 -(id) createEntity:(NSString *) entityName;
 
+-(void) deleteEntity:(NSManagedObject *) entity;
 
 -(void) saveData;
 
