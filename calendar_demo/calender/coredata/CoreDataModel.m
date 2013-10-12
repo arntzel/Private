@@ -371,6 +371,14 @@ static CoreDataModel * instance;
     return eventType;
 }
 
+-(void) updateFeedEventEntity:(FeedEventEntity*) entity
+{
+    if(entity.start != nil) {
+        NSDate * localTime = [Utils convertLocalDate:entity.start];
+        NSString * day = [Utils formateDay:localTime];
+        [cache removeDayEventTypeWrap:day];
+    }
+}
 
 -(void) addFeedEventEntitys:(NSArray *) entitys
 {

@@ -92,6 +92,7 @@
                 }
                 
                 [entity convertFromEvent:evt];
+                [model updateFeedEventEntity:entity];
             }
             
             [model saveData];

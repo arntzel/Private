@@ -60,6 +60,8 @@
 
 -(void) addFeedEventEntity:(FeedEventEntity*) entity;
 
+-(void) updateFeedEventEntity:(FeedEventEntity*) entity;
+
 
 -(void) deleteFeedEventEntity:(int) eventID;
 
