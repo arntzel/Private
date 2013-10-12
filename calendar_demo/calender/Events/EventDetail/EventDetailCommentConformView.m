@@ -86,7 +86,7 @@
             UIButton * btn = [self createButton:@"Decline Event" andY:0];
             [containtView addSubview:btn];
 
-            [btn addTarget:self action:@selector(addNewTime:) forControlEvents:UIControlEventTouchUpInside];
+            [btn addTarget:self action:@selector(declineEvent:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
 
