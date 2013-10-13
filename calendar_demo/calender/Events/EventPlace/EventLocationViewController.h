@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseUIViewController.h"
+#import "Location.h"
 
 @interface EventLocationViewController : BaseUIViewController
 
-- (void)updatePlaceWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
+- (void)setPlaceLocation:(Location *)location_;
 
 @end
