@@ -81,7 +81,7 @@
     if(isLogining) {
         [self.indicator startAnimating];
     } else {
-        [self.indicator startAnimating];
+        [self.indicator stopAnimating];
     }
 }
 

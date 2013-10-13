@@ -366,7 +366,7 @@
         if(error == 0) {
             [self onLogined];
         } else {
-            [self showAlert:@"Login failed！"];
+            [Utils showUIAlertView:@"Error" andMessage:@"Email or password error."];
         }
     }];
 }
