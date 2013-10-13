@@ -2,6 +2,7 @@
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Utils.h"
 
 @implementation JSTokenButton
 
@@ -23,7 +24,15 @@
 	[button setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 10)];
 	
 	[button setTitle:string forState:UIControlStateNormal];
-	
+
+    if([Utils isValidatePhoneNumber:string]) {
+        button.valid = YES;
+    } else if( [Utils isValidateEmail:string]){
+        button.valid = YES;
+    } else {
+        button.valid = NO;
+    }
+
 	[button sizeToFit];
 	CGRect frame = [button frame];
 	frame.size.width += 20;
@@ -51,6 +60,10 @@
 		[self setBackgroundImage:self.normalBg forState:UIControlStateNormal];
 		[self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	}
+
+    if(!self.valid) {
+        [self setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
 }
 
 - (void)dealloc

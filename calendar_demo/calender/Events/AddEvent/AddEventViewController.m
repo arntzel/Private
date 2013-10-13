@@ -105,6 +105,10 @@
     [imageUrl release];
     
     [imageUploadingIndicator release];
+
+    invitedPeoples = nil;
+    locationPlace = nil;
+
     [super dealloc];
 }
 
@@ -471,7 +475,7 @@
     event.description = @"";
     
     NSMutableArray * invitees = [[NSMutableArray alloc] init];
-    for(User * user in self.invitedPeoples) {
+    for(Contact * user in self.invitedPeoples) {
         Invitee * invitee = [[Invitee alloc] init];
         invitee.email = user.email;
         [invitees addObject:invitee];

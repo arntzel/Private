@@ -250,7 +250,12 @@
     people.selected = !people.selected;
     
     if (people.selected) {
-         [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+
+        if(people.user.email != nil) {
+            [self addOjbToTokenFieldName:people.user.email Obj:people];
+        } else if(people.user.phone != nil) {
+            [self addOjbToTokenFieldName:people.user.phone Obj:people];
+        }
     }
     else
     {
@@ -357,9 +362,9 @@
     AddEventInvitePeople *people = nil;
     
     if (!obj) {
-        people = [[AddEventInvitePeople alloc] init];
-        people.user = [[Contact alloc] init];
-        people.user.first_name = string;
+        people = [[[AddEventInvitePeople alloc] init] autorelease];;
+        people.user = [[[Contact alloc] init] autorelease];
+        people.user.email = string;
     }
     else
     {

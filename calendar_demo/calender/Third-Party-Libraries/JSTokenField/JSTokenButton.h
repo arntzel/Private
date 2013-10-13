@@ -6,7 +6,6 @@
 @interface JSTokenButton : UIButton <UIKeyInput> {
 
 	BOOL _toggled;
-	
 	UIImage *_normalBg;
 	UIImage *_highlightedBg;
 	
@@ -15,6 +14,8 @@
 }
 
 @property (nonatomic, getter=isToggled) BOOL toggled;
+
+@property (nonatomic) BOOL valid;
 
 @property (nonatomic, retain) UIImage *normalBg;
 @property (nonatomic, retain) UIImage *highlightedBg;
