@@ -308,7 +308,7 @@
     dayLabel.text = sectionName;
     dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
     dayLabel.font = [UIFont systemFontOfSize:12];
-    dayLabel.textAlignment = UITextAlignmentLeft;
+    dayLabel.textAlignment = NSTextAlignmentLeft;
     dayLabel.backgroundColor = [UIColor clearColor];
 
     [view addSubview:dayLabel];
