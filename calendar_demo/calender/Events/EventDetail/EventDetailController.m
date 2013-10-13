@@ -423,7 +423,7 @@
 {
     
     for(ProposeStart * p in self.event.propose_starts) {
-        if([eventDate.start isEqualToDate:p.start]) {
+        if([eventDate isEqual:p]) {
             [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
             return;
         }

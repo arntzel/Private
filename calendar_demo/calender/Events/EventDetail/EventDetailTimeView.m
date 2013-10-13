@@ -138,11 +138,11 @@
 
     NSArray * times = _event.propose_starts;
 
+    ProposeStart * finalTime = [_event getFinalEventTime];
     for(ProposeStart * eventTime in times) {
 
         if(_event.confirmed) {
-
-            if([eventTime.start isEqualToDate:_event.start]) {
+            if([eventTime isEqual:finalTime]) {
                 eventTime.finalized = 1;
             } else {
                 eventTime.finalized = 2;
@@ -150,7 +150,6 @@
         } else {
             eventTime.finalized = 0;
         }
-
 
 
         NSString * day = [Utils formateDay2:eventTime.start];

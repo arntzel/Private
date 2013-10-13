@@ -13,8 +13,13 @@
 
 -(NSDate *) getEndTime
 {
-    int durationSeconds =  self.duration_minutes*60 + self.duration_hours*3600 + self.duration_days*3600*24;
+    int durationSeconds =  [self getDurationMins]*60;
     return [self.start dateByAddingTimeInterval:durationSeconds];
+}
+
+-(int) getDurationMins
+{
+   return self.duration_minutes + self.duration_hours*60 + self.duration_days*60*24;
 }
 
 -(NSDictionary*) convent2Dic
@@ -55,28 +60,27 @@
     start.start = [Utils parseNSDate:[json objectForKey:@"start"]];
     start.start_type = [json objectForKey:@"start_type"];
 
-    
     NSNumber * num = [Utils chekcNullClass:[json objectForKey:@"is_all_day"]];
     if(num != nil) {
         start.is_all_day = [num boolValue];
     }
-    
+
     num = [Utils chekcNullClass:[json objectForKey:@"duration_days"]];
     if(num != nil) {
-        start.duration_days = [num boolValue];
+        start.duration_days = [num intValue];
     }
-    
+
     num = [Utils chekcNullClass:[json objectForKey:@"duration_hours"]];
     if(num != nil) {
-        start.duration_hours = [num boolValue];
+        start.duration_hours = [num intValue];
     }
-    
+
     num = [Utils chekcNullClass:[json objectForKey:@"duration_minutes"]];
     if(num != nil) {
-        start.duration_minutes = [num boolValue];
+        start.duration_minutes = [num intValue];
     }
-    
-    
+
+
     NSArray *  voteJsons = [json objectForKey:@"vote"];
 
     NSMutableArray * votes = [[NSMutableArray alloc] init];
@@ -198,6 +202,34 @@
 - (NSComparisonResult)compare:(id)inObject {
     ProposeStart * ps = (ProposeStart *) inObject;
     return [self.start compare:ps.start];
+}
+
+
+-(BOOL) isEqual:(id)object {
+
+    ProposeStart * ps = (ProposeStart *) object;
+
+
+    BOOL result = [self.start isEqualToDate:ps.start];
+
+    if(result == NO) {
+        return NO;
+    }
+
+    result = [self.start_type isEqualToString:ps.start_type];
+    if(result == NO) {
+        return NO;
+    }
+
+    result = (self.is_all_day == ps.is_all_day);
+
+    if(result == NO) {
+        return NO;
+    }
+
+    return (self.duration_minutes == ps.duration_minutes) &&
+           (self.duration_hours == ps.duration_hours) &&
+           (self.duration_days == ps.duration_days);
 }
 
 @end

@@ -184,4 +184,18 @@
     return atd.status == -1;
 }
 
+-(ProposeStart *) getFinalEventTime
+{
+    ProposeStart * time = [[ProposeStart alloc] init];
+
+    time.start = self.start;
+    time.start_type = self.start_type;
+    time.is_all_day = self.is_all_day;
+    time.duration_days = self.duration_days;
+    time.duration_hours = self.duration_hours;
+    time.duration_minutes = self.duration_minutes;
+
+    return time;
+}
+
 @end

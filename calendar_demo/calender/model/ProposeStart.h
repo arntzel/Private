@@ -46,12 +46,17 @@
 
 - (NSComparisonResult)compare:(id)inObject;
 
+-(BOOL) isEqual:(id)object;
+
 
 -(NSDate *) getEndTime;
 
 -(NSString *) getVoteTimeLabel;
 
 -(NSDictionary*) convent2Dic;
+
+-(int) getDurationMins;
+
 
 +(ProposeStart *) parse:(NSDictionary *) json;
 

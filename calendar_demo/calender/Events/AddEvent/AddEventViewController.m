@@ -324,7 +324,7 @@
 - (void)setEventDate:(ProposeStart *)eventDate_
 {
     for(ProposeStart * p in [timesView getEventDates]) {
-        if([eventDate_.start isEqualToDate:p.start]) {
+        if([eventDate_ isEqual:p]) {
             [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
             return;
         }

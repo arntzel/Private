@@ -95,6 +95,10 @@
 
 -(BOOL) isDeclineEvent;
 
+
+-(ProposeStart *) getFinalEventTime;
+
+
 //Emai -> EventAttendee
 -(NSDictionary *) getAttendeesDic;
 
