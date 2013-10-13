@@ -41,9 +41,9 @@
         labelTitle = [[UILabel alloc] initWithFrame:frame];
         [labelTitle setBackgroundColor:[UIColor clearColor]];
         
-        labelTitle.textAlignment = UITextAlignmentCenter;
+        labelTitle.textAlignment = NSTextAlignmentCenter;
         //自动折行设置
-        labelTitle.lineBreakMode = UILineBreakModeWordWrap;
+        labelTitle.lineBreakMode = NSLineBreakByWordWrapping;
         labelTitle.numberOfLines = 0;
         
         [self addSubview:labelTitle];

@@ -116,7 +116,7 @@ enum {
 - (void)initSubviews
 {
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, REFRESH_HEADER_HEIGHT)];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     
     arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 28)];

@@ -15,6 +15,8 @@
     EventDetailNavigationBar *navBar;
     GMSMapView *mapView;
     GMSMarker *myLoacalmarker;
+    
+    Location *location;
 }
 
 //@property(nonatomic,strong) GMSMapView *mapView;
@@ -63,18 +65,29 @@
 
 - (void)addMapView
 {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:16];
+    float lat;
+    float lng;
+    if (location) {
+        lat = location.lat;
+        lng = location.lng;
+    }
+    else
+    {
+        lat = 40.7294;
+        lng = -74.00;
+    }
     
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:lng zoom:16];
+    [mapView setCamera:camera];
     mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView.settings.compassButton = YES;
+    self.myLoacalmarker.position = CLLocationCoordinate2DMake(lat, lng);
     [self.view addSubview:mapView];
 }
 
-- (void)updatePlaceWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude
+- (void)setPlaceLocation:(Location *)location_
 {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:16];
-    self.myLoacalmarker.position = CLLocationCoordinate2DMake(latitude, longitude);
-    [mapView setCamera:camera];
+    location = location_;
 }
 
 - (void)leftBtnPress:(id)sender

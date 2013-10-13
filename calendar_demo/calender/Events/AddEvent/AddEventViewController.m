@@ -289,7 +289,7 @@
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     ipc.sourceType = type;
     ipc.delegate = self;
-    [self presentModalViewController:ipc animated:YES];
+    [self presentViewController:ipc animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo

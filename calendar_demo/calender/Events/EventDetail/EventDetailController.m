@@ -560,8 +560,9 @@
 {
     LOG_D(@"viewInMaps");
     EventLocationViewController * mapViewController = [[EventLocationViewController alloc] init];
+    [mapViewController setPlaceLocation:self.event.location];
     [self.navigationController pushViewController:mapViewController animated:YES];
-    [mapViewController updatePlaceWithLatitude:self.event.location.lat longitude:self.event.location.lng];
+
     [mapViewController release];
     
 }
