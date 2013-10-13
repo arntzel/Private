@@ -132,6 +132,8 @@
         if(error == 0) {
             self.event = evt;
 
+            //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
+
             [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];

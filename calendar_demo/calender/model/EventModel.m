@@ -82,18 +82,27 @@
             for(Event * evt in events) {
                 
                 FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-                if(entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                } else {
-                    for(UserEntity * user in entity.attendees) {
-                        [model deleteEntity:user];
+
+                if(evt.confirmed && [evt isDeclineEvent]) {
+                    if(entity != nil) {
+                        [model deleteFeedEventEntity2:entity];
                     }
-                    
-                    [entity clearAttendee];
+
+                } else {
+
+                    if(entity == nil) {
+                        entity = [model createEntity:@"FeedEventEntity"];
+                    } else {
+                        for(UserEntity * user in entity.attendees) {
+                            [model deleteEntity:user];
+                        }
+
+                        [entity clearAttendee];
+                    }
+
+                    [entity convertFromEvent:evt];
+                    [model updateFeedEventEntity:entity];
                 }
-                
-                [entity convertFromEvent:evt];
-                [model updateFeedEventEntity:entity];
             }
             
             [model saveData];

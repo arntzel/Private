@@ -411,6 +411,11 @@ static CoreDataModel * instance;
     }
 }
 
+-(void) deleteFeedEventEntity2:(FeedEventEntity *) entity
+{
+    [cache removeFeedEventEntity:entity];
+    [managedObjectContext deleteObject:entity];
+}
 
 -(void) deleteFeedEventEntity:(int) eventID
 {
