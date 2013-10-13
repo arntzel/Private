@@ -168,7 +168,7 @@
     [gesture release];
 
     if(_eventTime.finalized == 2) {
-        headerListView.userInteractionEnabled = NO;
+        self.userInteractionEnabled = NO;
         headerListView.alpha = ALPHA;
     }
 }
