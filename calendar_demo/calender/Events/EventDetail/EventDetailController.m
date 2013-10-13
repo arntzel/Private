@@ -31,7 +31,17 @@
 #import "DetailVoteViewController.h"
 #import "CoreDataModel.h"
 
-@interface EventDetailController ()<EventDetailNavigationBarDelegate, UIActionSheetDelegate, UIAlertViewDelegate, EventDetailInviteePlaceViewDelegate, EventDetailCommentContentViewDelegate, EventDetailCommentConformViewDelegate, EventDetailTimeViewDelegate, AddEventDateViewControllerDelegate,AddLocationViewControllerDelegate,EventDetailPhotoViewDelegate>
+@interface EventDetailController ()<EventDetailNavigationBarDelegate,
+                                    UIActionSheetDelegate,
+                                    UIAlertViewDelegate,
+                                    EventDetailInviteePlaceViewDelegate,
+                                    EventDetailCommentContentViewDelegate,
+                                    EventDetailCommentConformViewDelegate,
+                                    EventDetailTimeViewDelegate,
+                                    AddEventDateViewControllerDelegate,
+                                    AddLocationViewControllerDelegate,
+                                    EventDetailPhotoViewDelegate,
+                                    UploadImageDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -48,6 +58,9 @@
     TPKeyboardAvoidingScrollView *scrollView;
     
     UIActivityIndicatorView * indicatorView;
+
+    //For upload Image
+    ASIFormDataRequest * request;
 }
 
 
@@ -86,7 +99,9 @@
     [indicatorView release];
     
     [event release];
-    
+
+    [request release];
+
     [super dealloc];
 }
 
@@ -589,7 +604,52 @@
 #pragma mark EventDetailPhotoViewDelegate
 - (void)detailPhotoDidChanged:(UIImage *)image
 {
-    //TODO:
+    if(request != nil)
+    {
+        [request cancel];
+        [request release];
+        request = nil;
+    }
+
+    [self showIndicatorView];
+    request =[[Model getInstance] uploadImage:image andCallback:self];
+    [request retain];
+}
+
+-(void) onUploadStart
+{
+
+}
+
+-(void) onUploadProgress: (long long) progress andSize: (long long) Size
+{
+    LOG_D(@"onUploadProgress");
+    //float progressVal = (progress*1.0)/Size;
+}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    LOG_D(@"onUploadCompleted");
+    [self hideIndicatorView];
+
+    [request release];
+    request = nil;
+
+    if(error != 0) {
+        [Utils showUIAlertView:@"Error" andMessage:@"Upload Image failed."];
+        [photoView setImage:nil];
+        return;
+    }
+
+    [[Model getInstance] updateEventPhoto:self.eventID PhotoUrl:url andCallback:^(NSInteger error) {
+        if(error == 0) {
+            //TODO::
+            self.event.thumbnail_url = url;
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Update event photo failed."];
+            [photoView setImage:nil];
+        }
+    }];
 }
 
 #pragma mark -

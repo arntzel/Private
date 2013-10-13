@@ -26,9 +26,12 @@
 
 
 #import "Utils.h"
+#import "Model.h"
 #import "CoreDataModel.h"
 #import "ViewUtils.h"
 #import "DeviceInfo.h"
+
+
 
 @interface EventTimeDetailViewController ()<KalViewDelegate,
                                            KalTileViewDataSource,

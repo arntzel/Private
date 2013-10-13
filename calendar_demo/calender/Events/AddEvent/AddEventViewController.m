@@ -11,7 +11,6 @@
 #import "NavgationBar.h"
 
 
-#import "Model.h"
 #import "AddEventViewController.h"
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"

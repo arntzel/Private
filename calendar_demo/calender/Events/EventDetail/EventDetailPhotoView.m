@@ -65,11 +65,13 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
-    }
-    else if(buttonIndex == 2)
-    {
         [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if(buttonIndex ==1) {
+
+        //user facebook
+
+    } else if(buttonIndex == 2) {
+        [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
     }
 }
 

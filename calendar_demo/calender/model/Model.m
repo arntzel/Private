@@ -1191,6 +1191,42 @@ static Model * instance;
 
 }
 
+-(void) updateEventPhoto:(int) eventID PhotoUrl:(NSString *) photourl andCallback:(void (^)(NSInteger error))callback
+{
 
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+
+    LOG_D(@"updateLocation url=%@", url);
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+
+
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:photourl forKey:@"thumbnail_url"];
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+
+    LOG_D(@"updateEventPhoto: %@", postContent);
+
+    [request setHTTPBody:postData];
+    [[UserModel getInstance] setAuthHeader:request];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+
+        if(status == 202) {
+
+            callback(ERROCODE_OK);
+
+        } else {
+
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"updateEventPhoto error=%@, resp:%@", error, aStr);
+
+            callback(ERROCODE_NETWORK);
+        }
+    }];
+}
 
 @end
