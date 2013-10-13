@@ -76,6 +76,7 @@
 
     feedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top, 320, bottom-top) style:UITableViewStylePlain];
     feedTableView.allowsSelection = NO;
+    feedTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     feedTableView.backgroundColor = [UIColor whiteColor];
     feedTableView.dataSource = self;
     feedTableView.delegate = self;
