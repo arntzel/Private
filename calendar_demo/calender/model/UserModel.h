@@ -34,6 +34,9 @@
 -(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback;
 
 
+-(void) getMyContacts:(void (^)(NSInteger error, NSArray * contact))callback;
+
+
 /*
  -Get user profile by userid
  */

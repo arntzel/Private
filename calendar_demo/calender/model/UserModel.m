@@ -289,6 +289,47 @@ static UserModel * instance;
 
 }
 
+-(void) getMyContacts:(void (^)(NSInteger error, NSArray * contact))callback
+{
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=0&limit=10000", HOST];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+
+    LOG_D(@"getMyContacts url=%@", url);
+
+    [[UserModel getInstance] setAuthHeader:request];
+
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+
+        int status = httpResp.statusCode;
+
+        if(status == 200 && data != nil) {
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            NSArray * array = [json objectForKey:@"objects"];
+
+            NSMutableArray * contacts =  [[NSMutableArray alloc] init];
+
+            for(int i=0; i<array.count; i++) {
+                NSDictionary * json = [array objectAtIndex:i];
+                Contact * contact = [Contact parseContact:json];
+                [contacts addObject:contact];
+            }
+
+            callback(0, contacts);
+
+        } else {
+            //TODO:: parse error type
+            //401: UNAUTHORIZED
+            //Other: net work error
+            callback(-1, nil);
+        }
+    }];
+}
+
 
 /*
  Get the current login user, return nil if not login
