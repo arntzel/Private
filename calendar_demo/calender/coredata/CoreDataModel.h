@@ -12,6 +12,9 @@
 #import "FeedEventEntityExtra.h"
 #import "UserEntityExtra.h"
 #import "MessageEntityExtra.h"
+#import "ContactEntityExtra.h"
+#import "Setting.h"
+
 #import "DataCache.h"
 
 @protocol CoreDataModelDelegate <NSObject>
@@ -73,6 +76,17 @@
 
 -(MessageEntity *) getMessageByID:(int) msgID;
 //End for Message notification
+
+
+-(ContactEntity *) getContactEntity:(int) contactid;
+
+-(NSArray *) getAllContactEntity;
+
+
+-(Setting *) getSetting:(NSString *) key;
+
+-(void) saveSetting:(NSString *) key andValue:(NSString *) value;
+
 
 
 -(id) createEntity:(NSString *) entityName;

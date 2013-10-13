@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
+#define KEY_LASTUPDATETIME      @"lastUpdateTime"
+#define KEY_LOGINUSER           @"loginUser"
+#define KEY_UNREADMESSAGECOUNT  @"unreadmessagecount"
+#define KEY_EVENTFILTERS        @"eventfilters"
+#define KEY_CONTACTUPDATETIME   @"lastcontactupdatetime"
+
+
 @interface UserSetting : NSObject
 
 +(UserSetting *) getInstance;

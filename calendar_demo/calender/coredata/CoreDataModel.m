@@ -473,6 +473,66 @@ static CoreDataModel * instance;
 }
 
 
+-(ContactEntity *) getContactEntity:(int) contactid
+{
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(id = %d)", contactid];
+    [fetchRequest setPredicate:predicate];
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+
+    return nil;
+}
+
+-(NSArray *) getAllContactEntity
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"email" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
+-(Setting *) getSetting:(NSString *) key
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"key == %@", key];
+    [fetchRequest setPredicate:predicate];
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+
+    return nil;
+}
+
+-(void) saveSetting:(NSString *) key andValue:(NSString *) value
+{
+    Setting * setting = [self getSetting:key];
+    if(setting == nil) {
+        setting = [self createEntity:@"Setting"];
+    }
+
+    setting.key = key;
+    setting.value = value;
+    [self saveData];
+}
+
 -(void) saveData
 {
     [managedObjectContext save:nil];

@@ -49,13 +49,24 @@
     self.peopleName.text = [user getReadableUsername];
     
     NSString * headerUrl = user.avatar_url;
-    
-    if(headerUrl == nil) {
-        self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
+
+    if(!user.calvinUser) {
+        
+        CGRect frame = self.peopleName.frame;
+        frame.origin.x = self.peopleHeader.frame.origin.x;
+        self.peopleName.frame = frame;
+        self.peopleHeader.hidden = YES;
+
     } else {
-        [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
-                          placeholderImage:[UIImage imageNamed:@"header.png"]];
+
+        if(headerUrl == nil) {
+            self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
+        } else {
+            [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
+                              placeholderImage:[UIImage imageNamed:@"header.png"]];
+        }
     }
+
 
     //self.btnSelect.selected = iuser.selected;
     
@@ -63,7 +74,9 @@
         self.btnSelect.image = [UIImage imageNamed:@"btn_ok_selected"];
     } else {
         self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
-    }    
+    }
+
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

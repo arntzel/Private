@@ -17,8 +17,12 @@
 
         return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
 
-    } else {
+    } else if(self.email != nil){
+        
         return self.email;
+
+    } else {
+        return self.phone;
     }
 }
 
@@ -34,7 +38,7 @@
     Contact * user = [[Contact alloc] init];
 
     user.id = [[jsonData objectForKey:@"id"] intValue];
-    user.email = [jsonData objectForKey:@"email"];
+    user.email = [Utils chekcNullClass:[jsonData objectForKey:@"email"]];
 
     user.avatar_url = [jsonData objectForKey:@"avatar_url"];
     if([user.avatar_url isKindOfClass: [NSNull class]]) {
@@ -51,7 +55,7 @@
         user.last_name = nil;
     }
 
-    user.phone = [jsonData objectForKey:@"phone"];
+    user.phone = [Utils chekcNullClass:[jsonData objectForKey:@"phone"]];
     
     NSString * owner = [jsonData objectForKey:@"user"];
     user.calvinUser = [Utils chekcNullClass:owner] != nil;

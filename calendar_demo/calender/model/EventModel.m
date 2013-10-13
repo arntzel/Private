@@ -5,6 +5,7 @@
 #import "CoreDataModel.h"
 #import "UserSetting.h"
 #import "UserModel.h"
+#import "UserSetting.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
@@ -103,5 +104,50 @@
     }];
 }
 
+-(void) checkContactUpdate
+{
 
+    if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
+
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
+
+    if(setting == nil) {
+
+        [self updateContacts];
+        
+    } else {
+
+        NSDate * updateTime = [Utils parseNSDate:setting.value];
+        if(updateTime.timeIntervalSinceNow < -12*3600) {
+            [self updateContacts];
+        }
+    }
+}
+
+-(void) updateContacts
+{
+    LOG_D(@"updateContacts");
+
+    [[UserModel getInstance] getMyContacts:^(NSInteger error, NSArray *contacts) {
+        if(error == 0) {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in contacts) {
+
+                ContactEntity * enity = [model getContactEntity:contact.id];
+                if(enity == nil) {
+                    enity = [model createEntity:@"ContactEntity"];
+                }
+
+                [enity convertContact:contact];
+            }
+
+            [model saveData];
+
+            NSString * updateTime = [Utils formateDate:[NSDate date]];
+            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+        }
+    }];
+}
 @end

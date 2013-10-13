@@ -438,11 +438,14 @@
 		76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FCE1805958E00018B95 /* DetailVoteCell.m */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
+		942A29B7180A9EFC00548901 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B6180A9EFC00548901 /* ContactEntity.m */; };
+		942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B9180A9FCE00548901 /* ContactEntityExtra.m */; };
 		9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9441400B17F719230059BCBA /* AddEventTimeButton.xib */; };
 		9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441400E17F71B830059BCBA /* AddEventTimeButton.m */; };
 		9441401217F720530059BCBA /* AddEventTimesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441401117F720530059BCBA /* AddEventTimesView.m */; };
 		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
+		94ADD7BF180AC270005047B9 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADD7BE180AC270005047B9 /* Setting.m */; };
 		94FAFFD517F5BA6F0010601F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD317F5BA6F0010601F /* Contact.m */; };
 		94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD617F5C16A0010601F /* ProposeStart.m */; };
 		94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */; };
@@ -1071,6 +1074,10 @@
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
+		942A29B5180A9EFC00548901 /* ContactEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntity.h; path = calender/coredata/ContactEntity.h; sourceTree = SOURCE_ROOT; };
+		942A29B6180A9EFC00548901 /* ContactEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntity.m; path = calender/coredata/ContactEntity.m; sourceTree = SOURCE_ROOT; };
+		942A29B8180A9FCE00548901 /* ContactEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntityExtra.h; path = calender/coredata/ContactEntityExtra.h; sourceTree = SOURCE_ROOT; };
+		942A29B9180A9FCE00548901 /* ContactEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntityExtra.m; path = calender/coredata/ContactEntityExtra.m; sourceTree = SOURCE_ROOT; };
 		9441400B17F719230059BCBA /* AddEventTimeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventTimeButton.xib; sourceTree = "<group>"; };
 		9441400D17F71B830059BCBA /* AddEventTimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventTimeButton.h; sourceTree = "<group>"; };
 		9441400E17F71B830059BCBA /* AddEventTimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventTimeButton.m; sourceTree = "<group>"; };
@@ -1080,6 +1087,8 @@
 		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
 		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
 		9457DF5717E5F11C00C294F7 /* EventTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTime.m; path = calender/model/EventTime.m; sourceTree = SOURCE_ROOT; };
+		94ADD7BD180AC270005047B9 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
+		94ADD7BE180AC270005047B9 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = calender/coredata/Setting.m; sourceTree = SOURCE_ROOT; };
 		94FAFFD217F5BA6F0010601F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contact.h; path = calender/model/Contact.h; sourceTree = SOURCE_ROOT; };
 		94FAFFD317F5BA6F0010601F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contact.m; path = calender/model/Contact.m; sourceTree = SOURCE_ROOT; };
 		94FAFFD417F5BA6F0010601F /* ProposeStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStart.h; path = calender/model/ProposeStart.h; sourceTree = SOURCE_ROOT; };
@@ -1680,6 +1689,10 @@
 		769AB9FF17DF514C0033E677 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				942A29B5180A9EFC00548901 /* ContactEntity.h */,
+				942A29B6180A9EFC00548901 /* ContactEntity.m */,
+				942A29B8180A9FCE00548901 /* ContactEntityExtra.h */,
+				942A29B9180A9FCE00548901 /* ContactEntityExtra.m */,
 				769ABA0017DF514C0033E677 /* CoreDataModel.h */,
 				769ABA0117DF514C0033E677 /* CoreDataModel.m */,
 				769ABA0217DF514C0033E677 /* DataCache.h */,
@@ -1695,6 +1708,8 @@
 				769ABA1217DF514C0033E677 /* MessageEntityExtra.h */,
 				769ABA1317DF514C0033E677 /* MessageEntityExtra.m */,
 				769ABA1417DF514C0033E677 /* Model.xcdatamodeld */,
+				94ADD7BD180AC270005047B9 /* Setting.h */,
+				94ADD7BE180AC270005047B9 /* Setting.m */,
 				3D71D41217F6E18700121A85 /* UserEntity.h */,
 				3D71D41317F6E18700121A85 /* UserEntity.m */,
 				769ABA1817DF514C0033E677 /* UserEntityExtra.h */,
@@ -2669,6 +2684,7 @@
 				764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
 				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
+				942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
@@ -2693,6 +2709,7 @@
 				769ABA9C17DF51EC0033E677 /* navigationMenuDataSource.m in Sources */,
 				769ABA9D17DF51EC0033E677 /* navigationNotifyCell.m in Sources */,
 				769ABA9F17DF51EC0033E677 /* navigationNotifyCellBg.m in Sources */,
+				94ADD7BF180AC270005047B9 /* Setting.m in Sources */,
 				769ABAA017DF51EC0033E677 /* navigationNotifyDataSource.m in Sources */,
 				34B1F1A817F8FCE200AA5C97 /* NotificaitonViewController.m in Sources */,
 				769ABAA117DF51EC0033E677 /* navigationNotifySectionHeader.m in Sources */,
@@ -2749,6 +2766,7 @@
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
 				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
+				942A29B7180A9EFC00548901 /* ContactEntity.m in Sources */,
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
 				34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */,
 				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,

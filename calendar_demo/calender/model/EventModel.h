@@ -27,4 +27,6 @@
 
 -(void) synchronizedFromServer;
 
+-(void) checkContactUpdate;
+
 @end

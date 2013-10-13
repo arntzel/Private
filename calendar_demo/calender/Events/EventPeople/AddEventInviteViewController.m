@@ -4,6 +4,7 @@
 #import "AddEventInvitePeopleCell.h"
 
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 #import "ViewUtils.h"
 #import "Utils.h"
@@ -93,14 +94,36 @@
 
 - (void)getInvitePeopleData
 {
-    UserModel * model = [UserModel getInstance];
-    [self.indicatorView startAnimating];
-    [model getUsers:0 andCallback:^(NSInteger error, NSArray *userArray) {
-        [self.indicatorView stopAnimating];
-        [self updateCalvinUser:userArray];
-        [self updateContactUser:userArray];
-        [self.tableView reloadData];
-    }];
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSArray * contacts = [model getAllContactEntity];
+
+    User * me = [[UserModel getInstance] getLoginUser];
+
+    for(ContactEntity * entity in contacts) {
+
+        if([me.email isEqualToString:entity.email]) {
+            //exclude creator in the event
+            continue;
+        }
+
+        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+
+        people.user = [entity getContact];
+        people.selected = [self isUserSelected:people.user];
+        if (people.selected) {
+            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+        }
+
+        if(people.user.calvinUser) {
+            [calvinUsers addObject:people];
+        } else {
+            [contactUsers addObject:people];
+        }
+
+        [people release];
+    }
+
+    [self refreshTableView];
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers

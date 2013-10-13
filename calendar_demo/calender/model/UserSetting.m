@@ -13,10 +13,7 @@
 
 static UserSetting * instance;
 
-#define KEY_LASTUPDATETIME      @"lastUpdateTime"
-#define KEY_LOGINUSER           @"loginUser"
-#define KEY_UNREADMESSAGECOUNT  @"unreadmessagecount"
-#define KEY_EVENTFILTERS        @"eventfilters"
+
 
 @implementation UserSetting
 
