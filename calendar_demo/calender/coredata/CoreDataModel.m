@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "NSDateAdditions.h"
 #import "DataCache.h"
+#import "UserModel.h"
 
 static CoreDataModel * instance;
 
@@ -36,60 +37,60 @@ static CoreDataModel * instance;
     persistentStoreCoordinator = nil;
     
     //Delete old db file
-    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
-    
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:storeUrl error: &error];
-    LOG_D(@"error=%@", error);
+//    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+//    
+//    NSError *error = nil;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:storeUrl error: &error];
+//    LOG_D(@"error=%@", error);
 
     
-    
+
+    delegates = [[NSMutableArray alloc] init];
+    cache = [[DataCache alloc] init];
+
+    self.inited = NO;
+}
+
+-(void) initDBContext:(User *) user
+{
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-    
+
+    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator:user];
+
     if (coordinator != nil) {
         managedObjectContext = [[NSManagedObjectContext alloc]init];
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    
-    delegates = [[NSMutableArray alloc] init];
-    cache = [[DataCache alloc] init];
+
+    self.inited = YES;
 }
 
 -(id) init
 {
     self = [super init];
-    
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-       
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-    
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc]init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    
+
     delegates = [[NSMutableArray alloc] init];
     cache = [[DataCache alloc] init];
+
     return self;
 }
 
 
 
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+-(NSPersistentStoreCoordinator *)persistentStoreCoordinator:(User *) user
 {
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
     }
 
+    NSString * dbname = [NSString stringWithFormat:@"calvin%d.sqlite", user.id];
+
     //得到数据库的路径
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:dbname]];
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
 
@@ -106,13 +107,8 @@ static CoreDataModel * instance;
         return managedObjectContext;
     }
 
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-
+    managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     return managedObjectContext;
 }
 

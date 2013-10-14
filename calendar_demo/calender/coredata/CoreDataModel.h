@@ -28,6 +28,10 @@
 @interface CoreDataModel : NSObject
 
 
+@property BOOL inited;
+
+-(void) initDBContext:(User *) user;
+
 -(void) addDelegate:(id<CoreDataModelDelegate>) delegate;
 
 -(void) removeDelegate:(id<CoreDataModelDelegate>) delegate;

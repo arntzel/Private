@@ -63,6 +63,8 @@ static UserSetting * instance;
 
 -(int) getUnreadmessagecount
 {
+    if([CoreDataModel getInstance].inited == NO) return 0;
+
     Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_UNREADMESSAGECOUNT];
     if(setting == nil) {
         return 0;
@@ -73,13 +75,16 @@ static UserSetting * instance;
 
 -(void) saveUnreadmessagecount:(int)count
 {
+    if([CoreDataModel getInstance].inited == NO) return;
+
     [[CoreDataModel getInstance] saveSetting:KEY_UNREADMESSAGECOUNT andValue: [NSString stringWithFormat:@"%d", count]];
 }
 
 
 -(NSDate *) getLastUpdatedTime
 {
-    
+    if([CoreDataModel getInstance].inited == NO) return nil;
+
     Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_LASTUPDATETIME];
     if(setting == nil) {
         return nil;

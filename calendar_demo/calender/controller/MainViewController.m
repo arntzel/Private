@@ -7,6 +7,9 @@
 #import "SettingViewController.h"
 
 #import "Model.h"
+#import "UserModel.h"
+#import "CoreDataModel.h"
+
 #import "Utils.h"
 
 @interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
@@ -50,6 +53,9 @@
     };
 
     currentIndex = 0;
+
+    User * me = [[UserModel getInstance] getLoginUser];
+    [[CoreDataModel getInstance] initDBContext:me];
     
     return self;
 }
