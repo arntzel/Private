@@ -436,6 +436,7 @@
 		76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CF7FC518058F6000018B95 /* DetailVoteViewController.xib */; };
 		76CF7FCB1805919300018B95 /* DetailVoteCreatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FC91805919300018B95 /* DetailVoteCreatorCell.m */; };
 		76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FCE1805958E00018B95 /* DetailVoteCell.m */; };
+		76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
 		942A29B7180A9EFC00548901 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B6180A9EFC00548901 /* ContactEntity.m */; };
@@ -1071,6 +1072,7 @@
 		76CF7FC91805919300018B95 /* DetailVoteCreatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVoteCreatorCell.m; sourceTree = "<group>"; };
 		76CF7FCD1805958E00018B95 /* DetailVoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVoteCell.h; sourceTree = "<group>"; };
 		76CF7FCE1805958E00018B95 /* DetailVoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVoteCell.m; sourceTree = "<group>"; };
+		76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_roundbtn_bg.png; sourceTree = "<group>"; };
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
@@ -1300,6 +1302,7 @@
 		76431DFA1806E680009DAFFE /* common */ = {
 			isa = PBXGroup;
 			children = (
+				76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */,
 				76431DFB1806E680009DAFFE /* nav_bg_green.png */,
 			);
 			path = common;
@@ -2479,6 +2482,7 @@
 				769AB9B817DF51340033E677 /* header9.jpg in Resources */,
 				769AB9B917DF51340033E677 /* event_detail_header_cross.png in Resources */,
 				768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */,
+				76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */,
 				34B1F1AF17F8FCE200AA5C97 /* settings_detail_empty_circle@2x.png in Resources */,
 				769AB9BA17DF51340033E677 /* event_detail_header_list_arraw.png in Resources */,
 				769AB9BB17DF51340033E677 /* event_detail_header_tick.png in Resources */,

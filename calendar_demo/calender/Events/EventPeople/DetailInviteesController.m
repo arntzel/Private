@@ -10,6 +10,10 @@
 #import "Utils.h"
 #import "ExtendArray.h"
 
+#import "UserModel.h"
+
+#import "AddEventInviteViewController.h"
+
 typedef enum
 {
     DetailInviteesResponsed = 0,
@@ -34,19 +38,34 @@ typedef enum
 
 
 @interface DetailInviteesController ()<UITableViewDelegate,
-                                           UITableViewDataSource,
-                                           EventNavigationBarDelegate>
+                                        UITableViewDataSource,
+                                        EventNavigationBarDelegate,
+                                        AddEventInviteViewControllerDelegate>
 {
     ExtendArray *respondedArray;
     ExtendArray *declinedArray;
     ExtendArray *notRespondedArray;
     
     NSMutableArray *dataArray;
+    
+    UIButton *rightBtn;
 }
 
 @end
 
 @implementation DetailInviteesController
+
+- (void)setEvent:(Event *)event
+{
+    _event = event;
+}
+
+-(BOOL) isMyCreatEvent
+{
+    User * user =  [[UserModel getInstance] getLoginUser];
+    User * creator = self.event.creator;
+    return user.id == creator.id;
+}
 
 - (void)viewDidLoad
 {
@@ -56,6 +75,25 @@ typedef enum
     EventNavigationBar * navBar = [EventNavigationBar creatView];
     [navBar setTitle:@"Invitees"];
     [navBar setGlassImage:self.titleBgImage];
+    
+    rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(242, 8, 70, 29)];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"nav_roundbtn_bg.png"] forState:UIControlStateNormal];
+    [rightBtn setTitle:@"+ Add" forState:UIControlStateNormal];
+    [navBar addSubview:rightBtn];
+    [rightBtn addTarget:self action:@selector(addInvitees) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn.titleLabel setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:13]];
+    [rightBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    
+    if (![self isMyCreatEvent])
+    {
+        if (self.event.allow_attendee_invite) {
+            [rightBtn setHidden:NO];
+        }
+        else
+        {
+            [rightBtn setHidden:YES];
+        }
+    }
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -143,6 +181,23 @@ typedef enum
     if ([notRespondedArray count] > 0) {
         [dataArray addObject:notRespondedArray];
     }
+}
+
+- (void)addInvitees
+{
+    AddEventInviteViewController *controller = [[AddEventInviteViewController alloc] initWithNibName:@"AddEventInviteViewController" bundle:nil];
+    controller.delegate = self;
+    
+    NSMutableArray *userArray = [NSMutableArray array];
+    for (EventAttendee *attend in self.event.attendees)
+    {
+        [userArray addObject:attend.contact];
+    }
+    
+    [controller setSelectedUser:userArray];
+    [controller setType:AddInviteeTypeRest];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 
@@ -245,6 +300,16 @@ typedef enum
 - (void)leftBtnPress:(id)sender;
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+#pragma mark AddEventInviteViewControllerDelegate
+- (void)setInVitePeopleArray:(NSArray *)inviteArray
+{
+    if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
+        [self.delegate addNewPeopleArray:inviteArray];
+    }
 }
 
 @end

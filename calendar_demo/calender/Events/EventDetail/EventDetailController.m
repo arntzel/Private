@@ -41,7 +41,8 @@
                                     AddEventDateViewControllerDelegate,
                                     AddLocationViewControllerDelegate,
                                     EventDetailPhotoViewDelegate,
-                                    UploadImageDelegate>
+                                    UploadImageDelegate,
+                                    DetailInviteesControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -576,6 +577,7 @@
     DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
     inviteesController.event = self.event;
     inviteesController.titleBgImage = [photoView getImage];
+    inviteesController.delegate = self;
     
     [self.navigationController pushViewController:inviteesController animated:YES];
     [inviteesController release];
@@ -662,6 +664,13 @@
     if(buttonIndex == 1) {
         [self begindeleteEvent];
     }
+}
+
+#pragma mark -
+#pragma mark DetailInviteesControllerDelegate
+- (void)addNewPeopleArray:(NSArray *)inviteArray
+{
+    
 }
 
 @end

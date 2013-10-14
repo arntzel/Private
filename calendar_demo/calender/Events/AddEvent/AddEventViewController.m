@@ -352,6 +352,7 @@
     invitePeople.delegate = self;
     
     [invitePeople setSelectedUser:invitedPeoples];
+    [invitePeople setType:AddInviteeTypeAll];
     [self.navigationController pushViewController:invitePeople animated:YES];
 }
 
