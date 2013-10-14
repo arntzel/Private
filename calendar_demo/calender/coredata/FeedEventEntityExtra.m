@@ -72,12 +72,6 @@
     self.locationName = event.location.location;
 
 
-    //UserEntity * user = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-    //[user convertFromUser:event.creator];
-
-    NSNumber * creatorID = [NSNumber numberWithInt:event.creator.id];;
-    self.creatorID = creatorID;
-
     [self clearAttendee];
     
     for(EventAttendee * atd in event.attendees) {
@@ -85,6 +79,10 @@
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
         [entity convertFromUser:atd];
         [self addAttendeesObject:entity];
+        
+        if([event.creator.email isEqualToString:entity.email]) {
+            self.creatorID = entity.id;
+        }
     }
 }
 
