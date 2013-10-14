@@ -2,7 +2,7 @@
 //  FeedEventEntity.h
 //  Calvin
 //
-//  Created by fang xiang on 13-9-28.
+//  Created by fang xiang on 13-10-14.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -32,6 +32,7 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
+@property (nonatomic, retain) NSDate * end;
 @property (nonatomic, retain) NSSet *attendees;
 @end
 

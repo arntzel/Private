@@ -99,6 +99,8 @@
 -(ProposeStart *) getFinalEventTime;
 
 
+-(NSDate *) getEndTime;
+
 //Emai -> EventAttendee
 -(NSDictionary *) getAttendeesDic;
 

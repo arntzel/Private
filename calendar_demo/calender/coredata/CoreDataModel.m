@@ -318,7 +318,7 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(start >= %@) AND (start <= %@) AND (eventType & %d)>0", start,  end, FILTER_IMCOMPLETE];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"( ((start >= %@) AND (start <= %@))  OR ((end >= %@) AND (end <= %@)) ) AND (eventType & %d)>0", start,  end, start,  end, FILTER_IMCOMPLETE];
     [fetchRequest setPredicate:predicate];
     return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
 }

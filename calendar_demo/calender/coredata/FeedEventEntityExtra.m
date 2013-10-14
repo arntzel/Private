@@ -64,6 +64,7 @@
     self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
 
     self.start = event.start;
+    self.end = [event getEndTime];
     self.start_type = event.start_type;
     self.thumbnail_url = event.thumbnail_url;
     self.timezone = event.timezone;
