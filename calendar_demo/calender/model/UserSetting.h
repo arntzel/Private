@@ -14,7 +14,7 @@
 #define KEY_UNREADMESSAGECOUNT  @"unreadmessagecount"
 #define KEY_EVENTFILTERS        @"eventfilters"
 #define KEY_CONTACTUPDATETIME   @"lastcontactupdatetime"
-
+#define KEY_TIMEZONE            @"timezone"
 
 @interface UserSetting : NSObject
 
@@ -41,4 +41,9 @@
 -(void) saveEventfilters:(int) filters;
 
 -(int) getEventfilters;
+
+-(NSString *) getTimezone;
+
+-(void) saveTimeZone:(NSString *) timezone;
+
 @end
