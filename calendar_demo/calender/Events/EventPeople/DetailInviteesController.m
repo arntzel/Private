@@ -84,8 +84,8 @@ typedef enum
     [rightBtn.titleLabel setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:13]];
     [rightBtn.titleLabel setTextColor:[UIColor whiteColor]];
     
-    if (![self isMyCreatEvent])
-    {
+//    if (![self isMyCreatEvent])
+//    {
         if (self.event.allow_attendee_invite) {
             [rightBtn setHidden:NO];
         }
@@ -93,7 +93,7 @@ typedef enum
         {
             [rightBtn setHidden:YES];
         }
-    }
+//    }
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
