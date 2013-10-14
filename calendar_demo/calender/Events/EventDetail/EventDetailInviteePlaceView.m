@@ -100,6 +100,7 @@
 - (void)addPlaceView
 {
     self.placeView = [EventDetailPlaceView creatView];
+    [self.placeView addMask:isCreator];
     
     CGRect frame = self.placeView.frame;
     frame.origin.x = 5 * 2 + self.inviteeView.frame.size.width;

@@ -53,6 +53,11 @@
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [_gmsMapView.layer setShadowRadius:1.0f];
     
+
+}
+
+- (void)addMask:(BOOL)canChangeLocation
+{
     maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 60)];
     [maskView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:maskView];
@@ -65,18 +70,20 @@
     [maskView addSubview:glassView];
     [glassView release];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 18, 94, 30)];
-    [maskView addSubview:label];
-    [label release];
-    [label setText:@"Pick a location"];
-    [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
-    [label setTextColor:[UIColor blackColor]];
-    [label setBackgroundColor:[UIColor clearColor]];
-    
-    UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
-    [maskView addSubview:arrawView];
-    [arrawView release];
-    arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
+    if (canChangeLocation) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 18, 94, 30)];
+        [maskView addSubview:label];
+        [label release];
+        [label setText:@"Pick a location"];
+        [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+        [label setTextColor:[UIColor blackColor]];
+        [label setBackgroundColor:[UIColor clearColor]];
+        
+        UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
+        [maskView addSubview:arrawView];
+        [arrawView release];
+        arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
+    }
 }
 
 +(EventDetailPlaceView *) creatView

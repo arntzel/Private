@@ -18,5 +18,6 @@
 
 
 +(EventDetailPlaceView *) creatView;
+- (void)addMask:(BOOL)canChangeLocation;
 
 @end
