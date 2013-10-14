@@ -252,7 +252,7 @@
     placeView.layer.masksToBounds = YES;
 
     [inviteView.btnInvite addTarget:self action:@selector(invitePeople:) forControlEvents:UIControlEventTouchUpInside];
-    [placeView.btnPick addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+    [placeView.btnPickerLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)initAddDateView

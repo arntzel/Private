@@ -1,3 +1,4 @@
+
 //
 //  EventDetailPlaceView.m
 //  detail
@@ -12,6 +13,9 @@
 #import "GPlaceApi.h"
 
 @interface EventDetailPlaceView()
+{
+    UIView *maskView;
+}
 
 @property (retain, nonatomic) GMSMapView *gmsMapView;
 @property(retain, nonatomic) GMSMarker * marker;
@@ -38,7 +42,7 @@
     
     
 
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:12];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:12];
     self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(0, 0, 152, 59) camera:camera] retain];
     _gmsMapView.settings.compassButton = NO;
     _gmsMapView.camera = camera;
@@ -48,6 +52,31 @@
     [_gmsMapView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.20f].CGColor];
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [_gmsMapView.layer setShadowRadius:1.0f];
+    
+    maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 60)];
+    [maskView setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:maskView];
+    [maskView setHidden:YES];
+    [maskView setUserInteractionEnabled:NO];
+    
+    UIView *glassView = [[UIView alloc] initWithFrame:maskView.frame];
+    [glassView setAlpha:0.7f];
+    [glassView setBackgroundColor:[UIColor whiteColor]];
+    [maskView addSubview:glassView];
+    [glassView release];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 18, 94, 30)];
+    [maskView addSubview:label];
+    [label release];
+    [label setText:@"Pick a location"];
+    [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+    [label setTextColor:[UIColor blackColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+    UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
+    [maskView addSubview:arrawView];
+    [arrawView release];
+    arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
 }
 
 +(EventDetailPlaceView *) creatView
@@ -61,14 +90,39 @@
 
 -(void) setLocation:(Location *) location
 {
+    BOOL isLocation = NO;
+    if (location == nil || (location.lat == 0 && location.lng == 0)) {
+        isLocation = NO;
+    }
+    else
+    {
+        isLocation = YES;
+    }
+    
+    if (isLocation == NO) {
+        location = [[Location alloc] init];
+        location.lat = CAL_DEFAULT_LOCATION_LAT;
+        location.lng = CAL_DEFAULT_LOCATION_LNG;
+        location.location = @"No Location";
+        
+        [maskView setHidden:NO];
+    }
+    else
+    {
+        [maskView setHidden:YES];
+    }
+    
     self.locationNameLabel.text = location.location;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.lat longitude:location.lng zoom:12];
     _gmsMapView.camera = camera;
-    // 在map中间做一个标记
-    self.marker = [[[GMSMarker alloc] init] autorelease];
     
-    _marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
-    _marker.map = _gmsMapView;
+    if (isLocation) {
+        // 在map中间做一个标记
+        self.marker = [[[GMSMarker alloc] init] autorelease];
+        _marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
+        _marker.map = _gmsMapView;
+    }
+
     
     _gmsMapView.userInteractionEnabled = NO;
 }

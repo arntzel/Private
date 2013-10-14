@@ -120,7 +120,7 @@
     [super viewDidLoad];
     shouldHiddenTouchedLocation = YES;
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.7294 longitude:-74.00 zoom:16];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:16];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
     self.mapView.settings.compassButton = YES;

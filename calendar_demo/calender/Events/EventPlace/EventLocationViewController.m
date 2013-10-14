@@ -67,14 +67,14 @@
 {
     float lat;
     float lng;
-    if (location) {
-        lat = location.lat;
-        lng = location.lng;
+    if (location == nil || (location.lat == 0 && location.lng == 0)) {
+        lat = CAL_DEFAULT_LOCATION_LAT;
+        lng = CAL_DEFAULT_LOCATION_LNG;
     }
     else
     {
-        lat = 40.7294;
-        lng = -74.00;
+        lat = location.lat;
+        lng = location.lng;
     }
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:lng zoom:16];
