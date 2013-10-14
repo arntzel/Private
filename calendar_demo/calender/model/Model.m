@@ -1229,4 +1229,52 @@ static Model * instance;
     }];
 }
 
+-(void) inviteContacts:(int) eventID andContact:(NSArray *) invitees andCallback:(void (^)(NSInteger error, Event * newEvent))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"inviteContacts url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
+    
+    for(Invitee * invitee in invitees) {
+        [jsonarray addObject:[invitee convent2Dic]];
+    }
+    
+    [dict setObject:jsonarray forKey:@"invitees"];
+    
+    NSString * postContent =  [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    LOG_D(@"inviteContacts postContent: %@", postContent);
+    
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 202) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"inviteContacts resp:%@", json);
+            
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"inviteContacts error=%@, resp:%@", error, aStr);
+            
+            callback(-1, nil);
+        }
+    }];
+}
 @end

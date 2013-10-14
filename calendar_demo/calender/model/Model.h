@@ -169,6 +169,9 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) updateEventPhoto:(int) eventID PhotoUrl:(NSString *) url andCallback:(void (^)(NSInteger error))callback;
 
+//Invitee list
+-(void) inviteContacts:(int) eventID andContact:(NSArray *) invitees andCallback:(void (^)(NSInteger error, Event * newEvent))callback;
+
 
 -(EventModel *) getEventModel;
 
