@@ -13,6 +13,7 @@
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="confirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="created_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="creatoremail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creatorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>

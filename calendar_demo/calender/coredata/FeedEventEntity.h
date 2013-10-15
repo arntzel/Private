@@ -2,7 +2,7 @@
 //  FeedEventEntity.h
 //  Calvin
 //
-//  Created by fang xiang on 13-10-14.
+//  Created by fang xiang on 13-10-15.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSNumber * duration_days;
 @property (nonatomic, retain) NSNumber * duration_hours;
 @property (nonatomic, retain) NSNumber * duration_minutes;
+@property (nonatomic, retain) NSDate * end;
 @property (nonatomic, retain) NSNumber * eventType;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * is_all_day;
@@ -32,7 +33,7 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
-@property (nonatomic, retain) NSDate * end;
+@property (nonatomic, retain) NSString * creatoremail;
 @property (nonatomic, retain) NSSet *attendees;
 @end
 

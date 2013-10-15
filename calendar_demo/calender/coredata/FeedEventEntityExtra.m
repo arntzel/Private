@@ -18,7 +18,7 @@
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.id isEqualToNumber:self.creatorID])
+        if([user.email isEqualToString:self.creatoremail])
         {
             return user;
         }
@@ -72,17 +72,14 @@
     self.locationName = event.location.location;
 
 
-    [self clearAttendee];
+    self.creatorID = [NSNumber numberWithInt:event.creator.id];
+    self.creatoremail = event.creator.email;
     
+    [self clearAttendee];
     for(EventAttendee * atd in event.attendees) {
-        
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
         [entity convertFromUser:atd];
         [self addAttendeesObject:entity];
-        
-        if([event.creator.email isEqualToString:entity.email]) {
-            self.creatorID = entity.id;
-        }
     }
 }
 
