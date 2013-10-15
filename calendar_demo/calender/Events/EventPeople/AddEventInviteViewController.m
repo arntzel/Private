@@ -94,6 +94,11 @@
 
 - (void)getInvitePeopleData
 {
+    [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
+        
+        LOG_D(@"getInvitePeopleData");
+    }];
+    return;
     CoreDataModel * model = [CoreDataModel getInstance];
     NSArray * contacts = [model getAllContactEntity];
 

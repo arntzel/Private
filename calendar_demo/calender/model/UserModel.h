@@ -36,6 +36,7 @@
 
 -(void) getMyContacts:(void (^)(NSInteger error, NSArray * contact))callback;
 
+- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback;
 
 /*
  -Get user profile by userid

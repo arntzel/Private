@@ -509,6 +509,24 @@ static CoreDataModel * instance;
     return results;
 }
 
+- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ && email = %@)", phone, email];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    if(results.count >0) {
+        return [results objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
 -(Setting *) getSetting:(NSString *) key
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

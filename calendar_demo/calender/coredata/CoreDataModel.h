@@ -80,7 +80,15 @@
 
 
 -(ContactEntity *) getContactEntity:(int) contactid;
-
+/**
+ *  get contact entity with phone and email
+ *
+ *  @param phone
+ *  @param email
+ *
+ *  @return ContactEntity
+ */
+- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 -(NSArray *) getAllContactEntity;
 
 
