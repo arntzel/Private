@@ -21,6 +21,7 @@
     PedingEventViewController * pendingEventViewCtr;
     SettingViewController * settingViewCtr;
     
+    menuNavigation * menuNavigationController;
     int currentIndex;
 }
 
@@ -52,6 +53,8 @@
         [leftController.tableView reloadData];
     };
 
+    menuNavigationController = leftController;
+    
     currentIndex = 0;
 
     User * me = [[UserModel getInstance] getLoginUser];
@@ -64,6 +67,8 @@
 
     [super showLeftController:animated];
 
+    [menuNavigationController.tableView reloadData];
+    
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
     if([msgModel getUnreadMsgCount] > 0) {
         
