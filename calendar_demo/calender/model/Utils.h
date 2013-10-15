@@ -117,4 +117,6 @@
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL)isValidatePhoneNumber:(NSString *) phoneNUmber;
 
++(NSString *) getProposeStatLabel:(ProposeStart *) ps;
+
 @end

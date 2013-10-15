@@ -399,4 +399,12 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@", regex];
     return [emailTest evaluateWithObject:phoneNUmber];
 }
+
++(NSString *) getProposeStatLabel:(ProposeStart *) ps
+{
+    NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
+    NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
+    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    return lable;
+}
 @end

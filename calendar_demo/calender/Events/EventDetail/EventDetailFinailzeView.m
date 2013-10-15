@@ -61,20 +61,12 @@ static CGFloat const getstureDistance = 50;
     frame.origin.y = 7;
     self.frame = frame;
 
-    self.eventTimeLabel.text = [self getTimeLable:eventTime];
+    self.eventTimeLabel.text = [Utils getProposeStatLabel:eventTime];
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
         self.alpha = ALPHA;
     }
-}
-
--(NSString *) getTimeLable:(ProposeStart *) eventTime
-{
-    NSString * startTime = [Utils formateTimeAMPM:eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM:[eventTime getEndTime]];
-    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    return lable;
 }
 
 - (void)updateUI

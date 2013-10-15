@@ -90,13 +90,7 @@
     }
 }
 
--(NSString *) getTimeLable
-{
-    NSString * startTime = [Utils formateTimeAMPM:_eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM:[_eventTime getEndTime]];
-    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    return lable;
-}
+
 
 -(NSString *) getConfilictEventCount
 {
@@ -205,7 +199,7 @@
         frame.origin.x = 7;
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
-        conformView.eventTimeLabel.text = [self getTimeLable];
+        conformView.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
         conformView.eventTimeConflictLabel.text = [self getConfilictEventCount];
         
         int status = 0;
@@ -262,7 +256,7 @@
     frame.origin.y = 7;
     view.frame = frame;
 
-    view.eventTimeLabel.text = [self getTimeLable];
+    view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
     
     [self addSubview:view];
 
