@@ -28,7 +28,7 @@
 
 - (void) setDesciption:(NSString *) desc;
 
-- (id)initByCreator:(BOOL)creator;
+- (id)initByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation;
 
 - (void)updateInvitee:(NSArray *) users;
 

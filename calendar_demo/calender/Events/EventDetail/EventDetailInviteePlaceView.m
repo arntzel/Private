@@ -14,6 +14,7 @@
 @interface EventDetailInviteePlaceView()<UIActionSheetDelegate>
 {
     BOOL isCreator;
+    BOOL canChangePlace;
     BOOL showAllDescitpion;
 }
 
@@ -31,9 +32,9 @@
 @synthesize placeActionSheet;
 @synthesize descriptionActionSheet;
 
-- (id)initByCreator:(BOOL)creator;
+- (id)initByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation
 {
-    return [self initWithFrame:CGRectZero ByCreator:creator];
+    return [self initWithFrame:CGRectZero ByCreator:creator CanChangeLocation:canChangeLocation];
 }
 
 - (void)dealloc
@@ -49,7 +50,7 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame ByCreator:(BOOL)creator;
+- (id)initWithFrame:(CGRect)frame ByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -57,6 +58,7 @@
         [self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
 
         isCreator = creator;
+        canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
         
         [self addInviteeView];
@@ -128,44 +130,131 @@
     LOG_D(@"singleTapLocation");
     if(isCreator)
     {
-        self.placeActionSheet = [[[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
+        if ([self.placeView haveLocation]) {
+            self.placeActionSheet = [[[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
+        }
+        else
+        {
+            self.placeActionSheet = [[[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Change Location", nil] autorelease];
+        }
+        [placeActionSheet showInView:self];
     }
     else
     {
-        self.placeActionSheet = [[[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                                  otherButtonTitles:@"View in Maps", nil] autorelease];
+        if (canChangePlace) {
+            if ([self.placeView haveLocation]) {
+                self.placeActionSheet = [[[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
+            }
+            else
+            {
+                self.placeActionSheet = [[[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Change Location", nil] autorelease];
+            }
+            [placeActionSheet showInView:self];
+        }
+        else
+        {
+            if ([self.placeView haveLocation]) {
+                self.placeActionSheet = [[[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:@"View in Maps", nil] autorelease];
+                [placeActionSheet showInView:self];
+            }
+            else
+            {
+
+            }
+        }
+
     }
-    
-    [placeActionSheet showInView:self];
 }
 
 - (void)placeActionSheetClick:(NSInteger)index
 {
     if(isCreator)
     {
-        if(index == 0) {
+        if ([self.placeView haveLocation])
+        {
+            if(index == 0) {
+                if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
+                    [self.delegate changeLocation];
+                }
+            } else if(index == 1){
+                if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
+                    [self.delegate viewInMaps];
+                }
+            }
+        }
+        else if(index == 0)
+        {
             if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
                 [self.delegate changeLocation];
             }
-        } else if(index == 1){
-            if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-                [self.delegate viewInMaps];
-            }
         }
     }
-    else if(index == 0)
+    else
     {
-        if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-            [self.delegate viewInMaps];
+        if (canChangePlace)
+        {
+            if ([self.placeView haveLocation]) {
+                if(index == 0)
+                {
+                    if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
+                        [self.delegate changeLocation];
+                    }
+                }
+                else if(index == 1)
+                {
+                    if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
+                        [self.delegate viewInMaps];
+                    }
+                }
+            }
+            else
+            {
+                if(index == 0)
+                {
+                    if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
+                        [self.delegate changeLocation];
+                    }
+                }
+            }
+        }
+        else
+        {
+            if ([self.placeView haveLocation]) {
+                if(index == 0)
+                {
+                    if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
+                        [self.delegate viewInMaps];
+                    }
+                }
+            }
+            else
+            {
+            }
         }
     }
 }

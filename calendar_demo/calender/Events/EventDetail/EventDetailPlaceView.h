@@ -16,7 +16,7 @@
 
 -(void) setLocation:(Location *) location;
 
-
+- (BOOL)haveLocation;
 +(EventDetailPlaceView *) creatView;
 - (void)addMask:(BOOL)canChangeLocation;
 

@@ -15,6 +15,7 @@
 @interface EventDetailPlaceView()
 {
     UIView *maskView;
+    BOOL isLocation;
 }
 
 @property (retain, nonatomic) GMSMapView *gmsMapView;
@@ -26,6 +27,8 @@
 
 - (void)updateUI
 {
+    isLocation = NO;
+    
     [self.contentView.layer setCornerRadius:5.0f];
     [self.contentView.layer setShadowRadius:1.0f];
     [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
@@ -95,9 +98,13 @@
     return view;
 }
 
+- (BOOL)haveLocation
+{
+    return isLocation;
+}
+
 -(void) setLocation:(Location *) location
 {
-    BOOL isLocation = NO;
     if (location == nil || (location.lat == 0 && location.lng == 0)) {
         isLocation = NO;
     }

@@ -167,7 +167,7 @@
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
     [scrollView addSubview:emptyView];
     
-    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:isCreator];
+    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:isCreator CanChangeLocation:self.event.allow_new_location];
     invitePlaceContentView.delegate = self;
     [scrollView addSubview:invitePlaceContentView];
     
