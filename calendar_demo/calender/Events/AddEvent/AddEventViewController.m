@@ -48,7 +48,8 @@
                                      AddEventDateViewControllerDelegate,
                                      NavgationBarDelegate,
                                      UploadImageDelegate,
-                                     ATMHudDelegate>
+                                     ATMHudDelegate,
+                                    AddEventTimesViewDelegate>
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -95,10 +96,10 @@
     [imagePickerbtn release];
     [txtFieldTitle release];
     
-    
     [inviteView release];
     [placeView release];
 
+    timesView.delegate = nil;
     [timesView release];
     [settingView release];
     
@@ -259,6 +260,7 @@
 {
     timesView = [[AddEventTimesView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
     [scrollView addSubview:timesView];
+    timesView.delegate = self;
 
     [timesView addBtnTarget:self action:@selector(addDate:)];
     [timesView updateView:[NSArray array]];

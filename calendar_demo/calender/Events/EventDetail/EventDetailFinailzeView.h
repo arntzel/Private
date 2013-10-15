@@ -25,6 +25,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
+- (void)setTime:(NSString *)time;
+- (void)setConflictCount:(NSInteger)count;
+
 @property(assign) id<EventDetailFinailzeViewDelegate> delegate;
 
 -(void) updateView:(ProposeStart *) eventTime;

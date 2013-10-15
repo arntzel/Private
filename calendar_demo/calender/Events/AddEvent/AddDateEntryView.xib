@@ -47,10 +47,17 @@
                             <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="arraw.png" highlightedImage="arraw.png" id="149">
-                            <rect key="frame" x="288" y="40" width="10" height="14"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lkL-SN-2gY">
+                            <rect key="frame" x="279" y="2" width="27" height="27"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                            <inset key="imageEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="14"/>
+                            <state key="normal" image="event_detail_header_cross.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="remove:" destination="3" eventType="touchUpInside" id="UIM-Vr-x5g"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.77319142480000003" green="0.96078431369999995" blue="0.42780616910000002" alpha="0.0" colorSpace="calibratedRGB"/>
                 </view>
@@ -64,6 +71,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arraw.png" width="20" height="28"/>
+        <image name="event_detail_header_cross.png" width="26" height="26"/>
     </resources>
 </document>

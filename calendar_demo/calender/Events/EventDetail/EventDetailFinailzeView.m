@@ -54,6 +54,26 @@ static CGFloat const getstureDistance = 50;
     return self;
 }
 
+- (void)setTime:(NSString *)time
+{
+    self.eventTimeLabel.text = time;
+}
+
+- (void)setConflictCount:(NSInteger)count
+{
+    if (count > 0) {
+        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d CONFLICT", count];
+        [self.eventTimeConflictLabel setHidden:NO];
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+    }
+    else
+    {
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+        [self.eventTimeConflictLabel setHidden:YES];
+    }
+    
+}
+
 -(void) updateView:(ProposeStart *) eventTime
 {
     CGRect frame = self.frame;

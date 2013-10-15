@@ -1,6 +1,7 @@
 #import "AddDateEntryView.h"
 
 @implementation AddDateEntryView
+@synthesize delegate;
 
 - (void)awakeFromNib
 {
@@ -17,7 +18,15 @@
     return view;
 }
 
+- (IBAction)remove:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(removeEventDataView:)]) {
+        [self.delegate removeEventDataView:self];
+    }
+}
+
+
 - (void)dealloc {
+    self.eventData = nil;
     [_DateResultView release];
     [_startTimeLabel release];
     [_duringTimeLabel release];

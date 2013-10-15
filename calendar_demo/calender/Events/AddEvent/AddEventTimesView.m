@@ -10,11 +10,16 @@
 #import "AddEventTimeButton.h"
 #import "AddDateEntryView.h"
 
+@interface AddEventTimesView()<AddDateEntryViewDelegate>
+
+@end
+
 
 @implementation AddEventTimesView {
     AddEventTimeButton * addBtn;
     NSMutableArray * _eventDates;
 }
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,8 +49,10 @@
     [_eventDates addObject:eventDate];
 
     AddDateEntryView * view = [AddDateEntryView createDateEntryView];
+    view.delegate = self;
     view.startTimeLabel.text = [eventDate parseStartDateString];
     view.duringTimeLabel.text = [eventDate parseDuringDateString];
+    view.eventData = eventDate;
 
     //int index = self.subviews.count-1;
     [self insertSubview:view atIndex:0];
@@ -62,6 +69,7 @@
 
     for(ProposeStart * date in eventDates) {
         AddDateEntryView * view = [AddDateEntryView createDateEntryView];
+        view.eventData = date;
         view.startTimeLabel.text = [date parseStartDateString];
         view.duringTimeLabel.text = [date parseDuringDateString];
         [self addSubview:view];
@@ -92,6 +100,14 @@
     CGRect frame = self.frame;
     frame.size.height = offsetY;
     self.frame = frame;
+}
+
+- (void)removeEventDataView:(AddDateEntryView *)dateEntry
+{
+    [_eventDates removeObject:dateEntry.eventData];
+    [dateEntry removeFromSuperview];
+    [self layOutSubViews];
+    [self.delegate layOutSubViews];
 }
 
 @end

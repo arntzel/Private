@@ -80,7 +80,7 @@
         
         finailzeView = [[EventDetailFinailzeView creatView] retain];
         [finailzeView updateView:_eventTime];
-        finailzeView.eventTimeConflictLabel.text = [self getConfilictEventCount];
+        [finailzeView setConflictCount:[self getConfilictEventCount]];
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
 
