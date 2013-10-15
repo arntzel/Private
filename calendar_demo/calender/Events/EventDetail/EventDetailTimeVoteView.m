@@ -92,12 +92,12 @@
 
 
 
--(NSString *) getConfilictEventCount
+-(NSInteger) getConfilictEventCount
 {
     NSDate * start = _eventTime.start;
     NSDate * end = [_eventTime getEndTime];
     int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
-    return [NSString stringWithFormat:@"%d CONFLICT", count];
+    return count;
 }
 
 - (void)addInviteeListView:(Event *) event
@@ -199,8 +199,8 @@
         frame.origin.x = 7;
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
-        conformView.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
-        conformView.eventTimeConflictLabel.text = [self getConfilictEventCount];
+        [conformView setTime:[Utils getProposeStatLabel:_eventTime]];
+        [conformView setConflictCount:[self getConfilictEventCount]];
         
         int status = 0;
         User * me = [[UserModel getInstance] getLoginUser];
@@ -240,6 +240,7 @@
         
         
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+                
         conformView.eventTimeLabel.userInteractionEnabled = YES;
         [conformView.eventTimeLabel addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];

@@ -9,6 +9,12 @@
 #import "EventDetailInviteeConformView.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface EventDetailInviteeConformView()
+
+
+
+@end
+
 @implementation EventDetailInviteeConformView {
     int _vote;
 }
@@ -20,6 +26,26 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)setTime:(NSString *)time
+{
+    self.eventTimeLabel.text = time;
+}
+
+- (void)setConflictCount:(NSInteger)count
+{
+    if (count > 0) {
+        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d CONFLICT", count];
+        [self.eventTimeConflictLabel setHidden:NO];
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+    }
+    else
+    {
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+        [self.eventTimeConflictLabel setHidden:YES];
+    }
+    
 }
 
 
