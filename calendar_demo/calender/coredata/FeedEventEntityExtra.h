@@ -15,6 +15,7 @@
 
 -(void)clearAttendee;
 
+-(NSDate*) getLocalStart;
 
 -(UserEntity*) getCreator;
 

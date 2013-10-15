@@ -8,11 +8,16 @@
 
 #import "FeedEventEntityExtra.h"
 #import "CoreDataModel.h"
-
+#import "Utils.h"
 #import "UserEntityExtra.h"
 
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
+
+-(NSDate*) getLocalStart
+{
+    return [Utils convertLocalDate:self.start];
+}
 
 -(UserEntity*) getCreator
 {

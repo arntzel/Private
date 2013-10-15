@@ -230,8 +230,8 @@ static CoreDataModel * instance;
 -(NSArray *) getFeedEventEntitys:(NSDate *) day
 {
     
-    NSDate * beginDate = [day cc_dateByMovingToBeginningOfDay];
-    NSDate * endDate = [day cc_dateByMovingToEndOfDay];
+    NSDate * beginDate = [Utils convertGMTDate:[day cc_dateByMovingToBeginningOfDay]];
+    NSDate * endDate = [Utils convertGMTDate:[day cc_dateByMovingToEndOfDay]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -251,27 +251,7 @@ static CoreDataModel * instance;
 
 }
 
-//-(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day
-//{
-//    
-//    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", day);
-//   
-//    NSDate * date = [Utils parseNSStringDay:day];
-//    
-//    NSArray * feedEvts = [self getFeedEventEntitys:date];
-//    
-//    if(feedEvts.count == 0) return nil;
-//    
-//    DayFeedEventEntitys * dayFeedEvents = [[DayFeedEventEntitys alloc] init];
-//    
-//    dayFeedEvents.day = day;
-//    
-//    for(FeedEventEntity * evt in feedEvts) {
-//        [dayFeedEvents addEventsObject:evt];
-//    }
-//    
-//    return dayFeedEvents;
-//}
+
 
 -(DataCache *) getCache
 {
@@ -332,11 +312,11 @@ static CoreDataModel * instance;
     }
     
     
-    LOG_D(@"getDayFeedEventType：%@", day);
+    //LOG_D(@"getDayFeedEventType：%@", day);
     
     NSDate * date = [Utils parseNSStringDay:day];
-    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
-    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
+    NSDate * beginDate = [Utils convertGMTDate:[date cc_dateByMovingToBeginningOfDay]];
+    NSDate * endDate = [Utils convertGMTDate:[date cc_dateByMovingToEndOfDay]];
     
   
 
@@ -388,7 +368,7 @@ static CoreDataModel * instance;
     
     if(entity.start != nil) {
        
-        NSString * day = [Utils formateDay:entity.start];
+        NSString * day = [Utils formateDay:[entity getLocalStart]];
         
     
         if([cache containDay:day]) {

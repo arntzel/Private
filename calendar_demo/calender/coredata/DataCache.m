@@ -143,7 +143,7 @@
 
 -(void) putFeedEventEntity:(FeedEventEntity *) feedEvent
 {
-    NSString * day = [Utils formateDay:feedEvent.start];
+    NSString * day = [Utils formateDay:[feedEvent getLocalStart]];
     
     DayFeedEventEntitysWrap * wrap = [self getDayFeedEventEntitysWrap:day];
     
@@ -158,7 +158,7 @@
 
 -(void) removeFeedEventEntity:(FeedEventEntity *) feedEvent
 {
-    NSString * day = [Utils formateDay:feedEvent.start];
+    NSString * day = [Utils formateDay:[feedEvent getLocalStart]];
     
     DayFeedEventEntitysWrap * wrap = [self getDayFeedEventEntitysWrap:day];
     
