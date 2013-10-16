@@ -70,6 +70,15 @@
 	
     LOG_D(@"FeedViewController viewDidLoad");
     
+    User * me = [[UserModel getInstance] getLoginUser];
+    if(me.timezone != nil) {
+        [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+    } else {
+        [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
+    }
+    
+    
+    
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -87,7 +96,7 @@
     [self.view addSubview:tableView];
     
     
-    NSDate *date = [NSDate date];
+    NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
     self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
@@ -121,7 +130,7 @@
         loadingPrigressView.center = self.view.center;
         [self.view addSubview:loadingPrigressView];
 
-        NSDate * begin = [NSDate date];
+        NSDate * begin = [Utils getCurrentDate];
         begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
 
         [[[Model getInstance] getEventModel] setSynchronizeData:YES];
@@ -155,8 +164,6 @@
 
 -(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
 {
-    
-    //[Model getInstance] getUpdatedEvents:<#(NSDate *)#> andOffset:<#(int)#> andCallback:<#^(NSInteger error, NSInteger count, NSArray *events)callback#>
     
     LOG_D(@"synchronFeedEventFromServer");
     

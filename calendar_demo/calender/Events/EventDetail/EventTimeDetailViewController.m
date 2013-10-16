@@ -65,13 +65,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    NSString * startTime = [Utils formateTimeAMPM: self.eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM: [self.eventTime getEndTime]];
-    
-    NSString * time = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    NSString * day = [Utils formateDay2:self.eventTime.start];
+	
+    NSString * time =  [Utils getProposeStatLabel:self.eventTime];
+    NSString * day = [Utils formateDay2:[Utils convertLocalDate:self.eventTime.start]];
     
     EventDateNavigationBar * navBar = [EventDateNavigationBar creatView];
     [navBar setTitle:time];
