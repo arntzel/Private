@@ -56,7 +56,11 @@
 
     //int index = self.subviews.count-1;
     [self insertSubview:view atIndex:0];
-    [self layOutSubViews];
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        [self layOutSubViews];
+        [self.delegate layOutSubViews];
+    }];
 }
 
 -(void) updateView:(NSArray *) eventDates
@@ -106,8 +110,11 @@
 {
     [_eventDates removeObject:dateEntry.eventData];
     [dateEntry removeFromSuperview];
-    [self layOutSubViews];
-    [self.delegate layOutSubViews];
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        [self layOutSubViews];
+        [self.delegate layOutSubViews];
+    }];
 }
 
 @end

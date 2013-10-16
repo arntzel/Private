@@ -342,7 +342,6 @@
     }
     
     [timesView addEventDate:eventDate_];
-    [self layOutSubViews];
 }
 
 
