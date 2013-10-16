@@ -5,7 +5,7 @@
 #import "Utils.h"
 #import "NSDateAdditions.h"
 #import "UserSetting.h"
-
+#import <EventKit/EventKit.h>
 static Model * instance;
 
 @interface ASIHTTPRequestDelegateAdapter : NSObject <ASIHTTPRequestDelegate>
@@ -214,7 +214,74 @@ static Model * instance;
     }];    
 }
 
+-(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * events))callback
+{
+    EKEventStore *store = [[EKEventStore alloc] init];
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        
+        if (granted)
+        {
+            
+            NSLog(@"granted suc");
+            // Get the appropriate calendar
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            
+            // Create the start date components
+            NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
+            oneDayAgoComponents.day = -1;
+            NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
+                                                          toDate:[NSDate date]
+                                                         options:0];
+            
+            // Create the end date components
+            NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
+            oneYearFromNowComponents.year = 1;
+            NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
+                                                               toDate:[NSDate date]
+                                                              options:0];
+            
+            // Create the predicate from the event store's instance method
+            NSPredicate *predicate = [store predicateForEventsWithStartDate:oneDayAgo
+                                                                    endDate:oneYearFromNow
+                                                                  calendars:nil];
+            
+            // Fetch all events that match the predicate
+            NSArray *events = [store eventsMatchingPredicate:predicate];
+            NSMutableArray *array = [NSMutableArray array];
+            NSLog(@"events:%@",events);
+            for (EKEvent *event in events)
+            {
+                
+                NSLog(@"--------------");
+                NSLog(@"eventIdentifier:%@",event.eventIdentifier);
+                NSLog(@"allDay:%d",event.allDay);
+                NSLog(@"startDate:%@",event.startDate);
+                NSLog(@"endDate:%@",event.endDate);
+                NSLog(@"organizer.name:%@",event.organizer.name);
+                NSLog(@"attendees:%@",event.attendees);
+                NSLog(@"title:%@",event.title);
+                NSLog(@"location:%@",event.location);
+                NSLog(@"notes:%@",event.notes);
+                NSLog(@"--------------");
+            }
+            
+            //callback(array);
+            
+        }
+        else
+        {
+            NSLog(@"granted failed");
+            callback(nil);
+        }
+    }];
+}
 
+-(void)uploadEventsFromCalendarApp:(void (^)(NSInteger error,NSMutableArray * events))callback
+{
+    [self getEventsFromCalendarApp:^(NSMutableArray *events) {
+        
+    }];
+}
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];

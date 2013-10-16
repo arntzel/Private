@@ -89,6 +89,7 @@
  Google work: 2
  Fackbook: 3
  Birthdays: 4
+ iOSCalendar: 5
  */
 @property int eventType;
 
