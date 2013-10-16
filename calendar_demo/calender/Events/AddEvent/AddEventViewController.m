@@ -495,19 +495,29 @@
 //    event.start_type = arrangedDate.start_type;
 
 
+    event.timezone = settingView.timeZoneLabel.text;
     
-    event.propose_starts = [timesView getEventDates];
+    NSMutableArray * propstarts = [[NSMutableArray alloc] init];
+    NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
     
+    for(ProposeStart * ps in [timesView getEventDates]) {
+        ProposeStart * ps2 = [ps copy];
+        ps2.start = [Utils convertGMTDate:ps2.start andTimezone:tz];
+        [propstarts addObject:ps2];
+        [ps2 release];
+    }
+    
+    event.propose_starts = propstarts;
+
     event.location = self.locationPlace;
 
-
-    if(event.start == nil) {
-        event.start = [NSDate date];
-    }
-
-    if(event.start_type == nil) {
-        event.start_type = START_TYPEWITHIN;
-    }
+//    if(event.start == nil) {
+//        event.start = [NSDate date];
+//    }
+//
+//    if(event.start_type == nil) {
+//        event.start_type = START_TYPEWITHIN;
+//    }
 
     event.published = YES;
     
@@ -517,7 +527,7 @@
         event.thumbnail_url = imgUrl;
     }
     
-    event.timezone = settingView.timeZoneLabel.text;
+    
     event.title = title;
     
     event.allow_new_dt = settingView.btnInvite1.selected;
