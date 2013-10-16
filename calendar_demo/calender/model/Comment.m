@@ -37,8 +37,7 @@
     cmt.id = [[json objectForKey:@"id"] intValue];
     cmt.msg = [json objectForKey:@"content"];
     
-    NSDate * creatTime = [Utils parseNSDate:[json objectForKey:@"created"]];
-    cmt.createTime = [Utils convertLocalDate:creatTime];
+    cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
     cmt.commentor = [User parseUser:[json objectForKey:@"user"]];
     return cmt;
 }

@@ -138,9 +138,7 @@ typedef enum
         
         if(atd.status == -1) {
             //Decline
-            
-            NSDate * localTime = [Utils convertLocalDate:atd.modified];
-            NSString * time = [Utils getTimeText:localTime];
+            NSString * time = [Utils getTimeText:atd.modified];
             responded.declinedTime = [NSString stringWithFormat:@"Declined %@", time];
             [declinedArray addObject:responded];
             continue;

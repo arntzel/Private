@@ -84,7 +84,7 @@
  */
 +(NSString *) formate:(int) year andMonth:(int)month;
 
-
+//GMT Date
 +(NSString *) getTimeText:(NSDate *) time;
 
 /**

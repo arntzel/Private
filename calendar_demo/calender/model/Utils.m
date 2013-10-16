@@ -223,7 +223,8 @@ static NSTimeZone * userTimeZone;
 
 +(NSString *) getTimeText:(NSDate *) time
 {
-    NSTimeInterval interval = [time timeIntervalSinceNow];
+    
+    NSTimeInterval interval = [time timeIntervalSinceNow] + [[NSTimeZone systemTimeZone] secondsFromGMT];
     
     int ago = -1*interval/60;
     
