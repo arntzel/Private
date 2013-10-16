@@ -73,7 +73,7 @@
     [bgView setFrame:self.view.bounds];
     
     scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 568);
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:scrollView];
     
     titleView = [LoginMainTitileView creatView];
@@ -146,7 +146,6 @@
 - (void)configCreatView
 {
     creatView = [LoginMainCreatView creatView];
-    [scrollView addSubview:creatView];
     creatView.delegate = self;
     CGRect frame = creatView.frame;
     frame.origin.y = titleView.frame.size.height + titleView.frame.origin.y + 20;
@@ -157,7 +156,6 @@
 - (void)configSignInView
 {
     signInView = [LoginMainSignInView creatView];
-    [scrollView addSubview:signInView];
     signInView.delegate = self;
     CGRect frame = signInView.frame;
     frame.origin.y = self.view.frame.size.height - frame.size.height - 15;
@@ -168,6 +166,7 @@
 - (void)backToAccessView
 {
     [self.view endEditing:YES];
+    [scrollView addSubview:accessView];
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         if (!creatView.hidden) {
             creatView.alpha = 0.0f;
@@ -177,46 +176,56 @@
         }
         btnBack.alpha = 0.0f;
     } completion:^(BOOL finished) {
+        [creatView removeFromSuperview];
+        [signInView removeFromSuperview];
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             accessView.alpha = 1.0f;
-        } completion:nil];
-    }];
-}
-
--(void) swithFromCreateViewToSigninView
-{
-    
-    
-    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        creatView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            btnBack.alpha = 1.0f;
-            signInView.alpha = 1.0f;
+            [scrollView setContentSize:CGSizeMake(320, accessView.frame.size.height + accessView.frame.origin.y)];
         } completion:nil];
     }];
 }
 
 - (void)switchToCreatView
 {
+    [scrollView addSubview:creatView];
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         accessView.alpha = 0.0f;
     } completion:^(BOOL finished) {
+        [accessView removeFromSuperview];
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            creatView.alpha = 1.0f;
             btnBack.alpha = 1.0f;
+            creatView.alpha = 1.0f;
+            [scrollView setContentSize:CGSizeMake(320, creatView.frame.size.height + creatView.frame.origin.y)];
         } completion:nil];
     }];
 }
 
 - (void)switchToSignInView
 {
+    [scrollView addSubview:signInView];
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         accessView.alpha = 0.0f;
     } completion:^(BOOL finished) {
+        [accessView removeFromSuperview];
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             btnBack.alpha = 1.0f;
             signInView.alpha = 1.0f;
+            [scrollView setContentSize:CGSizeMake(320, signInView.frame.size.height + signInView.frame.origin.y)];
+        } completion:nil];
+    }];
+}
+
+-(void) swithFromCreateViewToSigninView
+{
+    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        creatView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [creatView removeFromSuperview];
+        [scrollView addSubview:signInView];
+        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            btnBack.alpha = 1.0f;
+            signInView.alpha = 1.0f;
+            [scrollView setContentSize:CGSizeMake(320, signInView.frame.size.height + signInView.frame.origin.y)];
         } completion:nil];
     }];
 }
