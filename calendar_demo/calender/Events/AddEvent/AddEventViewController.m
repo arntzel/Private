@@ -158,6 +158,11 @@
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
         offsetY += frame.size.height;
+        
+        if ([subView isMemberOfClass:[AddEventSettingView class]]) {
+            //mark： scrollview will add slider bar as subview。。。
+            break;
+        }
     }
 
     offsetY += 10;
