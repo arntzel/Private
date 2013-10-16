@@ -4,6 +4,7 @@
 #import "Model.h"
 #import <AddressBook/AddressBook.h>
 #import "CoreDataModel.h"
+#import "UserSetting.h"
 static UserModel * instance;
 
 @implementation UserModel {
@@ -373,6 +374,11 @@ static UserModel * instance;
                  }
                  LOG_D(@"email:%@",email);
                  
+                 //email and phone should not is empty at the same time.
+                 if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
+                 {
+                     continue;
+                 }
                  CoreDataModel * model = [CoreDataModel getInstance];
                  if ([model getContactEntityWith:phoneNum AndEmail:email])
                  {
@@ -404,8 +410,13 @@ static UserModel * instance;
     
     [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr)
      {
+         if (contactsArr == nil||[contactsArr count]==0)
+         {
+             callback(-1, nil);
+             return ;
+         }
          NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact", HOST];
-         NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+         NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
          
          LOG_D(@"upload addressbook contacts url=%@", url);
          
@@ -433,7 +444,7 @@ static UserModel * instance;
              
              int status = httpResp.statusCode;
              
-             if(status == 201 && data != nil) {
+             if(status == 202 && data != nil) {
                  NSError * err;
                  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
                  LOG_D(@"upload addressbook contacts return data :%@",json);
@@ -465,9 +476,29 @@ static UserModel * instance;
 - (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback
 {
 
-    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contact)
+    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
     {
-        
+        if (contacts)
+        {
+            
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in contacts) {
+                
+                ContactEntity * enity = [model getContactEntity:contact.id];
+                if(enity == nil)
+                {
+                    enity = [model createEntity:@"ContactEntity"];
+                }
+                
+                [enity convertContact:contact];
+            }
+            
+            [model saveData];
+            
+            NSString * updateTime = [Utils formateDate:[NSDate date]];
+            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+        }
+        callback(0,nil);
     }];
 }
 /*

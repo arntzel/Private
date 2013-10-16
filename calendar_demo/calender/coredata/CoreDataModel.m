@@ -515,12 +515,13 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ && email = %@)", phone, email];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ AND email = %@)", phone, email];
     [fetchRequest setPredicate:predicate];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
-    if(results.count >0) {
+    if(results.count >0)
+    {
         return [results objectAtIndex:0];
     }
     
