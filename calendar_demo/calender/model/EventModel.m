@@ -66,7 +66,8 @@
     NSLog(@"synchronizedFromServer begin");
     
     NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
-    
+    int offset = [[UserSetting getInstance] getIntValue:KEY_LASTUPDATETIMEOFFSET];
+
     if(lastupdatetime == nil) {
         NSDate * begin = [Utils getCurrentDate];
         lastupdatetime = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
@@ -75,9 +76,9 @@
     
     [self setSynchronizeData:YES];
     LOG_D(@"synchronizedFromServer begin :%@", lastupdatetime);
-    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:offset andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
-        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", lastupdatetime, error, events.count, count);
+        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", lastupdatetime, error, events.count, totalCount);
 
         [self setSynchronizeData:NO];
         
@@ -130,11 +131,20 @@
             }
         }
         
+
+
+        if([maxlastupdatetime isEqualToDate:lastupdatetime]) {
+            int newoffset = offset + events.count;
+            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:newoffset];
+        } else {
+            [[UserSetting getInstance] saveLastUpdatedTime:maxlastupdatetime];
+            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:0];
+        }
+
         [model saveData];
-        [[UserSetting getInstance] saveLastUpdatedTime:maxlastupdatetime];
         [model notifyModelChange];
         
-        if(events.count < count) {
+        if(events.count + offset < totalCount) {
             //还有数据没更新，继续从服务器拉取数据
             [NSTimer scheduledTimerWithTimeInterval:0.1
                                              target:self

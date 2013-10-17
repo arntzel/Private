@@ -131,4 +131,20 @@ static UserSetting * instance;
 
 }
 
+-(void) saveKey:(NSString *) key andIntValue:(int) value
+{
+    if([CoreDataModel getInstance].inited == NO) return;
+    [[CoreDataModel getInstance] saveSetting:key andValue: [NSString stringWithFormat:@"%d", value]];
+}
+
+-(int) getIntValue:(NSString *) key
+{
+    Setting * setting = [[CoreDataModel getInstance] getSetting:key];
+    if(setting == nil) {
+        return 0;
+    } else {
+        return [setting.value intValue];
+    }
+}
+
 @end
