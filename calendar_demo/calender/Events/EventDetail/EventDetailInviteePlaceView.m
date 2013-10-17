@@ -22,15 +22,13 @@
 @property(retain, nonatomic) EventDetailPlaceView *placeView;
 @property(retain, nonatomic) UILabel * desciptionView;
 
-@property(retain, nonatomic) UIActionSheet *placeActionSheet;
-@property(retain, nonatomic) UIActionSheet *descriptionActionSheet;
+@property(retain, nonatomic) NSMutableArray * actionSheetButtonTitles;
 
 @end
 
 @implementation EventDetailInviteePlaceView
 @synthesize delegate;
-@synthesize placeActionSheet;
-@synthesize descriptionActionSheet;
+@synthesize actionSheetButtonTitles;
 
 - (id)initByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation
 {
@@ -39,10 +37,7 @@
 
 - (void)dealloc
 {
-    self.descriptionActionSheet.delegate = nil;
-    self.descriptionActionSheet = nil;
-    self.placeActionSheet.delegate = nil;
-    self.placeActionSheet = nil;
+    self.actionSheetButtonTitles = nil;
     
     self.inviteeView = nil;
     self.placeView = nil;
@@ -60,6 +55,10 @@
         isCreator = creator;
         canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
+        
+        
+        
+
         
         [self addInviteeView];
         [self addPlaceView];
@@ -128,147 +127,60 @@
 -(void) singleTapLocation:(UITapGestureRecognizer*) tap
 {
     LOG_D(@"singleTapLocation");
-    if(isCreator)
-    {
-        if ([self.placeView haveLocation]) {
-            self.placeActionSheet = [[[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
-        }
-        else
-        {
-            self.placeActionSheet = [[[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Change Location", nil] autorelease];
-        }
-        [placeActionSheet showInView:self];
+    
+    actionSheetButtonTitles = [[NSMutableArray alloc] init];
+    if(isCreator || canChangePlace) {
+        [actionSheetButtonTitles addObject:@"Change Location"];
     }
-    else
-    {
-        if (canChangePlace) {
-            if ([self.placeView haveLocation]) {
-                self.placeActionSheet = [[[UIActionSheet alloc]
-                                          initWithTitle:nil
-                                          delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:nil
-                                          otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
-            }
-            else
-            {
-                self.placeActionSheet = [[[UIActionSheet alloc]
-                                          initWithTitle:nil
-                                          delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:nil
-                                          otherButtonTitles:@"Change Location", nil] autorelease];
-            }
-            [placeActionSheet showInView:self];
-        }
-        else
-        {
-            if ([self.placeView haveLocation]) {
-                self.placeActionSheet = [[[UIActionSheet alloc]
-                                          initWithTitle:nil
-                                          delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:nil
-                                          otherButtonTitles:@"View in Maps", nil] autorelease];
-                [placeActionSheet showInView:self];
-            }
-            else
-            {
-
-            }
-        }
-
+    
+    if([self.placeView haveLocation]) {
+        [actionSheetButtonTitles addObject:@"View in Maps"];
     }
+    
+    
+    if(actionSheetButtonTitles.count == 0) return;
+    
+    [actionSheetButtonTitles addObject:@"Cancel"];
+    
+    UIActionSheet * placeActionSheet = [[[UIActionSheet alloc]
+                              initWithTitle:nil
+                              delegate:self
+                              cancelButtonTitle:nil
+                              destructiveButtonTitle:nil
+                              otherButtonTitles:nil] autorelease];
+
+    for(NSString * title in actionSheetButtonTitles) {
+        [placeActionSheet addButtonWithTitle:title];
+    }
+    
+    placeActionSheet.cancelButtonIndex = placeActionSheet.numberOfButtons -1;
+    
+    [placeActionSheet showInView:self];
+    
 }
 
 - (void)placeActionSheetClick:(NSInteger)index
 {
-    if(isCreator)
-    {
-        if ([self.placeView haveLocation])
-        {
-            if(index == 0) {
-                if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
-                    [self.delegate changeLocation];
-                }
-            } else if(index == 1){
-                if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-                    [self.delegate viewInMaps];
-                }
-            }
-        }
-        else if(index == 0)
-        {
-            if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
-                [self.delegate changeLocation];
-            }
-        }
-    }
-    else
-    {
-        if (canChangePlace)
-        {
-            if ([self.placeView haveLocation]) {
-                if(index == 0)
-                {
-                    if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
-                        [self.delegate changeLocation];
-                    }
-                }
-                else if(index == 1)
-                {
-                    if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-                        [self.delegate viewInMaps];
-                    }
-                }
-            }
-            else
-            {
-                if(index == 0)
-                {
-                    if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
-                        [self.delegate changeLocation];
-                    }
-                }
-            }
-        }
-        else
-        {
-            if ([self.placeView haveLocation]) {
-                if(index == 0)
-                {
-                    if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-                        [self.delegate viewInMaps];
-                    }
-                }
-            }
-            else
-            {
-            }
-        }
+
+    
+    NSString * title = [actionSheetButtonTitles objectAtIndex:index];
+    
+    if([@"Cancel" isEqualToString:title]) {
+        //Do nothing
+    } else if([@"Change Location" isEqualToString:title]) {
+        
+        [self.delegate changeLocation];
+        
+    } else if([@"View in Maps" isEqualToString:title]) {
+        
+        [self.delegate viewInMaps];
     }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     LOG_D(@"actionSheet:clickedButtonAtIndex:tag=%d, buttonindex=%d", actionSheet.tag, buttonIndex);
-    if (actionSheet == placeActionSheet) {
-        [self placeActionSheetClick:buttonIndex];
-    }
-    else if (actionSheet == descriptionActionSheet)
-    {
-        
-    }
+    [self placeActionSheetClick:buttonIndex];
 }
 
 -(void) singleTapInvitees: (UITapGestureRecognizer*) tap
