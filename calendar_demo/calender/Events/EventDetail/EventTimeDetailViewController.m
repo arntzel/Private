@@ -107,7 +107,7 @@
 
     [self ajustViewFrame];
     
-    [self loadEvents:self.eventTime.start];
+    [self loadEvents:localeDate];
 }
 
 
