@@ -40,7 +40,7 @@
     cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
 
     NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"user"]];
-    if(dic == nil) {
+    if(dic != nil) {
         cmt.commentor = [User parseUser:dic];
     }
     return cmt;
