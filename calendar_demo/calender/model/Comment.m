@@ -38,7 +38,11 @@
     cmt.msg = [json objectForKey:@"content"];
     
     cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
-    cmt.commentor = [User parseUser:[json objectForKey:@"user"]];
+
+    NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"user"]];
+    if(dic == nil) {
+        cmt.commentor = [User parseUser:dic];
+    }
     return cmt;
 }
 
