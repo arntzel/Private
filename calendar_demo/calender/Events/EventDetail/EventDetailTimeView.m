@@ -86,10 +86,7 @@
     
     CGRect frame = timeLabelView.frame;
     frame.origin.x = 0;
-    //frame.origin.y = 27;
     timeLabelView.frame = frame;
-    
-    //[self addSubview:timeLabelView];
     
     return timeLabelView;
 }
@@ -102,7 +99,8 @@
     CGRect frame;
     for(UIView * subView in self.subviews) {
 
-        if(subView.hidden == YES) continue;
+        if(subView.hidden == YES)
+            continue;
 
         frame = subView.frame;
         frame.origin = CGPointMake(0, offsetY);

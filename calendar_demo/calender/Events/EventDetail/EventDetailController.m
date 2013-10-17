@@ -337,7 +337,6 @@
     LOG_D(@"scrollView.contentInset :%f,%f",scrollView.contentInset.top,scrollView.contentInset.bottom);
     
     [scrollView setContentSize:CGSizeMake(320, offsetY)];
-//    [scrollView contentSizeToFit];
 }
 
 

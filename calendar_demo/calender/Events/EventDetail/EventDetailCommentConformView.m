@@ -39,7 +39,7 @@
         [subView removeFromSuperview];
     }
 
-    containtView = [[UIView alloc] initWithFrame:CGRectMake(7, 10, 304, 50)];
+    containtView = [[UIView alloc] initWithFrame:CGRectMake(7, 0, 304, 50)];
     containtView.backgroundColor = [UIColor whiteColor];
     [self addSubview:containtView];
 
@@ -109,7 +109,7 @@
     frame.size.height = offsetY;
     containtView.frame = frame;
 
-    offsetY += 30;
+    offsetY += 20;
     frame = self.frame;
     frame.size.height = offsetY;
     self.frame = frame;
