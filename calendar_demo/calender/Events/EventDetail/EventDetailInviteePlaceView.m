@@ -56,10 +56,6 @@
         canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
         
-        
-        
-
-        
         [self addInviteeView];
         [self addPlaceView];
 
@@ -161,8 +157,6 @@
 
 - (void)placeActionSheetClick:(NSInteger)index
 {
-
-    
     NSString * title = [actionSheetButtonTitles objectAtIndex:index];
     
     if([@"Cancel" isEqualToString:title]) {
@@ -207,6 +201,18 @@
     [self updateFrame];
 }
 
+- (BOOL)haveDescription
+{
+    NSString *des = self.desciptionView.text;
+    if (des == nil || [des length] == 0) {
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
+}
+
 - (void) showDesciption:(BOOL) all
 {
     showAllDescitpion = all;
@@ -241,11 +247,17 @@
 
 - (void)updateFrame
 {
-    [self updateDescriptionFrame];
-    
     CGRect viewFrame = self.frame;
     viewFrame.size.width = 320;
-    viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8 + 14;
+    if ([self haveDescription]) {
+        [self updateDescriptionFrame];
+        viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8;
+    }
+    else
+    {
+        viewFrame.size.height =  self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height + 8;
+    }
+
     self.frame = viewFrame;
 }
 

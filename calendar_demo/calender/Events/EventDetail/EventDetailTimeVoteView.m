@@ -299,7 +299,7 @@
     }
     
     frame = self.frame;
-    frame.size.height = offsetY + 10;
+    frame.size.height = offsetY + 5;
     self.frame = frame;
 }
 
