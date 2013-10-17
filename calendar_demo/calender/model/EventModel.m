@@ -13,6 +13,8 @@
 
     BOOL synchronizingData;
 
+    BOOL synchronizingContactData;
+    
     NSMutableArray * delegates;
 }
 
@@ -152,42 +154,64 @@
         return;
     }
 
-    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
-
-    if(setting == nil) {
-
-        [self updateContacts];
-        
-    } else {
-
-        NSDate * updateTime = [Utils parseNSDate:setting.value];
-        if(updateTime.timeIntervalSinceNow < -12*3600) {
-            [self updateContacts];
-        }
-    }
+    if(synchronizingContactData) return;
+    
+    [self updateContacts];
 }
 
 -(void) updateContacts
 {
     LOG_D(@"updateContacts");
 
-    [[UserModel getInstance] getMyContacts:^(NSInteger error, NSArray *contacts) {
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
+    NSDate * lastmodify = nil;
+    if(setting != nil) {
+        lastmodify = [Utils parseNSDate:setting.value];
+    }
+    
+    synchronizingContactData = YES;
+    [[UserModel getInstance] getMyContacts:lastmodify limit:100 andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
+        synchronizingContactData = NO;
+        
         if(error == 0) {
+            NSDate * maxlatmodify = lastmodify;
+            
+            if(contacts.count == 0) {
+                LOG_D(@"updateContacts, no updated contact.");
+                return;
+            }
+            
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in contacts) {
-
+                
+                if(maxlatmodify == nil || [contact.modified compare:maxlatmodify] > 0) {
+                    maxlatmodify = contact.modified;
+                }
+                
                 ContactEntity * enity = [model getContactEntity:contact.id];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
                 }
-
+                
                 [enity convertContact:contact];
             }
-
+            
             [model saveData];
-
-            NSString * updateTime = [Utils formateDate:[NSDate date]];
+            
+            NSString * updateTime = [Utils formateDate:maxlatmodify];
             [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+            
+            
+            if(contacts.count < totalCount) {
+                //还有数据没更新，继续从服务器拉取数据
+                [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                 target:self
+                                               selector:@selector(checkContactUpdate)
+                                               userInfo:nil
+                                                repeats:NO];
+
+            }
+            
         }
     }];
 }
