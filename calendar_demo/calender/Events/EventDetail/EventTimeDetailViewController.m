@@ -78,12 +78,15 @@
     
     
     
-    logic = [[KalLogic alloc] initForDate:self.eventTime.start];
-    KalDate * date = [KalDate dateFromNSDate:self.eventTime.start];
+    logic = [[KalLogic alloc] initForDate:[NSDate date]];
+    
+    NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
+    KalDate * date = [KalDate dateFromNSDate:localeDate];
     kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date];
     [kalView swapToMonthMode];
   
     [kalView setKalTileViewDataSource:self];
+    kalView.userInteractionEnabled = NO;
 
     
     [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
