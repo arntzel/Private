@@ -93,6 +93,8 @@
 		76431E091806F6BD009DAFFE /* EventNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76431E061806F6BD009DAFFE /* EventNavigationBar.m */; };
 		76431E0A1806F6BD009DAFFE /* EventNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76431E071806F6BD009DAFFE /* EventNavigationBar.xib */; };
 		7643519618100F330004ADFC /* event_detail_comment_sep_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7643519518100F330004ADFC /* event_detail_comment_sep_line.png */; };
+		7643519E181034C90004ADFC /* NSData+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7643519B181034C90004ADFC /* NSData+Hex.m */; };
+		7643519F181034C90004ADFC /* NSString+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7643519D181034C90004ADFC /* NSString+Hex.m */; };
 		764404B217523B8600B11BDE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404B117523B8600B11BDE /* AVFoundation.framework */; };
 		764404B417523B9300B11BDE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404B317523B9300B11BDE /* CoreData.framework */; };
 		764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764404B517523BA100B11BDE /* CoreLocation.framework */; };
@@ -564,6 +566,10 @@
 		76431E061806F6BD009DAFFE /* EventNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventNavigationBar.m; sourceTree = "<group>"; };
 		76431E071806F6BD009DAFFE /* EventNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventNavigationBar.xib; sourceTree = "<group>"; };
 		7643519518100F330004ADFC /* event_detail_comment_sep_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_detail_comment_sep_line.png; sourceTree = "<group>"; };
+		7643519A181034C90004ADFC /* NSData+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hex.h"; sourceTree = "<group>"; };
+		7643519B181034C90004ADFC /* NSData+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hex.m"; sourceTree = "<group>"; };
+		7643519C181034C90004ADFC /* NSString+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hex.h"; sourceTree = "<group>"; };
+		7643519D181034C90004ADFC /* NSString+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hex.m"; sourceTree = "<group>"; };
 		764404B117523B8600B11BDE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		764404B317523B9300B11BDE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		764404B517523BA100B11BDE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2175,6 +2181,10 @@
 		769ABCFA17DF54860033E677 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7643519A181034C90004ADFC /* NSData+Hex.h */,
+				7643519B181034C90004ADFC /* NSData+Hex.m */,
+				7643519C181034C90004ADFC /* NSString+Hex.h */,
+				7643519D181034C90004ADFC /* NSString+Hex.m */,
 				768DAC9718098E8D000A3CB6 /* SysInfo.h */,
 				768DAC9818098E8D000A3CB6 /* SysInfo.m */,
 				769ABCFB17DF54860033E677 /* DeviceInfo.h */,
@@ -2755,6 +2765,7 @@
 				76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */,
 				769ABB3017DF52090033E677 /* EventDetailHeaderListView.m in Sources */,
 				769ABB3117DF52090033E677 /* EventDetailInviteeConformView.m in Sources */,
+				7643519F181034C90004ADFC /* NSString+Hex.m in Sources */,
 				769ABB3317DF52090033E677 /* EventDetailInviteePlaceView.m in Sources */,
 				769ABB3417DF52090033E677 /* EventDetailInviteeView.m in Sources */,
 				769ABB3617DF52090033E677 /* EventDetailNavigationBar.m in Sources */,
@@ -2826,6 +2837,7 @@
 				769ABCA217DF542A0033E677 /* ATMSoundFX.m in Sources */,
 				769ABCA317DF542A0033E677 /* ATMTextLayer.m in Sources */,
 				769ABCA717DF542A0033E677 /* AttributedLabel.m in Sources */,
+				7643519E181034C90004ADFC /* NSData+Hex.m in Sources */,
 				769ABCA817DF542A0033E677 /* GTMBase64.m in Sources */,
 				769ABCAA17DF542A0033E677 /* DKLiveBlurView.m in Sources */,
 				769ABCF117DF542A0033E677 /* Reachability.m in Sources */,
