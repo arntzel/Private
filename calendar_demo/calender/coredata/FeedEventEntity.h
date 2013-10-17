@@ -1,10 +1,3 @@
-//
-//  FeedEventEntity.h
-//  Calvin
-//
-//  Created by fang xiang on 13-10-15.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
@@ -16,6 +9,7 @@
 @property (nonatomic, retain) NSNumber * archived;
 @property (nonatomic, retain) NSNumber * confirmed;
 @property (nonatomic, retain) NSDate * created_on;
+@property (nonatomic, retain) NSString * creatoremail;
 @property (nonatomic, retain) NSNumber * creatorID;
 @property (nonatomic, retain) NSString * descript;
 @property (nonatomic, retain) NSString * duration;
@@ -33,7 +27,6 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
-@property (nonatomic, retain) NSString * creatoremail;
 @property (nonatomic, retain) NSSet *attendees;
 @end
 

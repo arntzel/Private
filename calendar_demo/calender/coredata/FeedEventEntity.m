@@ -1,10 +1,4 @@
-//
-//  FeedEventEntity.m
-//  Calvin
-//
-//  Created by fang xiang on 13-10-15.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "FeedEventEntity.h"
 #import "UserEntity.h"
@@ -15,6 +9,7 @@
 @dynamic archived;
 @dynamic confirmed;
 @dynamic created_on;
+@dynamic creatoremail;
 @dynamic creatorID;
 @dynamic descript;
 @dynamic duration;
@@ -32,7 +27,6 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic creatoremail;
 @dynamic attendees;
 
 @end
