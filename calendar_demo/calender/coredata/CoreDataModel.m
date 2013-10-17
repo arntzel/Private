@@ -136,7 +136,7 @@ static CoreDataModel * instance;
 -(FeedEventEntity*) getFeedEventEntity:(int) id
 {
     
-    NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
+    //NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];

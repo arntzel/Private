@@ -36,6 +36,7 @@
     event.confirmed = [[json objectForKey:@"confirmed"] boolValue];
 
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
+    event.last_modified = [Utils parseNSDate:[json objectForKey:@"last_modified"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
     event.description = [Utils chekcNullClass:[json objectForKey:@"description"]];
 

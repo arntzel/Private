@@ -6,6 +6,7 @@
 #import "UserSetting.h"
 #import "UserModel.h"
 #import "UserSetting.h"
+#import "NSDateAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
@@ -46,8 +47,10 @@
 
 -(void) setSynchronizeData:(BOOL) loading
 {
-    synchronizingData = loading;
-    [self nofityModelChanged];
+    if(synchronizingData != loading) {
+        synchronizingData = loading;
+        [self nofityModelChanged];
+    }
 }
 
 -(void) synchronizedFromServer
@@ -62,56 +65,85 @@
     
     NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
     
-    if(lastupdatetime == nil) return;
+    if(lastupdatetime == nil) {
+        NSDate * begin = [Utils getCurrentDate];
+        lastupdatetime = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+    };
     
     
     [self setSynchronizeData:YES];
-    
-    NSDate * currentTime = [NSDate date];
-    
+    LOG_D(@"synchronizedFromServer begin :%@", lastupdatetime);
     [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
+        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", lastupdatetime, error, events.count, count);
+
         [self setSynchronizeData:NO];
         
-        LOG_D(@"synchronizedFromServer begin end, updated event count:%d", events.count);
-
-        if(events.count > 0) {
-           
-            CoreDataModel * model = [CoreDataModel getInstance];
+        if(error != 0) {
             
-            for(Event * evt in events) {
-                
-                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-
-                if(evt.confirmed && [evt isDeclineEvent]) {
-                    if(entity != nil) {
-                        [model deleteFeedEventEntity2:entity];
-                    }
-
-                } else {
-
-                    if(entity == nil) {
-                        entity = [model createEntity:@"FeedEventEntity"];
-                    } else {
-                        for(UserEntity * user in entity.attendees) {
-                            [model deleteEntity:user];
-                        }
-
-                        [entity clearAttendee];
-                    }
-
-                    [entity convertFromEvent:evt];
-                    [model updateFeedEventEntity:entity];
-                }
+            for(id<EventModelDelegate> delegate in delegates) {
+                [delegate onSynchronizeDataError:error];
             }
             
-            [model saveData];
-            [model notifyModelChange];
+            return;
         }
         
-        [[UserSetting getInstance] saveLastUpdatedTime:currentTime];
+        if(events.count == 0) {
+            LOG_D(@"synchronizedFromServer, no updated event");
+            return;
+        }
+        
+        NSDate * maxlastupdatetime = lastupdatetime;
+        
+        CoreDataModel * model = [CoreDataModel getInstance];
+        
+        for(Event * evt in events) {
+            
+            
+            if([evt.last_modified compare:maxlastupdatetime] > 0) {
+                maxlastupdatetime = evt.last_modified;
+            }
+            
+            FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+            
+            if(evt.confirmed && [evt isDeclineEvent]) {
+                if(entity != nil) {
+                    [model deleteFeedEventEntity2:entity];
+                }
+                
+            } else {
+                
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                } else {
+                    for(UserEntity * user in entity.attendees) {
+                        [model deleteEntity:user];
+                    }
+                    
+                    [entity clearAttendee];
+                }
+                
+                [entity convertFromEvent:evt];
+                [model updateFeedEventEntity:entity];
+            }
+        }
+        
+        [model saveData];
+        [[UserSetting getInstance] saveLastUpdatedTime:maxlastupdatetime];
+        [model notifyModelChange];
+        
+        if(events.count < count) {
+            //还有数据没更新，继续从服务器拉取数据
+            [NSTimer scheduledTimerWithTimeInterval:0.1
+                                             target:self
+                                           selector:@selector(synchronizedFromServer)
+                                           userInfo:nil
+                                            repeats:NO];
+        }
     }];
 }
+
+
 
 -(void) checkContactUpdate
 {
