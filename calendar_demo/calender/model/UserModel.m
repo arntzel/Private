@@ -296,7 +296,7 @@ static UserModel * instance;
     
     if(lastmodifytime != nil) {
         NSString * time = [Utils formateDate:lastmodifytime];
-        url= [NSString stringWithFormat:@"%@/&last_modified__gte=%@", url, time];
+        url= [NSString stringWithFormat:@"%@&modified__gte=%@", url, time];
     }
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
