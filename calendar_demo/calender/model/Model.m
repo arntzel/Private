@@ -5,6 +5,8 @@
 #import "Utils.h"
 #import "NSDateAdditions.h"
 #import "UserSetting.h"
+#import "NSData+Hex.h"
+
 
 static Model * instance;
 
@@ -324,7 +326,7 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            //LOG_D(@"Event resp:%@", json);
+            LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
@@ -868,11 +870,13 @@ static Model * instance;
     [[UserModel getInstance] setAuthHeader:request];
     
     NSDictionary * dict = [cmt convent2Dic];
+    NSString *content = [dict objectForKey:@"content"];
+    content = [[content dataUsingEncoding:NSUTF8StringEncoding] hexString];
+    [dict setValue:content forKey:@"content"];
+    
     NSString * postContent = [Utils dictionary2String:dict];
     
     LOG_D(@"createComment postContent=%@", postContent);
-
-    
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 

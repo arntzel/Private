@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Utils.h"
+#import "NSString+Hex.h"
 
 @implementation EventDetailCommentView
 
@@ -55,7 +56,10 @@
 -(void) updateView:(Comment *) cmt
 {
     [self setHeaderPhotoUrl:cmt.commentor.avatar_url];
-    self.commentContentLabel.text = cmt.msg;
+    NSData* commentData = [cmt.msg hexData];
+    NSString *comment = [[[NSString alloc] initWithData:commentData
+                                               encoding:NSUTF8StringEncoding] autorelease];
+    self.commentContentLabel.text = comment;
     self.commentTimeLabel.text = [Utils getTimeText:cmt.createTime];
 }
 
