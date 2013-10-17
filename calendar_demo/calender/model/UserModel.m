@@ -289,10 +289,10 @@ static UserModel * instance;
 
 }
 
--(void) getMyContacts:(NSDate *) lastmodifytime limit:(int) limit andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contacts))callback;
+-(void) getMyContacts:(NSDate *) lastmodifytime offset:(int) offset andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contacts))callback;
 {
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=0&limit=%d", HOST, limit];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=%d&limit=10", HOST, offset];
     
     if(lastmodifytime != nil) {
         NSString * time = [Utils formateDate:lastmodifytime];
@@ -317,7 +317,7 @@ static UserModel * instance;
             NSArray * array = [json objectForKey:@"objects"];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            LOG_D(@"getMyContacts resp:%@", json);
+            //LOG_D(@"getMyContacts resp:%@", json);
 
             
             NSMutableArray * contacts =  [[NSMutableArray alloc] init];

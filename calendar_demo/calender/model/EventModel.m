@@ -75,7 +75,7 @@
     
     
     [self setSynchronizeData:YES];
-    LOG_D(@"synchronizedFromServer begin :%@", lastupdatetime);
+    LOG_D(@"synchronizedFromServer begin :%@, offset=%d", lastupdatetime, offset);
     [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:offset andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", lastupdatetime, error, events.count, totalCount);
@@ -135,10 +135,10 @@
 
         if([maxlastupdatetime isEqualToDate:lastupdatetime]) {
             int newoffset = offset + events.count;
-            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:newoffset];
+            [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIMEOFFSET andIntValue:newoffset];
         } else {
             [[UserSetting getInstance] saveLastUpdatedTime:maxlastupdatetime];
-            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:0];
+            [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIMEOFFSET andIntValue:0];
         }
 
         [model saveData];
@@ -174,15 +174,19 @@
     LOG_D(@"updateContacts");
 
     Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
-    NSDate * lastmodify = nil;
+    int offset = [[UserSetting getInstance] getIntValue:KEY_CONTACTUPDATETIMEOFFSET];
+
+     NSDate * lastmodify = nil;
     if(setting != nil) {
         lastmodify = [Utils parseNSDate:setting.value];
     }
     
     synchronizingContactData = YES;
-    [[UserModel getInstance] getMyContacts:lastmodify limit:100 andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
+    [[UserModel getInstance] getMyContacts:lastmodify offset:offset andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
         synchronizingContactData = NO;
-        
+
+        LOG_D(@"updateContacts end, %@ , error=%d, count:%d, allcount:%d", lastmodify, error, contacts.count, totalCount);
+
         if(error == 0) {
             NSDate * maxlatmodify = lastmodify;
             
@@ -207,12 +211,24 @@
             }
             
             [model saveData];
+
+            if(lastmodify == nil || ![maxlatmodify isEqualToDate:lastmodify]) {
+                NSString * updateTime = [Utils formateDate:maxlatmodify];
+                [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+                [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:0];
+            } else {
+
+                NSString * updateTime = [Utils formateDate:maxlatmodify];
+                [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+
+                int newoffset = offset + contacts.count;
+                [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:newoffset];
+            }
+
+
             
-            NSString * updateTime = [Utils formateDate:maxlatmodify];
-            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
             
-            
-            if(contacts.count < totalCount) {
+            if(contacts.count + offset < totalCount) {
                 //还有数据没更新，继续从服务器拉取数据
                 [NSTimer scheduledTimerWithTimeInterval:0.1
                                                  target:self

@@ -34,7 +34,7 @@
 -(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback;
 
 
--(void) getMyContacts:(NSDate *) lastmodifytime  limit:(int) limit  andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contact))callback;
+-(void) getMyContacts:(NSDate *) lastmodifytime  offset:(int) offset  andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contact))callback;
 
 
 /*

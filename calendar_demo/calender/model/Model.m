@@ -324,7 +324,7 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            LOG_D(@"Event resp:%@", json);
+            //LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
