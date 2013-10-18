@@ -8,6 +8,12 @@
 
 @end
 
+typedef enum
+{
+    AddInviteeTypeAll,  //add add invite
+    AddInviteeTypeRest  //detail add invite
+}AddInviteeType;
+
 @interface AddEventInviteViewController : BaseUIViewController
 
 @property (nonatomic, assign) id<AddEventInviteViewControllerDelegate> delegate;
@@ -17,6 +23,6 @@
 
 -(void) setSelectedUser:(NSArray *) selectedUsers;
 
-
+@property(nonatomic,assign) AddInviteeType type;
 
 @end

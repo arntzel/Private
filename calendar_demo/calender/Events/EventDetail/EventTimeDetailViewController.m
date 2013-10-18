@@ -65,13 +65,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    NSString * startTime = [Utils formateTimeAMPM: self.eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM: [self.eventTime getEndTime]];
-    
-    NSString * time = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    NSString * day = [Utils formateDay2:self.eventTime.start];
+	
+    NSString * time =  [Utils getProposeStatLabel:self.eventTime];
+    NSString * day = [Utils formateDay2:[Utils convertLocalDate:self.eventTime.start]];
     
     EventDateNavigationBar * navBar = [EventDateNavigationBar creatView];
     [navBar setTitle:time];
@@ -82,12 +78,15 @@
     
     
     
-    logic = [[KalLogic alloc] initForDate:self.eventTime.start];
-    KalDate * date = [KalDate dateFromNSDate:self.eventTime.start];
+    logic = [[KalLogic alloc] initForDate:[NSDate date]];
+    
+    NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
+    KalDate * date = [KalDate dateFromNSDate:localeDate];
     kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date];
     [kalView swapToMonthMode];
   
     [kalView setKalTileViewDataSource:self];
+    kalView.userInteractionEnabled = NO;
 
     
     [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
@@ -108,7 +107,7 @@
 
     [self ajustViewFrame];
     
-    [self loadEvents:self.eventTime.start];
+    [self loadEvents:localeDate];
 }
 
 

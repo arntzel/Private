@@ -48,7 +48,8 @@
                                      AddEventDateViewControllerDelegate,
                                      NavgationBarDelegate,
                                      UploadImageDelegate,
-                                     ATMHudDelegate>
+                                     ATMHudDelegate,
+                                    AddEventTimesViewDelegate>
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -95,10 +96,10 @@
     [imagePickerbtn release];
     [txtFieldTitle release];
     
-    
     [inviteView release];
     [placeView release];
 
+    timesView.delegate = nil;
     [timesView release];
     [settingView release];
     
@@ -157,6 +158,11 @@
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
         offsetY += frame.size.height;
+        
+        if ([subView isMemberOfClass:[AddEventSettingView class]]) {
+            //mark： scrollview will add slider bar as subview。。。
+            break;
+        }
     }
 
     offsetY += 10;
@@ -252,13 +258,14 @@
     placeView.layer.masksToBounds = YES;
 
     [inviteView.btnInvite addTarget:self action:@selector(invitePeople:) forControlEvents:UIControlEventTouchUpInside];
-    [placeView.btnPick addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+    [placeView.btnPickerLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)initAddDateView
 {
     timesView = [[AddEventTimesView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
     [scrollView addSubview:timesView];
+    timesView.delegate = self;
 
     [timesView addBtnTarget:self action:@selector(addDate:)];
     [timesView updateView:[NSArray array]];
@@ -335,7 +342,6 @@
     }
     
     [timesView addEventDate:eventDate_];
-    [self layOutSubViews];
 }
 
 
@@ -352,6 +358,7 @@
     invitePeople.delegate = self;
     
     [invitePeople setSelectedUser:invitedPeoples];
+    [invitePeople setType:AddInviteeTypeAll];
     [self.navigationController pushViewController:invitePeople animated:YES];
 }
 
@@ -492,19 +499,29 @@
 //    event.start_type = arrangedDate.start_type;
 
 
+    event.timezone = settingView.timeZoneLabel.text;
     
-    event.propose_starts = [timesView getEventDates];
+    NSMutableArray * propstarts = [[NSMutableArray alloc] init];
+    NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
     
+    for(ProposeStart * ps in [timesView getEventDates]) {
+        ProposeStart * ps2 = [ps copy];
+        ps2.start = [Utils convertGMTDate:ps2.start andTimezone:tz];
+        [propstarts addObject:ps2];
+        [ps2 release];
+    }
+    
+    event.propose_starts = propstarts;
+
     event.location = self.locationPlace;
 
-
-    if(event.start == nil) {
-        event.start = [NSDate date];
-    }
-
-    if(event.start_type == nil) {
-        event.start_type = START_TYPEWITHIN;
-    }
+//    if(event.start == nil) {
+//        event.start = [NSDate date];
+//    }
+//
+//    if(event.start_type == nil) {
+//        event.start_type = START_TYPEWITHIN;
+//    }
 
     event.published = YES;
     
@@ -514,7 +531,7 @@
         event.thumbnail_url = imgUrl;
     }
     
-    event.timezone = settingView.timeZoneLabel.text;
+    
     event.title = title;
     
     event.allow_new_dt = settingView.btnInvite1.selected;

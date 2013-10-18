@@ -6,6 +6,9 @@
 #import "NSDateAdditions.h"
 #import "UserSetting.h"
 #import <EventKit/EventKit.h>
+
+#import "NSData+Hex.h"
+
 static Model * instance;
 
 @interface ASIHTTPRequestDelegateAdapter : NSObject <ASIHTTPRequestDelegate>
@@ -374,15 +377,17 @@ static Model * instance;
 //        }];
     }];
 }
--(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
-    NSInteger iCurYear = [components year];  //当前的年份
-    NSInteger iCurMonth = [components month];  //当前的月份
-    [self getEvents:iCurYear andMonth:iCurMonth andCallback:callback];
-}
+
+//-(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
+//{
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+//    NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+//    NSInteger iCurYear = [components year];  //当前的年份
+//    NSInteger iCurMonth = [components month];  //当前的月份
+//    [self getEvents:iCurYear andMonth:iCurMonth andCallback:callback];
+//}
+
 
 -(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback
 {
@@ -421,24 +426,24 @@ static Model * instance;
     }];
 }
 
--(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback
-{
-       
-    NSString * startDay = [Utils formate:year andMonth:month];
-    
-    month++;
-    if(month>12) {
-        month = 1;
-        year ++;
-    }
-    
-    NSString * endDay = [Utils formate:year andMonth:month];
-    
-    startDay =[NSString stringWithFormat:@"%@-01T00:00:00", startDay];
-    endDay =[NSString stringWithFormat:@"%@-01T00:00:00", endDay];
-    
-    [self getEvents:startDay andEnd:endDay andCallback:callback];
-}
+//-(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback
+//{
+//       
+//    NSString * startDay = [Utils formate:year andMonth:month];
+//    
+//    month++;
+//    if(month>12) {
+//        month = 1;
+//        year ++;
+//    }
+//    
+//    NSString * endDay = [Utils formate:year andMonth:month];
+//    
+//    startDay =[NSString stringWithFormat:@"%@-01T00:00:00", startDay];
+//    endDay =[NSString stringWithFormat:@"%@-01T00:00:00", endDay];
+//    
+//    [self getEvents:startDay andEnd:endDay andCallback:callback];
+//}
 
 -(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback
 {
@@ -462,7 +467,7 @@ static Model * instance;
     
     NSString * strLastmodifyTime = [Utils formateDate:lastmodifyTime];
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=50&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=30&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
 
     LOG_D(@"url=%@", url);
 
@@ -509,46 +514,46 @@ static Model * instance;
 }
 
 
--(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
-{
-    NSString * startDay = [Utils formateDay:begin];
-    startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
-
-
-    NSString * endDay = nil;
-    if(end != nil) {
-        endDay = [Utils formateDay:end];
-        endDay =[NSString stringWithFormat:@"%@T00:00:00", endDay];
-    }
-
-    [self getEvents:startDay andEnd:endDay andCallback:callback];
-}
-
--(void) getEvents:(NSString *)startDay andEnd:(NSString *)endDay  andCallback:(void (^)(NSInteger error, NSArray* events))callback
-{
-    //start__gte=2013-06-15T00:00:00
-    //start__lt=2013-06-16T00:00:00
-
-    
-    NSString * url;
-    if(endDay == nil) {
-        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@", HOST, startDay];
-    } else {
-        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
-    }
-    
-    LOG_D(@"url=%@", url);
-    
-    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
-    
-    [self getEvents:request andCallback:callback];
-}
-
--(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback
-{
-    NSDate * end = [day cc_dateByMovingToTheFollowingDayCout:1];
-    return [self getEventsOfBegin:day andEnd:end andCallback:callback];
-}
+//-(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback
+//{
+//    NSString * startDay = [Utils formateDay:begin];
+//    startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
+//
+//
+//    NSString * endDay = nil;
+//    if(end != nil) {
+//        endDay = [Utils formateDay:end];
+//        endDay =[NSString stringWithFormat:@"%@T00:00:00", endDay];
+//    }
+//
+//    [self getEvents:startDay andEnd:endDay andCallback:callback];
+//}
+//
+//-(void) getEvents:(NSString *)startDay andEnd:(NSString *)endDay  andCallback:(void (^)(NSInteger error, NSArray* events))callback
+//{
+//    //start__gte=2013-06-15T00:00:00
+//    //start__lt=2013-06-16T00:00:00
+//
+//    
+//    NSString * url;
+//    if(endDay == nil) {
+//        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@", HOST, startDay];
+//    } else {
+//        url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&start__gte=%@&start__lt=%@", HOST, startDay, endDay];
+//    }
+//    
+//    LOG_D(@"url=%@", url);
+//    
+//    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+//    
+//    [self getEvents:request andCallback:callback];
+//}
+//
+//-(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback
+//{
+//    NSDate * end = [day cc_dateByMovingToTheFollowingDayCout:1];
+//    return [self getEventsOfBegin:day andEnd:end andCallback:callback];
+//}
 
 -(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback
 {
@@ -1030,8 +1035,6 @@ static Model * instance;
     NSString * postContent = [Utils dictionary2String:dict];
     
     LOG_D(@"createComment postContent=%@", postContent);
-
-    
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
 
@@ -1388,4 +1391,52 @@ static Model * instance;
     }];
 }
 
+-(void) inviteContacts:(int) eventID andContact:(NSArray *) invitees andCallback:(void (^)(NSInteger error, Event * newEvent))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"inviteContacts url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
+    
+    for(Invitee * invitee in invitees) {
+        [jsonarray addObject:[invitee convent2Dic]];
+    }
+    
+    [dict setObject:jsonarray forKey:@"invitees"];
+    
+    NSString * postContent =  [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    LOG_D(@"inviteContacts postContent: %@", postContent);
+    
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 202) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"inviteContacts resp:%@", json);
+            
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"inviteContacts error=%@, resp:%@", error, aStr);
+            
+            callback(-1, nil);
+        }
+    }];
+}
 @end

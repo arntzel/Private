@@ -14,6 +14,7 @@
 @interface EventDetailInviteePlaceView()<UIActionSheetDelegate>
 {
     BOOL isCreator;
+    BOOL canChangePlace;
     BOOL showAllDescitpion;
 }
 
@@ -21,27 +22,22 @@
 @property(retain, nonatomic) EventDetailPlaceView *placeView;
 @property(retain, nonatomic) UILabel * desciptionView;
 
-@property(retain, nonatomic) UIActionSheet *placeActionSheet;
-@property(retain, nonatomic) UIActionSheet *descriptionActionSheet;
+@property(retain, nonatomic) NSMutableArray * actionSheetButtonTitles;
 
 @end
 
 @implementation EventDetailInviteePlaceView
 @synthesize delegate;
-@synthesize placeActionSheet;
-@synthesize descriptionActionSheet;
+@synthesize actionSheetButtonTitles;
 
-- (id)initByCreator:(BOOL)creator;
+- (id)initByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation
 {
-    return [self initWithFrame:CGRectZero ByCreator:creator];
+    return [self initWithFrame:CGRectZero ByCreator:creator CanChangeLocation:canChangeLocation];
 }
 
 - (void)dealloc
 {
-    self.descriptionActionSheet.delegate = nil;
-    self.descriptionActionSheet = nil;
-    self.placeActionSheet.delegate = nil;
-    self.placeActionSheet = nil;
+    self.actionSheetButtonTitles = nil;
     
     self.inviteeView = nil;
     self.placeView = nil;
@@ -49,7 +45,7 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame ByCreator:(BOOL)creator;
+- (id)initWithFrame:(CGRect)frame ByCreator:(BOOL)creator CanChangeLocation:(BOOL)canChangeLocation
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -57,6 +53,7 @@
         [self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
 
         isCreator = creator;
+        canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
         
         [self addInviteeView];
@@ -100,6 +97,7 @@
 - (void)addPlaceView
 {
     self.placeView = [EventDetailPlaceView creatView];
+    [self.placeView addMask:isCreator];
     
     CGRect frame = self.placeView.frame;
     frame.origin.x = 5 * 2 + self.inviteeView.frame.size.width;
@@ -125,60 +123,58 @@
 -(void) singleTapLocation:(UITapGestureRecognizer*) tap
 {
     LOG_D(@"singleTapLocation");
-    if(isCreator)
-    {
-        self.placeActionSheet = [[[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Change Location", @"View in Maps", nil] autorelease];
-    }
-    else
-    {
-        self.placeActionSheet = [[[UIActionSheet alloc]
-                       initWithTitle:nil
-                       delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       destructiveButtonTitle:nil
-                                  otherButtonTitles:@"View in Maps", nil] autorelease];
+    
+    actionSheetButtonTitles = [[NSMutableArray alloc] init];
+    if(isCreator || canChangePlace) {
+        [actionSheetButtonTitles addObject:@"Change Location"];
     }
     
+    if([self.placeView haveLocation]) {
+        [actionSheetButtonTitles addObject:@"View in Maps"];
+    }
+    
+    
+    if(actionSheetButtonTitles.count == 0) return;
+    
+    [actionSheetButtonTitles addObject:@"Cancel"];
+    
+    UIActionSheet * placeActionSheet = [[[UIActionSheet alloc]
+                              initWithTitle:nil
+                              delegate:self
+                              cancelButtonTitle:nil
+                              destructiveButtonTitle:nil
+                              otherButtonTitles:nil] autorelease];
+
+    for(NSString * title in actionSheetButtonTitles) {
+        [placeActionSheet addButtonWithTitle:title];
+    }
+    
+    placeActionSheet.cancelButtonIndex = placeActionSheet.numberOfButtons -1;
+    
     [placeActionSheet showInView:self];
+    
 }
 
 - (void)placeActionSheetClick:(NSInteger)index
 {
-    if(isCreator)
-    {
-        if(index == 0) {
-            if ([self.delegate respondsToSelector:@selector(changeLocation)]) {
-                [self.delegate changeLocation];
-            }
-        } else if(index == 1){
-            if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-                [self.delegate viewInMaps];
-            }
-        }
-    }
-    else if(index == 0)
-    {
-        if ([self.delegate respondsToSelector:@selector(viewInMaps)]) {
-            [self.delegate viewInMaps];
-        }
+    NSString * title = [actionSheetButtonTitles objectAtIndex:index];
+    
+    if([@"Cancel" isEqualToString:title]) {
+        //Do nothing
+    } else if([@"Change Location" isEqualToString:title]) {
+        
+        [self.delegate changeLocation];
+        
+    } else if([@"View in Maps" isEqualToString:title]) {
+        
+        [self.delegate viewInMaps];
     }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     LOG_D(@"actionSheet:clickedButtonAtIndex:tag=%d, buttonindex=%d", actionSheet.tag, buttonIndex);
-    if (actionSheet == placeActionSheet) {
-        [self placeActionSheetClick:buttonIndex];
-    }
-    else if (actionSheet == descriptionActionSheet)
-    {
-        
-    }
+    [self placeActionSheetClick:buttonIndex];
 }
 
 -(void) singleTapInvitees: (UITapGestureRecognizer*) tap
@@ -203,6 +199,18 @@
 {
     self.desciptionView.text = desc;
     [self updateFrame];
+}
+
+- (BOOL)haveDescription
+{
+    NSString *des = self.desciptionView.text;
+    if (des == nil || [des length] == 0) {
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
 }
 
 - (void) showDesciption:(BOOL) all
@@ -239,11 +247,17 @@
 
 - (void)updateFrame
 {
-    [self updateDescriptionFrame];
-    
     CGRect viewFrame = self.frame;
     viewFrame.size.width = 320;
-    viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8 + 14;
+    if ([self haveDescription]) {
+        [self updateDescriptionFrame];
+        viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8;
+    }
+    else
+    {
+        viewFrame.size.height =  self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height + 8;
+    }
+
     self.frame = viewFrame;
 }
 

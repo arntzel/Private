@@ -26,6 +26,7 @@
 
 @property BOOL calvinUser;
 
+@property(strong) NSDate * modified;
 
 -(NSString *) getReadableUsername;
 

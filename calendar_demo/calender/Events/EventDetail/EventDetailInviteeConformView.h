@@ -22,6 +22,9 @@
 - (void)setTicked;
 - (void)setCrossed;
 
+- (void)setTime:(NSString *)time;
+- (void)setConflictCount:(NSInteger)count;
+
 /*
  vote:
  0: not vote yet,

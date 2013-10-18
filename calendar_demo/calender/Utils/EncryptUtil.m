@@ -71,13 +71,13 @@
 
 + (NSString *)encryptWithText:(NSString *)sText
 {
-    NSString *result = [self encrypt:sText encryptOrDecrypt:kCCEncrypt key:@"OpenCam Microrapid"];
+    NSString *result = [self encrypt:sText encryptOrDecrypt:kCCEncrypt key:@"CalvinApp"];
     return result;
 }
 
 + (NSString *)decryptWithText:(NSString *)sText
 {
-    NSString *result = [self encrypt:sText encryptOrDecrypt:kCCDecrypt key:@"OpenCam Microrapid"];
+    NSString *result = [self encrypt:sText encryptOrDecrypt:kCCDecrypt key:@"CalvinApp"];
     return result;
 }
 @end

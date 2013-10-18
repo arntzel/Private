@@ -37,7 +37,7 @@
 @property BOOL confirmed;
 
 @property(strong) NSDate * created_on;
-
+@property(strong) NSDate * last_modified;
 @property(strong) User * creator;
 
 
@@ -99,6 +99,8 @@
 
 -(ProposeStart *) getFinalEventTime;
 
+
+-(NSDate *) getEndTime;
 
 //Emai -> EventAttendee
 -(NSDictionary *) getAttendeesDic;

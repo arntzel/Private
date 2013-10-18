@@ -88,11 +88,21 @@
 												 name:JSTokenFieldFrameDidChangeNotification
 											   object:nil];
     
-    [self getInvitePeopleData];
-    
+    if (self.type == AddInviteeTypeAll) {
+        [self getAllInvitePeople];
+    }
+    else if(self.type == AddInviteeTypeRest)
+    {
+        [self getRestInvitePeople];
+    }
 }
 
-- (void)getInvitePeopleData
+- (void)getRestInvitePeople
+{
+    //Todo://
+}
+
+- (void)getAllInvitePeople
 {
     [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
         

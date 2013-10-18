@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Utils.h"
+#import "NSString+Hex.h"
 
 @implementation EventDetailCommentView
 

@@ -23,7 +23,9 @@
 -(NSDictionary*)convent2Dic
 {
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:self.msg forKey:@"content"];
+    
+    NSString * msg = [self.msg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [dic setObject:msg forKey:@"content"];
     
     NSString * eventUri = [NSString stringWithFormat:@"/api/v1/event/%d", self.eventID];
     [dic setObject:eventUri forKey:@"event"];
@@ -35,11 +37,15 @@
     Comment * cmt = [[Comment alloc] init];
     
     cmt.id = [[json objectForKey:@"id"] intValue];
-    cmt.msg = [json objectForKey:@"content"];
+    NSString * msg = [json objectForKey:@"content"];
+    cmt.msg = [msg stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    NSDate * creatTime = [Utils parseNSDate:[json objectForKey:@"created"]];
-    cmt.createTime = [Utils convertLocalDate:creatTime];
-    cmt.commentor = [User parseUser:[json objectForKey:@"user"]];
+    cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
+
+    NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"user"]];
+    if(dic != nil) {
+        cmt.commentor = [User parseUser:dic];
+    }
     return cmt;
 }
 

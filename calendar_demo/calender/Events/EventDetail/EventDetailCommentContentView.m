@@ -17,12 +17,12 @@
 
 @interface EventDetailCommentContentView()
 {
-    //EventDetailCommentView *commentView;
     EventDetailCommentTextView *commentTextView;
-    //EventDetailCommentConformedView *conformedView;
     BOOL _declined;
 }
 @end
+
+#define DETAIL_COMMENT_CELL_HEIGHT 56
 
 @implementation EventDetailCommentContentView
 
@@ -30,20 +30,6 @@
 {
     return [self initWithFrame:CGRectZero];
 }
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        //[self addTextView];
-        //[self addCommentView];
-        //[self addConformedView];
-        //[self updateUI];
-    }
-    return self;
-}
-
 
 -(void) updateView:(User *) me andComments:(NSArray *) comments
 {
@@ -75,25 +61,24 @@
 {
     CGRect frame = self.frame;
     int subViewCount = self.subviews.count;
-    frame.size.height = subViewCount*56 + 10;
+    frame.size.height = subViewCount * DETAIL_COMMENT_CELL_HEIGHT;
     self.frame = frame;
     
     for(int i=0;i<subViewCount;i++) {
         UIView * subView = [self.subviews objectAtIndex:i];
         
-        if(subView.hidden == YES) continue;
+        if(subView.hidden == YES)
+            continue;
         
         frame = subView.frame;
-        frame.origin.y = i*56;
+        frame.origin.y = i* DETAIL_COMMENT_CELL_HEIGHT;
         subView.frame = frame;
     }
 }
 
 - (void)dealloc
 {    
-    //[commentView release];
     [commentTextView release];
-    //[conformedView release];
     
     [super dealloc];
 }
@@ -171,7 +156,6 @@
 - (void)addConformedView:(Comment *) cmt
 {
     EventDetailCommentConformedView * conformedView = [EventDetailCommentConformedView creatView];
-    
     [self insertSubview:conformedView atIndex:1];
 }
 

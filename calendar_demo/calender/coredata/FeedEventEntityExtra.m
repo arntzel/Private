@@ -8,17 +8,22 @@
 
 #import "FeedEventEntityExtra.h"
 #import "CoreDataModel.h"
-
+#import "Utils.h"
 #import "UserEntityExtra.h"
 
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
 
+-(NSDate*) getLocalStart
+{
+    return [Utils convertLocalDate:self.start];
+}
+
 -(UserEntity*) getCreator
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.id isEqualToNumber:self.creatorID])
+        if([user.email isEqualToString:self.creatoremail])
         {
             return user;
         }
@@ -64,6 +69,7 @@
     self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
 
     self.start = event.start;
+    self.end = [event getEndTime];
     self.start_type = event.start_type;
     self.thumbnail_url = event.thumbnail_url;
     self.timezone = event.timezone;
@@ -71,16 +77,11 @@
     self.locationName = event.location.location;
 
 
-    //UserEntity * user = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-    //[user convertFromUser:event.creator];
-
-    NSNumber * creatorID = [NSNumber numberWithInt:event.creator.id];;
-    self.creatorID = creatorID;
-
-    [self clearAttendee];
+    self.creatorID = [NSNumber numberWithInt:event.creator.id];
+    self.creatoremail = event.creator.email;
     
+    [self clearAttendee];
     for(EventAttendee * atd in event.attendees) {
-        
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
         [entity convertFromUser:atd];
         [self addAttendeesObject:entity];

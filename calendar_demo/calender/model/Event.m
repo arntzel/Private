@@ -36,6 +36,7 @@
     event.confirmed = [[json objectForKey:@"confirmed"] boolValue];
 
     event.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
+    event.last_modified = [Utils parseNSDate:[json objectForKey:@"last_modified"]];
     event.creator  = [User parseUser: [json objectForKey:@"creator"]];
     event.description = [Utils chekcNullClass:[json objectForKey:@"description"]];
 
@@ -198,4 +199,18 @@
     return time;
 }
 
+-(NSDate *) getEndTime
+{
+    if(self.start == nil) {
+        return nil;
+    }
+    
+    int durationSeconds =  [self getDurationMins]*60;
+    return [self.start dateByAddingTimeInterval:durationSeconds];
+}
+
+-(int) getDurationMins
+{
+    return self.duration_minutes + self.duration_hours*60 + self.duration_days*60*24;
+}
 @end

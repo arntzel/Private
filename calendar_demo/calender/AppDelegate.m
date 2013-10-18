@@ -34,7 +34,7 @@
 {
 #ifndef DEBUG
     [Crashlytics startWithAPIKey:@"bf0c5f52126e61ccb51c68eecf9a761324301f9a"];
-    //[self redirectNSLogToDocumentFolder];
+    [self redirectNSLogToDocumentFolder];
 #endif
 
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -69,11 +69,12 @@
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
 
-    MessageModel * msgModel = [[Model getInstance] getMessageModel];
-    
-    int count = [[UserSetting getInstance] getUnreadmessagecount];
-    [msgModel setUnReadMsgCount:count];
-    
+    if(loginUser!=nil) {
+        MessageModel * msgModel = [[Model getInstance] getMessageModel];
+        int count = [[UserSetting getInstance] getUnreadmessagecount];
+        [msgModel setUnReadMsgCount:count];
+    }
+
     return YES;
 }
 

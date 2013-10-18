@@ -16,21 +16,15 @@
 
     GMSMapView * gmsMapView;
     GMSMarker *marker;
+    UIView *maskView;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 -(void)dealloc
 {
+    [maskView release];
     self.label = nil;
-    self.btnPick = nil;
+    self.btnPickerLocation = nil;
 
     [marker release];
     
@@ -42,10 +36,61 @@
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 60)];
+    [maskView setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:maskView];
+    [maskView setHidden:YES];
+    [maskView setUserInteractionEnabled:NO];
+    
+    UIView *glassView = [[UIView alloc] initWithFrame:maskView.frame];
+    [glassView setAlpha:0.7f];
+    [glassView setBackgroundColor:[UIColor whiteColor]];
+    [maskView addSubview:glassView];
+    [glassView release];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 18, 94, 30)];
+    [maskView addSubview:label];
+    [label release];
+    [label setText:@"Pick a location"];
+    [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+    [label setTextColor:[UIColor blackColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+    UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
+    [maskView addSubview:arrawView];
+    [arrawView release];
+    arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
+    
+    [self setLocation:nil];
+}
+
 -(void) setLocation:(Location*) location
 {
+    BOOL isLocation = NO;
+    if (location == nil || (location.lat == 0 && location.lng == 0)) {
+        isLocation = NO;
+    }
+    else
+    {
+        isLocation = YES;
+    }
+    
+    if (isLocation == NO) {
+        location = [[Location alloc] init];
+        location.lat = CAL_DEFAULT_LOCATION_LAT;
+        location.lng = CAL_DEFAULT_LOCATION_LNG;
+        location.location = @"No Location";
+        
+        [maskView setHidden:NO];
+    }
+    else
+    {
+        [maskView setHidden:YES];
+    }
+    
     self.label.text = location.location;
-    [self.btnPickerLocation setTitle:@"" forState:UIControlStateNormal];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.lat
                                                             longitude:location.lng
                                                                  zoom:13];
@@ -62,13 +107,15 @@
     }
     
     // 在map中间做一个标记
-    if(marker == nil) {
-        marker = [[GMSMarker alloc] init];
+    
+    if (isLocation) {
+        if(marker == nil) {
+            marker = [[GMSMarker alloc] init];
+        }
+        marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
+        marker.map = gmsMapView;
     }
-    
-    marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
-    marker.map = gmsMapView;
-    
+
     gmsMapView.userInteractionEnabled = NO;
 }
 

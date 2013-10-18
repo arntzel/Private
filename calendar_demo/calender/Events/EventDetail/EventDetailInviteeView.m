@@ -66,21 +66,23 @@
     NSMutableString * names = [[NSMutableString alloc] init];
     
     
-    [names appendFormat:@"You "];
+    [names appendFormat:@"You"];
+    
+    User * me = [[UserModel getInstance] getLoginUser];
     
     for(int i=0;i<users.count;i++) {
         
         EventAttendee * attendee = [users objectAtIndex:i];
         Contact * user = attendee.contact;
         
-        if(attendee.is_owner) continue;
-        
+        if([user.email isEqualToString:me.email]) continue;
+
         if(i== users.count-1) {
-            [names appendString:@"and "];
+            [names appendString:@" and "];
             [names appendString: [user getReadableUsername]];
         } else {
-            [names appendString:[user getReadableUsername]];
             [names appendString:@", "];
+            [names appendString:[user getReadableUsername]];
         }
     }
     

@@ -12,6 +12,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "LogUtil.h"
+
+#define CAL_DEFAULT_LOCATION_LAT 40.7294f
+#define CAL_DEFAULT_LOCATION_LNG -74.00f
+
 #endif
 
 

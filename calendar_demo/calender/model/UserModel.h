@@ -34,7 +34,7 @@
 -(void) getUsers:(int)offset andCallback: (void (^)(NSInteger error, NSArray * users))callback;
 
 
--(void) getMyContacts:(void (^)(NSInteger error, NSArray * contact))callback;
+-(void) getMyContacts:(NSDate *) lastmodifytime  offset:(int) offset  andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contact))callback;
 
 - (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback;
 

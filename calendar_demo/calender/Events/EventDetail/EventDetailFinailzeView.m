@@ -54,6 +54,26 @@ static CGFloat const getstureDistance = 50;
     return self;
 }
 
+- (void)setTime:(NSString *)time
+{
+    self.eventTimeLabel.text = time;
+}
+
+- (void)setConflictCount:(NSInteger)count
+{
+    if (count > 0) {
+        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d CONFLICT", count];
+        [self.eventTimeConflictLabel setHidden:NO];
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+    }
+    else
+    {
+        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+        [self.eventTimeConflictLabel setHidden:YES];
+    }
+    
+}
+
 -(void) updateView:(ProposeStart *) eventTime
 {
     CGRect frame = self.frame;
@@ -61,20 +81,12 @@ static CGFloat const getstureDistance = 50;
     frame.origin.y = 7;
     self.frame = frame;
 
-    self.eventTimeLabel.text = [self getTimeLable:eventTime];
+    self.eventTimeLabel.text = [Utils getProposeStatLabel:eventTime];
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
         self.alpha = ALPHA;
     }
-}
-
--(NSString *) getTimeLable:(ProposeStart *) eventTime
-{
-    NSString * startTime = [Utils formateTimeAMPM:eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM:[eventTime getEndTime]];
-    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    return lable;
 }
 
 - (void)updateUI

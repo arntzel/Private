@@ -108,17 +108,17 @@
     [super dealloc];
 }
 
--(NSString *) getRecentTimezone
-{
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"timezone"];
-}
-
--(void) saveTimezone:(NSString *) timezone
-{
-     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    [defaults setObject:timezone forKey:@"timezone"];
-    [defaults synchronize];
-}
+//-(NSString *) getRecentTimezone
+//{
+//    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+//    return [defaults objectForKey:@"timezone"];
+//}
+//
+//-(void) saveTimezone:(NSString *) timezone
+//{
+//     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+//    [defaults setObject:timezone forKey:@"timezone"];
+//    [defaults synchronize];
+//}
 
 @end

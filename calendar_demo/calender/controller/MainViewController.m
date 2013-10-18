@@ -7,6 +7,9 @@
 #import "SettingViewController.h"
 
 #import "Model.h"
+#import "UserModel.h"
+#import "CoreDataModel.h"
+
 #import "Utils.h"
 
 @interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
@@ -18,6 +21,7 @@
     PedingEventViewController * pendingEventViewCtr;
     SettingViewController * settingViewCtr;
     
+    menuNavigation * menuNavigationController;
     int currentIndex;
 }
 
@@ -49,7 +53,12 @@
         [leftController.tableView reloadData];
     };
 
+    menuNavigationController = leftController;
+    
     currentIndex = 0;
+
+    User * me = [[UserModel getInstance] getLoginUser];
+    [[CoreDataModel getInstance] initDBContext:me];
     
     return self;
 }
@@ -58,6 +67,8 @@
 
     [super showLeftController:animated];
 
+    [menuNavigationController.tableView reloadData];
+    
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
     if([msgModel getUnreadMsgCount] > 0) {
         

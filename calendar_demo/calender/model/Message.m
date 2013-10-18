@@ -31,7 +31,6 @@
     msg.sender_archived  = [[json objectForKey:@"sender_archived"] boolValue];
     msg.sender_deleted_at = [Utils parseNSDate:[json objectForKey:@"sender_deleted_at"]];
     msg.sent_at = [Utils parseNSDate:[json objectForKey:@"sent_at"]];
-    msg.sent_at = [Utils convertLocalDate:msg.sent_at];
     
     msg.unread = (msg.read_at == nil);
     

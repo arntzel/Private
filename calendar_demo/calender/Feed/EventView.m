@@ -46,7 +46,7 @@
             self.labTimeType.text = @"AROUND";
         }
 
-        self.labTime.text = [Utils formateTimeAMPM:event.start];
+        self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];
         self.labEventDuration.text = event.duration;
     }
 

@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "NSDateAdditions.h"
 #import "DataCache.h"
+#import "UserModel.h"
 
 static CoreDataModel * instance;
 
@@ -36,60 +37,60 @@ static CoreDataModel * instance;
     persistentStoreCoordinator = nil;
     
     //Delete old db file
-    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
-    
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:storeUrl error: &error];
-    LOG_D(@"error=%@", error);
+//    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+//    
+//    NSError *error = nil;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:storeUrl error: &error];
+//    LOG_D(@"error=%@", error);
 
     
-    
+
+    delegates = [[NSMutableArray alloc] init];
+    cache = [[DataCache alloc] init];
+
+    self.inited = NO;
+}
+
+-(void) initDBContext:(User *) user
+{
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-    
+
+    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator:user];
+
     if (coordinator != nil) {
         managedObjectContext = [[NSManagedObjectContext alloc]init];
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    
-    delegates = [[NSMutableArray alloc] init];
-    cache = [[DataCache alloc] init];
+
+    self.inited = YES;
 }
 
 -(id) init
 {
     self = [super init];
-    
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-       
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-    
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc]init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    
+
     delegates = [[NSMutableArray alloc] init];
     cache = [[DataCache alloc] init];
+
     return self;
 }
 
 
 
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+-(NSPersistentStoreCoordinator *)persistentStoreCoordinator:(User *) user
 {
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
     }
 
+    NSString * dbname = [NSString stringWithFormat:@"calvin%d.sqlite", user.id];
+
     //得到数据库的路径
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
-    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:dbname]];
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
 
@@ -106,13 +107,8 @@ static CoreDataModel * instance;
         return managedObjectContext;
     }
 
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator];
-
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-
+    managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     return managedObjectContext;
 }
 
@@ -140,7 +136,7 @@ static CoreDataModel * instance;
 -(FeedEventEntity*) getFeedEventEntity:(int) id
 {
     
-    NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
+    //NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -234,8 +230,8 @@ static CoreDataModel * instance;
 -(NSArray *) getFeedEventEntitys:(NSDate *) day
 {
     
-    NSDate * beginDate = [day cc_dateByMovingToBeginningOfDay];
-    NSDate * endDate = [day cc_dateByMovingToEndOfDay];
+    NSDate * beginDate = [Utils convertGMTDate:[day cc_dateByMovingToBeginningOfDay]];
+    NSDate * endDate = [Utils convertGMTDate:[day cc_dateByMovingToEndOfDay]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -255,27 +251,7 @@ static CoreDataModel * instance;
 
 }
 
-//-(DayFeedEventEntitys *) getDayFeedEventEntitys:(NSString *) day
-//{
-//    
-//    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:%@", day);
-//   
-//    NSDate * date = [Utils parseNSStringDay:day];
-//    
-//    NSArray * feedEvts = [self getFeedEventEntitys:date];
-//    
-//    if(feedEvts.count == 0) return nil;
-//    
-//    DayFeedEventEntitys * dayFeedEvents = [[DayFeedEventEntitys alloc] init];
-//    
-//    dayFeedEvents.day = day;
-//    
-//    for(FeedEventEntity * evt in feedEvts) {
-//        [dayFeedEvents addEventsObject:evt];
-//    }
-//    
-//    return dayFeedEvents;
-//}
+
 
 -(DataCache *) getCache
 {
@@ -318,7 +294,7 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(start >= %@) AND (start <= %@) AND (eventType & %d)>0", start,  end, FILTER_IMCOMPLETE];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"( ((start >= %@) AND (start <= %@))  OR ((end >= %@) AND (end <= %@)) ) AND (eventType & %d)>0", start,  end, start,  end, FILTER_IMCOMPLETE];
     [fetchRequest setPredicate:predicate];
     return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
 }
@@ -336,11 +312,11 @@ static CoreDataModel * instance;
     }
     
     
-    LOG_D(@"getDayFeedEventType：%@", day);
+    //LOG_D(@"getDayFeedEventType：%@", day);
     
     NSDate * date = [Utils parseNSStringDay:day];
-    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
-    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
+    NSDate * beginDate = [Utils convertGMTDate:[date cc_dateByMovingToBeginningOfDay]];
+    NSDate * endDate = [Utils convertGMTDate:[date cc_dateByMovingToEndOfDay]];
     
   
 
@@ -392,7 +368,7 @@ static CoreDataModel * instance;
     
     if(entity.start != nil) {
        
-        NSString * day = [Utils formateDay:entity.start];
+        NSString * day = [Utils formateDay:[entity getLocalStart]];
         
     
         if([cache containDay:day]) {

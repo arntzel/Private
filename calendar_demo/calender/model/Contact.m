@@ -60,6 +60,7 @@
     NSString * owner = [jsonData objectForKey:@"user"];
     user.calvinUser = [Utils chekcNullClass:owner] != nil;
 
+    user.modified = [Utils parseNSDate:[jsonData objectForKey:@"modified"]];
     return user;
 }
 

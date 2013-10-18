@@ -9,7 +9,8 @@
 #import "UserSetting.h"
 #import "User.h"
 #import "Event.h"
-
+#import "CoreDataModel.h"
+#import "Utils.h"
 
 static UserSetting * instance;
 
@@ -30,10 +31,6 @@ static UserSetting * instance;
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:KEY_LOGINUSER];
-    [defaults removeObjectForKey:KEY_LASTUPDATETIME];
-    [defaults removeObjectForKey:KEY_UNREADMESSAGECOUNT];
-    [defaults removeObjectForKey:KEY_EVENTFILTERS];
-
     [defaults synchronize];
 }
 
@@ -66,49 +63,88 @@ static UserSetting * instance;
 
 -(int) getUnreadmessagecount
 {
-    NSNumber * number = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_UNREADMESSAGECOUNT];
-    if(number == nil) {
+    if([CoreDataModel getInstance].inited == NO) return 0;
+
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_UNREADMESSAGECOUNT];
+    if(setting == nil) {
         return 0;
     } else {
-        return [number intValue];
+        return [setting.value intValue];
     }
 }
 
 -(void) saveUnreadmessagecount:(int)count
 {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject: [NSNumber numberWithInt:count] forKey:KEY_UNREADMESSAGECOUNT];
-    [defaults synchronize];
+    if([CoreDataModel getInstance].inited == NO) return;
+
+    [[CoreDataModel getInstance] saveSetting:KEY_UNREADMESSAGECOUNT andValue: [NSString stringWithFormat:@"%d", count]];
 }
 
 
 -(NSDate *) getLastUpdatedTime
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:KEY_LASTUPDATETIME];
+    if([CoreDataModel getInstance].inited == NO) return nil;
+
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_LASTUPDATETIME];
+    if(setting == nil) {
+        return nil;
+    } else {
+        return [Utils parseNSDate:setting.value];
+    }
 }
 
 -(void) saveLastUpdatedTime:(NSDate*) date
 {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:date forKey:KEY_LASTUPDATETIME];
-    [defaults synchronize];
+    NSString * val = [Utils formateDate:date];
+    [[CoreDataModel getInstance] saveSetting:KEY_LASTUPDATETIME andValue: val];
 }
 
 -(void) saveEventfilters:(int) filters
 {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithInt:filters] forKey:KEY_EVENTFILTERS];
-    [defaults synchronize];
+    [[CoreDataModel getInstance] saveSetting:KEY_EVENTFILTERS andValue: [NSString stringWithFormat:@"%d", filters]];
 }
 
 -(int) getEventfilters
 {
-    NSNumber * number = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_EVENTFILTERS];
-    if(number == nil) {
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_EVENTFILTERS];
+    if(setting == nil) {
         int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
         return filetVal;
     } else {
-        return [number intValue];
+        return [setting.value intValue];
     }
 }
+
+-(NSString *) getTimezone
+{
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_TIMEZONE];
+    if(setting == nil) {
+        return nil;
+    } else {
+        return setting.value;
+    }
+}
+
+-(void) saveTimeZone:(NSString *) timezone
+{
+    [[CoreDataModel getInstance] saveSetting:KEY_TIMEZONE andValue:timezone];
+
+}
+
+-(void) saveKey:(NSString *) key andIntValue:(int) value
+{
+    if([CoreDataModel getInstance].inited == NO) return;
+    [[CoreDataModel getInstance] saveSetting:key andValue: [NSString stringWithFormat:@"%d", value]];
+}
+
+-(int) getIntValue:(NSString *) key
+{
+    Setting * setting = [[CoreDataModel getInstance] getSetting:key];
+    if(setting == nil) {
+        return 0;
+    } else {
+        return [setting.value intValue];
+    }
+}
+
 @end
