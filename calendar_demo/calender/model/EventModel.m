@@ -78,9 +78,13 @@
     LOG_D(@"synchronizedFromServer begin :%@, offset=%d", lastupdatetime, offset);
     [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:offset andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
-        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", lastupdatetime, error, events.count, totalCount);
+        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d， offset=%d, allcount:%d", lastupdatetime, error, events.count, offset, totalCount);
 
         [self setSynchronizeData:NO];
+        
+        if(![[UserModel getInstance] isLogined]) {
+            return;
+        }
         
         if(error != 0) {
             
@@ -184,8 +188,11 @@
     synchronizingContactData = YES;
     [[UserModel getInstance] getMyContacts:lastmodify offset:offset andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
         synchronizingContactData = NO;
-
-        LOG_D(@"updateContacts end, %@ , error=%d, count:%d, allcount:%d", lastmodify, error, contacts.count, totalCount);
+        if(![[UserModel getInstance] isLogined]) {
+            return;
+        }
+        
+        LOG_D(@"updateContacts end, %@ , error=%d, count:%d, offset=%d, allcount:%d", lastmodify, error, contacts.count, offset, totalCount);
 
         if(error == 0) {
             NSDate * maxlatmodify = lastmodify;
