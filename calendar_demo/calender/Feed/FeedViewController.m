@@ -140,6 +140,15 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
         NSLog(@"upload events from calendar app successed!");
+        CoreDataModel * model = [CoreDataModel getInstance];
+        for (Event *newEvent in events)
+        {
+            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+            [entity convertFromEvent:newEvent];
+            [model addFeedEventEntity:entity];
+        }
+        [model saveData];
+        [model notifyModelChange];
     }];
 }
 

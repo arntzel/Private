@@ -263,9 +263,64 @@ static Model * instance;
                 NSLog(@"location:%@",event.location);
                 NSLog(@"notes:%@",event.notes);
                 NSLog(@"--------------");
+                Event *event1 = [[Event alloc] init];
+                event1.eventType = 5;
+                event1.description = event.notes;
+                
+                NSMutableArray * invitees = [[NSMutableArray alloc] init];
+                for(EKParticipant * user in event.attendees)
+                {
+                    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
+                    ABRecordRef contactInfo = [user ABRecordWithAddressBook:addressBook];
+                    ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+                    NSArray* emailArray = (__bridge NSArray *)(ABMultiValueCopyArrayOfAllValues(emailProperty));
+                    NSString *email = @"";
+                    if ([emailArray count]>0&&[emailArray objectAtIndex:0])
+                    {
+                        email = [emailArray objectAtIndex:0];
+                    }
+                    Invitee * invitee = [[Invitee alloc] init];
+                    invitee.email = email;
+                    [invitees addObject:invitee];
+                }
+                
+                event1.invitees = invitees;
+                
+                
+                //    event.duration_days = arrangedDate.duration_days;
+                //    event.duration_hours = arrangedDate.duration_hours;
+                //    event.duration_minutes = arrangedDate.duration_minutes;
+                //    event.is_all_day = arrangedDate.is_all_day;
+                //    event.start = arrangedDate.start;
+                //    event.start_type = arrangedDate.start_type;
+                
+                
+                
+                //event.propose_starts = [timesView getEventDates];
+                
+                Location *loc = [[Location alloc] init];
+                loc.location = event.location;
+                event1.location = loc;
+                event1.start = event.startDate;
+                event1.end = event.endDate;
+                
+//                if(event.start_type == nil) {
+//                    event.start_type = START_TYPEWITHIN;
+//                }
+                
+                event1.published = YES;
+                event1.timezone = [event.timeZone description];
+                event1.title =event.title;
+                
+//                event.allow_new_dt = settingView.btnInvite1.selected;
+//                event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
+//                event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
+                
+                event1.created_on = event.creationDate;
+                [array addObject:event1];
             }
             
-            //callback(array);
+            callback(array);
             
         }
         else
@@ -280,6 +335,43 @@ static Model * instance;
 {
     [self getEventsFromCalendarApp:^(NSMutableArray *events) {
         
+//        NSDictionary * dict = [evt convent2Dic];
+//        
+//        NSString * postContent = [Utils dictionary2String:dict];
+//        
+//        LOG_D(@"createEvent, postContent:%@", postContent);
+//        
+//        NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/", HOST];
+//        
+//        NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+//        [[UserModel getInstance] setAuthHeader:request];
+//        
+//        NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+//        [request setHTTPBody:postData];
+//        
+//        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+//            
+//            NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+//            
+//            int status = httpResp.statusCode;
+//            
+//            if(status == 201) {
+//                
+//                NSError * err;
+//                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+//                LOG_D(@"createEvent resp:%@", json);
+//                
+//                Event * newEvent = [Event parseEvent:json];
+//                callback(0, newEvent);
+//                
+//            } else {
+//                
+//                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+//                LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+//                
+//                callback(-1, nil);
+//            }
+//        }];
     }];
 }
 -(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
