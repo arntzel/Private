@@ -56,10 +56,7 @@
 -(void) updateView:(Comment *) cmt
 {
     [self setHeaderPhotoUrl:cmt.commentor.avatar_url];
-    NSData* commentData = [cmt.msg hexData];
-    NSString *comment = [[[NSString alloc] initWithData:commentData
-                                               encoding:NSUTF8StringEncoding] autorelease];
-    self.commentContentLabel.text = comment;
+    self.commentContentLabel.text = cmt.msg;
     self.commentTimeLabel.text = [Utils getTimeText:cmt.createTime];
 }
 

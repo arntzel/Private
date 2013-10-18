@@ -870,10 +870,6 @@ static Model * instance;
     [[UserModel getInstance] setAuthHeader:request];
     
     NSDictionary * dict = [cmt convent2Dic];
-    NSString *content = [dict objectForKey:@"content"];
-    content = [[content dataUsingEncoding:NSUTF8StringEncoding] hexString];
-    [dict setValue:content forKey:@"content"];
-    
     NSString * postContent = [Utils dictionary2String:dict];
     
     LOG_D(@"createComment postContent=%@", postContent);
