@@ -5,25 +5,43 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
+static NSTimeZone * userTimeZone;
+
 @implementation Utils
+
++(void) setUserTimeZone:(NSTimeZone *) timezone
+{
+    userTimeZone = timezone;
+}
+
++(NSDate *) getCurrentDate
+{
+    NSDate * date = [NSDate date];
+    NSTimeZone * systemzone = [NSTimeZone systemTimeZone];
+    int interval = [userTimeZone secondsFromGMT] - [systemzone secondsFromGMT];
+    NSDate * time = [date  dateByAddingTimeInterval:interval];
+    return time;
+}
+
++(NSDate *) convertFromLocalDatetoUserDate:(NSDate *) localDate
+{
+    NSTimeZone * systemzone = [NSTimeZone systemTimeZone];
+    int interval = [userTimeZone secondsFromGMT] - [systemzone secondsFromGMT];
+    NSDate * time = [localDate  dateByAddingTimeInterval:interval];
+    return time;
+}
 
 +(NSDate *) convertLocalDate:(NSDate *) gmtDate
 {
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: gmtDate];
-    
+    NSInteger interval = [userTimeZone secondsFromGMT];
     NSDate * localeDate = [gmtDate  dateByAddingTimeInterval:interval];
-    
     return localeDate;
 }
 
 +(NSDate *) convertGMTDate:(NSDate *) localDate
 {
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: localDate];
-
+    NSInteger interval = [userTimeZone secondsFromGMT];
     NSDate * gmtDate = [localDate  dateByAddingTimeInterval:-interval];
-
     return gmtDate;
 }
 
@@ -53,30 +71,11 @@
        return nil;
     }
 
-    strDate = [Utils formateStringDate:strDate];
-
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
     NSDate * date =[format dateFromString:strDate];
     return date;
 }
-
-
-
-+(NSString *) formateStringDate:(NSString *) strDate
-{
-    strDate = [strDate substringToIndex:19];
-
-    NSMutableString * sDate = [NSMutableString stringWithString:strDate];
-    NSRange range;
-    range.location = 10;
-    range.length = 1;
-
-    [sDate replaceCharactersInRange:range withString:@" "];
-    return sDate;
-}
-
-
 
 +(NSString *) formateTime:(NSDate *) time
 {
@@ -167,7 +166,7 @@
 
 +(NSString *) toReadableDay:(NSString *) day
 {
-    NSDate * currentDate = [NSDate date];
+    NSDate * currentDate = [Utils getCurrentDate];
     NSString * today = [self formateDay:currentDate];
     NSString * tomorrom = [self formateDay:[currentDate dateByAddingTimeInterval:24*3600] ];
     NSString * yestoday = [self formateDay:[currentDate dateByAddingTimeInterval:-24*3600]];
@@ -224,7 +223,8 @@
 
 +(NSString *) getTimeText:(NSDate *) time
 {
-    NSTimeInterval interval = [time timeIntervalSinceNow];
+    
+    NSTimeInterval interval = [time timeIntervalSinceNow] + [[NSTimeZone systemTimeZone] secondsFromGMT];
     
     int ago = -1*interval/60;
     
@@ -398,5 +398,13 @@
     NSString *regex =  @"^(\\d{3,4}-)\\d{7,8}$";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@", regex];
     return [emailTest evaluateWithObject:phoneNUmber];
+}
+
++(NSString *) getProposeStatLabel:(ProposeStart *) ps
+{
+    NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
+    NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
+    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    return lable;
 }
 @end

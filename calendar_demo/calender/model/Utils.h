@@ -10,10 +10,19 @@
 #define COLOR_B(color)  (((color)&(0x000000FF))>>0)
 
 
+
+
 @interface Utils : NSObject
 
++(void) setUserTimeZone:(NSTimeZone *) timezone;
+
+
++(NSDate *) getCurrentDate;
 
 +(NSDate *) convertLocalDate:(NSDate *) gmtDate;
+
++(NSDate *) convertFromLocalDatetoUserDate:(NSDate *) localDate;
+
 +(NSDate *) convertGMTDate:(NSDate *) localDate;
 
 +(NSDate *) convertGMTDate:(NSDate *) date andTimezone:(NSTimeZone *) tinezone;
@@ -30,7 +39,7 @@
  convert a NSDate to NSString object
  return the date of string format, example: "2013-06-02 12:12:10"
  */
-+(NSString *) formateStringDate:(NSString *) strDate;
+//+(NSString *) formateStringDate:(NSString *) strDate;
 
 
 //"HH:mm:ss"
@@ -75,7 +84,7 @@
  */
 +(NSString *) formate:(int) year andMonth:(int)month;
 
-
+//GMT Date
 +(NSString *) getTimeText:(NSDate *) time;
 
 /**
@@ -116,5 +125,7 @@
 
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL)isValidatePhoneNumber:(NSString *) phoneNUmber;
+
++(NSString *) getProposeStatLabel:(ProposeStart *) ps;
 
 @end

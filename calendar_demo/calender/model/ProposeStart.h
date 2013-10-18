@@ -57,7 +57,6 @@
 
 -(int) getDurationMins;
 
-
 +(ProposeStart *) parse:(NSDictionary *) json;
 
 

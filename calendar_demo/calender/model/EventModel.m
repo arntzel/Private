@@ -6,12 +6,15 @@
 #import "UserSetting.h"
 #import "UserModel.h"
 #import "UserSetting.h"
+#import "NSDateAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
 
     BOOL synchronizingData;
 
+    BOOL synchronizingContactData;
+    
     NSMutableArray * delegates;
 }
 
@@ -46,8 +49,10 @@
 
 -(void) setSynchronizeData:(BOOL) loading
 {
-    synchronizingData = loading;
-    [self nofityModelChanged];
+    if(synchronizingData != loading) {
+        synchronizingData = loading;
+        [self nofityModelChanged];
+    }
 }
 
 -(void) synchronizedFromServer
@@ -61,57 +66,100 @@
     NSLog(@"synchronizedFromServer begin");
     
     NSDate * lastupdatetime = [[UserSetting getInstance] getLastUpdatedTime];
-    
-    if(lastupdatetime == nil) return;
+    int offset = [[UserSetting getInstance] getIntValue:KEY_LASTUPDATETIMEOFFSET];
+
+    if(lastupdatetime == nil) {
+        NSDate * begin = [Utils getCurrentDate];
+        lastupdatetime = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
+    };
     
     
     [self setSynchronizeData:YES];
-    
-    NSDate * currentTime = [NSDate date];
-    
-    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+    LOG_D(@"synchronizedFromServer begin :%@, offset=%d", lastupdatetime, offset);
+    [[Model getInstance] getUpdatedEvents:lastupdatetime andOffset:offset andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
+        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d， offset=%d, allcount:%d", lastupdatetime, error, events.count, offset, totalCount);
+
         [self setSynchronizeData:NO];
         
-        LOG_D(@"synchronizedFromServer begin end, updated event count:%d", events.count);
-
-        if(events.count > 0) {
-           
-            CoreDataModel * model = [CoreDataModel getInstance];
-            
-            for(Event * evt in events) {
-                
-                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-
-                if(evt.confirmed && [evt isDeclineEvent]) {
-                    if(entity != nil) {
-                        [model deleteFeedEventEntity2:entity];
-                    }
-
-                } else {
-
-                    if(entity == nil) {
-                        entity = [model createEntity:@"FeedEventEntity"];
-                    } else {
-                        for(UserEntity * user in entity.attendees) {
-                            [model deleteEntity:user];
-                        }
-
-                        [entity clearAttendee];
-                    }
-
-                    [entity convertFromEvent:evt];
-                    [model updateFeedEventEntity:entity];
-                }
-            }
-            
-            [model saveData];
-            [model notifyModelChange];
+        if(![[UserModel getInstance] isLogined]) {
+            return;
         }
         
-        [[UserSetting getInstance] saveLastUpdatedTime:currentTime];
+        if(error != 0) {
+            
+            for(id<EventModelDelegate> delegate in delegates) {
+                [delegate onSynchronizeDataError:error];
+            }
+            
+            return;
+        }
+        
+        if(events.count == 0) {
+            LOG_D(@"synchronizedFromServer, no updated event");
+            return;
+        }
+        
+        NSDate * maxlastupdatetime = lastupdatetime;
+        
+        CoreDataModel * model = [CoreDataModel getInstance];
+        
+        for(Event * evt in events) {
+            
+            
+            if([evt.last_modified compare:maxlastupdatetime] > 0) {
+                maxlastupdatetime = evt.last_modified;
+            }
+            
+            FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+            
+            if(evt.confirmed && [evt isDeclineEvent]) {
+                if(entity != nil) {
+                    [model deleteFeedEventEntity2:entity];
+                }
+                
+            } else {
+                
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                } else {
+                    for(UserEntity * user in entity.attendees) {
+                        [model deleteEntity:user];
+                    }
+                    
+                    [entity clearAttendee];
+                }
+                
+                [entity convertFromEvent:evt];
+                [model updateFeedEventEntity:entity];
+            }
+        }
+        
+
+
+        if([maxlastupdatetime isEqualToDate:lastupdatetime]) {
+            int newoffset = offset + events.count;
+            [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIMEOFFSET andIntValue:newoffset];
+        } else {
+            [[UserSetting getInstance] saveLastUpdatedTime:maxlastupdatetime];
+            [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIMEOFFSET andIntValue:0];
+        }
+
+        [model saveData];
+        [model notifyModelChange];
+        
+        if(events.count + offset < totalCount) {
+            //还有数据没更新，继续从服务器拉取数据
+            [NSTimer scheduledTimerWithTimeInterval:0.1
+                                             target:self
+                                           selector:@selector(synchronizedFromServer)
+                                           userInfo:nil
+                                            repeats:NO];
+        }
     }];
 }
+
+
 
 -(void) checkContactUpdate
 {
@@ -120,42 +168,83 @@
         return;
     }
 
-    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
-
-    if(setting == nil) {
-
-        [self updateContacts];
-        
-    } else {
-
-        NSDate * updateTime = [Utils parseNSDate:setting.value];
-        if(updateTime.timeIntervalSinceNow < -12*3600) {
-            [self updateContacts];
-        }
-    }
+    if(synchronizingContactData) return;
+    
+    [self updateContacts];
 }
 
 -(void) updateContacts
 {
     LOG_D(@"updateContacts");
 
-    [[UserModel getInstance] getMyContacts:^(NSInteger error, NSArray *contacts) {
+    Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_CONTACTUPDATETIME];
+    int offset = [[UserSetting getInstance] getIntValue:KEY_CONTACTUPDATETIMEOFFSET];
+
+     NSDate * lastmodify = nil;
+    if(setting != nil) {
+        lastmodify = [Utils parseNSDate:setting.value];
+    }
+    
+    synchronizingContactData = YES;
+    [[UserModel getInstance] getMyContacts:lastmodify offset:offset andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
+        synchronizingContactData = NO;
+        if(![[UserModel getInstance] isLogined]) {
+            return;
+        }
+        
+        LOG_D(@"updateContacts end, %@ , error=%d, count:%d, offset=%d, allcount:%d", lastmodify, error, contacts.count, offset, totalCount);
+
         if(error == 0) {
+            NSDate * maxlatmodify = lastmodify;
+            
+            if(contacts.count == 0) {
+                LOG_D(@"updateContacts, no updated contact.");
+                return;
+            }
+            
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in contacts) {
-
+                
+                if(maxlatmodify == nil || [contact.modified compare:maxlatmodify] > 0) {
+                    maxlatmodify = contact.modified;
+                }
+                
                 ContactEntity * enity = [model getContactEntity:contact.id];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
                 }
-
+                
                 [enity convertContact:contact];
             }
-
+            
             [model saveData];
 
-            NSString * updateTime = [Utils formateDate:[NSDate date]];
-            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+            if(lastmodify == nil || ![maxlatmodify isEqualToDate:lastmodify]) {
+                NSString * updateTime = [Utils formateDate:maxlatmodify];
+                [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+                [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:0];
+            } else {
+
+                NSString * updateTime = [Utils formateDate:maxlatmodify];
+                [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+
+                int newoffset = offset + contacts.count;
+                [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIMEOFFSET andIntValue:newoffset];
+            }
+
+
+            
+            
+            if(contacts.count + offset < totalCount) {
+                //还有数据没更新，继续从服务器拉取数据
+                [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                 target:self
+                                               selector:@selector(checkContactUpdate)
+                                               userInfo:nil
+                                                repeats:NO];
+
+            }
+            
         }
     }];
 }

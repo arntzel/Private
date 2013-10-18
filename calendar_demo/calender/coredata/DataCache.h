@@ -46,7 +46,7 @@
 
 @interface DataCache : NSObject
 
-
+//GMT date
 @property(strong) NSDate * date;
 @property int followCount;
 @property int preCount;

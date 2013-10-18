@@ -28,6 +28,10 @@
 @interface CoreDataModel : NSObject
 
 
+@property BOOL inited;
+
+-(void) initDBContext:(User *) user;
+
 -(void) addDelegate:(id<CoreDataModelDelegate>) delegate;
 
 -(void) removeDelegate:(id<CoreDataModelDelegate>) delegate;
@@ -40,9 +44,10 @@
 
 -(NSArray *) getPendingFeedEventEntitys;
 
-
+//GMT date
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
 
+//GMT date
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
 
 
@@ -52,10 +57,12 @@
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 
+//GMT date
 -(int) getFeedEventCountByStart:(NSDate *) start andEnd:(NSDate *) end;
 
 
 
+//user date
 -(int) getDayFeedEventType:(NSString *) day;
 
 

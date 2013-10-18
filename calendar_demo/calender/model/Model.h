@@ -47,20 +47,21 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
  Call WebService API to get the lastest events.s
  NSArray* events: The Event object array
  */
--(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback;
+//-(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback;
 
 
--(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
+//-(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
--(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
+//-(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
+
 
 -(void) getUpdatedEvents:(NSDate *) lastmodifyTime andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 
 
--(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback;
+//-(void) getEventsOfBegin:(NSDate *) begin andEnd:(NSDate*) end andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
 
--(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback;
+//-(void) getEventsOfDay:(NSDate *) day andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
 
 /*
@@ -168,6 +169,9 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) updateEventAttendeeStatus:(int) atdID andInviteeKey:(NSString *) invite_key andStatus:(int) status andCallback:(void (^)(NSInteger error))callback;
 
 -(void) updateEventPhoto:(int) eventID PhotoUrl:(NSString *) url andCallback:(void (^)(NSInteger error))callback;
+
+//Invitee list
+-(void) inviteContacts:(int) eventID andContact:(NSArray *) invitees andCallback:(void (^)(NSInteger error, Event * newEvent))callback;
 
 
 -(EventModel *) getEventModel;

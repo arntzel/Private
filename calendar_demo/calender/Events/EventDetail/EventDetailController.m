@@ -41,7 +41,8 @@
                                     AddEventDateViewControllerDelegate,
                                     AddLocationViewControllerDelegate,
                                     EventDetailPhotoViewDelegate,
-                                    UploadImageDelegate>
+                                    UploadImageDelegate,
+                                    DetailInviteesControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -166,7 +167,7 @@
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
     [scrollView addSubview:emptyView];
     
-    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:isCreator];
+    invitePlaceContentView = [[EventDetailInviteePlaceView alloc] initByCreator:isCreator CanChangeLocation:self.event.allow_new_location];
     invitePlaceContentView.delegate = self;
     [scrollView addSubview:invitePlaceContentView];
     
@@ -336,7 +337,6 @@
     LOG_D(@"scrollView.contentInset :%f,%f",scrollView.contentInset.top,scrollView.contentInset.bottom);
     
     [scrollView setContentSize:CGSizeMake(320, offsetY)];
-//    [scrollView contentSizeToFit];
 }
 
 
@@ -424,6 +424,7 @@
 - (void)setEventDate:(ProposeStart *)eventDate
 {
     
+    eventDate.start = [Utils convertGMTDate:eventDate.start];
     for(ProposeStart * p in self.event.propose_starts) {
         if([eventDate isEqual:p]) {
             [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
@@ -576,6 +577,7 @@
     DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
     inviteesController.event = self.event;
     inviteesController.titleBgImage = [photoView getImage];
+    inviteesController.delegate = self;
     
     [self.navigationController pushViewController:inviteesController animated:YES];
     [inviteesController release];
@@ -662,6 +664,13 @@
     if(buttonIndex == 1) {
         [self begindeleteEvent];
     }
+}
+
+#pragma mark -
+#pragma mark DetailInviteesControllerDelegate
+- (void)addNewPeopleArray:(NSArray *)inviteArray
+{
+    
 }
 
 @end

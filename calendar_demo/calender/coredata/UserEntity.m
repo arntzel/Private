@@ -1,12 +1,6 @@
-//
-//  UserEntity.m
-//  Calvin
-//
-//  Created by fang xiang on 13-9-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "UserEntity.h"
+#import "FeedEventEntity.h"
 
 
 @implementation UserEntity
@@ -17,9 +11,10 @@
 @dynamic email;
 @dynamic first_name;
 @dynamic id;
-@dynamic last_name;
-@dynamic timezone;
-@dynamic status;
 @dynamic is_owner;
+@dynamic last_name;
+@dynamic status;
+@dynamic timezone;
+@dynamic feedEvent;
 
 @end

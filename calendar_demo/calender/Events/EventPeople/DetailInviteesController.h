@@ -5,7 +5,7 @@
 
 @protocol DetailInviteesControllerDelegate <NSObject>
 
-- (void)setInVitePeopleArray:(NSArray *)inviteArray;
+- (void)addNewPeopleArray:(NSArray *)inviteArray;
 
 @end
 

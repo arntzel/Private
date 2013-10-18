@@ -12,8 +12,6 @@
 @interface AddEventPlaceView : UIView
 
 @property(retain, nonatomic) IBOutlet UILabel * label;
-@property(retain, nonatomic) IBOutlet UIButton * btnPick;
-
 @property(retain, nonatomic) IBOutlet UIView * mapView;
 
 @property (retain, nonatomic) IBOutlet UIButton *btnPickerLocation;

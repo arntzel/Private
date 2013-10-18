@@ -80,7 +80,7 @@
         
         finailzeView = [[EventDetailFinailzeView creatView] retain];
         [finailzeView updateView:_eventTime];
-        finailzeView.eventTimeConflictLabel.text = [self getConfilictEventCount];
+        [finailzeView setConflictCount:[self getConfilictEventCount]];
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
 
@@ -90,20 +90,14 @@
     }
 }
 
--(NSString *) getTimeLable
-{
-    NSString * startTime = [Utils formateTimeAMPM:_eventTime.start];
-    NSString * endTime = [Utils formateTimeAMPM:[_eventTime getEndTime]];
-    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    return lable;
-}
 
--(NSString *) getConfilictEventCount
+
+-(NSInteger) getConfilictEventCount
 {
     NSDate * start = _eventTime.start;
     NSDate * end = [_eventTime getEndTime];
     int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
-    return [NSString stringWithFormat:@"%d CONFLICT", count];
+    return count;
 }
 
 - (void)addInviteeListView:(Event *) event
@@ -205,8 +199,8 @@
         frame.origin.x = 7;
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
-        conformView.eventTimeLabel.text = [self getTimeLable];
-        conformView.eventTimeConflictLabel.text = [self getConfilictEventCount];
+        [conformView setTime:[Utils getProposeStatLabel:_eventTime]];
+        [conformView setConflictCount:[self getConfilictEventCount]];
         
         int status = 0;
         User * me = [[UserModel getInstance] getLoginUser];
@@ -246,6 +240,7 @@
         
         
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+                
         conformView.eventTimeLabel.userInteractionEnabled = YES;
         [conformView.eventTimeLabel addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
@@ -262,7 +257,7 @@
     frame.origin.y = 7;
     view.frame = frame;
 
-    view.eventTimeLabel.text = [self getTimeLable];
+    view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
     
     [self addSubview:view];
 
@@ -304,7 +299,7 @@
     }
     
     frame = self.frame;
-    frame.size.height = offsetY + 10;
+    frame.size.height = offsetY + 5;
     self.frame = frame;
 }
 

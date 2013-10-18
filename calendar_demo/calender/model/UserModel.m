@@ -289,16 +289,21 @@ static UserModel * instance;
 
 }
 
--(void) getMyContacts:(void (^)(NSInteger error, NSArray * contact))callback
+-(void) getMyContacts:(NSDate *) lastmodifytime offset:(int) offset andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contacts))callback;
 {
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=0&limit=10000", HOST];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=%d&limit=50", HOST, offset];
+    
+    if(lastmodifytime != nil) {
+        NSString * time = [Utils formateDate:lastmodifytime];
+        url= [NSString stringWithFormat:@"%@&modified__gte=%@", url, time];
+    }
+    
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 
     LOG_D(@"getMyContacts url=%@", url);
 
     [[UserModel getInstance] setAuthHeader:request];
-
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
 
@@ -311,6 +316,10 @@ static UserModel * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
             NSArray * array = [json objectForKey:@"objects"];
 
+            int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
+            //LOG_D(@"getMyContacts resp:%@", json);
+
+            
             NSMutableArray * contacts =  [[NSMutableArray alloc] init];
 
             for(int i=0; i<array.count; i++) {
@@ -319,13 +328,13 @@ static UserModel * instance;
                 [contacts addObject:contact];
             }
 
-            callback(0, contacts);
+            callback(0, count, contacts);
 
         } else {
             //TODO:: parse error type
             //401: UNAUTHORIZED
             //Other: net work error
-            callback(-1, nil);
+            callback(-1, 0, nil);
         }
     }];
 }

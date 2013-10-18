@@ -53,7 +53,6 @@
     LoadingProgressView * loadingPrigressView;
     
     int synchronzieEventOffset;
-    NSDate * synchronizeStartTime;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -69,6 +68,15 @@
     [super viewDidLoad];
 	
     LOG_D(@"FeedViewController viewDidLoad");
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    if(me.timezone != nil) {
+        [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+    } else {
+        [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
+    }
+    
+    
     
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -87,7 +95,7 @@
     [self.view addSubview:tableView];
     
     
-    NSDate *date = [NSDate date];
+    NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
     self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
@@ -112,32 +120,27 @@
     [self.view addSubview:dataLoadingView];
     
     
-    NSDate * lastupdatetime =  [[UserSetting getInstance] getLastUpdatedTime];
+    [[CoreDataModel getInstance] addDelegate:self];
+    [[[Model getInstance] getEventModel] addDelegate:self];
     
+    
+    NSDate * lastupdatetime =  [[UserSetting getInstance] getLastUpdatedTime];
     if(lastupdatetime == nil) {
-               
+        
         loadingPrigressView = (LoadingProgressView*)[ViewUtils createView:@"LoadingProgressView"];
         loadingPrigressView.progressView.progress = 0;
         loadingPrigressView.center = self.view.center;
-        [self.view addSubview:loadingPrigressView];
-
-        NSDate * begin = [NSDate date];
-        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
-
-        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+        
+        //[self.view addSubview:loadingPrigressView];
         
         synchronzieEventOffset = 0;
-        synchronizeStartTime = [NSDate date];
-        [self synchronFeedEventFromServer:synchronzieEventOffset andBeginDate:begin];
+        
+        [[[Model getInstance] getEventModel] synchronizedFromServer];
         
     } else {
-        tableView.lastEventUpdateTime = lastupdatetime;
-        [tableView reloadFeedEventEntitys:[NSDate date]];
+        [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
     }
-    
-    [[CoreDataModel getInstance] addDelegate:self];
-    [[[Model getInstance] getEventModel] addDelegate:self];
 }
 
 -(void)viewDidUnload {
@@ -153,117 +156,81 @@
 }
 
 
--(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
-{
-    
-    //[Model getInstance] getUpdatedEvents:<#(NSDate *)#> andOffset:<#(int)#> andCallback:<#^(NSInteger error, NSInteger count, NSArray *events)callback#>
-    
-    LOG_D(@"synchronFeedEventFromServer");
-    
-    [[Model getInstance] getUpdatedEvents:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-        
-        LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
-        
-        if(error == 0) {
-            
-            if(events.count > 0) {
-                CoreDataModel * model = [CoreDataModel getInstance];
-                
-                for(Event * evt in events) {
-                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                    [entity convertFromEvent:evt];
-                    [model addFeedEventEntity:entity];
-                }
-                
-                [model saveData];
-            }
-            
-            //Load event compeleted
-            if(events.count < 50) {
-
-
-                [loadingPrigressView removeFromSuperview];
-                loadingPrigressView = nil;
-
-                [[[Model getInstance] getEventModel] setSynchronizeData:NO];
-
-                
-                [tableView reloadFeedEventEntitys:[NSDate date]];
-                [self.calendarView setNeedsDisplay];
-                
-                [self scroll2Today];
-                
-                [[UserSetting getInstance] saveLastUpdatedTime:synchronizeStartTime];
-                synchronizeStartTime= nil;
-                
-            } else {
-                
-                synchronzieEventOffset = (offset + events.count);
-                float progress = synchronzieEventOffset / (float)count;
-                loadingPrigressView.progressView.progress = progress;
-                
-                [self synchronFeedEventFromServer: synchronzieEventOffset andBeginDate:begin];
-            }
-            
-                        
-        } else {
-            
-            [dataLoadingView stopAnim];
-            
-            
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                          message:@"Network or server error"
-                                                         delegate:self
-                                                cancelButtonTitle:@"Cancel"
-                                                otherButtonTitles:@"Retry",nil];
-            [alert show];            
-        }
-    }];
-}
-
-/*
--(void) loadData:(NSDate *) begin
-{
-    NSLog(@"loadData begin:%@", begin);
-    
-    [dataLoadingView startAnim];
-    
-    [[Model getInstance] getEventsOfBegin:begin andEnd:nil andCallback:^(NSInteger error, NSArray *events) {
-
-        LOG_D(@"getEvents:error=%d, events size=%d", error, events.count);
-
-        [dataLoadingView stopAnim];
-      
-        
-        if(error == 0) {
-
-            CoreDataModel * model = [CoreDataModel getInstance];
-
-            for(Event * evt in events) {
-                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                [entity convertFromEvent:evt];
-                [model addFeedEventEntity:entity];
-            }
-
-            [model saveData];
-
-            [tableView reloadFeedEventEntitys:[NSDate date]];
-            [self.calendarView setNeedsDisplay];
-            
-            [self scroll2Today];
-            
-            [[UserSetting getInstance] saveLastUpdatedTime:[NSDate date]];
-            
-        } else {
-            [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
-        }
-    }];
-}
-*/
+//-(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
+//{
+//    
+//    LOG_D(@"synchronFeedEventFromServer");
+//    
+//    [[Model getInstance] getUpdatedEvents:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+//        
+//        LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
+//        
+//        if(error == 0) {
+//            
+//            NSDate * maxLastModifytime = begin;
+//            
+//            if(events.count > 0) {
+//                CoreDataModel * model = [CoreDataModel getInstance];
+//                
+//                for(Event * evt in events) {
+//                    
+//                    if([evt.last_modified compare:maxLastModifytime] > 0) {
+//                        maxLastModifytime = evt.last_modified;
+//                    }
+//                    
+//                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+//                    [entity convertFromEvent:evt];
+//                    [model addFeedEventEntity:entity];
+//                }
+//                
+//                [model saveData];
+//            }
+//            
+//            //Load event compeleted
+//            if(events.count < 30) {
+//
+//
+//                [loadingPrigressView removeFromSuperview];
+//                loadingPrigressView = nil;
+//
+//                [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+//
+//                
+//                [tableView reloadFeedEventEntitys:[NSDate date]];
+//                [self.calendarView setNeedsDisplay];
+//                
+//                [self scroll2Today];
+//                
+//                [[UserSetting getInstance] saveLastUpdatedTime:maxLastModifytime];
+//                
+//            } else {
+//                
+//                synchronzieEventOffset = (offset + events.count);
+//                float progress = synchronzieEventOffset / (float)count;
+//                loadingPrigressView.progressView.progress = progress;
+//                
+//                [self synchronFeedEventFromServer: synchronzieEventOffset andBeginDate:begin];
+//            }
+//            
+//                        
+//        } else {
+//            
+//            [dataLoadingView stopAnim];
+//            
+//            
+//            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"Error"
+//                                                          message:@"Network or server error"
+//                                                         delegate:self
+//                                                cancelButtonTitle:@"Cancel"
+//                                                otherButtonTitles:@"Retry",nil];
+//            [alert show];            
+//        }
+//    }];
+//}
 
 -(void) scroll2Today
 {
-    [self scroll2Date:[NSDate date] animated:NO];
+    [self scroll2Date:[Utils getCurrentDate] animated:NO];
 }
 
 -(void) scroll2Date:(NSDate *) date animated:(BOOL) animated
@@ -289,11 +256,8 @@
         [navController pushViewController:rootController animated:NO];
         
     } else {
-        NSDate * begin = [NSDate date];
-        begin = [begin cc_dateByMovingToFirstDayOfThePreviousMonth];
         
-        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
-        [self synchronFeedEventFromServer:synchronzieEventOffset andBeginDate:begin];
+        [[[Model getInstance] getEventModel] synchronizedFromServer];
     }
 }
 
@@ -327,7 +291,7 @@
 {
     NSDate * date = [tableView getFirstVisibleDay];
     if (date == nil) {
-        date = [NSDate date];
+        date = [Utils getCurrentDate];
     }
     
     [tableView reloadFeedEventEntitys:date];
@@ -357,7 +321,7 @@
 
     NSDate * date = [tableView getFirstVisibleDay];
     if (date == nil) {
-        date = [NSDate date];
+        date = [Utils getCurrentDate];
     }
 
     [tableView reloadFeedEventEntitys:date];
@@ -381,4 +345,13 @@
         [dataLoadingView stopAnim];
     }
 }
+
+-(void) onSynchronizeDataError:(int) errorCode
+{
+    //TOOD::
+    //[dataLoadingView stopAnim];
+}
 @end
+
+
+

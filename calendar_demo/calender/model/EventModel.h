@@ -8,6 +8,8 @@
 
 -(void) onEventModelChanged:(BOOL) isSynchronizingData;
 
+-(void) onSynchronizeDataError:(int) errorCode;
+
 @end
 
 

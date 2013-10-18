@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProposeStart.h"
+
+@class AddDateEntryView;
+@protocol AddDateEntryViewDelegate <NSObject>
+
+- (void)removeEventDataView:(AddDateEntryView *)dateEntry;
+
+@end
 
 @interface AddDateEntryView : UIView
+
+@property(nonatomic,assign) id<AddDateEntryViewDelegate> delegate;
+
+@property (retain, nonatomic) ProposeStart *eventData;
 
 @property (retain, nonatomic) IBOutlet UIImageView *DateResultView;
 @property (retain, nonatomic) IBOutlet UILabel *startTimeLabel;

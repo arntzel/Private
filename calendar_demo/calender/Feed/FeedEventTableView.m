@@ -371,7 +371,7 @@
 {
     [cache clearAllDayFeedEventEntitys];
     
-    cache.date = [day cc_dateByMovingToBeginningOfDay];
+    cache.date = [Utils convertGMTDate:[day cc_dateByMovingToBeginningOfDay]];
     cache.preCount = 0;
     cache.followCount = 0;
 

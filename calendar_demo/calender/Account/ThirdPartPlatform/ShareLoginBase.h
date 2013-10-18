@@ -1,10 +1,3 @@
-//
-//  ShareLoginBase.h
-//  MRCamera
-//
-//  Created by 亚 张 on 12-8-14.
-//  Copyright (c) 2012年 Microrapid. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 @class ShareLoginBase;
