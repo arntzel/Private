@@ -28,8 +28,6 @@
 
 -(void) updateView:(User *) me andComments:(NSArray *) comments;
 
--(void) addComment:(Comment *) comment;
-
 -(void) setDecliend:(BOOL) declined;
 
 -(void) beginLoadComments;
