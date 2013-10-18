@@ -11,6 +11,7 @@
 @interface EventDetailCommentConformedView : UIView
 
 @property (retain, nonatomic) IBOutlet UILabel *labConformTime;
+@property (retain, nonatomic) IBOutlet UILabel *labMsg;
 
 - (void)setConformTimeString:(NSString *)conformTime;
 

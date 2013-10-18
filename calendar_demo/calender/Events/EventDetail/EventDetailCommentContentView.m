@@ -14,6 +14,7 @@
 
 #import "Model.h"
 #import "UserModel.h"
+#import "Utils.h"
 
 @interface EventDetailCommentContentView()
 {
@@ -156,6 +157,8 @@
 - (void)addConformedView:(Comment *) cmt
 {
     EventDetailCommentConformedView * conformedView = [EventDetailCommentConformedView creatView];
+    conformedView.labMsg.text = cmt.msg;
+    conformedView.labConformTime.text = [Utils getTimeText:cmt.createTime];
     [self insertSubview:conformedView atIndex:1];
 }
 
