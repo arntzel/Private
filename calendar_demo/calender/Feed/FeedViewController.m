@@ -144,22 +144,26 @@
 
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
-    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
-        NSLog(@"upload events from calendar app successed!");
-        if (events == nil)
-        {
-            return ;
-        }
-        CoreDataModel * model = [CoreDataModel getInstance];
-        for (Event *newEvent in events)
-        {
-            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-            [entity convertFromEvent:newEvent];
-            [model addFeedEventEntity:entity];
-        }
-        [model saveData];
-        [model notifyModelChange];
-    }];
+    //dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+            NSLog(@"upload events from calendar app successed!");
+            if (events != nil)
+            {
+                CoreDataModel * model = [CoreDataModel getInstance];
+                for (Event *newEvent in events)
+                {
+                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                    [entity convertFromEvent:newEvent];
+                    [model addFeedEventEntity:entity];
+                }
+                [model saveData];
+                [model notifyModelChange];
+            }
+            
+        }];
+  //  });
+    
 
 }
 

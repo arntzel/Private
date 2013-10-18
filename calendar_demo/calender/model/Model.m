@@ -364,7 +364,7 @@ static Model * instance;
             NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
             [dic   setObject:@(5) forKey:@"event_type"];
             [dic setObject:createTime forKey:@"created_on"];
-            ;
+            //[dic setObject:@(YES) forKey:@"confirmed"];
             if (evt.title)
             {
                 [dic setObject:evt.title forKey:@"title"];

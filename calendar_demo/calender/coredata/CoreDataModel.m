@@ -258,7 +258,7 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    predicate = [NSPredicate predicateWithFormat:@"created_on=", createTime];
+    predicate = [NSPredicate predicateWithFormat:@"created_on = %@", createTime];
     [fetchRequest setPredicate:predicate];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
