@@ -250,7 +250,26 @@ static CoreDataModel * instance;
     return results;
 
 }
+-(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    predicate = [NSPredicate predicateWithFormat:@"created_on=", createTime];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if ([results count]>0)
+    {
+        return YES;
+    }
 
+    return NO;
+    
+}
 
 
 -(DataCache *) getCache

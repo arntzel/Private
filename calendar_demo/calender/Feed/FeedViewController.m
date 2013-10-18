@@ -146,6 +146,10 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
         NSLog(@"upload events from calendar app successed!");
+        if (events == nil)
+        {
+            return ;
+        }
         CoreDataModel * model = [CoreDataModel getInstance];
         for (Event *newEvent in events)
         {

@@ -8,7 +8,7 @@
 #import <EventKit/EventKit.h>
 
 #import "NSData+Hex.h"
-
+#import "CoreDataModel.h"
 static Model * instance;
 
 @interface ASIHTTPRequestDelegateAdapter : NSObject <ASIHTTPRequestDelegate>
@@ -266,6 +266,12 @@ static Model * instance;
                 NSLog(@"location:%@",event.location);
                 NSLog(@"notes:%@",event.notes);
                 NSLog(@"--------------");
+                CoreDataModel * model = [CoreDataModel getInstance];
+                if ([model getFeedEventEntityWithCreateTime:[Utils convertGMTDate:event.creationDate andTimezone:event.timeZone]])
+                {
+                    continue;
+                }
+                
                 Event *event1 = [[Event alloc] init];
                 event1.eventType = 5;
                 event1.description = event.notes;
@@ -324,7 +330,7 @@ static Model * instance;
 //                event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
 //                event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
                 
-                event1.created_on = event.creationDate;
+                event1.created_on = [Utils convertGMTDate:event.creationDate andTimezone:event.timeZone];
                 [array addObject:event1];
             }
             
@@ -342,7 +348,11 @@ static Model * instance;
 -(void)uploadEventsFromCalendarApp:(void (^)(NSInteger error,NSMutableArray * events))callback
 {
     [self getEventsFromCalendarApp:^(NSMutableArray *events) {
-        
+        if (events == nil ||[events count] == 0)
+        {
+            callback(0,nil);
+            return ;
+        }
         for (int i = 0; i < [events count]; i++)
         {
             Event *evt = [events objectAtIndex:i];
@@ -350,9 +360,11 @@ static Model * instance;
             [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
             NSString *startTime = [format stringFromDate:evt.start];
             NSString *endTime = [format stringFromDate:evt.end];
-            
+            NSString *createTime = [format stringFromDate:evt.created_on];
             NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
             [dic   setObject:@(5) forKey:@"event_type"];
+            [dic setObject:createTime forKey:@"created_on"];
+            ;
             if (evt.title)
             {
                 [dic setObject:evt.title forKey:@"title"];

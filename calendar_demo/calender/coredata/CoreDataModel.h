@@ -53,7 +53,7 @@
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;
 
-
+-(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 
