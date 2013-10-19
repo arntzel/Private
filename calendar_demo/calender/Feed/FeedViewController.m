@@ -152,6 +152,9 @@
             CoreDataModel * model = [CoreDataModel getInstance];
             for (Event *newEvent in events)
             {
+                LOG_D(@"event.eventtype:%d",newEvent.eventType);
+                LOG_D(@"event.created_on:%@",newEvent.created_on);
+                LOG_D(@"event.title:%@",newEvent.title);
                 FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
                 [entity convertFromEvent:newEvent];
                 [model addFeedEventEntity:entity];

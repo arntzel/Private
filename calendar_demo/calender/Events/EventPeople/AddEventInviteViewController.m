@@ -104,46 +104,50 @@
 
 - (void)getAllInvitePeople
 {
-    [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        LOG_D(@"getInvitePeopleData");
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
             
-            CoreDataModel * model = [CoreDataModel getInstance];
-            NSArray * contacts = [model getAllContactEntity];
+            LOG_D(@"getInvitePeopleData");
             
-            User * me = [[UserModel getInstance] getLoginUser];
             
-            for(ContactEntity * entity in contacts) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                if([me.email isEqualToString:entity.email]) {
-                    //exclude creator in the event
-                    continue;
+                CoreDataModel * model = [CoreDataModel getInstance];
+                NSArray * contacts = [model getAllContactEntity];
+                
+                User * me = [[UserModel getInstance] getLoginUser];
+                
+                for(ContactEntity * entity in contacts) {
+                    
+                    if([me.email isEqualToString:entity.email]) {
+                        //exclude creator in the event
+                        continue;
+                    }
+                    
+                    AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+                    
+                    people.user = [entity getContact];
+                    people.selected = [self isUserSelected:people.user];
+                    if (people.selected) {
+                        [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+                    }
+                    
+                    if(people.user.calvinUser) {
+                        [calvinUsers addObject:people];
+                    } else {
+                        [contactUsers addObject:people];
+                    }
+                    
+                    [people release];
                 }
-                
-                AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-                
-                people.user = [entity getContact];
-                people.selected = [self isUserSelected:people.user];
-                if (people.selected) {
-                    [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
-                }
-                
-                if(people.user.calvinUser) {
-                    [calvinUsers addObject:people];
-                } else {
-                    [contactUsers addObject:people];
-                }
-                
-                [people release];
-            }
-            [self refreshTableView];
-        });
-        
-        
-    }];
+                [self refreshTableView];
+            });
+            
+            
+        }];
+    });
+    
     
 }
 

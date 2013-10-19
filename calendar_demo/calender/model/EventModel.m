@@ -204,6 +204,8 @@
             
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in contacts) {
+                LOG_D(@"contact.email:%@",contact.email);
+                LOG_D(@"contact.phone:%@",contact.phone);
                 
                 if(maxlatmodify == nil || [contact.modified compare:maxlatmodify] > 0) {
                     maxlatmodify = contact.modified;
