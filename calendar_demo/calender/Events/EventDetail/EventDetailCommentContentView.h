@@ -30,6 +30,6 @@
 
 -(void) setDecliend:(BOOL) declined;
 
--(void) beginLoadComments;
+- (void)startLoadComment;
 
 @end

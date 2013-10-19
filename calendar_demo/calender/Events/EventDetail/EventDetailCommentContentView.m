@@ -11,17 +11,24 @@
 #import "EventDetailCommentView.h"
 #import "EventDetailCommentTextView.h"
 #import "EventDetailCommentConformedView.h"
+#import "EventDetailCommentLoadMoreView.h"
 
 #import "Model.h"
 #import "UserModel.h"
 #import "Utils.h"
 
-@interface EventDetailCommentContentView()<UITableViewDataSource,UITableViewDelegate>
+@interface EventDetailCommentContentView()<UITableViewDataSource,UITableViewDelegate,EventDetailCommentLoadMoreViewDelegate>
 {
     EventDetailCommentTextView *commentTextView;
+    EventDetailCommentLoadMoreView *loadMoreView;
+    
     BOOL _declined;
     
     UITableView *tableView;
+    NSInteger page;
+    NSInteger pageCount;
+    
+    BOOL needLoadingMore;
 }
 
 @property(nonatomic,retain) NSMutableArray *commentArray;
@@ -47,7 +54,7 @@
 
 - (id)init
 {
-    return [self initWithFrame:CGRectZero];
+    return [self initWithFrame:CGRectMake(0, 0, 320, DETAIL_COMMENT_CELL_HEIGHT * 2)];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -55,11 +62,24 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        commentTextView = [[EventDetailCommentTextView creatView] retain];
+        [self addSubview:commentTextView];
+        
         tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [tableView setBackgroundColor: [UIColor clearColor]];
         [tableView setDelegate:self];
         [tableView setDataSource:self];
         [self addSubview:tableView];
+        
+        loadMoreView = [[EventDetailCommentLoadMoreView alloc] initWithFrame:CGRectMake(0, DETAIL_COMMENT_CELL_HEIGHT, 320, DETAIL_COMMENT_CELL_HEIGHT)];
+        [self addSubview:loadMoreView];
+        loadMoreView.delegate = self;
+        
+        page = 0;
+        pageCount = 10;
+        needLoadingMore = YES;
+        
+        self.commentArray = [NSMutableArray array];
     }
     return self;
 }
@@ -78,8 +98,11 @@
 
 -(void) updateView:(User *) me andComments:(NSArray *) comments
 {
-    [self addCommentTextView:me];
-    self.commentArray = [NSMutableArray arrayWithArray:comments];
+    [self updateCommentTextView:me];
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObjectsFromArray:comments];
+    [array addObjectsFromArray:self.commentArray];
+    self.commentArray = array;
     
     [self refreshViewAnimation:YES];
 }
@@ -118,6 +141,16 @@
     [tableView setFrame:CGRectMake(0, frame.size.height, frame.size.width, tableHeight)];
     frame.size.height = tableView.frame.origin.y + tableView.frame.size.height;
     
+    if (needLoadingMore) {
+        [loadMoreView setHidden:NO];
+        [loadMoreView setFrame:CGRectMake(0, frame.size.height, frame.size.width, DETAIL_COMMENT_CELL_HEIGHT)];
+        frame.size.height += loadMoreView.frame.size.height;
+    }
+    else
+    {
+        [loadMoreView setHidden:YES];
+    }
+    
     self.frame = frame;
 }
 
@@ -130,9 +163,8 @@
     }
 }
 
-- (void)addCommentTextView:(User *)user
+- (void)updateCommentTextView:(User *)user
 {
-    commentTextView = [[EventDetailCommentTextView creatView] retain];
     [commentTextView setHeaderPhotoUrl:user.avatar_url];
     [commentTextView.messageField addTarget:self action:@selector(keySend) forControlEvents:UIControlEventEditingDidEnd];
     
@@ -141,8 +173,6 @@
     } else {
         commentTextView.hidden = NO;
     }
-    
-    [self addSubview:commentTextView];
 }
 
 - (EventDetailCommentView *)addCommentView :(Comment *) cmt
@@ -195,28 +225,41 @@
 }
 
 
-
-
--(void)beginLoadComments
+- (void)loadMoreComment
 {
+    [self loadComments];
+}
 
-    self.frame = CGRectMake(0, 0, 320, 40);
-    
+- (void)startLoadComment
+{
+    [loadMoreView startLoading];
+    [self loadComments];
+}
+
+-(void)loadComments
+{
     UIActivityIndicatorView * indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [indicatorView startAnimating];
     indicatorView.center = self.center;
     [self addSubview:indicatorView];
     [indicatorView release];
 
-    if(self.delegate != nil) {
-        [self.delegate onEventDetailCommentContentViewFrameChanged];
-    }
-
-    [[Model getInstance] getEventComment:self.eventID andCallback:^(NSInteger error, NSArray *comments) {
+    [[Model getInstance] getEventComment:self.eventID Offset:page * pageCount Limit:pageCount andCallback:^(NSInteger error, NSArray *comments) {
         [indicatorView stopAnimating];
         if(error == 0) {
+            page++;
             self.loaded = YES;
             User * me = [[UserModel getInstance] getLoginUser];
+            
+            if ([comments count] == pageCount) {
+                needLoadingMore = YES;
+            }
+            else
+            {
+                needLoadingMore = NO;
+            }
+            
+            [loadMoreView stopLoading];
             [self updateView:me andComments:comments];
         } else {
             //TODO::

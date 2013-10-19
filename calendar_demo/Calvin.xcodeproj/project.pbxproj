@@ -152,6 +152,7 @@
 		7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76417F07F2B00B64E40 /* ShareLoginBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7662F77117F080A800B64E40 /* LoginAccountStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		766C709818121DE400C5F42A /* EventDetailCommentLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 766C709718121DE400C5F42A /* EventDetailCommentLoadMoreView.m */; };
 		767812EF17F16D3900965483 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 767812EE17F16D3900965483 /* Crashlytics.framework */; };
 		768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404B51800FD5200C69240 /* DetailInviteesController.m */; };
 		768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768404B61800FD5200C69240 /* DetailInviteesController.xib */; };
@@ -649,6 +650,8 @@
 		7662F76617F07F2B00B64E40 /* ShareLoginFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLoginFacebook.m; sourceTree = "<group>"; };
 		7662F77017F080A800B64E40 /* LoginAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAccountStore.h; sourceTree = "<group>"; };
 		7662F77117F080A800B64E40 /* LoginAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAccountStore.m; sourceTree = "<group>"; };
+		766C709618121DE400C5F42A /* EventDetailCommentLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentLoadMoreView.h; sourceTree = "<group>"; };
+		766C709718121DE400C5F42A /* EventDetailCommentLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentLoadMoreView.m; sourceTree = "<group>"; };
 		767812EE17F16D3900965483 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "calender/Third-Party-Libraries/Crashlytics.framework"; sourceTree = "<group>"; };
 		768404B41800FD5200C69240 /* DetailInviteesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInviteesController.h; sourceTree = "<group>"; };
 		768404B51800FD5200C69240 /* DetailInviteesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInviteesController.m; sourceTree = "<group>"; };
@@ -1898,6 +1901,8 @@
 				769ABAD317DF52090033E677 /* EventDetailCommentConformedView.h */,
 				769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */,
 				769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */,
+				766C709618121DE400C5F42A /* EventDetailCommentLoadMoreView.h */,
+				766C709718121DE400C5F42A /* EventDetailCommentLoadMoreView.m */,
 				769ABAD917DF52090033E677 /* EventDetailCommentContentView.h */,
 				769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */,
 				769ABD4B17DF579E0033E677 /* EventDetailController.h */,
@@ -2750,6 +2755,7 @@
 				34B1F1A417F8FCE200AA5C97 /* EmailChangeViewController.m in Sources */,
 				769ABB1C17DF52090033E677 /* AddEventSettingView.m in Sources */,
 				769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */,
+				766C709818121DE400C5F42A /* EventDetailCommentLoadMoreView.m in Sources */,
 				769ABB2317DF52090033E677 /* EventDetailCommentConformedView.m in Sources */,
 				769ABB2517DF52090033E677 /* EventDetailCommentConformView.m in Sources */,
 				769ABB2717DF52090033E677 /* EventDetailCommentContentView.m in Sources */,
