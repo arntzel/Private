@@ -272,9 +272,9 @@
     
     if (people.selected) {
 
-        if(people.user.email != nil) {
+        if(people.user.email != nil && people.user.email.length>0) {
             [self addOjbToTokenFieldName:people.user.email Obj:people];
-        } else if(people.user.phone != nil) {
+        } else if(people.user.phone != nil && people.user.phone.length>0) {
             [self addOjbToTokenFieldName:people.user.phone Obj:people];
         }
     }

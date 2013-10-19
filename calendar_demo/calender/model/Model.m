@@ -231,7 +231,7 @@ static Model * instance;
             
             // Create the start date components
             NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
-            oneDayAgoComponents.day = -1;
+            oneDayAgoComponents.year = -1;
             NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
                                                           toDate:[NSDate date]
                                                          options:0];
@@ -281,16 +281,18 @@ static Model * instance;
                 {
                     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
                     ABRecordRef contactInfo = [user ABRecordWithAddressBook:addressBook];
-                    ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
-                    NSArray* emailArray = (__bridge NSArray *)(ABMultiValueCopyArrayOfAllValues(emailProperty));
-                    NSString *email = @"";
-                    if ([emailArray count]>0&&[emailArray objectAtIndex:0])
+                    
+                    
+                    ABMutableMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+                    if (ABMultiValueGetCount(emailProperty) > 0)
                     {
-                        email = [emailArray objectAtIndex:0];
+                        NSString *email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
+                        LOG_D(@"get email from Contacts App:%@",email);
+                        Invitee * invitee = [[Invitee alloc] init];
+                        invitee.email = email;
+                        [invitees addObject:invitee];
                     }
-                    Invitee * invitee = [[Invitee alloc] init];
-                    invitee.email = email;
-                    [invitees addObject:invitee];
+                    
                 }
                 
                 event1.invitees = invitees;
@@ -364,7 +366,7 @@ static Model * instance;
             NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
             [dic   setObject:@(5) forKey:@"event_type"];
             [dic setObject:createTime forKey:@"created_on"];
-            //[dic setObject:@(YES) forKey:@"confirmed"];
+            [dic setObject:@(YES) forKey:@"confirmed"];
             if (evt.title)
             {
                 [dic setObject:evt.title forKey:@"title"];

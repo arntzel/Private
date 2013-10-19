@@ -248,4 +248,24 @@
         }
     }];
 }
+
+- (void)updateEventsFromCalendarApp
+{
+    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+        NSLog(@"upload events from calendar app successed!");
+        if (events != nil)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for (Event *newEvent in events)
+            {
+                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                [entity convertFromEvent:newEvent];
+                [model addFeedEventEntity:entity];
+            }
+            [model saveData];
+            [model notifyModelChange];
+        }
+        
+    }];
+}
 @end

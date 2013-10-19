@@ -254,14 +254,17 @@ static CoreDataModel * instance;
 {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    NSManagedObjectContext *managedObjectContext1 = [[NSManagedObjectContext alloc]init];
+    [managedObjectContext1 setPersistentStoreCoordinator:persistentStoreCoordinator];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext1];
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
     predicate = [NSPredicate predicateWithFormat:@"created_on = %@", createTime];
     [fetchRequest setPredicate:predicate];
-    
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSError *error;
+    NSArray * results = [managedObjectContext1 executeFetchRequest:fetchRequest error:&error];
+    LOG_D(@"error:%@",error);
     if ([results count]>0)
     {
         return YES;
@@ -508,12 +511,14 @@ static CoreDataModel * instance;
 {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    NSManagedObjectContext *managedObjectContext1 = [[NSManagedObjectContext alloc]init];
+    [managedObjectContext1 setPersistentStoreCoordinator:persistentStoreCoordinator];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext1];
     [fetchRequest setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ AND email = %@)", phone, email];
     [fetchRequest setPredicate:predicate];
     
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSArray * results = [managedObjectContext1 executeFetchRequest:fetchRequest error:nil];
     
     if(results.count >0)
     {

@@ -364,23 +364,23 @@ static UserModel * instance;
                  {
                      lastName = @"";
                  }
-                 
-                 ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(contactInfo, kABPersonPhoneProperty);
-                 NSArray* phoneNumberArray = (__bridge NSArray *)(ABMultiValueCopyArrayOfAllValues(phoneNumberProperty));
                  NSString *phoneNum = @"";
-                 if ([phoneNumberArray count]>0&&[phoneNumberArray objectAtIndex:0])
+                 ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(contactInfo, kABPersonPhoneProperty);
+                 if (ABMultiValueGetCount(phoneNumberProperty) > 0)
                  {
-                     phoneNum = [phoneNumberArray objectAtIndex:0];
+                     phoneNum = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(phoneNumberProperty, 0));
+                    
                  }
+                 
                  LOG_D(@"phone:%@",phoneNum);
                  
-                 ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
-                 NSArray* emailArray = (__bridge NSArray *)(ABMultiValueCopyArrayOfAllValues(emailProperty));
                  NSString *email = @"";
-                 if ([emailArray count]>0&&[emailArray objectAtIndex:0])
+                 ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+                 if (ABMultiValueGetCount(emailProperty) > 0)
                  {
-                     email = [emailArray objectAtIndex:0];
+                     email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
                  }
+                
                  LOG_D(@"email:%@",email);
                  
                  //email and phone should not is empty at the same time.
