@@ -56,6 +56,8 @@
  */
 +(NSString *) formateDay:(NSDate *) time;
 +(NSString *) formateDay2:(NSDate *) time;
++(NSString *) formateDay3:(NSDate *) time;
+
 +(NSDate *) parseNSStringDay:(NSString *) strDay;
 
 
