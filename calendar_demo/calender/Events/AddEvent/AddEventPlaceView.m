@@ -61,7 +61,7 @@
     UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
     [maskView addSubview:arrawView];
     [arrawView release];
-    arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
+    arrawView.image = [UIImage imageNamed:@"arrow.png"];
     
     [self setLocation:nil];
 }
