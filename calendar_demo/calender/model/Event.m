@@ -145,11 +145,23 @@
     }
     
     //[dic setObject:self.status forKey:@"status"];
-
-    [dic setObject:self.thumbnail_url   forKey:@"thumbnail_url"];
-    [dic setObject:self.title           forKey:@"title"];
-    [dic setObject:self.description     forKey:@"description"];
-    [dic setObject:self.timezone        forKey:@"timezone"];
+    if (self.thumbnail_url)
+    {
+        [dic setObject:self.thumbnail_url   forKey:@"thumbnail_url"];
+    }
+    if (self.title)
+    {
+        [dic setObject:self.title           forKey:@"title"];
+    }
+    if (self.description)
+    {
+        [dic setObject:self.description     forKey:@"description"];
+    }
+    if (self.timezone)
+    {
+        [dic setObject:self.timezone        forKey:@"timezone"];
+    }
+    
 
     //[dic setObject:[NSNumber numberWithInt:self.eventType] forKey:@"event_type"];
 

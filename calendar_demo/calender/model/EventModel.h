@@ -30,5 +30,5 @@
 -(void) synchronizedFromServer;
 
 -(void) checkContactUpdate;
-
+- (void)updateEventsFromCalendarApp;
 @end

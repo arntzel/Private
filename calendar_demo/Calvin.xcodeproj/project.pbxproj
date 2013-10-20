@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
+		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
 		34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */; };
 		34B1F1A217F8FCE200AA5C97 /* ConnectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16917F8FCE200AA5C97 /* ConnectAccountViewController.m */; };
 		34B1F1A317F8FCE200AA5C97 /* ConnectAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B1F16A17F8FCE200AA5C97 /* ConnectAccountViewController.xib */; };
@@ -458,6 +460,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		34B1F16517F8FCE200AA5C97 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
 		34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CirCle.m"; sourceTree = "<group>"; };
 		34B1F16817F8FCE200AA5C97 /* ConnectAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectAccountViewController.h; sourceTree = "<group>"; };
@@ -1115,6 +1119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34659DCB180E840800E5632F /* EventKit.framework in Frameworks */,
+				34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */,
 				34B1F1D317F8FD3F00AA5C97 /* MessageUI.framework in Frameworks */,
 				7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */,
 				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
@@ -1260,6 +1266,8 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34659DCA180E840800E5632F /* EventKit.framework */,
+				34657A16180BD6C700079CBD /* AddressBook.framework */,
 				34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */,
 				767812EE17F16D3900965483 /* Crashlytics.framework */,
 				769AB90717DF50F20033E677 /* GoogleMaps.bundle */,

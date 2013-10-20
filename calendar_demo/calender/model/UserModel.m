@@ -2,7 +2,9 @@
 #import "UserModel.h"
 #import "Utils.h"
 #import "Model.h"
-
+#import <AddressBook/AddressBook.h>
+#import "CoreDataModel.h"
+#import "UserSetting.h"
 static UserModel * instance;
 
 @implementation UserModel {
@@ -338,8 +340,176 @@ static UserModel * instance;
         }
     }];
 }
+- (void)requestContactsFromAddressBook:(void(^)(NSMutableArray *contactsArr))callback
+{
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
+    ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
+     {
+         if (granted)
+         {
+             CFArrayRef cfarray = ABAddressBookCopyArrayOfAllPeople(addressBook);
+             NSLog(@"granted suc,contacts:%@",(__bridge NSArray *)cfarray);
+             NSArray *allPeopleArray = (__bridge NSArray *)cfarray;
+             NSMutableArray *contactsArray = [NSMutableArray array];
+             for (int i=0; i<[allPeopleArray count]; i++)
+             {
+                 ABRecordRef contactInfo = (__bridge ABRecordRef)([allPeopleArray objectAtIndex:i]);
+                 NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(contactInfo, kABPersonFirstNameProperty));
+                 if (!firstName)
+                 {
+                     firstName = @"";
+                 }
+                 NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(contactInfo, kABPersonLastNameProperty));
+                 if (!lastName)
+                 {
+                     lastName = @"";
+                 }
+                 NSString *phoneNum = @"";
+                 ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(contactInfo, kABPersonPhoneProperty);
+                 if (ABMultiValueGetCount(phoneNumberProperty) > 0)
+                 {
+                     phoneNum = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(phoneNumberProperty, 0));
+                    
+                 }
+                 
+                 LOG_D(@"phone:%@",phoneNum);
+                 
+                 NSString *email = @"";
+                 ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+                 if (ABMultiValueGetCount(emailProperty) > 0)
+                 {
+                     email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
+                 }
+                
+                 LOG_D(@"email:%@",email);
+                 
+                 //email and phone should not is empty at the same time.
+                 if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
+                 {
+                     continue;
+                 }
+                 CoreDataModel * model = [CoreDataModel getInstance];
+                 if ([model getContactEntityWith:phoneNum AndEmail:email])
+                 {
+                     continue;
+                 }
+                 
+                 Contact *info = [[Contact alloc]init];
+                 info.first_name = firstName;
+                 info.last_name = lastName;
+                 info.phone = phoneNum;
+                 info.email = email;
+                 info.avatar_url = @"";
+                 info.calvinUser = NO;
+                 info.id = -1;
+                 
+                 [contactsArray addObject:info];
+             }
+             callback(contactsArray);
+         }
+         else
+         {
+             NSLog(@"granted failed");
+             callback(nil);
+         }
+    });
+}
+- (void)uploadAddressBookContacts:(void (^)(NSInteger error, NSArray * contact))callback
+{
+    
+    [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr)
+     {
+         if (contactsArr == nil||[contactsArr count]==0)
+         {
+             callback(-1, nil);
+             return ;
+         }
+         NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact", HOST];
+         NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
+         
+         LOG_D(@"upload addressbook contacts url=%@", url);
+         
+         [[UserModel getInstance] setAuthHeader:request];
+         for (int i=0; i<[contactsArr count]; i++)
+         {
+             Contact * info = [contactsArr objectAtIndex:i];
+             NSDictionary  *dic = @{
+                                    @"email":info.email,
+                                    @"phone":info.phone,
+                                    @"first_name":info.first_name,
+                                    @"last_name":info.last_name
+                                    };
+             [contactsArr replaceObjectAtIndex:i withObject:dic];
+         }
+         LOG_D(@"%@",contactsArr);
+         NSDictionary *dic = @{@"objects": contactsArr};
+         NSString *jsonStr = [Utils dictionary2String:dic];
+         NSMutableData *postData = [NSMutableData dataWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         [request setHTTPBody:postData];
+         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+             
+             NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+             
+             int status = httpResp.statusCode;
+             
+             if(status == 202 && data != nil) {
+                 NSError * err;
+                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                 LOG_D(@"upload addressbook contacts return data :%@",json);
+                 NSArray * array = [json objectForKey:@"objects"];
+                 
+                 NSMutableArray * contacts =  [[NSMutableArray alloc] init];
+                 
+                 for(int i=0; i<array.count; i++) {
+                     NSDictionary * json = [array objectAtIndex:i];
+                     Contact * contact = [Contact parseContact:json];
+                     [contacts addObject:contact];
+                 }
+                 
+                 callback(0, contacts);
+                 
+             } else {
+                 //TODO:: parse error type
+                 //401: UNAUTHORIZED
+                 //Other: net work error
+                 NSString *errorData = [[NSString alloc] initWithData:data encoding:4];
+                 NSLog(@"upload addressbook contacts error data:%@",errorData);
+                 callback(-1, nil);
+             }
+         }];
+         
+    }];
+}
 
+- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback
+{
 
+    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
+    {
+        if (contacts)
+        {
+            
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in contacts) {
+                
+                ContactEntity * enity = [model getContactEntity:contact.id];
+                if(enity == nil)
+                {
+                    enity = [model createEntity:@"ContactEntity"];
+                }
+                
+                [enity convertContact:contact];
+            }
+            
+            [model saveData];
+            
+            NSString * updateTime = [Utils formateDate:[NSDate date]];
+            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+        }
+        callback(0,nil);
+    }];
+}
 /*
  Get the current login user, return nil if not login
  */
