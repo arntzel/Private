@@ -66,12 +66,17 @@
 
             NSString * eventTime = [self parseEventTime:content];
             msg = [NSString stringWithFormat:@"Just has rejected new time %@", eventTime];
-
             break;
         }
 
         case 4: {
             msg = @"Decline event";
+            break;
+        }
+
+        case 5: {
+            NSString * eventTime = [self parseEventTime:content];
+            msg = [NSString stringWithFormat:@"All invitees confirmed for %@", eventTime];
             break;
         }
 
