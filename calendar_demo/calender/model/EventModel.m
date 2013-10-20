@@ -204,6 +204,8 @@
             
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in contacts) {
+                LOG_D(@"contact.email:%@",contact.email);
+                LOG_D(@"contact.phone:%@",contact.phone);
                 
                 if(maxlatmodify == nil || [contact.modified compare:maxlatmodify] > 0) {
                     maxlatmodify = contact.modified;
@@ -246,6 +248,26 @@
             }
             
         }
+    }];
+}
+
+- (void)updateEventsFromCalendarApp
+{
+    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+        NSLog(@"upload events from calendar app successed!");
+        if (events != nil)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for (Event *newEvent in events)
+            {
+                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                [entity convertFromEvent:newEvent];
+                [model addFeedEventEntity:entity];
+            }
+            [model saveData];
+            [model notifyModelChange];
+        }
+        
     }];
 }
 @end

@@ -141,6 +141,32 @@
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
     }
+
+    [[CoreDataModel getInstance] addDelegate:self];
+    [[[Model getInstance] getEventModel] addDelegate:self];
+    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+        NSLog(@"upload events from calendar app successed!");
+        if (events != nil)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for (Event *newEvent in events)
+            {
+                LOG_D(@"event.eventtype:%d",newEvent.eventType);
+                LOG_D(@"event.created_on:%@",newEvent.created_on);
+                LOG_D(@"event.title:%@",newEvent.title);
+                LOG_D(@"event.start:%@",newEvent.start);
+                LOG_D(@"event.end:%@",newEvent.end);
+                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                [entity convertFromEvent:newEvent];
+                [model updateFeedEventEntity:entity];
+            }
+            [model saveData];
+            [model notifyModelChange];
+        }
+        
+    }];
+    
+
 }
 
 -(void)viewDidUnload {
@@ -237,6 +263,91 @@
 {
     NSString * day = [Utils formateDay:date];
     [tableView scroll2Date:day animated:NO];
+}
+
+- (void)createEvent:(NSString *) imgUrl
+{
+    
+//    NSString *title = txtFieldTitle.text;
+//    
+//    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    
+//    Event *event = [[Event alloc] init];
+//    event.eventType = 0;
+//    event.description = @"";
+//    
+//    NSMutableArray * invitees = [[NSMutableArray alloc] init];
+//    for(Contact * user in self.invitedPeoples) {
+//        Invitee * invitee = [[Invitee alloc] init];
+//        invitee.email = user.email;
+//        [invitees addObject:invitee];
+//    }
+//    
+//    event.invitees = invitees;
+//    
+//    
+//    //    event.duration_days = arrangedDate.duration_days;
+//    //    event.duration_hours = arrangedDate.duration_hours;
+//    //    event.duration_minutes = arrangedDate.duration_minutes;
+//    //    event.is_all_day = arrangedDate.is_all_day;
+//    //    event.start = arrangedDate.start;
+//    //    event.start_type = arrangedDate.start_type;
+//    
+//    
+//    
+//    event.propose_starts = [timesView getEventDates];
+//    
+//    event.location = self.locationPlace;
+//    
+//    
+//    if(event.start == nil) {
+//        event.start = [NSDate date];
+//    }
+//    
+//    if(event.start_type == nil) {
+//        event.start_type = START_TYPEWITHIN;
+//    }
+//    
+//    event.published = YES;
+//    
+//    if(imgUrl == nil) {
+//        event.thumbnail_url = @"";
+//    } else {
+//        event.thumbnail_url = imgUrl;
+//    }
+//    
+//    event.timezone = settingView.timeZoneLabel.text;
+//    event.title = title;
+//    
+//    event.allow_new_dt = settingView.btnInvite1.selected;
+//    event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
+//    event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
+//    
+//    event.created_on = [Utils convertGMTDate:[NSDate date]];
+//    
+//    Model *model = [Model getInstance];
+//    
+//    [self startIndicator];
+//    [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
+//        
+//        [self stopIndicator];
+//        
+//        if (error == 0) {
+//            
+//            CoreDataModel * model = [CoreDataModel getInstance];
+//            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+//            [entity convertFromEvent:newEvent];
+//            [model addFeedEventEntity:entity];
+//            [model saveData];
+//            [model notifyModelChange];
+//            
+//            [self.navigationController popViewControllerAnimated:YES];
+//            
+//        } else {
+//            
+//            [Utils showUIAlertView:@"Error" andMessage:@"Create event failed"];
+//        }
+//    }];
 }
 
 #pragma mark -

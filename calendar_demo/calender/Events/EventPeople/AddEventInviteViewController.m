@@ -104,36 +104,51 @@
 
 - (void)getAllInvitePeople
 {
-    CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray * contacts = [model getAllContactEntity];
-
-    User * me = [[UserModel getInstance] getLoginUser];
-
-    for(ContactEntity * entity in contacts) {
-
-        if([me.email isEqualToString:entity.email]) {
-            //exclude creator in the event
-            continue;
-        }
-
-        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-
-        people.user = [entity getContact];
-        people.selected = [self isUserSelected:people.user];
-        if (people.selected) {
-            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
-        }
-
-        if(people.user.calvinUser) {
-            [calvinUsers addObject:people];
-        } else {
-            [contactUsers addObject:people];
-        }
-
-        [people release];
-    }
-
-    [self refreshTableView];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
+            
+            LOG_D(@"getInvitePeopleData");
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                CoreDataModel * model = [CoreDataModel getInstance];
+                NSArray * contacts = [model getAllContactEntity];
+                
+                User * me = [[UserModel getInstance] getLoginUser];
+                
+                for(ContactEntity * entity in contacts) {
+                    
+                    if([me.email isEqualToString:entity.email]) {
+                        //exclude creator in the event
+                        continue;
+                    }
+                    
+                    AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+                    
+                    people.user = [entity getContact];
+                    people.selected = [self isUserSelected:people.user];
+                    if (people.selected) {
+                        [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+                    }
+                    
+                    if(people.user.calvinUser) {
+                        [calvinUsers addObject:people];
+                    } else {
+                        [contactUsers addObject:people];
+                    }
+                    
+                    [people release];
+                }
+                [self refreshTableView];
+            });
+            
+            
+        }];
+    });
+    
+    
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
@@ -261,9 +276,9 @@
     
     if (people.selected) {
 
-        if(people.user.email != nil) {
+        if(people.user.email != nil && people.user.email.length>0) {
             [self addOjbToTokenFieldName:people.user.email Obj:people];
-        } else if(people.user.phone != nil) {
+        } else if(people.user.phone != nil && people.user.phone.length>0) {
             [self addOjbToTokenFieldName:people.user.phone Obj:people];
         }
     }

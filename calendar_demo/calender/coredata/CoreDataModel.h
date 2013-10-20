@@ -53,7 +53,7 @@
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;
 
-
+-(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 
@@ -87,7 +87,15 @@
 
 
 -(ContactEntity *) getContactEntity:(int) contactid;
-
+/**
+ *  get contact entity with phone and email
+ *
+ *  @param phone
+ *  @param email
+ *
+ *  @return ContactEntity
+ */
+- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 -(NSArray *) getAllContactEntity;
 
 
