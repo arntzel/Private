@@ -37,9 +37,54 @@
     Comment * cmt = [[Comment alloc] init];
     
     cmt.id = [[json objectForKey:@"id"] intValue];
-    NSString * msg = [json objectForKey:@"content"];
-    cmt.msg = [msg stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+
+    int type = [[json objectForKey:@"type"] intValue];
+
+    NSString * msg = @"";
+    NSString * content = [json objectForKey:@"content"];
+    switch (type) {
+        case 0: {
+            msg = [content stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            break;
+        }
+
+        case 1: {
+
+            NSString * eventTime = [self parseEventTime:content];
+            msg = [NSString stringWithFormat:@"Just has proposed new time %@", eventTime];
+            break;
+        }
+
+        case 2: {
+
+            NSString * eventTime = [self parseEventTime:content];
+            msg = [NSString stringWithFormat:@"Just has accepted new time %@", eventTime];
+            break;
+        }
+
+        case 3: {
+
+            NSString * eventTime = [self parseEventTime:content];
+            msg = [NSString stringWithFormat:@"Just has rejected new time %@", eventTime];
+            break;
+        }
+
+        case 4: {
+            msg = @"Decline event";
+            break;
+        }
+
+        case 5: {
+            NSString * eventTime = [self parseEventTime:content];
+            msg = [NSString stringWithFormat:@"All invitees confirmed for %@", eventTime];
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    cmt.msg = msg;
     cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
 
     NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"user"]];
@@ -49,4 +94,27 @@
     return cmt;
 }
 
+
++(NSString *) parseEventTime:(NSString *) time
+{
+    NSArray * dates = [time componentsSeparatedByString:@" "];
+
+    if(dates.count !=2) {
+        return @"";
+    }
+
+    NSDate * start =  [Utils convertLocalDate:[Utils parseNSDate:[dates objectAtIndex:0]]];
+    NSDate * end = [Utils convertLocalDate:[Utils parseNSDate:[dates objectAtIndex:1]]];
+
+    NSString * startTime = [Utils formateTimeAMPM:start];
+    NSString * startDay = [Utils formateDay3:start];
+    NSString * endTime = [Utils formateTimeAMPM:end];
+    NSString * endDay = [Utils formateDay3:end];
+
+    if([startDay isEqualToString:endDay]) {
+        return  [NSString stringWithFormat:@"%@-%@ %@", startTime, endTime, startDay];
+    } else {
+        return  [NSString stringWithFormat:@"%@ %@ - %@ %@", startTime, startDay, endTime, endDay];
+    }
+}
 @end

@@ -118,6 +118,17 @@ static NSTimeZone * userTimeZone;
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formateDay3:(NSDate *) time
+{
+    //cccc
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"MMMM d'TH'"];
+
+
+    return [dateFormatter stringFromDate:time];
+}
+
 +(NSDate *) parseNSStringDay:(NSString *) strDay
 {
     NSRange range;

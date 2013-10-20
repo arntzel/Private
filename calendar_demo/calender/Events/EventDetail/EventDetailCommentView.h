@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Comment.h"
 
-@interface EventDetailCommentView : UIView
+@interface EventDetailCommentView : UITableViewCell
 
 +(EventDetailCommentView *) creatView;
 @property (retain, nonatomic) IBOutlet UIImageView *commentAutherPhotoView;
