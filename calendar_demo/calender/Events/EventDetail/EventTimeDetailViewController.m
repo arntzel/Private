@@ -116,7 +116,7 @@
     NSString * day = [Utils formateDay:date];
     
     CoreDataModel * model = [CoreDataModel getInstance];
-    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
+    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE|FILTER_IOS;
     dayEvents =[model getFeedEvents:day evenTypeFilter:filetVal];
     [feedTableView reloadData];
 }

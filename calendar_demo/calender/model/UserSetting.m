@@ -108,7 +108,7 @@ static UserSetting * instance;
 {
     Setting * setting = [[CoreDataModel getInstance] getSetting:KEY_EVENTFILTERS];
     if(setting == nil) {
-        int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE;
+        int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE | FILTER_IOS;
         return filetVal;
     } else {
         return [setting.value intValue];
