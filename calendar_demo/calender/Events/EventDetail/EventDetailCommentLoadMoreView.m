@@ -47,8 +47,8 @@
     
     [self stopLoading];
     
-    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [indicator setCenter:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicator setCenter:CGPointMake(self.frame.size.width / 4, self.frame.size.height / 2)];
     [self addSubview:indicator];
 }
 
