@@ -42,7 +42,7 @@
     UIButton * btn =  (UIButton *)sender;
     btn.selected = !btn.selected;
     
-    int filters = 0x00000000;
+    int filters = 0x00000000|FILTER_IOS;
 
     if(self.btnImcompletedEvnt.selected) {
         filters |= FILTER_IMCOMPLETE;

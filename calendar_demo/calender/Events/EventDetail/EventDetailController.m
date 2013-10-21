@@ -180,7 +180,7 @@
     conformView.delegate = self;
     [scrollView addSubview:conformView];
     
-    commentContentView = [[EventDetailCommentContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    commentContentView = [[EventDetailCommentContentView alloc] init];
     commentContentView.eventID = self.eventID;
     commentContentView.delegate = self;
     [scrollView addSubview:commentContentView];
@@ -218,7 +218,7 @@
     [commentContentView setDecliend:isDecline];
     
     if(commentContentView.loaded == NO) {
-        [commentContentView beginLoadComments];
+        [commentContentView startLoadComment];
     }
 }
 

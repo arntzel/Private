@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventDetailCommentConformedView : UIView
+@interface EventDetailCommentConformedView : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *labConformTime;
+@property (retain, nonatomic) IBOutlet UILabel *labMsg;
 
 - (void)setConformTimeString:(NSString *)conformTime;
 

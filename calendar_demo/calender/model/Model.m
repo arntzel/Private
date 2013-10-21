@@ -1050,9 +1050,9 @@ static Model * instance;
 }
 
 
--(void) getEventComment:(int) eventID andCallback:(void (^)(NSInteger error, NSArray * comments))callback
+-(void) getEventComment:(int) eventID Offset:(int)offset Limit:(int)limit andCallback:(void (^)(NSInteger error, NSArray * comments))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d&limit=1000", HOST, eventID];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d&offset=%d&limit=%d", HOST,eventID,offset,limit];
     
     LOG_D(@"url=%@", url);
     

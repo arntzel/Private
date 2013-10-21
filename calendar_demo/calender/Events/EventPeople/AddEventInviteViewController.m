@@ -106,7 +106,7 @@
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contact) {
+        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contacts) {
             
             LOG_D(@"getInvitePeopleData");
             

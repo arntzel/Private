@@ -12,7 +12,7 @@
 #define FILTER_GOOGLE      0X00000002
 #define FILTER_FB          0X00000008
 #define FILTER_BIRTHDAY    0X00000010
-
+#define FILTER_IOS         0X00000020
 
 
 

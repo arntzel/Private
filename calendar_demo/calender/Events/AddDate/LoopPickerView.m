@@ -125,7 +125,8 @@
     
 //    NSInteger value = indexPath.row % numberOfData;
     NSInteger value = [self.delegate integerOfRowsInPicker:self AtIndex:(indexPath.row % numberOfData)];
-    NSString *valueString = [NSString stringWithFormat:@"%d",value];
+    NSString *valueString = [NSString stringWithFormat:@"%02d",value];
+
     cell.labValue.text = valueString;
     
     CGFloat width = tableView.frame.size.width;
