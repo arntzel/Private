@@ -6,6 +6,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "UserEntity.h"
+#import "ContactEntity.h"
 
 @implementation EventView
 
@@ -51,7 +53,7 @@
     }
 
     UserEntity * user = [event getCreator];
-    NSString * headerUrl = user.avatar_url;
+    NSString * headerUrl = user.contact.avatar_url;
 
     //Birthday
     if([event.eventType intValue] == 4) {

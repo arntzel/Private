@@ -91,7 +91,7 @@ static NSTimeZone * userTimeZone;
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateFormat:@"K:mma"];
+    [dateFormatter setDateFormat:@"h:mma"];
 
     return [dateFormatter stringFromDate:time];
 }

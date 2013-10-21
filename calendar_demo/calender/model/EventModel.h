@@ -10,6 +10,8 @@
 
 -(void) onSynchronizeDataError:(int) errorCode;
 
+-(void) onSynchronizeDataCompleted;
+
 @end
 
 

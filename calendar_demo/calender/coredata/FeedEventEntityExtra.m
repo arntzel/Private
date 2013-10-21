@@ -23,7 +23,7 @@
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.email isEqualToString:self.creatoremail])
+        if([user.contact.email isEqualToString:self.creatoremail])
         {
             return user;
         }

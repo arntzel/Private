@@ -1,20 +1,25 @@
+//
+//  UserEntity.m
+//  Calvin
+//
+//  Created by fang xiang on 13-10-21.
+//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//
 
 #import "UserEntity.h"
+#import "ContactEntity.h"
 #import "FeedEventEntity.h"
 
 
 @implementation UserEntity
 
 @dynamic apikey;
-@dynamic avatar_url;
 @dynamic calvinUser;
-@dynamic email;
-@dynamic first_name;
 @dynamic id;
 @dynamic is_owner;
-@dynamic last_name;
 @dynamic status;
 @dynamic timezone;
 @dynamic feedEvent;
+@dynamic contact;
 
 @end
