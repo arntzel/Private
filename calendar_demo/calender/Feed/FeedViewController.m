@@ -50,9 +50,7 @@
    
     CustomerIndicatorView * dataLoadingView;
     
-    LoadingProgressView * loadingPrigressView;
-    
-    int synchronzieEventOffset;
+    bool fristLoadData;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -126,15 +124,8 @@
     
     NSDate * lastupdatetime =  [[UserSetting getInstance] getLastUpdatedTime];
     if(lastupdatetime == nil) {
-        
-        loadingPrigressView = (LoadingProgressView*)[ViewUtils createView:@"LoadingProgressView"];
-        loadingPrigressView.progressView.progress = 0;
-        loadingPrigressView.center = self.view.center;
-        
-        //[self.view addSubview:loadingPrigressView];
-        
-        synchronzieEventOffset = 0;
-        
+
+        fristLoadData = YES;
         [[[Model getInstance] getEventModel] synchronizedFromServer];
         
     } else {
@@ -165,8 +156,6 @@
         }
         
     }];
-    
-
 }
 
 -(void)viewDidUnload {
@@ -182,77 +171,6 @@
 }
 
 
-//-(void) synchronFeedEventFromServer: (int) offset andBeginDate:(NSDate *) begin
-//{
-//    
-//    LOG_D(@"synchronFeedEventFromServer");
-//    
-//    [[Model getInstance] getUpdatedEvents:begin andOffset:offset andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-//        
-//        LOG_D(@"getEvents:error=%d, events size=%d, allcount=%d", error, events.count, count);
-//        
-//        if(error == 0) {
-//            
-//            NSDate * maxLastModifytime = begin;
-//            
-//            if(events.count > 0) {
-//                CoreDataModel * model = [CoreDataModel getInstance];
-//                
-//                for(Event * evt in events) {
-//                    
-//                    if([evt.last_modified compare:maxLastModifytime] > 0) {
-//                        maxLastModifytime = evt.last_modified;
-//                    }
-//                    
-//                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-//                    [entity convertFromEvent:evt];
-//                    [model addFeedEventEntity:entity];
-//                }
-//                
-//                [model saveData];
-//            }
-//            
-//            //Load event compeleted
-//            if(events.count < 30) {
-//
-//
-//                [loadingPrigressView removeFromSuperview];
-//                loadingPrigressView = nil;
-//
-//                [[[Model getInstance] getEventModel] setSynchronizeData:NO];
-//
-//                
-//                [tableView reloadFeedEventEntitys:[NSDate date]];
-//                [self.calendarView setNeedsDisplay];
-//                
-//                [self scroll2Today];
-//                
-//                [[UserSetting getInstance] saveLastUpdatedTime:maxLastModifytime];
-//                
-//            } else {
-//                
-//                synchronzieEventOffset = (offset + events.count);
-//                float progress = synchronzieEventOffset / (float)count;
-//                loadingPrigressView.progressView.progress = progress;
-//                
-//                [self synchronFeedEventFromServer: synchronzieEventOffset andBeginDate:begin];
-//            }
-//            
-//                        
-//        } else {
-//            
-//            [dataLoadingView stopAnim];
-//            
-//            
-//            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"Error"
-//                                                          message:@"Network or server error"
-//                                                         delegate:self
-//                                                cancelButtonTitle:@"Cancel"
-//                                                otherButtonTitles:@"Retry",nil];
-//            [alert show];            
-//        }
-//    }];
-//}
 
 -(void) scroll2Today
 {
@@ -265,90 +183,6 @@
     [tableView scroll2Date:day animated:NO];
 }
 
-- (void)createEvent:(NSString *) imgUrl
-{
-    
-//    NSString *title = txtFieldTitle.text;
-//    
-//    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    
-//    Event *event = [[Event alloc] init];
-//    event.eventType = 0;
-//    event.description = @"";
-//    
-//    NSMutableArray * invitees = [[NSMutableArray alloc] init];
-//    for(Contact * user in self.invitedPeoples) {
-//        Invitee * invitee = [[Invitee alloc] init];
-//        invitee.email = user.email;
-//        [invitees addObject:invitee];
-//    }
-//    
-//    event.invitees = invitees;
-//    
-//    
-//    //    event.duration_days = arrangedDate.duration_days;
-//    //    event.duration_hours = arrangedDate.duration_hours;
-//    //    event.duration_minutes = arrangedDate.duration_minutes;
-//    //    event.is_all_day = arrangedDate.is_all_day;
-//    //    event.start = arrangedDate.start;
-//    //    event.start_type = arrangedDate.start_type;
-//    
-//    
-//    
-//    event.propose_starts = [timesView getEventDates];
-//    
-//    event.location = self.locationPlace;
-//    
-//    
-//    if(event.start == nil) {
-//        event.start = [NSDate date];
-//    }
-//    
-//    if(event.start_type == nil) {
-//        event.start_type = START_TYPEWITHIN;
-//    }
-//    
-//    event.published = YES;
-//    
-//    if(imgUrl == nil) {
-//        event.thumbnail_url = @"";
-//    } else {
-//        event.thumbnail_url = imgUrl;
-//    }
-//    
-//    event.timezone = settingView.timeZoneLabel.text;
-//    event.title = title;
-//    
-//    event.allow_new_dt = settingView.btnInvite1.selected;
-//    event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
-//    event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
-//    
-//    event.created_on = [Utils convertGMTDate:[NSDate date]];
-//    
-//    Model *model = [Model getInstance];
-//    
-//    [self startIndicator];
-//    [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
-//        
-//        [self stopIndicator];
-//        
-//        if (error == 0) {
-//            
-//            CoreDataModel * model = [CoreDataModel getInstance];
-//            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-//            [entity convertFromEvent:newEvent];
-//            [model addFeedEventEntity:entity];
-//            [model saveData];
-//            [model notifyModelChange];
-//            
-//            [self.navigationController popViewControllerAnimated:YES];
-//            
-//        } else {
-//            
-//            [Utils showUIAlertView:@"Error" andMessage:@"Create event failed"];
-//        }
-//    }];
-}
 
 #pragma mark -
 #pragma mark kalViewDelegate
@@ -461,7 +295,21 @@
 {
     //TOOD::
     //[dataLoadingView stopAnim];
+    [self onSynchronizeDataCompleted];
 }
+
+-(void) onSynchronizeDataCompleted
+{
+    if(fristLoadData) {
+        LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
+        fristLoadData = NO;
+        
+        NSDate * now = [Utils getCurrentDate];
+        NSString * day = [Utils formateDay:now];
+        [tableView scroll2SelectedDate:day];
+    }
+}
+
 @end
 
 

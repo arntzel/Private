@@ -97,6 +97,9 @@
         
         if(events.count == 0) {
             LOG_D(@"synchronizedFromServer, no updated event");
+            for(id<EventModelDelegate> delegate in delegates) {
+                [delegate onSynchronizeDataCompleted];
+            }
             return;
         }
         
@@ -155,6 +158,11 @@
                                            selector:@selector(synchronizedFromServer)
                                            userInfo:nil
                                             repeats:NO];
+        } else {
+            
+            for(id<EventModelDelegate> delegate in delegates) {
+                [delegate onSynchronizeDataCompleted];
+            }
         }
     }];
 }
