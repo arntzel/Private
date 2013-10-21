@@ -106,7 +106,7 @@
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSArray *contacts) {
+        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
             
             LOG_D(@"getInvitePeopleData");
             
@@ -142,6 +142,7 @@
                     [people release];
                 }
                 [self refreshTableView];
+               
             });
             
             

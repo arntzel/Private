@@ -207,6 +207,8 @@
     [[[Model getInstance] getEventModel] synchronizedFromServer];
 
     [[[Model getInstance] getEventModel] checkContactUpdate];
+    
+    [[[Model getInstance] getEventModel] uploadContacts];
     //[[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
 }
 

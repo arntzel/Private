@@ -31,4 +31,5 @@
 
 -(void) checkContactUpdate;
 - (void)updateEventsFromCalendarApp;
+- (void)uploadContacts;
 @end

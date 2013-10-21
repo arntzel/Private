@@ -401,8 +401,6 @@ static UserModel * instance;
                  info.email = email;
                  info.avatar_url = @"";
                  info.calvinUser = NO;
-                 info.id = -1;
-                 
                  [contactsArray addObject:info];
              }
              callback(contactsArray);
@@ -414,75 +412,73 @@ static UserModel * instance;
          }
     });
 }
-- (void)uploadAddressBookContacts:(void (^)(NSInteger error, NSArray * contact))callback
+- (void)uploadAddressBookContacts:(NSMutableArray *)contactsArr callback:(void (^)(NSInteger error, NSArray * respContacts))callback
 {
     
-//    [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr)
-//     {
-//         if (contactsArr == nil||[contactsArr count]==0)
-//         {
-//             callback(-1, nil);
-//             return ;
-//         }
-//         NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact", HOST];
-//         NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
-//         
-//         LOG_D(@"upload addressbook contacts url=%@", url);
-//         
-//         [[UserModel getInstance] setAuthHeader:request];
-//         for (int i=0; i<[contactsArr count]; i++)
-//         {
-//             Contact * info = [contactsArr objectAtIndex:i];
-//             NSDictionary  *dic = @{
-//                                    @"email":info.email,
-//                                    @"phone":info.phone,
-//                                    @"first_name":info.first_name,
-//                                    @"last_name":info.last_name
-//                                    };
-//             [contactsArr replaceObjectAtIndex:i withObject:dic];
-//         }
-//         LOG_D(@"%@",contactsArr);
-//         NSDictionary *dic = @{@"objects": contactsArr};
-//         NSString *jsonStr = [Utils dictionary2String:dic];
-//         NSMutableData *postData = [NSMutableData dataWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-//         
-//         [request setHTTPBody:postData];
-//         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
-//             
-//             NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
-//             
-//             int status = httpResp.statusCode;
-//             
-//             if(status == 202 && data != nil) {
-//                 NSError * err;
-//                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-//                 LOG_D(@"upload addressbook contacts return data :%@",json);
-//                 NSArray * array = [json objectForKey:@"objects"];
-//                 
-//                 NSMutableArray * contacts =  [[NSMutableArray alloc] init];
-//                 
-//                 for(int i=0; i<array.count; i++) {
-//                     NSDictionary * json = [array objectAtIndex:i];
-//                     Contact * contact = [Contact parseContact:json];
-//                     [contacts addObject:contact];
-//                 }
-//                 
-//                 callback(0, contacts);
-//                 
-//             } else {
-//                 //TODO:: parse error type
-//                 //401: UNAUTHORIZED
-//                 //Other: net work error
-//                 NSString *errorData = [[NSString alloc] initWithData:data encoding:4];
-//                 NSLog(@"upload addressbook contacts error data:%@",errorData);
-//                 callback(-1, nil);
-//             }
-//         }];
-//         
-//    }];
+
+         if (contactsArr == nil||[contactsArr count]==0)
+         {
+             callback(-1, nil);
+             return ;
+         }
+         NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact", HOST];
+         NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
+         
+         LOG_D(@"upload addressbook contacts url=%@", url);
+         
+         [[UserModel getInstance] setAuthHeader:request];
+         for (int i=0; i<[contactsArr count]; i++)
+         {
+             ContactEntity * info = [contactsArr objectAtIndex:i];
+             NSDictionary  *dic = @{
+                                    @"email":info.email,
+                                    @"phone":info.phone,
+                                    @"first_name":info.first_name,
+                                    @"last_name":info.last_name
+                                    };
+             [contactsArr replaceObjectAtIndex:i withObject:dic];
+         }
+         LOG_D(@"%@",contactsArr);
+         NSDictionary *dic = @{@"objects": contactsArr};
+         NSString *jsonStr = [Utils dictionary2String:dic];
+         NSMutableData *postData = [NSMutableData dataWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         [request setHTTPBody:postData];
+         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+             
+             NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+             
+             int status = httpResp.statusCode;
+             
+             if(status == 202 && data != nil) {
+                 NSError * err;
+                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                 LOG_D(@"upload addressbook contacts return data :%@",json);
+                 NSArray * array = [json objectForKey:@"objects"];
+                 
+                 NSMutableArray * contacts =  [[NSMutableArray alloc] init];
+                 
+                 for(int i=0; i<array.count; i++) {
+                     NSDictionary * json = [array objectAtIndex:i];
+                     Contact * contact = [Contact parseContact:json];
+                     [contacts addObject:contact];
+                 }
+                 
+                 callback(0, contacts);
+                 
+             } else {
+                 //TODO:: parse error type
+                 //401: UNAUTHORIZED
+                 //Other: net work error
+                 NSString *errorData = [[NSString alloc] initWithData:data encoding:4];
+                 NSLog(@"upload addressbook contacts error data:%@",errorData);
+                 callback(-1, nil);
+             }
+         }];
+
 }
 
-- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contacts))callback
+- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSMutableArray * contacts))callback
 {
     [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr) {
         
@@ -492,13 +488,12 @@ static UserModel * instance;
             for(Contact * contact in contactsArr)
             {
 
-                ContactEntity * enity = [model getContactEntity:contact.id];
-                if(enity == nil)
+                
+                if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
                 {
-                    enity = [model createEntity:@"ContactEntity"];
+                    ContactEntity * enity = [model createEntity:@"ContactEntity"];
+                    [enity convertContact:contact];
                 }
-
-                [enity convertContact:contact];
             }
             
             [model saveData];
