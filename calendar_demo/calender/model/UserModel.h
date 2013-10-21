@@ -36,7 +36,9 @@
 
 -(void) getMyContacts:(NSDate *) lastmodifytime  offset:(int) offset  andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contact))callback;
 
-- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback;
+- (void)uploadAddressBookContacts:(NSMutableArray *)contactsArr callback:(void (^)(NSInteger error, NSArray * respContacts))callback;
+
+- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSMutableArray * contacts))callback;
 
 /*
  -Get user profile by userid

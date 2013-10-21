@@ -401,8 +401,6 @@ static UserModel * instance;
                  info.email = email;
                  info.avatar_url = @"";
                  info.calvinUser = NO;
-                 info.id = -1;
-                 
                  [contactsArray addObject:info];
              }
              callback(contactsArray);
@@ -414,11 +412,10 @@ static UserModel * instance;
          }
     });
 }
-- (void)uploadAddressBookContacts:(void (^)(NSInteger error, NSArray * contact))callback
+- (void)uploadAddressBookContacts:(NSMutableArray *)contactsArr callback:(void (^)(NSInteger error, NSArray * respContacts))callback
 {
     
-    [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr)
-     {
+
          if (contactsArr == nil||[contactsArr count]==0)
          {
              callback(-1, nil);
@@ -432,7 +429,7 @@ static UserModel * instance;
          [[UserModel getInstance] setAuthHeader:request];
          for (int i=0; i<[contactsArr count]; i++)
          {
-             Contact * info = [contactsArr objectAtIndex:i];
+             ContactEntity * info = [contactsArr objectAtIndex:i];
              NSDictionary  *dic = @{
                                     @"email":info.email,
                                     @"phone":info.phone,
@@ -478,37 +475,56 @@ static UserModel * instance;
                  callback(-1, nil);
              }
          }];
-         
-    }];
+
 }
 
-- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSArray * contact))callback
+- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSMutableArray * contacts))callback
 {
-
-    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
-    {
-        if (contacts)
+    [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr) {
+        
+        if (contactsArr)
         {
-            
             CoreDataModel * model = [CoreDataModel getInstance];
-            for(Contact * contact in contacts) {
+            for(Contact * contact in contactsArr)
+            {
+
                 
-                ContactEntity * enity = [model getContactEntity:contact.id];
-                if(enity == nil)
+                if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
                 {
-                    enity = [model createEntity:@"ContactEntity"];
+                    ContactEntity * enity = [model createEntity:@"ContactEntity"];
+                    [enity convertContact:contact];
                 }
-                
-                [enity convertContact:contact];
             }
             
             [model saveData];
-            
-            NSString * updateTime = [Utils formateDate:[NSDate date]];
-            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
         }
-        callback(0,nil);
+       callback(0,contactsArr);
     }];
+    
+//    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
+//    {
+//        if (contacts)
+//        {
+//            
+//            CoreDataModel * model = [CoreDataModel getInstance];
+//            for(Contact * contact in contacts) {
+//                
+//                ContactEntity * enity = [model getContactEntity:contact.id];
+//                if(enity == nil)
+//                {
+//                    enity = [model createEntity:@"ContactEntity"];
+//                }
+//                
+//                [enity convertContact:contact];
+//            }
+//            
+//            [model saveData];
+//            
+//            NSString * updateTime = [Utils formateDate:[NSDate date]];
+//            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
+//        }
+//        callback(0,nil);
+//    }];
 }
 /*
  Get the current login user, return nil if not login

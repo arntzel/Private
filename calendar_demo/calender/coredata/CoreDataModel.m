@@ -494,6 +494,19 @@ static CoreDataModel * instance;
     return nil;
 }
 
+-(NSArray *) getContactEntitysWithID:(int) contactid
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(id = %d)", contactid];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    return results;
+}
 -(NSArray *) getAllContactEntity
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -519,7 +532,7 @@ static CoreDataModel * instance;
     [fetchRequest setPredicate:predicate];
     
     NSArray * results = [managedObjectContext1 executeFetchRequest:fetchRequest error:nil];
-    
+    managedObjectContext1 = nil;
     if(results.count >0)
     {
         return [results objectAtIndex:0];
@@ -528,6 +541,20 @@ static CoreDataModel * instance;
     return nil;
 }
 
+- (void)deleteContactEntityWith:(NSString *)phone andEmail:(NSString *)email
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entityDescription];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ AND email = %@)", phone, email];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    ContactEntity *entity = [results objectAtIndex:0];
+    NSLog(@"entity.phone = %@, entity.email = %@",entity.phone,entity.email);
+    [managedObjectContext deleteObject:entity];
+    //[self saveData];
+}
 -(Setting *) getSetting:(NSString *) key
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

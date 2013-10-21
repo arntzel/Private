@@ -53,6 +53,16 @@
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;
 
+/**
+ *  get the Contacts that are never uploaded to server
+ *
+ *  @param contactid 0 represents the contact is not upload to server.
+ *
+ *  @return the Contancts Array which are not upload to server.
+ */
+-(NSArray *) getContactEntitysWithID:(int) contactid;
+
+
 -(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
@@ -97,7 +107,7 @@
  */
 - (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 -(NSArray *) getAllContactEntity;
-
+- (void)deleteContactEntityWith:(NSString *)phone andEmail:(NSString *)email;
 
 -(Setting *) getSetting:(NSString *) key;
 

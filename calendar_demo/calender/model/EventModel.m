@@ -270,4 +270,31 @@
         
     }];
 }
+
+- (void)uploadContacts
+{
+    if(![[UserModel getInstance] isLogined])
+    {
+        return;
+    }
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
+    [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
+        
+        if (respContacts && [respContacts count]>0)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in respContacts)
+            {
+                LOG_D(@"contact.email:%@",contact.email);
+                LOG_D(@"contact.phone:%@",contact.phone);
+                [model deleteContactEntityWith:contact.phone andEmail:contact.email];
+                ContactEntity *   enity = [model createEntity:@"ContactEntity"];
+                [enity convertContact:contact];
+            }
+            
+            [model saveData];
+        }
+    }];
+}
 @end
