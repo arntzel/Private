@@ -2,7 +2,7 @@
 //  ContactEntity.m
 //  Calvin
 //
-//  Created by xiangfang on 13-10-13.
+//  Created by fang xiang on 13-10-21.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -11,12 +11,12 @@
 
 @implementation ContactEntity
 
-@dynamic id;
-@dynamic email;
-@dynamic phone;
-@dynamic first_name;
-@dynamic last_name;
 @dynamic avatar_url;
 @dynamic calvinuser;
+@dynamic email;
+@dynamic first_name;
+@dynamic id;
+@dynamic last_name;
+@dynamic phone;
 
 @end

@@ -2,7 +2,7 @@
 //  Setting.h
 //  Calvin
 //
-//  Created by xiangfang on 13-10-13.
+//  Created by fang xiang on 13-10-21.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 

@@ -66,19 +66,21 @@
 		3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */; };
 		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D593A9D180692F000AA5E50 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D593A9C180692F000AA5E50 /* EmptyCell.xib */; };
-		3D5B670C180D22FF00906CD2 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B670B180D22FF00906CD2 /* FeedEventEntity.m */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
 		3D71D40E17F669D000121A85 /* Invitee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D71D40D17F669D000121A85 /* Invitee.m */; };
-		3D71D41117F6E18600121A85 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D71D41017F6E18600121A85 /* MessageEntity.m */; };
-		3D71D41417F6E18700121A85 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D71D41317F6E18700121A85 /* UserEntity.m */; };
-		3D71D41A17F6E18700121A85 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D71D41917F6E18700121A85 /* LocationEntity.m */; };
 		3D92520B17784A100066927A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520A17784A100066927A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520C17784A430066927A /* libsqlite3.0.dylib */; };
 		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92521017784AAE0066927A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D925278177960460066927A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925277177960450066927A /* Security.framework */; };
+		3DCD5DD1181510C4000E2E56 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD0181510C4000E2E56 /* FeedEventEntity.m */; };
+		3DCD5DD4181510C4000E2E56 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD3181510C4000E2E56 /* MessageEntity.m */; };
+		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
+		3DCD5DDA181510C4000E2E56 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD9181510C4000E2E56 /* ContactEntity.m */; };
+		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
+		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
 		76318B2C17E09A69000BC88B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2817E09A69000BC88B /* Default@2x.png */; };
@@ -445,14 +447,12 @@
 		76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
-		942A29B7180A9EFC00548901 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B6180A9EFC00548901 /* ContactEntity.m */; };
 		942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B9180A9FCE00548901 /* ContactEntityExtra.m */; };
 		9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9441400B17F719230059BCBA /* AddEventTimeButton.xib */; };
 		9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441400E17F71B830059BCBA /* AddEventTimeButton.m */; };
 		9441401217F720530059BCBA /* AddEventTimesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441401117F720530059BCBA /* AddEventTimesView.m */; };
 		9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5417E5EF1900C294F7 /* EventTimeVote.m */; };
 		9457DF5817E5F11D00C294F7 /* EventTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457DF5717E5F11C00C294F7 /* EventTime.m */; };
-		94ADD7BF180AC270005047B9 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADD7BE180AC270005047B9 /* Setting.m */; };
 		94FAFFD517F5BA6F0010601F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD317F5BA6F0010601F /* Contact.m */; };
 		94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FAFFD617F5C16A0010601F /* ProposeStart.m */; };
 		94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */; };
@@ -531,25 +531,29 @@
 		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
 		3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeVoteView.m; sourceTree = "<group>"; };
 		3D593A9C180692F000AA5E50 /* EmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
-		3D5B670A180D22FF00906CD2 /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedEventEntity.h; path = calender/coredata/FeedEventEntity.h; sourceTree = SOURCE_ROOT; };
-		3D5B670B180D22FF00906CD2 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
 		3D6151A01734A391003D72B0 /* Calvin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calvin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D6151A71734A391003D72B0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3D71D40C17F669D000121A85 /* Invitee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invitee.h; path = calender/model/Invitee.h; sourceTree = SOURCE_ROOT; };
 		3D71D40D17F669D000121A85 /* Invitee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invitee.m; path = calender/model/Invitee.m; sourceTree = SOURCE_ROOT; };
-		3D71D40F17F6E18600121A85 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = calender/coredata/MessageEntity.h; sourceTree = SOURCE_ROOT; };
-		3D71D41017F6E18600121A85 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
-		3D71D41217F6E18700121A85 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
-		3D71D41317F6E18700121A85 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
-		3D71D41817F6E18700121A85 /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationEntity.h; path = calender/coredata/LocationEntity.h; sourceTree = SOURCE_ROOT; };
-		3D71D41917F6E18700121A85 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		3D92520A17784A100066927A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3D92520C17784A430066927A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3D92521017784AAE0066927A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3D925277177960450066927A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3DCD5DCF181510C4000E2E56 /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedEventEntity.h; path = calender/coredata/FeedEventEntity.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DD0181510C4000E2E56 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
+		3DCD5DD2181510C4000E2E56 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = calender/coredata/MessageEntity.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DD3181510C4000E2E56 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
+		3DCD5DD5181510C4000E2E56 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DD6181510C4000E2E56 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = calender/coredata/Setting.m; sourceTree = SOURCE_ROOT; };
+		3DCD5DD8181510C4000E2E56 /* ContactEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntity.h; path = calender/coredata/ContactEntity.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DD9181510C4000E2E56 /* ContactEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntity.m; path = calender/coredata/ContactEntity.m; sourceTree = SOURCE_ROOT; };
+		3DCD5DDB181510C5000E2E56 /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationEntity.h; path = calender/coredata/LocationEntity.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DDC181510C5000E2E56 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
+		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
+		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		76318B2717E09A69000BC88B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		76318B2817E09A69000BC88B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1091,8 +1095,6 @@
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
-		942A29B5180A9EFC00548901 /* ContactEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntity.h; path = calender/coredata/ContactEntity.h; sourceTree = SOURCE_ROOT; };
-		942A29B6180A9EFC00548901 /* ContactEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntity.m; path = calender/coredata/ContactEntity.m; sourceTree = SOURCE_ROOT; };
 		942A29B8180A9FCE00548901 /* ContactEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntityExtra.h; path = calender/coredata/ContactEntityExtra.h; sourceTree = SOURCE_ROOT; };
 		942A29B9180A9FCE00548901 /* ContactEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntityExtra.m; path = calender/coredata/ContactEntityExtra.m; sourceTree = SOURCE_ROOT; };
 		9441400B17F719230059BCBA /* AddEventTimeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventTimeButton.xib; sourceTree = "<group>"; };
@@ -1104,8 +1106,6 @@
 		9457DF5417E5EF1900C294F7 /* EventTimeVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTimeVote.m; path = calender/model/EventTimeVote.m; sourceTree = SOURCE_ROOT; };
 		9457DF5617E5F11C00C294F7 /* EventTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventTime.h; path = calender/model/EventTime.h; sourceTree = SOURCE_ROOT; };
 		9457DF5717E5F11C00C294F7 /* EventTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventTime.m; path = calender/model/EventTime.m; sourceTree = SOURCE_ROOT; };
-		94ADD7BD180AC270005047B9 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
-		94ADD7BE180AC270005047B9 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = calender/coredata/Setting.m; sourceTree = SOURCE_ROOT; };
 		94FAFFD217F5BA6F0010601F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contact.h; path = calender/model/Contact.h; sourceTree = SOURCE_ROOT; };
 		94FAFFD317F5BA6F0010601F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contact.m; path = calender/model/Contact.m; sourceTree = SOURCE_ROOT; };
 		94FAFFD417F5BA6F0010601F /* ProposeStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStart.h; path = calender/model/ProposeStart.h; sourceTree = SOURCE_ROOT; };
@@ -1712,29 +1712,29 @@
 		769AB9FF17DF514C0033E677 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				942A29B5180A9EFC00548901 /* ContactEntity.h */,
-				942A29B6180A9EFC00548901 /* ContactEntity.m */,
+				3DCD5DD8181510C4000E2E56 /* ContactEntity.h */,
+				3DCD5DD9181510C4000E2E56 /* ContactEntity.m */,
 				942A29B8180A9FCE00548901 /* ContactEntityExtra.h */,
 				942A29B9180A9FCE00548901 /* ContactEntityExtra.m */,
 				769ABA0017DF514C0033E677 /* CoreDataModel.h */,
 				769ABA0117DF514C0033E677 /* CoreDataModel.m */,
 				769ABA0217DF514C0033E677 /* DataCache.h */,
 				769ABA0317DF514C0033E677 /* DataCache.m */,
-				3D5B670A180D22FF00906CD2 /* FeedEventEntity.h */,
-				3D5B670B180D22FF00906CD2 /* FeedEventEntity.m */,
+				3DCD5DCF181510C4000E2E56 /* FeedEventEntity.h */,
+				3DCD5DD0181510C4000E2E56 /* FeedEventEntity.m */,
 				769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */,
 				769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */,
-				3D71D41817F6E18700121A85 /* LocationEntity.h */,
-				3D71D41917F6E18700121A85 /* LocationEntity.m */,
-				3D71D40F17F6E18600121A85 /* MessageEntity.h */,
-				3D71D41017F6E18600121A85 /* MessageEntity.m */,
+				3DCD5DDB181510C5000E2E56 /* LocationEntity.h */,
+				3DCD5DDC181510C5000E2E56 /* LocationEntity.m */,
+				3DCD5DD2181510C4000E2E56 /* MessageEntity.h */,
+				3DCD5DD3181510C4000E2E56 /* MessageEntity.m */,
 				769ABA1217DF514C0033E677 /* MessageEntityExtra.h */,
 				769ABA1317DF514C0033E677 /* MessageEntityExtra.m */,
 				769ABA1417DF514C0033E677 /* Model.xcdatamodeld */,
-				94ADD7BD180AC270005047B9 /* Setting.h */,
-				94ADD7BE180AC270005047B9 /* Setting.m */,
-				3D71D41217F6E18700121A85 /* UserEntity.h */,
-				3D71D41317F6E18700121A85 /* UserEntity.m */,
+				3DCD5DD5181510C4000E2E56 /* Setting.h */,
+				3DCD5DD6181510C4000E2E56 /* Setting.m */,
+				3DCD5DDE1815116F000E2E56 /* UserEntity.h */,
+				3DCD5DDF1815116F000E2E56 /* UserEntity.m */,
 				769ABA1817DF514C0033E677 /* UserEntityExtra.h */,
 				769ABA1917DF514C0033E677 /* UserEntityExtra.m */,
 			);
@@ -2718,6 +2718,7 @@
 				942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
+				3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */,
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
 				769AB92117DF51160033E677 /* PendingEventViewCell.m in Sources */,
 				769AB92317DF51160033E677 /* PendingEventViewCell2.m in Sources */,
@@ -2740,22 +2741,20 @@
 				769ABA9C17DF51EC0033E677 /* navigationMenuDataSource.m in Sources */,
 				769ABA9D17DF51EC0033E677 /* navigationNotifyCell.m in Sources */,
 				769ABA9F17DF51EC0033E677 /* navigationNotifyCellBg.m in Sources */,
-				94ADD7BF180AC270005047B9 /* Setting.m in Sources */,
 				769ABAA017DF51EC0033E677 /* navigationNotifyDataSource.m in Sources */,
 				34B1F1A817F8FCE200AA5C97 /* NotificaitonViewController.m in Sources */,
 				769ABAA117DF51EC0033E677 /* navigationNotifySectionHeader.m in Sources */,
 				769ABAA317DF51EC0033E677 /* RootNavContrller.m in Sources */,
 				769ABB0B17DF52090033E677 /* AddDateTypeView.m in Sources */,
-				3D71D41117F6E18600121A85 /* MessageEntity.m in Sources */,
 				769ABB0D17DF52090033E677 /* AddEventDateViewController.m in Sources */,
 				769ABB0E17DF52090033E677 /* CustomPickerCell.m in Sources */,
 				76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */,
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
-				3D71D41417F6E18700121A85 /* UserEntity.m in Sources */,
 				76591A9317FFB12900DE3AB2 /* AddEventInvitePeopleCell.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
+				3DCD5DD1181510C4000E2E56 /* FeedEventEntity.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,
 				769ABB1617DF52090033E677 /* AddEventInviteView.m in Sources */,
@@ -2798,7 +2797,6 @@
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
 				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
-				942A29B7180A9EFC00548901 /* ContactEntity.m in Sources */,
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
 				34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */,
 				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,
@@ -2807,6 +2805,7 @@
 				769ABC8117DF542A0033E677 /* LoadingProgressView.m in Sources */,
 				769ABC8317DF542A0033E677 /* Navigation.m in Sources */,
 				769ABC8617DF542A0033E677 /* Buddy.m in Sources */,
+				3DCD5DD4181510C4000E2E56 /* MessageEntity.m in Sources */,
 				769ABC8717DF542A0033E677 /* Comment.m in Sources */,
 				769ABC8817DF542A0033E677 /* CreateUser.m in Sources */,
 				769ABC8917DF542A0033E677 /* Event.m in Sources */,
@@ -2839,10 +2838,10 @@
 				768404C8180115B200C69240 /* JSTokenButton.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				34B1F1A617F8FCE200AA5C97 /* LegalViewController.m in Sources */,
+				3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */,
 				76431E011806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.m in Sources */,
 				34B1F1D117F8FCE200AA5C97 /* UIView+LoadFromNib.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
-				3D71D41A17F6E18700121A85 /* LocationEntity.m in Sources */,
 				764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
@@ -2860,6 +2859,7 @@
 				769ABCF617DF542A0033E677 /* UIFont+Replacement.m in Sources */,
 				769ABD0217DF54860033E677 /* DeviceInfo.m in Sources */,
 				769ABD0317DF54860033E677 /* EncryptUtil.m in Sources */,
+				3DCD5DDA181510C4000E2E56 /* ContactEntity.m in Sources */,
 				769ABD0417DF54860033E677 /* ViewUtils.m in Sources */,
 				768404C9180115B200C69240 /* JSTokenField.m in Sources */,
 				7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */,
@@ -2874,7 +2874,6 @@
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
 				76591A7D17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
-				3D5B670C180D22FF00906CD2 /* FeedEventEntity.m in Sources */,
 				769ABD3C17DF54950033E677 /* KalGridView.m in Sources */,
 				769ABD3D17DF54950033E677 /* KalMonthNameView.m in Sources */,
 				769ABD3E17DF54950033E677 /* KalMonthView.m in Sources */,
@@ -2883,6 +2882,7 @@
 				769ABD4017DF54950033E677 /* KalView.m in Sources */,
 				34B1F1CF17F8FCE200AA5C97 /* SettingsContentView.m in Sources */,
 				769ABD4117DF54950033E677 /* KalWeekGridView.m in Sources */,
+				3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */,
 				769ABD4217DF54950033E677 /* KalWeekView.m in Sources */,
 				769ABD4317DF54950033E677 /* UIViewAdditions.m in Sources */,
 				769ABD4417DF54950033E677 /* CustomerIndicatorView.m in Sources */,
