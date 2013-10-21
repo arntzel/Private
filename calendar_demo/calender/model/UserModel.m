@@ -319,7 +319,7 @@ static UserModel * instance;
             NSArray * array = [json objectForKey:@"objects"];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            //LOG_D(@"getMyContacts resp:%@", json);
+            LOG_D(@"getMyContacts resp:%@", json);
 
             
             NSMutableArray * contacts =  [[NSMutableArray alloc] init];

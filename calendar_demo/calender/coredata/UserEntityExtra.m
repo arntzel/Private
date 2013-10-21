@@ -37,6 +37,8 @@
         contact.email         = user.email;
         contact.first_name    = user.first_name;
         contact.last_name     = user.last_name;
+        
+        LOG_D(@"Create user entity: id=%d, email=%@", user.id, user.email);
     }
     
     self.contact = contact;

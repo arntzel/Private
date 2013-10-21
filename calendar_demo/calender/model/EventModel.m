@@ -210,10 +210,13 @@
                 return;
             }
             
+            //Contact是否有被更新的数据
+            bool contactsupdated = NO;
+            
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in contacts) {
-                LOG_D(@"contact.email:%@",contact.email);
-                LOG_D(@"contact.phone:%@",contact.phone);
+                //LOG_D(@"contact.email:%@",contact.email);
+                //LOG_D(@"contact.phone:%@",contact.phone);
                 
                 if(maxlatmodify == nil || [contact.modified compare:maxlatmodify] > 0) {
                     maxlatmodify = contact.modified;
@@ -222,6 +225,11 @@
                 ContactEntity * enity = [model getContactEntity:contact.id];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
+                    LOG_D(@"Create new Contact[ %d, %@ ]", contact.id, contact.email);
+                } else {
+                    
+                    LOG_D(@"Update Contact[%d, %@ ]", contact.id, contact.email);
+                    contactsupdated = YES;
                 }
                 
                 [enity convertContact:contact];
@@ -243,6 +251,10 @@
             }
 
 
+            if(contactsupdated) {
+                NSLog(@"Contact updated");
+                [[CoreDataModel getInstance] notifyModelChange];
+            }
             
             
             if(contacts.count + offset < totalCount) {
