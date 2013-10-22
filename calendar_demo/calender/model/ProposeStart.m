@@ -158,31 +158,13 @@
 
 - (NSString *)parseStartDateString
 {
-    NSArray *monthNameArray = [NSArray arrayWithObjects:
-                               @"Jan",
-                               @"Feb",
-                               @"March",
-                               @"April",
-                               
-                               @"May",
-                               @"June",
-                               @"July",
-                               @"Aug",
-                               
-                               @"Sep",
-                               @"Oct",
-                               @"Nov",
-                               @"Dec",
-                               nil
-                               ];
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.start];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"MMM d"];
+    NSString * day = [dateFormatter stringFromDate:self.start];
     
-    NSString *monthName = [monthNameArray objectAtIndex:parts.month - 1];
-    NSString *preFix = [NSString stringWithFormat:@"%@ %d",monthName,parts.day];
-    
-    return [NSString stringWithFormat:@"%@,%@",preFix,[self parseStartTimeString]];
+    return [NSString stringWithFormat:@"%@ %@", day, [self parseStartTimeString]];
 }
 
 - (NSString *)parseDuringDateString
