@@ -1052,7 +1052,7 @@ static Model * instance;
 
 -(void) getEventComment:(int) eventID Offset:(int)offset Limit:(int)limit andCallback:(void (^)(NSInteger error, NSArray * comments))callback
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment/?event=%d&offset=%d&limit=%d", HOST,eventID,offset,limit];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventcomment?event=%d&offset=%d&limit=%d", HOST, eventID,offset,limit];
     
     LOG_D(@"url=%@", url);
     
@@ -1081,6 +1081,12 @@ static Model * instance;
             callback(ERROCODE_OK, [cmts sortedArrayUsingSelector:@selector(compare:)]);
             
         } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+            
             callback(-1, nil);
         }
     }];
