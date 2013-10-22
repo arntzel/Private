@@ -62,12 +62,12 @@
     
     if (hours_ == 0) {
         Hours = 12;
-        Ampm = 1;
+        Ampm = 0;
     }
     else if(hours_ == 12)
     {
         Hours = 12;
-        Ampm = 0;
+        Ampm = 1;
     }
     
     [hourPicker scrollToIndex:Hours WithAnimation:animation];
