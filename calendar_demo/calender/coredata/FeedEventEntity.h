@@ -35,6 +35,7 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
 @property (nonatomic, retain) NSSet *attendees;
+@property (nonatomic, retain) NSString *ext_event_id;
 @end
 
 @interface FeedEventEntity (CoreDataGeneratedAccessors)

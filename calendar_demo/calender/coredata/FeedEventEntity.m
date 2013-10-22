@@ -34,5 +34,5 @@
 @dynamic title;
 @dynamic userstatus;
 @dynamic attendees;
-
+@dynamic ext_event_id;
 @end

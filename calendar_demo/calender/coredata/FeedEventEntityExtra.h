@@ -24,6 +24,6 @@
 
 
 -(void) convertFromEvent:(Event*) event;
-
+-(void) convertFromCalendarEvent:(Event*) event;
 
 @end

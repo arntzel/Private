@@ -81,7 +81,7 @@
 //ProposeStart list
 @property(strong) NSArray * propose_starts;
 
-
+@property (nonatomic, strong) NSString *ext_event_id;
 
 /*
  Calvin: 0

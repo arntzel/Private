@@ -217,7 +217,7 @@ static Model * instance;
     }];    
 }
 
--(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * events))callback
+-(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * allEvents))callback
 {
     EKEventStore *store = [[EKEventStore alloc] init];
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
@@ -250,29 +250,12 @@ static Model * instance;
             
             // Fetch all events that match the predicate
             NSArray *events = [store eventsMatchingPredicate:predicate];
-            NSMutableArray *array = [NSMutableArray array];
+            NSMutableArray *_allEvents = [NSMutableArray array];
             NSLog(@"events:%@",events);
             for (EKEvent *event in events)
             {
-                
-                NSLog(@"--------------");
-                NSLog(@"eventIdentifier:%@",event.eventIdentifier);
-                NSLog(@"allDay:%d",event.allDay);
-                NSLog(@"startDate:%@",event.startDate);
-                NSLog(@"endDate:%@",event.endDate);
-                NSLog(@"organizer.name:%@",event.organizer.name);
-                NSLog(@"attendees:%@",event.attendees);
-                NSLog(@"title:%@",event.title);
-                NSLog(@"location:%@",event.location);
-                NSLog(@"notes:%@",event.notes);
-                NSLog(@"--------------");
-                CoreDataModel * model = [CoreDataModel getInstance];
-                if ([model getFeedEventEntityWithCreateTime:[Utils convertGMTDate:event.creationDate andTimezone:event.timeZone]])
-                {
-                    continue;
-                }
-                
                 Event *event1 = [[Event alloc] init];
+                event1.ext_event_id = event.eventIdentifier;
                 event1.eventType = 5;
                 event1.description = event.notes;
                 event1.is_all_day = event.isAllDay;
@@ -296,47 +279,28 @@ static Model * instance;
                 }
                 
                 event1.invitees = invitees;
-                
-                
-                //    event.duration_days = arrangedDate.duration_days;
-                //    event.duration_hours = arrangedDate.duration_hours;
-                //    event.duration_minutes = arrangedDate.duration_minutes;
-                //    event.is_all_day = arrangedDate.is_all_day;
-                //    event.start = arrangedDate.start;
-                //    event.start_type = arrangedDate.start_type;
-                
-                
-                
-                //event.propose_starts = [timesView getEventDates];
+            
                 if (event.location)
                 {
                     Location *loc = [[Location alloc] init];
                     loc.location = event.location;
                     event1.location = loc;
                 }
-                
-                //ps2.start = [Utils convertGMTDate:ps2.start andTimezone:tz];
-                
                 event1.start = [Utils convertGMTDate:event.startDate andTimezone:event.timeZone];
+                LOG_D(@"event1.start:%@",event1.start);
                 event1.end = [Utils convertGMTDate:event.endDate andTimezone:event.timeZone];
-                
-//                if(event.start_type == nil) {
-//                    event.start_type = START_TYPEWITHIN;
-//                }
-                
+                LOG_D(@"event1.end:%@",event1.end);
                 event1.published = YES;
                 event1.timezone = event.timeZone.name;
-                event1.title =event.title;
+                event1.title = event.title;
+                event1.created_on = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
+                LOG_D(@"event1.created_on:%@",event1.created_on);
+                [_allEvents addObject:event1];
                 
-//                event.allow_new_dt = settingView.btnInvite1.selected;
-//                event.allow_attendee_invite = (settingView.canInvitePeopleSwitch.selectedIndex == 0);
-//                event.allow_new_location = (settingView.canChangeLocation.selectedIndex == 0);
                 
-                event1.created_on = [Utils convertGMTDate:event.creationDate andTimezone:event.timeZone];
-                [array addObject:event1];
             }
             
-            callback(array);
+            callback(_allEvents);
             
         }
         else
@@ -347,103 +311,100 @@ static Model * instance;
     }];
 }
 
--(void)uploadEventsFromCalendarApp:(void (^)(NSInteger error,NSMutableArray * events))callback
+- (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents;
 {
-    [self getEventsFromCalendarApp:^(NSMutableArray *events) {
-        if (events == nil ||[events count] == 0)
+    for (int i = 0; i < [newEvents count]; i++)
+    {
+        Event *evt = [newEvents objectAtIndex:i];
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        NSString *startTime = [format stringFromDate:evt.start];
+        NSString *endTime = [format stringFromDate:evt.end];
+        NSString *createTime = [format stringFromDate:evt.created_on];
+        NSAssert(createTime != nil, [evt.created_on description]);
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
+        [dic   setObject:@(5) forKey:@"event_type"];
+        [dic setObject:@(YES) forKey:@"confirmed"];
+        [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
+        if (createTime)
         {
-            callback(0,nil);
-            return ;
-        }
-        for (int i = 0; i < [events count]; i++)
-        {
-            Event *evt = [events objectAtIndex:i];
-            NSDateFormatter *format = [[NSDateFormatter alloc] init];
-            [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-            NSString *startTime = [format stringFromDate:evt.start];
-            NSString *endTime = [format stringFromDate:evt.end];
-            NSString *createTime = [format stringFromDate:evt.created_on];
-            NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
-            [dic   setObject:@(5) forKey:@"event_type"];
             [dic setObject:createTime forKey:@"created_on"];
-            [dic setObject:@(YES) forKey:@"confirmed"];
-            if (evt.title)
-            {
-                [dic setObject:evt.title forKey:@"title"];
-            }
-            if (evt.is_all_day)
-            {
-                [dic setObject:@(evt.is_all_day) forKey:@"is_all_day"];
-            }
-            if (evt.description)
-            {
-                [dic setObject:evt.description forKey:@"description"];
-            }
-            if (startTime)
-            {
-                [dic setObject:startTime forKey:@"start"];
-            }
-            if (endTime)
-            {
-                [dic setObject:endTime forKey:@"end"];
-            }
-            if (evt.timezone)
-            {
-                [dic setObject:evt.timezone forKey:@"timezone"];
-            }
-            if (evt.location)
-            {
-                [dic setObject:@{@"lat": @(evt.location.lat), @"lng":@(evt.location.lng),@"location":evt.location.location} forKey:@"location"];
-            }
-            [events replaceObjectAtIndex:i withObject:dic];
         }
-        NSDictionary  *postDataDic = @{@"objects": events};
-        
+        if (evt.title)
+        {
+            [dic setObject:evt.title forKey:@"title"];
+        }
+        if (evt.is_all_day)
+        {
+            [dic setObject:@(evt.is_all_day) forKey:@"is_all_day"];
+        }
+        if (evt.description)
+        {
+            [dic setObject:evt.description forKey:@"description"];
+        }
+        if (startTime)
+        {
+            [dic setObject:startTime forKey:@"start"];
+        }
+        if (endTime)
+        {
+            [dic setObject:endTime forKey:@"end"];
+        }
+        if (evt.timezone)
+        {
+            [dic setObject:evt.timezone forKey:@"timezone"];
+        }
+        if (evt.location)
+        {
+            [dic setObject:@{@"lat": @(evt.location.lat), @"lng":@(evt.location.lng),@"location":evt.location.location} forKey:@"location"];
+        }
+        [newEvents replaceObjectAtIndex:i withObject:dic];
+    }
+    NSDictionary  *postDataDic = @{@"objects": newEvents};
+    NSString * postContent = [Utils dictionary2String:postDataDic];
 
-        NSString * postContent = [Utils dictionary2String:postDataDic];
-        
-        LOG_D(@"upload Calendar Event, postContent:%@", postContent);
-        
-        NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/", HOST];
-        
-        NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
-        [[UserModel getInstance] setAuthHeader:request];
-        
-        NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:postData];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
-            
-            NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
-            
-            int status = httpResp.statusCode;
-            
-            if(status == 202) {
-                
-                NSError * err;
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-                LOG_D(@"upload Calendar Event resp:%@", json);
-                NSMutableArray *arr = [NSMutableArray arrayWithArray:[json objectForKey:@"objects"]];
-                for (int i = 0; i<[arr count]; i++)
-                {
-                    NSDictionary *dic = [arr objectAtIndex:i];
-                    Event * newEvent = [Event parseEvent:dic];
-                    [arr replaceObjectAtIndex:i withObject:newEvent];
-                }
-                
-                callback(0, arr);
-                
-            } else {
-                
-                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                LOG_D(@"upload Calendar Event error=%@, resp:%@", error, aStr);
-                
-                callback(-1, nil);
+    LOG_D(@"upload Calendar Event, postContent:%@", postContent);
+
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/", HOST];
+
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PATCH"];
+    [[UserModel getInstance] setAuthHeader:request];
+
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+
+        int status = httpResp.statusCode;
+
+        if(status == 202) {
+
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"upload Calendar Event resp:%@", json);
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:[json objectForKey:@"objects"]];
+            for (int i = 0; i<[arr count]; i++)
+            {
+                NSDictionary *dic = [arr objectAtIndex:i];
+                Event * newEvent = [Event parseEvent:dic];
+                [arr replaceObjectAtIndex:i withObject:newEvent];
             }
-        }];
-    }];
-}
 
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"upload Calendar Event error=%@, resp:%@", error, aStr);
+          
+        }
+    }];
+
+}
+- (void)updateEventsFromCalendarApp:(NSMutableArray *)modifiedEvents
+{
+    LOG_D(@"updateEventsFromCalendarApp");
+}
 //-(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 //{
 //    NSCalendar *calendar = [NSCalendar currentCalendar];

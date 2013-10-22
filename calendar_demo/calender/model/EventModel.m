@@ -273,20 +273,86 @@
 
 - (void)updateEventsFromCalendarApp
 {
-    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
-        NSLog(@"upload events from calendar app successed!");
-        if (events != nil)
-        {
+//    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+//        NSLog(@"upload events from calendar app successed!");
+//        if (events != nil)
+//        {
+//            CoreDataModel * model = [CoreDataModel getInstance];
+//            for (Event *newEvent in events)
+//            {
+//                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+//                [entity convertFromEvent:newEvent];
+//                [model addFeedEventEntity:entity];
+//            }
+//            [model saveData];
+//            [model notifyModelChange];
+//        }
+//        
+//    }];
+//    [[Model getInstance]getEventsFromCalendarApp:^(NSMutableArray *modifiedEvents, NSMutableArray *newEvents) {
+//        
+//        CoreDataModel * model = [CoreDataModel getInstance];
+//        for (Event *newEvent in newEvents)
+//        {
+//            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+//            [entity convertFromEvent:newEvent];
+//            [model addFeedEventEntity:entity];
+//        }
+//        for (Event *modifiedEvent in modifiedEvents)
+//        {
+//            FeedEventEntity * oldEntity = [[FeedEventEntity alloc] init] ;
+//            [oldEntity convertFromEvent:modifiedEvent];
+//            [model deleteFeedEventEntity2:oldEntity];
+//            FeedEventEntity * newEntity = [model createEntity:@"FeedEventEntity"];
+//            [newEntity convertFromEvent:modifiedEvent];
+//            [model addFeedEventEntity:newEntity];
+//        }
+//        [model saveData];
+//        //[[Model getInstance] uploadEventsFromCalendarApp:newEvents];
+//        //[[Model getInstance] updateEventsFromCalendarApp:modifiedEvents];
+//    }];
+    [[Model getInstance] getEventsFromCalendarApp:^(NSMutableArray *allEvents) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSMutableArray *newEvents = [NSMutableArray array];
+            NSMutableArray *modifiedEvents = [NSMutableArray array];
             CoreDataModel * model = [CoreDataModel getInstance];
-            for (Event *newEvent in events)
+            for (Event *event1 in allEvents)
+            {
+                FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
+                if (eventEntity)
+                {
+                    LOG_D(@"eventEntity.created_on:%@  event1.created_on:%@",eventEntity.created_on,event1.created_on);
+                    if ([eventEntity.created_on compare:event1.created_on] != NSOrderedSame)
+                    {
+                        [modifiedEvents addObject:event1];
+                    }
+                }
+                else
+                {
+                    [newEvents addObject:event1];
+                }
+                
+            }
+            for (Event *newEvent in newEvents)
             {
                 FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                [entity convertFromEvent:newEvent];
+                [entity convertFromCalendarEvent:newEvent];
                 [model addFeedEventEntity:entity];
+            }
+            for (Event *modifiedEvent in modifiedEvents)
+            {
+                FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:modifiedEvent.ext_event_id];
+                [oldEntity convertFromCalendarEvent:modifiedEvent];
+                [model deleteFeedEventEntity2:oldEntity];
+                [model addFeedEventEntity:oldEntity];
             }
             [model saveData];
             [model notifyModelChange];
-        }
+            
+            
+        });
         
     }];
 }

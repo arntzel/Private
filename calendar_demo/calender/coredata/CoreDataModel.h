@@ -64,6 +64,15 @@
 
 
 -(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime;
+/**
+ *  get the event from Calendar App.
+ *
+ *  @param eventType    5 represents the events from Calendar App.
+ *  @param ext_event_id unique id.
+ *
+ *  @return the event.
+ */
+- (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 

@@ -135,27 +135,27 @@
 
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
-    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
-        NSLog(@"upload events from calendar app successed!");
-        if (events != nil)
-        {
-            CoreDataModel * model = [CoreDataModel getInstance];
-            for (Event *newEvent in events)
-            {
-                LOG_D(@"event.eventtype:%d",newEvent.eventType);
-                LOG_D(@"event.created_on:%@",newEvent.created_on);
-                LOG_D(@"event.title:%@",newEvent.title);
-                LOG_D(@"event.start:%@",newEvent.start);
-                LOG_D(@"event.end:%@",newEvent.end);
-                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                [entity convertFromEvent:newEvent];
-                [model updateFeedEventEntity:entity];
-            }
-            [model saveData];
-            [model notifyModelChange];
-        }
-        
-    }];
+//    [[Model getInstance]uploadEventsFromCalendarApp:^(NSInteger error, NSMutableArray *events) {
+//        NSLog(@"upload events from calendar app successed!");
+//        if (events != nil)
+//        {
+//            CoreDataModel * model = [CoreDataModel getInstance];
+//            for (Event *newEvent in events)
+//            {
+//                LOG_D(@"event.eventtype:%d",newEvent.eventType);
+//                LOG_D(@"event.created_on:%@",newEvent.created_on);
+//                LOG_D(@"event.title:%@",newEvent.title);
+//                LOG_D(@"event.start:%@",newEvent.start);
+//                LOG_D(@"event.end:%@",newEvent.end);
+//                FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+//                [entity convertFromEvent:newEvent];
+//                [model updateFeedEventEntity:entity];
+//            }
+//            [model saveData];
+//            [model notifyModelChange];
+//        }
+//        
+//    }];
 }
 
 -(void)viewDidUnload {
@@ -308,8 +308,15 @@
         NSString * day = [Utils formateDay:now];
         [tableView scroll2SelectedDate:day];
     }
+    [self updateEventsFromCalendarApp];
 }
 
+- (void)updateEventsFromCalendarApp
+{
+    
+    [[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
+
+}
 @end
 
 
