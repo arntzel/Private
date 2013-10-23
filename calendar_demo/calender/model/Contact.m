@@ -61,6 +61,9 @@
     user.calvinUser = [Utils chekcNullClass:owner] != nil;
 
     user.modified = [Utils parseNSDate:[jsonData objectForKey:@"modified"]];
+    
+    user.modified_num = [NSString stringWithFormat:@"%@", [jsonData objectForKey:@"modified_num"]];
+    
     return user;
 }
 

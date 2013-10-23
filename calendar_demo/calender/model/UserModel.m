@@ -291,15 +291,11 @@ static UserModel * instance;
 
 }
 
--(void) getMyContacts:(NSDate *) lastmodifytime offset:(int) offset andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contacts))callback;
+-(void) getMyContacts:(NSString *) modified_num andCallback:(void (^)(NSInteger error, int totalCount, NSArray * contacts))callback;
 {
 
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=%d&limit=50", HOST, offset];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/contact?offset=0&limit=50&modified_num__gt=%@", HOST, modified_num];
     
-    if(lastmodifytime != nil) {
-        NSString * time = [Utils formateDate:lastmodifytime];
-        url= [NSString stringWithFormat:@"%@&modified__gte=%@", url, time];
-    }
     
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
 

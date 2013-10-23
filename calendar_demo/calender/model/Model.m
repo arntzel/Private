@@ -488,13 +488,9 @@ static Model * instance;
     [self doGetEventsRequest:request andCallback:callback];    
 }
 
--(void) getUpdatedEvents:(NSDate *) lastmodifyTime andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
+-(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    lastmodifyTime = [Utils convertGMTDate:lastmodifyTime];
-    
-    NSString * strLastmodifyTime = [Utils formateDate:lastmodifyTime];
-
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=30&offset=%d&last_modified__gte=%@", HOST, offset, strLastmodifyTime];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=40&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 

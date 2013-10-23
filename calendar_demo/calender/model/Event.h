@@ -83,6 +83,8 @@
 
 @property (nonatomic, strong) NSString *ext_event_id;
 
+@property (strong)  NSString * modified_num;
+
 /*
  Calvin: 0
  Google Personal: 1
