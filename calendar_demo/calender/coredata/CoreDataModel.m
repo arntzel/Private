@@ -302,7 +302,9 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    predicate = [NSPredicate predicateWithFormat:@"eventType=%@ && id=%@", @(eventType), @(id)];
+    int type = 0x00000001 << eventType;
+    //predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && id=%@", type, @(id)];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if ([results count] > 0)
@@ -320,7 +322,9 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    predicate = [NSPredicate predicateWithFormat:@"eventType=%@ && hasModified=%@", @(eventType), @(hasModified)];
+    int type = 0x00000001 << eventType;
+    //predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && hasModified=%@ && id!=0", type, @(hasModified)];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if ([results count] > 0)

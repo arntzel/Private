@@ -8,7 +8,7 @@
 #import "Message.h"
 #import "Buddy.h"
 #import "Comment.h"
-
+#import "FeedEventEntity.h"
 #import "ASIFormDataRequest.h"
 
 typedef NS_ENUM(NSInteger, ERROCODE) {
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * allEvents))callback;
 - (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents callback:(void (^)(NSInteger error, NSMutableArray * respEvents))callback;
-- (void)updateEventsFromCalendarApp:(NSMutableArray *)modifiedEvents;
+- (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback;
 
 -(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback;
 

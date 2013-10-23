@@ -322,14 +322,13 @@
             for (Event *modifiedEvent in modifiedEvents)
             {
                 FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:modifiedEvent.ext_event_id];
-                [model deleteFeedEventEntity2:oldEntity];
                 [oldEntity convertFromCalendarEvent:modifiedEvent];
-                [model addFeedEventEntity:oldEntity];
+        
             }
             [model saveData];
             [model notifyModelChange];
         
-            [self uploadCalendarEvents];
+            //[self uploadCalendarEvents];
             
         });
         
@@ -357,13 +356,13 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //[self modifyCalendarEventsFromServer];
+                [self modifyCalendarEventsFromServer];
             });
         }];
     }
     else
     {
-        //[self modifyCalendarEventsFromServer];
+        [self modifyCalendarEventsFromServer];
     }
     
 }
@@ -372,6 +371,16 @@
 {
     CoreDataModel * model = [CoreDataModel getInstance];
     NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithHasModified:YES];
+    if (arrFromDB!=nil && [arrFromDB count]>0)
+    {
+        FeedEventEntity *entity = [arrFromDB objectAtIndex:0];
+        [[Model getInstance] modifyICalEventWithEventEntity:entity callback:^(NSInteger error, Event *modifiedEvent) {
+            
+            NSLog(@"modifyEvent.title:%@",modifiedEvent.title);
+            
+        }];
+    }
+    
     
 }
 - (void)uploadContacts

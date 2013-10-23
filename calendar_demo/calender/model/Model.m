@@ -402,9 +402,84 @@ static Model * instance;
     }];
 
 }
-- (void)updateEventsFromCalendarApp:(NSMutableArray *)modifiedEvents
+- (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback
 {
     LOG_D(@"updateEventsFromCalendarApp");
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, [eventEntity.id intValue]];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    FeedEventEntity *evt = eventEntity;
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSString *startTime = [format stringFromDate:evt.start];
+    NSString *endTime = [format stringFromDate:evt.end];
+    NSString *createTime = [format stringFromDate:evt.created_on];
+    NSAssert(createTime != nil, [evt.created_on description]);
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
+    [dic setObject:@(5) forKey:@"event_type"];
+    [dic setObject:@(YES) forKey:@"confirmed"];
+    [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
+    if (createTime)
+    {
+        [dic setObject:createTime forKey:@"created_on"];
+    }
+    if (evt.title)
+    {
+        [dic setObject:evt.title forKey:@"title"];
+    }
+    if (evt.is_all_day)
+    {
+        [dic setObject:evt.is_all_day forKey:@"is_all_day"];
+    }
+    if (evt.descript)
+    {
+        [dic setObject:evt.descript forKey:@"description"];
+    }
+    if (startTime)
+    {
+        [dic setObject:startTime forKey:@"start"];
+    }
+    if (endTime)
+    {
+        [dic setObject:endTime forKey:@"end"];
+    }
+    if (evt.timezone)
+    {
+        [dic setObject:evt.timezone forKey:@"timezone"];
+    }
+    if (evt.locationName)
+    {
+        [dic setObject:@{@"lat": @(0), @"lng":@(0),@"location":evt.locationName} forKey:@"location"];
+    }
+    NSString * postContent = [Utils dictionary2String:dic];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 201) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"createEvent resp:%@", json);
+            
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+            
+            callback(-1, nil);
+        }
+    }];
+    
 }
 //-(void) getEvents:(void (^)(NSInteger error, NSArray* events))callback
 //{
