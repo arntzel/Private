@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback;
 
 -(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * allEvents))callback;
-- (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents;
+- (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents callback:(void (^)(NSInteger error, NSMutableArray * respEvents))callback;
 - (void)updateEventsFromCalendarApp:(NSMutableArray *)modifiedEvents;
 
 -(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback;
