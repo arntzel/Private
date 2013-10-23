@@ -22,6 +22,9 @@
 
 -(BOOL) isAllAttendeeResped;
 
+-(BOOL) isBirthdayEvent;
+
+-(BOOL) isCalvinEvent;
 
 -(void) convertFromEvent:(Event*) event;
 -(void) convertFromCalendarEvent:(Event*) event;

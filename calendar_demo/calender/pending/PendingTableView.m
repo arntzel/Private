@@ -166,7 +166,7 @@
     if(eventList.count>0) {
         FeedEventEntity * event = [eventList objectAtIndex:row];
 
-        if( ([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
+        if( [event isCalvinEvent] ) {
             EventDetailController * detailCtl = [[EventDetailController alloc] init];
             detailCtl.eventID = [event.id intValue];
             [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
