@@ -291,6 +291,24 @@ static CoreDataModel * instance;
     }
     return nil;
 }
+
+- (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    predicate = [NSPredicate predicateWithFormat:@"eventType=%@ && id=%@", @(eventType), @(id)];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if ([results count] > 0)
+    {
+        return results;
+    }
+    return nil;
+}
 -(DataCache *) getCache
 {
     return cache;

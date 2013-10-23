@@ -80,9 +80,10 @@
 
 //ProposeStart list
 @property(strong) NSArray * propose_starts;
-
+//----------add by vale
 @property (nonatomic, strong) NSString *ext_event_id;
-
+@property (nonatomic) BOOL hasModified;
+//----------
 @property (strong)  NSString * modified_num;
 
 /*

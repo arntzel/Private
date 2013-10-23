@@ -73,6 +73,8 @@
  *  @return the event.
  */
 - (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id;
+
+- (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 

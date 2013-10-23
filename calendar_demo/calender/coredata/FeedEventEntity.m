@@ -34,5 +34,8 @@
 @dynamic title;
 @dynamic userstatus;
 @dynamic attendees;
+//--------------add by Vale
 @dynamic ext_event_id;
+@dynamic hasModified;
+//--------------
 @end

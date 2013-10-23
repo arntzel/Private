@@ -125,6 +125,8 @@
         [self addAttendeesObject:entity];
     }
     self.ext_event_id = event.ext_event_id;
+    self.hasModified = @(event.hasModified);
+    //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");
 }
 -(void)clearAttendee
 {

@@ -300,6 +300,7 @@
                     LOG_D(@"eventEntity.created_on:%@  event1.created_on:%@",eventEntity.created_on,event1.created_on);
                     if ([eventEntity.created_on compare:event1.created_on] != NSOrderedSame)
                     {
+                        event1.hasModified = YES;
                         [modifiedEvents addObject:event1];
                     }
                 }
@@ -318,19 +319,55 @@
             for (Event *modifiedEvent in modifiedEvents)
             {
                 FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:modifiedEvent.ext_event_id];
-                [oldEntity convertFromCalendarEvent:modifiedEvent];
                 [model deleteFeedEventEntity2:oldEntity];
+                [oldEntity convertFromCalendarEvent:modifiedEvent];
                 [model addFeedEventEntity:oldEntity];
             }
             [model saveData];
             [model notifyModelChange];
-            
+        
+            [self uploadCalendarEvents];
             
         });
         
     }];
 }
 
+- (void)uploadCalendarEvents
+{
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithID:0];
+    if (arrFromDB!=nil && [arrFromDB count]>0)
+    {
+        [[Model getInstance] uploadEventsFromCalendarApp:[NSMutableArray arrayWithArray:arrFromDB] callback:^(NSInteger error, NSMutableArray *respEvents) {
+            
+            if (respEvents && [respEvents count]>0)
+            {
+                for (Event *respEvent in respEvents)
+                {
+                    //change the event id after uploading ical data.
+                    FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:respEvent.ext_event_id];
+                    [oldEntity convertFromCalendarEvent:respEvent];
+                }
+                [model saveData];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self modifyCalendarEventsFromServer];
+            });
+        }];
+    }
+    else
+    {
+        [self modifyCalendarEventsFromServer];
+    }
+    
+}
+
+- (void)modifyCalendarEventsFromServer
+{
+    
+}
 - (void)uploadContacts
 {
     if(![[UserModel getInstance] isLogined])

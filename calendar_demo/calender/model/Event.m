@@ -102,11 +102,9 @@
     event.eventType = [[json objectForKey:@"event_type"] intValue];
 
     event.modified_num = [NSString stringWithFormat:@"%@", [json objectForKey:@"modified_num"]];
-    
+    event.ext_event_id = [NSString stringWithFormat:@"%@", [json objectForKey:@"ext_event_id"]];
     return event;
 }
-
-
 -(NSDictionary*)convent2Dic
 {
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];

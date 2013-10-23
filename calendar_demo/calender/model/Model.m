@@ -311,11 +311,11 @@ static Model * instance;
     }];
 }
 
-- (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents;
+- (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents callback:(void (^)(NSInteger error, NSMutableArray * respEvents))callback
 {
     for (int i = 0; i < [newEvents count]; i++)
     {
-        Event *evt = [newEvents objectAtIndex:i];
+        FeedEventEntity *evt = [newEvents objectAtIndex:i];
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
         [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
         NSString *startTime = [format stringFromDate:evt.start];
@@ -323,7 +323,7 @@ static Model * instance;
         NSString *createTime = [format stringFromDate:evt.created_on];
         NSAssert(createTime != nil, [evt.created_on description]);
         NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
-        [dic   setObject:@(5) forKey:@"event_type"];
+        [dic setObject:@(5) forKey:@"event_type"];
         [dic setObject:@(YES) forKey:@"confirmed"];
         [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
         if (createTime)
@@ -336,11 +336,11 @@ static Model * instance;
         }
         if (evt.is_all_day)
         {
-            [dic setObject:@(evt.is_all_day) forKey:@"is_all_day"];
+            [dic setObject:evt.is_all_day forKey:@"is_all_day"];
         }
-        if (evt.description)
+        if (evt.descript)
         {
-            [dic setObject:evt.description forKey:@"description"];
+            [dic setObject:evt.descript forKey:@"description"];
         }
         if (startTime)
         {
@@ -354,9 +354,9 @@ static Model * instance;
         {
             [dic setObject:evt.timezone forKey:@"timezone"];
         }
-        if (evt.location)
+        if (evt.locationName)
         {
-            [dic setObject:@{@"lat": @(evt.location.lat), @"lng":@(evt.location.lng),@"location":evt.location.location} forKey:@"location"];
+            [dic setObject:@{@"lat": @(0), @"lng":@(0),@"location":evt.locationName} forKey:@"location"];
         }
         [newEvents replaceObjectAtIndex:i withObject:dic];
     }
@@ -391,11 +391,12 @@ static Model * instance;
                 Event * newEvent = [Event parseEvent:dic];
                 [arr replaceObjectAtIndex:i withObject:newEvent];
             }
-
+            callback(0,arr);
         } else {
             
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             LOG_D(@"upload Calendar Event error=%@, resp:%@", error, aStr);
+            callback(-1,nil);
           
         }
     }];

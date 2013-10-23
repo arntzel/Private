@@ -23,6 +23,7 @@
         <attribute name="end" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="eventType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ext_event_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasModified" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="is_all_day" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,7 +65,7 @@
     </entity>
     <elements>
         <element name="ContactEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="FeedEventEntity" positionX="-218" positionY="72" width="128" height="388"/>
+        <element name="FeedEventEntity" positionX="-218" positionY="72" width="128" height="403"/>
         <element name="LocationEntity" positionX="-11" positionY="-189" width="128" height="120"/>
         <element name="MessageEntity" positionX="-189" positionY="-126" width="128" height="150"/>
         <element name="Setting" positionX="178" positionY="-144" width="128" height="75"/>
