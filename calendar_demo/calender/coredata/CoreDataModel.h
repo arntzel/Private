@@ -75,6 +75,8 @@
 - (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id;
 
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id;
+- (NSArray *)getFeedEventsWithEventType:(int)eventType WithHasModified:(BOOL)hasModified;
+
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 
