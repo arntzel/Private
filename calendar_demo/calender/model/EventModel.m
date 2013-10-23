@@ -113,6 +113,10 @@
             
             FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
             
+            if(entity == nil && evt.eventType == 5) {
+                entity = [model getFeedEventWithEventType:evt.eventType WithExtEventID:evt.ext_event_id];
+            }
+            
             if(evt.confirmed && [evt isDeclineEvent]) {
                 if(entity != nil) {
                     [model deleteFeedEventEntity2:entity];
