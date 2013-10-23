@@ -246,7 +246,7 @@
 {
     FeedEventEntity * event = [self getFeedEventEntity:indexPath];
     
-    if([event.eventType intValue] != 4) {
+    if( ![event isBirthdayEvent] ) {
 
         UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
         EventView * view;
@@ -326,7 +326,7 @@
 {
     FeedEventEntity * event = [self getFeedEventEntity:indexPath];
     
-    if([event.eventType intValue] == 4) {
+    if([event isBirthdayEvent] ) {
         return BirthdayEventView_Height;
     } else {
         return PlanView_HEIGHT;

@@ -56,7 +56,7 @@
     NSString * headerUrl = user.contact.avatar_url;
 
     //Birthday
-    if([event.eventType intValue] == 4) {
+    if( [event isBirthdayEvent] ) {
         headerUrl = event.thumbnail_url;
     }
 

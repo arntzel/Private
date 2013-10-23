@@ -111,7 +111,7 @@
     
     FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
 
-    if( [event.eventType intValue] != 4) {
+    if( ![event isBirthdayEvent] ) {
         EventView * view = [EventView createEventView];
 
         [view refreshView:event];
@@ -140,7 +140,7 @@
 
     FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
 
-    if([event.eventType intValue] == 4) {
+    if( [event isBirthdayEvent] ) {
         return BirthdayEventView_Height;
     } else {
         return PlanView_HEIGHT;

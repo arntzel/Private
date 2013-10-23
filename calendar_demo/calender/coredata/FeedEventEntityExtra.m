@@ -49,6 +49,19 @@
     return YES;
 }
 
+-(BOOL) isBirthdayEvent
+{
+    int eventType = [self.eventType intValue];
+    
+    return (eventType & FILTER_BIRTHDAY) != 0 ;
+}
+
+-(BOOL) isCalvinEvent
+{
+    int eventType = [self.eventType intValue];
+    return  (eventType & FILTER_IMCOMPLETE) != 0;
+}
+
 -(void) convertFromEvent:(Event*) event
 {
     self.id = [NSNumber numberWithInt:event.id];
@@ -88,6 +101,7 @@
     }
   
 }
+
 -(void) convertFromCalendarEvent:(Event*) event
 {
     self.id = [NSNumber numberWithInt:event.id];
@@ -103,7 +117,8 @@
     self.duration_hours = [NSNumber numberWithInt:event.duration_hours];
     self.duration_minutes = [NSNumber numberWithInt:event.duration_minutes];
     
-    self.eventType = [NSNumber numberWithInt:event.eventType];
+    int eventType = 0x00000001 << event.eventType;
+    self.eventType = [NSNumber numberWithInt:eventType];
     self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
     
     self.start = event.start;
