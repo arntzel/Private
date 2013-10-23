@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
-#define KEY_LASTUPDATETIME            @"lastUpdateTime"
-#define KEY_LASTUPDATETIMEOFFSET      @"lastUpdateTimeOffset"
+#define KEY_LASTUPDATETIME            @"lasteventUpdateTime"
 #define KEY_LOGINUSER                 @"loginUser"
 #define KEY_UNREADMESSAGECOUNT        @"unreadmessagecount"
 #define KEY_EVENTFILTERS              @"eventfilters"
 #define KEY_CONTACTUPDATETIME         @"lastcontactupdatetime"
-#define KEY_CONTACTUPDATETIMEOFFSET   @"lastcontactupdatetimeOffset"
 #define KEY_TIMEZONE                  @"timezone"
 
 @interface UserSetting : NSObject
@@ -50,5 +48,8 @@
 
 -(void) saveKey:(NSString *) key andIntValue:(int) value;
 -(int) getIntValue:(NSString *) key;
+
+-(void) saveKey:(NSString *) key andStringValue:(NSString *) value;
+-(NSString *) getStringValue:(NSString *) key;
 
 @end

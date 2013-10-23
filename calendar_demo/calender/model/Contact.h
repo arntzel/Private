@@ -28,6 +28,9 @@
 
 @property(strong) NSDate * modified;
 
+
+@property(strong) NSString * modified_num;
+
 -(NSString *) getReadableUsername;
 
 -(NSDictionary*)convent2Dic;

@@ -322,6 +322,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [searchBar endEditing:YES];
+    [self addSearchBarObj];
 }
 
 
@@ -344,7 +345,8 @@
 }
 
 - (void)rightNavBtnClick
-{    
+{
+    [self addSearchBarObj];
     NSArray * selectUsers = [self getSelectedUsers];
     
     [self.delegate setInVitePeopleArray:selectUsers];
@@ -425,9 +427,15 @@
 
 - (BOOL)tokenFieldShouldReturn:(JSTokenField *)tokenField
 {
-    [self addOjbToTokenFieldName:searchBar.textField.text Obj:nil];
-
+    [self addSearchBarObj];
     return NO;
+}
+
+- (void)addSearchBarObj
+{
+    if (searchBar.textField.text != nil && [searchBar.textField.text length] > 0) {
+        [self addOjbToTokenFieldName:searchBar.textField.text Obj:nil];
+    }
 }
 
 - (void)tokenFieldDidEndEditing:(JSTokenField *)tokenField

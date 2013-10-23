@@ -101,6 +101,8 @@
     
     event.eventType = [[json objectForKey:@"event_type"] intValue];
 
+    event.modified_num = [NSString stringWithFormat:@"%@", [json objectForKey:@"modified_num"]];
+    
     return event;
 }
 
