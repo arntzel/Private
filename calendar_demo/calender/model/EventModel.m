@@ -106,7 +106,6 @@
         
         for(Event * evt in events) {
             
-            LOG_D(@"evt.id:%d",evt.id);
             if([evt.modified_num compare:maxlastupdatetime] > 0) {
                 maxlastupdatetime = evt.modified_num;
             }
