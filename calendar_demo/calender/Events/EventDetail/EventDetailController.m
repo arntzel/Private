@@ -79,6 +79,7 @@
     
     self.event = nil;
     
+    navBar.delegate = nil;
     [navBar release];
     [photoView setScrollView:nil];
     [photoView setNavgation:nil];

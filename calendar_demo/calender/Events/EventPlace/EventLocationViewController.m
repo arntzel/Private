@@ -55,6 +55,12 @@
 
 }
 
+-(void) dealloc
+{
+    navBar.delegate = nil;
+    navBar = nil;
+}
+
 - (void)addNavBar
 {
     navBar = [EventDetailNavigationBar creatView];
