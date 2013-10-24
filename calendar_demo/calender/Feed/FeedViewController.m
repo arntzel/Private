@@ -288,12 +288,12 @@
         NSString * day = [Utils formateDay:now];
         [tableView scroll2SelectedDate:day];
     }
-    //[[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
+    [[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
 }
 
 - (void)uploadCalendarEvents1
 {
-    //[[[Model getInstance] getEventModel] uploadCalendarEvents];
+    [[[Model getInstance] getEventModel] uploadCalendarEvents];
 
 }
 @end
