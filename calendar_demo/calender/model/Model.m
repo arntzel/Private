@@ -342,15 +342,14 @@ static Model * instance;
     [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
     NSString *startTime = [format stringFromDate:evt.start];
     NSString *endTime = [format stringFromDate:evt.end];
-    NSString *createTime = [format stringFromDate:evt.created_on];
-    NSAssert(createTime != nil, [evt.created_on description]);
+    NSString *last_modified = [format stringFromDate:evt.last_modified];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
     [dic setObject:@(5) forKey:@"event_type"];
     [dic setObject:@(YES) forKey:@"confirmed"];
     [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
-    if (createTime)
+    if (last_modified)
     {
-        [dic setObject:createTime forKey:@"created_on"];
+        [dic setObject:last_modified forKey:@"last_modified"];
     }
     if (evt.title)
     {
@@ -390,11 +389,11 @@ static Model * instance;
         
         int status = httpResp.statusCode;
         
-        if(status == 201) {
+        if(status == 202) {
             
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            LOG_D(@"createEvent resp:%@", json);
+            LOG_D(@"update Event resp:%@", json);
             
             Event * newEvent = [Event parseEvent:json];
             callback(0, newEvent);
