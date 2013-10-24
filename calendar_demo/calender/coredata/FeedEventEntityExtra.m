@@ -141,6 +141,7 @@
     }
     self.ext_event_id = event.ext_event_id;
     self.hasModified = @(event.hasModified);
+    self.last_modified = event.last_modified;
     //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");
 }
 -(void)clearAttendee

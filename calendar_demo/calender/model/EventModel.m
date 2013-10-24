@@ -270,7 +270,7 @@
                     FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
                     if (eventEntity)
                     {
-                        if ([eventEntity.last_modified compare:event1.last_modified] == NSOrderedDescending)
+                        if ([eventEntity.last_modified compare:event1.last_modified] != NSOrderedSame)
                         {
                             event1.hasModified = YES;
                             [modifiedEvents addObject:event1];
