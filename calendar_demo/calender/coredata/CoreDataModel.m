@@ -650,7 +650,7 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     for (FeedEventEntity *tmp in results)
     {
-        NSLog(@"eventtype:%@ id:%@ ext_eveit_id:%@ last_modified:%@",tmp.eventType,tmp.id,tmp.ext_event_id,tmp.last_modified);
+        NSLog(@"eventtype:%@ id:%@ ext_eveit_id:%@ last_modified:%@ start_day:%@",tmp.eventType,tmp.id,tmp.ext_event_id,tmp.last_modified,tmp.start);
     
     }
    

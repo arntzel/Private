@@ -85,18 +85,17 @@
         
         if(error != 0) {
             
-            for(id<EventModelDelegate> delegate in delegates) {
-                [delegate onSynchronizeDataError:error];
-            }
-            
+//            for(id<EventModelDelegate> delegate in delegates) {
+//                [delegate onSynchronizeDataError:error];
+//            }
+            [self updateEventsFromCalendarApp];
             return;
         }
         
         if(events.count == 0) {
             LOG_D(@"synchronizedFromServer, no updated event");
-            for(id<EventModelDelegate> delegate in delegates) {
-                [delegate onSynchronizeDataCompleted];
-            }
+            [self updateEventsFromCalendarApp];
+           
             return;
         }
         
@@ -155,10 +154,11 @@
                                            userInfo:nil
                                             repeats:NO];
         } else {
-            
-            for(id<EventModelDelegate> delegate in delegates) {
-                [delegate onSynchronizeDataCompleted];
-            }
+            [self updateEventsFromCalendarApp];
+//            
+//            for(id<EventModelDelegate> delegate in delegates) {
+//                [delegate onSynchronizeDataCompleted];
+//            }
         }
     }];
 }
@@ -298,6 +298,9 @@
                 }
                 [model saveData];
                 [model notifyModelChange];
+                for(id<EventModelDelegate> delegate in delegates) {
+                    [delegate onSynchronizeDataCompleted];
+                }
                 NSLog(@"========after get event from iCal=========");
                 [model getFeedEventWithEventType:5];
                 

@@ -280,15 +280,19 @@
 
 -(void) onSynchronizeDataCompleted
 {
-    if(fristLoadData) {
-        LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
-        fristLoadData = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        NSDate * now = [Utils getCurrentDate];
-        NSString * day = [Utils formateDay:now];
-        [tableView scroll2SelectedDate:day];
-    }
-    [[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
+        if(fristLoadData) {
+            LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
+            fristLoadData = NO;
+            
+            NSDate * now = [Utils getCurrentDate];
+            NSString * day = [Utils formateDay:now];
+            [tableView scroll2SelectedDate:day];
+        }
+    });
+   
+    
 }
 
 - (void)uploadCalendarEvents1

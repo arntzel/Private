@@ -99,7 +99,9 @@
         [entity convertFromUser:atd];
         [self addAttendeesObject:entity];
     }
-  
+    self.ext_event_id = event.ext_event_id;
+    self.hasModified = @(event.hasModified);
+    self.last_modified = event.last_modified;
 }
 
 -(void) convertFromCalendarEvent:(Event*) event
