@@ -250,29 +250,6 @@ static CoreDataModel * instance;
     return results;
 
 }
--(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime
-{
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *managedObjectContext1 = [[NSManagedObjectContext alloc]init];
-    [managedObjectContext1 setPersistentStoreCoordinator:persistentStoreCoordinator];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext1];
-    [fetchRequest setEntity:entity];
-    
-    NSPredicate *predicate;
-    predicate = [NSPredicate predicateWithFormat:@"created_on = %@", createTime];
-    [fetchRequest setPredicate:predicate];
-    NSError *error;
-    NSArray * results = [managedObjectContext1 executeFetchRequest:fetchRequest error:&error];
-    LOG_D(@"error:%@",error);
-    if ([results count]>0)
-    {
-        return YES;
-    }
-
-    return NO;
-    
-}
 
 - (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id
 {
@@ -656,5 +633,28 @@ static CoreDataModel * instance;
     }
     return instance;
 }
+
+//========================================Test=====================================//
+- (void)getFeedEventWithEventType:(int)eventType
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    
+    int type = 0x00000001 << eventType;
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0", type];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (FeedEventEntity *tmp in results)
+    {
+        NSLog(@"eventtype:%@ id:%@ ext_eveit_id:%@ create_on:%@",tmp.eventType,tmp.id,tmp.ext_event_id,tmp.created_on);
+    
+    }
+   
+}
+
 
 @end

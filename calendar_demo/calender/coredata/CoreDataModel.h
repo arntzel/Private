@@ -63,7 +63,6 @@
 -(NSArray *) getContactEntitysWithID:(int) contactid;
 
 
--(BOOL) getFeedEventEntityWithCreateTime:(NSDate *) createTime;
 /**
  *  get the event from Calendar App.
  *
@@ -139,5 +138,6 @@
 
 
 -(void) reset;
-
+//========================================Test=====================================//
+- (void)getFeedEventWithEventType:(int)eventType;
 @end

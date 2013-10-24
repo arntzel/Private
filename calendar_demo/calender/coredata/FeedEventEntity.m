@@ -37,5 +37,6 @@
 //--------------add by Vale
 @dynamic ext_event_id;
 @dynamic hasModified;
+@dynamic last_modified;
 //--------------
 @end

@@ -106,77 +106,6 @@ static Model * instance;
  */
 -(void) createEvent:(Event *) evt andCallback:(void (^)(NSInteger error, Event * newEvt))callback
 {
-    /*
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-    
-    [dict setObject:[NSNumber numberWithBool:evt.allow_attendee_invite] forKey:@"allow_attendee_invite"];
-    [dict setObject:[NSNumber numberWithBool:evt.allow_new_dt] forKey:@"allow_new_dt"];
-
-    
-    NSMutableArray * jsonarray = [[NSMutableArray alloc] init];
-    for(Invitee * invitee in evt.invitees) {
-        [jsonarray addObject:[invitee convent2Dic]];
-    }
-    
-    [dic setObject:jsonarray forKey:@"invitees"];
-    
-    
-    jsonarray = [[NSMutableArray alloc] init];
-    for(ProposeStart * start in self.propose_starts) {
-        [jsonarray addObject:[start convent2Dic]];
-    }
-    
-    [dic setObject:jsonarray forKey:@"propose_starts"];
-    
-    
-
-    if(evt.attendees != nil) {
-        NSMutableArray * invitees =  [[NSMutableArray alloc] init];
-
-        for(int i=0; i<evt.attendees.count; i++) {
-            EventAttendee * atd = [evt.attendees objectAtIndex:i];
-
-            NSMutableDictionary * userDic = [[NSMutableDictionary alloc] init];
-            [userDic setObject:atd.user.email forKey:@"email"];
-            [userDic setObject:atd.user.username forKey:@"username"];
-
-            [invitees addObject:userDic];
-        }
-        
-        [dict setObject:invitees forKey:@"invitees"];
-    }
-
-    if(evt.location != nil) {
-        NSMutableDictionary * location =  [[NSMutableDictionary alloc] init];
-        [location setObject:evt.location.location forKey:@"location"];
-        [location setObject:[NSNumber numberWithFloat:evt.location.lat]  forKey:@"lat"];
-        [location setObject:[NSNumber numberWithFloat:evt.location.lng]  forKey:@"lng"];
-        [dict setObject:location forKey:@"location"];
-    }
-
-    [dict setObject:evt.description forKey:@"description"];
-    
-    [dict setObject:[NSNumber numberWithInt:evt.duration_days] forKey:@"duration_days"];
-    [dict setObject:[NSNumber numberWithInt:evt.duration_hours] forKey:@"duration_hours"];
-    [dict setObject:[NSNumber numberWithInt:evt.duration_minutes] forKey:@"duration_minutes"];
-    
-    [dict setObject:[NSNumber numberWithInt:0] forKey:@"event_type"];
-
-    [dict setObject:[NSNumber numberWithBool:evt.is_all_day] forKey:@"is_all_day"];
-    [dict setObject:[NSNumber numberWithBool:true] forKey:@"published"];
-
-    NSTimeZone * timezone = [NSTimeZone timeZoneWithName:evt.timezone];
-    NSDate * startDate = [Utils convertGMTDate:evt.start andTimezone:timezone];
-    NSString * start = [Utils formateDate:startDate];
-    [dict setObject:start forKey:@"start"];
-    [dict setObject:start forKey:@"end"];
-
-    
-    [dict setObject:evt.start_type forKey:@"start_type"];
-    [dict setObject:evt.thumbnail_url forKey:@"thumbnail_url"];
-    [dict setObject:evt.title forKey:@"title"];
-    [dict setObject:evt.timezone forKey:@"timezone"];
-    */
 
     NSDictionary * dict = [evt convent2Dic];
      
@@ -251,7 +180,7 @@ static Model * instance;
             // Fetch all events that match the predicate
             NSArray *events = [store eventsMatchingPredicate:predicate];
             NSMutableArray *_allEvents = [NSMutableArray array];
-            NSLog(@"events:%@",events);
+            //NSLog(@"events:%@",events);
             for (EKEvent *event in events)
             {
                 Event *event1 = [[Event alloc] init];
@@ -293,8 +222,8 @@ static Model * instance;
                 event1.published = YES;
                 event1.timezone = event.timeZone.name;
                 event1.title = event.title;
-                event1.created_on = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
-                LOG_D(@"event1.created_on:%@",event1.created_on);
+                event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
+                LOG_D(@"event1.created_on:%@",event1.last_modified);
                 [_allEvents addObject:event1];
                 
                 
@@ -320,15 +249,14 @@ static Model * instance;
         [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
         NSString *startTime = [format stringFromDate:evt.start];
         NSString *endTime = [format stringFromDate:evt.end];
-        NSString *createTime = [format stringFromDate:evt.created_on];
-        NSAssert(createTime != nil, [evt.created_on description]);
+        NSString *last_modified = [format stringFromDate:evt.last_modified];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
         [dic setObject:@(5) forKey:@"event_type"];
         [dic setObject:@(YES) forKey:@"confirmed"];
         [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
-        if (createTime)
+        if (last_modified)
         {
-            [dic setObject:createTime forKey:@"created_on"];
+            [dic setObject:last_modified forKey:@"last_modified"];
         }
         if (evt.title)
         {
