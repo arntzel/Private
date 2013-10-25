@@ -122,8 +122,8 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     
     
-    NSDate * lastupdatetime =  [[UserSetting getInstance] getLastUpdatedTime];
-    if(lastupdatetime == nil) {
+    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+    if(last_modify_num == nil) {
 
         fristLoadData = YES;
         [[[Model getInstance] getEventModel] synchronizedFromServer];
