@@ -19,7 +19,7 @@
                                            NavgationBarDelegate>
 {
     JSTokenField *searchBar;
-    NSArray * selectedUsers;
+    NSMutableArray * selectedUsers;
     
     NSMutableArray * calvinUsers;
     NSMutableArray * calvinSearchedUsers;
@@ -141,6 +141,9 @@
                     
                     [people release];
                 }
+                
+                [self addLastManuInputContact];
+                
                 [self refreshTableView];
                
             });
@@ -148,13 +151,12 @@
             
         }];
     });
-    
-    
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
 {
-    selectedUsers = [_selectedUsers retain];
+    selectedUsers = [[NSMutableArray alloc] init];
+    [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
 }
 
 
@@ -193,10 +195,21 @@
 {
     for (Contact* selectedUser in selectedUsers) {
         if (selectedUser.id == user.id) {
+            [selectedUsers removeObject:selectedUser];
             return YES;
         }
     }
     return NO;
+}
+
+- (void)addLastManuInputContact
+{
+    for (Contact* selectedUser in selectedUsers) {
+        AddEventInvitePeople *people = [[[AddEventInvitePeople alloc] init] autorelease];;
+        people.user = [[[Contact alloc] init] autorelease];
+        people.user.email = selectedUser.email;
+        [self addOjbToTokenFieldName:people.user.email Obj:people];
+    }
 }
 
 - (void)refreshTableView
@@ -322,7 +335,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [searchBar endEditing:YES];
-    [self addSearchBarObj];
 }
 
 
