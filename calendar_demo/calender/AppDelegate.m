@@ -208,8 +208,8 @@
 
     [[[Model getInstance] getEventModel] checkContactUpdate];
     
-    [[[Model getInstance] getEventModel] uploadContacts];
-    //[[[Model getInstance] getEventModel] updateEventsFromCalendarApp];
+    //[[[Model getInstance] getEventModel] uploadContacts];
+    
 }
 
 

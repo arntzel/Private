@@ -398,25 +398,37 @@
     {
         return;
     }
-    CoreDataModel * model = [CoreDataModel getInstance];
-    NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
-    [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (respContacts && [respContacts count]>0)
-        {
-            CoreDataModel * model = [CoreDataModel getInstance];
-            for(Contact * contact in respContacts)
-            {
-                LOG_D(@"contact.email:%@",contact.email);
-                LOG_D(@"contact.phone:%@",contact.phone);
-                [model deleteContactEntityWith:contact.phone andEmail:contact.email];
-                ContactEntity *   enity = [model createEntity:@"ContactEntity"];
-                [enity convertContact:contact];
-            }
+        CoreDataModel * model = [CoreDataModel getInstance];
+        NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
             
-            [model saveData];
-        }
-    }];
+            [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (respContacts && [respContacts count]>0)
+                    {
+                        CoreDataModel * model = [CoreDataModel getInstance];
+                        for(Contact * contact in respContacts)
+                        {
+                            LOG_D(@"contact.email:%@",contact.email);
+                            LOG_D(@"contact.phone:%@",contact.phone);
+                            [model deleteContactEntityWith:contact.phone andEmail:contact.email];
+                            ContactEntity *   enity = [model createEntity:@"ContactEntity"];
+                            [enity convertContact:contact];
+                        }
+                        
+                        [model saveData];
+                    }
+                });
+                
+            }];
+        });
+        
+    });
+    
 }
 
 -(NSString *) getSecondsFromEpoch

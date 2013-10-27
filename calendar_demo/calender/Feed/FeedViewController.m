@@ -297,7 +297,7 @@
 
 - (void)uploadCalendarEvents1
 {
-    [[[Model getInstance] getEventModel] uploadCalendarEvents];
+    //[[[Model getInstance] getEventModel] uploadCalendarEvents];
 
 }
 @end

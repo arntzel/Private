@@ -60,6 +60,11 @@
 		34B1F1D117F8FCE200AA5C97 /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F1A017F8FCE200AA5C97 /* UIView+LoadFromNib.m */; };
 		34B1F1D317F8FD3F00AA5C97 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */; };
 		34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F1D517F9062E00AA5C97 /* SettingsModel.m */; };
+		34CC551F181CB7FB00E23246 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CC551E181CB7FB00E23246 /* XCTest.framework */; };
+		34CC5520181CB7FB00E23246 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
+		34CC5521181CB7FB00E23246 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
+		34CC5527181CB7FC00E23246 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CC5525181CB7FC00E23246 /* InfoPlist.strings */; };
+		34CC5529181CB7FC00E23246 /* Calvin_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CC5528181CB7FC00E23246 /* Calvin_Tests.m */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -459,6 +464,16 @@
 		94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FDD7E617ED796A000FB797 /* event_detail_invitee_time_tick.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		34CC552B181CB7FC00E23246 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D6151981734A391003D72B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D61519F1734A391003D72B0;
+			remoteInfo = Calvin;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -523,6 +538,12 @@
 		34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		34B1F1D417F9062E00AA5C97 /* SettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsModel.h; sourceTree = "<group>"; };
 		34B1F1D517F9062E00AA5C97 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
+		34CC551D181CB7FB00E23246 /* Calvin Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calvin Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34CC551E181CB7FB00E23246 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		34CC5524181CB7FC00E23246 /* Calvin Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Calvin Tests-Info.plist"; sourceTree = "<group>"; };
+		34CC5526181CB7FC00E23246 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34CC5528181CB7FC00E23246 /* Calvin_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calvin_Tests.m; sourceTree = "<group>"; };
+		34CC552A181CB7FC00E23246 /* Calvin Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calvin Tests-Prefix.pch"; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1115,6 +1136,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		34CC551A181CB7FB00E23246 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CC551F181CB7FB00E23246 /* XCTest.framework in Frameworks */,
+				34CC5521181CB7FB00E23246 /* UIKit.framework in Frameworks */,
+				34CC5520181CB7FB00E23246 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D61519D1734A391003D72B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1231,6 +1262,25 @@
 			path = Settings_Img;
 			sourceTree = "<group>";
 		};
+		34CC5522181CB7FC00E23246 /* Calvin Tests */ = {
+			isa = PBXGroup;
+			children = (
+				34CC5528181CB7FC00E23246 /* Calvin_Tests.m */,
+				34CC5523181CB7FC00E23246 /* Supporting Files */,
+			);
+			path = "Calvin Tests";
+			sourceTree = "<group>";
+		};
+		34CC5523181CB7FC00E23246 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34CC5524181CB7FC00E23246 /* Calvin Tests-Info.plist */,
+				34CC5525181CB7FC00E23246 /* InfoPlist.strings */,
+				34CC552A181CB7FC00E23246 /* Calvin Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1300,7 @@
 				769ABA2717DF51CE0033E677 /* Account */,
 				769AB9FF17DF514C0033E677 /* CoreData */,
 				769AB92617DF51340033E677 /* Resource */,
+				34CC5522181CB7FC00E23246 /* Calvin Tests */,
 				3D6151A21734A391003D72B0 /* Frameworks */,
 				3D6151A11734A391003D72B0 /* Products */,
 			);
@@ -1259,6 +1310,7 @@
 			isa = PBXGroup;
 			children = (
 				3D6151A01734A391003D72B0 /* Calvin.app */,
+				34CC551D181CB7FB00E23246 /* Calvin Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1303,6 +1355,7 @@
 				3D6151A31734A391003D72B0 /* UIKit.framework */,
 				3D6151A51734A391003D72B0 /* Foundation.framework */,
 				3D6151A71734A391003D72B0 /* CoreGraphics.framework */,
+				34CC551E181CB7FB00E23246 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2319,6 +2372,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		34CC551C181CB7FB00E23246 /* Calvin Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34CC552D181CB7FC00E23246 /* Build configuration list for PBXNativeTarget "Calvin Tests" */;
+			buildPhases = (
+				34CC5519181CB7FB00E23246 /* Sources */,
+				34CC551A181CB7FB00E23246 /* Frameworks */,
+				34CC551B181CB7FB00E23246 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34CC552C181CB7FC00E23246 /* PBXTargetDependency */,
+			);
+			name = "Calvin Tests";
+			productName = "Calvin Tests";
+			productReference = 34CC551D181CB7FB00E23246 /* Calvin Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3D61519F1734A391003D72B0 /* Calvin */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D6151C31734A391003D72B0 /* Build configuration list for PBXNativeTarget "Calvin" */;
@@ -2346,6 +2417,9 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "fang xiang";
 				TargetAttributes = {
+					34CC551C181CB7FB00E23246 = {
+						TestTargetID = 3D61519F1734A391003D72B0;
+					};
 					3D61519F1734A391003D72B0 = {
 						DevelopmentTeam = GGN58EVK65;
 					};
@@ -2448,11 +2522,20 @@
 			projectRoot = "";
 			targets = (
 				3D61519F1734A391003D72B0 /* Calvin */,
+				34CC551C181CB7FB00E23246 /* Calvin Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		34CC551B181CB7FB00E23246 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CC5527181CB7FC00E23246 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D61519E1734A391003D72B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2707,6 +2790,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		34CC5519181CB7FB00E23246 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CC5529181CB7FC00E23246 /* Calvin_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D61519C1734A391003D72B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2906,7 +2997,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		34CC552C181CB7FC00E23246 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D61519F1734A391003D72B0 /* Calvin */;
+			targetProxy = 34CC552B181CB7FC00E23246 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		34CC5525181CB7FC00E23246 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CC5526181CB7FC00E23246 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		769ABB5117DF53C00033E677 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2918,6 +3025,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		34CC552E181CB7FC00E23246 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Calvin.app/Calvin";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Calvin Tests/Calvin Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Calvin Tests/Calvin Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		34CC552F181CB7FC00E23246 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Calvin.app/Calvin";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Calvin Tests/Calvin Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Calvin Tests/Calvin Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		3D6151C11734A391003D72B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2983,7 +3152,7 @@
 			buildSettings = {
 				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/calender\"",
@@ -3031,6 +3200,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		34CC552D181CB7FC00E23246 /* Build configuration list for PBXNativeTarget "Calvin Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34CC552E181CB7FC00E23246 /* Debug */,
+				34CC552F181CB7FC00E23246 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3D61519B1734A391003D72B0 /* Build configuration list for PBXProject "Calvin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

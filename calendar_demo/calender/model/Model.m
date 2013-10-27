@@ -160,7 +160,7 @@ static Model * instance;
             
             // Create the start date components
             NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
-            oneDayAgoComponents.year = -1;
+            oneDayAgoComponents.month = -2;
             NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
                                                           toDate:[NSDate date]
                                                          options:0];
@@ -391,12 +391,28 @@ static Model * instance;
         
         if(status == 202) {
             
-            NSError * err;
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            LOG_D(@"update Event resp:%@", json);
-            
-            Event * newEvent = [Event parseEvent:json];
-            callback(0, newEvent);
+            if (data)
+            {//if data is nil, it will crash...
+                NSError * err;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+                LOG_D(@"update Event resp:%@", json);
+                
+                if (error)
+                {
+                    callback(-1, nil);
+                }
+                else
+                {
+                    Event * newEvent = [Event parseEvent:json];
+                    callback(0, newEvent);
+                }
+                
+            }
+            else
+            {
+                callback(-1, nil);
+            }
+           
             
         } else {
             

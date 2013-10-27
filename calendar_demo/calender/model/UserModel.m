@@ -440,7 +440,7 @@ static UserModel * instance;
          NSMutableData *postData = [NSMutableData dataWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
          
          [request setHTTPBody:postData];
-         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
              
              NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
              
