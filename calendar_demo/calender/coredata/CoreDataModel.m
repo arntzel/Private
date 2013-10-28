@@ -172,7 +172,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start = NULL"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"confirmed = false"];
     [fetchRequest setPredicate:predicate];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_on" ascending:NO];
@@ -208,11 +208,11 @@ static CoreDataModel * instance;
     NSSortDescriptor *sortDescriptor;
     
     if(follow) {
-        predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
+        predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
         //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
     } else {
-        predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@) AND (eventType & %d)>0", date, eventTypeFilter];
+        predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0", date, eventTypeFilter];
         //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
     }
@@ -240,7 +240,7 @@ static CoreDataModel * instance;
     NSPredicate *predicate;
     NSSortDescriptor *sortDescriptor;
     
-    predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@) AND (start < %@)", beginDate, endDate];
+    predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (start < %@)", beginDate, endDate];
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
     
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
@@ -352,7 +352,7 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"( ((start >= %@) AND (start <= %@))  OR ((end >= %@) AND (end <= %@)) ) AND (eventType & %d)>0", start,  end, start,  end, FILTER_IMCOMPLETE];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"( (confirmed = true) AND ((start >= %@) AND (start <= %@))  OR ((end >= %@) AND (end <= %@)) ) AND (eventType & %d)>0", start,  end, start,  end, FILTER_IMCOMPLETE];
     [fetchRequest setPredicate:predicate];
     return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
 }
@@ -386,7 +386,7 @@ static CoreDataModel * instance;
     fetchRequest.resultType = NSDictionaryResultType;
     
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(start != NULL AND start >= %@ AND start < %@)", beginDate, endDate];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(confirmed = true AND start >= %@ AND start < %@)", beginDate, endDate];
     //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(start != NULL)"];
     
     [fetchRequest setPredicate:predicate];
