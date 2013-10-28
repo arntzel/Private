@@ -360,6 +360,7 @@
     [invitePeople setSelectedUser:invitedPeoples];
     [invitePeople setType:AddInviteeTypeAll];
     [self.navigationController pushViewController:invitePeople animated:YES];
+    [invitePeople release];
 }
 
 - (void)setInVitePeopleArray:(NSArray *)inviteArray

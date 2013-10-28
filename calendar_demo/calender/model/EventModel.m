@@ -72,14 +72,14 @@
     
     [self setSynchronizeData:YES];
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
-    
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
-        
+
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
 
-        [self setSynchronizeData:NO];
+       
         
         if(![[UserModel getInstance] isLogined]) {
+            [self setSynchronizeData:NO];
             return;
         }
         
@@ -260,50 +260,50 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSMutableArray *newEvents = [NSMutableArray array];
-                NSMutableArray *modifiedEvents = [NSMutableArray array];
-                CoreDataModel * model = [CoreDataModel getInstance];
-                NSLog(@"========before get event from iCal=========");
-                [model getFeedEventWithEventType:5];
-                for (Event *event1 in allEvents)
+                if (allEvents==nil || [allEvents count]==0)
                 {
-                    FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
-                    if (eventEntity)
-                    {
-                        if ([eventEntity.last_modified compare:event1.last_modified] != NSOrderedSame)
-                        {
-                            event1.hasModified = YES;
-                            [modifiedEvents addObject:event1];
-                        }
-                    }
-                    else
-                    {
-                        [newEvents addObject:event1];
-                    }
                     
                 }
-                for (Event *newEvent in newEvents)
+                else
                 {
-                    FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                    [entity convertFromCalendarEvent:newEvent];
-                    [model updateFeedEventEntity:entity];
+                    CoreDataModel * model = [CoreDataModel getInstance];
+                    NSLog(@"========before get event from iCal=========");
+                    [model getFeedEventWithEventType:5];
+                    for (Event *event1 in allEvents)
+                    {
+                        FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
+                        if (eventEntity)
+                        {
+                            NSTimeInterval entitySec = (int)[eventEntity.last_modified timeIntervalSince1970];
+                            NSTimeInterval eventSec = (int)[event1.last_modified timeIntervalSince1970];
+                            if (entitySec < eventSec)
+                            {
+                                
+                                NSNumber *tmpID = eventEntity.id;
+                                
+                                [eventEntity convertFromCalendarEvent:event1];
+                                eventEntity.id = tmpID;
+                                eventEntity.hasModified = @(YES);
+                                [model updateFeedEventEntity:eventEntity];
+                            }
+                        }
+                        else
+                        {
+                            FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                            [entity convertFromCalendarEvent:event1];
+                            [model updateFeedEventEntity:entity];
+                        }
+                        
+                    }
+                    
+                    [model saveData];
+                    [model notifyModelChange];
                 }
-                for (Event *modifiedEvent in modifiedEvents)
+                [self setSynchronizeData:NO];
+                for(id<EventModelDelegate> delegate in delegates)
                 {
-                    FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:modifiedEvent.ext_event_id];
-                    NSNumber *tmpID = oldEntity.id;
-                    [oldEntity convertFromCalendarEvent:modifiedEvent];
-                    oldEntity.id = tmpID;
-                    [model updateFeedEventEntity:oldEntity];
-                }
-                [model saveData];
-                [model notifyModelChange];
-                for(id<EventModelDelegate> delegate in delegates) {
                     [delegate onSynchronizeDataCompleted];
                 }
-                NSLog(@"========after get event from iCal=========");
-                [model getFeedEventWithEventType:5];
-                
             });
             
         }];
@@ -312,12 +312,14 @@
 
 - (void)uploadCalendarEvents
 {
+    if(![[UserModel getInstance] isLogined])
+    {
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         
         CoreDataModel * model = [CoreDataModel getInstance];
-        NSLog(@"========before upload=========");
-        [model getFeedEventWithEventType:5];
-        NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithID:0];
+        NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithID:0 WithLimit:40];
         if (arrFromDB!=nil && [arrFromDB count]>0)
         {
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -325,29 +327,24 @@
                 [[Model getInstance] uploadEventsFromCalendarApp:[NSMutableArray arrayWithArray:arrFromDB] callback:^(NSInteger error, NSMutableArray *respEvents) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-                        
                         if (respEvents && [respEvents count]>0)
                         {
-                            NSLog(@"========before modify=========");
-                            [model getFeedEventWithEventType:5];
+                           
                             for (Event *respEvent in respEvents)
                             {
                                 //change the event id after uploading ical data.
-                                
                                 FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:respEvent.ext_event_id];
                                 [oldEntity convertFromCalendarEvent:respEvent];
                                 [model updateFeedEventEntity:oldEntity];
-                                //LOG_D(@"oldEntity.id:%@",oldEntity.id);
+                                
                                 
                             }
                             
                             [model saveData];
-                            NSLog(@"========after modify=========");
-                            [model getFeedEventWithEventType:5];
+                            LOG_D(@"================ finish uploading events =============");
                             
                         }
                         
-                        [self modifyCalendarEventsFromServer];
                     });
                 }];
             });
@@ -365,7 +362,12 @@
 
 - (void)modifyCalendarEventsFromServer
 {
+    if(![[UserModel getInstance] isLogined])
+    {
+        return;
+    }
     CoreDataModel * model = [CoreDataModel getInstance];
+    [model getFeedEventWithEventType:5];
     NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithHasModified:YES];
     if (arrFromDB!=nil && [arrFromDB count]>0)
     {
@@ -381,7 +383,6 @@
                     [oldEntity convertFromCalendarEvent:modifiedEvent];
                     oldEntity.hasModified = NO;
                     [model saveData];
-                    [self modifyCalendarEventsFromServer];
                 });
                 
             }];

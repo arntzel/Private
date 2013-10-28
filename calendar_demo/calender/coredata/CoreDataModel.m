@@ -253,6 +253,10 @@ static CoreDataModel * instance;
 
 - (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id
 {
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -271,8 +275,12 @@ static CoreDataModel * instance;
     return nil;
 }
 
-- (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id
+- (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id WithLimit:(int)limit
 {
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -283,7 +291,9 @@ static CoreDataModel * instance;
     //predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
     predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && id=%@", type, @(id)];
     [fetchRequest setPredicate:predicate];
+    [fetchRequest setFetchLimit:limit];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSAssert([results count]<=limit,@"fetch data error");
     if ([results count] > 0)
     {
         return results;
@@ -293,6 +303,10 @@ static CoreDataModel * instance;
 
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithHasModified:(BOOL)hasModified
 {
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -637,6 +651,10 @@ static CoreDataModel * instance;
 //========================================Test=====================================//
 - (void)getFeedEventWithEventType:(int)eventType
 {
+    if (!managedObjectContext)
+    {
+        return ;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -650,7 +668,7 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     for (FeedEventEntity *tmp in results)
     {
-        NSLog(@"eventtype:%@ id:%@ ext_eveit_id:%@ last_modified:%@ start_day:%@",tmp.eventType,tmp.id,tmp.ext_event_id,tmp.last_modified,tmp.start);
+        NSLog(@"eventtype:%@ id:%@ ext_eveit_id:%@ last_modified:%@ start_day:%@ hasModified:%@",tmp.eventType,tmp.id,tmp.ext_event_id,tmp.last_modified,tmp.start,tmp.hasModified);
     
     }
    

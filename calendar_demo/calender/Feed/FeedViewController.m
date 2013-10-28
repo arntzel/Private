@@ -297,7 +297,8 @@
 
 - (void)uploadCalendarEvents1
 {
-    //[[[Model getInstance] getEventModel] uploadCalendarEvents];
+    LOG_D(@"================start upload events=============");
+    [[[Model getInstance] getEventModel] uploadCalendarEvents];
 
 }
 @end

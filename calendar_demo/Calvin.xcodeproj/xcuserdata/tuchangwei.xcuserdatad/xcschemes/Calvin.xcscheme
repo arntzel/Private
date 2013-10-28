@@ -73,6 +73,13 @@
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "NSZombies"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

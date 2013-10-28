@@ -109,41 +109,36 @@
         [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
             
             LOG_D(@"getInvitePeopleData");
+            CoreDataModel * model = [CoreDataModel getInstance];
+            NSArray * contacts = [model getAllContactEntity];
             
+            User * me = [[UserModel getInstance] getLoginUser];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            for(ContactEntity * entity in contacts) {
                 
-                CoreDataModel * model = [CoreDataModel getInstance];
-                NSArray * contacts = [model getAllContactEntity];
-                
-                User * me = [[UserModel getInstance] getLoginUser];
-                
-                for(ContactEntity * entity in contacts) {
-                    
-                    if([me.email isEqualToString:entity.email]) {
-                        //exclude creator in the event
-                        continue;
-                    }
-                    
-                    AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-                    
-                    people.user = [entity getContact];
-                    people.selected = [self isUserSelected:people.user];
-                    if (people.selected) {
-                        [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
-                    }
-                    
-                    if(people.user.calvinUser) {
-                        [calvinUsers addObject:people];
-                    } else {
-                        [contactUsers addObject:people];
-                    }
-                    
-                    [people release];
+                if([me.email isEqualToString:entity.email]) {
+                    //exclude creator in the event
+                    continue;
                 }
-                [self refreshTableView];
-               
-            });
+                
+                AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+                
+                people.user = [entity getContact];
+                people.selected = [self isUserSelected:people.user];
+                if (people.selected) {
+                    [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+                }
+                
+                if(people.user.calvinUser) {
+                    [calvinUsers addObject:people];
+                } else {
+                    [contactUsers addObject:people];
+                }
+                
+                [people release];
+            }
+            [self refreshTableView];
+          
             
             
         }];

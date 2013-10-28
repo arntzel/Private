@@ -149,95 +149,112 @@ static Model * instance;
 -(void)getEventsFromCalendarApp:(void (^)(NSMutableArray * allEvents))callback
 {
     EKEventStore *store = [[EKEventStore alloc] init];
-    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        
-        if (granted)
-        {
+    if ([store respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+    {
+        [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             
-            NSLog(@"granted suc");
-            // Get the appropriate calendar
-            NSCalendar *calendar = [NSCalendar currentCalendar];
-            
-            // Create the start date components
-            NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
-            oneDayAgoComponents.month = -2;
-            NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
-                                                          toDate:[NSDate date]
-                                                         options:0];
-            
-            // Create the end date components
-            NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
-            oneYearFromNowComponents.year = 1;
-            NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
-                                                               toDate:[NSDate date]
-                                                              options:0];
-            
-            // Create the predicate from the event store's instance method
-            NSPredicate *predicate = [store predicateForEventsWithStartDate:oneDayAgo
-                                                                    endDate:oneYearFromNow
-                                                                  calendars:nil];
-            
-            // Fetch all events that match the predicate
-            NSArray *events = [store eventsMatchingPredicate:predicate];
-            NSMutableArray *_allEvents = [NSMutableArray array];
-            //NSLog(@"events:%@",events);
-            for (EKEvent *event in events)
+            if (granted)
             {
-                Event *event1 = [[Event alloc] init];
-                event1.ext_event_id = event.eventIdentifier;
-                event1.eventType = 5;
-                event1.description = event.notes;
-                event1.is_all_day = event.isAllDay;
-                NSMutableArray * invitees = [[NSMutableArray alloc] init];
-                for(EKParticipant * user in event.attendees)
-                {
-                    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
-                    ABRecordRef contactInfo = [user ABRecordWithAddressBook:addressBook];
-                    
-                    
-                    ABMutableMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
-                    if (ABMultiValueGetCount(emailProperty) > 0)
-                    {
-                        NSString *email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
-                        LOG_D(@"get email from Contacts App:%@",email);
-                        Invitee * invitee = [[Invitee alloc] init];
-                        invitee.email = email;
-                        [invitees addObject:invitee];
-                    }
-                    
-                }
                 
-                event1.invitees = invitees;
-            
-                if (event.location)
+                NSLog(@"granted suc");
+                // Get the appropriate calendar
+                NSCalendar *calendar = [NSCalendar currentCalendar];
+                
+                // Create the start date components
+                NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
+                oneDayAgoComponents.month = -2;
+                NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
+                                                              toDate:[NSDate date]
+                                                             options:0];
+                
+                // Create the end date components
+                NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
+                oneYearFromNowComponents.month = 2;
+                NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
+                                                                   toDate:[NSDate date]
+                                                                  options:0];
+                
+                // Create the predicate from the event store's instance method
+                NSPredicate *predicate = [store predicateForEventsWithStartDate:oneDayAgo
+                                                                        endDate:oneYearFromNow
+                                                                      calendars:nil];
+                
+                // Fetch all events that match the predicate
+                NSArray *events = [store eventsMatchingPredicate:predicate];
+                NSMutableArray *_allEvents = [[NSMutableArray alloc] init];
+                //NSLog(@"events:%@",events);
+                for (EKEvent *event in events)
                 {
-                    Location *loc = [[Location alloc] init];
-                    loc.location = event.location;
-                    event1.location = loc;
+                    Event *event1 = [[Event alloc] init];
+                    event1.ext_event_id = event.eventIdentifier;
+                    event1.eventType = 5;
+                    event1.description = event.notes;
+                    event1.is_all_day = event.isAllDay;
+//                    if ([event.attendees count]>0)
+//                    {
+//                        NSMutableArray * invitees = [[NSMutableArray alloc] init];
+//                        for(EKParticipant * user in event.attendees)
+//                        {
+//                            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
+//                            ABRecordRef contactInfo = [user ABRecordWithAddressBook:addressBook];
+//                            
+//                            
+//                            ABMutableMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+//                            if (ABMultiValueGetCount(emailProperty) > 0)
+//                            {
+//                                NSString *email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
+//                                LOG_D(@"get email from Contacts App:%@",email);
+//                                Invitee * invitee = [[Invitee alloc] init];
+//                                invitee.email = email;
+//                                [invitees addObject:invitee];
+//                            }
+//                            
+//                        }
+//                        
+//                        event1.invitees = invitees;
+//                    }
+                    if (event.location)
+                    {
+                        Location *loc = [[Location alloc] init];
+                        loc.location = event.location;
+                        event1.location = loc;
+                    }
+                    event1.start = [Utils convertGMTDate:event.startDate andTimezone:event.timeZone];
+                    LOG_D(@"event1.start:%@",event1.start);
+                    event1.end = [Utils convertGMTDate:event.endDate andTimezone:event.timeZone];
+                    LOG_D(@"event1.end:%@",event1.end);
+                    event1.published = YES;
+                    event1.timezone = event.timeZone.name;
+                    event1.title = event.title;
+                    event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
+                    LOG_D(@"event1.last_modified:%@",event1.last_modified);
+                    [_allEvents addObject:event1];
+                    
+                    
                 }
-                event1.start = [Utils convertGMTDate:event.startDate andTimezone:event.timeZone];
-                LOG_D(@"event1.start:%@",event1.start);
-                event1.end = [Utils convertGMTDate:event.endDate andTimezone:event.timeZone];
-                LOG_D(@"event1.end:%@",event1.end);
-                event1.published = YES;
-                event1.timezone = event.timeZone.name;
-                event1.title = event.title;
-                event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
-                LOG_D(@"event1.created_on:%@",event1.last_modified);
-                [_allEvents addObject:event1];
+                if ([_allEvents count]==0)
+                {
+                    callback(nil);
+                }
+                else
+                {
+                    callback(_allEvents);
+                }
                 
                 
             }
-            
-            callback(_allEvents);
-            
-        }
-        else
-        {
-            NSLog(@"granted failed");
-            callback(nil);
-        }
-    }];
+            else
+            {
+                NSLog(@"granted failed");
+                callback(nil);
+            }
+        }];
+    }
+    else
+    {
+        callback(nil);
+    }
+   
 }
 
 - (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents callback:(void (^)(NSInteger error, NSMutableArray * respEvents))callback
@@ -253,7 +270,10 @@ static Model * instance;
         NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
         [dic setObject:@(5) forKey:@"event_type"];
         [dic setObject:@(YES) forKey:@"confirmed"];
-        [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
+        if (evt.ext_event_id)
+        {
+            [dic setObject:evt.ext_event_id forKey:@"ext_event_id"];
+        }
         if (last_modified)
         {
             [dic setObject:last_modified forKey:@"last_modified"];
@@ -307,10 +327,21 @@ static Model * instance;
 
         int status = httpResp.statusCode;
 
-        if(status == 202) {
+        if(status == 202 && error==nil)
+        {
 
+            if (!data)
+            {
+                callback(-1,nil);
+                return ;
+            }
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            if (error)
+            {
+                callback(-1,nil);
+                return ;
+            }
             LOG_D(@"upload Calendar Event resp:%@", json);
             NSMutableArray *arr = [NSMutableArray arrayWithArray:[json objectForKey:@"objects"]];
             for (int i = 0; i<[arr count]; i++)
@@ -320,7 +351,9 @@ static Model * instance;
                 [arr replaceObjectAtIndex:i withObject:newEvent];
             }
             callback(0,arr);
-        } else {
+        }
+        else
+        {
             
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             LOG_D(@"upload Calendar Event error=%@, resp:%@", error, aStr);

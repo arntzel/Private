@@ -478,23 +478,27 @@ static UserModel * instance;
 {
     [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr) {
         
-        if (contactsArr)
-        {
-            CoreDataModel * model = [CoreDataModel getInstance];
-            for(Contact * contact in contactsArr)
-            {
-
-                
-                if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
-                {
-                    ContactEntity * enity = [model createEntity:@"ContactEntity"];
-                    [enity convertContact:contact];
-                }
-            }
+        dispatch_async(dispatch_get_main_queue(), ^{
             
-            [model saveData];
-        }
-       callback(0,contactsArr);
+            if (contactsArr)
+            {
+                CoreDataModel * model = [CoreDataModel getInstance];
+                for(Contact * contact in contactsArr)
+                {
+                    
+                    
+                    if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
+                    {
+                        ContactEntity * enity = [model createEntity:@"ContactEntity"];
+                        [enity convertContact:contact];
+                    }
+                }
+                
+                [model saveData];
+            }
+            callback(0,contactsArr);
+
+        });
     }];
     
 //    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
