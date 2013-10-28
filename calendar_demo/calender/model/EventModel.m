@@ -73,7 +73,8 @@
     [self setSynchronizeData:YES];
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
-
+        
+        [self setSynchronizeData:NO];
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
 
        
@@ -154,11 +155,12 @@
                                            userInfo:nil
                                             repeats:NO];
         } else {
-            [self updateEventsFromCalendarApp];
-//            
-//            for(id<EventModelDelegate> delegate in delegates) {
-//                [delegate onSynchronizeDataCompleted];
-//            }
+            
+            //[self updateEventsFromCalendarApp];
+            
+            for(id<EventModelDelegate> delegate in delegates) {
+                [delegate onSynchronizeDataCompleted];
+            }
         }
     }];
 }
@@ -260,6 +262,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
+                
                 if (allEvents==nil || [allEvents count]==0)
                 {
                     
@@ -299,7 +302,7 @@
                     [model saveData];
                     [model notifyModelChange];
                 }
-                [self setSynchronizeData:NO];
+                
                 for(id<EventModelDelegate> delegate in delegates)
                 {
                     [delegate onSynchronizeDataCompleted];

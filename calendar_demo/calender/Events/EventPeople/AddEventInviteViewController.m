@@ -104,11 +104,11 @@
 
 - (void)getAllInvitePeople
 {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
-        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
-            
-            LOG_D(@"getInvitePeopleData");
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        
+//        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
+//            
+//            LOG_D(@"getInvitePeopleData");
             CoreDataModel * model = [CoreDataModel getInstance];
             NSArray * contacts = [model getAllContactEntity];
             
@@ -141,8 +141,8 @@
           
             
             
-        }];
-    });
+//        }];
+//    });
     
     
 }

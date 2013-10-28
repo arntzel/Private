@@ -169,7 +169,7 @@ static Model * instance;
                 
                 // Create the end date components
                 NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
-                oneYearFromNowComponents.month = 2;
+                oneYearFromNowComponents.month = 10;
                 NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
                                                                    toDate:[NSDate date]
                                                                   options:0];
