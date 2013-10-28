@@ -2,7 +2,7 @@
 //  FeedEventEntity.h
 //  Calvin
 //
-//  Created by fang xiang on 13-10-21.
+//  Created by fang xiang on 13-10-28.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -25,8 +25,11 @@
 @property (nonatomic, retain) NSNumber * duration_minutes;
 @property (nonatomic, retain) NSDate * end;
 @property (nonatomic, retain) NSNumber * eventType;
+@property (nonatomic, retain) NSString * ext_event_id;
+@property (nonatomic, retain) NSNumber * hasModified;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * is_all_day;
+@property (nonatomic, retain) NSDate * last_modified;
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) NSDate * start;
 @property (nonatomic, retain) NSString * start_type;
@@ -34,13 +37,8 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
+@property (nonatomic, retain) NSDate * maxProposeStarTime;
 @property (nonatomic, retain) NSSet *attendees;
-
-//--------------add by Vale
-@property (nonatomic, retain) NSString *ext_event_id;
-@property (nonatomic, retain) NSNumber *hasModified;
-@property (nonatomic, retain) NSDate *last_modified;
-//-------------------
 @end
 
 @interface FeedEventEntity (CoreDataGeneratedAccessors)

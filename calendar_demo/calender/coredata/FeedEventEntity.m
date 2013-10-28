@@ -2,7 +2,7 @@
 //  FeedEventEntity.m
 //  Calvin
 //
-//  Created by fang xiang on 13-10-21.
+//  Created by fang xiang on 13-10-28.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -24,8 +24,11 @@
 @dynamic duration_minutes;
 @dynamic end;
 @dynamic eventType;
+@dynamic ext_event_id;
+@dynamic hasModified;
 @dynamic id;
 @dynamic is_all_day;
+@dynamic last_modified;
 @dynamic locationName;
 @dynamic start;
 @dynamic start_type;
@@ -33,10 +36,7 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
+@dynamic maxProposeStarTime;
 @dynamic attendees;
-//--------------add by Vale
-@dynamic ext_event_id;
-@dynamic hasModified;
-@dynamic last_modified;
-//--------------
+
 @end

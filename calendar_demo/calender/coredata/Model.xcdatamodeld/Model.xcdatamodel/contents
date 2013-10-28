@@ -5,6 +5,7 @@
         <attribute name="calvinuser" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,6 +29,7 @@
         <attribute name="is_all_day" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="last_modified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxProposeStarTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="start_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,11 +67,11 @@
         <relationship name="feedEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeedEventEntity" inverseName="attendees" inverseEntity="FeedEventEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ContactEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="FeedEventEntity" positionX="-218" positionY="72" width="128" height="418"/>
-        <element name="LocationEntity" positionX="-11" positionY="-189" width="128" height="120"/>
-        <element name="MessageEntity" positionX="-189" positionY="-126" width="128" height="150"/>
-        <element name="Setting" positionX="178" positionY="-144" width="128" height="75"/>
-        <element name="UserEntity" positionX="322" positionY="9" width="128" height="135"/>
+        <element name="ContactEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FeedEventEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="LocationEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

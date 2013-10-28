@@ -104,7 +104,31 @@
 -(void) loadData
 {
     NSArray *events = [[CoreDataModel getInstance] getPendingFeedEventEntitys];
-    [self resetEventsModel:events];
+    
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    
+    BOOL needSavaDB = NO;
+    
+    for(FeedEventEntity * evt in events) {
+        
+        if([evt isHistory]) {
+            
+            int evtID = [evt.id intValue];
+            
+            LOG_I(@"Delete history Event: %d %@, %@, %@",  evtID, evt.title, evt.maxProposeStarTime, evt.eventType);
+            
+            [[CoreDataModel getInstance] deleteFeedEventEntity:evtID];
+            needSavaDB = YES;
+            
+        } else {
+            [array addObject:evt];
+        }
+    }
+    
+    if(needSavaDB) {
+        [[CoreDataModel getInstance] saveData];
+    }
+    [self resetEventsModel:array];
 }
 
 -(void) resetEventsModel: (NSArray *) events

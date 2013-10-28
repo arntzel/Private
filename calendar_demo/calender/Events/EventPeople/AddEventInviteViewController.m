@@ -19,7 +19,7 @@
                                            NavgationBarDelegate>
 {
     JSTokenField *searchBar;
-    NSArray * selectedUsers;
+    NSMutableArray * selectedUsers;
     
     NSMutableArray * calvinUsers;
     NSMutableArray * calvinSearchedUsers;
@@ -107,49 +107,56 @@
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        
 //        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
+    
+            LOG_D(@"getInvitePeopleData");
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                CoreDataModel * model = [CoreDataModel getInstance];
+                NSArray * contacts = [model getAllContactEntity];
+                
+                User * me = [[UserModel getInstance] getLoginUser];
+                
+                for(ContactEntity * entity in contacts) {
+                    
+                    if([me.email isEqualToString:entity.email]) {
+                        //exclude creator in the event
+                        continue;
+                    }
+                    
+                    AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+                    
+                    people.user = [entity getContact];
+                    people.selected = [self isUserSelected:people.user];
+                    if (people.selected) {
+                        [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+                    }
+                    
+                    if(people.user.calvinUser) {
+                        [calvinUsers addObject:people];
+                    } else {
+                        [contactUsers addObject:people];
+                    }
+                    
+                    [people release];
+                }
+                
+                [self addLastManuInputContact];
+                
+                [self refreshTableView];
+               
+            });
+            
 //            
-//            LOG_D(@"getInvitePeopleData");
-            CoreDataModel * model = [CoreDataModel getInstance];
-            NSArray * contacts = [model getAllContactEntity];
-            
-            User * me = [[UserModel getInstance] getLoginUser];
-            
-            for(ContactEntity * entity in contacts) {
-                
-                if([me.email isEqualToString:entity.email]) {
-                    //exclude creator in the event
-                    continue;
-                }
-                
-                AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-                
-                people.user = [entity getContact];
-                people.selected = [self isUserSelected:people.user];
-                if (people.selected) {
-                    [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
-                }
-                
-                if(people.user.calvinUser) {
-                    [calvinUsers addObject:people];
-                } else {
-                    [contactUsers addObject:people];
-                }
-                
-                [people release];
-            }
-            [self refreshTableView];
-          
-            
-            
 //        }];
 //    });
-    
-    
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
 {
-    selectedUsers = [_selectedUsers retain];
+    selectedUsers = [[NSMutableArray alloc] init];
+    [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
 }
 
 
@@ -188,10 +195,21 @@
 {
     for (Contact* selectedUser in selectedUsers) {
         if (selectedUser.id == user.id) {
+            [selectedUsers removeObject:selectedUser];
             return YES;
         }
     }
     return NO;
+}
+
+- (void)addLastManuInputContact
+{
+    for (Contact* selectedUser in selectedUsers) {
+        AddEventInvitePeople *people = [[[AddEventInvitePeople alloc] init] autorelease];;
+        people.user = [[[Contact alloc] init] autorelease];
+        people.user.email = selectedUser.email;
+        [self addOjbToTokenFieldName:people.user.email Obj:people];
+    }
 }
 
 - (void)refreshTableView
@@ -317,7 +335,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [searchBar endEditing:YES];
-    [self addSearchBarObj];
 }
 
 

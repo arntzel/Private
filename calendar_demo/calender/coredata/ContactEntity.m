@@ -2,7 +2,7 @@
 //  ContactEntity.m
 //  Calvin
 //
-//  Created by fang xiang on 13-10-21.
+//  Created by fang xiang on 13-10-28.
 //  Copyright (c) 2013年 fang xiang. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @dynamic id;
 @dynamic last_name;
 @dynamic phone;
+@dynamic fullname;
 
 @end

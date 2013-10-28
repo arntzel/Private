@@ -24,6 +24,8 @@
 
 @property(strong) NSString * last_name;
 
+@property(strong) NSString * fullname;
+
 @property BOOL calvinUser;
 
 @property(strong) NSDate * modified;

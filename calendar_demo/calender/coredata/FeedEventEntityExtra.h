@@ -26,6 +26,8 @@
 
 -(BOOL) isCalvinEvent;
 
+-(BOOL) isHistory;
+
 -(void) convertFromEvent:(Event*) event;
 -(void) convertFromCalendarEvent:(Event*) event;
 
