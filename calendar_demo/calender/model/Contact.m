@@ -54,7 +54,13 @@
     if([user.last_name isKindOfClass: [NSNull class]]) {
         user.last_name = nil;
     }
+    
+    NSString * fullname = [jsonData objectForKey:@"last_name"];
+    if([fullname isKindOfClass: [NSString class]]) {
+        user.fullname = fullname;
+    }
 
+    
     user.phone = [Utils chekcNullClass:[jsonData objectForKey:@"phone"]];
     
     NSString * owner = [jsonData objectForKey:@"user"];

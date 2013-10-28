@@ -66,6 +66,7 @@
 		3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */; };
 		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D593A9D180692F000AA5E50 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D593A9C180692F000AA5E50 /* EmptyCell.xib */; };
+		3D5A3C9B181E0A97000AED71 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A3C9A181E0A97000AED71 /* ContactEntity.m */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -78,7 +79,6 @@
 		3DCD5DD1181510C4000E2E56 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD0181510C4000E2E56 /* FeedEventEntity.m */; };
 		3DCD5DD4181510C4000E2E56 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD3181510C4000E2E56 /* MessageEntity.m */; };
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
-		3DCD5DDA181510C4000E2E56 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD9181510C4000E2E56 /* ContactEntity.m */; };
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
@@ -531,6 +531,8 @@
 		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
 		3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeVoteView.m; sourceTree = "<group>"; };
 		3D593A9C180692F000AA5E50 /* EmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
+		3D5A3C99181E0A97000AED71 /* ContactEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntity.h; path = calender/coredata/ContactEntity.h; sourceTree = SOURCE_ROOT; };
+		3D5A3C9A181E0A97000AED71 /* ContactEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntity.m; path = calender/coredata/ContactEntity.m; sourceTree = SOURCE_ROOT; };
 		3D6151A01734A391003D72B0 /* Calvin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calvin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -548,8 +550,6 @@
 		3DCD5DD3181510C4000E2E56 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DD5181510C4000E2E56 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DD6181510C4000E2E56 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = calender/coredata/Setting.m; sourceTree = SOURCE_ROOT; };
-		3DCD5DD8181510C4000E2E56 /* ContactEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEntity.h; path = calender/coredata/ContactEntity.h; sourceTree = SOURCE_ROOT; };
-		3DCD5DD9181510C4000E2E56 /* ContactEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEntity.m; path = calender/coredata/ContactEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DDB181510C5000E2E56 /* LocationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationEntity.h; path = calender/coredata/LocationEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDC181510C5000E2E56 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
@@ -1712,8 +1712,8 @@
 		769AB9FF17DF514C0033E677 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3DCD5DD8181510C4000E2E56 /* ContactEntity.h */,
-				3DCD5DD9181510C4000E2E56 /* ContactEntity.m */,
+				3D5A3C99181E0A97000AED71 /* ContactEntity.h */,
+				3D5A3C9A181E0A97000AED71 /* ContactEntity.m */,
 				942A29B8180A9FCE00548901 /* ContactEntityExtra.h */,
 				942A29B9180A9FCE00548901 /* ContactEntityExtra.m */,
 				769ABA0017DF514C0033E677 /* CoreDataModel.h */,
@@ -2859,8 +2859,8 @@
 				769ABCF617DF542A0033E677 /* UIFont+Replacement.m in Sources */,
 				769ABD0217DF54860033E677 /* DeviceInfo.m in Sources */,
 				769ABD0317DF54860033E677 /* EncryptUtil.m in Sources */,
-				3DCD5DDA181510C4000E2E56 /* ContactEntity.m in Sources */,
 				769ABD0417DF54860033E677 /* ViewUtils.m in Sources */,
+				3D5A3C9B181E0A97000AED71 /* ContactEntity.m in Sources */,
 				768404C9180115B200C69240 /* JSTokenField.m in Sources */,
 				7662F73F17F075F400B64E40 /* LoginMainAccessView.m in Sources */,
 				769ABD3617DF54950033E677 /* AddDateCalenderView.m in Sources */,

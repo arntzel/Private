@@ -15,10 +15,20 @@
 
 -(NSString *) getReadableUsername
 {
-    if(self.first_name.length > 0 || self.last_name.length >0) {
-        return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
-    } else {
+//    if(self.first_name.length > 0 || self.last_name.length >0) {
+//        return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
+//    } else {
+//        return self.email;
+//    }
+    
+    if( self.fullname != nil) {
+        return self.fullname;
+    } else if(self.email != nil) {
         return self.email;
+    } else if(self.phone != nil) {
+        return self.phone;
+    } else {
+        return @"Unknown contact";
     }
 }
 
@@ -33,6 +43,7 @@
     self.last_name     = user.last_name;
     self.phone         = user.phone;
     self.calvinuser    = [NSNumber numberWithBool:user.calvinUser];
+    self.fullname      = user.fullname;
 }
 
 -(Contact *) getContact
@@ -47,7 +58,7 @@
     contact.last_name    = self.last_name;
     contact.phone        = self.phone;
     contact.calvinUser   = [self.calvinuser boolValue];
-
+    contact.fullname     = self.fullname;
     return contact;
 }
 @end
