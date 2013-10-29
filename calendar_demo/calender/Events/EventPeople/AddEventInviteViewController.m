@@ -13,6 +13,8 @@
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
 
+static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
+
 @interface AddEventInviteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
                                            JSTokenFieldDelegate,
@@ -53,8 +55,6 @@
     [super dealloc];
 }
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,13 +82,16 @@
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
 
+     UINib *myCustomCellNib = [UINib nibWithNibName:CellIdentifier bundle:nil];
+    [self.tableView registerNib:myCustomCellNib forCellReuseIdentifier:CellIdentifier];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTokenFieldFrameDidChange:)
 												 name:JSTokenFieldFrameDidChangeNotification
 											   object:nil];
     
-    if (self.type == AddInviteeTypeAll) {
+    if (self.type == AddInviteeTypeAll)
+    {
         [self getAllInvitePeople];
     }
     else if(self.type == AddInviteeTypeRest)
@@ -104,9 +107,9 @@
 
 - (void)getAllInvitePeople
 {
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        
-//        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
     
             LOG_D(@"getInvitePeopleData");
             
@@ -148,13 +151,15 @@
                
             });
             
-//            
-//        }];
-//    });
+            
+        }];
+    });
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
 {
+    [selectedUsers release];
+    selectedUsers = nil;
     selectedUsers = [[NSMutableArray alloc] init];
     [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
 }
@@ -326,7 +331,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[ViewUtils createView:@"AddEventInvitePeopleCell"];
+    AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     AddEventInvitePeople *people = [self getPeople:indexPath];
     [cell refreshView:people];
     return cell;

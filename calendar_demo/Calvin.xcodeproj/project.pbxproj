@@ -2421,7 +2421,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = GGN58EVK65;
+						DevelopmentTeam = 8KK8W62Z26;
 					};
 				};
 			};
@@ -3151,32 +3151,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/calender\"",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0\"",
-					"\"$(SRCROOT)/calender/Third-Party-Libraries\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "calender/Calvin-Prefix.pch";
-				INFOPLIST_FILE = "calender/Calvin-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		3D6151C51734A391003D72B0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3191,7 +3166,32 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3D6151C51734A391003D72B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = armv7;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/calender\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/calender/Third-Party-Libraries/google-plus-ios-sdk-1.3.0\"",
+					"\"$(SRCROOT)/calender/Third-Party-Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "calender/Calvin-Prefix.pch";
+				INFOPLIST_FILE = "calender/Calvin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = Calvin;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3207,6 +3207,7 @@
 				34CC552F181CB7FC00E23246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D61519B1734A391003D72B0 /* Build configuration list for PBXProject "Calvin" */ = {
 			isa = XCConfigurationList;

@@ -211,12 +211,6 @@
     //[[[Model getInstance] getEventModel] uploadContacts];
     
 }
-
-
-
-
-
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     NSLog(@"applicationWillTerminate");

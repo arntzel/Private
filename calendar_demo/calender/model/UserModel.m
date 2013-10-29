@@ -496,7 +496,7 @@ static UserModel * instance;
                 
                 [model saveData];
             }
-            callback(0,contactsArr);
+            callback(0,nil);
 
         });
     }];
