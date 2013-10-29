@@ -67,7 +67,7 @@
 
     [super showLeftController:animated];
 
-    [menuNavigationController.tableView reloadData];
+    [menuNavigationController reload];
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
     if([msgModel getUnreadMsgCount] > 0) {
