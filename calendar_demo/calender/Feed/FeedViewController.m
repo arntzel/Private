@@ -135,7 +135,7 @@
 
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
-    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60.0*2 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
 }
 
 -(void)viewDidUnload {

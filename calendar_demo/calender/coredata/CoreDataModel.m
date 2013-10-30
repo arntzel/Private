@@ -546,13 +546,16 @@ static CoreDataModel * instance;
 
 -(NSArray *) getContactEntitysWithID:(int) contactid
 {
-    
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(id = %d)", contactid];
     [fetchRequest setPredicate:predicate];
-    
+    [fetchRequest setFetchLimit:20];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     return results;
@@ -605,6 +608,10 @@ static CoreDataModel * instance;
 
 - (void)deleteContactEntityWith:(NSString *)phone andEmail:(NSString *)email
 {
+    if (!managedObjectContext)
+    {
+        return;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entityDescription];

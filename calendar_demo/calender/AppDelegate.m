@@ -172,6 +172,8 @@
     
     [self.timer invalidate];
     self.timer = nil;
+    [self.uploadContactsTimer invalidate];
+    self.uploadContactsTimer = nil;
 }
 
 
@@ -199,6 +201,7 @@
                                          selector:@selector(synchronizedFromServer)
                                          userInfo:nil
                                           repeats:YES];
+    self.uploadContactsTimer = [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(uploadContacts) userInfo:nil repeats:YES];
 }
 
 
@@ -207,9 +210,12 @@
     [[[Model getInstance] getEventModel] synchronizedFromServer];
 
     [[[Model getInstance] getEventModel] checkContactUpdate];
-    
-    //[[[Model getInstance] getEventModel] uploadContacts];
-    
+
+}
+
+- (void)uploadContacts
+{
+    [[[Model getInstance] getEventModel] uploadContacts];
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {

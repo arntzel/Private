@@ -417,8 +417,11 @@
                         CoreDataModel * model = [CoreDataModel getInstance];
                         for(Contact * contact in respContacts)
                         {
-                            LOG_D(@"contact.email:%@",contact.email);
-                            LOG_D(@"contact.phone:%@",contact.phone);
+                            if(![[UserModel getInstance] isLogined])
+                            {
+                                [model saveData];
+                                return;
+                            }
                             [model deleteContactEntityWith:contact.phone andEmail:contact.email];
                             ContactEntity *   enity = [model createEntity:@"ContactEntity"];
                             [enity convertContact:contact];
