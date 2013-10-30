@@ -227,6 +227,7 @@ static Model * instance;
                     event1.timezone = event.timeZone.name;
                     event1.title = event.title;
                     event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
+                    event1.confirmed = YES;
                     LOG_D(@"event1.last_modified:%@",event1.last_modified);
                     [_allEvents addObject:event1];
                     

@@ -2,7 +2,6 @@
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Utils.h"
 
 @implementation JSTokenButton
 
@@ -12,7 +11,8 @@
 @synthesize representedObject = _representedObject;
 @synthesize parentField = _parentField;
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
+
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid
 {
 	JSTokenButton *button = (JSTokenButton *)[self buttonWithType:UIButtonTypeCustom];
 	[button setNormalBg:[[UIImage imageNamed:@"tokenNormal.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:0]];
@@ -24,15 +24,8 @@
 	[button setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 10)];
 	
 	[button setTitle:string forState:UIControlStateNormal];
-
-    if([Utils isValidatePhoneNumber:string]) {
-        button.valid = YES;
-    } else if( [Utils isValidateEmail:string]){
-        button.valid = YES;
-    } else {
-        button.valid = NO;
-    }
-
+    button.valid = valid;
+    
 	[button sizeToFit];
 	CGRect frame = [button frame];
 	frame.size.width += 20;
@@ -44,6 +37,11 @@
 	[button setRepresentedObject:obj];
 	
 	return button;
+}
+
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
+{
+    return [self tokenWithString:string representedObject:obj isValid:YES];
 }
 
 - (void)setToggled:(BOOL)toggled

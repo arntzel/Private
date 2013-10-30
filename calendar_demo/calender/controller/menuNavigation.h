@@ -12,4 +12,7 @@
 
 @property(nonatomic, weak) id<MenuNavigationDelegate> delegate;
 
+
+-(void) reload;
+
 @end

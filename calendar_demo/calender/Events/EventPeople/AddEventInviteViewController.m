@@ -110,6 +110,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 - (void) insertAddressBookContacstToDB
 {
+<<<<<<< HEAD
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
@@ -219,34 +220,68 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         if(user.id == me.id) {
             //exclude creator in the event
             continue;
-        }
-        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+=======
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        people.user = user;
-        people.selected = [self isUserSelected:user];
-        if (people.selected) {
-             [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+        CoreDataModel * model = [CoreDataModel getInstance];
+        NSArray * contacts = [model getAllContactEntity];
+        
+        User * me = [[UserModel getInstance] getLoginUser];
+        
+        for(ContactEntity * entity in contacts) {
+            
+            if([me.email isEqualToString:entity.email]) {
+                //exclude creator in the event
+                continue;
+            }
+            
+            AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+            
+            people.user = [entity getContact];
+            people.selected = [self isUserSelected:people.user];
+            if (people.selected) {
+                [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people isValid:YES];
+            }
+            
+            if(people.user.calvinUser) {
+                [calvinUsers addObject:people];
+            } else {
+                [contactUsers addObject:people];
+            }
+            
+            [people release];
+>>>>>>> 78769c97dfe0cab67af95ec366e6243e61e216bf
         }
         
-        [calvinUsers addObject:people];
-        [people release];
-    }
-
-    [self refreshTableView];
+        [self addLastManuInputContact];
+        
+        [self refreshTableView];
+       
+    });
 }
 
--(void) updateContactUser:(NSArray *) userArray
+-(void) setSelectedUser:(NSArray *) _selectedUsers
 {
-    //TODO:
+    selectedUsers = [[NSMutableArray alloc] init];
+    [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
 }
 
 - (BOOL)isUserSelected:(Contact *)user
 {
     for (Contact* selectedUser in selectedUsers) {
-        if (selectedUser.id == user.id) {
-            [selectedUsers removeObject:selectedUser];
-            return YES;
+        if (selectedUser.email != nil && [selectedUser.email length] > 0) {
+            if ([selectedUser.email isEqualToString:user.email]) {
+                [selectedUsers removeObject:selectedUser];
+                return YES;
+            }
         }
+        if (selectedUser.phone != nil && [selectedUser.phone length] > 0) {
+            if ([selectedUser.phone isEqualToString:user.phone]) {
+                [selectedUsers removeObject:selectedUser];
+                return YES;
+            }
+        }
+
     }
     return NO;
 }
@@ -256,8 +291,11 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     for (Contact* selectedUser in selectedUsers) {
         AddEventInvitePeople *people = [[[AddEventInvitePeople alloc] init] autorelease];;
         people.user = [[[Contact alloc] init] autorelease];
-        people.user.email = selectedUser.email;
-        [self addOjbToTokenFieldName:people.user.email Obj:people];
+        people.user.email = [selectedUser.email copy];
+        people.user.phone = [selectedUser.phone copy];
+        NSString *text = [people.user getReadableUsername];
+
+        [self addOjbToTokenFieldName:text Obj:people isValid:[self isValidText:text]];
     }
 }
 
@@ -282,14 +320,14 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     searchText = [searchText lowercaseString];
     
     for(AddEventInvitePeople * people in calvinUsers) {
-        NSString * username = [people.user.email lowercaseString];
+        NSString * username = [[people.user getReadableUsername] lowercaseString];
         if( [username hasPrefix:searchText]) {
             [calvinSearchedUsers addObject:people];
         }
     }
     
     for(AddEventInvitePeople * people in contactUsers) {
-        NSString * username = [people.user.email lowercaseString];
+        NSString * username = [[people.user getReadableUsername] lowercaseString];
         if( [username hasPrefix:searchText]) {
             [contactSearchedUsers addObject:people];
         }
@@ -338,12 +376,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     people.selected = !people.selected;
     
     if (people.selected) {
-
-        if(people.user.email != nil && people.user.email.length>0) {
-            [self addOjbToTokenFieldName:people.user.email Obj:people];
-        } else if(people.user.phone != nil && people.user.phone.length>0) {
-            [self addOjbToTokenFieldName:people.user.phone Obj:people];
-        }
+        [self addOjbToTokenFieldName:[people.user getReadableUsername]  Obj:people isValid:YES];
     }
     else
     {
@@ -456,14 +489,23 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [self refreshTableView];
 }
 
-- (void)addOjbToTokenFieldName:(NSString *)string Obj:(id)obj
+- (void)addOjbToTokenFieldName:(NSString *)string Obj:(id)obj isValid:(BOOL)isvalid
 {
     AddEventInvitePeople *people = nil;
     
     if (!obj) {
         people = [[[AddEventInvitePeople alloc] init] autorelease];;
         people.user = [[[Contact alloc] init] autorelease];
-        people.user.email = string;
+        
+        if([Utils isValidatePhoneNumber:string]) {
+            people.user.phone = string;
+        } else if( [Utils isValidateEmail:string]){
+            people.user.email = string;
+        }
+        else
+        {
+            people.user.email = string;
+        }
     }
     else
     {
@@ -472,7 +514,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     if ([string length])
 	{
-		[searchBar addTokenWithTitle:string representedObject:people];
+		[searchBar addTokenWithTitle:string representedObject:people isValid:isvalid];
         searchBar.textField.text = @"";
         [self refreshTableView];
 	}
@@ -505,8 +547,22 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)addSearchBarObj
 {
     if (searchBar.textField.text != nil && [searchBar.textField.text length] > 0) {
-        [self addOjbToTokenFieldName:searchBar.textField.text Obj:nil];
+        NSString *text = searchBar.textField.text;
+        [self addOjbToTokenFieldName:text Obj:nil isValid:[self isValidText:text]];
     }
+}
+
+- (BOOL)isValidText:(NSString *)text
+{
+    BOOL isValid;
+    if([Utils isValidatePhoneNumber:text]) {
+        isValid = YES;
+    } else if( [Utils isValidateEmail:text]){
+        isValid = YES;
+    } else {
+        isValid = NO;
+    }
+    return isValid;
 }
 
 - (void)tokenFieldDidEndEditing:(JSTokenField *)tokenField

@@ -26,4 +26,6 @@
 
 + (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj;
 
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid;
+
 @end

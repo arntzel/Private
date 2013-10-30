@@ -78,6 +78,9 @@
     msgModel = [[Model getInstance] getMessageModel];
     [msgModel addDelegate:self];
     [msgModel refreshModel:nil];
+    
+    NSIndexPath * path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)viewWillUnload {
@@ -228,13 +231,23 @@
 
 -(void) onMessageModelChanged
 {
-    [_tableView reloadData];
+    [self reload];
 }
 
 -(void) onLoadDataStatusChanged:(BOOL) isLoading
 {
     loading = isLoading;
-    [_tableView reloadData];
+    [self reload];
 }
 
+-(void) reload
+{
+    NSIndexPath * selectPath = [_tableView indexPathForSelectedRow];
+    
+    [_tableView reloadData];
+    
+    if(selectPath != nil && selectPath.section == 0) {
+        [_tableView selectRowAtIndexPath:selectPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+}
 @end
