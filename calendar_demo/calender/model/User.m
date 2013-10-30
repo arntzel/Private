@@ -73,8 +73,22 @@
             user.googleEmail = [[[jsonData objectForKey:@"social_access_token"] objectForKey:@"google"] objectForKey:@"email"];
         }
     }
-    
-   
+    if ([jsonData objectForKey:@"facebookEmail"])
+    {
+        user.facebookEmail = [jsonData objectForKey:@"facebookEmail"];
+    }
+    if ([jsonData objectForKey:@"facebookToken"])
+    {
+        user.facebookToken = [jsonData objectForKey:@"facebookToken"];
+    }
+    if ([jsonData objectForKey:@"googleToken"])
+    {
+        user.googleToken = [jsonData objectForKey:@"googleToken"];
+    }
+    if ([jsonData objectForKey:@"googleEmail"])
+    {
+        user.googleEmail = [jsonData objectForKey:@"googleEmail"];
+    }
     
     return user;
 }
