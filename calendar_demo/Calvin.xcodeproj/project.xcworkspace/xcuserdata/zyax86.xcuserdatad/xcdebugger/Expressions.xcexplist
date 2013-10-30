@@ -22,5 +22,22 @@
       <ContextState
          contextName = "-[AddEventDateViewController setDurationHours:Minutes:]:AddEventDateViewController.m">
       </ContextState>
+      <ContextState
+         contextName = "+[ContactSort resortListByName:]:ContactSort.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "arry">
+            </PersistentString>
+            <PersistentString
+               value = "array">
+            </PersistentString>
+            <PersistentString
+               value = "contacts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AddEventInviteViewController rightNavBtnClick]:AddEventInviteViewController.m">
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

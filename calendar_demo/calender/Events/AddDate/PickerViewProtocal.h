@@ -1,10 +1,3 @@
-//
-//  PickerViewProtocal.h
-//  AddDate
-//
-//  Created by 张亚 on 13-7-4.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 

@@ -12,6 +12,7 @@
 #import "NavgationBar.h"
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
+#import "ContactSort.h"
 
 @interface AddEventInviteViewController ()<UITableViewDelegate,
                                            UITableViewDataSource,
@@ -107,8 +108,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         CoreDataModel * model = [CoreDataModel getInstance];
-        NSArray * contacts = [model getAllContactEntity];
-        
+        NSArray *allContact = [model getAllContactEntity];
+        NSArray * contacts = [ContactSort resortListByName:allContact];
         User * me = [[UserModel getInstance] getLoginUser];
         
         for(ContactEntity * entity in contacts) {

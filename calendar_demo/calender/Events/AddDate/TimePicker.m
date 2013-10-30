@@ -1,10 +1,4 @@
-//
-//  TimePicker.m
-//  AddDate
-//
-//  Created by 张亚 on 13-7-2.
-//  Copyright (c) 2013年 zyax86. All rights reserved.
-//
+
 
 #import "TimePicker.h"
 #import "LoopPickerView.h"

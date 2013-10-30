@@ -86,6 +86,8 @@
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
+		76256CB81820EB9800BB933F /* ContactSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB71820EB9800BB933F /* ContactSort.m */; };
+		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
 		76318B2C17E09A69000BC88B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2817E09A69000BC88B /* Default@2x.png */; };
@@ -575,6 +577,10 @@
 		3DCD5DDC181510C5000E2E56 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
+		76256CB61820EB9800BB933F /* ContactSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSort.h; sourceTree = "<group>"; };
+		76256CB71820EB9800BB933F /* ContactSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSort.m; sourceTree = "<group>"; };
+		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		76318B2717E09A69000BC88B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		76318B2817E09A69000BC88B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -2247,6 +2253,8 @@
 		769ABCFA17DF54860033E677 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				76256CB91820EBD100BB933F /* pinyin.c */,
+				76256CBA1820EBD100BB933F /* pinyin.h */,
 				7643519A181034C90004ADFC /* NSData+Hex.h */,
 				7643519B181034C90004ADFC /* NSData+Hex.m */,
 				7643519C181034C90004ADFC /* NSString+Hex.h */,
@@ -2262,6 +2270,8 @@
 				769ABD0117DF54860033E677 /* ViewUtils.m */,
 				76411AF3180830D1001C2125 /* ExtendArray.h */,
 				76411AF4180830D1001C2125 /* ExtendArray.m */,
+				76256CB61820EB9800BB933F /* ContactSort.h */,
+				76256CB71820EB9800BB933F /* ContactSort.m */,
 			);
 			name = Utils;
 			path = calender/Utils;
@@ -2850,6 +2860,7 @@
 				3D5A3C9E181E3506000AED71 /* FeedEventEntity.m in Sources */,
 				769ABB1617DF52090033E677 /* AddEventInviteView.m in Sources */,
 				769ABB1A17DF52090033E677 /* AddEventPlaceView.m in Sources */,
+				76256CBB1820EBD100BB933F /* pinyin.c in Sources */,
 				34B1F1A417F8FCE200AA5C97 /* EmailChangeViewController.m in Sources */,
 				769ABB1C17DF52090033E677 /* AddEventSettingView.m in Sources */,
 				769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */,
@@ -2958,6 +2969,7 @@
 				769ABD3717DF54950033E677 /* FeedCalenderView.m in Sources */,
 				769ABD3817DF54950033E677 /* KalDate.m in Sources */,
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
+				76256CB81820EB9800BB933F /* ContactSort.m in Sources */,
 				76431E091806F6BD009DAFFE /* EventNavigationBar.m in Sources */,
 				76591A9517FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
