@@ -13,4 +13,6 @@
 
 -(Contact *) getContact;
 
++ (NSArray *)resortListByName:(NSArray *)contacts;
+
 @end

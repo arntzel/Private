@@ -46,7 +46,8 @@
     
     Contact * user = iuser.user;
     
-    self.peopleName.text = [user getReadableUsername];
+    NSString *fullName = [user getReadableUsername];
+    self.peopleName.text = fullName;
     
     NSString * headerUrl = user.avatar_url;
 

@@ -12,7 +12,6 @@
 #import "NavgationBar.h"
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
-#import "ContactSort.h"
 
 static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
@@ -132,7 +131,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     CoreDataModel * model = [CoreDataModel getInstance];
     NSArray *allContact = [model getAllContactEntity];
-    NSArray * contacts = [ContactSort resortListByName:allContact];
+    NSArray * contacts = [ContactEntity resortListByName:allContact];
     
     User * me = [[UserModel getInstance] getLoginUser];
 
@@ -169,7 +168,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     CoreDataModel * model = [CoreDataModel getInstance];
     NSArray * allContact = [model getLimitContactEntity:offset];
-    NSArray * contacts = [ContactSort resortListByName:allContact];
+    NSArray * contacts = [ContactEntity resortListByName:allContact];
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(ContactEntity * entity in contacts) {
