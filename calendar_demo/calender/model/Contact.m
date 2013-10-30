@@ -48,7 +48,7 @@
         user.last_name = nil;
     }
     
-    NSString * fullname = [jsonData objectForKey:@"last_name"];
+    NSString * fullname = [jsonData objectForKey:@"fullname"];
     if([fullname isKindOfClass: [NSString class]]) {
         user.fullname = fullname;
     }
