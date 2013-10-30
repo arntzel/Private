@@ -23,14 +23,15 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     JSTokenField *searchBar;
     NSMutableArray * selectedUsers;
     
-    NSMutableArray * calvinUsers;
+
     NSMutableArray * calvinSearchedUsers;
-    
-    NSMutableArray * contactUsers;
     NSMutableArray * contactSearchedUsers;
     int offset;
     
 }
+
+@property(nonatomic,retain) NSMutableArray *calvinUsers;
+@property(nonatomic,retain) NSMutableArray *contactUsers;
 
 @end
 
@@ -41,10 +42,10 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [selectedUsers release];
-    [calvinUsers release];
+    self.calvinUsers = nil;
     [calvinSearchedUsers release];
     
-    [contactUsers release];
+    self.contactUsers = nil;
     [contactSearchedUsers release];
     
     self.tableView = nil;
@@ -74,10 +75,10 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [searchBar setBackgroundColor:[UIColor whiteColor]];
     searchBar.delegate = self;
     
-    calvinUsers = [[NSMutableArray alloc] init];
+    self.calvinUsers = [NSMutableArray array];
     calvinSearchedUsers = [[NSMutableArray alloc] init];
     
-    contactUsers = [[NSMutableArray alloc] init];
+    self.contactUsers = [NSMutableArray array];
     contactSearchedUsers = [[NSMutableArray alloc] init];
     
     self.tableView.delegate = self;
@@ -130,9 +131,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)getAllInvitePeople
 {
     CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray *allContact = [model getAllContactEntity];
-    NSArray * contacts = [ContactEntity resortListByName:allContact];
-    
+    NSArray *contacts = [model getAllContactEntity];
     User * me = [[UserModel getInstance] getLoginUser];
 
     for(ContactEntity * entity in contacts) {
@@ -151,13 +150,16 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         }
         
         if(people.user.calvinUser) {
-            [calvinUsers addObject:people];
+            [self.calvinUsers addObject:people];
         } else {
-            [contactUsers addObject:people];
+            [self.contactUsers addObject:people];
         }
         
         [people release];
     }
+    
+    self.calvinUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.calvinUsers]];
+    self.contactUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.contactUsers]];
     
     [self addLastManuInputContact];
     
@@ -167,8 +169,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)getLimitInvitePeople
 {
     CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray * allContact = [model getLimitContactEntity:offset];
-    NSArray * contacts = [ContactEntity resortListByName:allContact];
+    NSArray * contacts = [model getLimitContactEntity:offset];
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(ContactEntity * entity in contacts) {
@@ -187,13 +188,16 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         }
         
         if(people.user.calvinUser) {
-            [calvinUsers addObject:people];
+            [self.calvinUsers addObject:people];
         } else {
-            [contactUsers addObject:people];
+            [self.contactUsers addObject:people];
         }
         
         [people release];
     }
+    
+    self.calvinUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.calvinUsers]];
+    self.contactUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.contactUsers]];
     
     [self addLastManuInputContact];
     
@@ -239,6 +243,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         NSString *text = [people.user getReadableUsername];
 
         [self addOjbToTokenFieldName:text Obj:people isValid:[self isValidText:text]];
+        [selectedUsers removeObject:selectedUser];
     }
 }
 
@@ -255,21 +260,21 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [contactSearchedUsers removeAllObjects];
     
     if(searchText == nil || searchText.length == 0) {
-        [calvinSearchedUsers addObjectsFromArray:calvinUsers];
-        [contactSearchedUsers addObjectsFromArray:contactUsers];
+        [calvinSearchedUsers addObjectsFromArray:self.calvinUsers];
+        [contactSearchedUsers addObjectsFromArray:self.contactUsers];
         return;
     }
     
     searchText = [searchText lowercaseString];
     
-    for(AddEventInvitePeople * people in calvinUsers) {
+    for(AddEventInvitePeople * people in self.calvinUsers) {
         NSString * username = [[people.user getReadableUsername] lowercaseString];
         if( [username hasPrefix:searchText]) {
             [calvinSearchedUsers addObject:people];
         }
     }
     
-    for(AddEventInvitePeople * people in contactUsers) {
+    for(AddEventInvitePeople * people in self.contactUsers) {
         NSString * username = [[people.user getReadableUsername] lowercaseString];
         if( [username hasPrefix:searchText]) {
             [contactSearchedUsers addObject:people];

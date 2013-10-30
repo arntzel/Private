@@ -2426,7 +2426,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = 8KK8W62Z26;
+						DevelopmentTeam = GGN58EVK65;
 					};
 				};
 			};

@@ -375,7 +375,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     }
     else if ([[textField text] length] > 1)
     {
-        [self addTokenWithTitle:[textField text] representedObject:[textField text]];
+        [self addTokenWithTitle:[textField text] representedObject:[textField text] isValid:YES];
         [textField setText:nil];
     }
 }
