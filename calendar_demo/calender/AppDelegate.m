@@ -201,7 +201,7 @@
                                          selector:@selector(synchronizedFromServer)
                                          userInfo:nil
                                           repeats:YES];
-    self.uploadContactsTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(uploadContacts) userInfo:nil repeats:YES];
+    self.uploadContactsTimer = [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(uploadContacts) userInfo:nil repeats:YES];
 }
 
 
