@@ -39,7 +39,7 @@
 
 - (void)uploadAddressBookContacts:(NSMutableArray *)contactsArr callback:(void (^)(NSInteger error, NSArray * respContacts))callback;
 
-- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSMutableArray * contacts))callback;
+- (void)insertAddressBookContactsToDBWithOffset:(int)offset CallBack:(void (^)(NSInteger error, NSMutableArray * contacts, BOOL finish))callback;
 
 /*
  -Get user profile by userid

@@ -336,7 +336,7 @@ static UserModel * instance;
         }
     }];
 }
-- (void)requestContactsFromAddressBook:(void(^)(NSMutableArray *contactsArr))callback
+- (void)requestContactsFromAddressBookWithOffset:(int)offset WithCallBack:(void(^)(NSMutableArray *contactsArr, BOOL finish))callback
 {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
     ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
@@ -344,18 +344,26 @@ static UserModel * instance;
          if (granted)
          {
              CFArrayRef cfarray = ABAddressBookCopyArrayOfAllPeople(addressBook);
-             NSLog(@"granted suc,contacts:%@",(__bridge NSArray *)cfarray);
              NSArray *allPeopleArray = (__bridge NSArray *)cfarray;
+             CFRelease(cfarray);
              NSMutableArray *contactsArray = [NSMutableArray array];
-             for (int i=0; i<[allPeopleArray count]; i++)
+             
+             for (int i=offset*40; i<offset*40+40; i++)
              {
+                 if (i>[allPeopleArray count]-1)
+                 {
+                     
+                     callback(contactsArray,YES);
+                     CFRelease(addressBook);
+                     return ;
+                 }
                  ABRecordRef contactInfo = (__bridge ABRecordRef)([allPeopleArray objectAtIndex:i]);
-                 NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(contactInfo, kABPersonFirstNameProperty));
+                 NSString *firstName = (NSString *)(CFBridgingRelease(ABRecordCopyValue(contactInfo, kABPersonFirstNameProperty)));
                  if (!firstName)
                  {
                      firstName = @"";
                  }
-                 NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(contactInfo, kABPersonLastNameProperty));
+                 NSString *lastName = ( NSString *)(CFBridgingRelease(ABRecordCopyValue(contactInfo, kABPersonLastNameProperty)));
                  if (!lastName)
                  {
                      lastName = @"";
@@ -364,29 +372,31 @@ static UserModel * instance;
                  ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(contactInfo, kABPersonPhoneProperty);
                  if (ABMultiValueGetCount(phoneNumberProperty) > 0)
                  {
-                     phoneNum = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(phoneNumberProperty, 0));
+                     phoneNum = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneNumberProperty, 0)));
                     
                  }
-                 
+                 CFRelease(phoneNumberProperty);
                  LOG_D(@"phone:%@",phoneNum);
                  
                  NSString *email = @"";
                  ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
                  if (ABMultiValueGetCount(emailProperty) > 0)
                  {
-                     email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailProperty, 0));
+                     email = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(emailProperty, 0)));
                  }
-                
+                 CFRelease(emailProperty);
                  LOG_D(@"email:%@",email);
                  
                  //email and phone should not is empty at the same time.
                  if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
                  {
+                    
                      continue;
                  }
                  CoreDataModel * model = [CoreDataModel getInstance];
                  if ([model getContactEntityWith:phoneNum AndEmail:email])
                  {
+                     
                      continue;
                  }
                  
@@ -398,13 +408,16 @@ static UserModel * instance;
                  info.avatar_url = @"";
                  info.calvinUser = NO;
                  [contactsArray addObject:info];
+                 
              }
-             callback(contactsArray);
+             callback(contactsArray,NO);
+             CFRelease(addressBook);
          }
          else
          {
              NSLog(@"granted failed");
-             callback(nil);
+             callback(nil,YES);
+             CFRelease(addressBook);
          }
     });
 }
@@ -474,9 +487,9 @@ static UserModel * instance;
 
 }
 
-- (void)insertAddressBookContactsToDB:(void (^)(NSInteger error, NSMutableArray * contacts))callback
+- (void)insertAddressBookContactsToDBWithOffset:(int)offset CallBack:(void (^)(NSInteger error, NSMutableArray * contacts, BOOL finish))callback
 {
-    [self requestContactsFromAddressBook:^(NSMutableArray *contactsArr) {
+    [self requestContactsFromAddressBookWithOffset:offset WithCallBack:^(NSMutableArray *contactsArr,BOOL finish) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -496,7 +509,7 @@ static UserModel * instance;
                 
                 [model saveData];
             }
-            callback(0,nil);
+            callback(0,nil,finish);
 
         });
     }];

@@ -28,6 +28,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     NSMutableArray * contactUsers;
     NSMutableArray * contactSearchedUsers;
+    int offset;
     
 }
 
@@ -89,10 +90,12 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 											 selector:@selector(handleTokenFieldFrameDidChange:)
 												 name:JSTokenFieldFrameDidChangeNotification
 											   object:nil];
+    offset = 0;
     
     if (self.type == AddInviteeTypeAll)
     {
-        [self getAllInvitePeople];
+        
+        [self insertAddressBookContacstToDB];
     }
     else if(self.type == AddInviteeTypeRest)
     {
@@ -105,55 +108,96 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     //Todo://
 }
 
-- (void)getAllInvitePeople
+- (void) insertAddressBookContacstToDB
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        [[UserModel getInstance] insertAddressBookContactsToDB:^(NSInteger error, NSMutableArray *contact) {
-    
-            LOG_D(@"getInvitePeopleData");
+        [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
             
+            LOG_D(@"getInvitePeopleData");
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                CoreDataModel * model = [CoreDataModel getInstance];
-                NSArray * contacts = [model getAllContactEntity];
+                [self getLimitInvitePeople];
                 
-                User * me = [[UserModel getInstance] getLoginUser];
-                
-                for(ContactEntity * entity in contacts) {
-                    
-                    if([me.email isEqualToString:entity.email]) {
-                        //exclude creator in the event
-                        continue;
-                    }
-                    
-                    AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-                    
-                    people.user = [entity getContact];
-                    people.selected = [self isUserSelected:people.user];
-                    if (people.selected) {
-                        [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
-                    }
-                    
-                    if(people.user.calvinUser) {
-                        [calvinUsers addObject:people];
-                    } else {
-                        [contactUsers addObject:people];
-                    }
-                    
-                    [people release];
-                }
-                
-                [self addLastManuInputContact];
-                
-                [self refreshTableView];
-               
             });
             
             
         }];
     });
+
+}
+- (void)getAllInvitePeople
+{
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSArray * contacts = [model getAllContactEntity];
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+
+    for(ContactEntity * entity in contacts) {
+        
+        if([me.email isEqualToString:entity.email]) {
+            //exclude creator in the event
+            continue;
+        }
+        
+        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+        
+        people.user = [entity getContact];
+        people.selected = [self isUserSelected:people.user];
+        if (people.selected) {
+            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+        }
+        
+        if(people.user.calvinUser) {
+            [calvinUsers addObject:people];
+        } else {
+            [contactUsers addObject:people];
+        }
+        
+        [people release];
+    }
+    
+    [self addLastManuInputContact];
+    
+    [self refreshTableView];
+    
+}
+- (void)getLimitInvitePeople
+{
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSArray * contacts = [model getLimitContactEntity:offset];
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    for(ContactEntity * entity in contacts) {
+        
+        if([me.email isEqualToString:entity.email]) {
+            //exclude creator in the event
+            continue;
+        }
+        
+        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
+        
+        people.user = [entity getContact];
+        people.selected = [self isUserSelected:people.user];
+        if (people.selected) {
+            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+        }
+        
+        if(people.user.calvinUser) {
+            [calvinUsers addObject:people];
+        } else {
+            [contactUsers addObject:people];
+        }
+        
+        [people release];
+    }
+    
+    [self addLastManuInputContact];
+    
+    [self refreshTableView];
+    
 }
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
@@ -341,8 +385,18 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [searchBar endEditing:YES];
 }
-
-
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (decelerate)
+    {
+        NSLog(@"offset:%F scrollView.contentSize.height:%f", scrollView.contentOffset.y+scrollView.frame.size.height,scrollView.contentSize.height);
+        if (scrollView.contentOffset.y+scrollView.frame.size.height > scrollView.contentSize.height)
+        {
+            offset++;
+            [self insertAddressBookContacstToDB];
+        }
+    }
+}
 - (void)leftNavBtnClick
 {
     [self.navigationController popViewControllerAnimated:YES];

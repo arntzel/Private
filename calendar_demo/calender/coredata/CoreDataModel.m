@@ -569,7 +569,19 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
 }
-
+-(NSArray *) getLimitContactEntity:(int)offset
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"email" ascending:YES];
+//    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [fetchRequest setFetchOffset:offset*20];
+    [fetchRequest setFetchLimit:20];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return [results sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+}
 - (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email
 {
     
