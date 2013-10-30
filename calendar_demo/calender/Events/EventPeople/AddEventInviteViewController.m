@@ -12,6 +12,7 @@
 #import "NavgationBar.h"
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
+#import "ContactSort.h"
 
 static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
@@ -112,7 +113,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
 
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
         [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
             
             LOG_D(@"getInvitePeopleData");
@@ -131,7 +131,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)getAllInvitePeople
 {
     CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray * contacts = [model getAllContactEntity];
+    NSArray *allContact = [model getAllContactEntity];
+    NSArray * contacts = [ContactSort resortListByName:allContact];
     
     User * me = [[UserModel getInstance] getLoginUser];
 
@@ -167,8 +168,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)getLimitInvitePeople
 {
     CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray * contacts = [model getLimitContactEntity:offset];
-    
+    NSArray * allContact = [model getLimitContactEntity:offset];
+    NSArray * contacts = [ContactSort resortListByName:allContact];
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(ContactEntity * entity in contacts) {

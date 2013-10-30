@@ -1,10 +1,3 @@
-//
-//  AddEventTimeButton.m
-//  Calvin
-//
-//  Created by xiangfang on 13-9-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
 
 #import "AddEventTimeButton.h"
 #import "ViewUtils.h"

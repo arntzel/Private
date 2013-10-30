@@ -1,10 +1,4 @@
-//
-//  EventAttendee.m
-//  calender
-//
-//  Created by xiangfang on 13-6-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "EventAttendee.h"
 #import "Utils.h"

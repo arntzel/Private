@@ -1,10 +1,4 @@
-//
-//  CoreDataModel.m
-//  calender
-//
-//  Created by xiangfang on 13-7-31.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
-//
+
 
 #import "CoreDataModel.h"
 #import "Utils.h"
