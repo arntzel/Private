@@ -107,7 +107,8 @@
     
     [imageUploadingIndicator release];
 
-    invitedPeoples = nil;
+    
+    self.invitedPeoples = nil;
     locationPlace = nil;
 
     [super dealloc];
