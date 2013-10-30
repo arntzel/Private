@@ -35,7 +35,12 @@
     
     for (int i = 0; i < contacts.count; i++) {
         Contact *contact = [contacts objectAtIndex:i];
-        NSString *sectionName = [self getSectionName:[contact getReadableUsername]];
+        NSString *fullName = [contact getReadableUsername];
+        LOG_D(@"first name:%@  last name:%@",contact.first_name, contact.last_name);
+        LOG_D(@"email:%@",contact.email);
+        LOG_D(@"Phoe:%@",contact.phone);
+        LOG_D(@"fulll name: %@",fullName);
+        NSString *sectionName = [self getSectionName:fullName];
         [[allDict objectForKey:sectionName] addObject:contact];
     }
     
