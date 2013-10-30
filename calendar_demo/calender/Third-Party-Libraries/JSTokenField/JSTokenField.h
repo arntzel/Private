@@ -27,7 +27,7 @@ extern NSString *const JSDeletedTokenKey;
 @property (nonatomic, readonly, copy) NSMutableArray *tokens;
 @property (nonatomic, assign) id <JSTokenFieldDelegate> delegate;
 
-- (void)addTokenWithTitle:(NSString *)string representedObject:(id)obj;
+- (void)addTokenWithTitle:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid;
 - (void)removeTokenForString:(NSString *)string;
 - (void)removeTokenWithRepresentedObject:(id)representedObject;
 - (void)removeAllTokens;

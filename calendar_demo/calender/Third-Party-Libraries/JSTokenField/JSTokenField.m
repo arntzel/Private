@@ -15,7 +15,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 
 @interface JSTokenField ();
 
-- (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj;
+- (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid;
 - (void)deleteHighlightedToken;
 
 - (void)commonSetup;
@@ -95,13 +95,13 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 }
 
 
-- (void)addTokenWithTitle:(NSString *)string representedObject:(id)obj
+- (void)addTokenWithTitle:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid
 {
 	NSString *aString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
 	if ([aString length])
 	{
-		JSTokenButton *token = [self tokenWithString:aString representedObject:obj];
+		JSTokenButton *token = [self tokenWithString:aString representedObject:obj isValid:valid];
         token.parentField = self;
 		[_tokens addObject:token];
 		
@@ -195,9 +195,9 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 	}
 }
 
-- (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
+- (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid
 {
-	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj];
+	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj isValid:valid];
 	CGRect frame = [token frame];
 	
 	if (frame.size.width > self.frame.size.width)
