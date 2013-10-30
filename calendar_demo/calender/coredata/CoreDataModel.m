@@ -589,15 +589,12 @@ static CoreDataModel * instance;
 {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *managedObjectContext1 = [[NSManagedObjectContext alloc]init];
-    [managedObjectContext1 setPersistentStoreCoordinator:persistentStoreCoordinator];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext1];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ AND email = %@)", phone, email];
     [fetchRequest setPredicate:predicate];
     
-    NSArray * results = [managedObjectContext1 executeFetchRequest:fetchRequest error:nil];
-    managedObjectContext1 = nil;
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if(results.count >0)
     {
         return [results objectAtIndex:0];

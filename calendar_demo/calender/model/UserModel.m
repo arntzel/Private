@@ -390,16 +390,8 @@ static UserModel * instance;
                  //email and phone should not is empty at the same time.
                  if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
                  {
-                    
                      continue;
                  }
-                 CoreDataModel * model = [CoreDataModel getInstance];
-                 if ([model getContactEntityWith:phoneNum AndEmail:email])
-                 {
-                     
-                     continue;
-                 }
-                 
                  Contact *info = [[Contact alloc]init];
                  info.first_name = firstName;
                  info.last_name = lastName;
@@ -509,8 +501,6 @@ static UserModel * instance;
                 CoreDataModel * model = [CoreDataModel getInstance];
                 for(Contact * contact in contactsArr)
                 {
-                    
-                    
                     if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
                     {
                         ContactEntity * enity = [model createEntity:@"ContactEntity"];
@@ -524,31 +514,6 @@ static UserModel * instance;
 
         });
     }];
-    
-//    [self uploadAddressBookContacts:^(NSInteger error, NSArray *contacts)
-//    {
-//        if (contacts)
-//        {
-//            
-//            CoreDataModel * model = [CoreDataModel getInstance];
-//            for(Contact * contact in contacts) {
-//                
-//                ContactEntity * enity = [model getContactEntity:contact.id];
-//                if(enity == nil)
-//                {
-//                    enity = [model createEntity:@"ContactEntity"];
-//                }
-//                
-//                [enity convertContact:contact];
-//            }
-//            
-//            [model saveData];
-//            
-//            NSString * updateTime = [Utils formateDate:[NSDate date]];
-//            [model saveSetting:KEY_CONTACTUPDATETIME andValue:updateTime];
-//        }
-//        callback(0,nil);
-//    }];
 }
 /*
  Get the current login user, return nil if not login

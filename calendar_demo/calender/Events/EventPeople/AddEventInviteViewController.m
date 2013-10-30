@@ -110,7 +110,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 - (void) insertAddressBookContacstToDB
 {
-<<<<<<< HEAD
+
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
@@ -147,7 +147,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         people.user = [entity getContact];
         people.selected = [self isUserSelected:people.user];
         if (people.selected) {
-            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people isValid:YES];
         }
         
         if(people.user.calvinUser) {
@@ -183,7 +183,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         people.user = [entity getContact];
         people.selected = [self isUserSelected:people.user];
         if (people.selected) {
-            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people];
+           [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people isValid:YES];
         }
         
         if(people.user.calvinUser) {
@@ -205,63 +205,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [selectedUsers release];
     selectedUsers = nil;
-    selectedUsers = [[NSMutableArray alloc] init];
-    [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
-}
-
-
--(void) updateCalvinUser:(NSArray *) userArray
-{
-    [calvinUsers removeAllObjects];
-    User * me = [[UserModel getInstance] getLoginUser];
-
-    for (Contact *user in userArray) {
-
-        if(user.id == me.id) {
-            //exclude creator in the event
-            continue;
-=======
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        CoreDataModel * model = [CoreDataModel getInstance];
-        NSArray * contacts = [model getAllContactEntity];
-        
-        User * me = [[UserModel getInstance] getLoginUser];
-        
-        for(ContactEntity * entity in contacts) {
-            
-            if([me.email isEqualToString:entity.email]) {
-                //exclude creator in the event
-                continue;
-            }
-            
-            AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-            
-            people.user = [entity getContact];
-            people.selected = [self isUserSelected:people.user];
-            if (people.selected) {
-                [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people isValid:YES];
-            }
-            
-            if(people.user.calvinUser) {
-                [calvinUsers addObject:people];
-            } else {
-                [contactUsers addObject:people];
-            }
-            
-            [people release];
->>>>>>> 78769c97dfe0cab67af95ec366e6243e61e216bf
-        }
-        
-        [self addLastManuInputContact];
-        
-        [self refreshTableView];
-       
-    });
-}
-
--(void) setSelectedUser:(NSArray *) _selectedUsers
-{
     selectedUsers = [[NSMutableArray alloc] init];
     [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
 }

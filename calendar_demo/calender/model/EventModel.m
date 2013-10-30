@@ -422,11 +422,14 @@
                                 [model saveData];
                                 return;
                             }
-                            [model deleteContactEntityWith:contact.phone andEmail:contact.email];
-                            ContactEntity *   enity = [model createEntity:@"ContactEntity"];
-                            [enity convertContact:contact];
+                            
+                            ContactEntity *   enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                            if (enity)
+                            {
+                                [enity convertContact:contact];
+                            }
+                            
                         }
-                        
                         [model saveData];
                     }
                 });
