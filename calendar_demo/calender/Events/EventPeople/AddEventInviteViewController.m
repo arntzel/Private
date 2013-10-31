@@ -119,7 +119,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [self getLimitInvitePeople];
+                [self getAllInvitePeople];
                 
             });
             
@@ -368,15 +368,15 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (decelerate)
-    {
-        NSLog(@"offset:%F scrollView.contentSize.height:%f", scrollView.contentOffset.y+scrollView.frame.size.height,scrollView.contentSize.height);
-        if (scrollView.contentOffset.y+scrollView.frame.size.height > scrollView.contentSize.height)
-        {
-            offset++;
-            [self insertAddressBookContacstToDB];
-        }
-    }
+//    if (decelerate)
+//    {
+//        NSLog(@"offset:%F scrollView.contentSize.height:%f", scrollView.contentOffset.y+scrollView.frame.size.height,scrollView.contentSize.height);
+//        if (scrollView.contentOffset.y+scrollView.frame.size.height > scrollView.contentSize.height)
+//        {
+//            offset++;
+//            [self insertAddressBookContacstToDB];
+//        }
+//    }
 }
 - (void)leftNavBtnClick
 {
