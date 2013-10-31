@@ -243,7 +243,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         NSString *text = [people.user getReadableUsername];
 
         [self addOjbToTokenFieldName:text Obj:people isValid:[self isValidText:text]];
-        [selectedUsers removeObject:selectedUser];
     }
 }
 
