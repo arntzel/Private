@@ -133,6 +133,10 @@
         [self scroll2Today];
     }
 
+    
+    [[[Model getInstance] getEventModel] checkSettingUpdate];
+    
+    
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
     [NSTimer scheduledTimerWithTimeInterval:60.0*2 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];

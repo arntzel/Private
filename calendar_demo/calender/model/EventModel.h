@@ -32,6 +32,8 @@
 -(void) synchronizedFromServer;
 
 -(void) checkContactUpdate;
+-(void) checkSettingUpdate;
+
 - (void)updateEventsFromCalendarApp;
 - (void)uploadCalendarEvents;
 - (void)uploadContacts;

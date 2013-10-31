@@ -15,6 +15,7 @@
 #define KEY_EVENTFILTERS              @"eventfilters"
 #define KEY_CONTACTUPDATETIME         @"lastcontactupdatetime"
 #define KEY_TIMEZONE                  @"timezone"
+#define KEY_SHOW_EVENT_TYPES          @"show_event_types"
 
 @interface UserSetting : NSObject
 
