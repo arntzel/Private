@@ -671,7 +671,7 @@
 #pragma mark DetailInviteesControllerDelegate
 - (void)addNewPeopleArray:(NSArray *)inviteArray
 {
-    
+    //Todo://
 }
 
 @end

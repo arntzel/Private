@@ -13,6 +13,7 @@
 
 - (id)objectAtIndex:(NSUInteger)index;
 - (void)addObject:(id)object;
+- (void)addObjectFromArray:(NSArray *)array;
 - (NSUInteger)count;
 
 + (ExtendArray *)array;
