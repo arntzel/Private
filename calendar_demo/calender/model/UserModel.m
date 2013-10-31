@@ -562,4 +562,33 @@ static UserModel * instance;
         }
     }];
 }
+
+-(void) getSetting:(void (^)(NSInteger error, NSDictionary * settings))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/setting/", HOST];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 200 && data != nil)
+        {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            LOG_D(@"getSetting data :%@",json);
+            
+            callback(0, json);
+            
+        } else {
+            
+            callback(-1, nil);
+        }
+    }];
+}
+     
 @end

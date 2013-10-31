@@ -82,4 +82,7 @@
 
 -(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback;
 
+
+-(void) getSetting:(void (^)(NSInteger error, NSDictionary * settings))callback;
+
 @end
