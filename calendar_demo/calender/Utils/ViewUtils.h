@@ -8,6 +8,8 @@
 
 +(int) getEventTypeColor:(int) eventType;
 
++(NSString *) getEventTypeName:(int) eventType;
+
 +(UIColor *) getUIColor:(int) argbColor;
 
 

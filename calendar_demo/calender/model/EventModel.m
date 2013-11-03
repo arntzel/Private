@@ -276,7 +276,6 @@
                 }
             }
             
-            
             NSString * str = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
             
             if(str == nil || ![str isEqualToString:strTypes]) {

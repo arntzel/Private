@@ -2,7 +2,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define EventFilterViewHeight 275
 
 @protocol EventFilterViewDelegate <NSObject>
 

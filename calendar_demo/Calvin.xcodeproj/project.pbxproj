@@ -68,6 +68,8 @@
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
+		3D272CF91825EA8800C1AE04 /* EventFilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */; };
+		3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */; };
 		3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */; };
 		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D593A9D180692F000AA5E50 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D593A9C180692F000AA5E50 /* EmptyCell.xib */; };
@@ -548,6 +550,9 @@
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterViewCell.xib; sourceTree = "<group>"; };
+		3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFilterViewCell.h; sourceTree = "<group>"; };
+		3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterViewCell.m; sourceTree = "<group>"; };
 		3D32F06318094203000C4D3A /* EventTimeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTimeDetailViewController.h; sourceTree = "<group>"; };
 		3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTimeDetailViewController.m; sourceTree = "<group>"; };
 		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
@@ -2067,6 +2072,9 @@
 				769ABB9017DF54290033E677 /* Navigation.m */,
 				769ABB9117DF54290033E677 /* Navigation.xib */,
 				769ABB9217DF54290033E677 /* NoEventView.xib */,
+				3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */,
+				3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */,
+				3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -2691,6 +2699,7 @@
 				769ABB0C17DF52090033E677 /* AddDateTypeView.xib in Resources */,
 				34B1F1A517F8FCE200AA5C97 /* EmailChangeViewController.xib in Resources */,
 				34B1F1CB17F8FCE200AA5C97 /* settings_main_two_row@2x.png in Resources */,
+				3D272CF91825EA8800C1AE04 /* EventFilterViewCell.xib in Resources */,
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
@@ -2986,6 +2995,7 @@
 				769ABD4517DF54950033E677 /* CustomSwitch.m in Sources */,
 				769ABD4817DF54950033E677 /* GPlaceApi.m in Sources */,
 				769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */,
+				3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */,
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
 				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
 				769ABD5317DF5D440033E677 /* main.m in Sources */,

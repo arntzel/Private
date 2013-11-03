@@ -48,6 +48,40 @@
     return color;
 }
 
+/*
+ Calvin: 0
+ Google Personal: 1
+ Google work: 2
+ Fackbook: 3
+ Birthdays: 4
+ iOSCalendar: 5
+ */
+
++(NSString *) getEventTypeName:(int) eventType
+{
+    switch (eventType) {
+        case 0:
+            return  @"Calvin Events";
+            
+        case 1:
+            return @"Google Personal";
+            
+        case 2:
+            return @"Google Events";
+            
+        case 3:
+            return @"Facebook events";
+            
+        case 4:
+            return @"Birthdays";
+            
+        case 5:
+            return @"IOS Calendar";
+            
+        default:
+            return @"Unknow events";
+    }
+}
 
 +(UIColor *) getUIColor:(int) argbColor
 {

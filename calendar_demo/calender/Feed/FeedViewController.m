@@ -104,6 +104,8 @@
 
     int filters = [[UserSetting getInstance] getEventfilters];
     LOG_D(@"Read filterVal:0x %x", filters);
+    
+    
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     
