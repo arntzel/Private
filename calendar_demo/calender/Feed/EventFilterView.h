@@ -10,23 +10,12 @@
 @end
 
 
-@interface EventFilterView : UIView
-
-@property(strong) IBOutlet UIButton * btnImcompletedEvnt;
-
-@property(strong) IBOutlet UIButton * btnGoogleEvnt;
-
-@property(strong) IBOutlet UIButton * btnFBEvnt;
-
-@property(strong) IBOutlet UIButton * btnBirthdayEvnt;
-
--(IBAction) btnSelected:(id)sender;
+@interface EventFilterView  : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 -(void) setFilter:(int) filter;
 
 
-@property(nonatomic, assign) id<EventFilterViewDelegate> delegate;
+@property(nonatomic, assign) id<EventFilterViewDelegate> filterDelegate;
 
-+(EventFilterView *) createView;
 
 @end

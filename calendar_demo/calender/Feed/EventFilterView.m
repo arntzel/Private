@@ -1,15 +1,27 @@
 
 
 #import "EventFilterView.h"
-
+#import "EventFilterViewCell.h"
+#import "UserSetting.h"
 #import "Event.h"
+
+@interface EventTypeItem : NSObject
+
+@property int eventType;
+@property int select;
+
+@end
+
+
+@implementation EventTypeItem
+
+
+@end
 
 @implementation EventFilterView {
 
-    BOOL incompletedSelected;
-    BOOL googleSelected;
-    BOOL fbSelected;
-    BOOL birthdaySelected;
+    
+    NSMutableArray * eventTypeItems;
 
 }
 
@@ -22,55 +34,82 @@
     return self;
 }
 
-
-+(EventFilterView *) createView
-{
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventFilterView" owner:self options:nil];
-    EventFilterView * view = (EventFilterView*)[nibView objectAtIndex:0];
-
-    view.btnImcompletedEvnt.selected = YES;
-    view.btnGoogleEvnt.selected = YES;
-    view.btnFBEvnt.selected = YES;
-    view.btnBirthdayEvnt.selected = YES;
+-(id) init {
     
-    return view;
+    self = [super initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    
+    self.backgroundColor = [UIColor whiteColor];
+    NSString * allTypes = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
+    if(allTypes == nil || allTypes.length == 0) {
+        allTypes = @"0,1,3,4,5";
+    }
+    
+    eventTypeItems = [[NSMutableArray alloc] init];
+    
+    NSArray * types = [allTypes componentsSeparatedByString:@","];
+    for(NSString * strType in types) {
+        EventTypeItem * item = [[EventTypeItem alloc] init];
+        item.eventType = [strType intValue];
+        item.select = YES;
+        [eventTypeItems addObject:item];
+    }
+    
+    self.dataSource = self;
+    self.delegate = self;
+    
+    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
+    return self;
 }
 
--(IBAction) btnSelected:(id)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return eventTypeItems.count;
+}
 
-    UIButton * btn =  (UIButton *)sender;
-    btn.selected = !btn.selected;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    EventTypeItem *item = [eventTypeItems objectAtIndex:indexPath.row];
+    EventFilterViewCell * cell = [EventFilterViewCell createView:item.eventType];
+    cell.btnSelect.selected = item.select;
+    cell.selectionStyle =  UITableViewCellSelectionStyleNone;
     
-    int filters = 0x00000000|FILTER_IOS;
+    return cell;
+}
 
-    if(self.btnImcompletedEvnt.selected) {
-        filters |= FILTER_IMCOMPLETE;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     EventTypeItem *item = [eventTypeItems objectAtIndex:indexPath.row];
+    item.select = !item.select;
+    
+    int filters = 0;
+    
+    for(EventTypeItem * eventTypeItem in eventTypeItems)
+    {
+        if(eventTypeItem.select) {
+            filters |=  (0x00000001 << eventTypeItem.eventType);
+        }
     }
     
-    if(self.btnGoogleEvnt.selected) {
-        filters |= FILTER_GOOGLE;
-    }
-
-    if(self.btnFBEvnt.selected) {
-        filters |= FILTER_FB;
-    }
-
-    if(self.btnBirthdayEvnt.selected) {
-        filters |= FILTER_BIRTHDAY;
-    }
-
-    if(self.delegate) {
-        [self.delegate onFilterChanged:filters];
-    }
+    [self.filterDelegate onFilterChanged:filters];
+    
+    [self reloadData];
 }
 
 -(void) setFilter:(int) filter
 {
-    self.btnImcompletedEvnt.selected = (filter & FILTER_IMCOMPLETE) > 0;
-    self.btnGoogleEvnt.selected = (filter & FILTER_GOOGLE) > 0;
-    self.btnFBEvnt.selected = (filter & FILTER_FB) > 0;
-    self.btnBirthdayEvnt.selected = (filter & FILTER_BIRTHDAY) > 0;
+    for(EventTypeItem * item in eventTypeItems) {
+        int type = 0x00000001 << item.eventType;
+        item.select = (filter & type) > 0;
+        
+    }
+    
+    [self reloadData];
 }
 
 @end

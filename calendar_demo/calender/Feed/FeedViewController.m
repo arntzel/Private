@@ -109,7 +109,7 @@
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     
-    self.calendarView.filterView.delegate = self;
+    self.calendarView.filterView.filterDelegate = self;
 
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;

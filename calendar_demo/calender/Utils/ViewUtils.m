@@ -64,10 +64,10 @@
             return  @"Calvin Events";
             
         case 1:
-            return @"Google Personal";
+            return @"Google Events";
             
         case 2:
-            return @"Google Events";
+            return @"Google Personal";
             
         case 3:
             return @"Facebook events";

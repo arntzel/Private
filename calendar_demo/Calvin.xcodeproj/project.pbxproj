@@ -370,7 +370,6 @@
 		769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8017DF54290033E677 /* BirthdayEventView.m */; };
 		769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB8117DF54290033E677 /* BirthdayEventView.xib */; };
 		769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8317DF54290033E677 /* EventFilterView.m */; };
-		769ABC7C17DF542A0033E677 /* EventFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB8417DF54290033E677 /* EventFilterView.xib */; };
 		769ABC7D17DF542A0033E677 /* EventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8617DF54290033E677 /* EventView.m */; };
 		769ABC7E17DF542A0033E677 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB8717DF54290033E677 /* EventView.xib */; };
 		769ABC7F17DF542A0033E677 /* FeedEventTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8917DF54290033E677 /* FeedEventTableView.m */; };
@@ -962,7 +961,6 @@
 		769ABB8117DF54290033E677 /* BirthdayEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayEventView.xib; sourceTree = "<group>"; };
 		769ABB8217DF54290033E677 /* EventFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFilterView.h; sourceTree = "<group>"; };
 		769ABB8317DF54290033E677 /* EventFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterView.m; sourceTree = "<group>"; };
-		769ABB8417DF54290033E677 /* EventFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventFilterView.xib; sourceTree = "<group>"; };
 		769ABB8517DF54290033E677 /* EventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventView.h; sourceTree = "<group>"; };
 		769ABB8617DF54290033E677 /* EventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventView.m; sourceTree = "<group>"; };
 		769ABB8717DF54290033E677 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
@@ -2057,7 +2055,9 @@
 				769ABB8117DF54290033E677 /* BirthdayEventView.xib */,
 				769ABB8217DF54290033E677 /* EventFilterView.h */,
 				769ABB8317DF54290033E677 /* EventFilterView.m */,
-				769ABB8417DF54290033E677 /* EventFilterView.xib */,
+				3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */,
+				3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */,
+				3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */,
 				769ABB8517DF54290033E677 /* EventView.h */,
 				769ABB8617DF54290033E677 /* EventView.m */,
 				769ABB8717DF54290033E677 /* EventView.xib */,
@@ -2072,9 +2072,6 @@
 				769ABB9017DF54290033E677 /* Navigation.m */,
 				769ABB9117DF54290033E677 /* Navigation.xib */,
 				769ABB9217DF54290033E677 /* NoEventView.xib */,
-				3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */,
-				3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */,
-				3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -2753,7 +2750,6 @@
 				76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */,
 				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
-				769ABC7C17DF542A0033E677 /* EventFilterView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
 				769ABC8217DF542A0033E677 /* LoadingProgressView.xib in Resources */,
 				34B1F1BC17F8FCE200AA5C97 /* settings_main_facebook_icon.png in Resources */,

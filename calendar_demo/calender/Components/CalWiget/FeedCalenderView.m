@@ -58,7 +58,7 @@ extern const CGSize kTileSize;
 - (void)addeventScrollView
 {
     eventScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    self.filterView = [EventFilterView createView];
+    self.filterView = [[EventFilterView alloc] init];
     
     [self addSubview:eventScrollView];
     [eventScrollView addSubview:self.filterView];

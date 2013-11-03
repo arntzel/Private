@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventFilterViewCell : UIView
+@interface EventFilterViewCell : UITableViewCell
 
 @property IBOutlet UIImageView * colorDot;
 @property IBOutlet UILabel * labelEventTypeName;
 @property IBOutlet UIButton * btnSelect;
 
++(EventFilterViewCell *) createView:(int) eventType;
 
 @end
