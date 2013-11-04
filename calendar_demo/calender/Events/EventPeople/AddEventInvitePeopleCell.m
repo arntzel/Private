@@ -104,7 +104,10 @@
         self.peopleHeader.hidden = YES;
 
     } else {
-
+        CGRect frame = self.peopleName.frame;
+        frame.origin.x = 49;
+        self.peopleName.frame = frame;
+        self.peopleHeader.hidden = NO;
         if(headerUrl == nil) {
             self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
         } else {
