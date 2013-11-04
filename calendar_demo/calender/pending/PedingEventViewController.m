@@ -92,13 +92,20 @@
 
     [[CoreDataModel getInstance] addDelegate:self];
 
-    [self loadData];
+    //[self loadData];
 }
 
 -(void) viewDidUnload
 {
     [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    NSLog(@"PedingEventViewController viewWillAppear");
+    
+    [self loadData];
 }
 
 -(void) loadData
