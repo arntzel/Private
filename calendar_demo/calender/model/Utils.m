@@ -376,16 +376,21 @@ static NSTimeZone * userTimeZone;
 }
 
 
-+(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg
++(UIAlertView *) showUIAlertView:(NSString *) title andMessage:(NSString *) msg andDeletegate:(id) delegate
 {
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:title
                                                     message:msg
-                                                   delegate:nil
+                                                   delegate:delegate
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-
+    
     [alert show];
+    return alert;
+}
 
++(UIAlertView *) showUIAlertView:(NSString *) title andMessage:(NSString *) msg
+{
+    return [Utils showUIAlertView:title andMessage:msg andDeletegate:nil];
 }
 
 +(id) chekcNullClass:(id) obj

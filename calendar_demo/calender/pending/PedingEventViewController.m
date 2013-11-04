@@ -96,7 +96,7 @@
 }
 
 -(void) viewDidUnload
-{
+{  
     [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
 }
