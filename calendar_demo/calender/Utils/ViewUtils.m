@@ -70,16 +70,16 @@
             return @"Google Personal";
             
         case 3:
-            return @"Facebook events";
+            return @"Facebook Events";
             
         case 4:
             return @"Birthdays";
             
         case 5:
-            return @"IOS Calendar";
+            return @"iCal Events";
             
         default:
-            return @"Unknow events";
+            return @"Unknow Events";
     }
 }
 
