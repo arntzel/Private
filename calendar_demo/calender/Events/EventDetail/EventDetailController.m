@@ -124,9 +124,9 @@
         if(error == ERROCODE_EVENT_NOTEXITED) {
 
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
-            [self.navigationController popViewControllerAnimated:YES];
+            //[self.navigationController popViewControllerAnimated:YES];
 
-            [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted"];
+            [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted" andDeletegate:self].tag = 2;
 
             return;
         }
@@ -255,6 +255,8 @@
         }
     } else if(actionSheet.tag == 2) {
         
+    } else if(actionSheet.tag == 3) {
+        [self leftBtnPress:nil];
     }
 }
 
@@ -662,7 +664,13 @@
 #pragma mark UIAlertViewDeletegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 1) {
+    
+    if(alertView.tag == 2) {
+        
+        [self leftBtnPress:nil];
+        
+    } else if(buttonIndex == 1) {
+        
         [self begindeleteEvent];
     }
 }

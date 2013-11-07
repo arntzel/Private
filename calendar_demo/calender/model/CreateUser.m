@@ -11,6 +11,10 @@
     [dic setObject:self.username forKey:@"username"];
     [dic setObject:self.email forKey:@"email"];
     [dic setObject:self.password forKey:@"password"];
+    
+    
+    NSString * timezone = [[NSTimeZone systemTimeZone] name];
+    [dic setObject:timezone forKey:@"timezone"];
 
     if(self.avatar_url == nil)
     {

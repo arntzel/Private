@@ -121,7 +121,9 @@
 
 +(NSString *) getAttendeeText:(FeedEventEntity*)event;
 
-+(void) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
++(UIAlertView *) showUIAlertView:(NSString *) title andMessage:(NSString *) msg andDeletegate:(id) delegate;
+
++(UIAlertView *) showUIAlertView:(NSString *) title andMessage:(NSString *) msg;
 
 +(id) chekcNullClass:(id) obj;
 

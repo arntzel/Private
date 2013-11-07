@@ -99,9 +99,10 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
 
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    NSString * timezone = [NSTimeZone systemTimeZone].name;
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
     if(self.device_token != nil) {
-        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+        [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
     }
 
     LOG_D(@"postContent=%@", postContent);
@@ -123,9 +124,11 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
     
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    NSString * timezone = [NSTimeZone systemTimeZone].name;
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
+    
     if(self.device_token != nil) {
-        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+        [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
     }
 
     LOG_D(@"signinGooglePlus, postContent=%@", postContent);
