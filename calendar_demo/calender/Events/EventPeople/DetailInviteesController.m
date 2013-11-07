@@ -149,7 +149,7 @@ typedef enum
         for(ProposeStart * start in self.event.propose_starts) {
             for(EventTimeVote * vote in start.votes) {
                 
-                if([vote.email isEqualToString:contact.email]) {
+                if([vote.email caseInsensitiveCompare:contact.email] == NSOrderedSame) {
                     
                     if(vote.status == 1) {
                         [responded.agreeTimeArray addObject: [start getVoteTimeLabel]];

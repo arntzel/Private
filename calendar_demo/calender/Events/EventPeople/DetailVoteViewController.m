@@ -150,7 +150,7 @@ typedef enum
             
             User * creator = self.event.creator;
             
-            if([people.user.email isEqualToString:creator.email]) {
+            if([people.user.email caseInsensitiveCompare:creator.email] == NSOrderedSame) {
                 
                 DetailDeclinedCell * cell = (DetailDeclinedCell *)[ViewUtils createView:@"DetailDeclinedCell"];
                 [cell setName: [creator getReadableUsername]];

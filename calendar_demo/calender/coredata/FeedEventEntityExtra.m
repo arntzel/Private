@@ -18,7 +18,7 @@
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.contact.email isEqualToString:self.creatoremail])
+        if([user.contact.email caseInsensitiveCompare:self.creatoremail])
         {
             return user;
         }
@@ -87,7 +87,7 @@
                 
                 for (EventTimeVote * vote in ps.votes) {
                     
-                    if([me.email isEqualToString:vote.email] && vote.status == 1) {
+                    if([me.email caseInsensitiveCompare:vote.email] && vote.status == 1) {
                         accepted = YES;
                         break;
                     }

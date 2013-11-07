@@ -119,7 +119,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(ContactEntity * entity in contacts) {
-        if([me.email isEqualToString:entity.email]) {
+        if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
             //exclude creator in the event
             continue;
         }
@@ -155,7 +155,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
     for(ContactEntity * entity in contacts) {
         
-        if([me.email isEqualToString:entity.email]) {
+        if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
             //exclude creator in the event
             continue;
         }
@@ -199,7 +199,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     for (Contact* selectedUser in selectedUsers) {
         if (selectedUser.email != nil && [selectedUser.email length] > 0) {
-            if ([selectedUser.email isEqualToString:user.email]) {
+            if ([selectedUser.email caseInsensitiveCompare:user.email] == NSOrderedSame) {
                 return YES;
             }
         }
@@ -217,7 +217,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     for (Contact* selectedUser in selectedUsers) {
         if (selectedUser.email != nil && [selectedUser.email length] > 0) {
-            if ([selectedUser.email isEqualToString:user.email]) {
+            if ([selectedUser.email caseInsensitiveCompare:user.email] == NSOrderedSame) {
                 [selectedUsers removeObject:selectedUser];
                 return YES;
             }

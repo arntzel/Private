@@ -467,7 +467,7 @@
     
     for(EventAttendee * atd in self.event.attendees) {
         
-        if([atd.contact.email isEqualToString:me.email]) {
+        if([atd.contact.email caseInsensitiveCompare:me.email] == NSOrderedSame) {
             [self declineEvent:atd];
             break;
         }
