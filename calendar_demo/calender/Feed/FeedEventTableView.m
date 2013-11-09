@@ -63,6 +63,7 @@
 
 -(NSDate *) getFirstVisibleDay
 {
+    [self reloadData];
     NSArray * indexs = [self indexPathsForVisibleRows];
 
     if(indexs.count > 0) {

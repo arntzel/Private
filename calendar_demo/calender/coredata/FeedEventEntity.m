@@ -26,6 +26,7 @@
 @dynamic eventType;
 @dynamic ext_event_id;
 @dynamic hasModified;
+@dynamic hasDeleted;
 @dynamic id;
 @dynamic is_all_day;
 @dynamic last_modified;

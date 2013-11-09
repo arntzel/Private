@@ -268,7 +268,29 @@ static CoreDataModel * instance;
     }
     return nil;
 }
-
+- (FeedEventEntity *)getDeletedICalFeedEventWithExtEventID:(NSString *)ext_event_id
+{
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    
+    int type = 0x00000001 << 5;
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if ([results count] > 0)
+    {
+        return [results objectAtIndex:0];
+    }
+    return nil;
+}
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id WithLimit:(int)limit
 {
     if (!managedObjectContext)
@@ -318,7 +340,44 @@ static CoreDataModel * instance;
     }
     return nil;
 }
-
+- (NSArray *)getDeletediCalFeedEvents
+{
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    int type = 0x00000001 << 5;
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && hasDeleted=%@", type, @(YES)];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    return results;
+}
+- (NSArray *)getAlliCalFeedEvent
+{
+    if (!managedObjectContext)
+    {
+        return nil ;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate;
+    
+    int type = 0x00000001 << 5;
+    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0", type];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
 -(DataCache *) getCache
 {
     return cache;

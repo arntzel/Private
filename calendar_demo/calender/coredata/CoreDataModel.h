@@ -65,10 +65,11 @@
  *  @return the event.
  */
 - (FeedEventEntity *)getFeedEventWithEventType:(int)eventType WithExtEventID:(NSString *)ext_event_id;
-
+- (FeedEventEntity *)getDeletedICalFeedEventWithExtEventID:(NSString *)ext_event_id;
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id WithLimit:(int)limit;
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithHasModified:(BOOL)hasModified;
-
+- (NSArray *)getDeletediCalFeedEvents;
+- (NSArray *)getAlliCalFeedEvent;
 -(NSArray*) getFeedEvents:(NSString *) day evenTypeFilter:(int) filter;
 
 

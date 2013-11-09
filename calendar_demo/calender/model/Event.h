@@ -83,6 +83,7 @@
 //----------add by vale
 @property (nonatomic, strong) NSString *ext_event_id;
 @property (nonatomic) BOOL hasModified;
+@property (nonatomic) BOOL hasDeleted;
 //----------
 @property (strong)  NSString * modified_num;
 

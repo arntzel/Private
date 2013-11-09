@@ -35,6 +35,7 @@
 -(void) checkSettingUpdate;
 
 - (void)updateEventsFromCalendarApp;
+- (void)deleteIcalEvent;
 - (void)uploadCalendarEvents;
 - (void)uploadContacts;
 @end

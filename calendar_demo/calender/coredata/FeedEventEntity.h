@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSNumber * eventType;
 @property (nonatomic, retain) NSString * ext_event_id;
 @property (nonatomic, retain) NSNumber * hasModified;
+@property (nonatomic, retain) NSNumber *hasDeleted;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * is_all_day;
 @property (nonatomic, retain) NSDate * last_modified;

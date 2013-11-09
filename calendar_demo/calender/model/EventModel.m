@@ -298,16 +298,28 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                
-                if (allEvents==nil || [allEvents count]==0)
-                {
-                    
-                }
-                else
+                if (allEvents != nil)
                 {
                     CoreDataModel * model = [CoreDataModel getInstance];
-                    NSLog(@"========before get event from iCal=========");
-                    [model getFeedEventWithEventType:5];
+                    NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
+                    for (int i=0;i<[allICalEventsInDB count];i++)
+                    {
+                        FeedEventEntity *iCalEventInDB = [allICalEventsInDB objectAtIndex:i];
+                        for (Event *tmp in allEvents)
+                        {
+                            if ([iCalEventInDB.ext_event_id isEqualToString:tmp.ext_event_id])
+                            {
+                                [allICalEventsInDB removeObject:iCalEventInDB];
+                            }
+                        }
+                    }
+                    
+                    for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
+                    {
+                        LOG_D(@"have %d event(s) has been deleted!!!",[allICalEventsInDB count]);
+                        FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:iCalEventInDB.ext_event_id];
+                        eventEntity.hasDeleted = @(YES);
+                    }
                     for (Event *event1 in allEvents)
                     {
                         FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
@@ -378,10 +390,7 @@
                                 
                                 
                             }
-                            
                             [model saveData];
-                            LOG_D(@"================ finish uploading events =============");
-                            
                         }
                         
                     });
@@ -406,7 +415,6 @@
         return;
     }
     CoreDataModel * model = [CoreDataModel getInstance];
-    [model getFeedEventWithEventType:5];
     NSArray *arrFromDB = [model getFeedEventsWithEventType:5 WithHasModified:YES];
     if (arrFromDB!=nil && [arrFromDB count]>0)
     {
@@ -429,8 +437,50 @@
         });
         
     }
-    
-    
+}
+
+- (void)deleteIcalEvent
+{
+    if(![[UserModel getInstance] isLogined])
+    {
+        return;
+    }
+    CoreDataModel * model = [CoreDataModel getInstance];
+    NSMutableArray *deletedIcalEvents = [NSMutableArray arrayWithArray:[model getDeletediCalFeedEvents]];
+    for (int i=0;i<[deletedIcalEvents count];i++)
+    {
+        FeedEventEntity *deletedIcalEvent = [deletedIcalEvents objectAtIndex:i];
+        if ([deletedIcalEvent.id intValue]==0)
+        {
+            LOG_D(@"delete the ical events whoes id is 0");
+            [model deleteFeedEventEntity:0];
+            [deletedIcalEvents removeObject:deletedIcalEvent];
+        }
+    }
+    if ([deletedIcalEvents count]>0)
+    {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            
+            FeedEventEntity *entity = [deletedIcalEvents objectAtIndex:0];
+            [[Model getInstance] deleteICalEventWithEventEntity:entity callback:^(NSInteger error) {
+                if (error == 0)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                        [model deleteFeedEventEntity:[entity.id intValue]];
+                        [self deleteIcalEvent];
+                    });
+                }
+               
+                
+            }];
+            
+        });
+    }
+    else
+    {
+        [self uploadCalendarEvents];
+    }
 }
 - (void)uploadContacts
 {

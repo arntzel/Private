@@ -233,16 +233,8 @@ static Model * instance;
                     
                     
                 }
-                if ([_allEvents count]==0)
-                {
-                    callback(nil);
-                }
-                else
-                {
-                    callback(_allEvents);
-                }
                 
-                
+                callback(_allEvents);
             }
             else
             {
@@ -364,7 +356,7 @@ static Model * instance;
     }];
 
 }
-- (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback
+- (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback;
 {
     LOG_D(@"updateEventsFromCalendarApp");
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, [eventEntity.id intValue]];
@@ -454,6 +446,29 @@ static Model * instance;
             LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
             
             callback(-1, nil);
+        }
+    }];
+    
+}
+- (void)deleteICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, [eventEntity.id intValue]];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"DELETE"];
+    [[UserModel getInstance] setAuthHeader:request];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 204 || status == 404)
+        {
+            callback(0);
+            
+        }
+        else
+        {
+            callback(-1);
         }
     }];
     
