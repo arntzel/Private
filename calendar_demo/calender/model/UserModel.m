@@ -351,15 +351,15 @@ static UserModel * instance;
              CFRelease(cfarray);
              NSMutableArray *contactsArray = [NSMutableArray array];
              
-             for (int i=offset*40; i<offset*40+40; i++)
+             for (int i=offset*40; i<[allPeopleArray count]; i++)
              {
-                 if (i>[allPeopleArray count]-1)
-                 {
-                     
-                     callback(contactsArray,YES);
-                     CFRelease(addressBook);
-                     return ;
-                 }
+//                 if (i>[allPeopleArray count]-1)
+//                 {
+//                     
+//                     callback(contactsArray,YES);
+//                     CFRelease(addressBook);
+//                     return ;
+//                 }
                  ABRecordRef contactInfo = (__bridge ABRecordRef)([allPeopleArray objectAtIndex:i]);
                  NSString *firstName = (NSString *)(CFBridgingRelease(ABRecordCopyValue(contactInfo, kABPersonFirstNameProperty)));
                  if (!firstName)
