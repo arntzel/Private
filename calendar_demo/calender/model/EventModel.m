@@ -254,6 +254,42 @@
     }];
 }
 
+
+-(void) checkSettingUpdate
+{
+    if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
+    
+    [[UserModel getInstance] getSetting:^(NSInteger error, NSDictionary *settings) {
+        
+        if(error == 0) {
+            NSArray * show_event_types = [settings objectForKey:@"show_event_types"];
+            
+            NSMutableString * strTypes = [[NSMutableString alloc] init];
+            
+            for(int i=0 ; i<show_event_types.count; i++) {
+                [strTypes appendString:[show_event_types objectAtIndex:i]];
+                
+                if(i<show_event_types.count-1) {
+                    [strTypes appendString:@","];
+                }
+            }
+            
+            NSString * str = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
+            
+            if(str == nil || ![str isEqualToString:strTypes]) {
+                [[UserSetting getInstance] saveKey:KEY_SHOW_EVENT_TYPES andStringValue:strTypes];
+                LOG_I(@"saveKey: %@=%@", KEY_SHOW_EVENT_TYPES, strTypes);
+            }
+        }
+    }];
+}
+
+
+
+
+
 - (void)updateEventsFromCalendarApp
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

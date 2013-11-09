@@ -99,9 +99,10 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
 
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    NSString * timezone = [NSTimeZone systemTimeZone].name;
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
     if(self.device_token != nil) {
-        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+        [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
     }
 
     LOG_D(@"postContent=%@", postContent);
@@ -123,9 +124,11 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
     
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&", accessToken];
+    NSString * timezone = [NSTimeZone systemTimeZone].name;
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
+    
     if(self.device_token != nil) {
-        [postContent appendString:[NSString stringWithFormat:@"device_token=%@", self.device_token]];
+        [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
     }
 
     LOG_D(@"signinGooglePlus, postContent=%@", postContent);
@@ -566,4 +569,33 @@ static UserModel * instance;
         }
     }];
 }
+
+-(void) getSetting:(void (^)(NSInteger error, NSDictionary * settings))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/setting/", HOST];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 200 && data != nil)
+        {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            LOG_D(@"getSetting data :%@",json);
+            
+            callback(0, json);
+            
+        } else {
+            
+            callback(-1, nil);
+        }
+    }];
+}
+     
 @end

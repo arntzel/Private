@@ -39,6 +39,11 @@
     return [self.array count];
 }
 
+- (void)addObjectFromArray:(NSArray *)array_
+{
+    [self.array addObjectsFromArray:array_];
+}
+
 + (ExtendArray *)array
 {
     return [[ExtendArray alloc] init];

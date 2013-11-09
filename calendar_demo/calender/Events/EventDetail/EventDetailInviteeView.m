@@ -75,7 +75,7 @@
         EventAttendee * attendee = [users objectAtIndex:i];
         Contact * user = attendee.contact;
         
-        if([user.email isEqualToString:me.email]) continue;
+        if([user.email caseInsensitiveCompare:me.email] == NSOrderedSame) continue;
 
         if(i== users.count-1) {
             [names appendString:@" and "];
@@ -105,7 +105,7 @@
         EventAttendee * attendee = [users objectAtIndex:i];
         Contact * user = attendee.contact;
 
-        if([user.email isEqualToString:me.email]) continue;
+        if([user.email caseInsensitiveCompare:me.email] == NSOrderedSame) continue;
 
         if(user.avatar_url == nil) {
             [urls addObject:@""];

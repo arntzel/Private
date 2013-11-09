@@ -149,7 +149,7 @@ typedef enum
         for(ProposeStart * start in self.event.propose_starts) {
             for(EventTimeVote * vote in start.votes) {
                 
-                if([vote.email isEqualToString:contact.email]) {
+                if([vote.email caseInsensitiveCompare:contact.email] == NSOrderedSame) {
                     
                     if(vote.status == 1) {
                         [responded.agreeTimeArray addObject: [start getVoteTimeLabel]];
@@ -192,8 +192,9 @@ typedef enum
         [userArray addObject:attend.contact];
     }
     
-    [controller setSelectedUser:userArray];
     [controller setType:AddInviteeTypeRest];
+    [controller setSelectedUser:userArray];
+    
     [self.navigationController pushViewController:controller animated:YES];
     
 }
@@ -305,9 +306,33 @@ typedef enum
 #pragma mark AddEventInviteViewControllerDelegate
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
 {
-    if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
-        [self.delegate addNewPeopleArray:inviteArray];
+    if ([inviteArray count] > 0) {
+        NSArray *array = [self convertResponsedArrayFromContactArray:inviteArray];
+        [dataArray removeObject:notRespondedArray];
+        [dataArray addObject:notRespondedArray];
+        [notRespondedArray addObjectFromArray:array];
+        [self.tableView reloadData];
+        
+        if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
+            [self.delegate addNewPeopleArray:inviteArray];
+        }
     }
+}
+
+- (NSArray *)convertResponsedArrayFromContactArray:(NSArray *)contacts
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (Contact *contact in contacts)
+    {
+        respondedInfo * responded = [[respondedInfo alloc] init];
+        
+        responded.name = [contact getReadableUsername];
+        responded.headPhotoUrl = contact.avatar_url;
+        
+        [array addObject:responded];
+    }
+    
+    return array;
 }
 
 @end

@@ -96,6 +96,10 @@
         return  0xFF71A189;
     }
 
+    if( (eventType & FILTER_IOS) !=0 ) {
+        return 0xFFB34BAC;
+    }
+    
     return 0x00000000;
 }
 

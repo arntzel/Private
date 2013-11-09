@@ -206,7 +206,7 @@
         User * me = [[UserModel getInstance] getLoginUser];
 
         for (EventTimeVote * vote in _eventTime.votes) {
-            if([me.email isEqualToString:vote.email]) {
+            if([me.email caseInsensitiveCompare:vote.email] == NSOrderedSame) {
                 status = vote.status;
                 break;
             }

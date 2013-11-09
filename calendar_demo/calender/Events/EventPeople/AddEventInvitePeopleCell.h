@@ -8,7 +8,7 @@
 @property(nonatomic, retain) Contact *user;
 @property(nonatomic, assign) BOOL selected;
 
-
++ (NSArray *)resortListByName:(NSArray *)contacts;
 @end
 
 

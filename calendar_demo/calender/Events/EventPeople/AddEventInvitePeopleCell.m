@@ -3,6 +3,7 @@
 #import "AddEventInvitePeopleCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "pinyin.h"
 
 @implementation AddEventInvitePeople
 - (void)dealloc
@@ -10,6 +11,50 @@
     self.user = nil;
     [super dealloc];
 }
+
++ (NSString *)getSectionName:(NSString *)text
+{
+    if (text == nil || text.length == 0) {
+        return @"#";
+    }
+    NSString *sectionName;
+    char firstLetter = pinyinFirstLetter([text characterAtIndex:0]);
+    
+    if ((firstLetter >='a' && firstLetter <= 'z') || (firstLetter >= 'A' && firstLetter <= 'Z')){
+        sectionName = [[NSString stringWithFormat:@"%c", firstLetter] uppercaseString];
+    }else{
+        sectionName = [@"#" uppercaseString];
+    }
+    
+    return sectionName;
+}
+
++ (NSArray *)resortListByName:(NSArray *)contacts
+{
+    LOG_METHOD;
+    NSMutableDictionary *allDict = [NSMutableDictionary dictionary];
+    
+    for (int i = 0; i < 26; i++){
+        [allDict setObject:[NSMutableArray array] forKey:[NSString stringWithFormat:@"%c",'A'+i]];
+    }
+    [allDict setObject:[NSMutableArray array] forKey:@"#"];
+    
+    for (int i = 0; i < contacts.count; i++) {
+        AddEventInvitePeople *people = [contacts objectAtIndex:i];
+        NSString *fullName = [people.user getReadableUsername];
+        NSString *sectionName = [self getSectionName:fullName];
+        [[allDict objectForKey:sectionName] addObject:people];
+    }
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < 26; i++){
+        [array addObjectsFromArray:[allDict objectForKey:[NSString stringWithFormat:@"%c",'A'+i]]];
+    }
+    [array addObjectsFromArray:[allDict objectForKey:@"#"]];
+    
+    return array;
+}
+
 @end
 
 
@@ -59,7 +104,10 @@
         self.peopleHeader.hidden = YES;
 
     } else {
-
+        CGRect frame = self.peopleName.frame;
+        frame.origin.x = 49;
+        self.peopleName.frame = frame;
+        self.peopleHeader.hidden = NO;
         if(headerUrl == nil) {
             self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
         } else {

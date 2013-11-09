@@ -8,6 +8,12 @@
 -(NSString *) getReadableUsername
 {
     if(self.first_name.length > 0 || self.last_name.length >0) {
+        if (self.first_name.length <= 0) {
+            return self.last_name;
+        }
+        if (self.last_name.length <= 0) {
+            return self.first_name;
+        }
 
         return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
 

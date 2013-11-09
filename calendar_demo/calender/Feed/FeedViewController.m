@@ -104,10 +104,12 @@
 
     int filters = [[UserSetting getInstance] getEventfilters];
     LOG_D(@"Read filterVal:0x %x", filters);
+    
+    
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     
-    self.calendarView.filterView.delegate = self;
+    self.calendarView.filterView.filterDelegate = self;
 
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
@@ -133,6 +135,10 @@
         [self scroll2Today];
     }
 
+    
+    [[[Model getInstance] getEventModel] checkSettingUpdate];
+    
+    
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
     [NSTimer scheduledTimerWithTimeInterval:60.0*2 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
