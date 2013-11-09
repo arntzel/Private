@@ -338,7 +338,7 @@ static UserModel * instance;
 }
 - (void)requestContactsFromAddressBookWithOffset:(int)offset WithCallBack:(void(^)(NSMutableArray *contactsArr, BOOL finish))callback
 {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
      {
          if (granted)
@@ -409,7 +409,11 @@ static UserModel * instance;
          {
              NSLog(@"granted failed");
              callback(nil,YES);
-             CFRelease(addressBook);
+             if (addressBook != NULL)
+             {
+                 CFRelease(addressBook);
+             }
+             
          }
     });
 }
