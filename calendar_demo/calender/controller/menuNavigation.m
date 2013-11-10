@@ -168,8 +168,10 @@
     }
     else
     {
-        //return [notifyDataSource heightForCellAtIndex:indexPath.row];
-        return 55;
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return cell.frame.size.height;
+//        return [menuDataSource heightForCellAtIndex:indexPath.row];
+//        return 55;
     }
 }
 

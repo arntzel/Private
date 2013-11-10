@@ -67,11 +67,22 @@
     
     self.NotifyDetailLabel.text = subject;
     
-    [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
+
     
-    [self.NotifyDetailLabel setFont:[UIFont systemFontOfSize:11] fromIndex:0 length:subject.length];
+    UIFont *font = [UIFont systemFontOfSize:11];
+    [self.NotifyDetailLabel setFont:font];
+
+    [self.NotifyDetailLabel setTextColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0]];
+
+//        [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
+//    [self.NotifyDetailLabel setFont:font fromIndex:0 length:subject.length];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
+    CGSize fontSize = [subject sizeWithFont:font constrainedToSize:self.NotifyDetailLabel.frame.size lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGRect frame = self.frame;
+    frame.size.height = fontSize.height + 30;
+    self.frame = frame;
 
     self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
     
