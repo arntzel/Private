@@ -301,7 +301,7 @@
                                              delegate:self
                                     cancelButtonTitle:@"Cancel"
                                destructiveButtonTitle:@"Delete Event"
-                                    otherButtonTitles:@"Share on Facebook", @"Share via Email", @"Edit Event Details", nil];
+                                    otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
     moreActionSheet.tag = 1;
     [moreActionSheet showInView:self.view];
     [moreActionSheet release];
@@ -677,9 +677,12 @@
 
 #pragma mark -
 #pragma mark DetailInviteesControllerDelegate
-- (void)addNewPeopleArray:(NSArray *)inviteArray
+- (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 {
-    //Todo://
+    self.event = newEvent;
+    [invitePlaceContentView updateInvitee:newEvent.attendees];
+    
+    [[[Model getInstance] getEventModel] synchronizedFromServer];
 }
 
 @end

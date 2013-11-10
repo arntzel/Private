@@ -11,6 +11,7 @@
 #import "ExtendArray.h"
 
 #import "UserModel.h"
+#import "Model.h"
 
 #import "AddEventInviteViewController.h"
 
@@ -49,6 +50,8 @@ typedef enum
     NSMutableArray *dataArray;
     
     UIButton *rightBtn;
+    
+    UIActivityIndicatorView * indicatorView;
 }
 
 @end
@@ -307,6 +310,35 @@ typedef enum
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
 {
     if ([inviteArray count] > 0) {
+        
+        NSMutableArray * invitees = [[NSMutableArray alloc] init];
+        for( Contact * contact in inviteArray) {
+            Invitee * invitee = [[Invitee alloc] init];
+            invitee.email = contact.email;
+            [invitees addObject:invitee];
+        }
+        
+        [self showIndictor:YES];
+        [[Model getInstance] inviteContacts:_event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
+            [self showIndictor:NO];
+            
+            if(error == 0) {
+                
+                [self setEvent:newEvent];
+                [self initData];
+                [self.tableView reloadData];
+                
+                
+                if(self.delegate) {
+                    [self.delegate addNewPeopleArray:invitees andNewEvent:newEvent];
+                }
+                
+            } else {
+                [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
+            }
+        }];
+        
+        /*
         NSArray *array = [self convertResponsedArrayFromContactArray:inviteArray];
         [dataArray removeObject:notRespondedArray];
         [dataArray addObject:notRespondedArray];
@@ -316,6 +348,7 @@ typedef enum
         if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
             [self.delegate addNewPeopleArray:inviteArray];
         }
+         */
     }
 }
 
@@ -335,6 +368,22 @@ typedef enum
     return array;
 }
 
+
+-(void) showIndictor:(BOOL) show
+{
+    if(indicatorView==nil) {
+        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        indicatorView.center = self.view.center;
+        indicatorView.hidesWhenStopped = YES;
+        [self.view addSubview:indicatorView];
+    }
+    
+    if(show) {
+        [indicatorView startAnimating];
+    } else {
+        [indicatorView stopAnimating];
+    }
+}
 @end
 
 
