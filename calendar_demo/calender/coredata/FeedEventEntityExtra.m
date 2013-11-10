@@ -18,7 +18,7 @@
 {
     for(UserEntity * user in self.attendees)
     {
-        if([user.contact.email caseInsensitiveCompare:self.creatoremail])
+        if([user.contact.email caseInsensitiveCompare:self.creatoremail] == NSOrderedSame)
         {
             return user;
         }
@@ -87,7 +87,7 @@
                 
                 for (EventTimeVote * vote in ps.votes) {
                     
-                    if([me.email caseInsensitiveCompare:vote.email] && vote.status == 1) {
+                    if([me.email caseInsensitiveCompare:vote.email] == NSOrderedSame && vote.status == 1) {
                         accepted = YES;
                         break;
                     }
