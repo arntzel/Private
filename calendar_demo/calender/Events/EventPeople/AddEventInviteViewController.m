@@ -119,6 +119,13 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(ContactEntity * entity in contacts) {
+        
+        
+        //暂时不支持短信联系人的邀请
+        if(entity.email == nil || entity.email.length == 0){
+            continue;
+        }
+        
         if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
             //exclude creator in the event
             continue;
@@ -154,6 +161,11 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     User * me = [[UserModel getInstance] getLoginUser];
 
     for(ContactEntity * entity in contacts) {
+        
+        //暂时不支持短信联系人的邀请
+        if(entity.email == nil || entity.email.length == 0){
+            continue;
+        }
         
         if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
             //exclude creator in the event

@@ -51,7 +51,7 @@ typedef enum
     
     UIButton *rightBtn;
     
-    UIActivityIndicatorView * indicatorView;
+    UIActivityIndicatorView * indicatorLoadingView;
 }
 
 @end
@@ -371,17 +371,17 @@ typedef enum
 
 -(void) showIndictor:(BOOL) show
 {
-    if(indicatorView==nil) {
-        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        indicatorView.center = self.view.center;
-        indicatorView.hidesWhenStopped = YES;
-        [self.view addSubview:indicatorView];
+    if(indicatorLoadingView==nil) {
+        indicatorLoadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        indicatorLoadingView.center = self.view.center;
+        indicatorLoadingView.hidesWhenStopped = YES;
+        [self.view addSubview:indicatorLoadingView];
     }
     
     if(show) {
-        [indicatorView startAnimating];
+        [indicatorLoadingView startAnimating];
     } else {
-        [indicatorView stopAnimating];
+        [indicatorLoadingView stopAnimating];
     }
 }
 @end
