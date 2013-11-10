@@ -84,6 +84,7 @@
 		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92521017784AAE0066927A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D925278177960460066927A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925277177960450066927A /* Security.framework */; };
+		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
 		3DCD5DD4181510C4000E2E56 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD3181510C4000E2E56 /* MessageEntity.m */; };
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
@@ -572,6 +573,7 @@
 		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3D92521017784AAE0066927A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3D925277177960450066927A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventViewNoEventCell.xib; path = calender/pending/PendingEventViewNoEventCell.xib; sourceTree = SOURCE_ROOT; };
 		3DCD5DD2181510C4000E2E56 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = calender/coredata/MessageEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DD3181510C4000E2E56 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DD5181510C4000E2E56 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
@@ -1540,6 +1542,7 @@
 				769AB91617DF51160033E677 /* PendingEventViewCell2.h */,
 				769AB91717DF51160033E677 /* PendingEventViewCell2.m */,
 				769AB91817DF51160033E677 /* PendingEventViewCell2.xib */,
+				3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */,
 				769AB91917DF51160033E677 /* PendingTableView.h */,
 				769AB91A17DF51160033E677 /* PendingTableView.m */,
 			);
@@ -2722,6 +2725,7 @@
 				769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */,
 				769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */,
 				769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */,
+				3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */,
 				769ABB5717DF53C00033E677 /* InfoPlist.strings in Resources */,
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
 				765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */,

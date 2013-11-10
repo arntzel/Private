@@ -6,6 +6,7 @@
 #import "EventDetailController.h"
 #import "RootNavContrller.h"
 
+#import "ViewUtils.h"
 
 @interface PendingTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -99,11 +100,14 @@
 
     NSArray * eventList = [self getEventsList:section];
     
-    FeedEventEntity * evt = nil;
-    if(eventList.count>0) {
-        evt = [eventList objectAtIndex:row];
-    } 
-
+    
+    if(eventList.count == 0)
+    {
+        return (UITableViewCell *)[ViewUtils createView:@"PendingEventViewNoEventCell"];
+    }
+    
+    FeedEventEntity * evt = [eventList objectAtIndex:row];
+    
     if(section == 0) {
         PendingEventViewCell * cell = [PendingEventViewCell createView];
         [cell refreshView:evt];
@@ -123,8 +127,7 @@
         return nil;
     }
 
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"PendingEventHeader" owner:self options:nil];
-    UIView * header = [nibView objectAtIndex:0];
+    UIView * header = [ViewUtils createView:@"PendingEventHeader"];
     UILabel * label =  (UILabel *) [header viewWithTag:1];
     label.text = sectionHeader;
 
