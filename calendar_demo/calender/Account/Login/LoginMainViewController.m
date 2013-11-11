@@ -329,6 +329,7 @@
             [alert show];
             
             [signInView setEmail:createUser.email andPass:createUser.password];
+            [self btnSignInDidClickWithName:createUser.email Password:createUser.password];
             
         } else {
             UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
