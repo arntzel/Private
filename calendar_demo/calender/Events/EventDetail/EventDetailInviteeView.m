@@ -58,6 +58,14 @@
     self.inviteeLabel.text = [NSString stringWithFormat:@"%d Invitees", users.count];
     self.inviteeNamesLabel.text = [self getNames:users];
     
+    for(UIView * subView in self.subviews)
+    {
+        //EventDetailHeaderListView
+        if([subView isKindOfClass: [EventDetailHeaderListView class]]) {
+            [subView removeFromSuperview];
+        }
+    }
+    
     [self addInviteePhotos:users];
 }
 
