@@ -12,6 +12,18 @@
     [super dealloc];
 }
 
+-(NSComparisonResult)comparePerson:(AddEventInvitePeople *)people{
+    NSComparisonResult result = [[self.user getReadableUsername] compare:[people.user getReadableUsername]];
+    return result;
+}
+
++ (NSArray *)resortListByName:(NSArray *)contacts
+{
+    NSArray *sortedArray = [contacts sortedArrayUsingSelector:@selector(comparePerson:)];
+    return sortedArray;
+}
+
+/*
 + (NSString *)getSectionName:(NSString *)text
 {
     if (text == nil || text.length == 0) {
@@ -54,6 +66,8 @@
     
     return array;
 }
+ 
+ */
 
 @end
 
