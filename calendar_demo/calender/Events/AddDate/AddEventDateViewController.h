@@ -8,6 +8,7 @@
 
 - (void)setEventDate:(ProposeStart *)eventDate;
 
+@optional
 - (void)updateEventDate:(ProposeStart *)eventDate;
 
 @end
