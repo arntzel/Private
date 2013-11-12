@@ -13,6 +13,7 @@
 @protocol AddDateEntryViewDelegate <NSObject>
 
 - (void)removeEventDataView:(AddDateEntryView *)dateEntry;
+- (void)updateEventDataView:(AddDateEntryView *)dateEntry;
 
 @end
 

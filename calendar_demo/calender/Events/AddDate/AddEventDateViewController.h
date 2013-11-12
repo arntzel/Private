@@ -8,6 +8,8 @@
 
 - (void)setEventDate:(ProposeStart *)eventDate;
 
+- (void)updateEventDate:(ProposeStart *)eventDate;
+
 @end
 
 @interface AddEventDateViewController : BaseUIViewController
@@ -15,5 +17,6 @@
 - (id)initWithEventDate:(ProposeStart *)arrangedDate;
 
 @property(nonatomic,assign) id<AddEventDateViewControllerDelegate> delegate;
+@property(nonatomic,assign) BOOL isUpdate;
 
 @end

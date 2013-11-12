@@ -12,6 +12,7 @@
 @implementation AddEventTimesView {
     AddEventTimeButton * addBtn;
     NSMutableArray * _eventDates;
+    AddDateEntryView *willUpdateTimeView;
 }
 @synthesize delegate;
 
@@ -109,6 +110,29 @@
         [self layOutSubViews];
         [self.delegate layOutSubViews];
     }];
+}
+
+- (void)updateEventData:(ProposeStart *)eventData
+{
+    willUpdateTimeView.startTimeLabel.text = [eventData parseStartDateString];
+    willUpdateTimeView.duringTimeLabel.text = [eventData parseDuringDateString];
+    ProposeStart *date = willUpdateTimeView.eventData;
+    date.start = eventData.start;
+    date.start_type = eventData.start_type;
+    date.duration_days = eventData.duration_days;
+    date.duration_hours = eventData.duration_hours;
+    date.duration_minutes = eventData.duration_minutes;
+    date.is_all_day = eventData.is_all_day;
+}
+
+- (void)updateEventDataView:(AddDateEntryView *)dateEntry
+{
+    willUpdateTimeView = dateEntry;
+    ProposeStart *eventData = dateEntry.eventData;
+    
+    if ([self.delegate respondsToSelector:@selector(updateDate:)]) {
+        [self.delegate updateDate:eventData];
+    }
 }
 
 @end

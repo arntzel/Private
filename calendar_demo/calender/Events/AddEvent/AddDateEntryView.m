@@ -9,6 +9,16 @@
     UIImage *bgImage = [UIImage imageNamed:@"addEventBtnBg.png"];
     bgImage = [bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
     [_DateResultView setImage:bgImage];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapTimeView:)];
+    [self addGestureRecognizer:gesture];
+}
+
+-(void) singleTapTimeView:(UITapGestureRecognizer*) tap
+{
+    if ([self.delegate respondsToSelector:@selector(updateEventDataView:)]) {
+        [self.delegate updateEventDataView:self];
+    }
 }
 
 +(AddDateEntryView *) createDateEntryView

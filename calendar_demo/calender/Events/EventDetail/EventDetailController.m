@@ -384,6 +384,11 @@
 {
     LOG_D(@"onAddNewTime");
     
+    if ([self.event.propose_starts count] >= 3) {
+        [Utils showUIAlertView:@"Warning" andMessage:@"Only Three Times Can Be Set!!"];
+        return;
+    }
+    
     ProposeStart *tempEventDate = [[ProposeStart alloc] init];
     tempEventDate.duration_hours = 1;
     tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];

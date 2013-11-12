@@ -164,10 +164,21 @@
 {
     if ([self timeIsInFuture])
     {
-        if ([self.delegate respondsToSelector:@selector(setEventDate:)])
-        {
-            [self.delegate setEventDate:eventDate];
+        if (self.isUpdate) {
+            if ([self.delegate respondsToSelector:@selector(updateEventDate:)])
+            {
+                [self.delegate updateEventDate:eventDate];
+            }
         }
+        else
+        {
+            if ([self.delegate respondsToSelector:@selector(setEventDate:)])
+            {
+                [self.delegate setEventDate:eventDate];
+            }
+        }
+        
+
         [self.navigationController popViewControllerAnimated:YES];
     }
     else

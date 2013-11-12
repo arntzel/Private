@@ -317,8 +317,24 @@
 }
 
 #pragma mark Add Date
+
+- (void)updateDate:(ProposeStart *)eventData
+{
+    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:eventData];
+    addDate.delegate = self;
+    addDate.isUpdate = YES;
+    [self.navigationController pushViewController:addDate animated:YES];
+}
+
+
 - (void)addDate:(id)sender
 {
+    if([[timesView getEventDates] count] >= 3)
+    {
+        [Utils showUIAlertView:@"Warning" andMessage:@"Only Three Times Can Be Set!!"];
+        return;
+    }
+    
     ProposeStart *tempEventDate = [[ProposeStart alloc] init];
     tempEventDate.duration_hours = 1;
     tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
@@ -345,7 +361,10 @@
     [timesView addEventDate:eventDate_];
 }
 
-
+- (void)updateEventDate:(ProposeStart *)eventDate
+{
+    [timesView updateEventData:eventDate];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
