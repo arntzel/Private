@@ -16,6 +16,9 @@
 #define noti6ViewTag 6
 
 @interface NotificaitonViewController : SettingsBaseViewController
+
+@property (weak, nonatomic) IBOutlet UIView *notificationBgView;
+
 - (IBAction)viewBeClicked:(UITapGestureRecognizer *)sender;
 
 @end

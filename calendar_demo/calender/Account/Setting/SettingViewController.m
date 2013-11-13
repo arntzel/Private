@@ -200,7 +200,6 @@
         if (error==0)
         {
             NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-            //NSString * email = [accountDefaults objectForKey:@"email"];
             [accountDefaults removeObjectForKey:@"email"];
             [self logout:nil];
         }

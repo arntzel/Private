@@ -7,7 +7,7 @@
 //
 
 #import "NotificaitonViewController.h"
-
+#import "UserModel.h"
 @interface NotificaitonViewController ()
 
 @end
@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     [self setupViews];
+    [self requestNotis];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -44,6 +45,7 @@
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_noti_back"] forState:UIControlStateNormal];
     self.navigation.rightBtn.hidden = YES;
 }
+
 #pragma mark - User Interaction
 - (IBAction)viewBeClicked:(UITapGestureRecognizer *)sender
 {
@@ -56,5 +58,33 @@
         }
     }
     
+}
+
+- (void)layoutNoticationView:(NSArray *)notificationArray
+{
+    for (NSNumber *num in notificationArray)
+    {
+        UIView *rowView = [self.notificationBgView viewWithTag:[num intValue]];
+        for (UIView *subview in [rowView subviews])
+        {
+            if ([subview isKindOfClass:[UIButton class]])
+            {
+                UIButton *btn = (UIButton *)subview;
+                btn.selected = YES;
+            }
+        }
+    }
+}
+#pragma mark - Data Request
+- (void)requestNotis
+{
+    [[UserModel getInstance] getSetting:^(NSInteger error, NSDictionary *settings) {
+        
+        if(error == 0)
+        {
+            NSArray * show_notification_types = [settings objectForKey:@"show_notification_types"];
+            [self layoutNoticationView:show_notification_types];
+        }
+    }];
 }
 @end
