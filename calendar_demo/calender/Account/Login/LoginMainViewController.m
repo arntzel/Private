@@ -163,11 +163,7 @@
     signInView.frame = frame;
     [signInView setAlpha:0.0f];
     
-    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-    NSString * email = [accountDefaults objectForKey:@"email"];
-    if(email != nil) {
-        [signInView setEmail:email andPass:@""];
-    }
+    [signInView fillSavedEmail];
 }
 
 - (void)backToAccessView
@@ -209,7 +205,10 @@
 
 - (void)switchToSignInView
 {
+    
     [scrollView addSubview:signInView];
+    [signInView fillSavedEmail];
+    
     [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         accessView.alpha = 0.0f;
     } completion:^(BOOL finished) {
@@ -229,6 +228,8 @@
     } completion:^(BOOL finished) {
         [creatView removeFromSuperview];
         [scrollView addSubview:signInView];
+        [signInView fillSavedEmail];
+        
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             btnBack.alpha = 1.0f;
             signInView.alpha = 1.0f;
@@ -372,7 +373,7 @@
     }
     
     NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-    [accountDefaults setObject:@"email" forKey:username];
+    [accountDefaults setObject:username forKey:@"email"];
     [accountDefaults synchronize];
     
     //[loadingView startAnimating];
@@ -412,8 +413,15 @@
         
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
         
+        
         [alertTextField setPlaceholder:@"Please input your email"];
         [alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        
+        NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+        NSString * email = [accountDefaults objectForKey:@"email"];
+        if(email != nil) {
+            alertTextField.text = email;
+        }
         
     } else {
         

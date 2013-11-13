@@ -100,6 +100,13 @@
     return view;
 }
 
-
+-(void) fillSavedEmail
+{
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * email = [accountDefaults objectForKey:@"email"];
+    if(email != nil) {
+        [self setEmail:email andPass:@""];
+    }
+}
 
 @end

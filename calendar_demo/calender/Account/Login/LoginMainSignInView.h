@@ -31,4 +31,6 @@
 
 -(void) showLogining:(BOOL) logining;
 
+-(void) fillSavedEmail;
+
 @end
