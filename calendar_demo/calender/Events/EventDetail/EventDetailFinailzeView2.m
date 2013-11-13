@@ -25,6 +25,9 @@
     [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
+    
+    self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
+    self.eventTimeLabel.centerVertically = YES;
 }
 
 +(EventDetailFinailzeView2 *) creatView
