@@ -89,6 +89,7 @@
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
+		3DFB114818337FBB00084EF2 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -582,6 +583,14 @@
 		3DCD5DDC181510C5000E2E56 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
+		3DFB114018337F7200084EF2 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
+		3DFB114118337F7200084EF2 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
+		3DFB114218337F7200084EF2 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
+		3DFB114318337F7200084EF2 /* OHASBasicMarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicMarkupParser.h; sourceTree = "<group>"; };
+		3DFB114418337F7200084EF2 /* OHASMarkupParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASMarkupParserBase.h; sourceTree = "<group>"; };
+		3DFB114518337F7200084EF2 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
+		3DFB114618337F7200084EF2 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
+		3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1184,6 +1193,7 @@
 				764404B217523B8600B11BDE /* AVFoundation.framework in Frameworks */,
 				76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */,
 				3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */,
+				3DFB114818337FBB00084EF2 /* libOHAttributedLabel.a in Frameworks */,
 				3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */,
 				3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */,
 				769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */,
@@ -1326,6 +1336,8 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */,
+				3DFB113F18337F7200084EF2 /* OHAttributedLabel */,
 				34659DCA180E840800E5632F /* EventKit.framework */,
 				34657A16180BD6C700079CBD /* AddressBook.framework */,
 				34B1F1D217F8FD3F00AA5C97 /* MessageUI.framework */,
@@ -1366,6 +1378,21 @@
 				34CC551E181CB7FB00E23246 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DFB113F18337F7200084EF2 /* OHAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				3DFB114018337F7200084EF2 /* NSAttributedString+Attributes.h */,
+				3DFB114118337F7200084EF2 /* NSTextCheckingResult+ExtendedURL.h */,
+				3DFB114218337F7200084EF2 /* OHASBasicHTMLParser.h */,
+				3DFB114318337F7200084EF2 /* OHASBasicMarkupParser.h */,
+				3DFB114418337F7200084EF2 /* OHASMarkupParserBase.h */,
+				3DFB114518337F7200084EF2 /* OHAttributedLabel.h */,
+				3DFB114618337F7200084EF2 /* OHParagraphStyle.h */,
+			);
+			name = OHAttributedLabel;
+			path = "calender/Third-Party-Libraries/OHAttributedLabel/include/OHAttributedLabel";
 			sourceTree = "<group>";
 		};
 		76318B2517E09A69000BC88B /* Xcassets */ = {
@@ -3129,6 +3156,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -3155,6 +3187,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
@@ -3180,7 +3217,10 @@
 				GCC_PREFIX_HEADER = "calender/Calvin-Prefix.pch";
 				INFOPLIST_FILE = "calender/Calvin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fangxiang/calvin/calvin_github/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3205,7 +3245,10 @@
 				GCC_PREFIX_HEADER = "calender/Calvin-Prefix.pch";
 				INFOPLIST_FILE = "calender/Calvin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fangxiang/calvin/calvin_github/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
