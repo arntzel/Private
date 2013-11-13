@@ -85,7 +85,7 @@
         [self addSubview:finailzeView];
 
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
-        [finailzeView.eventTimeLabel addGestureRecognizer:tapGestureTel];
+        [finailzeView.eventTimeBtn addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
     }
 }
@@ -241,8 +241,8 @@
         
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
                 
-        conformView.eventTimeLabel.userInteractionEnabled = YES;
-        [conformView.eventTimeLabel addGestureRecognizer:tapGestureTel];
+        //conformView.eventTimeLabel.userInteractionEnabled = YES;
+        [conformView.timeLabelButton addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
     }    
 }
@@ -258,12 +258,14 @@
     view.frame = frame;
 
     view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
+    view.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:view.eventTimeLabel.attributedText];
+    view.eventTimeLabel.centerVertically = YES;
     
     [self addSubview:view];
 
 
     UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
-    [view.eventTimeLabel addGestureRecognizer:tapGestureTel];
+    [view.eventTimeBtn addGestureRecognizer:tapGestureTel];
     [tapGestureTel release];
 }
 

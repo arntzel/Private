@@ -9,6 +9,7 @@
 #import "EventDetailInviteeConformView.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface EventDetailInviteeConformView()
 
 
@@ -31,6 +32,8 @@
 - (void)setTime:(NSString *)time
 {
     self.eventTimeLabel.text = time;
+    self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
+    self.eventTimeLabel.centerVertically = YES;
 }
 
 - (void)setConflictCount:(NSInteger)count
