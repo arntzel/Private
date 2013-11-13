@@ -24,8 +24,14 @@ typedef enum
 @interface SettingsModel : NSObject
 
 - (void)updateAvatar:(UIImage *)avatar andCallback:(void (^)(NSInteger error, NSString *url))callback1;
+
 - (void)updateUserEmail:(NSString *)email andCallback:(void (^)(NSInteger error,NSString *message))callback;
+
 - (void)updateUserPwd:(NSMutableDictionary *)dic andCallback:(void (^)(NSInteger error))callback;
+
 - (void)updateConnect:(ConnectType )connectType tokenVale:(NSString *)token IsConnectOrNot:(BOOL)isConnect andCallback:(void (^)(NSInteger error,NSString *message))callback;
+
 - (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback;
+
+- (void)deleteAccount:(void (^)(NSInteger error))callback;
 @end

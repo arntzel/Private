@@ -192,6 +192,25 @@
     [navController pushViewController:loginController animated:NO];
 }
 
+- (void)deleteAccount
+{
+    SettingsModel *model = [[SettingsModel alloc] init];
+    [model deleteAccount:^(NSInteger error) {
+        
+        if (error==0)
+        {
+            NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+            //NSString * email = [accountDefaults objectForKey:@"email"];
+            [accountDefaults removeObjectForKey:@"email"];
+            [self logout:nil];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Delete account failed." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+}
 - (void)pushDetail:(int)row
 {
     [self dismissKeyBoard:nil];
@@ -569,6 +588,13 @@
         if (buttonIndex == 0)
         {
             [self logout:nil];
+        }
+    }
+    else if (actionSheet.tag == deleteAccountBtnTag)
+    {
+        if (buttonIndex == 0)
+        {
+            [self deleteAccount];
         }
     }
     else if (actionSheet.tag ==  fbViewTag)

@@ -225,6 +225,40 @@
 
     
 }
+- (void)deleteAccount:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/account/delete/", HOST];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [self setAuthHeader:request];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 200)
+        {
+            if (![self parsedJsonMessage:data])
+            {
+                callback(ERROCODE_OK);
+            }
+            else
+            {
+                callback(-1);
+            }
+        }
+        else
+        {
+            
+            callback(-1);
+        }
+        
+        LOG_D(@"delete account return data:%@",[[NSString alloc] initWithData:data encoding:4]);
+    }];
+}
 - (void) setAuthHeader:(NSMutableURLRequest *) request
 {
     NSString * authHeader = [NSString stringWithFormat:@"ApiKey %@:%@", [[UserModel getInstance] getLoginUser].username, [[UserModel getInstance] getLoginUser].apikey];
@@ -246,5 +280,7 @@
         return message;
     }
 }
+
+
 
 @end
