@@ -1905,11 +1905,6 @@
 		769ABAA817DF52090033E677 /* AddDate */ = {
 			isa = PBXGroup;
 			children = (
-				76431DFF1806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.h */,
-				76431E001806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.m */,
-				76431DF51806E02B009DAFFE /* EventDateNavigationBar.h */,
-				76431DF61806E02B009DAFFE /* EventDateNavigationBar.m */,
-				76431DF71806E02B009DAFFE /* EventDateNavigationBar.xib */,
 				769ABAA917DF52090033E677 /* AddDateTypeView.h */,
 				769ABAAA17DF52090033E677 /* AddDateTypeView.m */,
 				769ABAAB17DF52090033E677 /* AddDateTypeView.xib */,
@@ -1918,6 +1913,13 @@
 				769ABAAE17DF52090033E677 /* CustomPickerCell.h */,
 				769ABAAF17DF52090033E677 /* CustomPickerCell.m */,
 				769ABAB017DF52090033E677 /* CustomPickerCell.xib */,
+				769ABAB117DF52090033E677 /* DuringTimePicker.h */,
+				769ABAB217DF52090033E677 /* DuringTimePicker.m */,
+				76431DFF1806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.h */,
+				76431E001806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.m */,
+				76431DF51806E02B009DAFFE /* EventDateNavigationBar.h */,
+				76431DF61806E02B009DAFFE /* EventDateNavigationBar.m */,
+				76431DF71806E02B009DAFFE /* EventDateNavigationBar.xib */,
 				769ABAB317DF52090033E677 /* LoopPickerView.h */,
 				769ABAB417DF52090033E677 /* LoopPickerView.m */,
 				769ABAB517DF52090033E677 /* PickerView.h */,
@@ -1925,8 +1927,6 @@
 				769ABAB717DF52090033E677 /* PickerViewProtocal.h */,
 				769ABAB817DF52090033E677 /* TimePicker.h */,
 				769ABAB917DF52090033E677 /* TimePicker.m */,
-				769ABAB117DF52090033E677 /* DuringTimePicker.h */,
-				769ABAB217DF52090033E677 /* DuringTimePicker.m */,
 			);
 			path = AddDate;
 			sourceTree = "<group>";
