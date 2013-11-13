@@ -89,7 +89,7 @@
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
-		3DFB114818337FBB00084EF2 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */; };
+		3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -583,6 +583,7 @@
 		3DCD5DDC181510C5000E2E56 /* LocationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationEntity.m; path = calender/coredata/LocationEntity.m; sourceTree = SOURCE_ROOT; };
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
+		3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
 		3DFB114018337F7200084EF2 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
 		3DFB114118337F7200084EF2 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
 		3DFB114218337F7200084EF2 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
@@ -590,7 +591,6 @@
 		3DFB114418337F7200084EF2 /* OHASMarkupParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASMarkupParserBase.h; sourceTree = "<group>"; };
 		3DFB114518337F7200084EF2 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
 		3DFB114618337F7200084EF2 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
-		3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1167,6 +1167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */,
 				764404B817523BB100B11BDE /* CoreText.framework in Frameworks */,
 				34659DCB180E840800E5632F /* EventKit.framework in Frameworks */,
 				34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */,
@@ -1193,7 +1194,6 @@
 				764404B217523B8600B11BDE /* AVFoundation.framework in Frameworks */,
 				76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */,
 				3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */,
-				3DFB114818337FBB00084EF2 /* libOHAttributedLabel.a in Frameworks */,
 				3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */,
 				3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */,
 				769AB8FA17DF50320033E677 /* GoogleOpenSource.framework in Frameworks */,
@@ -1336,7 +1336,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3DFB114718337FBA00084EF2 /* libOHAttributedLabel.a */,
+				3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */,
 				3DFB113F18337F7200084EF2 /* OHAttributedLabel */,
 				34659DCA180E840800E5632F /* EventKit.framework */,
 				34657A16180BD6C700079CBD /* AddressBook.framework */,
@@ -3219,7 +3219,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/fangxiang/calvin/calvin_github/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Users/fangxiang/project/calvin/git/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
@@ -3247,7 +3247,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/fangxiang/calvin/calvin_github/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Users/fangxiang/project/calvin/git/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
