@@ -419,8 +419,24 @@ static NSTimeZone * userTimeZone;
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps
 {
     NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
-    NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
-    NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
-    return lable;
+    
+    if(ps.is_all_day) {
+        
+        NSString * duration;
+        if(ps.duration_days<=1) {
+            duration = @"1day";
+        } else {
+            duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
+        }
+        
+        
+        NSString * lable = [NSString stringWithFormat:@"%@ (duration:%@)", startTime, duration];
+        return lable;
+        
+    } else {
+        NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
+        NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+        return lable;
+    }
 }
 @end
