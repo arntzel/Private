@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
 		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
 		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
 		34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */; };
@@ -479,6 +480,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34055C721833B13000A2AD8E /* Legal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Legal.plist; sourceTree = "<group>"; };
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		34B1F16517F8FCE200AA5C97 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
@@ -1520,6 +1522,7 @@
 				7662F75D17F07F2B00B64E40 /* SettingViewController.xib */,
 				34B1F1D417F9062E00AA5C97 /* SettingsModel.h */,
 				34B1F1D517F9062E00AA5C97 /* SettingsModel.m */,
+				34055C721833B13000A2AD8E /* Legal.plist */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2690,6 +2693,7 @@
 				769AB9E917DF51340033E677 /* colordot5.png in Resources */,
 				769AB9EA17DF51340033E677 /* colordot6.png in Resources */,
 				7662F75117F0761900B64E40 /* login_main_login_facebook.png in Resources */,
+				34055C731833B13000A2AD8E /* Legal.plist in Resources */,
 				34B1F1B317F8FCE200AA5C97 /* settings_detail_noti_back@2x.png in Resources */,
 				769AB9EB17DF51340033E677 /* dot.png in Resources */,
 				34B1F1C517F8FCE200AA5C97 /* settings_main_one_row@2x.png in Resources */,

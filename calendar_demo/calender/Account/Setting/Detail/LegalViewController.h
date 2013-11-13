@@ -14,8 +14,10 @@ typedef enum LegalType
     AboutUs
     
 }legalType;
-@interface LegalViewController : SettingsBaseViewController
+@interface LegalViewController : SettingsBaseViewController<UIWebViewDelegate>
 
 @property (assign, nonatomic) legalType type;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Indi;
 
 @end
