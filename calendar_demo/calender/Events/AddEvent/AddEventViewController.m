@@ -215,6 +215,7 @@
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
     [txtFieldTitle addTarget:self action:@selector(txtDidEnd) forControlEvents:UIControlEventEditingDidEndOnExit];
+    txtFieldTitle.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     
     
     imageUploadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
