@@ -3219,7 +3219,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/fangxiang/project/calvin/git/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
@@ -3247,7 +3247,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/fangxiang/project/calvin/git/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "";
