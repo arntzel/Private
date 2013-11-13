@@ -99,6 +99,7 @@
     [self configAccessView];
     [self configCreatView];
     [self configSignInView];
+    
 }
 
 - (void)configGPPSignIn
@@ -161,6 +162,12 @@
     frame.origin.y = self.view.frame.size.height - frame.size.height - 15;
     signInView.frame = frame;
     [signInView setAlpha:0.0f];
+    
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * email = [accountDefaults objectForKey:@"email"];
+    if(email != nil) {
+        [signInView setEmail:email andPass:@""];
+    }
 }
 
 - (void)backToAccessView
@@ -363,6 +370,10 @@
         [self showAlert:@"Email and password can't be empty!"];
         return;
     }
+    
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+    [accountDefaults setObject:@"email" forKey:username];
+    [accountDefaults synchronize];
     
     //[loadingView startAnimating];
     
