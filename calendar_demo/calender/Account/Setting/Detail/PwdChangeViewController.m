@@ -44,7 +44,18 @@
 #pragma mark - Setup Views
 - (void)setupViews
 {
-    self.navigation.titleLable.text = @"Change Password";
+    if (self.has_usable_password)
+    {
+        self.navigation.titleLable.text = @"Change Password";
+    }
+    else
+    {
+       self.navigation.titleLable.text = @"Set Password";
+        self.oldPwdView.hidden = YES;
+        CGRect frame = self.setPwdView.frame;
+        frame.origin.y = self.oldPwdView.frame.origin.y;
+        self.setPwdView.frame = frame;
+    }
     self.navigation.leftBtn.frame = CGRectMake(8, 9, 67, 26);
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -64,6 +75,7 @@
     [self.rePwdField resignFirstResponder];
     [super  leftNavBtnClicked:btn];
 }
+
 - (void)rightNavBtnBeClicked:(UIButton *)btn
 {
     [self changePwd];
@@ -100,14 +112,16 @@
         [self.view addSubview:indi];
         [indi startAnimating];
         SettingsModel *settingsModel = [[SettingsModel alloc] init];
-        NSMutableDictionary *dic  = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.oldPwdField.text,@"oldpassword",self.pwdField.text,@"newpassword",nil];
+        NSString *oldPwd = self.has_usable_password==YES?self.oldPwdField.text:@"";
+        NSMutableDictionary *dic  = [NSMutableDictionary dictionaryWithObjectsAndKeys:oldPwd,@"oldpassword",self.pwdField.text,@"newpassword",nil];
         [settingsModel updateUserPwd:dic andCallback:^(NSInteger error) {
             
             [indi stopAnimating];
             [indi removeFromSuperview];
             if (error == -1)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Change Password Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                NSString *message = self.has_usable_password==YES?@"Change Password Failed.":@"Set Password Failed.";
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alert show];
                 
             }
@@ -122,12 +136,16 @@
 
 - (BOOL)canContinue
 {
-    if (self.oldPwdField.text.length == 0)
+    if (self.has_usable_password)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Old Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
+        if (self.oldPwdField.text.length == 0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Old Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            return NO;
+        }
     }
+    
     if (self.pwdField.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"New Password is nil." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

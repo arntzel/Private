@@ -10,8 +10,11 @@
 
 @interface PwdChangeViewController : SettingsBaseViewController
 
+@property (assign, nonatomic) BOOL has_usable_password;
 @property (weak, nonatomic) IBOutlet UITextField *oldPwdField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UITextField *rePwdField;
+@property (weak, nonatomic) IBOutlet UIControl *oldPwdView;
+@property (weak, nonatomic) IBOutlet UIView *setPwdView;
 
 @end

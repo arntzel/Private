@@ -224,6 +224,7 @@
             }
             case pwdViewTag:
                 viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
+                [(PwdChangeViewController *)viewCtr setHas_usable_password:self.loginUser.has_usable_password];
                 break;
             case connectFacebookBtnTag:
 //                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
