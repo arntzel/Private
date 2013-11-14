@@ -9,7 +9,9 @@
 #import "NotificaitonViewController.h"
 #import "UserModel.h"
 @interface NotificaitonViewController ()
-
+@property (nonatomic, strong) NSMutableDictionary *dic;
+@property (nonatomic, strong) NSMutableArray *arr;
+@property (nonatomic, assign) BOOL hasClicked;
 @end
 
 @implementation NotificaitonViewController
@@ -26,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.arr = [NSMutableArray array];
     [self setupViews];
     [self requestNotis];
     // Do any additional setup after loading the view from its nib.
@@ -47,14 +50,35 @@
 }
 
 #pragma mark - User Interaction
+- (void)leftNavBtnClicked:(UIButton *)btn
+{
+    if ([self hasChanged])
+    {
+        [[UserModel getInstance]updateSetting:self.dic andCallBack:^(NSInteger error) {
+            
+        }];
+    }
+    [super leftNavBtnClicked:btn];
+    
+}
+
 - (IBAction)viewBeClicked:(UITapGestureRecognizer *)sender
 {
+    self.hasClicked = YES;
     for (UIView *subview in [sender.view subviews])
     {
         if ([subview isKindOfClass:[UIButton class]])
         {
             UIButton *btn = (UIButton *)subview;
             btn.selected = !btn.selected;
+            if (btn.selected&&![self.arr containsObject:@(sender.view.tag)])
+            {
+                [self.arr addObject:@(sender.view.tag)];
+            }
+            if (!btn.selected&&[self.arr containsObject:@(sender.view.tag)])
+            {
+                [self.arr removeObject:@(sender.view.tag)];
+            }
         }
     }
     
@@ -75,6 +99,7 @@
         }
     }
 }
+
 #pragma mark - Data Request
 - (void)requestNotis
 {
@@ -82,9 +107,39 @@
         
         if(error == 0)
         {
-            NSArray * show_notification_types = [settings objectForKey:@"show_notification_types"];
-            [self layoutNoticationView:show_notification_types];
+            self.dic = [NSMutableDictionary dictionaryWithDictionary:settings];
+            NSArray *tmpArr = [self.dic objectForKey:@"show_notification_types"];
+            [self layoutNoticationView:tmpArr];
         }
     }];
+}
+
+#pragma mark - Helper
+
+-(BOOL)hasChanged
+{
+    if (!self.hasClicked)
+    {
+        return NO;
+    }
+    NSArray *tmpArr = [self.dic objectForKey:@"show_notification_types"];
+    if ([tmpArr count] != [self.arr count])
+    {
+        [self.dic setObject:self.arr forKey:@"show_notification_types"];
+        return YES;
+    }
+    else
+    {
+        for (NSNumber *num in self.arr)
+        {
+            if (![tmpArr containsObject:num])
+            {
+                [self.dic setObject:self.arr forKey:@"show_notification_types"];
+                return YES;
+            }
+        }
+        return NO;
+    }
+    
 }
 @end

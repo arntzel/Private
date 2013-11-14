@@ -85,4 +85,12 @@
 
 -(void) getSetting:(void (^)(NSInteger error, NSDictionary * settings))callback;
 
+/**
+ *  update setting
+ *
+ *  @param dic      {"show_event_types":["1", "2", "3"], "show_notification_types":["4", "5", "6"]}
+ *  @param callback success retun 0,else return -1.
+ */
+-(void) updateSetting:(NSDictionary *)dic andCallBack:(void (^)(NSInteger error))callback;
+
 @end

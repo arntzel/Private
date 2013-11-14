@@ -597,5 +597,34 @@ static UserModel * instance;
         }
     }];
 }
-     
+
+-(void) updateSetting:(NSDictionary *)dic andCallBack:(void (^)(NSInteger error))callback
+{//dic ----->{"show_event_types":["1", "2", "3"], "show_notification_types":["4", "5", "6"]}
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/setting/", HOST];
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    NSString *jsonStr = [Utils dictionary2String:dic];
+    NSMutableData *postData = [NSMutableData dataWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        
+        int status = httpResp.statusCode;
+        
+        if(status == 200 && data != nil)
+        {
+            callback(0);
+            
+        }
+        else
+        {
+            
+            callback(-1);
+        }
+    }];
+
+}
 @end
