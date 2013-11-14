@@ -187,7 +187,7 @@
     {
         return NO;
     }
-    NSArray *tmpArr = [self.dic objectForKey:@"show_notification_types"];
+    NSMutableArray *tmpArr = [NSMutableArray arrayWithArray:[self.dic objectForKey:@"show_notification_types"]];
     if ([tmpArr count] != [self.arr count])
     {
         [self.dic setObject:self.arr forKey:@"show_notification_types"];
@@ -195,9 +195,49 @@
     }
     else
     {
-        for (NSNumber *num in self.arr)
+        
+        [tmpArr sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            
+            NSNumber *num1 = obj1;
+            NSNumber *num2 = obj2;
+            if ([num1 intValue] > [num2 intValue])
+            {
+                return NSOrderedDescending;
+            }
+            else if ([num1 intValue] < [num2 intValue])
+            {
+                return NSOrderedAscending;
+            }
+            else
+            {
+                return NSOrderedSame;
+            }
+            
+        }];
+        [self.arr sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            
+            NSNumber *num1 = obj1;
+            NSNumber *num2 = obj2;
+            if ([num1 intValue] > [num2 intValue])
+            {
+                return NSOrderedDescending;
+            }
+            else if ([num1 intValue] < [num2 intValue])
+            {
+                return NSOrderedAscending;
+            }
+            else
+            {
+                return NSOrderedSame;
+            }
+            
+        }];
+        
+        for (int i=0; i<[self.arr count]; i++)
         {
-            if (![tmpArr containsObject:num])
+            NSNumber *numb1 = [self.arr objectAtIndex:i];
+            NSNumber *numb2 = [tmpArr objectAtIndex:i];
+            if ([numb1 intValue] != [numb2 intValue])
             {
                 [self.dic setObject:self.arr forKey:@"show_notification_types"];
                 return YES;
