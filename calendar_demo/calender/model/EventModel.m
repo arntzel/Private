@@ -264,12 +264,31 @@
     [[UserModel getInstance] getSetting:^(NSInteger error, NSDictionary *settings) {
         
         if(error == 0) {
-            NSArray * show_event_types = [settings objectForKey:@"show_event_types"];
             
+            NSArray * show_notification_types = [settings objectForKey:@"show_notification_types"];
+            NSMutableString * strNotiTypes = [[NSMutableString alloc] init];
+            
+            for(int i=0 ; i<show_notification_types.count; i++) {
+                [strNotiTypes appendString:[NSString stringWithFormat:@"%@",[show_notification_types objectAtIndex:i]]];
+                
+                if(i<show_notification_types.count-1) {
+                    [strNotiTypes appendString:@","];
+                }
+            }
+            
+            NSString * Notistr = [[UserSetting getInstance] getStringValue:KEY_SHOW_NOTIFICATION_TYPES];
+            
+            if(Notistr == nil || ![Notistr isEqualToString:strNotiTypes]) {
+                [[UserSetting getInstance] saveKey:KEY_SHOW_NOTIFICATION_TYPES andStringValue:strNotiTypes];
+                LOG_I(@"saveKey: %@=%@", KEY_SHOW_NOTIFICATION_TYPES, Notistr);
+            }
+            
+            
+            NSArray * show_event_types = [settings objectForKey:@"show_event_types"];
             NSMutableString * strTypes = [[NSMutableString alloc] init];
             
             for(int i=0 ; i<show_event_types.count; i++) {
-                [strTypes appendString:[show_event_types objectAtIndex:i]];
+                [strTypes appendString:[NSString stringWithFormat:@"%@",[show_event_types objectAtIndex:i]]];
                 
                 if(i<show_event_types.count-1) {
                     [strTypes appendString:@","];

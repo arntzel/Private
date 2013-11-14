@@ -16,7 +16,7 @@
 #define KEY_CONTACTUPDATETIME         @"lastcontactupdatetime"
 #define KEY_TIMEZONE                  @"timezone"
 #define KEY_SHOW_EVENT_TYPES          @"show_event_types"
-
+#define KEY_SHOW_NOTIFICATION_TYPES          @"show_notification_types"
 @interface UserSetting : NSObject
 
 +(UserSetting *) getInstance;
