@@ -424,13 +424,12 @@ static NSTimeZone * userTimeZone;
         
         NSString * duration;
         if(ps.duration_days<=1) {
-            duration = @"1day";
+            duration = @"All day";
         } else {
             duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
         }
         
-        
-        NSString * lable = [NSString stringWithFormat:@"%@ (duration:%@)", startTime, duration];
+        NSString * lable = [NSString stringWithFormat:@"%@ <font name=\"Avenir Next Bold\" size=\"12\">(duration:%@)</font> ", startTime, duration];
         return lable;
         
     } else {

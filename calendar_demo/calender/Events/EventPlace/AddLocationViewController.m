@@ -33,8 +33,6 @@
     
     CSqlite *m_sqlite;
     
-    BOOL shouldHiddenTouchedLocation;
-    
     //AddLocationTextView *textView;
 }
 @property (weak, nonatomic) GMSMapView *mapView;
@@ -87,10 +85,9 @@
 {
     if (touchedLoacalmarker == nil) {
         touchedLoacalmarker = [[GMSMarker alloc] init];
-        touchedLoacalmarker.map = self.mapView;
         touchedLoacalmarker.title = @"Selected Location";
         //UIImage *iconImage = [UIImage imageNamed:@"colordot1.png"];
-        touchedLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];;
+        touchedLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
     }
     return touchedLoacalmarker;
 }
@@ -118,7 +115,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    shouldHiddenTouchedLocation = YES;
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:16];
     
@@ -157,7 +153,6 @@
         coordinate.latitude = self.location.lat;
         coordinate.longitude = self.location.lng;
 
-        shouldHiddenTouchedLocation = NO;
         self.mapView.camera = [GMSCameraPosition cameraWithTarget:coordinate zoom:16];
         self.touchedLoacalmarker.position = coordinate;
         self.touchedLoacalmarker.map = mapView;        
@@ -397,22 +392,15 @@
 {    
     self.locationInputField.hidden = NO;
     [self.locationInputField becomeFirstResponder];
-    self.touchedLoacalmarker.map = mapView;
     self.touchedLoacalmarker.position = coordinate;
+    self.touchedLoacalmarker.map = mapView;
 }
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
 {
-    //[textView dismiss];
-    if (shouldHiddenTouchedLocation) {
-        self.locationInputField.hidden = YES;
-        [self.locationInputField resignFirstResponder];
-        self.touchedLoacalmarker.map = nil;
-    }
-    else
-    {
-        shouldHiddenTouchedLocation = YES;
-    }
+    self.locationInputField.hidden = YES;
+    [self.locationInputField resignFirstResponder];
+    self.touchedLoacalmarker.map = nil;
 }
 
 #pragma mark - AddLocationTextViewDelegate

@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
+#import <OHAttributedLabel/NSAttributedString+Attributes.h>
+#import <OHAttributedLabel/OHASBasicHTMLParser.h>
+#import <OHAttributedLabel/OHASBasicMarkupParser.h>
+#import <OHAttributedLabel/OHAttributedLabel.h>
+
+
 @interface EventDetailInviteeConformView : UIView
 
 @property (retain, nonatomic) IBOutlet UIButton *tickedBtn;
 @property (retain, nonatomic) IBOutlet UIButton *crossedbtn;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
-@property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet UIButton *timeLabelButton;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
 - (IBAction)tickBtnClick:(id)sender;

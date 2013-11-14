@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ProposeStart.h"
 
+#import <OHAttributedLabel/NSAttributedString+Attributes.h>
+#import <OHAttributedLabel/OHASBasicHTMLParser.h>
+#import <OHAttributedLabel/OHASBasicMarkupParser.h>
+#import <OHAttributedLabel/OHAttributedLabel.h>
+
+
 @protocol EventDetailFinailzeViewDelegate <NSObject>
 
 -(void) onRemovePropseStart;
@@ -22,7 +28,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *finailzeBtn;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
-@property (retain, nonatomic) IBOutlet UILabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
+@property (retain, nonatomic) IBOutlet UIButton *eventTimeBtn;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
 
 - (void)setTime:(NSString *)time;

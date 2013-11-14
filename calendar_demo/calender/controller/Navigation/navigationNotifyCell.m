@@ -64,25 +64,30 @@
     
     
     NSString * subject = msg.subject;
-    
-    self.NotifyDetailLabel.text = subject;
-    
-
-    
     UIFont *font = [UIFont systemFontOfSize:11];
-    [self.NotifyDetailLabel setFont:font];
-
-    [self.NotifyDetailLabel setTextColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0]];
-
 //        [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
 //    [self.NotifyDetailLabel setFont:font fromIndex:0 length:subject.length];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:20 length:8];
-    CGSize fontSize = [subject sizeWithFont:font constrainedToSize:self.NotifyDetailLabel.frame.size lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize maxSize = CGSizeMake(self.NotifyDetailLabel.frame.size.width, 1000.0f);
+    CGSize fontSize = [subject sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+    [self.NotifyDetailLabel setNumberOfLines:0];
+    
     
     CGRect frame = self.frame;
-    frame.size.height = fontSize.height + 30;
+    frame.size.height = fontSize.height + 32;
     self.frame = frame;
+    
+    self.NotifyDetailLabel.text = subject;
+    [self.NotifyDetailLabel setFont:font];
+    
+    [self.NotifyDetailLabel setTextColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0]];
+    
+//    CGRect frame = self.NotifyDetailLabel.frame;
+//    frame.size = fontSize;
+//    self.NotifyDetailLabel.frame = frame;
+
+
 
     self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
     

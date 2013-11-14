@@ -2,17 +2,26 @@
 
 #import "ProposeStart.h"
 #import "Utils.h"
+#import "NSDateAdditions.h"
 
 @implementation ProposeStart
 
 -(NSDate *) getEndTime
 {
-    int durationSeconds =  [self getDurationMins]*60;
-    return [self.start dateByAddingTimeInterval:durationSeconds];
+    if(self.is_all_day) {
+        NSDate * begin = [self.start cc_dateByMovingToBeginningOfDay];
+        NSDate * end = [begin cc_dateByMovingToTheFollowingDayCout:self.duration_days];
+        return end;
+    } else {
+        int durationSeconds =  [self getDurationMins]*60;
+        return [self.start dateByAddingTimeInterval:durationSeconds];
+    }
 }
 
 -(int) getDurationMins
 {
+   
+    
    return self.duration_minutes + self.duration_hours*60 + self.duration_days*60*24;
 }
 

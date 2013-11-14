@@ -81,7 +81,11 @@ static CGFloat const getstureDistance = 50;
     frame.origin.y = 7;
     self.frame = frame;
 
-    self.eventTimeLabel.text = [Utils getProposeStatLabel:eventTime];
+    NSString * label = [Utils getProposeStatLabel:eventTime];
+    self.eventTimeLabel.text = label;
+    
+    self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
+    self.eventTimeLabel.centerVertically = YES;
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
@@ -196,13 +200,13 @@ static CGFloat const getstureDistance = 50;
 
 - (void)animationToCenterPoint:(CGPoint)centerPoint
 {
-    [self setUserInteractionEnabled:NO];
+    //[self setUserInteractionEnabled:NO];
 	[UIView animateWithDuration:0.25 delay:0
 						options:UIViewAnimationOptionCurveLinear
 					 animations:^{
                          self.center = centerPoint;
 					 } completion:^(BOOL finished) {
-                         [self setUserInteractionEnabled:YES];
+                         //[self setUserInteractionEnabled:YES];
 					 }];
 }
 

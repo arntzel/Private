@@ -7,12 +7,16 @@
 //
 
 #import "EventDateNavigationBar.h"
+#import <OHAttributedLabel/NSAttributedString+Attributes.h>
+#import <OHAttributedLabel/OHASBasicHTMLParser.h>
+#import <OHAttributedLabel/OHASBasicMarkupParser.h>
+#import <OHAttributedLabel/OHAttributedLabel.h>
 
 @interface EventDateNavigationBar()
 
 @property (retain, nonatomic) IBOutlet UIButton *leftBtn;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet OHAttributedLabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
@@ -36,6 +40,9 @@
 - (void)setTitle:(NSString *)title
 {
     self.titleLabel.text = title;
+    
+    self.titleLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.titleLabel.attributedText];
+    self.titleLabel.centerVertically = YES;
 }
 
 - (void)setDescription:(NSString *)description
