@@ -58,17 +58,16 @@
             }
             else
             {
+                LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error)
                 {
                     if (!error)
                     {
                         
-                        LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
+                        
                         accountStore.facebookAccessToken = session.accessToken;
                         accountStore.facebookExpireDate = session.expirationDate;
                         accountStore.facebookEmail = [user objectForKey:@"email"];
-                        
-                        
                         if([self.delegate respondsToSelector:@selector(shareDidLogin:)])
                             [self.delegate shareDidLogin:self];
                     }

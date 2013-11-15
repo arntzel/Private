@@ -34,11 +34,11 @@ static LoginAccountStore *accountStore = nil;
 {
     FBSession *session = [FBSession activeSession];
 
-    facebookAccessToken = session.accessToken;
-    facebookExpireDate = session.expirationDate;
-    twitterAccessSecret = nil;
-    twitterAccessToken = nil;
-    twitterUserName = nil;
+    self.facebookAccessToken = session.accessToken;
+    self.facebookExpireDate = session.expirationDate;
+    self.twitterAccessSecret = nil;
+    self.twitterAccessToken = nil;
+    self.twitterUserName = nil;
 }
 
 +(LoginAccountStore *)defaultAccountStore

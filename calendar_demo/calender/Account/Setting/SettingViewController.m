@@ -348,7 +348,7 @@
     [self presentViewController:ipc animated:YES completion:nil];
 }
 
--(void) uploadImage:(UIImage *) img
+-(void)uploadImage:(UIImage *) img
 {
     SettingsModel *model = [[SettingsModel alloc] init];
     [model updateAvatar:img andCallback:^(NSInteger error, NSString *url) {
@@ -468,6 +468,7 @@
                 {
                     msg = @"Disconnect Facebook Succeeded";
                     [self fbviewChangeWithConnectStatus:NO];
+                    
                 }
                 
             }

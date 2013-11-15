@@ -11,13 +11,13 @@
 @interface LoginAccountStore : NSObject
 
 //facebook login info
-@property(nonatomic,copy) NSString *facebookAccessToken;
-@property(nonatomic,copy) NSDate *facebookExpireDate;
-@property (nonatomic, strong) NSString *facebookEmail;
+@property(nonatomic,retain) NSString *facebookAccessToken;
+@property(nonatomic,retain) NSDate *facebookExpireDate;
+@property (nonatomic, retain) NSString *facebookEmail;
 //twitter login info
-@property(nonatomic,copy) NSString *twitterAccessToken;
-@property(nonatomic,copy) NSString *twitterAccessSecret;
-@property(nonatomic,copy) NSString *twitterUserName;
+@property(nonatomic,retain) NSString *twitterAccessToken;
+@property(nonatomic,retain) NSString *twitterAccessSecret;
+@property(nonatomic,retain) NSString *twitterUserName;
 
 +(LoginAccountStore *)defaultAccountStore;
 
