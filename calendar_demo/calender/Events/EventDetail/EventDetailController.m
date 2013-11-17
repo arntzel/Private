@@ -206,16 +206,10 @@
     
     [self updateEventTimeView];
 
-    BOOL isCreator = [self isMyCreatEvent];
-    BOOL isDecline = [self.event isDeclineEvent];
+    [self updateConformView];
     
-    if(self.event.confirmed || isDecline) {
-        conformView.hidden = YES;
-    } else {
-        conformView.hidden = NO;
-        [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt];
-    }
 
+    BOOL isDecline = [self.event isDeclineEvent];
     [commentContentView setDecliend:isDecline];
     
     if(commentContentView.loaded == NO) {
@@ -228,6 +222,21 @@
 {
     BOOL isCreator = [self isMyCreatEvent];
     [timeContentView updateView:isCreator andEvent:event];
+}
+
+
+-(void) updateConformView
+{
+    BOOL isCreator = [self isMyCreatEvent];
+    BOOL isDecline = [self.event isDeclineEvent];
+    
+    if(self.event.confirmed || isDecline) {
+        conformView.hidden = YES;
+    } else {
+        conformView.hidden = NO;
+        int count = event.propose_starts.count;
+        [conformView updateUI:isCreator andInviteeCanProposeTime:event.allow_new_dt andProposeTimeCount:count];
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -460,6 +469,8 @@
         }
         
         [timeContentView updateView:[self isMyCreatEvent] andEvent:self.event];
+        [self updateConformView];
+        [self layOutSubViews];
         
         [eventDate release];
     }];

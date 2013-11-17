@@ -259,13 +259,15 @@
             
             _event.propose_starts = array;
             [array release];
+            
+            [self.delegate onEventChanged:_event];
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Delete failed, please try again!"];
+            [self updateView];
         }
         
         [eventTime release];
-        
-        [self updateView];
     }];
 }
 

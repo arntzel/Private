@@ -33,12 +33,17 @@
 }
 
 
--(void) updateUI:(BOOL) isCreator andInviteeCanProposeTime:(BOOL) can
+-(void) updateUI:(BOOL) isCreator andInviteeCanProposeTime:(BOOL) can andProposeTimeCount:(int) proposeTimeCount
 {
     for (UIView * subView in [self subviews]) {
         [subView removeFromSuperview];
     }
 
+    if(isCreator && proposeTimeCount >=3) {
+        self.hidden = YES;
+        return;
+    }
+    
     containtView = [[UIView alloc] initWithFrame:CGRectMake(7, 0, 304, 50)];
     containtView.backgroundColor = [UIColor whiteColor];
     [self addSubview:containtView];
@@ -60,7 +65,7 @@
         
     } else {
 
-        if(can) {
+        if(can && proposeTimeCount>=3) {
 
             int y = 0;
 

@@ -20,7 +20,7 @@
 
 @property(nonatomic, assign) id<EventDetailCommentConformViewDelegate> delegate;
 
--(void) updateUI:(BOOL) isCreator andInviteeCanProposeTime:(BOOL) can;
+-(void) updateUI:(BOOL) isCreator andInviteeCanProposeTime:(BOOL) can andProposeTimeCount:(int) proposeTimeCount;
 
 
 @end
