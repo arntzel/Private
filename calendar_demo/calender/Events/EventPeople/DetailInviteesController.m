@@ -333,6 +333,8 @@ typedef enum
                     [self.delegate addNewPeopleArray:invitees andNewEvent:newEvent];
                 }
                 
+                [self.navigationController popViewControllerAnimated:YES];
+                
             } else {
                 [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
             }
