@@ -52,6 +52,10 @@
     //int index = self.subviews.count-1;
     [self insertSubview:view atIndex:0];
     
+    if(_eventDates.count >=3) {
+        addBtn.hidden = YES;
+    }
+    
     [UIView animateWithDuration:0.6f animations:^{
         [self layOutSubViews];
         [self.delegate layOutSubViews];
@@ -88,6 +92,9 @@
     CGFloat offsetY = 5;
 
     for(UIView * subView in self.subviews) {
+        
+        if(subView.hidden == YES) continue;
+        
         CGRect frame = subView.frame;
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
@@ -105,6 +112,8 @@
 {
     [_eventDates removeObject:dateEntry.eventData];
     [dateEntry removeFromSuperview];
+    
+    addBtn.hidden = NO;
     
     [UIView animateWithDuration:0.6f animations:^{
         [self layOutSubViews];
