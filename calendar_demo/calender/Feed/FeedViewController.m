@@ -42,7 +42,8 @@
                                   FeedEventTableViewDelegate,
                                   CoreDataModelDelegate,
                                   EventModelDelegate,
-                                  UIAlertViewDelegate >
+                                  UIAlertViewDelegate,
+                                  UserSettingDelegate >
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -142,11 +143,15 @@
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
     [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
+    
+    [[UserSetting getInstance] registerDeletgate:self];
 }
 
 -(void)viewDidUnload {
     [[CoreDataModel getInstance] removeDelegate:self];
     [[[Model getInstance] getEventModel] removeDelegate:self];
+    [[UserSetting getInstance] unregisterDeletgate:self];
+    
     [super viewDidUnload];
 }
 
@@ -306,6 +311,14 @@
     LOG_D(@"================start upload events=============");
     [[[Model getInstance] getEventModel] deleteIcalEvent];
 
+}
+
+-(void) onUserSettingChanged:(NSString *) key
+{
+    if( [key isEqualToString:KEY_SHOW_EVENT_TYPES]) {
+        
+        
+    }
 }
 @end
 

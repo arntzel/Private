@@ -14,6 +14,7 @@
 
 -(void) setFilter:(int) filter;
 
+-(void) updateView;
 
 @property(nonatomic, assign) id<EventFilterViewDelegate> filterDelegate;
 

@@ -29,6 +29,17 @@
 }
 
 
+-(BOOL) isFacebookConnected
+{
+    return self.facebookEmail != nil;
+}
+
+-(BOOL) isGoogleConnected
+{
+    return self.googleEmail != nil;
+}
+
+
 +(User *) parseUser:(NSDictionary *) jsonData
 {
     User * user = [[User alloc] init];

@@ -16,7 +16,10 @@ static UserSetting * instance;
 
 
 
-@implementation UserSetting
+@implementation UserSetting {
+    
+    NSMutableArray * delegates;
+}
 
 +(UserSetting *) getInstance
 {
@@ -26,6 +29,27 @@ static UserSetting * instance;
     
     return instance;
 }
+
+
+-(void) registerDeletgate:(id<UserSettingDelegate>) delegate
+{
+    if(delegates == nil) {
+        delegates = [[NSMutableArray alloc] init];
+    }
+    
+    if( ![delegates containsObject:delegate])
+    {
+        [delegates addObject:delegate];
+    }
+    
+}
+
+-(void) unregisterDeletgate:(id<UserSettingDelegate>) delegate
+{
+    [delegates removeObject:delegate];
+}
+
+
 
 -(void) reset
 {
@@ -101,7 +125,8 @@ static UserSetting * instance;
 
 -(void) saveEventfilters:(int) filters
 {
-    [[CoreDataModel getInstance] saveSetting:KEY_EVENTFILTERS andValue: [NSString stringWithFormat:@"%d", filters]];
+    //[CoreDataModel getInstance] saveSetting:KEY_EVENTFILTERS andValue: [NSString stringWithFormat:@"%d", filters]];
+    [self saveKey:KEY_EVENTFILTERS andStringValue:[NSString stringWithFormat:@"%d", filters]];
 }
 
 -(int) getEventfilters
@@ -152,6 +177,11 @@ static UserSetting * instance;
 {
     if([CoreDataModel getInstance].inited == NO) return;
     [[CoreDataModel getInstance] saveSetting:key andValue: value];
+    
+    for( id<UserSettingDelegate> delegate in delegates)
+    {
+        [delegate onUserSettingChanged:key];
+    }
 }
 
 -(NSString *) getStringValue:(NSString *) key

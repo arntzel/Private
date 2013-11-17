@@ -16,10 +16,23 @@
 #define KEY_CONTACTUPDATETIME         @"lastcontactupdatetime"
 #define KEY_TIMEZONE                  @"timezone"
 #define KEY_SHOW_EVENT_TYPES          @"show_event_types"
-#define KEY_SHOW_NOTIFICATION_TYPES          @"show_notification_types"
+#define KEY_SHOW_NOTIFICATION_TYPES   @"show_notification_types"
+
+@protocol UserSettingDelegate <NSObject>
+
+-(void) onUserSettingChanged:(NSString *) key;
+
+@end
+
 @interface UserSetting : NSObject
 
 +(UserSetting *) getInstance;
+
+
+-(void) registerDeletgate:(id<UserSettingDelegate>) delegate;
+
+-(void) unregisterDeletgate:(id<UserSettingDelegate>) delegate;
+
 
 -(void) reset;
 

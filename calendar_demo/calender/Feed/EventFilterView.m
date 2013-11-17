@@ -3,6 +3,7 @@
 #import "EventFilterView.h"
 #import "EventFilterViewCell.h"
 #import "UserSetting.h"
+#import "UserModel.h"
 #import "Event.h"
 
 @interface EventTypeItem : NSObject
@@ -39,8 +40,20 @@
     self = [super initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
     self.backgroundColor = [UIColor whiteColor];
+    
+    self.dataSource = self;
+    self.delegate = self;
+    
+    [self updateView];
+    
+    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
+    return self;
+}
+
+
+-(void) updateView
+{
     NSString * allTypes = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
     if(allTypes == nil || allTypes.length == 0) {
         allTypes = @"0,1,3,4,5";
@@ -48,19 +61,29 @@
     
     eventTypeItems = [[NSMutableArray alloc] init];
     
+    User * me = [[UserModel getInstance] getLoginUser];
+    
     NSArray * types = [allTypes componentsSeparatedByString:@","];
     for(NSString * strType in types) {
         EventTypeItem * item = [[EventTypeItem alloc] init];
         item.eventType = [strType intValue];
+        
+        if( (item.eventType == 3 || item.eventType == 4) && ![me isFacebookConnected])
+        {
+            continue;
+        }
+        
+        if(item.eventType == 1 && ![me isGoogleConnected])
+        {
+            continue;
+        }
+        
+        
         item.select = YES;
         [eventTypeItems addObject:item];
     }
     
-    self.dataSource = self;
-    self.delegate = self;
-    
-    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
-    return self;
+    [self reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

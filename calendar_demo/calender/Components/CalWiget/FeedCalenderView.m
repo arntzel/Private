@@ -66,6 +66,7 @@ extern const CGSize kTileSize;
     [eventScrollView setScrollEnabled:YES];
     [eventScrollView setShowsHorizontalScrollIndicator:YES];
     [eventScrollView setBounces:NO];
+    eventScrollView.backgroundColor = [UIColor whiteColor];
     [self ajustEventScrollPosition];
 }
 

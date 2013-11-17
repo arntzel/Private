@@ -30,6 +30,9 @@
 
 -(NSDictionary*)convent2Dic;
 
+-(BOOL) isFacebookConnected;
+-(BOOL) isGoogleConnected;
+
 /*
  Parse User object from json data.
  */
