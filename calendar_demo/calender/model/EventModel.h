@@ -12,6 +12,11 @@
 
 -(void) onSynchronizeDataCompleted;
 
+
+@optional
+
+-(void) onUserAccountChanged;
+
 @end
 
 
@@ -38,4 +43,7 @@
 - (void)deleteIcalEvent;
 - (void)uploadCalendarEvents;
 - (void)uploadContacts;
+
+-(void) notifyUserAccountChanged;
+
 @end

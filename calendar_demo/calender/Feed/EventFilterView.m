@@ -47,17 +47,14 @@
     
     [self updateView];
     
-    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
+   
     return self;
 }
 
 
 -(void) updateView
 {
-    NSString * allTypes = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
-    if(allTypes == nil || allTypes.length == 0) {
-        allTypes = @"0,1,3,4,5";
-    }
+    NSString * allTypes = @"0,1,3,4,5";
     
     eventTypeItems = [[NSMutableArray alloc] init];
     
@@ -83,7 +80,9 @@
         [eventTypeItems addObject:item];
     }
     
-    [self reloadData];
+    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
+    
+    [self onFilterChanged];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -110,6 +109,11 @@
      EventTypeItem *item = [eventTypeItems objectAtIndex:indexPath.row];
     item.select = !item.select;
     
+    [self onFilterChanged];
+}
+
+-(void) onFilterChanged
+{
     int filters = 0;
     
     for(EventTypeItem * eventTypeItem in eventTypeItems)
@@ -122,6 +126,7 @@
     [self.filterDelegate onFilterChanged:filters];
     
     [self reloadData];
+
 }
 
 -(void) setFilter:(int) filter

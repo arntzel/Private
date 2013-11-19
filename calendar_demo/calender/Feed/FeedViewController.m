@@ -42,8 +42,7 @@
                                   FeedEventTableViewDelegate,
                                   CoreDataModelDelegate,
                                   EventModelDelegate,
-                                  UIAlertViewDelegate,
-                                  UserSettingDelegate >
+                                  UIAlertViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
@@ -106,12 +105,21 @@
     int filters = [[UserSetting getInstance] getEventfilters];
     LOG_D(@"Read filterVal:0x %x", filters);
     
+    if(![me isFacebookConnected]) {
+        filters &= FILTER_IMCOMPLETE|FILTER_GOOGLE|FILTER_IOS;
+    }
+    
+    if(![me isGoogleConnected]) {
+        filters &= FILTER_IMCOMPLETE|FILTER_FB|FILTER_BIRTHDAY|FILTER_IOS;
+    }
+    
     
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     
     self.calendarView.filterView.filterDelegate = self;
 
+    
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
     frame.origin.x = 320 + 40;
@@ -144,13 +152,11 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
     
-    [[UserSetting getInstance] registerDeletgate:self];
 }
 
 -(void)viewDidUnload {
     [[CoreDataModel getInstance] removeDelegate:self];
     [[[Model getInstance] getEventModel] removeDelegate:self];
-    [[UserSetting getInstance] unregisterDeletgate:self];
     
     [super viewDidUnload];
 }
@@ -302,8 +308,11 @@
             [tableView scroll2SelectedDate:day];
         }
     });
-   
-    
+}
+
+-(void) onUserAccountChanged
+{
+    [self.calendarView.filterView updateView];
 }
 
 - (void)uploadCalendarEvents1
@@ -313,13 +322,7 @@
 
 }
 
--(void) onUserSettingChanged:(NSString *) key
-{
-    if( [key isEqualToString:KEY_SHOW_EVENT_TYPES]) {
-        
-        
-    }
-}
+
 @end
 
 

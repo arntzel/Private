@@ -447,7 +447,8 @@
                     [self googleviewChangeWithConnectStatus:NO];
                 }
                 
-                
+                self.loginUser.googleEmail = nil;
+                [[[Model getInstance] getEventModel] notifyUserAccountChanged];
         
             }
         }
@@ -471,6 +472,9 @@
                     
                 }
                 
+                self.loginUser.googleEmail = nil;
+                [[[Model getInstance] getEventModel] notifyUserAccountChanged];
+
             }
         }
         
@@ -659,6 +663,9 @@
                     self.loginUser.googleEmail = auth.userEmail;
                     [self googleviewChangeWithConnectStatus:YES];
                 }
+                
+                [[[Model getInstance] getEventModel] notifyUserAccountChanged];
+
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -704,6 +711,8 @@
                 [self fbviewChangeWithConnectStatus:YES];
             }
            
+            [[[Model getInstance] getEventModel] notifyUserAccountChanged];
+
         }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

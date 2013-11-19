@@ -42,6 +42,16 @@
     }
 }
 
+-(void) notifyUserAccountChanged
+{
+    for(id<EventModelDelegate> delegate in delegates) {
+        
+        if([delegate respondsToSelector:@selector(onUserAccountChanged)]) {
+            [delegate onUserAccountChanged];
+        }
+    }
+}
+
 -(BOOL) isSynchronizeData
 {
     return synchronizingData;
@@ -558,4 +568,6 @@
     NSString * str = [NSString stringWithFormat:@"%lf", seconds];
     return str;
 }
+
+
 @end
