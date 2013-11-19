@@ -28,12 +28,10 @@
     msg.replied_at = [Utils parseNSDate:[json objectForKey:@"replied_at"]];
 
     NSDictionary * jsonSender = [json objectForKey:@"sender"];
-    if([Utils chekcNullClass:jsonSender])
+    if([Utils chekcNullClass:jsonSender] != nil)
     {
          msg.sender  = [User parseUser:jsonSender];
     }
-    
-    
    
     msg.sender_archived  = [[json objectForKey:@"sender_archived"] boolValue];
     msg.sender_deleted_at = [Utils parseNSDate:[json objectForKey:@"sender_deleted_at"]];
