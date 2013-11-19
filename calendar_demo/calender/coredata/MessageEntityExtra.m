@@ -16,8 +16,13 @@
     self.subject = msg.subject;
     self.sendTime = msg.sent_at;
     self.eventID = [NSNumber numberWithInt:msg.eventID];
-    self.senderName = msg.sender.username;
-    self.senderUrl = msg.sender.avatar_url;
+    
+    if(msg.sender != nil)
+    {
+        self.senderName = msg.sender.username;
+        self.senderUrl = msg.sender.avatar_url;
+    }
+   
     self.unread = [NSNumber numberWithBool:(msg.read_at == nil)];
 }
 @end

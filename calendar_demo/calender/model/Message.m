@@ -27,7 +27,14 @@
     msg.recipient_archived  = [[json objectForKey:@"recipient_archived"] boolValue];
     msg.replied_at = [Utils parseNSDate:[json objectForKey:@"replied_at"]];
 
-    msg.sender  = [User parseUser:[json objectForKey:@"sender"]];
+    NSDictionary * jsonSender = [json objectForKey:@"sender"];
+    if([Utils chekcNullClass:jsonSender])
+    {
+         msg.sender  = [User parseUser:jsonSender];
+    }
+    
+    
+   
     msg.sender_archived  = [[json objectForKey:@"sender_archived"] boolValue];
     msg.sender_deleted_at = [Utils parseNSDate:[json objectForKey:@"sender_deleted_at"]];
     msg.sent_at = [Utils parseNSDate:[json objectForKey:@"sent_at"]];
