@@ -56,7 +56,7 @@
 {
     NSString * allTypes = @"0,1,3,4,5";
     
-    eventTypeItems = [[NSMutableArray alloc] init];
+    NSMutableArray * neweventTypeItems = [[NSMutableArray alloc] init];
     
     User * me = [[UserModel getInstance] getLoginUser];
     
@@ -75,14 +75,32 @@
             continue;
         }
         
+        EventTypeItem * oldItem = [self getEventTypeItem:item.eventType];
+        if(oldItem == nil) {
+            item.select = YES;
+        } else {
+            item.select = oldItem.select;
+        }
         
-        item.select = YES;
-        [eventTypeItems addObject:item];
+        [neweventTypeItems addObject:item];
     }
     
-    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * 50);
+    eventTypeItems = neweventTypeItems;
+    
+    self.frame = CGRectMake(0, 0, 320, neweventTypeItems.count * 50);
     
     [self onFilterChanged];
+}
+
+-(EventTypeItem *) getEventTypeItem:(int) type
+{
+    if(eventTypeItems == nil) return nil;
+    
+    for(EventTypeItem * item in eventTypeItems)
+    {
+        if(item.eventType == type) return item;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
