@@ -18,5 +18,6 @@
 
 @property(nonatomic, assign) id<EventFilterViewDelegate> filterDelegate;
 
+- (CGFloat)displayHeight;
 
 @end

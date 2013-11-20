@@ -93,8 +93,7 @@ extern const CGSize kTileSize;
 
 - (void)ajustEventScrollPosition
 {
-    CGFloat height = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - topGap;
-    [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, height)];
+    [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, [self.filterView displayHeight])];
     
     CGRect frame = self.frame;
     frame.size.height = kalView.frame.size.height + eventScrollView.frame.size.height;
@@ -113,14 +112,17 @@ extern const CGSize kTileSize;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frame"] && (object == kalView)) {
+        [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, [self.filterView displayHeight])];
+        CGRect frame = self.frame;
+        frame.size.height = kalView.frame.size.height + eventScrollView.frame.size.height;
         
-        [self ajustEventScrollPosition];
         if (kalMode == MONTH_MODE) {
-            CGRect frame = self.frame;
             frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height;
-            self.frame = frame;
         }
-    
+        if (kalMode == FILTER_MODE) {
+            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - eventScrollView.frame.size.height;
+        }
+        self.frame = frame;
     }
 }
 

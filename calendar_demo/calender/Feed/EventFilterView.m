@@ -6,6 +6,8 @@
 #import "UserModel.h"
 #import "Event.h"
 
+#define itemHeight 50
+
 @interface EventTypeItem : NSObject
 
 @property int eventType;
@@ -87,9 +89,16 @@
     
     eventTypeItems = neweventTypeItems;
     
-    self.frame = CGRectMake(0, 0, 320, neweventTypeItems.count * 50);
+    self.frame = CGRectMake(0, 0, 320, eventTypeItems.count * itemHeight);
     
     [self onFilterChanged];
+}
+
+- (CGFloat)displayHeight
+{
+    NSInteger displayItemNumber = eventTypeItems.count > 3 ? 3:eventTypeItems.count;
+    
+    return displayItemNumber *itemHeight;
 }
 
 -(EventTypeItem *) getEventTypeItem:(int) type
