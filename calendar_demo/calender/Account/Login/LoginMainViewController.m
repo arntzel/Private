@@ -395,6 +395,12 @@
 
 - (void)btnForgotPasswordDidClick
 {
+    NSString * email = [signInView getEmail];
+    if(email == nil || email.length == 0)
+    {
+        NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+        email = [accountDefaults objectForKey:@"email"];
+    }
     
     if([SysInfo version] >= 7.0) {
         
@@ -417,8 +423,7 @@
         [alertTextField setPlaceholder:@"Please input your email"];
         [alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
-        NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-        NSString * email = [accountDefaults objectForKey:@"email"];
+       
         if(email != nil) {
             alertTextField.text = email;
         }
@@ -438,6 +443,10 @@
         [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
         [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
         [self.alertTextField setPlaceholder:@"Please input your email"];
+        
+        if(email != nil) {
+            self.alertTextField.text = email;
+        }
         
         [self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         

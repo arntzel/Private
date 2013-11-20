@@ -27,6 +27,8 @@
 @property(nonatomic,weak) id<LoginMainSignInViewDelegate> delegate;
 
 
+-(NSString *) getEmail;
+
 -(void) setEmail:(NSString *) email andPass:(NSString *) pass;
 
 -(void) showLogining:(BOOL) logining;

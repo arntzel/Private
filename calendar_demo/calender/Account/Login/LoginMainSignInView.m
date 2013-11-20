@@ -91,6 +91,11 @@
     self.TextPassword.text = pass;
 }
 
+-(NSString *) getEmail
+{
+    return  self.TextUserName.text;
+}
+
 +(LoginMainSignInView *) creatView
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LoginMainSignInView" owner:self options:nil];
