@@ -598,6 +598,7 @@ static UserModel * instance;
     }];
 }
 
+
 -(void) updateSetting:(NSDictionary *)dic andCallBack:(void (^)(NSInteger error))callback
 {//dic ----->{"show_event_types":["1", "2", "3"], "show_notification_types":["4", "5", "6"]}
     
@@ -610,6 +611,9 @@ static UserModel * instance;
     [request setHTTPBody:postData];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        
+        if(callback == nil) return;
+        
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         
         int status = httpResp.statusCode;

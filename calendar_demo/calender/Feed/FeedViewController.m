@@ -268,6 +268,21 @@
 
     [tableView reloadFeedEventEntitys:date];
     [self.calendarView setNeedsDisplay];
+    
+    NSMutableDictionary * setting = [[NSMutableDictionary alloc] init];
+    
+    NSMutableString * types = [[NSMutableString alloc] init];
+    
+    if( (filters & FILTER_IMCOMPLETE) != 0)  [types appendString:@"0,"];
+    if( (filters & FILTER_GOOGLE) != 0)      [types appendString:@"1,"];
+    if( (filters & FILTER_FB) != 0)          [types appendString:@"3,"];
+    if( (filters & FILTER_BIRTHDAY) != 0)    [types appendString:@"4,"];
+    if( (filters & FILTER_IOS) != 0)         [types appendString:@"5,"];
+    
+    
+    [setting setObject:types forKey:KEY_SHOW_EVENT_TYPES];
+    
+    [[UserModel getInstance] updateSetting:setting andCallBack:nil];
 }
 
 
@@ -313,6 +328,12 @@
 -(void) onUserAccountChanged
 {
     [self.calendarView.filterView updateView];
+}
+
+-(void)onEventFiltersChanged
+{
+    int filter = [[UserSetting getInstance] getEventfilters];
+    [self.calendarView.filterView setFilter:filter];
 }
 
 - (void)uploadCalendarEvents1

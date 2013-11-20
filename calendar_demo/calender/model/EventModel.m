@@ -52,6 +52,16 @@
     }
 }
 
+-(void) notifyEventFiltersChanged
+{
+    for(id<EventModelDelegate> delegate in delegates) {
+        
+        if([delegate respondsToSelector:@selector(onEventFiltersChanged)]) {
+            [delegate onEventFiltersChanged];
+        }
+    }
+}
+
 -(BOOL) isSynchronizeData
 {
     return synchronizingData;
@@ -294,22 +304,29 @@
             }
             
             
-            NSArray * show_event_types = [settings objectForKey:@"show_event_types"];
-            NSMutableString * strTypes = [[NSMutableString alloc] init];
-            
-            for(int i=0 ; i<show_event_types.count; i++) {
-                [strTypes appendString:[NSString stringWithFormat:@"%@",[show_event_types objectAtIndex:i]]];
+            NSString * show_event_types = [settings objectForKey:@"show_event_types"];
+            int filters = 0;
+            if(show_event_types == nil)
+            {
+                filters = FILTER_IMCOMPLETE | FILTER_GOOGLE | FILTER_FB | FILTER_GOOGLE | FILTER_IOS;
                 
-                if(i<show_event_types.count-1) {
-                    [strTypes appendString:@","];
+            } else {
+                
+                NSRange range;
+                range.length = 1;
+                
+                for(int i=0 ; i<show_event_types.length/2; i++) {
+                    range.location = i*2;
+                    int eventType = [[show_event_types substringWithRange:range] intValue];
+                    filters |= (0x01 << eventType);
                 }
             }
             
-            NSString * str = [[UserSetting getInstance] getStringValue:KEY_SHOW_EVENT_TYPES];
-            
-            if(str == nil || ![str isEqualToString:strTypes]) {
-                [[UserSetting getInstance] saveKey:KEY_SHOW_EVENT_TYPES andStringValue:strTypes];
-                LOG_I(@"saveKey: %@=%@", KEY_SHOW_EVENT_TYPES, strTypes);
+            int localFilter = [[UserSetting getInstance] getEventfilters];
+            if(localFilter != filters)
+            {
+                [[UserSetting getInstance] saveEventfilters:filters];
+                [[[Model getInstance] getEventModel] notifyEventFiltersChanged];
             }
         }
     }];

@@ -17,6 +17,8 @@
 
 -(void) onUserAccountChanged;
 
+-(void) onEventFiltersChanged;
+
 @end
 
 
@@ -45,5 +47,7 @@
 - (void)uploadContacts;
 
 -(void) notifyUserAccountChanged;
+
+-(void) notifyEventFiltersChanged;
 
 @end
