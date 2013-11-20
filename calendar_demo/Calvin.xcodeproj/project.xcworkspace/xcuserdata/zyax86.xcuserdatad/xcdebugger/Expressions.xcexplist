@@ -23,6 +23,14 @@
          contextName = "-[AddEventDateViewController setDurationHours:Minutes:]:AddEventDateViewController.m">
       </ContextState>
       <ContextState
+         contextName = "+[ShareLoginFacebook isFacebookLoginIn]:ShareLoginFacebook.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.facebookToken">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "+[ContactSort resortListByName:]:ContactSort.m">
          <PersistentStrings>
             <PersistentString

@@ -449,6 +449,9 @@
 		769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD4C17DF579E0033E677 /* EventDetailController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABD5117DF5C270033E677 /* AddDateEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABABC17DF52090033E677 /* AddDateEntryView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABD5317DF5D440033E677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABD5217DF5D440033E677 /* main.m */; };
+		76A457EA183CEBAC002127D1 /* SharePhotoFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A457E9183CEBAC002127D1 /* SharePhotoFacebook.m */; };
+		76A457ED183CEBE1002127D1 /* SharePhotoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A457EC183CEBE1002127D1 /* SharePhotoBase.m */; };
+		76A457F0183CEC4E002127D1 /* SharePhotoMsgObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A457EF183CEC4E002127D1 /* SharePhotoMsgObject.m */; };
 		76C22D8A173FCD6700AC7519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C22D89173FCD6700AC7519 /* QuartzCore.framework */; };
 		76CF7FC618058F6000018B95 /* DetailVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FC418058F6000018B95 /* DetailVoteViewController.m */; };
 		76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CF7FC518058F6000018B95 /* DetailVoteViewController.xib */; };
@@ -1123,6 +1126,12 @@
 		769ABD4B17DF579E0033E677 /* EventDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailController.h; sourceTree = "<group>"; };
 		769ABD4C17DF579E0033E677 /* EventDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailController.m; sourceTree = "<group>"; };
 		769ABD5217DF5D440033E677 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = calender/main.m; sourceTree = "<group>"; };
+		76A457E8183CEBAC002127D1 /* SharePhotoFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePhotoFacebook.h; sourceTree = "<group>"; };
+		76A457E9183CEBAC002127D1 /* SharePhotoFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePhotoFacebook.m; sourceTree = "<group>"; };
+		76A457EB183CEBE1002127D1 /* SharePhotoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePhotoBase.h; sourceTree = "<group>"; };
+		76A457EC183CEBE1002127D1 /* SharePhotoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePhotoBase.m; sourceTree = "<group>"; };
+		76A457EE183CEC4E002127D1 /* SharePhotoMsgObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePhotoMsgObject.h; sourceTree = "<group>"; };
+		76A457EF183CEC4E002127D1 /* SharePhotoMsgObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePhotoMsgObject.m; sourceTree = "<group>"; };
 		76C22D89173FCD6700AC7519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		76CF7FC318058F6000018B95 /* DetailVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVoteViewController.h; sourceTree = "<group>"; };
 		76CF7FC418058F6000018B95 /* DetailVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVoteViewController.m; sourceTree = "<group>"; };
@@ -1304,6 +1313,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				76A457E7183CEBAC002127D1 /* Share */,
 				769ABD0517DF54950033E677 /* Components */,
 				769ABCFA17DF54860033E677 /* Utils */,
 				769ABB7E17DF54290033E677 /* Feed */,
@@ -2412,6 +2422,20 @@
 			path = googlePlaceApi;
 			sourceTree = "<group>";
 		};
+		76A457E7183CEBAC002127D1 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				76A457EE183CEC4E002127D1 /* SharePhotoMsgObject.h */,
+				76A457EF183CEC4E002127D1 /* SharePhotoMsgObject.m */,
+				76A457EB183CEBE1002127D1 /* SharePhotoBase.h */,
+				76A457EC183CEBE1002127D1 /* SharePhotoBase.m */,
+				76A457E8183CEBAC002127D1 /* SharePhotoFacebook.h */,
+				76A457E9183CEBAC002127D1 /* SharePhotoFacebook.m */,
+			);
+			name = Share;
+			path = calender/Share;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2964,6 +2988,7 @@
 				765B24F71802684D00B01A0A /* JSBackspaceReportingTextField.m in Sources */,
 				769ABC9917DF542A0033E677 /* ASIDownloadCache.m in Sources */,
 				94FAFFD717F5C16A0010601F /* ProposeStart.m in Sources */,
+				76A457F0183CEC4E002127D1 /* SharePhotoMsgObject.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
 				769ABC9817DF542A0033E677 /* ASIDataDecompressor.m in Sources */,
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
@@ -3026,6 +3051,7 @@
 				769ABD4517DF54950033E677 /* CustomSwitch.m in Sources */,
 				769ABD4817DF54950033E677 /* GPlaceApi.m in Sources */,
 				769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */,
+				76A457EA183CEBAC002127D1 /* SharePhotoFacebook.m in Sources */,
 				3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */,
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
 				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
@@ -3037,6 +3063,7 @@
 				76431E081806F6BD009DAFFE /* EventNavigationBar+GlassStyle.m in Sources */,
 				7662F74717F075F400B64E40 /* LoginMainViewController.m in Sources */,
 				94FAFFD517F5BA6F0010601F /* Contact.m in Sources */,
+				76A457ED183CEBE1002127D1 /* SharePhotoBase.m in Sources */,
 				3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */,
 				9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */,
 			);

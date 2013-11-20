@@ -31,6 +31,12 @@
 #import "DetailVoteViewController.h"
 #import "CoreDataModel.h"
 
+#import "ShareLoginFacebook.h"
+#import "SharePhotoFacebook.h"
+#import "LoginAccountStore.h"
+#import "SettingsModel.h"
+#import "UserModel.h"
+
 @interface EventDetailController ()<EventDetailNavigationBarDelegate,
                                     UIActionSheetDelegate,
                                     UIAlertViewDelegate,
@@ -42,7 +48,9 @@
                                     AddLocationViewControllerDelegate,
                                     EventDetailPhotoViewDelegate,
                                     UploadImageDelegate,
-                                    DetailInviteesControllerDelegate>
+                                    DetailInviteesControllerDelegate,
+                                    ShareLoginDelegate,
+                                    SharePhotoDelegate>
 {
     EventDetailNavigationBar *navBar;
     EventDetailPhotoView *photoView;
@@ -66,9 +74,13 @@
 
 
 @property(nonatomic, retain) Event *event;
+@property(nonatomic, retain) ShareLoginBase *shareloginFacebook;
+@property(nonatomic, retain) SharePhotoBase *sharePhotoFacebook;
 @end
 
 @implementation EventDetailController
+@synthesize shareloginFacebook;
+@synthesize sharePhotoFacebook;
 
 @synthesize event;
 
@@ -78,6 +90,12 @@
     //self.moreActionSheet = nil;
     
     self.event = nil;
+    
+    self.shareloginFacebook.delegate = nil;
+    self.shareloginFacebook = nil;
+    
+    self.sharePhotoFacebook.delegate = nil;
+    self.sharePhotoFacebook = nil;
     
     navBar.delegate = nil;
     [navBar release];
@@ -553,14 +571,81 @@
     LOG_D(@"editEvent");
 }
 
+- (NSMutableDictionary *)msgToFacebook
+{
+    NSString *msg = @"send to facebook 1132";
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:msg forKey:@"text"];
+    return dict;
+}
+
 -(void) shareOnFacebook
 {
     LOG_D(@"shareOnFacebook");
+    if ([ShareLoginFacebook isFacebookLoginIn]) {
+        self.sharePhotoFacebook.delegate = nil;
+        self.sharePhotoFacebook = [[[SharePhotoFacebook alloc] init] autorelease];
+        self.sharePhotoFacebook.delegate = self;
+        [self.sharePhotoFacebook updateStatuses:[self msgToFacebook]];
+    }
+    else
+    {
+        self.shareloginFacebook.delegate = nil;
+        self.shareloginFacebook = [[[ShareLoginFacebook alloc] init] autorelease];
+        self.shareloginFacebook.delegate = self;
+        [self.shareloginFacebook shareLogin];
+    }
 }
 
 -(void) shareViaEmail
 {
     LOG_D(@"shareViaEmail");
+}
+
+#pragma mark ShareLoginDelegate
+- (void)shareDidLoginErr:(ShareLoginBase *)shareLogin
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"login failed!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+}
+
+
+- (void)shareDidLogin:(ShareLoginBase *)shareLogin
+{
+    LoginAccountStore * store = [LoginAccountStore defaultAccountStore];
+    NSString * accessToken = store.facebookAccessToken;
+    LOG_D(@"shareDidLogin:%@", accessToken);
+    SettingsModel *settingsModel = [[SettingsModel alloc] init];
+    [settingsModel updateConnect:ConnectFacebook tokenVale:accessToken IsConnectOrNot:YES andCallback:^(NSInteger error,NSString *message) {
+        
+        if (error != -1)
+        {
+            User *user = [[UserModel getInstance] getLoginUser];
+            user.facebookEmail = store.facebookEmail;
+            [[[Model getInstance] getEventModel] notifyUserAccountChanged];
+    
+            [self.sharePhotoFacebook setDelegate:nil];
+            self.sharePhotoFacebook = [[[SharePhotoFacebook alloc] init] autorelease];
+            self.sharePhotoFacebook.delegate = self;
+            [self.sharePhotoFacebook updateStatuses:[self msgToFacebook]];
+        }
+    }];
+}
+
+- (void)sharePhotoSuccess:(SharePhotoBase* )sharePhotoBase
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)sharePhotoFailed:(SharePhotoBase* )sharePhotoBase withErrorNo:(NSInteger) errorNO
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"share failed!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
 }
 
 #pragma mark -

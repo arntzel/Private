@@ -1,8 +1,49 @@
 
 #import "ShareLoginFacebook.h"
 #import "LoginAccountStore.h"
+#import "User.h"
+#import "UserModel.h"
 
 @implementation ShareLoginFacebook
+
+
+
++ (BOOL)isFacebookLoginIn{
+    User *user  = [[UserModel getInstance] getLoginUser];
+    if (user.facebookToken) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+    
+    
+    
+    LOG_METHOD;
+    if (![FBSession activeSession].isOpen) {
+        
+        // if we don't have a cached token, a call to open here would cause UX for login to
+        // occur; we don't want that to happen unless the user clicks the login button, and so
+        // we check here to make sure we have a token before calling open
+        
+        LOG_D(@"TokenLoaded start");
+        if ([FBSession activeSession].state == FBSessionStateCreatedTokenLoaded) {
+            // even though we had a cached token, we need to login to make the session usable
+            [[FBSession activeSession] openWithCompletionHandler:nil];
+            LOG_D(@"TokenLoaded end");
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+}
 
 - (void) dealloc
 {

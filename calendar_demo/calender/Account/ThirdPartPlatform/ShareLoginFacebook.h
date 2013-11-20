@@ -5,4 +5,6 @@
 
 @interface ShareLoginFacebook : ShareLoginBase
 
++ (BOOL)isFacebookLoginIn;
+
 @end
