@@ -96,6 +96,11 @@
     rightBtn.hidden = hidden;
 }
 
+-(void) setRightBtnEnable:(BOOL) enable
+{
+    rightBtn.enabled = enable;
+}
+
 - (void)leftBtnClick:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(leftNavBtnClick)]) {

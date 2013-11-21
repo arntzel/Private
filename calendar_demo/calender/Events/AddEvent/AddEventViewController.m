@@ -436,11 +436,13 @@
     }
     
     //[self uploadImage];
-    if(request != nil) {
-        return;
-    } else {
-        [self createEvent:imageUrl];
-    }
+//    if(request != nil) {
+//        return;
+//    } else {
+//        [self createEvent:imageUrl];
+//    }
+    
+    [self createEvent:imageUrl];
 }
 
 - (void)showTimeErrorWarning
@@ -566,9 +568,12 @@
     Model *model = [Model getInstance];
 
     [self startIndicator];
+    [navBar setRightBtnEnable:NO];
+    
     [model createEvent:event andCallback:^(NSInteger error, Event * newEvent) {
 
         [self stopIndicator];
+        [navBar setRightBtnEnable:YES];
         
         if (error == 0) {
 

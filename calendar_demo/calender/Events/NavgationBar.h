@@ -25,5 +25,6 @@
 
 - (void) setRightBtnHidden:(BOOL)  hidden;
 
+-(void) setRightBtnEnable:(BOOL) enable;
 
 @end
