@@ -184,7 +184,7 @@
     
     NSLog(@"applicationDidBecomeActive:%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     [FBAppEvents activateApp];
-    [FBAppCall handleDidBecomeActive];
+    [FBAppCall handleDidBecomeActiveWithSession:self.session];
     
     int badge = [UIApplication sharedApplication].applicationIconBadgeNumber ;
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

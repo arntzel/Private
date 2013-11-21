@@ -584,7 +584,7 @@
 
 - (NSMutableDictionary *)msgToFacebook
 {
-    NSString *msg = [NSString stringWithFormat:@"text %@",[NSDate date]];
+    NSString *msg = [NSString stringWithFormat:@"here write facebook status"];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:msg forKey:@"text"];

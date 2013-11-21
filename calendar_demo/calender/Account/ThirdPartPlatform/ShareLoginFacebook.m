@@ -4,6 +4,8 @@
 #import "User.h"
 #import "UserModel.h"
 
+#import "AppDelegate.h"
+
 @implementation ShareLoginFacebook
 
 
@@ -56,6 +58,11 @@
 {
     LOG_METHOD;
     // this button's job is to flip-flop the session from open to closed
+    
+    
+    
+    
+    
     if (FBSession.activeSession.isOpen) {
         // if a user logs out explicitly, we delete any cached token information, and next
         // time they run the applicaiton they will be presented with log in UX again; most
@@ -69,6 +76,7 @@
         NSArray *permissions = [NSArray arrayWithObjects:
                                 @"user_likes",
                                 @"publish_actions",
+                                @"publish_stream",
                                 nil];
         FBSession *session = [[FBSession alloc] initWithPermissions:permissions];
         [FBSession setActiveSession:session];
