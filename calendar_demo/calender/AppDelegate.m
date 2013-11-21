@@ -234,16 +234,16 @@
     
     NSLog(@"application openURL:%@", url);
     
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication
-                    fallbackHandler:^(FBAppCall *call) {
-                        NSLog(@"In fallback handler");
-                    }];
-    
-//    BOOL result = [GPPURLHandler handleURL:url
+//    return [FBAppCall handleOpenURL:url
 //                  sourceApplication:sourceApplication
-//                         annotation:annotation];
-//    return result;
+//                    fallbackHandler:^(FBAppCall *call) {
+//                        NSLog(@"In fallback handler");
+//                    }];
+    
+    BOOL result = [GPPURLHandler handleURL:url
+                  sourceApplication:sourceApplication
+                         annotation:annotation];
+    return result;
 }
 
 @end
