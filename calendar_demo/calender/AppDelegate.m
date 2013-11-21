@@ -21,6 +21,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
+@synthesize session = _session;
 
 - (void)redirectNSLogToDocumentFolder{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
@@ -182,7 +183,8 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     NSLog(@"applicationDidBecomeActive:%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
-
+    [FBAppEvents activateApp];
+    [FBAppCall handleDidBecomeActive];
     
     int badge = [UIApplication sharedApplication].applicationIconBadgeNumber ;
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -220,6 +222,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     NSLog(@"applicationWillTerminate");
+    [FBSession.activeSession close];
     
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
@@ -231,10 +234,16 @@
     
     NSLog(@"application openURL:%@", url);
     
-    BOOL result = [GPPURLHandler handleURL:url
+    return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
-                         annotation:annotation];
-    return result;
+                    fallbackHandler:^(FBAppCall *call) {
+                        NSLog(@"In fallback handler");
+                    }];
+    
+//    BOOL result = [GPPURLHandler handleURL:url
+//                  sourceApplication:sourceApplication
+//                         annotation:annotation];
+//    return result;
 }
 
 @end

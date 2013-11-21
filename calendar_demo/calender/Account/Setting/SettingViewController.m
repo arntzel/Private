@@ -474,6 +474,8 @@
                 
                 self.loginUser.googleEmail = nil;
                 [[[Model getInstance] getEventModel] notifyUserAccountChanged];
+                self.snsLogin = [[ShareLoginFacebook alloc]init];
+                [self.snsLogin shareLoginOut];
 
             }
         }

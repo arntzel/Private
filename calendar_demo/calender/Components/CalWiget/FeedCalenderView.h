@@ -18,5 +18,6 @@
 
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;
+- (void)updateFilterFrame;
 
 @end

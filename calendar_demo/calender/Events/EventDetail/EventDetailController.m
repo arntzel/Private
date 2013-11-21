@@ -37,6 +37,9 @@
 #import "SettingsModel.h"
 #import "UserModel.h"
 
+#import "ATMHud.h"
+#import "ATMHudDelegate.h"
+
 @interface EventDetailController ()<EventDetailNavigationBarDelegate,
                                     UIActionSheetDelegate,
                                     UIAlertViewDelegate,
@@ -70,6 +73,8 @@
 
     //For upload Image
     ASIFormDataRequest * request;
+    
+    ATMHud *hud;
 }
 
 
@@ -86,6 +91,9 @@
 
 - (void)dealloc
 {
+    hud.delegate = nil;
+    [hud release];
+    
     //self.moreActionSheet.delegate = nil;
     //self.moreActionSheet = nil;
     
@@ -131,9 +139,9 @@
 
     [self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
     [self addNavBar];
-    
 
     [self showIndicatorView];
+    
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
@@ -157,6 +165,9 @@
             [self configViews];
             [self updateUIByEvent];
             [self layOutSubViews];
+            
+            hud = [[ATMHud alloc] initWithDelegate:self];
+            [self.view addSubview:hud.view];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
@@ -573,7 +584,7 @@
 
 - (NSMutableDictionary *)msgToFacebook
 {
-    NSString *msg = @"send to facebook 1132";
+    NSString *msg = [NSString stringWithFormat:@"text %@",[NSDate date]];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:msg forKey:@"text"];
@@ -584,10 +595,7 @@
 {
     LOG_D(@"shareOnFacebook");
     if ([ShareLoginFacebook isFacebookLoginIn]) {
-        self.sharePhotoFacebook.delegate = nil;
-        self.sharePhotoFacebook = [[[SharePhotoFacebook alloc] init] autorelease];
-        self.sharePhotoFacebook.delegate = self;
-        [self.sharePhotoFacebook updateStatuses:[self msgToFacebook]];
+        [self shareToFacebook];
     }
     else
     {
@@ -626,16 +634,35 @@
             user.facebookEmail = store.facebookEmail;
             [[[Model getInstance] getEventModel] notifyUserAccountChanged];
     
-            [self.sharePhotoFacebook setDelegate:nil];
-            self.sharePhotoFacebook = [[[SharePhotoFacebook alloc] init] autorelease];
-            self.sharePhotoFacebook.delegate = self;
-            [self.sharePhotoFacebook updateStatuses:[self msgToFacebook]];
+            [self shareToFacebook];
         }
     }];
 }
 
+- (void)shareToFacebook
+{
+    [self.sharePhotoFacebook setDelegate:nil];
+    self.sharePhotoFacebook = [[[SharePhotoFacebook alloc] init] autorelease];
+    self.sharePhotoFacebook.delegate = self;
+    [self.sharePhotoFacebook updateStatuses:[self msgToFacebook]];
+    [self startLoadingAnimation];
+}
+
+- (void)startLoadingAnimation
+{
+    [hud setCaption:@"Sharing To Facebook..."];
+    [hud show];
+    [hud setBlockTouches:YES];
+}
+
+- (void)stopLoadingAnimation
+{
+    [hud hide];
+}
+
 - (void)sharePhotoSuccess:(SharePhotoBase* )sharePhotoBase
 {
+    [hud hide];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [alert release];
@@ -643,9 +670,15 @@
 
 - (void)sharePhotoFailed:(SharePhotoBase* )sharePhotoBase withErrorNo:(NSInteger) errorNO
 {
+    [hud hide];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"share failed!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [alert release];
+}
+
+- (void)sharePhotoNetDidNotWork:(SharePhotoBase *)sharePhotoBase
+{
+    [hud hide];
 }
 
 #pragma mark -

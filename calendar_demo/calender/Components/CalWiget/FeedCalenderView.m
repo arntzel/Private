@@ -70,6 +70,11 @@ extern const CGSize kTileSize;
     [self ajustEventScrollPosition];
 }
 
+- (void)updateFilterFrame
+{
+    [eventScrollView setContentSize:self.filterView.frame.size];
+}
+
 - (void)setFrameToWeekMode
 {
     CGRect frame = self.frame;

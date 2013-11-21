@@ -268,6 +268,7 @@
 
     [tableView reloadFeedEventEntitys:date];
     [self.calendarView setNeedsDisplay];
+    [self.calendarView updateFilterFrame];
     
     NSMutableDictionary * setting = [[NSMutableDictionary alloc] init];
     

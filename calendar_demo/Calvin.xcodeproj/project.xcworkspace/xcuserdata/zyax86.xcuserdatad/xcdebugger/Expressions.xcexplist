@@ -26,6 +26,9 @@
          contextName = "+[ShareLoginFacebook isFacebookLoginIn]:ShareLoginFacebook.m">
          <PersistentStrings>
             <PersistentString
+               value = "accountStore.facebookEmail">
+            </PersistentString>
+            <PersistentString
                value = "user.facebookToken">
             </PersistentString>
          </PersistentStrings>

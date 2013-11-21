@@ -9,15 +9,17 @@
 
 
 + (BOOL)isFacebookLoginIn{
-    User *user  = [[UserModel getInstance] getLoginUser];
-    if (user.facebookToken) {
+    LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
+    if (accountStore.facebookAccessToken != nil && ![accountStore.facebookAccessToken isEqualToString:@""]
+        )
+    {
         return YES;
     }
     else
     {
         return NO;
     }
-    
+
     
     
     LOG_METHOD;
@@ -52,76 +54,87 @@
 
 - (void)shareLogin
 {
+    LOG_METHOD;
     // this button's job is to flip-flop the session from open to closed
     if (FBSession.activeSession.isOpen) {
         // if a user logs out explicitly, we delete any cached token information, and next
         // time they run the applicaiton they will be presented with log in UX again; most
         // users will simply close the app or switch away, without logging out; this will
         // cause the implicit cached-token login to occur on next launch of the application
-        [FBSession.activeSession closeAndClearTokenInformation];
-        [FBSession.activeSession close];
+        [[FBSession activeSession] closeAndClearTokenInformation];
     }
     
-    // Create a new, logged out session.
-    FBSession.activeSession = [[FBSession alloc] init];
-    NSArray *permissions = [[NSArray alloc] initWithObjects:
-                            @"user_likes",
-                            @"publish_actions",
-                            @"email",
-                            nil];
-    
-    FBSession.activeSession = [FBSession.activeSession initWithPermissions:permissions];
+    if ([FBSession activeSession].state != FBSessionStateCreated) {
+        // Create a new, logged out session.
+        NSArray *permissions = [NSArray arrayWithObjects:
+                                @"user_likes",
+                                @"publish_actions",
+                                nil];
+        FBSession *session = [[FBSession alloc] initWithPermissions:permissions];
+        [FBSession setActiveSession:session];
+    }
+    [self loginInWebView];
+}
 
-    [FBSession.activeSession openWithBehavior:FBSessionLoginBehaviorForcingWebView
-                            completionHandler:^(FBSession *session,
-                                                FBSessionState status,
-                                                NSError *error)
-        {
-            if(error.code == -1009)
-            {//无网络
-                if([self.delegate respondsToSelector:@selector(shareDidNotNetWork:)])
-                    [self.delegate shareDidNotNetWork:self];
-            }
-            else if(error.code == -1001)
-            {//超时
-                if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
-                    [self.delegate shareDidLoginTimeOut:self];
-            }
-            else if(error.code == -1003)
-            {//找不到服务器
-                if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
-                    [self.delegate shareDidLoginTimeOut:self];
-            }
-            else if(session.accessToken == nil)
-            {
-                if([self.delegate respondsToSelector:@selector(shareDidLoginErr:)])
-                    [self.delegate shareDidLoginErr:self];
-            }
-            else
-            {
-                LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
-                [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error)
-                {
-                    if (!error)
-                    {
-                        
-                        
-                        accountStore.facebookAccessToken = session.accessToken;
-                        accountStore.facebookExpireDate = session.expirationDate;
-                        accountStore.facebookEmail = [user objectForKey:@"email"];
-                        if([self.delegate respondsToSelector:@selector(shareDidLogin:)])
-                            [self.delegate shareDidLogin:self];
-                    }
-                }];
-               
-            }
-        }];
+- (void)loginResult:(FBSession *)session statue:(FBSessionState) status Error:(NSError *)error
+{
+    if(error.code == -1009)
+    {//无网络
+        LOG_D(@"error.code: -1009");
+        if([self.delegate respondsToSelector:@selector(shareDidNotNetWork:)])
+            [self.delegate shareDidNotNetWork:self];
+    }
+    else if(error.code == -1001)
+    {//超时
+        LOG_D(@"error.code: -1001");
+        if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
+            [self.delegate shareDidLoginTimeOut:self];
+    }
+    else if(error.code == -1003)
+    {//找不到服务器
+        LOG_D(@"error.code: -1003");
+        if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
+            [self.delegate shareDidLoginTimeOut:self];
+    }
+    else if(error.code != 0)
+    {
+        if([self.delegate respondsToSelector:@selector(shareDidLoginErr:)])
+            [self.delegate shareDidLoginErr:self];
+    }
+    else
+    {
+        LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
+        [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error)
+         {
+             if (!error)
+             {
+                 accountStore.facebookAccessToken = session.accessToken;
+                 accountStore.facebookExpireDate = session.expirationDate;
+                 accountStore.facebookEmail = [user objectForKey:@"email"];
+                 if([self.delegate respondsToSelector:@selector(shareDidLogin:)])
+                     [self.delegate shareDidLogin:self];
+             }
+         }];
+    }
+}
+
+- (void)loginInWebView
+{
+    [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView
+                              completionHandler:^(FBSession *session,
+                                                  FBSessionState status,
+                                                  NSError *error)
+     {
+         [self loginResult:session statue:status Error:error];
+     }];
 }
 
 - (void)shareLoginOut
 {
-    [FBSession.activeSession closeAndClearTokenInformation];
-    //[FBSession.activeSession close];
+    if ([FBSession activeSession].isOpen)
+    {
+        [[FBSession activeSession] closeAndClearTokenInformation];
+    }
     
     LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
     accountStore.facebookAccessToken = nil;
