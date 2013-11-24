@@ -18,6 +18,7 @@
 +(EventTimeVote *) parse:(NSDictionary *) json
 {
     EventTimeVote * vote = [[EventTimeVote alloc] init];
+    vote.id = [[json objectForKey:@"id"] intValue];
     vote.status = [[json objectForKey:@"status"] intValue];
     vote.email = [json objectForKey:@"username_or_email"];
     return vote;
