@@ -87,9 +87,9 @@
     cmt.msg = msg;
     cmt.createTime = [Utils parseNSDate:[json objectForKey:@"created"]];
 
-    NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"user"]];
+    NSDictionary * dic = [Utils chekcNullClass:[json objectForKey:@"contact"]];
     if(dic != nil) {
-        cmt.commentor = [User parseUser:dic];
+        cmt.commentor = [Contact parseContact:dic];
     }
     return cmt;
 }

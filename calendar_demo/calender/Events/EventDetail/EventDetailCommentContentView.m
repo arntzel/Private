@@ -205,7 +205,11 @@
     
     if(msg.length > 0) {
         Comment * cmt = [[Comment alloc] init];
-        cmt.commentor = [[UserModel getInstance] getLoginUser];
+        User * me = [[UserModel getInstance] getLoginUser];
+        cmt.commentor = [[Contact alloc] init];
+        cmt.commentor.email = me.email;
+        cmt.commentor.avatar_url = me.avatar_url;
+        
         cmt.createTime = [NSDate date];
         cmt.msg = msg;
         cmt.eventID = self.eventID;

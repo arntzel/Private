@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "Contact.h"
 
 @interface Comment : NSObject
 
@@ -15,7 +15,7 @@
 
 @property int eventID;
 
-@property(strong) User * commentor;
+@property(strong) Contact * commentor;
 
 @property(strong) NSString * msg;
 
