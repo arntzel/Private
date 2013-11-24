@@ -271,14 +271,63 @@
     }];
 }
 
+-(void) updateVote:(EventTimeVote *) vote andproposeStartID:(int)proposeStartID andOldStatus:(int) oldStatus
+{
+    
+    [self showIndicatorView:YES];
+    [vote retain];
+    [[Model getInstance] updateVote:vote  andproposeStartID:proposeStartID andCallback:^(NSInteger error) {
+        [self showIndicatorView:NO];
+        if (error == 0) {
+            
+            [self updateView];
+            
+        } else {
+            vote.status = oldStatus;
+            [Utils showUIAlertView:@"Error" andMessage:@"Vote failed, please try again!"];
+        }
+
+        [vote release];
+    }];
+}
+
+-(EventTimeVote *) getMyVote:(ProposeStart*) eventTime
+{
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    for(EventTimeVote * vote in eventTime.votes)
+    {
+        if([me.email isEqualToString:vote.email]) {
+            return vote;
+        }
+    }
+    
+    return nil;
+}
+
 -(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked
 {
     LOG_D(@"onVoteTimeConform, %d", checked);
 
-    [eventTime retain];
-    
     int status = checked ? 1 : -1;
  
+    EventTimeVote * vote = [self getMyVote:eventTime];
+    if(vote != nil)
+    {
+        if(vote.status != status) {
+            int oldStatus = vote.status;
+            vote.status = status;
+            [self updateVote:vote andproposeStartID:eventTime.id andOldStatus:oldStatus];
+        }
+        
+        return;
+    }
+    
+    [eventTime retain];
+    
+    
+    
     [self showIndicatorView:YES];
     
     [[Model getInstance] createVote:eventTime.id andVoteStatus:status andCallback:^(NSInteger error) {

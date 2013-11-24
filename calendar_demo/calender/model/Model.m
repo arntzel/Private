@@ -1094,6 +1094,8 @@ static Model * instance;
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
             
+            LOG_D(@"getEventComment resp:%@", json);
+
             NSArray * objects = [json objectForKey:@"objects"];
             
             NSMutableArray * cmts = [[NSMutableArray alloc] init];
@@ -1163,6 +1165,50 @@ static Model * instance;
 -(void) createComment:(void (^)(NSInteger error, Comment * cmt))callback
 {
     callback(0, nil);
+}
+
+-(void) updateVote:(EventTimeVote *) vote andproposeStartID:(int) proposeStartID andCallback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetimevote/%d", HOST, vote.id];
+    
+    LOG_D(@"url=%@", url);
+    
+    //NSMutableDictionary * jsonDic = [vote convent2Dic];
+    
+    NSMutableDictionary * jsonDic = [[NSMutableDictionary alloc] init];
+    [jsonDic setObject:@(vote.status) forKey:@"status"];
+    
+    NSString * eventTimeUrl = [NSString stringWithFormat:@"/api/v1/eventdatetime/%d", proposeStartID];
+    [jsonDic setObject:eventTimeUrl forKey:@"event_datetime"];
+    
+    NSString * postContent = [Utils dictionary2String:jsonDic];
+    
+    LOG_D(@"postContent: %@", postContent);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    [[UserModel getInstance] setAuthHeader:request];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 202) {
+            
+            callback(ERROCODE_OK);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
+            
+            callback(ERROCODE_SERVER);
+        }
+    }];
 }
 
 -(void) createVote:(int) proposeStartID andVoteStatus:(int) status andCallback:(void (^)(NSInteger error))callback

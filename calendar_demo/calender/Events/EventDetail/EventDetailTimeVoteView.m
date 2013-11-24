@@ -215,19 +215,12 @@
 
         [conformView setVoteStatus:status];
 
-        if(status == 0) {
-
-            if([event isDeclineEvent]) {
-                conformView.tickedBtn.userInteractionEnabled = NO;
-                conformView.crossedbtn.userInteractionEnabled = NO;
-            } else {
-                [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
-                [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
-            }
-
-        } else {
+        if([event isDeclineEvent]) {
             conformView.tickedBtn.userInteractionEnabled = NO;
             conformView.crossedbtn.userInteractionEnabled = NO;
+        } else {
+            [conformView.tickedBtn addTarget:self action:@selector(onEventTimtVoteAgree) forControlEvents:UIControlEventTouchUpInside];
+            [conformView.crossedbtn addTarget:self action:@selector(onEventTimtVoteDisagree) forControlEvents:UIControlEventTouchUpInside];
         }
 
         [self addSubview:conformView];
