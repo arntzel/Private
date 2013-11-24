@@ -50,7 +50,7 @@
    
     CustomerIndicatorView * dataLoadingView;
     
-    bool fristLoadData;
+    //bool fristLoadData;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -133,17 +133,7 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     
     
-    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
-    if(last_modify_num == nil) {
-
-        fristLoadData = YES;
-        [[[Model getInstance] getEventModel] synchronizedFromServer];
-        
-    } else {
-        [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
-        [self scroll2Today];
-    }
-
+    
     
     [[[Model getInstance] getEventModel] checkSettingUpdate];
     
@@ -152,6 +142,50 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
     
+    
+    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+    //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
+    if(last_modify_num == nil) {
+        
+        NSDate * today =  [Utils getCurrentDate];
+        
+        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+        
+        [[Model getInstance] getEventsOfBegin:today andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+        
+            [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+            
+            if(error == 0) {
+                CoreDataModel * model = [CoreDataModel getInstance];
+                for(Event * evt in events) {
+                    
+                    FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+                    
+                    if(entity == nil) {
+                        entity = [model createEntity:@"FeedEventEntity"];
+                    } else {
+                        for(UserEntity * user in entity.attendees) {
+                            [model deleteEntity:user];
+                        }
+                        
+                        [entity clearAttendee];
+                    }
+                    
+                    [entity convertFromEvent:evt];
+                    [model updateFeedEventEntity:entity];
+                }
+                
+                [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
+                [self scroll2Today];
+            }
+            
+            [[[Model getInstance] getEventModel] synchronizedFromServer];
+        }];
+        
+    } else {
+        [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
+        [self scroll2Today];
+    }    
 }
 
 -(void)viewDidUnload {
@@ -237,6 +271,8 @@
     }
     
     [tableView reloadFeedEventEntitys:date];
+    [tableView scroll2Date:[Utils formateDay:date] animated:NO];
+    
     [self.calendarView setNeedsDisplay];
 }
 
@@ -308,22 +344,22 @@
 {
     //TOOD::
     //[dataLoadingView stopAnim];
-    [self onSynchronizeDataCompleted];
+    //[self onSynchronizeDataCompleted];
 }
 
 -(void) onSynchronizeDataCompleted
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if(fristLoadData) {
-            LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
-            fristLoadData = NO;
-            
-            NSDate * now = [Utils getCurrentDate];
-            NSString * day = [Utils formateDay:now];
-            [tableView scroll2SelectedDate:day];
-        }
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//        if(fristLoadData) {
+//            LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
+//            fristLoadData = NO;
+//            
+//            NSDate * now = [Utils getCurrentDate];
+//            NSString * day = [Utils formateDay:now];
+//            [tableView scroll2SelectedDate:day];
+//        }
+//    });
 }
 
 -(void) onUserAccountChanged

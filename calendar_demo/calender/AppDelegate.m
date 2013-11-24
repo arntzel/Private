@@ -196,7 +196,7 @@
     
     [self registerForRemoteNotificationToGetToken];
 
-    [self synchronizedFromServer];
+    //[self synchronizedFromServer];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60
                                            target:self
