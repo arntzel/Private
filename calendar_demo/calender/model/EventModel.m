@@ -189,7 +189,6 @@
 
 -(void) checkContactUpdate
 {
-
     if(![[UserModel getInstance] isLogined]) {
         return;
     }
@@ -203,6 +202,8 @@
 {
     LOG_D(@"updateContacts");
 
+   
+    
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_CONTACTUPDATETIME];
     if(last_modify_num == nil) {
         last_modify_num = [self getSecondsFromEpoch];
@@ -237,7 +238,7 @@
                     maxlatmodify = contact.modified_num;
                 }
                 
-                ContactEntity * enity = [model getContactEntity:contact.id];
+                ContactEntity * enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
                     LOG_D(@"Create new Contact[ %d, %@ ]", contact.id, contact.email);
