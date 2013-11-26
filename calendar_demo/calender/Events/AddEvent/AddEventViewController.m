@@ -49,7 +49,8 @@
                                      NavgationBarDelegate,
                                      UploadImageDelegate,
                                      ATMHudDelegate,
-                                    AddEventTimesViewDelegate>
+                                     AddEventTimesViewDelegate,
+                                     UITextFieldDelegate>
 {
     NavgationBar *navBar;
     UIScrollView *scrollView;
@@ -94,6 +95,7 @@
     
     [imagePickerView release];
     [imagePickerbtn release];
+    txtFieldTitle.delegate = nil;
     [txtFieldTitle release];
     
     [inviteView release];
@@ -119,6 +121,17 @@
 {
     self = [super init];
     return self;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([toBeString length] > 200) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)viewDidLoad
@@ -214,6 +227,7 @@
     [txtFieldTitle setTextColor:[UIColor whiteColor]];
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
+    txtFieldTitle.delegate = self;
     [txtFieldTitle addTarget:self action:@selector(txtDidEnd) forControlEvents:UIControlEventEditingDidEndOnExit];
     txtFieldTitle.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     
