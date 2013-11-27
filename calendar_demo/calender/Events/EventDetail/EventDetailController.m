@@ -40,6 +40,9 @@
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
 
+#import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
+
 @interface EventDetailController ()<EventDetailNavigationBarDelegate,
                                     UIActionSheetDelegate,
                                     UIAlertViewDelegate,
@@ -53,6 +56,7 @@
                                     UploadImageDelegate,
                                     DetailInviteesControllerDelegate,
                                     ShareLoginDelegate,
+                                    MFMailComposeViewControllerDelegate,
                                     SharePhotoDelegate>
 {
     EventDetailNavigationBar *navBar;
@@ -594,6 +598,31 @@
 -(void) shareOnFacebook
 {
     LOG_D(@"shareOnFacebook");
+    [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    SLComposeViewController *fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    SLComposeViewControllerCompletionHandler fbBlock = ^(SLComposeViewControllerResult result)
+    {
+        if (result == SLComposeViewControllerResultCancelled)
+        {
+        }
+        else
+        {
+        }
+        [fbController dismissViewControllerAnimated:YES completion:Nil];
+    };
+    fbController.completionHandler = fbBlock;
+
+    NSURL *url = [NSURL URLWithString:@"calvinapp.com"];
+    [fbController setInitialText:@"here write facebook status"];
+//    UIImage *image = [UIImage imageNamed:@"Icon@2x.png"];
+//    [fbController addImage:image];
+    [fbController addURL:url];
+
+    [self presentViewController:fbController animated:YES completion:nil];
+
+    return;
+    
+    
     if ([ShareLoginFacebook isFacebookLoginIn]) {
         [self shareToFacebook];
     }
@@ -609,7 +638,91 @@
 -(void) shareViaEmail
 {
     LOG_D(@"shareViaEmail");
+    
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    
+    if (mailClass != nil)
+    {
+        if ([mailClass canSendMail])
+        {
+            [self displayComposerSheet];
+        }
+        else
+        {
+            [self showEmailSetup];
+        }
+    }
+    else
+    {
+        [self showEmailSetup];
+    }
 }
+
+- (void)showEmailSetup
+{
+    [self alertWithTitle:nil msg:@"email accout need setup in ios setting!"];
+}
+
+- (void)displayComposerSheet
+{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+    mailController.mailComposeDelegate = self;
+    
+    [mailController setSubject: @"calvin event subject"];
+    NSArray *toRecipients = [NSArray arrayWithObject: @"shurarai@gmail.com"];
+    
+    NSArray *ccRecipients = [NSArray arrayWithObjects:@"fx.fangxiang@gmail.com", nil];
+    NSArray *bccRecipients = [NSArray arrayWithObjects:@"fx.fangxiang@gmail.com", nil];
+    [mailController setToRecipients: toRecipients];
+    [mailController setCcRecipients:ccRecipients];
+    [mailController setBccRecipients:bccRecipients];
+    
+    UIImage *addPic = [UIImage imageNamed: @"123.jpg"];
+    NSData *imageData = UIImagePNGRepresentation(addPic);
+    [mailController addAttachmentData: imageData mimeType: @"" fileName: @"123.jpg"];
+    
+    NSString *emailBody = @"here write email body";
+    [mailController setMessageBody:emailBody isHTML:YES];
+    
+    [self presentViewController:mailController animated:YES completion:nil];
+    [mailController release];
+}
+
+- (void) alertWithTitle: (NSString *)_title_ msg: (NSString *)msg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_title_
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    NSString *msg;
+    
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            break;
+        case MFMailComposeResultSent:
+            break;
+        case MFMailComposeResultFailed:
+            msg = @"email failed!";
+            [self alertWithTitle:nil msg:msg];
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark ShareLoginDelegate
 - (void)shareDidLoginErr:(ShareLoginBase *)shareLogin
