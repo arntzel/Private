@@ -301,7 +301,7 @@
             
             if(Notistr == nil || ![Notistr isEqualToString:strNotiTypes]) {
                 [[UserSetting getInstance] saveKey:KEY_SHOW_NOTIFICATION_TYPES andStringValue:strNotiTypes];
-                LOG_I(@"saveKey: %@=%@", KEY_SHOW_NOTIFICATION_TYPES, Notistr);
+                LOG_I(@"saveKey: %@=%@", KEY_SHOW_NOTIFICATION_TYPES, strNotiTypes);
             }
             
             
