@@ -29,7 +29,7 @@
     self.is_owner      = [NSNumber numberWithBool:atd.is_owner];
     self.status        = [NSNumber numberWithInt:atd.status];
     
-    ContactEntity * contact = [[CoreDataModel getInstance] getContactEntity:user.id];
+    ContactEntity * contact = [[CoreDataModel getInstance] getContactEntityWith:user.phone AndEmail:user.email];
     if(contact == nil) {
         contact = [[CoreDataModel getInstance] createEntity:@"ContactEntity"];
         contact.id            = [NSNumber numberWithInt:user.id];
