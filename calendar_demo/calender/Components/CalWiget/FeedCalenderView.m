@@ -191,11 +191,13 @@ extern const CGSize kTileSize;
             }
             else
             {
+                [kalView removeObserver:self forKeyPath:@"frame"];
                 [self animationWithBlock:^{
                     [self setFrameToWeekMode];
                 } Completion:^{
                     [kalView swapToWeekMode];
                     kalMode = WEEK_MODE;
+                    [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
                 }];
             }
         }
