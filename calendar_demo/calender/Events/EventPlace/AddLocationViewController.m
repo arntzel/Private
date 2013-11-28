@@ -140,14 +140,16 @@
     
     [self addTopBar];
     
-    self.locationInputField.hidden = YES;
+    self.locationInputView.hidden = YES;
+    [self.locationInputView setUserInteractionEnabled:YES];
+    [self.locationInputView setImage:[UIImage imageNamed:@"navBar_bg.png"]];
     [self.locationInputField addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventEditingDidEndOnExit];
 
     if(self.location != nil) {
         
         self.locationInputField.text = self.location.location;
         
-        self.locationInputField.hidden = NO;
+        self.locationInputView.hidden = NO;
         [self.locationInputField becomeFirstResponder];
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = self.location.lat;
@@ -324,6 +326,13 @@
     }
 }
 
+- (IBAction)backToSearchBar:(id)sender {
+    self.locationInputView.hidden = YES;
+    [self.locationInputField resignFirstResponder];
+    self.touchedLoacalmarker.map = nil;
+}
+
+
 // location success
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
@@ -390,7 +399,7 @@
 #pragma mark - GMSMapViewDelegate
 - (void)mapView:(GMSMapView *)_mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {    
-    self.locationInputField.hidden = NO;
+    self.locationInputView.hidden = NO;
     [self.locationInputField becomeFirstResponder];
     self.touchedLoacalmarker.position = coordinate;
     self.touchedLoacalmarker.map = mapView;
@@ -398,9 +407,7 @@
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
 {
-    self.locationInputField.hidden = YES;
-    [self.locationInputField resignFirstResponder];
-    self.touchedLoacalmarker.map = nil;
+
 }
 
 #pragma mark - AddLocationTextViewDelegate
