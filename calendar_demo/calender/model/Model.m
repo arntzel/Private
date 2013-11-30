@@ -869,18 +869,25 @@ static Model * instance;
         
         if(status == 200) {
             NSError * err;
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            
-            NSArray * objects = [json objectForKey:@"objects"];
-            
-            NSMutableArray * events = [[NSMutableArray alloc] init];
-            
-            for(int i=0; i<objects.count;i++) {
-                Message * e = [Message parseMSeesage:[objects objectAtIndex:i]];
-                [events addObject:e];
+            if (data)
+            {
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                
+                NSArray * objects = [json objectForKey:@"objects"];
+                
+                NSMutableArray * events = [[NSMutableArray alloc] init];
+                
+                for(int i=0; i<objects.count;i++) {
+                    Message * e = [Message parseMSeesage:[objects objectAtIndex:i]];
+                    [events addObject:e];
+                }
+                
+                callback(0, events);
             }
-            
-            callback(0, events);
+            else
+            {
+                callback(-1, nil);
+            }
             
         } else {
             callback(-1, nil);
