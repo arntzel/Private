@@ -9,5 +9,7 @@
 #import "SettingsBaseViewController.h"
 
 @interface LocationChangedViewController : SettingsBaseViewController
-
+@property (nonatomic, strong) NSDictionary *countryInfo;
+@property (nonatomic, strong) NSString *zipCode;
+@property (nonatomic, copy) void (^locationInfoChanged)(NSString *countryCode, NSString *zipCode);
 @end

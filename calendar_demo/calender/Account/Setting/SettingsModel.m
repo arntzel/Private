@@ -182,7 +182,7 @@
     
 }
 
-- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback
+- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error, NSDictionary *dic))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s%@", HOST,user.profileUrl];
     LOG_D(@"update user profile url:%@",url);
@@ -192,14 +192,36 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    NSDictionary *dic;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (user.avatar_url == nil)
     {
-        dic = @{@"first_name":user.first_name,@"last_name":user.last_name};
+        [dic setObject:user.first_name forKey:@"first_name"];
+        [dic setObject:user.last_name forKey:@"last_name"];
+        
     }
     else
     {
-        dic = @{@"avatar_url": user.avatar_url,@"first_name":user.first_name,@"last_name":user.last_name};
+        [dic setObject:user.first_name forKey:@"first_name"];
+        [dic setObject:user.last_name forKey:@"last_name"];
+        [dic setObject:user.avatar_url forKey:@"avatar_url"];
+        
+    }
+    if (![user.locationDic[@"country_code"] isKindOfClass:[NSNull class]])
+    {
+        NSString *country_code = user.locationDic[@"country_code"];
+        if (country_code.length > 0)
+        {
+           [dic setObject:country_code forKey:@"country_code"];
+        }
+        
+    }
+    if (![user.locationDic[@"postal_code"] isKindOfClass:[NSNull class]])
+    {
+        NSString *postal_code = user.locationDic[@"postal_code"];
+        if (postal_code.length > 0)
+        {
+            [dic setObject:postal_code forKey:@"postal_code"];
+        }
         
     }
     NSString *jsonStr = [Utils dictionary2String:dic];
@@ -213,12 +235,23 @@
         
         if(status == 202)
         {
-            callback(ERROCODE_OK);
+            if (data)
+            {
+                NSError * err;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                callback(ERROCODE_OK,[json objectForKey:@"location"]);
+            }
+            else
+            {
+                callback(ERROCODE_OK,nil);
+            }
+            
+            
         }
         else
         {
             
-            callback(-1);
+            callback(-1,nil);
         }
         LOG_D(@"update userprofile : %@",[[NSString alloc] initWithData:data encoding:4]);
     }];

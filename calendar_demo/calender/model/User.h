@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *googleToken;
 @property (nonatomic, strong) NSString *googleEmail;
 @property (nonatomic,assign) BOOL has_usable_password;
+
+@property (nonatomic, strong) NSDictionary *locationDic;
 -(NSString *) getReadableUsername;
 
 -(NSDictionary*)convent2Dic;

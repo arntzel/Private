@@ -107,6 +107,7 @@
         user.googleEmail = [jsonData objectForKey:@"googleEmail"];
     }
     user.has_usable_password = [[jsonData objectForKey:@"has_usable_password"] boolValue];
+    user.locationDic = [jsonData objectForKey:@"location"];
     return user;
 }
 
@@ -159,6 +160,8 @@
         [dic setObject:user.googleEmail forKey:@"googleEmail"];
     }
     [dic setObject:@(user.has_usable_password) forKey:@"has_usable_password"];
+    
+    [dic setObject:user.locationDic forKey:@"location"];
     return dic;
 }
 

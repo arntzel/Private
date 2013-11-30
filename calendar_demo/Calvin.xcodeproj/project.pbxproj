@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
+		3456A3061848D0CA008A8653 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3456A3041848D0CA008A8653 /* LocationChangedViewController.m */; };
+		3456A3071848D0CA008A8653 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */; };
+		3456A30B1848D590008A8653 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3456A3091848D590008A8653 /* SelectCountryViewController.m */; };
+		3456A30C1848D590008A8653 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3456A30A1848D590008A8653 /* SelectCountryViewController.xib */; };
 		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
 		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
 		34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */; };
@@ -66,6 +70,7 @@
 		34CC5521181CB7FB00E23246 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		34CC5527181CB7FC00E23246 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CC5525181CB7FC00E23246 /* InfoPlist.strings */; };
 		34CC5529181CB7FC00E23246 /* Calvin_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CC5528181CB7FC00E23246 /* Calvin_Tests.m */; };
+		34D004DB18498F580054784A /* country.txt in Resources */ = {isa = PBXBuildFile; fileRef = 34D004DA18498F580054784A /* country.txt */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -483,6 +488,12 @@
 
 /* Begin PBXFileReference section */
 		34055C721833B13000A2AD8E /* Legal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Legal.plist; sourceTree = "<group>"; };
+		3456A3031848D0CA008A8653 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
+		3456A3041848D0CA008A8653 /* LocationChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationChangedViewController.m; sourceTree = "<group>"; };
+		3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationChangedViewController.xib; sourceTree = "<group>"; };
+		3456A3081848D590008A8653 /* SelectCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
+		3456A3091848D590008A8653 /* SelectCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
+		3456A30A1848D590008A8653 /* SelectCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryViewController.xib; sourceTree = "<group>"; };
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		34B1F16517F8FCE200AA5C97 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
@@ -552,6 +563,7 @@
 		34CC5526181CB7FC00E23246 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34CC5528181CB7FC00E23246 /* Calvin_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calvin_Tests.m; sourceTree = "<group>"; };
 		34CC552A181CB7FC00E23246 /* Calvin Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calvin Tests-Prefix.pch"; sourceTree = "<group>"; };
+		34D004DA18498F580054784A /* country.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = country.txt; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1244,6 +1256,13 @@
 				34B1F17417F8FCE200AA5C97 /* PwdChangeViewController.h */,
 				34B1F17517F8FCE200AA5C97 /* PwdChangeViewController.m */,
 				34B1F17617F8FCE200AA5C97 /* PwdChangeViewController.xib */,
+				3456A3031848D0CA008A8653 /* LocationChangedViewController.h */,
+				3456A3041848D0CA008A8653 /* LocationChangedViewController.m */,
+				3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */,
+				3456A3081848D590008A8653 /* SelectCountryViewController.h */,
+				3456A3091848D590008A8653 /* SelectCountryViewController.m */,
+				3456A30A1848D590008A8653 /* SelectCountryViewController.xib */,
+				34D004DA18498F580054784A /* country.txt */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -2740,6 +2759,7 @@
 				769AB9FA17DF51340033E677 /* login_mainview_title.png in Resources */,
 				769AB9FB17DF51340033E677 /* manuHeadImage.jpg in Resources */,
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
+				3456A3071848D0CA008A8653 /* LocationChangedViewController.xib in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
 				769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */,
 				769ABA9A17DF51EC0033E677 /* navigationMenuCell.xib in Resources */,
@@ -2792,6 +2812,7 @@
 				769ABB7317DF54000033E677 /* eventSetingBg2.png in Resources */,
 				769ABB7417DF54000033E677 /* eventSetingBg3.png in Resources */,
 				769ABB7517DF54000033E677 /* eventSettingLine.png in Resources */,
+				34D004DB18498F580054784A /* country.txt in Resources */,
 				769ABB7617DF54000033E677 /* imagePicker_bg.jpg in Resources */,
 				769ABB7717DF54000033E677 /* imagePickerIcon.png in Resources */,
 				769ABB7817DF54000033E677 /* imagePickerTitleBg.png in Resources */,
@@ -2819,6 +2840,7 @@
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
+				3456A30C1848D590008A8653 /* SelectCountryViewController.xib in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,
 				76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */,
@@ -2899,6 +2921,7 @@
 				769ABA9F17DF51EC0033E677 /* navigationNotifyCellBg.m in Sources */,
 				769ABAA017DF51EC0033E677 /* navigationNotifyDataSource.m in Sources */,
 				34B1F1A817F8FCE200AA5C97 /* NotificaitonViewController.m in Sources */,
+				3456A3061848D0CA008A8653 /* LocationChangedViewController.m in Sources */,
 				769ABAA117DF51EC0033E677 /* navigationNotifySectionHeader.m in Sources */,
 				769ABAA317DF51EC0033E677 /* RootNavContrller.m in Sources */,
 				769ABB0B17DF52090033E677 /* AddDateTypeView.m in Sources */,
@@ -3028,6 +3051,7 @@
 				76431E091806F6BD009DAFFE /* EventNavigationBar.m in Sources */,
 				76591A9517FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
+				3456A30B1848D590008A8653 /* SelectCountryViewController.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
@@ -3231,8 +3255,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3249,8 +3273,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3277,8 +3301,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

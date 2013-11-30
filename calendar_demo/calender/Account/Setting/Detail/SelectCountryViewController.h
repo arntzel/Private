@@ -9,5 +9,6 @@
 #import "SettingsBaseViewController.h"
 
 @interface SelectCountryViewController : SettingsBaseViewController
+@property (nonatomic, copy) void (^getCountryInfo)(NSDictionary *dic);
 
 @end

@@ -29,7 +29,7 @@
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import "SettingsModel.h"
-
+#import "LocationChangedViewController.h"
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
@@ -37,7 +37,7 @@
 @property (nonatomic, strong) User *loginUser;
 @property (nonatomic, strong) ASIFormDataRequest * request;
 @property (nonatomic, strong) ShareLoginFacebook *snsLogin;
-
+@property (nonatomic, strong) NSDictionary *locationDic;
 @end
 
 @implementation SettingViewController
@@ -133,7 +133,16 @@
     self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
     self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
     self.t_settingsContentView.emailLabel.text = self.loginUser.email;
-    
+    self.locationDic = [self.loginUser.locationDic copy];
+    id location = [self.loginUser.locationDic objectForKey:@"display"];
+    if (![location isKindOfClass:[NSNull class]])
+    {
+        self.t_settingsContentView.locationTextField.text = (NSString *)location;
+    }
+    else
+    {
+        self.t_settingsContentView.locationTextField.text = @"";
+    }
     [self.t_settingsContentView.headPortaitBtn setImageWithURL:[NSURL URLWithString:self.loginUser.avatar_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"settings_main_head_portait_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         
         if (error)
@@ -222,6 +231,7 @@
         ||row == termViewTag
         ||row == policyViewTag
         ||row == aboutUsViewTag
+        ||row == locationTextFieldTag
         )
     {
         UIViewController *viewCtr = nil;
@@ -241,9 +251,22 @@
                 break;
             }
             case pwdViewTag:
+            {
                 viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
                 [(PwdChangeViewController *)viewCtr setHas_usable_password:self.loginUser.has_usable_password];
                 break;
+            }
+            case locationTextFieldTag:
+            {
+                viewCtr = [[LocationChangedViewController alloc]initWithNibName:@"LocationChangedViewController" bundle:nil];
+                ((LocationChangedViewController *)viewCtr).locationInfoChanged = ^(NSString *countryCode, NSString *zipCode){
+                    self.locationDic = @{@"postal_code":zipCode,
+                                        @"country_code":countryCode
+                                         };
+                    [self updataUserProfile:nil];
+                };
+                break;
+            }
             case connectFacebookBtnTag:
 //                viewCtr = [[ConnectAccountViewController alloc] initWithNibName:@"ConnectAccountViewController" bundle:[NSBundle mainBundle]];
 //                [(ConnectAccountViewController *)viewCtr setType:ConnectFacebook];
@@ -495,6 +518,7 @@
     tmpUser.profileUrl = self.loginUser.profileUrl;
     tmpUser.first_name = self.t_settingsContentView.firstNameField.text;
     tmpUser.last_name = self.t_settingsContentView.lastNameField.text;
+    tmpUser.locationDic = self.locationDic;
     tmpUser.avatar_url =  avatar_url;
     if (!tmpUser.first_name)
     {
@@ -505,7 +529,7 @@
         tmpUser.last_name = @"";
     }
 
-    [model updateUserProfile:tmpUser andCallback:^(NSInteger error) {
+    [model updateUserProfile:tmpUser andCallback:^(NSInteger error, NSDictionary *dic) {
         
         if (error == -1)
         {
@@ -521,6 +545,14 @@
             }];
             self.t_settingsContentView.firstNameField.text = self.loginUser.first_name;
             self.t_settingsContentView.lastNameField.text = self.loginUser.last_name;
+            if (![self.loginUser.locationDic[@"display"] isKindOfClass:[NSNull class]])
+            {
+                self.t_settingsContentView.locationTextField.text = self.loginUser.locationDic[@"display"];
+            }
+            else
+            {
+                self.t_settingsContentView.locationTextField.text = @"";
+            }
             
         }
         else
@@ -531,7 +563,19 @@
             {
                 self.loginUser.avatar_url = tmpUser.avatar_url;
             }
-            
+            if (dic)
+            {
+                self.loginUser.locationDic = dic;
+                if (![dic[@"display"] isKindOfClass:[NSNull class]])
+                {
+                    self.t_settingsContentView.locationTextField.text = self.loginUser.locationDic[@"display"];
+                }
+                else
+                {
+                    self.t_settingsContentView.locationTextField.text = @"";
+                }
+                
+            }
             if (self.updataLeftNavBlock)
             {
                 self.updataLeftNavBlock();
