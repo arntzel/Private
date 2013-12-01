@@ -349,14 +349,15 @@
                 {
                     CoreDataModel * model = [CoreDataModel getInstance];
                     NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
-                    for (int i=0;i<[allICalEventsInDB count];i++)
+
+                    for (Event *tmp in allEvents)
                     {
-                        FeedEventEntity *iCalEventInDB = [allICalEventsInDB objectAtIndex:i];
-                        for (Event *tmp in allEvents)
+                        for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
                         {
-                            if ([iCalEventInDB.ext_event_id isEqualToString:tmp.ext_event_id])
+                            if ([tmp.ext_event_id isEqualToString:iCalEventInDB.ext_event_id])
                             {
                                 [allICalEventsInDB removeObject:iCalEventInDB];
+                                break;
                             }
                         }
                     }
