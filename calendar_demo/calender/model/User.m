@@ -140,7 +140,7 @@
     
     if (user.profileUrl != nil)
     {
-        [dic setObject:user.profileUrl forKey:@"profileUrl"];
+        [dic setObject:user.profileUrl forKey:@"profile"];
     }
     if (user.facebookToken != nil)
     {
