@@ -161,7 +161,10 @@
     }
     [dic setObject:@(user.has_usable_password) forKey:@"has_usable_password"];
     
-    [dic setObject:user.locationDic forKey:@"location"];
+    if(user.locationDic != nil)
+    {
+        [dic setObject:user.locationDic forKey:@"location"];
+    }
     return dic;
 }
 
