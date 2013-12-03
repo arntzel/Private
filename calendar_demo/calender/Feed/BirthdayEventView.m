@@ -5,6 +5,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ViewUtils.h"
+#import "UIColor+Hex.h"
 
 @implementation BirthdayEventView
 
@@ -38,6 +39,7 @@
     BirthdayEventView * view = (BirthdayEventView*)[nibView objectAtIndex:0];
     view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
     view.imgUser.layer.masksToBounds = YES;
+    view.imgUser.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
     
     view.imgEventType.layer.cornerRadius = view.imgEventType.frame.size.width/2;
     view.imgEventType.layer.masksToBounds = YES;
@@ -45,6 +47,11 @@
     int color = [ViewUtils getEventTypeColor:4];
     view.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
     
+    
+    UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
+    [view.labTitle setTextColor:kalTitleColor];
+    [view.labTime setTextColor:kalStandardColor];
     return view;
 }
 
