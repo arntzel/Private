@@ -66,7 +66,7 @@
     [super viewDidLoad];
 	
     LOG_D(@"FeedViewController viewDidLoad");
-    
+
     User * me = [[UserModel getInstance] getLoginUser];
     if(me.timezone != nil) {
         [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
@@ -87,8 +87,12 @@
     
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    //tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     tableView.feedEventdelegate = self;
+    
+    UIView *bgview = [[UIView alloc] initWithFrame: tableView.frame];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    tableView.backgroundView = bgview;
     
     [self.view addSubview:tableView];
     
@@ -185,7 +189,7 @@
     } else {
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
-    }    
+    }
 }
 
 -(void)viewDidUnload {
@@ -198,7 +202,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 

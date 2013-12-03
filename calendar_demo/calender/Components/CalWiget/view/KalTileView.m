@@ -3,8 +3,9 @@
 #import "KalPrivate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Utils.h"
+#import "UIColor+Hex.h"
 
-const CGSize kTileSize = { 46.f, 44.f };
+const CGSize kTileSize = { 44.f, 50.f };
 @implementation KalTileView
 
 @synthesize date, datasource;
@@ -13,6 +14,8 @@ const CGSize kTileSize = { 46.f, 44.f };
 {
   if ((self = [super initWithFrame:frame])) {
     [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+      
+      //[self setBackgroundColor:[UIColor clearColor]];
       
     self.clipsToBounds = YES;
     origin = frame.origin;
@@ -30,10 +33,14 @@ const CGSize kTileSize = { 46.f, 44.f };
     if(self.selected)
     {
         textColor = [UIColor whiteColor];
-        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
-        CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddRect(ctx, CGRectMake(0, 1, kTileSize.width - 2, kTileSize.height - 2));
-        CGContextFillPath(ctx);
+        //UIColor *bgColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+        //bgColor get
+        CGContextSetRGBFillColor(ctx, 24.0/255.0f, 164.0/255.0f, 139.0/255.0f, 1);
+        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 32, 32));
+//        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
+//        CGContextSetLineWidth(ctx, 0.0f);
+//        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
+//        CGContextFillPath(ctx);
     }
     else if(self.belongsToAdjacentMonth)
     {
@@ -43,9 +50,10 @@ const CGSize kTileSize = { 46.f, 44.f };
     {
         textColor = [UIColor whiteColor];
         CGContextSetRGBFillColor(ctx, 190.0/255.0f, 190.0/255.0f, 190.0/255.0f, 1);
-        CGContextSetLineWidth(ctx, 1.0f);
-        CGContextAddRect(ctx, CGRectMake(-2, 0, kTileSize.width - 1, kTileSize.height - 1));
-        CGContextFillPath(ctx);
+        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 32, 32));
+//        CGContextSetLineWidth(ctx, 0.0f);
+//        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
+//        CGContextFillPath(ctx);
     }
     else
     {
@@ -54,41 +62,39 @@ const CGSize kTileSize = { 46.f, 44.f };
     
     
     
-    CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, 0,0);
-    CGContextAddLineToPoint(ctx, self.frame.size.width,0);
-    CGFloat lineColor1[4]={1.0,1.0,1.0,1.0};
-    CGContextSetStrokeColor(ctx, lineColor1);
-    CGContextStrokePath(ctx);
-    
-    CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, 0,1);
-    CGContextAddLineToPoint(ctx, self.frame.size.width,1);
-    CGFloat lineColor2[4]={210/255.0,210/255.0,210/255.0,1.0};
-    CGContextSetStrokeColor(ctx, lineColor2);
-    CGContextStrokePath(ctx);
-    
-    CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, self.frame.size.width - 1,0);
-    CGContextAddLineToPoint(ctx, self.frame.size.width - 1,self.frame.size.height);
-    CGFloat lineColor3[4]={242/255.0,242/255.0,242/255.0,1.0};
-    CGContextSetStrokeColor(ctx, lineColor3);
-    CGContextStrokePath(ctx);
-    
-    CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, self.frame.size.width - 2,1);
-    CGContextAddLineToPoint(ctx, self.frame.size.width - 2,self.frame.size.height);
-    CGFloat lineColor4[4]={210/255.0,210/255.0,210/255.0,1.0};
-    CGContextSetStrokeColor(ctx, lineColor4);
-    CGContextStrokePath(ctx);
-    
-        
-    
+//    CGContextBeginPath(ctx);
+//    CGContextMoveToPoint(ctx, 0,0);
+//    CGContextAddLineToPoint(ctx, self.frame.size.width,0);
+//    CGFloat lineColor1[4]={1.0,1.0,1.0,1.0};
+//    CGContextSetStrokeColor(ctx, lineColor1);
+//    CGContextStrokePath(ctx);
+//    
+//    CGContextBeginPath(ctx);
+//    CGContextMoveToPoint(ctx, 0,1);
+//    CGContextAddLineToPoint(ctx, self.frame.size.width,1);
+//    CGFloat lineColor2[4]={210/255.0,210/255.0,210/255.0,1.0};
+//    CGContextSetStrokeColor(ctx, lineColor2);
+//    CGContextStrokePath(ctx);
+//    
+//    CGContextBeginPath(ctx);
+//    CGContextMoveToPoint(ctx, self.frame.size.width - 1,0);
+//    CGContextAddLineToPoint(ctx, self.frame.size.width - 1,self.frame.size.height);
+//    CGFloat lineColor3[4]={242/255.0,242/255.0,242/255.0,1.0};
+//    CGContextSetStrokeColor(ctx, lineColor3);
+//    CGContextStrokePath(ctx);
+//    
+//    CGContextBeginPath(ctx);
+//    CGContextMoveToPoint(ctx, self.frame.size.width - 2,1);
+//    CGContextAddLineToPoint(ctx, self.frame.size.width - 2,self.frame.size.height);
+//    CGFloat lineColor4[4]={210/255.0,210/255.0,210/255.0,1.0};
+//    CGContextSetStrokeColor(ctx, lineColor4);
+//    CGContextStrokePath(ctx);
     
     
 //  CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGFloat fontSize = 17.f;
-  UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
+    UIFont *font = [UIFont systemFontOfSize:fontSize];
+  //UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
     CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
     CGContextTranslateCTM(ctx, 0, kTileSize.height);
     CGContextScaleCTM(ctx, 1, -1);

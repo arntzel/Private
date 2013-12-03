@@ -8,6 +8,7 @@
 
 #import "UserEntity.h"
 #import "ContactEntity.h"
+#import "UIColor+Hex.h"
 
 @implementation EventView
 
@@ -23,33 +24,43 @@
 -(void) refreshView:(FeedEventEntity *) event
 {
 
+    NSString *time, *timeType, *duration;
     if([event.is_all_day boolValue]) {
         
-        self.labTime.text = @"ALL DAY";
-        self.labTimeType.hidden = YES;
-        self.labEventDuration.text = @"All Day";
-        
+        time = @"All Day";
+        //self.labTimeType.hidden = YES;
+        //self.labEventDuration.text = @"All Day";
+        //self.labEventDuration.hidden = YES;
+        self.labTimeStr.text = time;
     } else {
 
         NSString * startType = event.start_type;
         
         if([START_TYPEEXACTLYAT isEqualToString:startType]) {
 
-            self.labTimeType.hidden = YES;
+            //self.labTimeType.hidden = YES;
+            timeType = @"";
 
         } else if([START_TYPEAFTER isEqualToString:startType]) {
             
-            self.labTimeType.hidden = NO;
-            self.labTimeType.text = @"AFTER";
+            //self.labTimeType.hidden = NO;
+            timeType = @"AFTER";
             
         } else {
 
-            self.labTimeType.hidden = NO;
-            self.labTimeType.text = @"AROUND";
+            //self.labTimeType.hidden = NO;
+            timeType = @"AROUND";
         }
 
-        self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];
-        self.labEventDuration.text = event.duration;
+        //self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];
+        time =[Utils formateTimeAMPM:[event getLocalStart]];
+        duration = event.duration;
+        //self.labEventDuration.text = [NSString stringWithFormat:@",%@", event.duration];
+        if ((!duration) || ([duration length] == 0)) {
+            self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@", timeType, time];
+        } else {
+            self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@,%@", timeType, time, duration];
+        }
     }
 
     UserEntity * user = [event getCreator];
@@ -129,56 +140,57 @@
     if(location!= nil && location.length > 0) {
         return  location;
     } else {
-        return @"No location determined";
+        return @"No Location";
     }
 }
 
 -(NSString *) getAttendeesText:(FeedEventEntity*) event
 {
     NSSet * attendees = event.attendees;
-    if(attendees.count>100) {
-        
-        return [NSString stringWithFormat:@"%d attendees", attendees.count];
-        
-    } else if(attendees.count>5) {
-        
-        NSMutableString * str = [[NSMutableString alloc] init];
-
-        int count = 0;
-        for(UserEntity * user in attendees) {
-
-            if(count == 0) {
-                [str appendString: [user getReadableUsername]];
-                [str appendString:@" "];
-            } else if(count == 1) {
-                [str appendString: [user getReadableUsername]];
-            } else {
-                break;
-            }
-            count++;
-        }
-
-        [str appendFormat:@" and %dattendees", attendees.count-2];
-        return str;
-        
-    } else if(attendees.count>0){
-
-        NSMutableString * str = [[NSMutableString alloc] init];
-
-        int i =0 ;
-        for(UserEntity * user in attendees) {
-           [str appendString: [user getReadableUsername]];
-
-            if(i<attendees.count-1) {
-                [str appendString:@", "];
-            }
-            i++;
-        }
-        
-        return str;
-    } else {
-        return @"No guests invited";
-    }
+    return [NSString stringWithFormat:@"%d invitees", attendees.count];
+//    if(attendees.count>100) {
+//        
+//        return [NSString stringWithFormat:@"%d attendees", attendees.count];
+//        
+//    } else if(attendees.count>5) {
+//        
+//        NSMutableString * str = [[NSMutableString alloc] init];
+//
+//        int count = 0;
+//        for(UserEntity * user in attendees) {
+//
+//            if(count == 0) {
+//                [str appendString: [user getReadableUsername]];
+//                [str appendString:@" "];
+//            } else if(count == 1) {
+//                [str appendString: [user getReadableUsername]];
+//            } else {
+//                break;
+//            }
+//            count++;
+//        }
+//
+//        [str appendFormat:@" and %dattendees", attendees.count-2];
+//        return str;
+//        
+//    } else if(attendees.count>0){
+//
+//        NSMutableString * str = [[NSMutableString alloc] init];
+//
+//        int i =0 ;
+//        for(UserEntity * user in attendees) {
+//           [str appendString: [user getReadableUsername]];
+//
+//            if(i<attendees.count-1) {
+//                [str appendString:@", "];
+//            }
+//            i++;
+//        }
+//        
+//        return str;
+//    } else {
+//        return @"No guests invited";
+//    }
 }
 
 
@@ -189,12 +201,32 @@
     view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
     view.imgUser.layer.masksToBounds = YES;
     
+    // set user avatar's boarder to 1px solid #d1d9d2
+    view.imgUser.layer.borderWidth = 1.0;
+    view.imgUser.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
+    
     view.imgEventType.layer.cornerRadius = view.imgEventType.frame.size.width/2;
     view.imgEventType.layer.masksToBounds = YES;
     
-    view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
+    UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
+    [view.labTitle setTextColor:kalTitleColor];
+//    [view.labTime setTextColor:kalStandardColor];
+//    [view.labTimeType setTextColor:kalStandardColor];
+//    [view.labEventDuration setTextColor:kalStandardColor];
+    [view.labTimeStr setTextColor:kalStandardColor];
     
     //[ViewUtils resetUILabelFont:view];
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextBeginPath(context);
+//    CGContextMoveToPoint(context, 0,PlanView_HEIGHT-1);
+//    CGContextSetLineWidth(context, 10.0);
+//    CGContextSetLineCap(context, kCGLineCapButt);
+//    CGContextSetRGBStrokeColor(context, 209, 217, 210, 1);
+//    CGContextAddLineToPoint(context, 320, PlanView_HEIGHT-1);
+//    CGContextStrokePath(context);
+    
+    view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
     
     return view;
 }

@@ -134,7 +134,7 @@
     //self.btnSelect.selected = iuser.selected;
     
     if(iuser.selected) {
-        self.btnSelect.image = [UIImage imageNamed:@"btn_ok_selected"];
+        self.btnSelect.image = [UIImage imageNamed:@"list_check_mark"];
     } else {
         self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
     }

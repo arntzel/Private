@@ -3,6 +3,8 @@
 #import "KalMonthView.h"
 #import "KalLogic.h"
 #import "KalPrivate.h"
+#import "UIColor+Hex.h"
+#import "DKLiveBlurView.h"
 
 @interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate>
 {
@@ -23,7 +25,16 @@ static const CGFloat kMonthLabelHeight = 17.f;
     if ((self = [super initWithFrame:frame])) {
         [self setClipsToBounds:YES];
         
+        
+        
+        //[self setBackgroundColor:[UIColor whiteColor]];
         [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+//        DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.frame];
+//        blurView.isGlassEffectOn = YES;
+//
+//        [self insertSubview:blurView belowSubview:gridView];
+//        [blurView release];
+        
         delegate = theDelegate;
         logic = [theLogic retain];
         [logic setSelectedDay:_selectedDate];
@@ -75,7 +86,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [headerView addSubview:weekdayLabel];
         [weekdayLabel release];
 
-        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
+//        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
+        [headerView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     }
 }
 

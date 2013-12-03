@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		235693551847968A0003AD8E /* add_event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693531847968A0003AD8E /* add_event_icon.png */; };
+		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
+		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
+		2356935A184797050003AD8E /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569358184797050003AD8E /* menu_icon@2x.png */; };
+		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
+		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
+		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
+		23DFECD7184C85E700CC7D3D /* feed_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD5184C85E700CC7D3D /* feed_background_image.png */; };
+		23DFECD8184C85E700CC7D3D /* feed_background_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */; };
+		23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD9184C94F200CC7D3D /* invitee_icon.png */; };
+		23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */; };
+		23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDB184C94F200CC7D3D /* location_icon.png */; };
+		23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDC184C94F200CC7D3D /* location_icon@2x.png */; };
 		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
 		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
 		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
@@ -482,6 +495,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		235693531847968A0003AD8E /* add_event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_event_icon.png; sourceTree = "<group>"; };
+		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
+		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
+		23569358184797050003AD8E /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
+		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
+		23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_check_mark@2x.png"; sourceTree = "<group>"; };
+		23DFECD5184C85E700CC7D3D /* feed_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feed_background_image.png; sourceTree = "<group>"; };
+		23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feed_background_image@2x.png"; sourceTree = "<group>"; };
+		23DFECD9184C94F200CC7D3D /* invitee_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invitee_icon.png; sourceTree = "<group>"; };
+		23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitee_icon@2x.png"; sourceTree = "<group>"; };
+		23DFECDB184C94F200CC7D3D /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
+		23DFECDC184C94F200CC7D3D /* location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_icon@2x.png"; sourceTree = "<group>"; };
 		34055C721833B13000A2AD8E /* Legal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Legal.plist; sourceTree = "<group>"; };
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -1720,6 +1747,14 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				23DFECD9184C94F200CC7D3D /* invitee_icon.png */,
+				23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */,
+				23DFECDB184C94F200CC7D3D /* location_icon.png */,
+				23DFECDC184C94F200CC7D3D /* location_icon@2x.png */,
+				23DFECD5184C85E700CC7D3D /* feed_background_image.png */,
+				23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */,
+				23DFECD1184C6ED200CC7D3D /* list_check_mark.png */,
+				23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */,
 				769AB96917DF51340033E677 /* arrow.png */,
 				769AB96A17DF51340033E677 /* arrow_right.png */,
 				769AB96B17DF51340033E677 /* arrow_right@2x.png */,
@@ -2066,6 +2101,10 @@
 		769ABB5B17DF54000033E677 /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
+				23569357184797050003AD8E /* menu_icon.png */,
+				23569358184797050003AD8E /* menu_icon@2x.png */,
+				235693531847968A0003AD8E /* add_event_icon.png */,
+				235693541847968A0003AD8E /* add_event_icon@2x.png */,
 				769ABB5C17DF54000033E677 /* addDateBtnIcon.png */,
 				769ABB5D17DF54000033E677 /* addEventBtnBg.png */,
 				769ABB5E17DF54000033E677 /* addEventSettingIcon.png */,
@@ -2312,6 +2351,8 @@
 				769ABD0117DF54860033E677 /* ViewUtils.m */,
 				76411AF3180830D1001C2125 /* ExtendArray.h */,
 				76411AF4180830D1001C2125 /* ExtendArray.m */,
+				23B8C76A184A12A7002B7021 /* UIColor+Hex.h */,
+				23B8C76B184A12A7002B7021 /* UIColor+Hex.m */,
 			);
 			name = Utils;
 			path = calender/Utils;
@@ -2485,7 +2526,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = GGN58EVK65;
+						DevelopmentTeam = 2Y54HQJPY5;
 					};
 				};
 			};
@@ -2607,6 +2648,7 @@
 				769AB8FD17DF50660033E677 /* GooglePlus.bundle in Resources */,
 				769AB90817DF50F20033E677 /* GoogleMaps.bundle in Resources */,
 				34B1F1A917F8FCE200AA5C97 /* NotificaitonViewController.xib in Resources */,
+				23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */,
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
@@ -2649,6 +2691,7 @@
 				769AB9B417DF51340033E677 /* header5.jpg in Resources */,
 				769AB9B517DF51340033E677 /* header6.jpg in Resources */,
 				769AB9B617DF51340033E677 /* header7.jpg in Resources */,
+				23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */,
 				7662F75317F0761900B64E40 /* login_main_login_line.png in Resources */,
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				34B1F1C217F8FCE200AA5C97 /* settings_main_middle_row.png in Resources */,
@@ -2667,7 +2710,9 @@
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
+				23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
+				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
@@ -2753,6 +2798,7 @@
 				3D272CF91825EA8800C1AE04 /* EventFilterViewCell.xib in Resources */,
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
+				23569359184797050003AD8E /* menu_icon.png in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
 				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
@@ -2764,12 +2810,14 @@
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
+				23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
 				769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */,
 				7662F75617F0761900B64E40 /* login_main_singnup_addphoto.png in Resources */,
 				769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */,
 				34B1F1CC17F8FCE200AA5C97 /* settings_main_userinfo_bg.png in Resources */,
+				23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */,
 				769ABB3517DF52090033E677 /* EventDetailInviteeView.xib in Resources */,
 				769ABB3717DF52090033E677 /* EventDetailNavigationBar.xib in Resources */,
 				769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */,
@@ -2781,6 +2829,7 @@
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
 				765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */,
 				34B1F1C817F8FCE200AA5C97 /* settings_main_top_row.png in Resources */,
+				235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */,
 				769ABB6E17DF54000033E677 /* addEventBtnBg.png in Resources */,
 				769ABB6F17DF54000033E677 /* addEventSettingIcon.png in Resources */,
 				765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */,
@@ -2807,11 +2856,13 @@
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
 				769ABC8217DF542A0033E677 /* LoadingProgressView.xib in Resources */,
+				23DFECD8184C85E700CC7D3D /* feed_background_image@2x.png in Resources */,
 				34B1F1BC17F8FCE200AA5C97 /* settings_main_facebook_icon.png in Resources */,
 				7662F74217F075F400B64E40 /* LoginMainCreatView.xib in Resources */,
 				76431DF91806E02B009DAFFE /* EventDateNavigationBar.xib in Resources */,
 				34B1F1AB17F8FCE200AA5C97 /* PwdChangeViewController.xib in Resources */,
 				769ABC8417DF542A0033E677 /* Navigation.xib in Resources */,
+				23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */,
 				769ABC8517DF542A0033E677 /* NoEventView.xib in Resources */,
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
@@ -2819,10 +2870,12 @@
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
+				235693551847968A0003AD8E /* add_event_icon.png in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,
 				76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */,
 				76318B2B17E09A69000BC88B /* Default.png in Resources */,
+				23DFECD7184C85E700CC7D3D /* feed_background_image.png in Resources */,
 				76318B2C17E09A69000BC88B /* Default@2x.png in Resources */,
 				7662F74417F075F400B64E40 /* LoginMainSignInView.xib in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
@@ -2976,6 +3029,7 @@
 				769ABC9117DF542A0033E677 /* User.m in Sources */,
 				769ABC9217DF542A0033E677 /* UserModel.m in Sources */,
 				769ABC9317DF542A0033E677 /* UserProfile.m in Sources */,
+				23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */,
 				769ABC9417DF542A0033E677 /* UserSetting.m in Sources */,
 				7662F74517F075F400B64E40 /* LoginMainTitileView.m in Sources */,
 				769ABC9517DF542A0033E677 /* Utils.m in Sources */,
@@ -3170,7 +3224,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3191,6 +3246,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3208,7 +3264,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3222,6 +3279,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3231,8 +3289,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3249,8 +3307,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3259,8 +3317,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3277,8 +3335,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
