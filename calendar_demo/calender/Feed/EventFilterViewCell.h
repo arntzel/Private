@@ -11,6 +11,7 @@
 @interface EventFilterViewCell : UITableViewCell
 
 @property IBOutlet UIImageView * colorDot;
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
 @property IBOutlet UILabel * labelEventTypeName;
 @property IBOutlet UIButton * btnSelect;
 

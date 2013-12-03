@@ -5,7 +5,7 @@
 #import "Utils.h"
 #import "UIColor+Hex.h"
 
-const CGSize kTileSize = { 44.f, 50.f };
+const CGSize kTileSize = { 45.7f, 50.f };
 @implementation KalTileView
 
 @synthesize date, datasource;
@@ -13,10 +13,10 @@ const CGSize kTileSize = { 44.f, 50.f };
 - (id)initWithFrame:(CGRect)frame
 {
   if ((self = [super initWithFrame:frame])) {
-    [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+    //[self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
       
-      //[self setBackgroundColor:[UIColor clearColor]];
-      
+    //[self setBackgroundColor:[UIColor clearColor]];
+      [self setBackgroundColor:[UIColor whiteColor]];
     self.clipsToBounds = YES;
     origin = frame.origin;
     [self resetState];
@@ -57,18 +57,19 @@ const CGSize kTileSize = { 44.f, 50.f };
     }
     else
     {
-        textColor = [UIColor colorWithRed:140.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0];
+        textColor = [UIColor generateUIColorByHexString:@"#232525"];
+        //textColor = [UIColor colorWithRed:140.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0];
     }
     
     
     
-//    CGContextBeginPath(ctx);
-//    CGContextMoveToPoint(ctx, 0,0);
-//    CGContextAddLineToPoint(ctx, self.frame.size.width,0);
-//    CGFloat lineColor1[4]={1.0,1.0,1.0,1.0};
-//    CGContextSetStrokeColor(ctx, lineColor1);
-//    CGContextStrokePath(ctx);
-//    
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, 0,self.frame.size.height);
+    CGContextAddLineToPoint(ctx, self.frame.size.width, self.frame.size.height);
+    CGFloat lineColor1[4]={209.0/255.0,217.0/255.0,210.0/255.0,1.0};
+    CGContextSetStrokeColor(ctx, lineColor1);
+    CGContextStrokePath(ctx);
+//
 //    CGContextBeginPath(ctx);
 //    CGContextMoveToPoint(ctx, 0,1);
 //    CGContextAddLineToPoint(ctx, self.frame.size.width,1);
@@ -93,7 +94,8 @@ const CGSize kTileSize = { 44.f, 50.f };
     
 //  CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGFloat fontSize = 17.f;
-    UIFont *font = [UIFont systemFontOfSize:fontSize];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize];
+   // UIFont *font = [UIFont systemFontOfSize:fontSize];
   //UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
     CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
     CGContextTranslateCTM(ctx, 0, kTileSize.height);

@@ -27,8 +27,8 @@ static const CGFloat kMonthLabelHeight = 17.f;
         
         
         
-        //[self setBackgroundColor:[UIColor whiteColor]];
-        [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+        [self setBackgroundColor:[UIColor whiteColor]];
+        //[self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
 //        DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.frame];
 //        blurView.isGlassEffectOn = YES;
 //
@@ -75,20 +75,26 @@ static const CGFloat kMonthLabelHeight = 17.f;
     NSArray *weekdayNames = [NSArray arrayWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
     NSUInteger firstWeekday = [[NSCalendar currentCalendar] firstWeekday];
     NSUInteger i = firstWeekday - 1;
-    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
-        CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 46.f, 20.0f);
+    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 45.7f, i = (i+1)%7) {
+        CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 45.7f, 20.0f);
         UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
         weekdayLabel.backgroundColor = [UIColor clearColor];
-        weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:10.0f];
+        weekdayLabel.font = font;
         weekdayLabel.textAlignment = NSTextAlignmentCenter;
         weekdayLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.f];
         weekdayLabel.text = [weekdayNames objectAtIndex:i];
         [headerView addSubview:weekdayLabel];
         [weekdayLabel release];
 
+        CGRect rect = CGRectMake(xOffset, 0, 1.0, 20.0);
+        UIView *view = [[UIView alloc]initWithFrame:rect];
+        [view setBackgroundColor:[UIColor colorWithRed:92.0/255.0 green:175.0/255.0 blue:157.0/255.0 alpha:1.0]];
+        [headerView addSubview:view];
+        [view release];
 //        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
-        [headerView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     }
+    [headerView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
 }
 
 - (void)swapToWeekMode
