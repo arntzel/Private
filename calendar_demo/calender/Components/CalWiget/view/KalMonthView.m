@@ -16,6 +16,8 @@ extern const CGSize kTileSize;
     if ((self = [super initWithFrame:frame])) {
         [self setBackgroundColor:[UIColor clearColor]];
         self.clipsToBounds = YES;
+        
+        
         for (int i=0; i<6; i++)
         {
             for (int j=0; j<7; j++)

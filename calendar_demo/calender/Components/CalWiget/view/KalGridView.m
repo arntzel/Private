@@ -8,6 +8,7 @@
 #import "KalDate.h"
 #import "KalPrivate.h"
 #import "KalMonthNameView.h"
+#import "DKLiveBlurView.h"
 
 #define SLIDE_NONE 0
 #define SLIDE_LEFT 1

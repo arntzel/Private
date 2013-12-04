@@ -21,6 +21,9 @@
 @property (nonatomic, assign) BOOL isGlassEffectOn;
 @property (nonatomic, strong) UIColor *glassColor;
 
+
+
+
 - (void)setBlurLevel:(float)blurLevel;
 
 @end

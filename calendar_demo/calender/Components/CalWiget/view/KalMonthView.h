@@ -5,7 +5,7 @@
 
 @interface KalMonthView : UIView
 {
-  NSUInteger numWeeks;
+    NSUInteger numWeeks;
 }
 
 @property (nonatomic) NSUInteger numWeeks;
