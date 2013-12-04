@@ -155,7 +155,19 @@
         
         [[[Model getInstance] getEventModel] setSynchronizeData:YES];
         
-        [[Model getInstance] getEventsOfBegin:today andOffset:0 andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+        NSMutableString * eventType = [[NSMutableString alloc] init];
+        [eventType appendString:@"0,5"];
+        
+        if([me isFacebookConnected]) {
+            [eventType appendString:@",3,4"];
+        }
+        
+        if( [me isGoogleConnected]) {
+            [eventType appendString:@",1,2"];
+        }
+        
+        
+        [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
             [[[Model getInstance] getEventModel] setSynchronizeData:NO];
             

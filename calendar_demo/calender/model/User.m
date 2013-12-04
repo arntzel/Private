@@ -107,6 +107,7 @@
         user.googleEmail = [jsonData objectForKey:@"googleEmail"];
     }
     user.has_usable_password = [[jsonData objectForKey:@"has_usable_password"] boolValue];
+    user.locationDic = [jsonData objectForKey:@"location"];
     return user;
 }
 
@@ -139,7 +140,7 @@
     
     if (user.profileUrl != nil)
     {
-        [dic setObject:user.profileUrl forKey:@"profileUrl"];
+        [dic setObject:user.profileUrl forKey:@"profile"];
     }
     if (user.facebookToken != nil)
     {
@@ -159,6 +160,11 @@
         [dic setObject:user.googleEmail forKey:@"googleEmail"];
     }
     [dic setObject:@(user.has_usable_password) forKey:@"has_usable_password"];
+    
+    if(user.locationDic != nil)
+    {
+        [dic setObject:user.locationDic forKey:@"location"];
+    }
     return dic;
 }
 

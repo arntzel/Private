@@ -540,13 +540,14 @@ static Model * instance;
 //    [self getEvents:startDay andEnd:endDay andCallback:callback];
 //}
 
--(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback
+-(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andEventType:(NSString *) eventType andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback
 {
     
     NSString * startDay = [Utils formateDay:begin];
     startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&event_type=0&start__gte=%@", HOST, offset, startDay];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&event_type__in=%@&start__gte=%@", HOST, offset, eventType, startDay];
+    //NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&start__gte=%@", HOST, offset, startDay];
     
     
     LOG_D(@"url=%@", url);
@@ -579,7 +580,7 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            //LOG_D(@"Event resp:%@", json);
+            LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
@@ -869,18 +870,25 @@ static Model * instance;
         
         if(status == 200) {
             NSError * err;
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            
-            NSArray * objects = [json objectForKey:@"objects"];
-            
-            NSMutableArray * events = [[NSMutableArray alloc] init];
-            
-            for(int i=0; i<objects.count;i++) {
-                Message * e = [Message parseMSeesage:[objects objectAtIndex:i]];
-                [events addObject:e];
+            if (data)
+            {
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+                
+                NSArray * objects = [json objectForKey:@"objects"];
+                
+                NSMutableArray * events = [[NSMutableArray alloc] init];
+                
+                for(int i=0; i<objects.count;i++) {
+                    Message * e = [Message parseMSeesage:[objects objectAtIndex:i]];
+                    [events addObject:e];
+                }
+                
+                callback(0, events);
             }
-            
-            callback(0, events);
+            else
+            {
+                callback(-1, nil);
+            }
             
         } else {
             callback(-1, nil);
