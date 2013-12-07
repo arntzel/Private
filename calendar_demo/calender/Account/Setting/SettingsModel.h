@@ -31,7 +31,7 @@ typedef enum
 
 - (void)updateConnect:(ConnectType )connectType tokenVale:(NSString *)token IsConnectOrNot:(BOOL)isConnect andCallback:(void (^)(NSInteger error,NSString *message))callback;
 
-- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error))callback;
+- (void) updateUserProfile:(User *)user andCallback:(void (^)(NSInteger error, NSDictionary *dic))callback;
 
 - (void)deleteAccount:(void (^)(NSInteger error))callback;
 @end

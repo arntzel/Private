@@ -24,6 +24,7 @@
 #define headPortraitImgViewTag 15
 #define firstNameFieldTag 16
 #define lastNameFieldTag 17
+#define locationTextFieldTag 18
 @interface SettingsContentView : UIControl  
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
@@ -38,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIControl *fbView;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *fbTapGesture;
 @property (weak, nonatomic) IBOutlet UIControl *googleView;
+@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
+
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *googleTapGesture;
 
 

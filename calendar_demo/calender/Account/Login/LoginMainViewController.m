@@ -327,20 +327,20 @@
         [creatView showLoadingAnimation:NO];
     
         if(error == 0) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
-                                                          message:@"Success！"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-            
-            alert.tag = 1;
-            [alert show];
+//            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
+//                                                          message:@"Success！"
+//                                                         delegate:self
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles:nil];
+//            
+//            alert.tag = 1;
+//            [alert show];
             
             [signInView setEmail:createUser.email andPass:createUser.password];
             [self btnSignInDidClickWithName:createUser.email Password:createUser.password];
             
         } else {
-            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@""
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"Error"
                                                           message:msg
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
