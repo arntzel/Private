@@ -3255,8 +3255,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3273,8 +3273,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3283,8 +3283,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3301,8 +3301,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
