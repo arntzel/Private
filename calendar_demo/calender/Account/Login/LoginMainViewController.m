@@ -421,6 +421,8 @@
         
         
         [alertTextField setPlaceholder:@"Please input your email"];
+        alertTextField.keyboardType = UIKeyboardTypeEmailAddress;
+        alertTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
        
@@ -442,6 +444,8 @@
         self.alertTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 120.0, 260.0, 30)];
         [self.alertTextField setBorderStyle:UITextBorderStyleRoundedRect];
         [self.alertTextField setBackgroundColor:[UIColor whiteColor]];
+        self.alertTextField.keyboardType = UIKeyboardTypeEmailAddress;
+        self.alertTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [self.alertTextField setPlaceholder:@"Please input your email"];
         
         if(email != nil) {
