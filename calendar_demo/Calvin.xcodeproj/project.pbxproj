@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232442A318546BC5008930EA /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429D18546BC5008930EA /* add_icon.png */; };
+		232442A418546BC5008930EA /* add_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429E18546BC5008930EA /* add_icon@2x.png */; };
+		232442A518546BC5008930EA /* Calvin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429F18546BC5008930EA /* Calvin_logo.png */; };
+		232442A618546BC5008930EA /* Calvin_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A018546BC5008930EA /* Calvin_logo@2x.png */; };
+		232442A718546BC5008930EA /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A118546BC5008930EA /* settings_icon.png */; };
+		232442A818546BC5008930EA /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A218546BC5008930EA /* settings_icon@2x.png */; };
 		2345850D1853688100086FB3 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585041853688100086FB3 /* BLRView.m */; };
 		2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585061853688100086FB3 /* UIImage+ImageEffects.m */; };
 		2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585081853688100086FB3 /* UIImage+REFrostedViewController.m */; };
@@ -504,6 +510,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2324429D18546BC5008930EA /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
+		2324429E18546BC5008930EA /* add_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_icon@2x.png"; sourceTree = "<group>"; };
+		2324429F18546BC5008930EA /* Calvin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calvin_logo.png; sourceTree = "<group>"; };
+		232442A018546BC5008930EA /* Calvin_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calvin_logo@2x.png"; sourceTree = "<group>"; };
+		232442A118546BC5008930EA /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
+		232442A218546BC5008930EA /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon@2x.png"; sourceTree = "<group>"; };
 		234585031853688100086FB3 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BlurView/BLRView.h; sourceTree = "<group>"; };
 		234585041853688100086FB3 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BlurView/BLRView.m; sourceTree = "<group>"; };
 		234585051853688100086FB3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "BlurView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1883,6 +1895,12 @@
 		769AB99517DF51340033E677 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				2324429D18546BC5008930EA /* add_icon.png */,
+				2324429E18546BC5008930EA /* add_icon@2x.png */,
+				2324429F18546BC5008930EA /* Calvin_logo.png */,
+				232442A018546BC5008930EA /* Calvin_logo@2x.png */,
+				232442A118546BC5008930EA /* settings_icon.png */,
+				232442A218546BC5008930EA /* settings_icon@2x.png */,
 				769AB99617DF51340033E677 /* manuHeadImage.jpg */,
 				769AB99717DF51340033E677 /* manuNavCal.png */,
 				769AB99817DF51340033E677 /* manuNavQuestion.png */,
@@ -2739,6 +2757,7 @@
 				769AB9B317DF51340033E677 /* header4.jpg in Resources */,
 				769AB9B417DF51340033E677 /* header5.jpg in Resources */,
 				769AB9B517DF51340033E677 /* header6.jpg in Resources */,
+				232442A518546BC5008930EA /* Calvin_logo.png in Resources */,
 				769AB9B617DF51340033E677 /* header7.jpg in Resources */,
 				23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */,
 				7662F75317F0761900B64E40 /* login_main_login_line.png in Resources */,
@@ -2764,6 +2783,7 @@
 				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
+				232442A418546BC5008930EA /* add_icon@2x.png in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
 				76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */,
@@ -2821,6 +2841,7 @@
 				769AB9F117DF51340033E677 /* location.png in Resources */,
 				769AB9F217DF51340033E677 /* login_background@2x.png in Resources */,
 				769AB9F317DF51340033E677 /* leftMenu-corner-right.png in Resources */,
+				232442A818546BC5008930EA /* settings_icon@2x.png in Resources */,
 				76591A9417FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib in Resources */,
 				769AB9F417DF51340033E677 /* leftMenu-corner-right@2x.png in Resources */,
 				34B1F1AD17F8FCE200AA5C97 /* settings_detail_cancel_btn@2x.png in Resources */,
@@ -2833,6 +2854,7 @@
 				34B1F1C017F8FCE200AA5C97 /* settings_main_head_portait_default.png in Resources */,
 				769AB9F917DF51340033E677 /* login_mainview_bg.jpg in Resources */,
 				769AB9FA17DF51340033E677 /* login_mainview_title.png in Resources */,
+				232442A618546BC5008930EA /* Calvin_logo@2x.png in Resources */,
 				769AB9FB17DF51340033E677 /* manuHeadImage.jpg in Resources */,
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
@@ -2842,6 +2864,7 @@
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
 				769ABAA217DF51EC0033E677 /* navigationNotifySectionHeader.xib in Resources */,
 				34B1F1B617F8FCE200AA5C97 /* settings_main_back_btn.png in Resources */,
+				232442A318546BC5008930EA /* add_icon.png in Resources */,
 				769ABB0C17DF52090033E677 /* AddDateTypeView.xib in Resources */,
 				34B1F1A517F8FCE200AA5C97 /* EmailChangeViewController.xib in Resources */,
 				34B1F1CB17F8FCE200AA5C97 /* settings_main_two_row@2x.png in Resources */,
@@ -2927,6 +2950,7 @@
 				76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */,
 				76318B2B17E09A69000BC88B /* Default.png in Resources */,
 				23DFECD7184C85E700CC7D3D /* feed_background_image.png in Resources */,
+				232442A718546BC5008930EA /* settings_icon.png in Resources */,
 				76318B2C17E09A69000BC88B /* Default@2x.png in Resources */,
 				7662F74417F075F400B64E40 /* LoginMainSignInView.xib in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
