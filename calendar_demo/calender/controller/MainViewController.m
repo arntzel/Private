@@ -65,7 +65,8 @@
 
 - (void)showLeftController:(BOOL)animated {
 
-    [super showLeftController:animated];
+    //[super showLeftController:animated];
+    [self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
 
     [menuNavigationController reload];
     

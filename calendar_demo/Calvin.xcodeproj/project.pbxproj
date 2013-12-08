@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2345850D1853688100086FB3 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585041853688100086FB3 /* BLRView.m */; };
+		2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585061853688100086FB3 /* UIImage+ImageEffects.m */; };
+		2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585081853688100086FB3 /* UIImage+REFrostedViewController.m */; };
+		234585101853688100086FB3 /* UIStopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850A1853688100086FB3 /* UIStopWatch.m */; };
+		234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */; };
 		235693551847968A0003AD8E /* add_event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693531847968A0003AD8E /* add_event_icon.png */; };
 		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
 		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
 		2356935A184797050003AD8E /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569358184797050003AD8E /* menu_icon@2x.png */; };
+		23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */; };
+		23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */; };
+		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
+		23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */; };
 		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
 		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
 		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
@@ -495,10 +504,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		234585031853688100086FB3 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BlurView/BLRView.h; sourceTree = "<group>"; };
+		234585041853688100086FB3 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BlurView/BLRView.m; sourceTree = "<group>"; };
+		234585051853688100086FB3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "BlurView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		234585061853688100086FB3 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "BlurView/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		234585071853688100086FB3 /* UIImage+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+REFrostedViewController.h"; path = "BlurView/UIImage+REFrostedViewController.h"; sourceTree = "<group>"; };
+		234585081853688100086FB3 /* UIImage+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+REFrostedViewController.m"; path = "BlurView/UIImage+REFrostedViewController.m"; sourceTree = "<group>"; };
+		234585091853688100086FB3 /* UIStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIStopWatch.h; path = BlurView/UIStopWatch.h; sourceTree = "<group>"; };
+		2345850A1853688100086FB3 /* UIStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIStopWatch.m; path = BlurView/UIStopWatch.m; sourceTree = "<group>"; };
+		2345850B1853688100086FB3 /* UIView+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+REFrostedViewController.h"; path = "BlurView/UIView+REFrostedViewController.h"; sourceTree = "<group>"; };
+		2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+REFrostedViewController.m"; path = "BlurView/UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
 		235693531847968A0003AD8E /* add_event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_event_icon.png; sourceTree = "<group>"; };
 		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
 		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		23569358184797050003AD8E /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
+		23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
+		23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationChangedViewController.m; sourceTree = "<group>"; };
+		23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationChangedViewController.xib; sourceTree = "<group>"; };
+		23A9C1FF1853025E009FECF9 /* SelectCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
+		23A9C2001853025E009FECF9 /* SelectCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
+		23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryViewController.xib; sourceTree = "<group>"; };
 		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
@@ -1244,6 +1269,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		234585021853687300086FB3 /* BlurView */ = {
+			isa = PBXGroup;
+			children = (
+				234585031853688100086FB3 /* BLRView.h */,
+				234585041853688100086FB3 /* BLRView.m */,
+				234585051853688100086FB3 /* UIImage+ImageEffects.h */,
+				234585061853688100086FB3 /* UIImage+ImageEffects.m */,
+				234585071853688100086FB3 /* UIImage+REFrostedViewController.h */,
+				234585081853688100086FB3 /* UIImage+REFrostedViewController.m */,
+				234585091853688100086FB3 /* UIStopWatch.h */,
+				2345850A1853688100086FB3 /* UIStopWatch.m */,
+				2345850B1853688100086FB3 /* UIView+REFrostedViewController.h */,
+				2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */,
+			);
+			name = BlurView;
+			sourceTree = "<group>";
+		};
 		34B1F16417F8FCE200AA5C97 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,6 +1298,12 @@
 		34B1F16717F8FCE200AA5C97 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */,
+				23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */,
+				23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */,
+				23A9C1FF1853025E009FECF9 /* SelectCountryViewController.h */,
+				23A9C2001853025E009FECF9 /* SelectCountryViewController.m */,
+				23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */,
 				34B1F16817F8FCE200AA5C97 /* ConnectAccountViewController.h */,
 				34B1F16917F8FCE200AA5C97 /* ConnectAccountViewController.m */,
 				34B1F16A17F8FCE200AA5C97 /* ConnectAccountViewController.xib */,
@@ -2207,6 +2255,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				234585021853687300086FB3 /* BlurView */,
 				768404C3180115B200C69240 /* JSTokenField */,
 				764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */,
 				769ABBB517DF54290033E677 /* ASIHTTPRequest */,
@@ -2753,6 +2802,7 @@
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
 				769AB9E617DF51340033E677 /* colordot2.png in Resources */,
+				23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */,
 				769AB9E717DF51340033E677 /* colordot3.png in Resources */,
 				769AB9E817DF51340033E677 /* colordot4.png in Resources */,
 				769AB9E917DF51340033E677 /* colordot5.png in Resources */,
@@ -2805,6 +2855,7 @@
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
+				23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
@@ -2925,6 +2976,7 @@
 				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
 				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
 				942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */,
+				23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
 				3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */,
@@ -2956,6 +3008,7 @@
 				769ABAA317DF51EC0033E677 /* RootNavContrller.m in Sources */,
 				769ABB0B17DF52090033E677 /* AddDateTypeView.m in Sources */,
 				769ABB0D17DF52090033E677 /* AddEventDateViewController.m in Sources */,
+				2345850D1853688100086FB3 /* BLRView.m in Sources */,
 				769ABB0E17DF52090033E677 /* CustomPickerCell.m in Sources */,
 				76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */,
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
@@ -2963,6 +3016,7 @@
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
 				76591A9317FFB12900DE3AB2 /* AddEventInvitePeopleCell.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
+				234585101853688100086FB3 /* UIStopWatch.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,
 				3D5A3C9E181E3506000AED71 /* FeedEventEntity.m in Sources */,
@@ -2974,6 +3028,7 @@
 				769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */,
 				766C709818121DE400C5F42A /* EventDetailCommentLoadMoreView.m in Sources */,
 				769ABB2317DF52090033E677 /* EventDetailCommentConformedView.m in Sources */,
+				2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */,
 				769ABB2517DF52090033E677 /* EventDetailCommentConformView.m in Sources */,
 				769ABB2717DF52090033E677 /* EventDetailCommentContentView.m in Sources */,
 				769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */,
@@ -3089,10 +3144,12 @@
 				769ABD3C17DF54950033E677 /* KalGridView.m in Sources */,
 				769ABD3D17DF54950033E677 /* KalMonthNameView.m in Sources */,
 				769ABD3E17DF54950033E677 /* KalMonthView.m in Sources */,
+				234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */,
 				3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */,
 				769ABD3F17DF54950033E677 /* KalTileView.m in Sources */,
 				769ABD4017DF54950033E677 /* KalView.m in Sources */,
 				34B1F1CF17F8FCE200AA5C97 /* SettingsContentView.m in Sources */,
+				23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */,
 				769ABD4117DF54950033E677 /* KalWeekGridView.m in Sources */,
 				3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */,
 				769ABD4217DF54950033E677 /* KalWeekView.m in Sources */,
@@ -3100,6 +3157,7 @@
 				769ABD4417DF54950033E677 /* CustomerIndicatorView.m in Sources */,
 				769ABD4517DF54950033E677 /* CustomSwitch.m in Sources */,
 				769ABD4817DF54950033E677 /* GPlaceApi.m in Sources */,
+				2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */,
 				769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */,
 				76A457EA183CEBAC002127D1 /* SharePhotoFacebook.m in Sources */,
 				3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */,

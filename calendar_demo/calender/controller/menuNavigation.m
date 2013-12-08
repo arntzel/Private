@@ -19,6 +19,7 @@
 
 #import "Utils.h"
 #import "EventDetailController.h"
+#import "BLRView.h"
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
 {
@@ -56,14 +57,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Load BLRView
+    BLRView *blrView = [[BLRView alloc] init];
+    blrView.frame = self.view.bounds;
+    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    [self.view addSubview:blrView];
+    
     menuDataSource = [[navigationMenuDataSource alloc] init];
     
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        tableView.bounces = NO;
+        tableView.bounces = YES;
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        tableView.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
+        //tableView.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
+        [tableView setBackgroundColor:[UIColor clearColor]];
         tableView.dataSource = self;
         tableView.delegate = self;
         
