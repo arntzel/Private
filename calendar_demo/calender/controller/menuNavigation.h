@@ -4,6 +4,10 @@
 
 -(void) onMenuSelected:(int) menuIndex;
 
+@optional
+-(void) onSettingButtonTyped;
+-(void) onLogoButtonTyped;
+
 @end
 
 @interface menuNavigation : UIViewController

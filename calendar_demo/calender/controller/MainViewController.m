@@ -138,4 +138,38 @@
     }
 
 }
+
+-(void)onSettingButtonTyped
+{
+    [UIView animateWithDuration:.2 animations:^{
+        
+        [self setRootViewController:settingViewCtr];
+        
+    } completion:^(BOOL finished) {
+        
+        [self showRootController:YES];
+        
+    }];
+    
+    //[self presentViewController:settingViewCtr animated:YES completion:nil];
+    
+    //UIView *view = settingViewCtr.view;
+    //view.frame = self.view.bounds;
+    //[self.view addSubview:view];
+    
+    //[super addPanGesture];
+}
+
+-(void)onLogoButtonTyped
+{
+    [UIView animateWithDuration:.2 animations:^{
+        
+        [self setRootViewController:feedViewCtr];
+        
+    } completion:^(BOOL finished) {
+        
+        [self showRootController:YES];
+        
+    }];
+}
 @end

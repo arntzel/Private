@@ -74,12 +74,20 @@
     
     //CGRect bannerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     CGRect tableRect = CGRectMake(0, BANNER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
+    
+    UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
+    [sepLine setBackgroundColor:[UIColor lightGrayColor]];
+    [self.view addSubview:sepLine];
+    
     CGRect logoRect = CGRectMake(20, 40, 64, 20);
     
-    UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:logoRect];
+    //UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:logoRect];
+    UIButton *logoButton = [[UIButton alloc]initWithFrame:logoRect];
+    
     UIImage *logoImage = [UIImage imageNamed:@"Calvin_logo"];
-    [logoImageView setImage:logoImage];
-    [self.view addSubview:logoImageView];
+    [logoButton setImage:logoImage forState:UIControlStateNormal];
+    [logoButton addTarget:self action:@selector(onLogoButtonTyped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:logoButton];
     
     UIButton *closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(266, 30, 50, 50)];
     [closeBtn setImage:[UIImage imageNamed:@"add_icon"] forState:UIControlStateNormal];
@@ -113,6 +121,7 @@
     
     UIButton *settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(266, 510, 50, 50)];
     [settingBtn setImage:[UIImage imageNamed:@"settings_icon"] forState:UIControlStateNormal];
+    [settingBtn addTarget:self action:@selector(onSettingButtonTyped) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:settingBtn aboveSubview:self.tableView];
 }
 
@@ -314,6 +323,18 @@
 -(void)onCloseButtonTyped
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)onSettingButtonTyped
+{
+    [self onCloseButtonTyped];
+    [self.delegate onSettingButtonTyped];
+}
+
+-(void)onLogoButtonTyped
+{
+    [self onCloseButtonTyped];
+    [self.delegate onLogoButtonTyped];
 }
 
 @end
