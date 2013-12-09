@@ -1,9 +1,3 @@
-//
-//  UIStopWatch.m
-//
-//  Created by Elton Liu on 6/29/12.
-//	Copyright (c) 2012 Moxtra, Inc.	All rights reserved.
-//
 
 #import "UIStopWatch.h"
 
@@ -24,15 +18,15 @@
 
 - (void)dealloc
 {
-	[startData release];
+	//[startData release];
 	
-    [super dealloc];
+    //[super dealloc];
 }
 
 - (void)reset
 {
-	[startData release];
-	startData = [[NSDate date] retain];
+	//[startData release];
+	startData = [NSDate date];
 }
 
 - (double)getDelta
