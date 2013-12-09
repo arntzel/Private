@@ -368,7 +368,7 @@
 {
     for(ProposeStart * p in [timesView getEventDates]) {
         if([eventDate_ isEqual:p]) {
-            [Utils showUIAlertView:@"Warning" andMessage:@"The time had be added"];
+            [Utils showUIAlertView:@"Warning" andMessage:@"Already picked that time"];
             return;
         }
     }
