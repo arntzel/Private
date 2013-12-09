@@ -73,7 +73,7 @@
     menuDataSource = [[navigationMenuDataSource alloc] init];
     
     //CGRect bannerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    CGRect tableRect = CGRectMake(0, BANNER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
+    CGRect tableRect = CGRectMake(0, BANNER_HEIGHT+20, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
     
     UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
     [sepLine setBackgroundColor:[UIColor lightGrayColor]];
