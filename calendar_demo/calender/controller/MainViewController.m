@@ -141,7 +141,7 @@
 
 -(void)onSettingButtonTyped
 {
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.1 animations:^{
         
         [self setRootViewController:settingViewCtr];
         
@@ -162,7 +162,7 @@
 
 -(void)onLogoButtonTyped
 {
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.1 animations:^{
         
         [self setRootViewController:feedViewCtr];
         
@@ -171,5 +171,33 @@
         [self showRootController:YES];
         
     }];
+}
+
+-(void)onSegmentPressed:(id)sender
+{
+    UISegmentedControl *segControl = (UISegmentedControl*) sender;
+    int selectedIndex = [segControl selectedSegmentIndex];
+    if (selectedIndex == 0) {
+        [UIView animateWithDuration:.1 animations:^{
+            
+            [self setRootViewController:feedViewCtr];
+            
+        } completion:^(BOOL finished) {
+            //[segControl setSelectedSegmentIndex:0];
+            [self showRootController:YES];
+            
+        }];
+    } else if (selectedIndex == 1) {
+        [UIView animateWithDuration:.1 animations:^{
+            
+            [self setRootViewController:pendingEventViewCtr];
+            
+            
+        } completion:^(BOOL finished) {
+            //[segControl setSelectedSegmentIndex:1];
+            [self showRootController:YES];
+            
+        }];
+    }
 }
 @end

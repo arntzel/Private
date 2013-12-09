@@ -327,14 +327,19 @@
 
 -(void)onSettingButtonTyped
 {
-    [self onCloseButtonTyped];
-    [self.delegate onSettingButtonTyped];
+    //[self onCloseButtonTyped];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^ {
+        [self.delegate onSettingButtonTyped];
+    }];
 }
 
 -(void)onLogoButtonTyped
 {
-    [self onCloseButtonTyped];
-    [self.delegate onLogoButtonTyped];
+    //[self onCloseButtonTyped];
+    [self dismissViewControllerAnimated:YES completion:^ {
+        [self.delegate onLogoButtonTyped];
+    }];
 }
 
 @end

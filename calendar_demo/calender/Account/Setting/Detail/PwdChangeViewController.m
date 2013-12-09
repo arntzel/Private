@@ -56,10 +56,10 @@
         frame.origin.y = self.oldPwdView.frame.origin.y;
         self.setPwdView.frame = frame;
     }
-    self.navigation.leftBtn.frame = CGRectMake(8, 9, 67, 26);
+    self.navigation.leftBtn.frame = CGRectMake(8, 29, 67, 26);
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
-    self.navigation.rightBtn.frame = CGRectMake(245, 9, 67, 26);
+    self.navigation.rightBtn.frame = CGRectMake(245, 29, 67, 26);
     [self.navigation.rightBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.rightBtn setTitle:@"Save" forState:UIControlStateNormal];
     [self.navigation.rightBtn addTarget:self action:@selector(rightNavBtnBeClicked:) forControlEvents:UIControlEventTouchUpInside];

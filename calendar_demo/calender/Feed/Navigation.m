@@ -25,6 +25,11 @@
 //
 -(void) awakeFromNib {
     LOG_D(@"awakeFromNib");
+    self.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+}
+
+-(void)setUpMainNavigationButtons
+{
     UIEdgeInsets insets = UIEdgeInsetsMake(15, 12, 15, 0);
     UIImage *bgImage = [UIImage imageNamed:@"menu_icon.png"];
     bgImage = [bgImage resizableImageWithCapInsets:insets];
@@ -34,9 +39,6 @@
     UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon.png"];
     rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
     [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];
-    
-    self.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
-    
 }
 
 +(Navigation *) createNavigationView
@@ -50,6 +52,8 @@
     view.unreadCount.layer.cornerRadius = 6;//设置那个圆角的有多圆
     view.unreadCount.layer.masksToBounds = YES;//设为NO去试试
     
+    //[view.calPendingSegment addTarget:self action:@selector(onSegmentPressed) forControlEvents:UIControlEventTouchUpInside];
+    
 //    UIEdgeInsets insets = UIEdgeInsetsMake(15, 12, 15, 0);
 //    UIImage *image = view.leftBtn.imageView.image;
 //    image = [image resizableImageWithCapInsets:insets];
@@ -57,5 +61,10 @@
 
     return view;
 }
+
+//-(void)onSegmentPressed
+//{
+//    
+//}
 
 @end

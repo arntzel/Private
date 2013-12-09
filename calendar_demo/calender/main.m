@@ -19,7 +19,6 @@ static void uncaughtExceptionHandler(NSException *exception) {
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        //UIColor *color = [UIColor generateUIColorByHexString:@"#d1d9d2"];
         NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

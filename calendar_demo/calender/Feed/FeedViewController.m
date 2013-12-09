@@ -74,8 +74,9 @@
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
     
-    
-    
+    //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
+    self.navigation.calPendingSegment.hidden = NO;
+    [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -215,6 +216,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
 }
 
 
