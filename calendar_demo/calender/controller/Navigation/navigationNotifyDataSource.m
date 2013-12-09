@@ -38,11 +38,11 @@
 
 - (NSInteger )heightForCellAtIndex:(NSInteger)index
 {
-    CGSize theStringSize = [tempString sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(200, 500) lineBreakMode:NSLineBreakByWordWrapping];
+//    CGSize theStringSize = [tempString sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(200, 500) lineBreakMode:NSLineBreakByWordWrapping];
+//    
+//    return theStringSize.height + 35;
     
-    return theStringSize.height + 35;
-    
-//    return 80;
+    return 80;
 }
 
 - (NSInteger )numberOfObjects

@@ -22,6 +22,8 @@
 		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
 		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
 		2356935A184797050003AD8E /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569358184797050003AD8E /* menu_icon@2x.png */; };
+		23A15CD51855BF9700B12865 /* notification_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD31855BF9700B12865 /* notification_btn.png */; };
+		23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD41855BF9700B12865 /* notification_btn@2x.png */; };
 		23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */; };
 		23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */; };
 		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
@@ -530,6 +532,8 @@
 		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
 		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		23569358184797050003AD8E /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
+		23A15CD31855BF9700B12865 /* notification_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_btn.png; sourceTree = "<group>"; };
+		23A15CD41855BF9700B12865 /* notification_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_btn@2x.png"; sourceTree = "<group>"; };
 		23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
 		23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationChangedViewController.m; sourceTree = "<group>"; };
 		23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationChangedViewController.xib; sourceTree = "<group>"; };
@@ -1807,6 +1811,8 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				23A15CD31855BF9700B12865 /* notification_btn.png */,
+				23A15CD41855BF9700B12865 /* notification_btn@2x.png */,
 				23DFECD9184C94F200CC7D3D /* invitee_icon.png */,
 				23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */,
 				23DFECDB184C94F200CC7D3D /* location_icon.png */,
@@ -2920,6 +2926,7 @@
 				769ABB7817DF54000033E677 /* imagePickerTitleBg.png in Resources */,
 				34B1F1D017F8FCE200AA5C97 /* SettingsContentView.xib in Resources */,
 				769ABB7917DF54000033E677 /* invitePeopleIcon.png in Resources */,
+				23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */,
 				769ABB7A17DF54000033E677 /* map_my_location.png in Resources */,
 				769ABB7B17DF54000033E677 /* navBar_bg.png in Resources */,
 				769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */,
@@ -2953,6 +2960,7 @@
 				232442A718546BC5008930EA /* settings_icon.png in Resources */,
 				76318B2C17E09A69000BC88B /* Default@2x.png in Resources */,
 				7662F74417F075F400B64E40 /* LoginMainSignInView.xib in Resources */,
+				23A15CD51855BF9700B12865 /* notification_btn.png in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,

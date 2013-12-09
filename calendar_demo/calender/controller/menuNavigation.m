@@ -220,8 +220,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    return 80;
+//    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.frame.size.height;
 //    if (indexPath.section == 0) {
 //        return [menuDataSource heightForCellAtIndex:indexPath.row];
 //    }
@@ -269,7 +270,9 @@
     if([msg.eventID intValue] > 0) {
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
         detailCtl.eventID = [msg.eventID intValue];
-        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        }];
     }
     
     if([msg.unread boolValue]) {

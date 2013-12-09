@@ -82,7 +82,7 @@
     frame.origin.y = 20;
     titleView.frame = frame;
     
-    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
     btnBack.contentEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
     [btnBack setImage:[UIImage imageNamed:@"event_detail_nav_back.png"] forState:UIControlStateNormal];
     

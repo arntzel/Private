@@ -30,12 +30,13 @@
 
 -(void)setUpMainNavigationButtons
 {
-    UIEdgeInsets insets = UIEdgeInsetsMake(15, 12, 15, 0);
-    UIImage *bgImage = [UIImage imageNamed:@"menu_icon.png"];
-    bgImage = [bgImage resizableImageWithCapInsets:insets];
+    UIEdgeInsets insets = UIEdgeInsetsMake(10, 12, 10, 0);
+    UIImage *bgImage = [UIImage imageNamed:@"notification_btn.png"];
+    //bgImage = [bgImage resizableImageWithCapInsets:insets];
     [self.leftBtn setImage:bgImage forState:UIControlStateNormal];
+    [self.leftBtn setImageEdgeInsets:insets];
     
-    UIEdgeInsets insets2 = UIEdgeInsetsMake(10, 0, 10, 10);
+    UIEdgeInsets insets2 = UIEdgeInsetsMake(0, 10, 10, 10);
     UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon.png"];
     rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
     [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];

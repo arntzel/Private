@@ -31,8 +31,9 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    [self.contentView setBackgroundColor:[UIColor colorWithRed:65.0f/255.0f green:70.0f/255.0f blue:75.0f/255.0f alpha:1.0f]];
-    self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0];
+    [self setBackgroundColor:[UIColor clearColor]];
+    //[self.contentView setBackgroundColor:[UIColor colorWithRed:65.0f/255.0f green:70.0f/255.0f blue:75.0f/255.0f alpha:1.0f]];
+    //self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0];
     
     return self;
 }
@@ -64,7 +65,8 @@
     
     
     NSString * subject = msg.subject;
-    UIFont *font = [UIFont systemFontOfSize:11];
+    //UIFont *font = [UIFont systemFontOfSize:11];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:13.0];
 //        [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
 //    [self.NotifyDetailLabel setFont:font fromIndex:0 length:subject.length];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
@@ -80,8 +82,9 @@
     
     self.NotifyDetailLabel.text = subject;
     [self.NotifyDetailLabel setFont:font];
+    [self.NotifyDetailLabel setTextColor:[UIColor whiteColor]];
     
-    [self.NotifyDetailLabel setTextColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0]];
+    //[self.NotifyDetailLabel setTextColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0]];
     
 //    CGRect frame = self.NotifyDetailLabel.frame;
 //    frame.size = fontSize;
@@ -89,10 +92,12 @@
 
 
 
+    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
+    self.notifyDateLabel.font = font2;
     self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
     
     if([msg.unread boolValue]) {
-        self.notifyDateLabel.textColor = [UIColor redColor];
+        self.notifyDateLabel.textColor = [UIColor whiteColor];
     }
 }
 
