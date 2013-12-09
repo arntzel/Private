@@ -540,7 +540,7 @@
         
         CoreDataModel * model = [CoreDataModel getInstance];
         NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //dispatch_async(dispatch_get_global_queue(0, 0), ^{
             
             [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
                 
@@ -571,7 +571,7 @@
             }];
         });
         
-    });
+    //});
     
 }
 
