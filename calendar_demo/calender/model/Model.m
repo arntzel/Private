@@ -546,7 +546,7 @@ static Model * instance;
     NSString * startDay = [Utils formateDay:begin];
     startDay =[NSString stringWithFormat:@"%@T00:00:00", startDay];
     
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&event_type__in=%@&start__gte=%@", HOST, offset, eventType, startDay];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=100&offset=%d&event_type__in=%@&start__gte=%@", HOST, offset, eventType, startDay];
     //NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=%d&start__gte=%@", HOST, offset, startDay];
     
     
