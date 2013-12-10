@@ -15,6 +15,7 @@
 @interface KalGridView : UIView
 {
   id<KalGridViewDelegate> delegate;  // Assigned.
+    id<KalViewDelegate> viewDelegate;
   KalLogic *logic;
   KalMonthView *frontMonthView;
   KalMonthView *backMonthView;
@@ -30,7 +31,7 @@
 @property (nonatomic, assign) UISwipeGestureRecognizer *oneFingerSwipeRight; 
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate;
-
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)logic delegate:(id<KalGridViewDelegate>)delegate viewDelegate:(id<KalViewDelegate>)delegate2;
 - (void)slideRight;
 - (void)slideLeft;
 - (void)slide:(int)direction;

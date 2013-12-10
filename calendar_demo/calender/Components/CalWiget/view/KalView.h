@@ -2,6 +2,7 @@
 #import "KalWeekGridView.h"
 
 #import "KalGridView.h"
+#import "KalActionsView.h"
 
 @class KalGridView, KalLogic, KalDate;
 @protocol KalViewDelegate, KalDataSourceCallbacks;
@@ -15,6 +16,8 @@
     UILabel *headerTitleLabel;
     KalGridView *gridView;
     KalWeekGridView *weekGridView;
+    KalActionsView *actionsView;
+    
     NSObject<KalViewDelegate> *delegate;
     KalLogic *logic;
     
@@ -51,4 +54,6 @@
 - (void)didSelectDate:(KalDate *)date;
 - (void)willShowMonth:(KalDate *)date;
 - (void)willShowWeek:(KalDate *)date;
+
+- (void)monthViewHeightChanged:(CGFloat)height;
 @end

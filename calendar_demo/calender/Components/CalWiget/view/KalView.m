@@ -6,7 +6,7 @@
 #import "UIColor+Hex.h"
 #import "DKLiveBlurView.h"
 
-@interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate>
+@interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate, KalViewDelegate>
 {
     UIView *headerView;
 }
@@ -45,7 +45,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [self addSubview:headerView];
 
         CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, kHeaderHeight, self.width, 0.f);
-        gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
+        gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self viewDelegate:self];
         [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
         [gridView setMultipleTouchEnabled:YES];
         [gridView setUserInteractionEnabled:YES];
@@ -59,10 +59,22 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [weekGridView sizeToFit];
         
         [self swapToWeekMode];
+        
+        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 50)];
+        [self addSubview:actionsView];
     }
 
     return self;
 }
+
+-(void)monthViewHeightChanged:(CGFloat)height
+{
+    CGRect frame = actionsView.frame;
+    frame.origin.y = height + 20;
+    actionsView.frame = frame;
+    [actionsView setNeedsDisplay];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -169,7 +181,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)setFrameToMonthMode
 {
-    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height)];
+    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 50)];
 }
 
 - (void)delayGestureResponse:(UIGestureRecognizer *)gesture
@@ -232,6 +244,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [gridView removeObserver:self forKeyPath:@"frame"];
     [gridView release];
 
+    [actionsView release];
     [weekGridView release];
 
     [super dealloc];

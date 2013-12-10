@@ -10,6 +10,7 @@ extern const CGSize kTileSize;
 
 @implementation KalMonthView
 @synthesize numWeeks;
+//@synthesize actionsView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,7 +27,17 @@ extern const CGSize kTileSize;
                 [self addSubview:[[[KalTileView alloc] initWithFrame:r] autorelease]];
             }
         }
+        
+//        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, 6*kTileSize.height, 320, 49)];
+//        [self addSubview:actionsView];
     }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame withDelegate:(id<KalViewDelegate>)thedelegate
+{
+    self = [self initWithFrame:frame];
+    delegate = thedelegate;
     return self;
 }
 
@@ -52,6 +63,7 @@ extern const CGSize kTileSize;
 
     numWeeks = ceilf(tileNum / 7.f);
     [self sizeToFit];
+    [delegate monthViewHeightChanged:self.height];
     [self setNeedsDisplay];
 }
 

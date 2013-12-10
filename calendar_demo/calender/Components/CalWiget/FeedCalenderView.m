@@ -44,7 +44,7 @@ extern const CGSize kTileSize;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        kalView = [[KalView alloc] initWithFrame:self.bounds delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+        kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
         [kalView swapToWeekMode];
         kalMode = WEEK_MODE;
         [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
