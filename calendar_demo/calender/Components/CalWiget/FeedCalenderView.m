@@ -1,7 +1,6 @@
 #import "FeedCalenderView.h"
 #import "EventFilterView.h"
 #import "DeviceInfo.h"
-#import "DKLiveBlurView.h"
 
 #define weekViewHeight 65
 #define topGap 100
