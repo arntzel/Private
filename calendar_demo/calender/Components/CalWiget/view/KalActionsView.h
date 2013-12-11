@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol KalViewDelegate;
 @interface KalActionsView : UIView
+{
+    id<KalViewDelegate> delegate;
+}
 
+-(id)initWithFrame:(CGRect)frame withDelegate:(id<KalViewDelegate>)theDelegate;
 @end

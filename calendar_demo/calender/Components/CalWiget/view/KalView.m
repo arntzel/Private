@@ -60,7 +60,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         
         [self swapToWeekMode];
         
-        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 50)];
+        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 50) withDelegate:self];
         [self addSubview:actionsView];
     }
 
@@ -73,6 +73,16 @@ static const CGFloat kMonthLabelHeight = 17.f;
     frame.origin.y = height + 20;
     actionsView.frame = frame;
     [actionsView setNeedsDisplay];
+}
+
+-(void)showToday
+{
+    [self swith2Date:[NSDate date]];
+}
+
+-(void)showCalendar
+{
+    //[self swapToWeekMode];
 }
 
 

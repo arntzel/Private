@@ -56,4 +56,6 @@
 - (void)willShowWeek:(KalDate *)date;
 
 - (void)monthViewHeightChanged:(CGFloat)height;
+- (void)showToday;
+- (void)showCalendar;
 @end

@@ -141,36 +141,29 @@
 
 -(void)onSettingButtonTyped
 {
-    [UIView animateWithDuration:.1 animations:^{
-        
-        [self setRootViewController:settingViewCtr];
-        
-    } completion:^(BOOL finished) {
-        
-        [self showRootController:YES];
-        
-    }];
+    if (self.rootViewController == settingViewCtr)
+        return;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
     
-    //[self presentViewController:settingViewCtr animated:YES completion:nil];
-    
-    //UIView *view = settingViewCtr.view;
-    //view.frame = self.view.bounds;
-    //[self.view addSubview:view];
-    
-    //[super addPanGesture];
+    [self setRootViewController:settingViewCtr];
+    [UIView commitAnimations];
 }
 
 -(void)onLogoButtonTyped
 {
-    [UIView animateWithDuration:.1 animations:^{
-        
-        [self setRootViewController:feedViewCtr];
-        
-    } completion:^(BOOL finished) {
-        
-        [self showRootController:YES];
-        
-    }];
+    if (self.rootViewController == feedViewCtr)
+        return;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+    [self setRootViewController:feedViewCtr];
+    [UIView commitAnimations];
 }
 
 -(void)onSegmentPressed:(id)sender
