@@ -29,6 +29,7 @@
 		23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */; };
 		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
 		23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */; };
+		23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B16DE61859A32000650A54 /* libOHAttributedLabel.a */; };
 		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
 		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
 		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
@@ -543,6 +544,14 @@
 		23A9C1FF1853025E009FECF9 /* SelectCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
 		23A9C2001853025E009FECF9 /* SelectCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
 		23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryViewController.xib; sourceTree = "<group>"; };
+		23B16DDF1859A32000650A54 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
+		23B16DE01859A32000650A54 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
+		23B16DE11859A32000650A54 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
+		23B16DE21859A32000650A54 /* OHASBasicMarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicMarkupParser.h; sourceTree = "<group>"; };
+		23B16DE31859A32000650A54 /* OHASMarkupParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASMarkupParserBase.h; sourceTree = "<group>"; };
+		23B16DE41859A32000650A54 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
+		23B16DE51859A32000650A54 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
+		23B16DE61859A32000650A54 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOHAttributedLabel.a; sourceTree = "<group>"; };
 		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
@@ -1262,6 +1271,7 @@
 				3D925278177960460066927A /* Security.framework in Frameworks */,
 				3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */,
 				3D92520F17784A680066927A /* Accounts.framework in Frameworks */,
+				23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */,
 				3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */,
 				3D92520B17784A100066927A /* Social.framework in Frameworks */,
 				764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */,
@@ -1303,6 +1313,37 @@
 				2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */,
 			);
 			name = BlurView;
+			sourceTree = "<group>";
+		};
+		23B16DDC1859A32000650A54 /* OHAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDD1859A32000650A54 /* include */,
+				23B16DE61859A32000650A54 /* libOHAttributedLabel.a */,
+			);
+			path = OHAttributedLabel;
+			sourceTree = "<group>";
+		};
+		23B16DDD1859A32000650A54 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDE1859A32000650A54 /* OHAttributedLabel */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		23B16DDE1859A32000650A54 /* OHAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDF1859A32000650A54 /* NSAttributedString+Attributes.h */,
+				23B16DE01859A32000650A54 /* NSTextCheckingResult+ExtendedURL.h */,
+				23B16DE11859A32000650A54 /* OHASBasicHTMLParser.h */,
+				23B16DE21859A32000650A54 /* OHASBasicMarkupParser.h */,
+				23B16DE31859A32000650A54 /* OHASMarkupParserBase.h */,
+				23B16DE41859A32000650A54 /* OHAttributedLabel.h */,
+				23B16DE51859A32000650A54 /* OHParagraphStyle.h */,
+			);
+			path = OHAttributedLabel;
 			sourceTree = "<group>";
 		};
 		34B1F16417F8FCE200AA5C97 /* Categories */ = {
@@ -2282,6 +2323,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
 				234585021853687300086FB3 /* BlurView */,
 				768404C3180115B200C69240 /* JSTokenField */,
 				764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */,
@@ -3340,6 +3382,7 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
@@ -3373,6 +3416,7 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
@@ -3401,6 +3445,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
@@ -3429,6 +3474,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";

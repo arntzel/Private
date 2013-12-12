@@ -33,6 +33,13 @@ extern const CGSize kTileSize;
     [super dealloc];
 }
 
+- (id)initWithdelegate:(id<KalViewDelegate>)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>) theCtlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
+{
+    self = [self initWithdelegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+    self.controllerDelegate = theCtlDelegate;
+    return self;
+}
+
 - (id)initWithdelegate:(id<KalViewDelegate,UIGestureRecognizerDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
     CGRect frame = CGRectMake(0, [DeviceInfo fullScreenHeight] - weekViewHeight, 320, 40);
@@ -143,9 +150,11 @@ extern const CGSize kTileSize;
 
 - (void)panGesture:(UIPanGestureRecognizer *)pan
 {
+    [self.controllerDelegate blurBackground];
     if (pan.state == UIGestureRecognizerStateBegan) {
         if (kalView.KalMode == WEEK_MODE)
         {
+            [self.controllerDelegate unloadBlurBackground];
             [kalView swapToMonthMode];
         }
         orgFrame = self.frame;
@@ -160,6 +169,7 @@ extern const CGSize kTileSize;
         }
         else if(frame.origin.y > [DeviceInfo fullScreenHeight] - weekViewHeight)
         {
+            
             [self setFrameToWeekMode];
         }
         else
@@ -173,6 +183,7 @@ extern const CGSize kTileSize;
         CGPoint pointAfterTransf = [self convertPoint:testPoint toView:self.superview];
         if (pointAfterTransf.y < [DeviceInfo fullScreenHeight]) {
             [self animationWithBlock:^{
+                
                 [self setFrameToFilterMode];
             } Completion:^{
                 kalMode = FILTER_MODE;
@@ -193,6 +204,7 @@ extern const CGSize kTileSize;
             {
                 [kalView removeObserver:self forKeyPath:@"frame"];
                 [self animationWithBlock:^{
+                    [self.controllerDelegate unloadBlurBackground];
                     [self setFrameToWeekMode];
                 } Completion:^{
                     [kalView swapToWeekMode];

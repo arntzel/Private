@@ -26,7 +26,7 @@
         [todayBtn addTarget:delegate action:@selector(showToday) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:todayBtn];
         
-        UIButton *calendarBtn = [[UIButton alloc]initWithFrame:CGRectMake(220, 0, 80, self.frame.size.height)];
+        UIButton *calendarBtn = [[UIButton alloc]initWithFrame:CGRectMake(200, 0, 100, self.frame.size.height)];
         [calendarBtn setTitleColor:titleColor forState:UIControlStateNormal];
         [calendarBtn setTitle:@"Calendars" forState:UIControlStateNormal];
         [calendarBtn addTarget:delegate action:@selector(showCalendar) forControlEvents:UIControlEventTouchUpInside];

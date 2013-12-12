@@ -57,9 +57,17 @@
         duration = event.duration;
         //self.labEventDuration.text = [NSString stringWithFormat:@",%@", event.duration];
         if ((!duration) || ([duration length] == 0)) {
-            self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@", timeType, time];
+            if ([timeType length] == 0) {
+                self.labTimeStr.text = time;
+            } else {
+                self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@", timeType, time];
+            }
         } else {
-            self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@,%@", timeType, time, duration];
+            if ([timeType length] == 0) {
+                self.labTimeStr.text = [NSString stringWithFormat:@"%@,%@", time, duration];
+            }else {
+                self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@,%@", timeType, time, duration];
+            }
         }
     }
 

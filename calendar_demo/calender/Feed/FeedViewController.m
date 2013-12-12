@@ -32,6 +32,7 @@
 #import "LoginMainViewController.h"
 
 #import "UserSetting.h"
+#import "BLRView.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -42,11 +43,15 @@
                                   FeedEventTableViewDelegate,
                                   CoreDataModelDelegate,
                                   EventModelDelegate,
+                                  FeedViewControllerDelegate,
                                   UIAlertViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
     FeedEventTableView * tableView;
+    BLRView *blrView;
+    
+    BOOL isBlured;
    
     CustomerIndicatorView * dataLoadingView;
     
@@ -98,10 +103,20 @@
     [self.view addSubview:tableView];
     
     
+    //Load BLRView
+    blrView = [[BLRView alloc] init];
+    blrView.frame = self.view.bounds;
+    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //[blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    [blrView setHidden:YES];
+    [self.view addSubview:blrView];
+    isBlured = NO;
+    
+    
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
-    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self controllerDelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
@@ -202,6 +217,34 @@
     } else {
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
+    }
+}
+
+- (void)dealloc
+{
+    if (blrView) {
+        [blrView unload];
+    }
+}
+
+-(void)blurBackground
+{
+    if (blrView) {
+        if (!isBlured) {
+            [blrView  blurWithColor:[BLRColorComponents darkEffect]];
+            isBlured = YES;
+        }
+        
+        [blrView setHidden:NO];
+    }
+}
+
+-(void)unloadBlurBackground
+{
+    if (blrView) {
+        //[blrView unload];
+        [blrView setHidden:YES];
+        isBlured = NO;
     }
 }
 
