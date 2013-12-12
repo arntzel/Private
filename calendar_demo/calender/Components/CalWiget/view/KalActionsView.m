@@ -19,16 +19,21 @@
         delegate = theDelegate;
         // Initialization code
         [self setBackgroundColor:[UIColor whiteColor]];
+        
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
+        
         UIButton *todayBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, self.frame.size.height)];
         UIColor *titleColor = [UIColor generateUIColorByHexString:@"#18a48b"];
         [todayBtn setTitleColor:titleColor forState:UIControlStateNormal];
-        [todayBtn setTitle:@"Today" forState:UIControlStateNormal];
+        [todayBtn setTitle:@"TODAY" forState:UIControlStateNormal];
+        todayBtn.titleLabel.font = font;
         [todayBtn addTarget:delegate action:@selector(showToday) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:todayBtn];
         
-        UIButton *calendarBtn = [[UIButton alloc]initWithFrame:CGRectMake(200, 0, 100, self.frame.size.height)];
+        UIButton *calendarBtn = [[UIButton alloc]initWithFrame:CGRectMake(210, 0, 100, self.frame.size.height)];
         [calendarBtn setTitleColor:titleColor forState:UIControlStateNormal];
-        [calendarBtn setTitle:@"Calendars" forState:UIControlStateNormal];
+        [calendarBtn setTitle:@"CALENDARS" forState:UIControlStateNormal];
+        calendarBtn.titleLabel.font = font;
         [calendarBtn addTarget:delegate action:@selector(showCalendar) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:calendarBtn];
         
