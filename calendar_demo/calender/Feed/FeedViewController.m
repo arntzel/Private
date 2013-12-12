@@ -231,7 +231,7 @@
 {
     if (blrView) {
         if (!isBlured) {
-            [blrView  blurWithColor:[BLRColorComponents darkEffect]];
+            [blrView  blurWithColor:[BLRColorComponents lightEffect]];
             isBlured = YES;
         }
         
@@ -246,6 +246,15 @@
         [blrView setHidden:YES];
         isBlured = NO;
     }
+}
+
+-(void) scrollToTodayFeeds
+{
+    //[self scroll2Date:[Utils getCurrentDate] animated:YES];
+    NSDate *today = [Utils getCurrentDate];
+    [self onDisplayFirstDayChanged:today];
+    NSString * day = [Utils formateDay:today];
+    [tableView scroll2SelectedDate:day];
 }
 
 -(void)viewDidUnload {

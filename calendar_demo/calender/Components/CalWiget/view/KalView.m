@@ -4,7 +4,8 @@
 #import "KalLogic.h"
 #import "KalPrivate.h"
 #import "UIColor+Hex.h"
-#import "DKLiveBlurView.h"
+#import "FeedCalenderView.h"
+#import "FeedViewController.h"
 
 @interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate, KalViewDelegate>
 {
@@ -19,6 +20,16 @@ static const CGFloat kMonthLabelHeight = 17.f;
 @implementation KalView
 @synthesize delegate;
 @synthesize KalMode;
+@synthesize controllerDelegate;
+@synthesize calendarDelegate;
+
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>)theCtrlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate*)_selectedDate
+{
+    self = [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+    self.controllerDelegate = theCtrlDelegate;
+    return self;
+    
+}
 
 - (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
@@ -77,12 +88,13 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 -(void)showToday
 {
-    [self swith2Date:[NSDate date]];
+    //[self swith2Date:[NSDate date]];
+    [self.controllerDelegate scrollToTodayFeeds];
 }
 
 -(void)showCalendar
 {
-    //[self swapToWeekMode];
+    [calendarDelegate onSetToFilterMode];
 }
 
 

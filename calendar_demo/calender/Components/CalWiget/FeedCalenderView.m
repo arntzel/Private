@@ -1,6 +1,7 @@
 #import "FeedCalenderView.h"
 #import "EventFilterView.h"
 #import "DeviceInfo.h"
+#import "FeedViewController.h"
 
 #define weekViewHeight 65
 #define topGap 100
@@ -35,8 +36,8 @@ extern const CGSize kTileSize;
 
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>) theCtlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
-    self = [self initWithdelegate:theDelegate logic:theLogic selectedDate:_selectedDate];
     self.controllerDelegate = theCtlDelegate;
+    self = [self initWithdelegate:theDelegate logic:theLogic selectedDate:_selectedDate];
     return self;
 }
 
@@ -50,9 +51,10 @@ extern const CGSize kTileSize;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+        kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate controllerDelegate:self.controllerDelegate logic:theLogic selectedDate:_selectedDate];
         [kalView swapToWeekMode];
         kalMode = WEEK_MODE;
+        kalView.calendarDelegate = self;
         [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
         [self addSubview:kalView];
         
@@ -82,8 +84,19 @@ extern const CGSize kTileSize;
     [eventScrollView setContentSize:self.filterView.frame.size];
 }
 
+
+-(void)onSetToFilterMode
+{
+    [self animationWithBlock:^{
+        [self setFrameToFilterMode];
+    } Completion:^{
+        kalMode = FILTER_MODE;
+    }];
+}
+
 - (void)setFrameToWeekMode
 {
+    [[self controllerDelegate] unloadBlurBackground];
     CGRect frame = self.frame;
     frame.origin.y = [DeviceInfo fullScreenHeight] - weekViewHeight;
     self.frame = frame;
@@ -91,6 +104,7 @@ extern const CGSize kTileSize;
 
 - (void)setFrameToMonthMode
 {
+    [[self controllerDelegate] unloadBlurBackground];
     CGRect frame = self.frame;
     frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height;
     self.frame = frame;
@@ -98,6 +112,7 @@ extern const CGSize kTileSize;
 
 - (void)setFrameToFilterMode
 {
+    [[self controllerDelegate] blurBackground];
     CGRect frame = self.frame;
     frame.origin.y = [DeviceInfo fullScreenHeight] - self.frame.size.height;
     self.frame = frame;
@@ -150,11 +165,11 @@ extern const CGSize kTileSize;
 
 - (void)panGesture:(UIPanGestureRecognizer *)pan
 {
-    [self.controllerDelegate blurBackground];
+    //[self.controllerDelegate blurBackground];
     if (pan.state == UIGestureRecognizerStateBegan) {
         if (kalView.KalMode == WEEK_MODE)
         {
-            [self.controllerDelegate unloadBlurBackground];
+            //[self.controllerDelegate unloadBlurBackground];
             [kalView swapToMonthMode];
         }
         orgFrame = self.frame;
@@ -165,11 +180,11 @@ extern const CGSize kTileSize;
         CGRect frame = orgFrame;
         frame.origin.y += transPoint.y;
         if (frame.origin.y + frame.size.height < [DeviceInfo fullScreenHeight]) {
+            //[[self controllerDelegate] blurBackground];
             [self setFrameToFilterMode];
         }
         else if(frame.origin.y > [DeviceInfo fullScreenHeight] - weekViewHeight)
         {
-            
             [self setFrameToWeekMode];
         }
         else
@@ -183,7 +198,6 @@ extern const CGSize kTileSize;
         CGPoint pointAfterTransf = [self convertPoint:testPoint toView:self.superview];
         if (pointAfterTransf.y < [DeviceInfo fullScreenHeight]) {
             [self animationWithBlock:^{
-                
                 [self setFrameToFilterMode];
             } Completion:^{
                 kalMode = FILTER_MODE;
@@ -204,7 +218,6 @@ extern const CGSize kTileSize;
             {
                 [kalView removeObserver:self forKeyPath:@"frame"];
                 [self animationWithBlock:^{
-                    [self.controllerDelegate unloadBlurBackground];
                     [self setFrameToWeekMode];
                 } Completion:^{
                     [kalView swapToWeekMode];

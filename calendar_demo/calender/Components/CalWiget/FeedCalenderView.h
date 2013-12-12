@@ -11,8 +11,13 @@
 #import "EventFilterView.h"
 //#import "KalActionsView.h"
 
-@protocol FeedViewControllerDelegate;
-@interface FeedCalenderView : UIView
+//@protocol FeedViewControllerDelegate;
+@protocol FeedCalendarViewDelegate <NSObject>
+
+-(void)onSetToFilterMode;
+
+@end
+@interface FeedCalenderView : UIView <FeedCalendarViewDelegate>
 
 @property(retain, nonatomic) EventFilterView * filterView;
 @property(retain, nonatomic) KalView *kalView;
@@ -23,5 +28,4 @@
 - (id)initWithdelegate:(id<KalViewDelegate>)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>) theCtlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate;
 -(void) setKalTileViewDataSource:(NSObject<KalTileViewDataSource> *) datasource;
 - (void)updateFilterFrame;
-
 @end
