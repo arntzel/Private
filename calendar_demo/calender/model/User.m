@@ -160,12 +160,11 @@
         [dic setObject:user.googleEmail forKey:@"googleEmail"];
     }
     [dic setObject:@(user.has_usable_password) forKey:@"has_usable_password"];
-
+    
     if(user.locationDic != nil)
     {
         [dic setObject:user.locationDic forKey:@"location"];
     }
-
     return dic;
 }
 

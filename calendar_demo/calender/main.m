@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
+#import "UIColor+Hex.h"
 
 static void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);

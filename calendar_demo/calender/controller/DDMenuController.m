@@ -70,7 +70,7 @@
     [super viewDidLoad];
     [self setRootViewController:_root]; // reset root
     
-    [self addTapGesture];
+    //[self addTapGesture];
     
 }
 #pragma mark - GestureRecognizers
@@ -410,7 +410,7 @@
         view.frame = self.view.bounds;
         [self.view addSubview:view];
         
-        [self addPanGesture];
+        //[self addPanGesture];
         
     } else {
         if (tempRoot) {

@@ -44,6 +44,9 @@
     invitedPedingEvents = [[NSMutableArray alloc] init];
 
 
+    //[self.navigation.calPendingSegment setSelectedSegmentIndex:1];
+    self.navigation.calPendingSegment.hidden = NO;
+    [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     self.navigation.titleLable.text = @"PENDING";
     //self.navigation.unreadCount.hidden = YES;
     
@@ -105,6 +108,9 @@
 {
     NSLog(@"PedingEventViewController viewWillAppear");
     
+    if (self.navigation) {
+        [self.navigation.calPendingSegment setSelectedSegmentIndex:1];
+    }
     [self loadData];
 }
 

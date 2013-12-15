@@ -22,8 +22,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.navigation = [Navigation createNavigationView];
+    [self.navigation setUpMainNavigationButtons];
     
     [self.view addSubview:self.navigation];
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
@@ -49,7 +50,12 @@
 
 -(BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark -

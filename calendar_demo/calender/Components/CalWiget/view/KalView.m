@@ -3,8 +3,11 @@
 #import "KalMonthView.h"
 #import "KalLogic.h"
 #import "KalPrivate.h"
+#import "UIColor+Hex.h"
+#import "FeedCalenderView.h"
+#import "FeedViewController.h"
 
-@interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate>
+@interface KalView ()<UIGestureRecognizerDelegate,KalWeekGridViewDelegate,KalGridViewDelegate, KalViewDelegate>
 {
     UIView *headerView;
 }
@@ -17,13 +20,32 @@ static const CGFloat kMonthLabelHeight = 17.f;
 @implementation KalView
 @synthesize delegate;
 @synthesize KalMode;
+@synthesize controllerDelegate;
+@synthesize calendarDelegate;
+
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>)theCtrlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate*)_selectedDate
+{
+    self = [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+    self.controllerDelegate = theCtrlDelegate;
+    return self;
+    
+}
 
 - (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
     if ((self = [super initWithFrame:frame])) {
         [self setClipsToBounds:YES];
         
-        [self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+        
+        
+        [self setBackgroundColor:[UIColor whiteColor]];
+        //[self setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0]];
+//        DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.frame];
+//        blurView.isGlassEffectOn = YES;
+//
+//        [self insertSubview:blurView belowSubview:gridView];
+//        [blurView release];
+        
         delegate = theDelegate;
         logic = [theLogic retain];
         [logic setSelectedDay:_selectedDate];
@@ -34,7 +56,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [self addSubview:headerView];
 
         CGRect fullWidthAutomaticLayoutFrame = CGRectMake(0.f, kHeaderHeight, self.width, 0.f);
-        gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self];
+        gridView = [[KalGridView alloc] initWithFrame:fullWidthAutomaticLayoutFrame logic:logic delegate:self viewDelegate:self];
         [gridView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
         [gridView setMultipleTouchEnabled:YES];
         [gridView setUserInteractionEnabled:YES];
@@ -48,10 +70,33 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [weekGridView sizeToFit];
         
         [self swapToWeekMode];
+        
+        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 45) withDelegate:self];
+        [self addSubview:actionsView];
     }
 
     return self;
 }
+
+-(void)monthViewHeightChanged:(CGFloat)height
+{
+    CGRect frame = actionsView.frame;
+    frame.origin.y = height + 20;
+    actionsView.frame = frame;
+    [actionsView setNeedsDisplay];
+}
+
+-(void)showToday
+{
+    //[self swith2Date:[NSDate date]];
+    [self.controllerDelegate scrollToTodayFeeds];
+}
+
+-(void)showCalendar
+{
+    [calendarDelegate onSetToFilterMode];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -64,19 +109,26 @@ static const CGFloat kMonthLabelHeight = 17.f;
     NSArray *weekdayNames = [NSArray arrayWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
     NSUInteger firstWeekday = [[NSCalendar currentCalendar] firstWeekday];
     NSUInteger i = firstWeekday - 1;
-    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
-        CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 46.f, 20.0f);
+    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 45.7f, i = (i+1)%7) {
+        CGRect weekdayFrame = CGRectMake(xOffset, 0.0f, 45.7f, 20.0f);
         UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
         weekdayLabel.backgroundColor = [UIColor clearColor];
-        weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:10.0f];
+        weekdayLabel.font = font;
         weekdayLabel.textAlignment = NSTextAlignmentCenter;
         weekdayLabel.textColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.f];
         weekdayLabel.text = [weekdayNames objectAtIndex:i];
         [headerView addSubview:weekdayLabel];
         [weekdayLabel release];
 
-        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
+        CGRect rect = CGRectMake(xOffset, 0, 1.0, 20.0);
+        UIView *view = [[UIView alloc]initWithFrame:rect];
+        [view setBackgroundColor:[UIColor colorWithRed:92.0/255.0 green:175.0/255.0 blue:157.0/255.0 alpha:1.0]];
+        [headerView addSubview:view];
+        [view release];
+//        [headerView setBackgroundColor:[UIColor colorWithRed:40/255.0f green:185/255.0f blue:125/255.0f alpha:1.0f]];
     }
+    [headerView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
 }
 
 - (void)swapToWeekMode
@@ -151,7 +203,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)setFrameToMonthMode
 {
-    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height)];
+    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 50)];
 }
 
 - (void)delayGestureResponse:(UIGestureRecognizer *)gesture
@@ -214,6 +266,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
     [gridView removeObserver:self forKeyPath:@"frame"];
     [gridView release];
 
+    [actionsView release];
     [weekGridView release];
 
     [super dealloc];

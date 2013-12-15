@@ -140,7 +140,7 @@
     frame.origin.y = self.view.bounds.size.height - frame.size.height;
     calendarView.frame = frame;
     
-    int top = 44;
+    int top = 64;
     int bottom = calendarView.frame.origin.y;
 
     feedTableView.frame = CGRectMake(0, top, 320, bottom-top);

@@ -32,6 +32,7 @@
 #import "LoginMainViewController.h"
 
 #import "UserSetting.h"
+#import "BLRView.h"
 
 /*
  FeedViewController show the event list and a calender wiget
@@ -42,11 +43,15 @@
                                   FeedEventTableViewDelegate,
                                   CoreDataModelDelegate,
                                   EventModelDelegate,
+                                  FeedViewControllerDelegate,
                                   UIAlertViewDelegate>
 {
     KalLogic *logic;
     FeedCalenderView *calendarView;
     FeedEventTableView * tableView;
+    BLRView *blrView;
+    
+    BOOL isBlured;
    
     CustomerIndicatorView * dataLoadingView;
     
@@ -66,7 +71,7 @@
     [super viewDidLoad];
 	
     LOG_D(@"FeedViewController viewDidLoad");
-    
+
     User * me = [[UserModel getInstance] getLoginUser];
     if(me.timezone != nil) {
         [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
@@ -74,8 +79,9 @@
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
     
-    
-    
+    //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
+    self.navigation.calPendingSegment.hidden = NO;
+    [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
@@ -87,16 +93,30 @@
     
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    //tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     tableView.feedEventdelegate = self;
     
+    UIView *bgview = [[UIView alloc] initWithFrame: tableView.frame];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    tableView.backgroundView = bgview;
+    
     [self.view addSubview:tableView];
+    
+    
+    //Load BLRView
+    blrView = [[BLRView alloc] init];
+    blrView.frame = self.view.bounds;
+    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //[blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    [blrView setHidden:YES];
+    [self.view addSubview:blrView];
+    isBlured = NO;
     
     
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
-    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
+    self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self controllerDelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
@@ -197,7 +217,44 @@
     } else {
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
-    }    
+    }
+}
+
+- (void)dealloc
+{
+    if (blrView) {
+        [blrView unload];
+    }
+}
+
+-(void)blurBackground
+{
+    if (blrView) {
+        if (!isBlured) {
+            [blrView  blurWithColor:[BLRColorComponents lightEffect]];
+            isBlured = YES;
+        }
+        
+        [blrView setHidden:NO];
+    }
+}
+
+-(void)unloadBlurBackground
+{
+    if (blrView) {
+        //[blrView unload];
+        [blrView setHidden:YES];
+        isBlured = NO;
+    }
+}
+
+-(void) scrollToTodayFeeds
+{
+    //[self scroll2Date:[Utils getCurrentDate] animated:YES];
+    NSDate *today = [Utils getCurrentDate];
+    [self onDisplayFirstDayChanged:today];
+    NSString * day = [Utils formateDay:today];
+    [tableView scroll2SelectedDate:day];
 }
 
 -(void)viewDidUnload {
@@ -210,7 +267,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
 }
 
 

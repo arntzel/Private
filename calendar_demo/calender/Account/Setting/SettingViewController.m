@@ -69,6 +69,7 @@
 #pragma mark - Layout Helper
 - (void)setupViews
 {
+    [self.navigation setUpMainNavigationButtons];
     self.navigation.rightBtn.hidden = YES;
     self.navigation.titleLable.text = @"Accounts & Settings";
     

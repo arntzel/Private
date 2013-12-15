@@ -13,13 +13,14 @@
 
 @property IBOutlet UILabel * labTitle;
 @property IBOutlet UILabel * labAttendees;
-@property IBOutlet UILabel * labTime;
-@property IBOutlet UILabel * labTimeType;
+//@property IBOutlet UILabel * labTime;
+//@property IBOutlet UILabel * labTimeType;
 @property IBOutlet UILabel * labLocation;
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgStatus;
 @property IBOutlet UIImageView * imgEventType;
-@property IBOutlet UILabel * labEventDuration;
+//@property IBOutlet UILabel * labEventDuration;
+@property IBOutlet UILabel *labTimeStr;
 
 /*
  Update the date in the View

@@ -10,11 +10,14 @@
 @property IBOutlet UILabel * titleLable;
 @property IBOutlet UIButton * leftBtn;
 @property IBOutlet UIButton * rightBtn;
+@property IBOutlet UISegmentedControl *calPendingSegment;
 @property IBOutlet UILabel * unreadCount;
 /*
  Create a default Navigation View
  Please set the title, left btn and right btn style after the view created.
  */
 +(Navigation *) createNavigationView;
+
+-(void)setUpMainNavigationButtons;
 
 @end

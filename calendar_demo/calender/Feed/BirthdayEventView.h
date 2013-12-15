@@ -6,6 +6,7 @@
 #define BirthdayEventView_Height  55
 
 @interface BirthdayEventView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *labTime;
 
 @property IBOutlet UILabel * labTitle;
 @property IBOutlet UIImageView * imgUser;

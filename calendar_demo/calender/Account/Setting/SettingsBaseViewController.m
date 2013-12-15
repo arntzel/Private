@@ -28,6 +28,7 @@
     [super viewDidLoad];
     self.view.frame = [DeviceInfo fullScreenFrame];
 	self.navigation = [Navigation createNavigationView];
+    //[self.navigation setUpMainNavigationButtons];
     [self.navigation.leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.navigation.rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.navigation.leftBtn addTarget:self action:@selector(leftNavBtnClicked:) forControlEvents:UIControlEventTouchUpInside];

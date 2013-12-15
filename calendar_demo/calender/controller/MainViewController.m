@@ -65,7 +65,8 @@
 
 - (void)showLeftController:(BOOL)animated {
 
-    [super showLeftController:animated];
+    //[super showLeftController:animated];
+    [self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
 
     [menuNavigationController reload];
     
@@ -91,7 +92,12 @@
 
 -(BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - FeedViewControllerDelegate
@@ -131,5 +137,60 @@
             break;
     }
 
+}
+
+-(void)onSettingButtonTyped
+{
+    if (self.rootViewController == settingViewCtr)
+        return;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+    
+    [self setRootViewController:settingViewCtr];
+    [UIView commitAnimations];
+}
+
+-(void)onLogoButtonTyped
+{
+    if (self.rootViewController == feedViewCtr)
+        return;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+    [self setRootViewController:feedViewCtr];
+    [UIView commitAnimations];
+}
+
+-(void)onSegmentPressed:(id)sender
+{
+    UISegmentedControl *segControl = (UISegmentedControl*) sender;
+    int selectedIndex = [segControl selectedSegmentIndex];
+    if (selectedIndex == 0) {
+        [UIView animateWithDuration:.1 animations:^{
+            
+            [self setRootViewController:feedViewCtr];
+            
+        } completion:^(BOOL finished) {
+            //[segControl setSelectedSegmentIndex:0];
+            [self showRootController:YES];
+            
+        }];
+    } else if (selectedIndex == 1) {
+        [UIView animateWithDuration:.1 animations:^{
+            
+            [self setRootViewController:pendingEventViewCtr];
+            
+            
+        } completion:^(BOOL finished) {
+            //[segControl setSelectedSegmentIndex:1];
+            [self showRootController:YES];
+            
+        }];
+    }
 }
 @end

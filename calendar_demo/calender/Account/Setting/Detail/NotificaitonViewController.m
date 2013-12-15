@@ -47,7 +47,7 @@
 - (void)setupViews
 {
     self.navigation.titleLable.text = @"Notifications";
-    self.navigation.leftBtn.frame = CGRectMake(8, 9, 26, 26);
+    self.navigation.leftBtn.frame = CGRectMake(8, 29, 26, 26);
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_noti_back"] forState:UIControlStateNormal];
     self.navigation.rightBtn.hidden = YES;
     CGRect frame = self.indi.frame;

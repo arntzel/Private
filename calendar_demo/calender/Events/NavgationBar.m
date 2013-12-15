@@ -52,7 +52,7 @@
         [labelTitle setTextColor:[UIColor whiteColor]];
         [labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
         
-        leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 8, 51, 29)];
+        leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 28, 51, 29)];
         [leftBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];
         [leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
         [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
@@ -60,7 +60,7 @@
         [self addSubview:leftBtn];
         [leftBtn addTarget:self action:@selector(leftBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(264, 8, 51, 29)];
+        rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(264, 28, 51, 29)];
         [rightBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];
         [rightBtn setTitle:@"Create" forState:UIControlStateNormal];
         [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
@@ -73,7 +73,7 @@
 
 - (id)init
 {
-    return [self initWithFrame:CGRectMake(0, 0, 320, 45)];
+    return [self initWithFrame:CGRectMake(0, 0, 320, 65)];
 }
 
 - (void)setTitle:(NSString *)title

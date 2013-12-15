@@ -7,11 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232442A318546BC5008930EA /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429D18546BC5008930EA /* add_icon.png */; };
+		232442A418546BC5008930EA /* add_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429E18546BC5008930EA /* add_icon@2x.png */; };
+		232442A518546BC5008930EA /* Calvin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429F18546BC5008930EA /* Calvin_logo.png */; };
+		232442A618546BC5008930EA /* Calvin_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A018546BC5008930EA /* Calvin_logo@2x.png */; };
+		232442A718546BC5008930EA /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A118546BC5008930EA /* settings_icon.png */; };
+		232442A818546BC5008930EA /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A218546BC5008930EA /* settings_icon@2x.png */; };
+		2345850D1853688100086FB3 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585041853688100086FB3 /* BLRView.m */; };
+		2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585061853688100086FB3 /* UIImage+ImageEffects.m */; };
+		2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585081853688100086FB3 /* UIImage+REFrostedViewController.m */; };
+		234585101853688100086FB3 /* UIStopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850A1853688100086FB3 /* UIStopWatch.m */; };
+		234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */; };
+		234DAFAC18560AF500558B4A /* KalActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234DAFAB18560AF500558B4A /* KalActionsView.m */; };
+		235693551847968A0003AD8E /* add_event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693531847968A0003AD8E /* add_event_icon.png */; };
+		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
+		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
+		2356935A184797050003AD8E /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569358184797050003AD8E /* menu_icon@2x.png */; };
+		23A15CD51855BF9700B12865 /* notification_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD31855BF9700B12865 /* notification_btn.png */; };
+		23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD41855BF9700B12865 /* notification_btn@2x.png */; };
+		23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */; };
+		23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */; };
+		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
+		23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */; };
+		23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B16DE61859A32000650A54 /* libOHAttributedLabel.a */; };
+		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
+		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
+		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
+		23DFECD7184C85E700CC7D3D /* feed_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD5184C85E700CC7D3D /* feed_background_image.png */; };
+		23DFECD8184C85E700CC7D3D /* feed_background_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */; };
+		23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD9184C94F200CC7D3D /* invitee_icon.png */; };
+		23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */; };
+		23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDB184C94F200CC7D3D /* location_icon.png */; };
+		23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDC184C94F200CC7D3D /* location_icon@2x.png */; };
 		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
-		3456A3061848D0CA008A8653 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3456A3041848D0CA008A8653 /* LocationChangedViewController.m */; };
-		3456A3071848D0CA008A8653 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */; };
-		3456A30B1848D590008A8653 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3456A3091848D590008A8653 /* SelectCountryViewController.m */; };
-		3456A30C1848D590008A8653 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3456A30A1848D590008A8653 /* SelectCountryViewController.xib */; };
 		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
 		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
 		34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */; };
@@ -70,7 +98,6 @@
 		34CC5521181CB7FB00E23246 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		34CC5527181CB7FC00E23246 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CC5525181CB7FC00E23246 /* InfoPlist.strings */; };
 		34CC5529181CB7FC00E23246 /* Calvin_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CC5528181CB7FC00E23246 /* Calvin_Tests.m */; };
-		34D004DB18498F580054784A /* country.txt in Resources */ = {isa = PBXBuildFile; fileRef = 34D004DA18498F580054784A /* country.txt */; };
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
@@ -487,13 +514,55 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2324429D18546BC5008930EA /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
+		2324429E18546BC5008930EA /* add_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_icon@2x.png"; sourceTree = "<group>"; };
+		2324429F18546BC5008930EA /* Calvin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calvin_logo.png; sourceTree = "<group>"; };
+		232442A018546BC5008930EA /* Calvin_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calvin_logo@2x.png"; sourceTree = "<group>"; };
+		232442A118546BC5008930EA /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
+		232442A218546BC5008930EA /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon@2x.png"; sourceTree = "<group>"; };
+		234585031853688100086FB3 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BlurView/BLRView.h; sourceTree = "<group>"; };
+		234585041853688100086FB3 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BlurView/BLRView.m; sourceTree = "<group>"; };
+		234585051853688100086FB3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "BlurView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		234585061853688100086FB3 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "BlurView/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		234585071853688100086FB3 /* UIImage+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+REFrostedViewController.h"; path = "BlurView/UIImage+REFrostedViewController.h"; sourceTree = "<group>"; };
+		234585081853688100086FB3 /* UIImage+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+REFrostedViewController.m"; path = "BlurView/UIImage+REFrostedViewController.m"; sourceTree = "<group>"; };
+		234585091853688100086FB3 /* UIStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIStopWatch.h; path = BlurView/UIStopWatch.h; sourceTree = "<group>"; };
+		2345850A1853688100086FB3 /* UIStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIStopWatch.m; path = BlurView/UIStopWatch.m; sourceTree = "<group>"; };
+		2345850B1853688100086FB3 /* UIView+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+REFrostedViewController.h"; path = "BlurView/UIView+REFrostedViewController.h"; sourceTree = "<group>"; };
+		2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+REFrostedViewController.m"; path = "BlurView/UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
+		234DAFAA18560AF500558B4A /* KalActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalActionsView.h; sourceTree = "<group>"; };
+		234DAFAB18560AF500558B4A /* KalActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalActionsView.m; sourceTree = "<group>"; };
+		235693531847968A0003AD8E /* add_event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_event_icon.png; sourceTree = "<group>"; };
+		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
+		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
+		23569358184797050003AD8E /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
+		23A15CD31855BF9700B12865 /* notification_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_btn.png; sourceTree = "<group>"; };
+		23A15CD41855BF9700B12865 /* notification_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_btn@2x.png"; sourceTree = "<group>"; };
+		23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
+		23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationChangedViewController.m; sourceTree = "<group>"; };
+		23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationChangedViewController.xib; sourceTree = "<group>"; };
+		23A9C1FF1853025E009FECF9 /* SelectCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
+		23A9C2001853025E009FECF9 /* SelectCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
+		23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryViewController.xib; sourceTree = "<group>"; };
+		23B16DDF1859A32000650A54 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
+		23B16DE01859A32000650A54 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
+		23B16DE11859A32000650A54 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
+		23B16DE21859A32000650A54 /* OHASBasicMarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicMarkupParser.h; sourceTree = "<group>"; };
+		23B16DE31859A32000650A54 /* OHASMarkupParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASMarkupParserBase.h; sourceTree = "<group>"; };
+		23B16DE41859A32000650A54 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
+		23B16DE51859A32000650A54 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
+		23B16DE61859A32000650A54 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOHAttributedLabel.a; sourceTree = "<group>"; };
+		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
+		23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_check_mark@2x.png"; sourceTree = "<group>"; };
+		23DFECD5184C85E700CC7D3D /* feed_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feed_background_image.png; sourceTree = "<group>"; };
+		23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feed_background_image@2x.png"; sourceTree = "<group>"; };
+		23DFECD9184C94F200CC7D3D /* invitee_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invitee_icon.png; sourceTree = "<group>"; };
+		23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitee_icon@2x.png"; sourceTree = "<group>"; };
+		23DFECDB184C94F200CC7D3D /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
+		23DFECDC184C94F200CC7D3D /* location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_icon@2x.png"; sourceTree = "<group>"; };
 		34055C721833B13000A2AD8E /* Legal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Legal.plist; sourceTree = "<group>"; };
-		3456A3031848D0CA008A8653 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
-		3456A3041848D0CA008A8653 /* LocationChangedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationChangedViewController.m; sourceTree = "<group>"; };
-		3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationChangedViewController.xib; sourceTree = "<group>"; };
-		3456A3081848D590008A8653 /* SelectCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
-		3456A3091848D590008A8653 /* SelectCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
-		3456A30A1848D590008A8653 /* SelectCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryViewController.xib; sourceTree = "<group>"; };
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		34B1F16517F8FCE200AA5C97 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
@@ -563,7 +632,6 @@
 		34CC5526181CB7FC00E23246 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34CC5528181CB7FC00E23246 /* Calvin_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calvin_Tests.m; sourceTree = "<group>"; };
 		34CC552A181CB7FC00E23246 /* Calvin Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calvin Tests-Prefix.pch"; sourceTree = "<group>"; };
-		34D004DA18498F580054784A /* country.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = country.txt; sourceTree = "<group>"; };
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1203,6 +1271,7 @@
 				3D925278177960460066927A /* Security.framework in Frameworks */,
 				3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */,
 				3D92520F17784A680066927A /* Accounts.framework in Frameworks */,
+				23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */,
 				3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */,
 				3D92520B17784A100066927A /* Social.framework in Frameworks */,
 				764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */,
@@ -1229,6 +1298,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		234585021853687300086FB3 /* BlurView */ = {
+			isa = PBXGroup;
+			children = (
+				234585031853688100086FB3 /* BLRView.h */,
+				234585041853688100086FB3 /* BLRView.m */,
+				234585051853688100086FB3 /* UIImage+ImageEffects.h */,
+				234585061853688100086FB3 /* UIImage+ImageEffects.m */,
+				234585071853688100086FB3 /* UIImage+REFrostedViewController.h */,
+				234585081853688100086FB3 /* UIImage+REFrostedViewController.m */,
+				234585091853688100086FB3 /* UIStopWatch.h */,
+				2345850A1853688100086FB3 /* UIStopWatch.m */,
+				2345850B1853688100086FB3 /* UIView+REFrostedViewController.h */,
+				2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */,
+			);
+			name = BlurView;
+			sourceTree = "<group>";
+		};
+		23B16DDC1859A32000650A54 /* OHAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDD1859A32000650A54 /* include */,
+				23B16DE61859A32000650A54 /* libOHAttributedLabel.a */,
+			);
+			path = OHAttributedLabel;
+			sourceTree = "<group>";
+		};
+		23B16DDD1859A32000650A54 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDE1859A32000650A54 /* OHAttributedLabel */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		23B16DDE1859A32000650A54 /* OHAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				23B16DDF1859A32000650A54 /* NSAttributedString+Attributes.h */,
+				23B16DE01859A32000650A54 /* NSTextCheckingResult+ExtendedURL.h */,
+				23B16DE11859A32000650A54 /* OHASBasicHTMLParser.h */,
+				23B16DE21859A32000650A54 /* OHASBasicMarkupParser.h */,
+				23B16DE31859A32000650A54 /* OHASMarkupParserBase.h */,
+				23B16DE41859A32000650A54 /* OHAttributedLabel.h */,
+				23B16DE51859A32000650A54 /* OHParagraphStyle.h */,
+			);
+			path = OHAttributedLabel;
+			sourceTree = "<group>";
+		};
 		34B1F16417F8FCE200AA5C97 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1241,6 +1358,12 @@
 		34B1F16717F8FCE200AA5C97 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */,
+				23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */,
+				23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */,
+				23A9C1FF1853025E009FECF9 /* SelectCountryViewController.h */,
+				23A9C2001853025E009FECF9 /* SelectCountryViewController.m */,
+				23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */,
 				34B1F16817F8FCE200AA5C97 /* ConnectAccountViewController.h */,
 				34B1F16917F8FCE200AA5C97 /* ConnectAccountViewController.m */,
 				34B1F16A17F8FCE200AA5C97 /* ConnectAccountViewController.xib */,
@@ -1256,13 +1379,6 @@
 				34B1F17417F8FCE200AA5C97 /* PwdChangeViewController.h */,
 				34B1F17517F8FCE200AA5C97 /* PwdChangeViewController.m */,
 				34B1F17617F8FCE200AA5C97 /* PwdChangeViewController.xib */,
-				3456A3031848D0CA008A8653 /* LocationChangedViewController.h */,
-				3456A3041848D0CA008A8653 /* LocationChangedViewController.m */,
-				3456A3051848D0CA008A8653 /* LocationChangedViewController.xib */,
-				3456A3081848D590008A8653 /* SelectCountryViewController.h */,
-				3456A3091848D590008A8653 /* SelectCountryViewController.m */,
-				3456A30A1848D590008A8653 /* SelectCountryViewController.xib */,
-				34D004DA18498F580054784A /* country.txt */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1739,6 +1855,16 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				23A15CD31855BF9700B12865 /* notification_btn.png */,
+				23A15CD41855BF9700B12865 /* notification_btn@2x.png */,
+				23DFECD9184C94F200CC7D3D /* invitee_icon.png */,
+				23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */,
+				23DFECDB184C94F200CC7D3D /* location_icon.png */,
+				23DFECDC184C94F200CC7D3D /* location_icon@2x.png */,
+				23DFECD5184C85E700CC7D3D /* feed_background_image.png */,
+				23DFECD6184C85E700CC7D3D /* feed_background_image@2x.png */,
+				23DFECD1184C6ED200CC7D3D /* list_check_mark.png */,
+				23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */,
 				769AB96917DF51340033E677 /* arrow.png */,
 				769AB96A17DF51340033E677 /* arrow_right.png */,
 				769AB96B17DF51340033E677 /* arrow_right@2x.png */,
@@ -1819,6 +1945,12 @@
 		769AB99517DF51340033E677 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				2324429D18546BC5008930EA /* add_icon.png */,
+				2324429E18546BC5008930EA /* add_icon@2x.png */,
+				2324429F18546BC5008930EA /* Calvin_logo.png */,
+				232442A018546BC5008930EA /* Calvin_logo@2x.png */,
+				232442A118546BC5008930EA /* settings_icon.png */,
+				232442A218546BC5008930EA /* settings_icon@2x.png */,
 				769AB99617DF51340033E677 /* manuHeadImage.jpg */,
 				769AB99717DF51340033E677 /* manuNavCal.png */,
 				769AB99817DF51340033E677 /* manuNavQuestion.png */,
@@ -1900,9 +2032,9 @@
 				769ABA5B17DF51EC0033E677 /* BaseMenuViewController.h */,
 				769ABA5C17DF51EC0033E677 /* BaseMenuViewController.m */,
 				769ABA5D17DF51EC0033E677 /* BaseUIViewController.h */,
-				769ABA5E17DF51EC0033E677 /* BaseUIViewController.m */,
 				769ABA5F17DF51EC0033E677 /* DDMenuController.h */,
 				769ABA6017DF51EC0033E677 /* DDMenuController.m */,
+				769ABA5E17DF51EC0033E677 /* BaseUIViewController.m */,
 				769ABA6117DF51EC0033E677 /* MainViewController.h */,
 				769ABA6217DF51EC0033E677 /* MainViewController.m */,
 				769ABA6317DF51EC0033E677 /* menuNavigation.h */,
@@ -2085,6 +2217,10 @@
 		769ABB5B17DF54000033E677 /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
+				23569357184797050003AD8E /* menu_icon.png */,
+				23569358184797050003AD8E /* menu_icon@2x.png */,
+				235693531847968A0003AD8E /* add_event_icon.png */,
+				235693541847968A0003AD8E /* add_event_icon@2x.png */,
 				769ABB5C17DF54000033E677 /* addDateBtnIcon.png */,
 				769ABB5D17DF54000033E677 /* addEventBtnBg.png */,
 				769ABB5E17DF54000033E677 /* addEventSettingIcon.png */,
@@ -2187,6 +2323,8 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
+				234585021853687300086FB3 /* BlurView */,
 				768404C3180115B200C69240 /* JSTokenField */,
 				764C3F8317F326960014B8B1 /* TPKeyboardAvoiding */,
 				769ABBB517DF54290033E677 /* ASIHTTPRequest */,
@@ -2331,6 +2469,8 @@
 				769ABD0117DF54860033E677 /* ViewUtils.m */,
 				76411AF3180830D1001C2125 /* ExtendArray.h */,
 				76411AF4180830D1001C2125 /* ExtendArray.m */,
+				23B8C76A184A12A7002B7021 /* UIColor+Hex.h */,
+				23B8C76B184A12A7002B7021 /* UIColor+Hex.m */,
 			);
 			name = Utils;
 			path = calender/Utils;
@@ -2401,6 +2541,8 @@
 				769ABD2317DF54950033E677 /* KalWeekView.m */,
 				769ABD2417DF54950033E677 /* UIViewAdditions.h */,
 				769ABD2517DF54950033E677 /* UIViewAdditions.m */,
+				234DAFAA18560AF500558B4A /* KalActionsView.h */,
+				234DAFAB18560AF500558B4A /* KalActionsView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2504,7 +2646,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = GGN58EVK65;
+						DevelopmentTeam = 2Y54HQJPY5;
 					};
 				};
 			};
@@ -2626,6 +2768,7 @@
 				769AB8FD17DF50660033E677 /* GooglePlus.bundle in Resources */,
 				769AB90817DF50F20033E677 /* GoogleMaps.bundle in Resources */,
 				34B1F1A917F8FCE200AA5C97 /* NotificaitonViewController.xib in Resources */,
+				23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */,
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
@@ -2667,7 +2810,9 @@
 				769AB9B317DF51340033E677 /* header4.jpg in Resources */,
 				769AB9B417DF51340033E677 /* header5.jpg in Resources */,
 				769AB9B517DF51340033E677 /* header6.jpg in Resources */,
+				232442A518546BC5008930EA /* Calvin_logo.png in Resources */,
 				769AB9B617DF51340033E677 /* header7.jpg in Resources */,
+				23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */,
 				7662F75317F0761900B64E40 /* login_main_login_line.png in Resources */,
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				34B1F1C217F8FCE200AA5C97 /* settings_main_middle_row.png in Resources */,
@@ -2686,9 +2831,12 @@
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
+				23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
+				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
+				232442A418546BC5008930EA /* add_icon@2x.png in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
 				76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */,
@@ -2727,6 +2875,7 @@
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
 				769AB9E617DF51340033E677 /* colordot2.png in Resources */,
+				23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */,
 				769AB9E717DF51340033E677 /* colordot3.png in Resources */,
 				769AB9E817DF51340033E677 /* colordot4.png in Resources */,
 				769AB9E917DF51340033E677 /* colordot5.png in Resources */,
@@ -2745,6 +2894,7 @@
 				769AB9F117DF51340033E677 /* location.png in Resources */,
 				769AB9F217DF51340033E677 /* login_background@2x.png in Resources */,
 				769AB9F317DF51340033E677 /* leftMenu-corner-right.png in Resources */,
+				232442A818546BC5008930EA /* settings_icon@2x.png in Resources */,
 				76591A9417FFB12900DE3AB2 /* AddEventInvitePeopleCell.xib in Resources */,
 				769AB9F417DF51340033E677 /* leftMenu-corner-right@2x.png in Resources */,
 				34B1F1AD17F8FCE200AA5C97 /* settings_detail_cancel_btn@2x.png in Resources */,
@@ -2757,9 +2907,9 @@
 				34B1F1C017F8FCE200AA5C97 /* settings_main_head_portait_default.png in Resources */,
 				769AB9F917DF51340033E677 /* login_mainview_bg.jpg in Resources */,
 				769AB9FA17DF51340033E677 /* login_mainview_title.png in Resources */,
+				232442A618546BC5008930EA /* Calvin_logo@2x.png in Resources */,
 				769AB9FB17DF51340033E677 /* manuHeadImage.jpg in Resources */,
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
-				3456A3071848D0CA008A8653 /* LocationChangedViewController.xib in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
 				769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */,
 				769ABA9A17DF51EC0033E677 /* navigationMenuCell.xib in Resources */,
@@ -2767,29 +2917,34 @@
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
 				769ABAA217DF51EC0033E677 /* navigationNotifySectionHeader.xib in Resources */,
 				34B1F1B617F8FCE200AA5C97 /* settings_main_back_btn.png in Resources */,
+				232442A318546BC5008930EA /* add_icon.png in Resources */,
 				769ABB0C17DF52090033E677 /* AddDateTypeView.xib in Resources */,
 				34B1F1A517F8FCE200AA5C97 /* EmailChangeViewController.xib in Resources */,
 				34B1F1CB17F8FCE200AA5C97 /* settings_main_two_row@2x.png in Resources */,
 				3D272CF91825EA8800C1AE04 /* EventFilterViewCell.xib in Resources */,
 				769ABB0F17DF52090033E677 /* CustomPickerCell.xib in Resources */,
 				769ABB1517DF52090033E677 /* AddDateEntryView.xib in Resources */,
+				23569359184797050003AD8E /* menu_icon.png in Resources */,
 				769ABB1717DF52090033E677 /* AddEventInviteView.xib in Resources */,
 				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
+				23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
+				23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
 				769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */,
 				7662F75617F0761900B64E40 /* login_main_singnup_addphoto.png in Resources */,
 				769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */,
 				34B1F1CC17F8FCE200AA5C97 /* settings_main_userinfo_bg.png in Resources */,
+				23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */,
 				769ABB3517DF52090033E677 /* EventDetailInviteeView.xib in Resources */,
 				769ABB3717DF52090033E677 /* EventDetailNavigationBar.xib in Resources */,
 				769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */,
@@ -2801,6 +2956,7 @@
 				769ABB6D17DF54000033E677 /* addDateBtnIcon.png in Resources */,
 				765B25001802965D00B01A0A /* tokenNormal@2x.png in Resources */,
 				34B1F1C817F8FCE200AA5C97 /* settings_main_top_row.png in Resources */,
+				235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */,
 				769ABB6E17DF54000033E677 /* addEventBtnBg.png in Resources */,
 				769ABB6F17DF54000033E677 /* addEventSettingIcon.png in Resources */,
 				765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */,
@@ -2812,12 +2968,12 @@
 				769ABB7317DF54000033E677 /* eventSetingBg2.png in Resources */,
 				769ABB7417DF54000033E677 /* eventSetingBg3.png in Resources */,
 				769ABB7517DF54000033E677 /* eventSettingLine.png in Resources */,
-				34D004DB18498F580054784A /* country.txt in Resources */,
 				769ABB7617DF54000033E677 /* imagePicker_bg.jpg in Resources */,
 				769ABB7717DF54000033E677 /* imagePickerIcon.png in Resources */,
 				769ABB7817DF54000033E677 /* imagePickerTitleBg.png in Resources */,
 				34B1F1D017F8FCE200AA5C97 /* SettingsContentView.xib in Resources */,
 				769ABB7917DF54000033E677 /* invitePeopleIcon.png in Resources */,
+				23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */,
 				769ABB7A17DF54000033E677 /* map_my_location.png in Resources */,
 				769ABB7B17DF54000033E677 /* navBar_bg.png in Resources */,
 				769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */,
@@ -2828,11 +2984,13 @@
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
 				769ABC8217DF542A0033E677 /* LoadingProgressView.xib in Resources */,
+				23DFECD8184C85E700CC7D3D /* feed_background_image@2x.png in Resources */,
 				34B1F1BC17F8FCE200AA5C97 /* settings_main_facebook_icon.png in Resources */,
 				7662F74217F075F400B64E40 /* LoginMainCreatView.xib in Resources */,
 				76431DF91806E02B009DAFFE /* EventDateNavigationBar.xib in Resources */,
 				34B1F1AB17F8FCE200AA5C97 /* PwdChangeViewController.xib in Resources */,
 				769ABC8417DF542A0033E677 /* Navigation.xib in Resources */,
+				23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */,
 				769ABC8517DF542A0033E677 /* NoEventView.xib in Resources */,
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
@@ -2840,13 +2998,16 @@
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
-				3456A30C1848D590008A8653 /* SelectCountryViewController.xib in Resources */,
+				235693551847968A0003AD8E /* add_event_icon.png in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,
 				76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */,
 				76318B2B17E09A69000BC88B /* Default.png in Resources */,
+				23DFECD7184C85E700CC7D3D /* feed_background_image.png in Resources */,
+				232442A718546BC5008930EA /* settings_icon.png in Resources */,
 				76318B2C17E09A69000BC88B /* Default@2x.png in Resources */,
 				7662F74417F075F400B64E40 /* LoginMainSignInView.xib in Resources */,
+				23A15CD51855BF9700B12865 /* notification_btn.png in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,
@@ -2894,6 +3055,7 @@
 				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
 				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
 				942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */,
+				23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
 				769AB91D17DF51160033E677 /* PedingEventViewController.m in Sources */,
 				3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */,
@@ -2921,11 +3083,11 @@
 				769ABA9F17DF51EC0033E677 /* navigationNotifyCellBg.m in Sources */,
 				769ABAA017DF51EC0033E677 /* navigationNotifyDataSource.m in Sources */,
 				34B1F1A817F8FCE200AA5C97 /* NotificaitonViewController.m in Sources */,
-				3456A3061848D0CA008A8653 /* LocationChangedViewController.m in Sources */,
 				769ABAA117DF51EC0033E677 /* navigationNotifySectionHeader.m in Sources */,
 				769ABAA317DF51EC0033E677 /* RootNavContrller.m in Sources */,
 				769ABB0B17DF52090033E677 /* AddDateTypeView.m in Sources */,
 				769ABB0D17DF52090033E677 /* AddEventDateViewController.m in Sources */,
+				2345850D1853688100086FB3 /* BLRView.m in Sources */,
 				769ABB0E17DF52090033E677 /* CustomPickerCell.m in Sources */,
 				76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */,
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
@@ -2933,6 +3095,7 @@
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
 				76591A9317FFB12900DE3AB2 /* AddEventInvitePeopleCell.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
+				234585101853688100086FB3 /* UIStopWatch.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
 				769ABB1317DF52090033E677 /* TimePicker.m in Sources */,
 				3D5A3C9E181E3506000AED71 /* FeedEventEntity.m in Sources */,
@@ -2944,6 +3107,7 @@
 				769ABB1E17DF52090033E677 /* AddEventViewController.m in Sources */,
 				766C709818121DE400C5F42A /* EventDetailCommentLoadMoreView.m in Sources */,
 				769ABB2317DF52090033E677 /* EventDetailCommentConformedView.m in Sources */,
+				2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */,
 				769ABB2517DF52090033E677 /* EventDetailCommentConformView.m in Sources */,
 				769ABB2717DF52090033E677 /* EventDetailCommentContentView.m in Sources */,
 				769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */,
@@ -2999,6 +3163,7 @@
 				769ABC9117DF542A0033E677 /* User.m in Sources */,
 				769ABC9217DF542A0033E677 /* UserModel.m in Sources */,
 				769ABC9317DF542A0033E677 /* UserProfile.m in Sources */,
+				23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */,
 				769ABC9417DF542A0033E677 /* UserSetting.m in Sources */,
 				7662F74517F075F400B64E40 /* LoginMainTitileView.m in Sources */,
 				769ABC9517DF542A0033E677 /* Utils.m in Sources */,
@@ -3020,6 +3185,7 @@
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				34B1F1A617F8FCE200AA5C97 /* LegalViewController.m in Sources */,
 				3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */,
+				234DAFAC18560AF500558B4A /* KalActionsView.m in Sources */,
 				76431E011806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.m in Sources */,
 				34B1F1D117F8FCE200AA5C97 /* UIView+LoadFromNib.m in Sources */,
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
@@ -3051,7 +3217,6 @@
 				76431E091806F6BD009DAFFE /* EventNavigationBar.m in Sources */,
 				76591A9517FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
-				3456A30B1848D590008A8653 /* SelectCountryViewController.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
@@ -3059,10 +3224,12 @@
 				769ABD3C17DF54950033E677 /* KalGridView.m in Sources */,
 				769ABD3D17DF54950033E677 /* KalMonthNameView.m in Sources */,
 				769ABD3E17DF54950033E677 /* KalMonthView.m in Sources */,
+				234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */,
 				3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */,
 				769ABD3F17DF54950033E677 /* KalTileView.m in Sources */,
 				769ABD4017DF54950033E677 /* KalView.m in Sources */,
 				34B1F1CF17F8FCE200AA5C97 /* SettingsContentView.m in Sources */,
+				23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */,
 				769ABD4117DF54950033E677 /* KalWeekGridView.m in Sources */,
 				3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */,
 				769ABD4217DF54950033E677 /* KalWeekView.m in Sources */,
@@ -3070,6 +3237,7 @@
 				769ABD4417DF54950033E677 /* CustomerIndicatorView.m in Sources */,
 				769ABD4517DF54950033E677 /* CustomSwitch.m in Sources */,
 				769ABD4817DF54950033E677 /* GPlaceApi.m in Sources */,
+				2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */,
 				769ABD4917DF54950033E677 /* GPlaceDataSource.m in Sources */,
 				76A457EA183CEBAC002127D1 /* SharePhotoFacebook.m in Sources */,
 				3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */,
@@ -3194,7 +3362,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3213,8 +3382,10 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3232,7 +3403,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3244,8 +3416,10 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3255,8 +3429,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3271,10 +3445,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3283,8 +3458,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc. (GGN58EVK65)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3299,10 +3474,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "88594C7E-4E22-41E5-8EC8-B19B26C90D51";
+				PROVISIONING_PROFILE = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F0BFC84-F01C-4F8A-84E4-BC52ECBA5EF2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

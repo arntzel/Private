@@ -8,6 +8,7 @@
 #import "KalDate.h"
 #import "KalPrivate.h"
 #import "KalMonthNameView.h"
+#import "DKLiveBlurView.h"
 
 #define SLIDE_NONE 0
 #define SLIDE_LEFT 1
@@ -31,9 +32,14 @@ extern const CGSize kTileSize;
 
 - (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate
 {
+    return  [self initWithFrame:frame logic:theLogic delegate:theDelegate viewDelegate:nil];
+}
+
+- (id)initWithFrame:(CGRect)frame logic:(KalLogic *)theLogic delegate:(id<KalGridViewDelegate>)theDelegate viewDelegate:(id<KalViewDelegate>)delegate2;
+{
     frame.size.width = 7 * kTileSize.width;
     
-  
+    
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = YES;
         [self setBackgroundColor:[UIColor clearColor]];
@@ -41,21 +47,24 @@ extern const CGSize kTileSize;
         enableMonthChange = YES;
         logic = [theLogic retain];
         delegate = theDelegate;
-      
+        
         CGRect monthRect = CGRectMake(0.f, 0.f, frame.size.width, frame.size.height);
-        frontMonthView = [[KalMonthView alloc] initWithFrame:monthRect];
-        backMonthView = [[KalMonthView alloc] initWithFrame:monthRect];
+        frontMonthView = [[KalMonthView alloc] initWithFrame:monthRect withDelegate:delegate2];
+        backMonthView = [[KalMonthView alloc] initWithFrame:monthRect withDelegate:delegate2];
         [self addSubview:backMonthView];
         [self addSubview:frontMonthView];
-
+        
         [self jumpToSelectedMonth];
         [self addUISwipGestureRecognizer:self];
         
         monthNameView = [[KalMonthNameView alloc] initWithFrame:CGRectZero];
         [self addSubview:monthNameView];
     }
-  
+    
     return self;
+//    self = [self initWithFrame:theframe logic:thelogic delegate:thedelegate];
+//    viewDelegate = delegate2;
+//    return self;
 }
 
 -(void)addUISwipGestureRecognizer:(UIView *)view {    

@@ -41,7 +41,6 @@
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     application.applicationIconBadgeNumber = 0;
-    [UIApplication sharedApplication].statusBarHidden = YES;
 
     
     [GMSServices provideAPIKey:(NSString *)googleAPIKey];
