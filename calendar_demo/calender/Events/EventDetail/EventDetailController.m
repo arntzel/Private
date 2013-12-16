@@ -588,7 +588,7 @@
 
 - (NSMutableDictionary *)msgToFacebook
 {
-    NSString *msg = [NSString stringWithFormat:@"here write facebook status"];
+    NSString *msg = [NSString stringWithFormat:@""];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:msg forKey:@"text"];
@@ -613,7 +613,7 @@
     fbController.completionHandler = fbBlock;
 
     NSURL *url = [NSURL URLWithString:@"calvinapp.com"];
-    [fbController setInitialText:@"here write facebook status"];
+    [fbController setInitialText:@""];
 //    UIImage *image = [UIImage imageNamed:@"Icon@2x.png"];
 //    [fbController addImage:image];
     [fbController addURL:url];
@@ -681,7 +681,7 @@
     NSData *imageData = UIImagePNGRepresentation(addPic);
     [mailController addAttachmentData: imageData mimeType: @"" fileName: @"123.jpg"];
     
-    NSString *emailBody = @"here write email body";
+    NSString *emailBody = @"";
     [mailController setMessageBody:emailBody isHTML:YES];
     
     [self presentViewController:mailController animated:YES completion:nil];
