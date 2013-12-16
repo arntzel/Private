@@ -164,6 +164,22 @@
         if(error == 0) {
             self.event = evt;
 
+            //if a date is in the past, it should automatically be removed if it's in the pending section
+            if(!self.event.confirmed) {
+                NSMutableArray * times = [[NSMutableArray alloc] init];
+                
+                NSDate * current = [NSDate date];
+                current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
+                
+                for (ProposeStart* proposeStart in  self.event.propose_starts) {
+                    if([proposeStart.start compare:current] > 0) {
+                        [times addObject:proposeStart];
+                    }
+                }
+                
+                self.event.propose_starts = times;
+            }
+            
             //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
 
             [self configViews];
