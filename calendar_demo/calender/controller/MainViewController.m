@@ -104,6 +104,11 @@
 -(void)onBtnMenuClick {
     [self showLeftController:YES];
 }
+-(void)onBtnCalendarClick
+{
+    //self show
+    [self onLogoButtonTyped];
+}
 
 
 

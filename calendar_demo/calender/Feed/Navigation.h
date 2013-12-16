@@ -2,6 +2,12 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum
+{
+    FEED_PENDING,  //add add invite
+    ACCOUNT_SETTING  //detail add invite
+} ViewMode;
 /*
  The Customer Navigation View, contain a left button , right button and a title lable
  */
@@ -18,6 +24,6 @@
  */
 +(Navigation *) createNavigationView;
 
--(void)setUpMainNavigationButtons;
+-(void)setUpMainNavigationButtons:(ViewMode)mode;
 
 @end

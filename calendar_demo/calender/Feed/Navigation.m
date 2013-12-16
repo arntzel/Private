@@ -28,7 +28,7 @@
     self.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
 }
 
--(void)setUpMainNavigationButtons
+-(void)setUpMainNavigationButtons:(ViewMode)mode
 {
     UIEdgeInsets insets = UIEdgeInsetsMake(10, 12, 10, 0);
     UIImage *bgImage = [UIImage imageNamed:@"notification_btn.png"];
@@ -36,10 +36,17 @@
     [self.leftBtn setImage:bgImage forState:UIControlStateNormal];
     [self.leftBtn setImageEdgeInsets:insets];
     
-    UIEdgeInsets insets2 = UIEdgeInsetsMake(0, 10, 10, 10);
-    UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon.png"];
-    rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
-    [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];
+    if (mode == FEED_PENDING) {
+        UIEdgeInsets insets2 = UIEdgeInsetsMake(0, 10, 10, 10);
+        UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon.png"];
+        rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
+        [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];
+    } else if (mode == ACCOUNT_SETTING) {
+        CGRect btnFrame = CGRectMake(230, 32, 80, 20);
+        self.rightBtn.frame = btnFrame;
+        [self.rightBtn setTitle:@"Calendars" forState:UIControlStateNormal];
+    }
+    
 }
 
 +(Navigation *) createNavigationView

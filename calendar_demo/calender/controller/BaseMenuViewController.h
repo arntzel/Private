@@ -8,6 +8,7 @@
 @protocol BaseMenuViewControllerDelegate <NSObject>
 
 -(void)onBtnMenuClick;
+-(void)onBtnCalendarClick;
 
 @end
 
