@@ -58,6 +58,12 @@
 - (IBAction)btnSignUpClick:(id)sender {
     
     if( ![Utils isValidateEmail:self.textEmail.text]) {
+        [Utils showUIAlertView:@"" andMessage:@"Email is invalided!"];
+        return;
+    }
+    
+    if( self.textPassword.text == nil || self.textPassword.text.length ==0) {
+        [Utils showUIAlertView:@"" andMessage:@"Password is empty!"];
         return;
     }
     
@@ -104,11 +110,12 @@
 
 - (void) textFieldDidChange:(UITextField *) TextField
 {
-    if ([Utils isValidateEmail:TextField.text]) {
-        TextField.textColor = [UIColor blackColor];
-    } else {
-        TextField.textColor = [UIColor redColor];
-    }
+//    if ([Utils isValidateEmail:TextField.text]) {
+//        TextField.textColor = [UIColor blackColor];
+//    } else {
+//        TextField.textColor = [UIColor redColor];
+//    }
+    
 }
 
 #pragma mark Add Photo
