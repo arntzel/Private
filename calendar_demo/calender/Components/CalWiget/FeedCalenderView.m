@@ -84,15 +84,32 @@ extern const CGSize kTileSize;
     [eventScrollView setContentSize:self.filterView.frame.size];
 }
 
-
--(void)onSetToFilterMode
+-(void)onShowCalendar
 {
-    [self animationWithBlock:^{
-        [self setFrameToFilterMode];
-    } Completion:^{
-        kalMode = FILTER_MODE;
-    }];
+    if (kalMode != FILTER_MODE) {
+        [self animationWithBlock:^{
+            [self setFrameToFilterMode];
+        } Completion:^{
+            kalMode = FILTER_MODE;
+        }];
+    } else {
+        [self animationWithBlock:^{
+            [self setFrameToMonthMode];
+        } Completion:^{
+            kalMode = MONTH_MODE;
+        }];
+    }
+    
 }
+
+//-(void)onSetToFilterMode
+//{
+//    [self animationWithBlock:^{
+//        [self setFrameToFilterMode];
+//    } Completion:^{
+//        kalMode = FILTER_MODE;
+//    }];
+//}
 
 - (void)setFrameToWeekMode
 {

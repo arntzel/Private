@@ -7,11 +7,11 @@
  */
 @interface Navigation : UIView
 
-@property IBOutlet UILabel * titleLable;
-@property IBOutlet UIButton * leftBtn;
-@property IBOutlet UIButton * rightBtn;
-@property IBOutlet UISegmentedControl *calPendingSegment;
-@property IBOutlet UILabel * unreadCount;
+@property (strong) IBOutlet UILabel * titleLable;
+@property (strong) IBOutlet UIButton * leftBtn;
+@property (strong) IBOutlet UIButton * rightBtn;
+@property (strong) IBOutlet UISegmentedControl *calPendingSegment;
+@property (strong) IBOutlet UILabel * unreadCount;
 /*
  Create a default Navigation View
  Please set the title, left btn and right btn style after the view created.
