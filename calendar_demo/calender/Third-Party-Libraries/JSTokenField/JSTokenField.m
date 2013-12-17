@@ -76,6 +76,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     [_textField setBackground:nil];
     [_textField setBackgroundColor:[UIColor clearColor]];
     [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    [_textField setAutocorrectionType:UITextAutocorrectionTypeNo];
     
     //		[_textField.layer setBorderColor:[[UIColor redColor] CGColor]];
     //		[_textField.layer setBorderWidth:1.0];
@@ -352,6 +353,16 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 		}
 		return NO;
 	}
+    else if([string isEqualToString:@" "])
+    {
+        NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if(![textStr isEqualToString:@""])
+        {
+            if ([self.delegate respondsToSelector:@selector(tokenFieldShouldReturn:)]) {
+                return [self.delegate tokenFieldShouldReturn:self];
+            }
+        }
+    }
 	
 	return YES;
 }
