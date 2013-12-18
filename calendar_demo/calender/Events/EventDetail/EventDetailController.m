@@ -550,10 +550,13 @@
         [self hideIndicatorView];
         
         if(error == 0) {
-            atd.status = -1;
-            atd.modified = [Utils convertGMTDate:[NSDate date]];
-            [self updateUIByEvent];
-            [self layOutSubViews];
+            //atd.status = -1;
+            //atd.modified = [Utils convertGMTDate:[NSDate date]];
+            //[self updateUIByEvent];
+            //[self layOutSubViews];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }
