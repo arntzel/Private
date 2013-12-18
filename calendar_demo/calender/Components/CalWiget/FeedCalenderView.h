@@ -14,7 +14,7 @@
 //@protocol FeedViewControllerDelegate;
 @protocol FeedCalendarViewDelegate <NSObject>
 
--(void)onSetToFilterMode;
+-(void)onShowCalendar;
 
 @end
 @interface FeedCalenderView : UIView <FeedCalendarViewDelegate>

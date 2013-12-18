@@ -69,11 +69,12 @@
 #pragma mark - Layout Helper
 - (void)setupViews
 {
-    [self.navigation setUpMainNavigationButtons];
-    self.navigation.rightBtn.hidden = YES;
+    [self.navigation setUpMainNavigationButtons:ACCOUNT_SETTING];
+    //self.navigation.rightBtn.hidden = YES;
     self.navigation.titleLable.text = @"Accounts & Settings";
     
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigation.rightBtn addTarget:self action:@selector(btnCalendar:) forControlEvents:UIControlEventTouchUpInside];
     
     
     float scrollerY = CGRectGetMaxY(self.navigation.frame);
@@ -177,6 +178,13 @@
     if(self.delegate != nil) {
         
         [self.delegate onBtnMenuClick];
+    }
+}
+
+- (void)btnCalendar:(id)sender
+{
+    if(self.delegate != nil) {
+        [self.delegate onBtnCalendarClick];
     }
 }
 
