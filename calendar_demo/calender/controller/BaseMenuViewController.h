@@ -8,13 +8,14 @@
 @protocol BaseMenuViewControllerDelegate <NSObject>
 
 -(void)onBtnMenuClick;
+-(void)onBtnCalendarClick;
 
 @end
 
 
 @interface BaseMenuViewController : BaseUIViewController
 
-@property Navigation * navigation;
+@property (strong) Navigation * navigation;
 
 @property(weak) id<BaseMenuViewControllerDelegate> delegate;
 

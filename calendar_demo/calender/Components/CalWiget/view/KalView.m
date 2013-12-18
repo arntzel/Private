@@ -94,7 +94,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 -(void)showCalendar
 {
-    [calendarDelegate onSetToFilterMode];
+    [calendarDelegate onShowCalendar];
 }
 
 
