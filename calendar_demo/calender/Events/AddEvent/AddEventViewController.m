@@ -350,11 +350,24 @@
         return;
     }
     
-    ProposeStart *tempEventDate = [[ProposeStart alloc] init];
-    tempEventDate.duration_hours = 1;
-    tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
-    tempEventDate.start_type = START_TYPEEXACTLYAT;
-    [tempEventDate convertMinToQuarterMode];
+    NSArray * times = [timesView getEventDates];
+    
+    ProposeStart * tempEventDate = [[ProposeStart alloc] init];
+    
+    if(times.count == 0) {
+        tempEventDate.duration_hours = 1;
+        tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
+        tempEventDate.start_type = START_TYPEEXACTLYAT;
+        [tempEventDate convertMinToQuarterMode];
+        
+    } else {
+        
+        ProposeStart * time  = [times lastObject];
+        tempEventDate.duration_hours = time.duration_days;
+        tempEventDate.start = time.start;
+        tempEventDate.start_type = time.start_type;
+    }
+    
     
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
