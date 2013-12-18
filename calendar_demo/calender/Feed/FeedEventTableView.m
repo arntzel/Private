@@ -295,7 +295,7 @@
     CGRect frame = CGRectMake(0, 0, 320, 36);
 
     UIView * view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.03]];
+    [view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:0.9]];
 //    UIImageView * bg = [[UIImageView alloc] initWithFrame:frame];
 //    bg.image = [UIImage imageNamed:@"bg_section_header"];
 //    [view addSubview:bg];
