@@ -91,6 +91,14 @@
 //    }
 }
 
+- (void)showFinalizedFlag
+{
+    [self.finalizedTick setHidden:NO];
+    [self.finalizedLabel setHidden:NO];
+    CGRect timeFrame = self.eventTimeLabel.frame;
+    timeFrame.origin.y = 8;
+    [self.eventTimeLabel setFrame:timeFrame];
+}
 
 - (void)setTicked
 {

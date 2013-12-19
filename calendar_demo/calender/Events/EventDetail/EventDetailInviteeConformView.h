@@ -23,12 +23,18 @@
 @property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *timeLabelButton;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *finalizedTick;
+@property (retain, nonatomic) IBOutlet UILabel *finalizedLabel;
+
+
 
 - (IBAction)tickBtnClick:(id)sender;
 - (IBAction)crossBtnClick:(id)sender;
 
 - (void)setTicked;
 - (void)setCrossed;
+
+- (void)showFinalizedFlag;
 
 - (void)setTime:(NSString *)time;
 - (void)setConflictCount:(NSInteger)count;
