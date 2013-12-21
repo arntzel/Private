@@ -330,7 +330,7 @@
     
     [self showIndicatorView:YES];
     
-    [[Model getInstance] createVote:eventTime.id andVoteStatus:status andCallback:^(NSInteger error) {
+    [[Model getInstance] createVote:eventTime.id andVoteStatus:status andCallback:^(NSInteger error, int voteID) {
         
         [self showIndicatorView:NO];
         
@@ -342,6 +342,7 @@
                     NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
                     
                     EventTimeVote * vote = [[EventTimeVote alloc] init];
+                    vote.id = voteID;
                     vote.email = [[UserModel getInstance] getLoginUser].email;
                     vote.status = status;
                     
