@@ -36,6 +36,7 @@
 #import "LoginAccountStore.h"
 #import "SettingsModel.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
@@ -575,6 +576,8 @@
             //atd.modified = [Utils convertGMTDate:[NSDate date]];
             //[self updateUIByEvent];
             //[self layOutSubViews];
+            
+            [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             
             [self.navigationController popViewControllerAnimated:YES];
             
