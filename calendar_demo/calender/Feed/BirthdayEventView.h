@@ -10,6 +10,7 @@
 
 @property IBOutlet UILabel * labTitle;
 @property IBOutlet UIImageView * imgUser;
+@property (weak, nonatomic) IBOutlet UILabel *labTime;
 @property IBOutlet UIImageView * imgEventType;
 /*
  Update the date in the View
