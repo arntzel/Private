@@ -36,6 +36,7 @@
 #import "LoginAccountStore.h"
 #import "SettingsModel.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
@@ -447,11 +448,32 @@
         return;
     }
     
-    ProposeStart *tempEventDate = [[ProposeStart alloc] init];
-    tempEventDate.duration_hours = 1;
-    tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
-    tempEventDate.start_type = START_TYPEEXACTLYAT;
-    [tempEventDate convertMinToQuarterMode];
+    ProposeStart * tempEventDate = [[ProposeStart alloc] init];
+    
+    if(event.propose_starts.count == 0) {
+        tempEventDate.duration_hours = 1;
+        tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
+        tempEventDate.start_type = START_TYPEEXACTLYAT;
+        [tempEventDate convertMinToQuarterMode];
+        
+    } else {
+        
+        ProposeStart * time  = [event.propose_starts lastObject];
+        
+        tempEventDate.duration_minutes = time.duration_minutes;
+        tempEventDate.duration_hours = time.duration_hours;
+        tempEventDate.duration_days = time.duration_days;
+        tempEventDate.is_all_day = time.is_all_day;
+        tempEventDate.start = time.start;
+        tempEventDate.start_type = time.start_type;
+    }
+
+    
+//    ProposeStart *tempEventDate = [[ProposeStart alloc] init];
+//    tempEventDate.duration_hours = 1;
+//    tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
+//    tempEventDate.start_type = START_TYPEEXACTLYAT;
+//    [tempEventDate convertMinToQuarterMode];
     
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
@@ -550,10 +572,15 @@
         [self hideIndicatorView];
         
         if(error == 0) {
-            atd.status = -1;
-            atd.modified = [Utils convertGMTDate:[NSDate date]];
-            [self updateUIByEvent];
-            [self layOutSubViews];
+            //atd.status = -1;
+            //atd.modified = [Utils convertGMTDate:[NSDate date]];
+            //[self updateUIByEvent];
+            //[self layOutSubViews];
+            
+            [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }

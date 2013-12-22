@@ -23,4 +23,6 @@
 
 @property(retain, nonatomic) Location * location;
 
+
+
 @end

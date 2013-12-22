@@ -72,12 +72,12 @@
 
 -(void) addFinalzeView
 {
-    if(_eventTime.finalized == 1) {
-
-       [self addFinalView];
-
-    } else {
-        
+    if(_eventTime.finalized == 1)
+    {
+        [self addConformedFinalzeView];
+    }
+    else
+    {
         finailzeView = [[EventDetailFinailzeView creatView] retain];
         [finailzeView updateView:_eventTime];
         [finailzeView setConflictCount:[self getConfilictEventCount]];
@@ -90,6 +90,26 @@
     }
 }
 
+-(void) addConformedFinalzeView
+{
+    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatView];
+    CGRect frame = view.frame;
+    frame.origin.x = 7;
+    frame.origin.y = 7;
+    view.frame = frame;
+    
+    view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
+    view.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:view.eventTimeLabel.attributedText];
+    view.eventTimeLabel.centerVertically = YES;
+    
+    [self addSubview:view];
+    
+    
+    UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
+    [view.eventTimeBtn addGestureRecognizer:tapGestureTel];
+    [tapGestureTel release];
+}
+
 
 
 -(NSInteger) getConfilictEventCount
@@ -97,6 +117,10 @@
     NSDate * start = _eventTime.start;
     NSDate * end = [_eventTime getEndTime];
     int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
+    if (count > 0) {
+        //need to fix
+        count--;
+    }
     return count;
 }
 
@@ -187,12 +211,22 @@
 
 - (void)addConformView:(Event *)event
 {
-    if(_eventTime.finalized == 1) {
-
-        [self addFinalView];
-        
-    } else {
-
+    User * me = [[UserModel getInstance] getLoginUser];
+    NSString * userEmail = me.email;
+    BOOL voted = NO;
+    for(EventTimeVote * vote in _eventTime.votes) {
+        if([userEmail isEqualToString:vote.email]) {
+            voted = YES;
+            break;
+        }
+    }
+    
+    if(_eventTime.finalized == 1 && voted)
+    {
+        [self addConformedFinalzeView];
+    }
+    else
+    {
         conformView = [[EventDetailInviteeConformView creatView] retain];
 
         CGRect frame = conformView.frame;
@@ -230,7 +264,10 @@
             conformView.crossedbtn.userInteractionEnabled = NO;
             conformView.alpha = ALPHA;
         }
-        
+        if (_eventTime.finalized == 1)
+        {
+            [conformView showFinalizedFlag];
+        }
         
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
                 
@@ -238,28 +275,6 @@
         [conformView.timeLabelButton addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
     }    
-}
-
-
-
--(void) addFinalView
-{
-    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatView];
-    CGRect frame = view.frame;
-    frame.origin.x = 7;
-    frame.origin.y = 7;
-    view.frame = frame;
-
-    view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
-    view.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:view.eventTimeLabel.attributedText];
-    view.eventTimeLabel.centerVertically = YES;
-    
-    [self addSubview:view];
-
-
-    UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
-    [view.eventTimeBtn addGestureRecognizer:tapGestureTel];
-    [tapGestureTel release];
 }
 
 -(void) onEventTimtVoteAgree
