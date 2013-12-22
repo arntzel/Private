@@ -51,7 +51,7 @@ extern const CGSize kTileSize;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate controllerDelegate:self.controllerDelegate logic:theLogic selectedDate:_selectedDate];
+        kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate controllerDelegate:self.controllerDelegate logic:theLogic selectedDate:_selectedDate hideActionBar:NO];
         [kalView swapToWeekMode];
         kalMode = WEEK_MODE;
         kalView.calendarDelegate = self;
