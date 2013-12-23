@@ -123,7 +123,7 @@
     }
 
     headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:nil andCountLimit:3 ShowArraw:NO];
-    [headerListView setCenter:CGPointMake(self.frame.size.width / 2, 38)];
+    [headerListView setCenter:CGPointMake(self.frame.size.width / 2, 50)];
     [self addSubview:headerListView];
     
     [urls release];

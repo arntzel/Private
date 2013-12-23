@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231319741867253400F076C7 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319721867253400F076C7 /* arrow.png */; };
+		231319751867253400F076C7 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319731867253400F076C7 /* arrow@2x.png */; };
+		231319781867257C00F076C7 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319761867257C00F076C7 /* circle.png */; };
+		231319791867257C00F076C7 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319771867257C00F076C7 /* circle@2x.png */; };
+		2313197C1867271A00F076C7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197A1867271A00F076C7 /* people.png */; };
+		2313197D1867271A00F076C7 /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197B1867271A00F076C7 /* people@2x.png */; };
+		23131980186727DA00F076C7 /* arr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197E186727DA00F076C7 /* arr.png */; };
+		23131981186727DA00F076C7 /* arr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197F186727DA00F076C7 /* arr@2x.png */; };
 		232442A318546BC5008930EA /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429D18546BC5008930EA /* add_icon.png */; };
 		232442A418546BC5008930EA /* add_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429E18546BC5008930EA /* add_icon@2x.png */; };
 		232442A518546BC5008930EA /* Calvin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429F18546BC5008930EA /* Calvin_logo.png */; };
@@ -514,6 +522,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231319721867253400F076C7 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		231319731867253400F076C7 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		231319761867257C00F076C7 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		231319771867257C00F076C7 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
+		2313197A1867271A00F076C7 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
+		2313197B1867271A00F076C7 /* people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people@2x.png"; sourceTree = "<group>"; };
+		2313197E186727DA00F076C7 /* arr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arr.png; sourceTree = "<group>"; };
+		2313197F186727DA00F076C7 /* arr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arr@2x.png"; sourceTree = "<group>"; };
 		2324429D18546BC5008930EA /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
 		2324429E18546BC5008930EA /* add_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_icon@2x.png"; sourceTree = "<group>"; };
 		2324429F18546BC5008930EA /* Calvin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calvin_logo.png; sourceTree = "<group>"; };
@@ -1782,6 +1798,10 @@
 		769AB93417DF51340033E677 /* event_detail_invite_place */ = {
 			isa = PBXGroup;
 			children = (
+				2313197E186727DA00F076C7 /* arr.png */,
+				2313197F186727DA00F076C7 /* arr@2x.png */,
+				2313197A1867271A00F076C7 /* people.png */,
+				2313197B1867271A00F076C7 /* people@2x.png */,
 				769AB93717DF51340033E677 /* event_detail_invite_icon.png */,
 				769AB93817DF51340033E677 /* event_detail_place_icon.png */,
 			);
@@ -1845,6 +1865,10 @@
 		769AB95917DF51340033E677 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				231319761867257C00F076C7 /* circle.png */,
+				231319771867257C00F076C7 /* circle@2x.png */,
+				231319721867253400F076C7 /* arrow.png */,
+				231319731867253400F076C7 /* arrow@2x.png */,
 				76431DFD1806E7D7009DAFFE /* event_detail_nav_back_white.png */,
 				769AB95A17DF51340033E677 /* event_detail_nav_back.png */,
 				769AB95B17DF51340033E677 /* event_detail_nav_more.png */,
@@ -2767,6 +2791,7 @@
 			files = (
 				769AB8FD17DF50660033E677 /* GooglePlus.bundle in Resources */,
 				769AB90817DF50F20033E677 /* GoogleMaps.bundle in Resources */,
+				2313197C1867271A00F076C7 /* people.png in Resources */,
 				34B1F1A917F8FCE200AA5C97 /* NotificaitonViewController.xib in Resources */,
 				23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */,
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
@@ -2802,6 +2827,7 @@
 				769AB9AE17DF51340033E677 /* event_detail_random_header8.png in Resources */,
 				765B24FD1802965D00B01A0A /* tokenHighlighted.png in Resources */,
 				769AB9AF17DF51340033E677 /* header1.jpg in Resources */,
+				231319781867257C00F076C7 /* circle.png in Resources */,
 				769AB9B017DF51340033E677 /* header10.jpg in Resources */,
 				769AB9B117DF51340033E677 /* header2.jpg in Resources */,
 				34B1F1B117F8FCE200AA5C97 /* settings_detail_full_circle@2x.png in Resources */,
@@ -2840,6 +2866,7 @@
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
 				769AB9C417DF51340033E677 /* event_detail_nav_back.png in Resources */,
 				76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */,
+				231319791867257C00F076C7 /* circle@2x.png in Resources */,
 				769AB9C517DF51340033E677 /* event_detail_nav_more.png in Resources */,
 				769AB9D217DF51340033E677 /* arrow.png in Resources */,
 				769AB9D317DF51340033E677 /* arrow_right.png in Resources */,
@@ -2861,6 +2888,7 @@
 				34B1F1A717F8FCE200AA5C97 /* LegalViewController.xib in Resources */,
 				769AB9DB17DF51340033E677 /* btn_login@2x.png in Resources */,
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
+				2313197D1867271A00F076C7 /* people@2x.png in Resources */,
 				769AB9DD17DF51340033E677 /* btn_login_google@2x.png in Resources */,
 				769AB9DE17DF51340033E677 /* btn_menu@2x.png in Resources */,
 				9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */,
@@ -2868,11 +2896,13 @@
 				769AB9E017DF51340033E677 /* btn_ok_selected@2x.png in Resources */,
 				7662F75517F0761900B64E40 /* login_main_singnup_account_bg.png in Resources */,
 				769AB9E117DF51340033E677 /* calvin@2x.png in Resources */,
+				231319741867253400F076C7 /* arrow.png in Resources */,
 				769AB9E217DF51340033E677 /* circle.png in Resources */,
 				769AB9E317DF51340033E677 /* circle2.png in Resources */,
 				769AB9E417DF51340033E677 /* clock.png in Resources */,
 				7662F74617F075F400B64E40 /* LoginMainTitileView.xib in Resources */,
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
+				23131981186727DA00F076C7 /* arr@2x.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
 				769AB9E617DF51340033E677 /* colordot2.png in Resources */,
 				23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */,
@@ -2889,6 +2919,7 @@
 				76591A9617FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
 				769AB9EE17DF51340033E677 /* google@2x.png in Resources */,
+				23131980186727DA00F076C7 /* arr.png in Resources */,
 				769AB9EF17DF51340033E677 /* header.png in Resources */,
 				769AB9F017DF51340033E677 /* header_mask.png in Resources */,
 				769AB9F117DF51340033E677 /* location.png in Resources */,
@@ -2932,6 +2963,7 @@
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
 				23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */,
+				231319751867253400F076C7 /* arrow@2x.png in Resources */,
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
