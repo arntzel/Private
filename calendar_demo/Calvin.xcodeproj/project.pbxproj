@@ -38,6 +38,8 @@
 		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
 		23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */; };
 		23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B16DE61859A32000650A54 /* libOHAttributedLabel.a */; };
+		23B870FE1868684300F7F62F /* anchal.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FC1868684300F7F62F /* anchal.png */; };
+		23B870FF1868684300F7F62F /* anchal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FD1868684300F7F62F /* anchal@2x.png */; };
 		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
 		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
 		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
@@ -568,6 +570,8 @@
 		23B16DE41859A32000650A54 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
 		23B16DE51859A32000650A54 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
 		23B16DE61859A32000650A54 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOHAttributedLabel.a; sourceTree = "<group>"; };
+		23B870FC1868684300F7F62F /* anchal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anchal.png; sourceTree = "<group>"; };
+		23B870FD1868684300F7F62F /* anchal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anchal@2x.png"; sourceTree = "<group>"; };
 		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
@@ -1798,6 +1802,8 @@
 		769AB93417DF51340033E677 /* event_detail_invite_place */ = {
 			isa = PBXGroup;
 			children = (
+				23B870FC1868684300F7F62F /* anchal.png */,
+				23B870FD1868684300F7F62F /* anchal@2x.png */,
 				2313197E186727DA00F076C7 /* arr.png */,
 				2313197F186727DA00F076C7 /* arr@2x.png */,
 				2313197A1867271A00F076C7 /* people.png */,
@@ -2821,6 +2827,7 @@
 				34B1F1AE17F8FCE200AA5C97 /* settings_detail_empty_circle.png in Resources */,
 				769AB9A917DF51340033E677 /* event_detail_random_header3.png in Resources */,
 				769AB9AA17DF51340033E677 /* event_detail_random_header4.png in Resources */,
+				23B870FE1868684300F7F62F /* anchal.png in Resources */,
 				769AB9AB17DF51340033E677 /* event_detail_random_header5.png in Resources */,
 				769AB9AC17DF51340033E677 /* event_detail_random_header6.png in Resources */,
 				769AB9AD17DF51340033E677 /* event_detail_random_header7.png in Resources */,
@@ -2915,6 +2922,7 @@
 				34B1F1B317F8FCE200AA5C97 /* settings_detail_noti_back@2x.png in Resources */,
 				769AB9EB17DF51340033E677 /* dot.png in Resources */,
 				34B1F1C517F8FCE200AA5C97 /* settings_main_one_row@2x.png in Resources */,
+				23B870FF1868684300F7F62F /* anchal@2x.png in Resources */,
 				769AB9EC17DF51340033E677 /* email@2x.png in Resources */,
 				76591A9617FFB12900DE3AB2 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
