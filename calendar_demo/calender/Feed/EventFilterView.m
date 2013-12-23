@@ -134,9 +134,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      EventTypeItem *item = [eventTypeItems objectAtIndex:indexPath.row];
-    item.select = !item.select;
+    if (item.eventType == 5)
+    {
+        if ([self.filterDelegate respondsToSelector:@selector(showSubiCalSettings:)])
+        {
+            
+            [self.filterDelegate showSubiCalSettings:indexPath.row];
+        }
+    }
+    else
+    {
+        item.select = !item.select;
+        [self onFilterChanged];
+    }
     
-    [self onFilterChanged];
 }
 
 -(void) onFilterChanged
@@ -149,9 +160,7 @@
             filters |=  (0x00000001 << eventTypeItem.eventType);
         }
     }
-    
     [self.filterDelegate onFilterChanged:filters];
-    
     [self reloadData];
 
 }
@@ -167,4 +176,10 @@
     [self reloadData];
 }
 
+-(void)changeiCalEventTypeItem:(int)row isSelect:(BOOL)yesOrNo
+{
+    EventTypeItem *item = [eventTypeItems objectAtIndex:row];
+    item.select = yesOrNo;
+    [self onFilterChanged];
+}
 @end
