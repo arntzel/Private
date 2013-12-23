@@ -190,7 +190,13 @@ static NSTimeZone * userTimeZone;
         return @"Yestoday";
     }
     
-    return day;
+    NSDate *date = [self parseNSStringDay:day];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"EEEE,MMM d"];
+    
+    return [dateFormatter stringFromDate:date];
 }
 
 +(NSString *) formateDate: (NSDate *) time andTimezone:(NSTimeZone *) timezone

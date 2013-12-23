@@ -74,6 +74,7 @@
     if ([FBSession activeSession].state != FBSessionStateCreated) {
         // Create a new, logged out session.
         NSArray *permissions = [NSArray arrayWithObjects:
+                                @"email",
                                 @"user_likes",
                                 @"publish_actions",
                                 @"publish_stream",

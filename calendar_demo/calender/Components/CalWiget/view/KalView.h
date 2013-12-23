@@ -23,16 +23,21 @@
     id<FeedCalendarViewDelegate> calendarDelegate;
     KalLogic *logic;
     
+    BOOL hideActionBar;
+    
     NSInteger KalMode;
 }
 @property (nonatomic, assign) NSInteger KalMode;
+@property (nonatomic, assign) BOOL hideActionBar;
 @property (nonatomic, assign) NSObject<KalViewDelegate> *delegate;
 @property (nonatomic, assign) id<FeedViewControllerDelegate> controllerDelegate;
 @property (nonatomic, assign) id<FeedCalendarViewDelegate> calendarDelegate;
 
-- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>) theCtrlDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate;
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>) theCtrlDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate hideActionBar:(BOOL)hidden;
 
-- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate;
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)logic selectedDate:(KalDate*)_selectedDate hideActionBar:(BOOL)hidden;
+
+//- (void)setActionBarHidden:(BOOL)hidden;
 
 - (void)swapToWeekMode;
 - (void)swapToMonthMode;

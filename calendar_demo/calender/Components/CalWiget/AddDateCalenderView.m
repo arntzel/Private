@@ -31,7 +31,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        kalView = [[KalView alloc] initWithFrame:self.bounds delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+        kalView = [[KalView alloc] initWithFrame:self.bounds delegate:theDelegate logic:theLogic selectedDate:_selectedDate hideActionBar:YES];
+        //[kalView setActionBarHidden:YES];
         [kalView swapToMonthMode];
         [self addSubview:kalView];
         [self addDateTypeView];
