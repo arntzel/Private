@@ -1219,7 +1219,7 @@ static Model * instance;
     }];
 }
 
--(void) createVote:(int) proposeStartID andVoteStatus:(int) status andCallback:(void (^)(NSInteger error))callback
+-(void) createVote:(int) proposeStartID andVoteStatus:(int) status andCallback:(void (^)(NSInteger error, int voteID))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/eventdatetimevote/", HOST];
     
@@ -1251,7 +1251,12 @@ static Model * instance;
         
         if(status == 201) {
            
-            callback(ERROCODE_OK);
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            
+            NSLog(@"createVote:%@", json);
+            int voteID = [[json objectForKey:@"id"] intValue];
+            callback(ERROCODE_OK, voteID);
             
         } else {
             
@@ -1260,7 +1265,7 @@ static Model * instance;
                 LOG_D(@"error=%d, resp:%@", status, aStr);
             }
             
-            callback(ERROCODE_SERVER);
+            callback(ERROCODE_SERVER, 0);
         }
     }];
 }

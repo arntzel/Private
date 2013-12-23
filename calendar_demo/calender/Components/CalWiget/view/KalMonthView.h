@@ -7,11 +7,9 @@
 {
     id<KalViewDelegate> delegate;
     NSUInteger numWeeks;
-    //KalActionsView *actionsView;
 }
 
 @property (nonatomic) NSUInteger numWeeks;
-//@property (assign, nonatomic) KalActionsView *actionsView;
 
 - (id)initWithFrame:(CGRect)rect; // designated initializer
 - (id)initWithFrame:(CGRect)rect withDelegate:(id<KalViewDelegate>)theDelegate;

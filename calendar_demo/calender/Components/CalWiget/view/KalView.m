@@ -22,16 +22,18 @@ static const CGFloat kMonthLabelHeight = 17.f;
 @synthesize KalMode;
 @synthesize controllerDelegate;
 @synthesize calendarDelegate;
+@synthesize hideActionBar;
 
-- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>)theCtrlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate*)_selectedDate
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate controllerDelegate:(id<FeedViewControllerDelegate>)theCtrlDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate*)_selectedDate hideActionBar:(BOOL)hidden
 {
-    self = [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
+    self = [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate hideActionBar:hidden];
     self.controllerDelegate = theCtrlDelegate;
+    self.hideActionBar = hidden;
     return self;
     
 }
 
-- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
+- (id)initWithFrame:(CGRect)frame delegate:(NSObject<KalViewDelegate> *)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate hideActionBar:(BOOL)hidden
 {
     if ((self = [super initWithFrame:frame])) {
         [self setClipsToBounds:YES];
@@ -70,13 +72,24 @@ static const CGFloat kMonthLabelHeight = 17.f;
         [weekGridView sizeToFit];
         
         [self swapToWeekMode];
+        self.hideActionBar = hidden;
+        if (!hideActionBar) {
+            actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 45) withDelegate:self];
+            [self addSubview:actionsView];
+        }
         
-        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, gridView.frame.size.height + 40, gridView.frame.size.width, 45) withDelegate:self];
-        [self addSubview:actionsView];
     }
 
     return self;
 }
+
+//- (void)setActionBarHidden:(BOOL)hidden
+//{
+//    hideActionBar = hidden;
+//    if ((hideActionBar) && (actionsView)) {
+//        actionsView.hidden = YES;
+//    }
+//}
 
 -(void)monthViewHeightChanged:(CGFloat)height
 {
@@ -203,7 +216,11 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)setFrameToMonthMode
 {
-    [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 50)];
+    if (self.hideActionBar) {
+        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height - 45)];
+    } else {
+        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 45)];
+    }
 }
 
 - (void)delayGestureResponse:(UIGestureRecognizer *)gesture

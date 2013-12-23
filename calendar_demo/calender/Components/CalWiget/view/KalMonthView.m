@@ -27,9 +27,6 @@ extern const CGSize kTileSize;
                 [self addSubview:[[[KalTileView alloc] initWithFrame:r] autorelease]];
             }
         }
-        
-//        actionsView = [[KalActionsView alloc]initWithFrame:CGRectMake(0, 6*kTileSize.height, 320, 49)];
-//        [self addSubview:actionsView];
     }
     return self;
 }

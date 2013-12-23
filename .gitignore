@@ -16,3 +16,4 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+calendar_demo/calender/Third-Party-Libraries/BlurView/UIStopWatch.h

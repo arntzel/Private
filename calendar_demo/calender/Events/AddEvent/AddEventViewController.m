@@ -363,7 +363,10 @@
     } else {
         
         ProposeStart * time  = [times lastObject];
-        tempEventDate.duration_hours = time.duration_days;
+        tempEventDate.duration_minutes = time.duration_minutes;
+        tempEventDate.duration_hours = time.duration_hours;
+        tempEventDate.duration_days = time.duration_days;
+        tempEventDate.is_all_day = time.is_all_day;
         tempEventDate.start = time.start;
         tempEventDate.start_type = time.start_type;
     }
