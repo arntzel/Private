@@ -44,12 +44,12 @@
         } else if([START_TYPEAFTER isEqualToString:startType]) {
             
             //self.labTimeType.hidden = NO;
-            timeType = @"AFTER";
+            timeType = @"After";
             
         } else {
 
             //self.labTimeType.hidden = NO;
-            timeType = @"AROUND";
+            timeType = @"Around";
         }
 
         //self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];

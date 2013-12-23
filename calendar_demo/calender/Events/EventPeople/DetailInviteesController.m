@@ -47,6 +47,8 @@ typedef enum
     ExtendArray *declinedArray;
     ExtendArray *notRespondedArray;
     
+    EventNavigationBar * navBar;
+    
     NSMutableArray *dataArray;
     
     UIButton *rightBtn;
@@ -75,7 +77,7 @@ typedef enum
     [super viewDidLoad];
     [self initData];
     
-    EventNavigationBar * navBar = [EventNavigationBar creatView];
+    navBar = [EventNavigationBar creatView];
     [navBar setTitle:@"Invitees"];
     [navBar setGlassImage:self.titleBgImage];
     
@@ -109,6 +111,8 @@ typedef enum
 
 - (void)viewDidUnload {
     [self setTableView:nil];
+    navBar.delegate = nil;
+
     [super viewDidUnload];
 }
 

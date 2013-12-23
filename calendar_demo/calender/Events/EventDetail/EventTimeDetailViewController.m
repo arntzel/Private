@@ -82,7 +82,7 @@
     
     NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
     KalDate * date = [KalDate dateFromNSDate:localeDate];
-    kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date];
+    kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date hideActionBar:YES];
     [kalView swapToMonthMode];
   
     [kalView setKalTileViewDataSource:self];
