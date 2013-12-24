@@ -12,7 +12,7 @@
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
-
+#import <EventKit/EventKit.h>
 #define FETECH_EVENTS 20
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
@@ -386,10 +386,12 @@
     NSArray * feedEvents = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
     [cache putFeedEventEntitys:feedEvents];
     cache.preCount += feedEvents.count;
-
+    
     NSArray * feedEvents2 = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
     [cache putFeedEventEntitys:feedEvents2];
     cache.followCount += feedEvents2.count;
+    
+    
     
     [self reloadData];
 }
