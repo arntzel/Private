@@ -210,6 +210,7 @@ static CoreDataModel * instance;
         }
         else
         {
+            
             if(follow) {
                 predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
                 //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
@@ -225,11 +226,12 @@ static CoreDataModel * instance;
     else
     {
         if(follow) {
-            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
+            [self getFeedEventWithEventType:5];
+            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
             //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
         } else {
-            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0", date, eventTypeFilter];
+            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
             //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
         }

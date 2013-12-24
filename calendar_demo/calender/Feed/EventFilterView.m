@@ -5,7 +5,7 @@
 #import "UserSetting.h"
 #import "UserModel.h"
 #import "Event.h"
-
+#import <EventKit/EventKit.h>
 #define itemHeight 50
 
 @interface EventTypeItem : NSObject
@@ -56,8 +56,16 @@
 
 -(void) updateView
 {
-    NSString * allTypes = @"0,1,3,4,5";
-    
+    NSString * allTypes ;
+    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+    if (status == EKAuthorizationStatusAuthorized)
+    {
+        allTypes = @"0,1,3,4,5";
+    }
+    else
+    {
+        allTypes = @"0,1,3,4";
+    }
     NSMutableArray * neweventTypeItems = [[NSMutableArray alloc] init];
     
     User * me = [[UserModel getInstance] getLoginUser];
