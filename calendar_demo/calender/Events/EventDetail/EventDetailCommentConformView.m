@@ -65,7 +65,7 @@
         
     } else {
 
-        if(can && proposeTimeCount>=3) {
+        if(can && proposeTimeCount<3) {
 
             int y = 0;
 

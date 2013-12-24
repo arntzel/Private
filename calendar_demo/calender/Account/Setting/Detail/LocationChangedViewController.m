@@ -59,12 +59,15 @@
 - (void)requestCountryInfo
 {
     NSDictionary *location = [[UserModel getInstance] getLoginUser].locationDic;
-    if ([[location objectForKey:@"country_code"] isKindOfClass:[NSNull class]])
+    
+    NSString * country_code = [location objectForKey:@"country_code"];
+    
+    if ([country_code isKindOfClass:[NSNull class]] || country_code == nil)
     {
         self.countryInfo = @{
-                          @"country_name": @"United States",
-                          @"country_code": @"US"
-                          };
+                             @"country_name": @"United States",
+                             @"country_code": @"US"
+                             };
     }
     else
     {
@@ -82,16 +85,18 @@
             }
             
         }
-
+        
         self.countryInfo = @{
-                             @"country_name": dic[[location objectForKey:@"country_code"]],
-                             @"country_code": [location objectForKey:@"country_code"]
+                             @"country_name": dic[country_code],
+                             @"country_code": country_code
                              };
     }
     
-    if (![[location objectForKey:@"postal_code"] isKindOfClass:[NSNull class]])
+    NSString * postal_code = [location objectForKey:@"postal_code"];
+    
+    if (![postal_code isKindOfClass:[NSNull class]] && postal_code != nil)
     {
-        self.zipCode = [location objectForKey:@"postal_code"];
+        self.zipCode = postal_code;
         self.zipCodeField.text = self.zipCode;
     }
 }
