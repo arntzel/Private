@@ -142,7 +142,12 @@
 {
     [super viewDidLoad];
 
-    [self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
+    //[self.view setBackgroundColor:[UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0]];
+    UIImageView *bgImg = [[UIImageView alloc]initWithFrame:self.view.frame];
+    [bgImg setImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    
+    [self.view addSubview:bgImg];
+    
     [self addNavBar];
 
     [self showIndicatorView];

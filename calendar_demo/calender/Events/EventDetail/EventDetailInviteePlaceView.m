@@ -50,13 +50,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
-
+        //[self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
+        [self setBackgroundColor:[UIColor clearColor]];
         isCreator = creator;
         canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
         
         [self addInviteeView];
+        [self addHorizontalSep];
+        [self addVerticalSep];
         [self addPlaceView];
 
         [self addDescriptionView];
@@ -92,6 +94,21 @@
     UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapInvitees:)];
     [self.inviteeView addGestureRecognizer:gesture];
     [gesture release];
+}
+
+-(void)addVerticalSep
+{
+    UIView *verSep = [[UIView alloc]initWithFrame:CGRectMake(8 + self.inviteeView.frame.size.width, 2, 1, self.inviteeView.frame.size.height)];
+    [verSep setBackgroundColor:[UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:0.5]];
+    [self addSubview:verSep];
+}
+
+-(void)addHorizontalSep
+{
+    UIView *horSep = [[UIView alloc]initWithFrame:CGRectMake(1, self.inviteeView.frame.size.height , self.inviteeView.frame.size.width * 2-2, 1)];
+    [horSep setBackgroundColor:[UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:0.5]];
+    [self addSubview:horSep];
+    [self insertSubview:horSep belowSubview:self.inviteeView];
 }
 
 - (void)addPlaceView
@@ -236,13 +253,13 @@
 
 - (void)updateUI
 {
-    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
-    [self.layer setShadowRadius:3.0f];
-    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
-    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.layer setBorderWidth:1.0f];
-
-    [self updateFrame];
+//    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+//    [self.layer setShadowRadius:3.0f];
+//    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+//    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.layer setBorderWidth:1.0f];
+//
+//    [self updateFrame];
 }
 
 - (void)updateFrame
