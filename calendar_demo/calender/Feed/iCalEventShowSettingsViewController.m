@@ -9,6 +9,7 @@
 #import "iCalEventShowSettingsViewController.h"
 
 #import "iCalEventShowSettingsCell.h"
+
 @implementation iCalendar
 @end
 
@@ -32,6 +33,7 @@ static NSString *const cellID = @"CellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupViews];
     self.dataSource = [[NSMutableArray alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"iCalEventShowSettingsCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self requestData];
@@ -43,6 +45,19 @@ static NSString *const cellID = @"CellID";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)setupViews
+{
+    
+    self.navigation.titleLable.text = @"iCal calendars";
+    self.navigation.leftBtn.frame = CGRectMake(8, 29, 67, 26);
+    [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
+    [self.navigation.leftBtn setTitle:@"Back" forState:UIControlStateNormal];
+    self.navigation.rightBtn.hidden = YES;
+    
+    
+}
+
 #pragma mark - Request data
 - (void)requestData
 {
@@ -85,7 +100,7 @@ static NSString *const cellID = @"CellID";
 }
 
 #pragma mark - User action
-- (IBAction)dismissMe:(UIButton *)sender
+- (void)leftNavBtnClicked:(UIButton *)btn;
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *iCalTypes = [[NSMutableArray alloc] init];
