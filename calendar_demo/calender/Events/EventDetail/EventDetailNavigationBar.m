@@ -7,6 +7,7 @@
 //
 
 #import "EventDetailNavigationBar.h"
+#import "UIColor+Hex.h"
 
 @implementation EventDetailNavigationBar
 @synthesize delegate;
@@ -33,7 +34,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailNavigationBar" owner:self options:nil];
     EventDetailNavigationBar * view = (EventDetailNavigationBar*)[nibView objectAtIndex:0];
-    
+    view.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
     return view;
 }
 
