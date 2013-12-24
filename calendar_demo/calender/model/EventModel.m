@@ -383,6 +383,9 @@
                                 [eventEntity convertFromCalendarEvent:event1];
                                 eventEntity.id = tmpID;
                                 eventEntity.hasModified = @(YES);
+                                //新加属性 belongToiCal，因无须同步到服务器，所以不在convertFromCalendarEvent:方法中封装，如果
+                                //封装则可能从服务器获得空值。
+                                eventEntity.belongToiCal = event1.belongToiCal;
                                 [model updateFeedEventEntity:eventEntity];
                             }
                         }
@@ -390,6 +393,7 @@
                         {
                             FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
                             [entity convertFromCalendarEvent:event1];
+                            eventEntity.belongToiCal = event1.belongToiCal;
                             [model updateFeedEventEntity:entity];
                         }
                         

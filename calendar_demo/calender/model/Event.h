@@ -84,6 +84,7 @@
 @property (nonatomic, strong) NSString *ext_event_id;
 @property (nonatomic) BOOL hasModified;
 @property (nonatomic) BOOL hasDeleted;
+@property (nonatomic, strong) NSString *belongToiCal;
 //----------
 @property (strong)  NSString * modified_num;
 
