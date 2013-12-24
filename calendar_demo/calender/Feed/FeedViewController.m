@@ -33,7 +33,7 @@
 
 #import "UserSetting.h"
 #import "BLRView.h"
-
+#import "iCalEventShowSettingsViewController.h"
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -136,9 +136,35 @@
     
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
-    
     self.calendarView.filterView.filterDelegate = self;
 
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *iCalTypes = [userDefaults objectForKey:@"iCalTypes"];
+    if (!iCalTypes)
+    {
+        EKEventStore *store = [[EKEventStore alloc] init];
+        if ([store respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+        {
+            [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+                if (granted)
+                {
+                    NSMutableArray *_iCalTypes = [[NSMutableArray alloc] init];
+                    NSArray *iCals = [store calendarsForEntityType:EKEntityTypeEvent];
+                    for (EKCalendar *tmp in iCals)
+                    {
+                        [_iCalTypes addObject:tmp.calendarIdentifier];
+                        
+                    }
+                    [userDefaults setObject:_iCalTypes forKey:@"iCalTypes"];
+                    [userDefaults synchronize];
+                }
+                
+                
+                
+            }];
+        }
+        
+    }
     
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
@@ -218,6 +244,7 @@
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
     }
+    
 }
 
 - (void)dealloc
@@ -390,6 +417,25 @@
     [setting setObject:types forKey:KEY_SHOW_EVENT_TYPES];
     
     [[UserModel getInstance] updateSetting:setting andCallBack:nil];
+}
+
+- (void) showSubiCalSettings:(int)row
+{
+    
+    iCalEventShowSettingsViewController *icalSettings = [[iCalEventShowSettingsViewController alloc] initWithNibName:@"iCalEventShowSettingsViewController" bundle:nil];
+    icalSettings.dismissBlock = ^(NSArray *iCalTypes){
+        
+        if ([iCalTypes count] != 0)
+        {
+            [self.calendarView.filterView changeiCalEventTypeItem:row isSelect:YES];
+        }
+        else
+        {
+            [self.calendarView.filterView changeiCalEventTypeItem:row isSelect:NO];
+        }
+        
+    };
+    [[RootNavContrller defaultInstance] pushViewController:icalSettings animated:YES];
 }
 
 

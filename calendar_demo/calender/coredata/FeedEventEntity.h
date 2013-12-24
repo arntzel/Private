@@ -40,6 +40,7 @@
 @property (nonatomic, retain) NSString * userstatus;
 @property (nonatomic, retain) NSDate * maxProposeStarTime;
 @property (nonatomic, retain) NSSet *attendees;
+@property (nonatomic, retain) NSString *belongToiCal;
 @end
 
 @interface FeedEventEntity (CoreDataGeneratedAccessors)

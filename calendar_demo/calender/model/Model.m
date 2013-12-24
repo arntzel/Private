@@ -186,6 +186,7 @@ static Model * instance;
                 for (EKEvent *event in events)
                 {
                     Event *event1 = [[Event alloc] init];
+                    event1.belongToiCal = event.calendar.calendarIdentifier;
                     event1.ext_event_id = event.eventIdentifier;
                     event1.eventType = 5;
                     event1.description = event.notes;

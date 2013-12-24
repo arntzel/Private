@@ -72,7 +72,7 @@
     [self.navigation setUpMainNavigationButtons:ACCOUNT_SETTING];
     //self.navigation.rightBtn.hidden = YES;
     self.navigation.titleLable.text = @"Accounts & Settings";
-    
+    self.navigation.titleLable.hidden = YES;
     [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigation.rightBtn addTarget:self action:@selector(btnCalendar:) forControlEvents:UIControlEventTouchUpInside];
     

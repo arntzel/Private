@@ -61,6 +61,13 @@
                     </segments>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </segmentedControl>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="84M-FN-szM">
+                    <rect key="frame" x="20" y="20" width="280" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -68,6 +75,7 @@
                 <outlet property="calPendingSegment" destination="yid-le-JZf" id="Hxs-Fu-SmR"/>
                 <outlet property="leftBtn" destination="25" id="27"/>
                 <outlet property="rightBtn" destination="26" id="28"/>
+                <outlet property="titleLable" destination="84M-FN-szM" id="Xby-yv-1Tc"/>
                 <outlet property="unreadCount" destination="30" id="31"/>
             </connections>
         </view>

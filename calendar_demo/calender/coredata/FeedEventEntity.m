@@ -39,5 +39,5 @@
 @dynamic userstatus;
 @dynamic maxProposeStarTime;
 @dynamic attendees;
-
+@dynamic belongToiCal;
 @end
