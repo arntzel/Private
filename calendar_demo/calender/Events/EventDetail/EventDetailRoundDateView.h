@@ -10,4 +10,5 @@
 
 @interface EventDetailRoundDateView : UIView
 
+-(void)updateDateText:(NSDate *)date;
 @end
