@@ -29,24 +29,24 @@
 {
     isLocation = NO;
     
-    [self.contentView.layer setCornerRadius:5.0f];
-    [self.contentView.layer setShadowRadius:1.0f];
-    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.contentView.layer setBorderWidth:1.0f];
-    
-
-    
-    [self.layer setCornerRadius:5.0f];
-    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
-    [self.layer setShadowRadius:3.0f];
-    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
-    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.layer setBorderWidth:1.0f];
+//    [self.contentView.layer setCornerRadius:5.0f];
+//    [self.contentView.layer setShadowRadius:1.0f];
+//    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.contentView.layer setBorderWidth:1.0f];
+//    
+//
+//    
+//    [self.layer setCornerRadius:5.0f];
+//    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+//    [self.layer setShadowRadius:3.0f];
+//    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+//    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.layer setBorderWidth:1.0f];
     
     
 
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:12];
-    self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(0, 0, 152, 59) camera:camera] retain];
+    self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(5, 27, 147, 59) camera:camera] retain];
     _gmsMapView.settings.compassButton = NO;
     _gmsMapView.camera = camera;
     _gmsMapView.userInteractionEnabled = NO;
@@ -61,7 +61,7 @@
 
 - (void)addMask:(BOOL)canChangeLocation
 {
-    maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 60)];
+    maskView = [[UIView alloc] initWithFrame:CGRectMake(2, 13, 147, 40)];
     [maskView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:maskView];
     [maskView setHidden:YES];
