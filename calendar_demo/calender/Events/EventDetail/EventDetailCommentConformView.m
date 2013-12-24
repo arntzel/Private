@@ -128,7 +128,8 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    //[btn setBackgroundColor:[UIColor colorWithRed:224.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:0.5]];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
     return btn;
 }
 
