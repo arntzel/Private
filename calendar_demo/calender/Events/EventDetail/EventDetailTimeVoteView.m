@@ -221,12 +221,12 @@
         }
     }
     
-    if(_eventTime.finalized == 1 && voted)
-    {
-        [self addConformedFinalzeView];
-    }
-    else
-    {
+//    if(_eventTime.finalized == 1 && voted)
+//    {
+//        [self addConformedFinalzeView];
+//    }
+//    else
+//    {
         conformView = [[EventDetailInviteeConformView creatView] retain];
 
         CGRect frame = conformView.frame;
@@ -237,7 +237,7 @@
         [conformView setConflictCount:[self getConfilictEventCount]];
         
         int status = 0;
-        User * me = [[UserModel getInstance] getLoginUser];
+//        User * me = [[UserModel getInstance] getLoginUser];
 
         for (EventTimeVote * vote in _eventTime.votes) {
             if([me.email caseInsensitiveCompare:vote.email] == NSOrderedSame) {
@@ -274,7 +274,7 @@
         //conformView.eventTimeLabel.userInteractionEnabled = YES;
         [conformView.timeLabelButton addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
-    }    
+//    }    
 }
 
 -(void) onEventTimtVoteAgree
