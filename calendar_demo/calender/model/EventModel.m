@@ -393,13 +393,15 @@
                         {
                             FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
                             [entity convertFromCalendarEvent:event1];
-                            eventEntity.belongToiCal = event1.belongToiCal;
+                            entity.belongToiCal = event1.belongToiCal;
                             [model updateFeedEventEntity:entity];
                         }
                         
                     }
                     
                     [model saveData];
+                    
+                    [model getFeedEventWithEventType:5];
                     [model notifyModelChange];
                 }
                 
