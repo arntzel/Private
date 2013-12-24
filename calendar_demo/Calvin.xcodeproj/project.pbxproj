@@ -44,6 +44,7 @@
 		34153B861866D92C0051D179 /* iCalEventShowSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34153B841866D92C0051D179 /* iCalEventShowSettingsViewController.xib */; };
 		34153B89186715F30051D179 /* iCalEventShowSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34153B88186715F30051D179 /* iCalEventShowSettingsCell.m */; };
 		34153B8D186716800051D179 /* iCalEventShowSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34153B8C186716800051D179 /* iCalEventShowSettingsCell.xib */; };
+		34262E0E1869BE6800288EA9 /* country.txt in Resources */ = {isa = PBXBuildFile; fileRef = 34262E0D1869BE6800288EA9 /* country.txt */; };
 		34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34657A16180BD6C700079CBD /* AddressBook.framework */; };
 		34659DCB180E840800E5632F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34659DCA180E840800E5632F /* EventKit.framework */; };
 		34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1F16617F8FCE200AA5C97 /* UIImage+CirCle.m */; };
@@ -573,6 +574,7 @@
 		34153B87186715F30051D179 /* iCalEventShowSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalEventShowSettingsCell.h; sourceTree = "<group>"; };
 		34153B88186715F30051D179 /* iCalEventShowSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalEventShowSettingsCell.m; sourceTree = "<group>"; };
 		34153B8C186716800051D179 /* iCalEventShowSettingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iCalEventShowSettingsCell.xib; sourceTree = "<group>"; };
+		34262E0D1869BE6800288EA9 /* country.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = country.txt; sourceTree = "<group>"; };
 		34657A16180BD6C700079CBD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		34659DCA180E840800E5632F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		34B1F16517F8FCE200AA5C97 /* UIImage+CirCle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CirCle.h"; sourceTree = "<group>"; };
@@ -1368,6 +1370,7 @@
 		34B1F16717F8FCE200AA5C97 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				34262E0D1869BE6800288EA9 /* country.txt */,
 				23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */,
 				23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */,
 				23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */,
@@ -2800,6 +2803,7 @@
 				34B1F1B917F8FCE200AA5C97 /* settings_main_bottom_row@2x.png in Resources */,
 				34B1F1CD17F8FCE200AA5C97 /* settings_main_userinfo_bg@2x.png in Resources */,
 				34B1F1BF17F8FCE200AA5C97 /* settings_main_gmail_icon@2x.png in Resources */,
+				34262E0E1869BE6800288EA9 /* country.txt in Resources */,
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
 				34B1F1B017F8FCE200AA5C97 /* settings_detail_full_circle.png in Resources */,
 				34B1F1B417F8FCE200AA5C97 /* settings_main_arrow.png in Resources */,
