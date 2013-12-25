@@ -17,16 +17,20 @@
 
 @interface EventDetailInviteeConformView : UIView
 
-@property (retain, nonatomic) IBOutlet UIButton *tickedBtn;
-@property (retain, nonatomic) IBOutlet UIButton *crossedbtn;
-@property (retain, nonatomic) IBOutlet UIView *contentView;
-@property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
-@property (retain, nonatomic) IBOutlet UIButton *timeLabelButton;
-@property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *finalizedTick;
-@property (retain, nonatomic) IBOutlet UILabel *finalizedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *tickedBtn;
+@property (weak, nonatomic) IBOutlet UIButton *crossedbtn;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *timeLabelButton;
+@property (weak, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *finalizedTick;
+@property (weak, nonatomic) IBOutlet UILabel *finalizedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cfmedLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *eventTypeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *voteStateBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *declinesLabel;
 
 - (IBAction)tickBtnClick:(id)sender;
 - (IBAction)crossBtnClick:(id)sender;
@@ -49,4 +53,6 @@
 -(void) setVoteStatus:(int) vote;
 
 +(EventDetailInviteeConformView *) creatView;
+
++(EventDetailInviteeConformView *) creatViewWithStartDate:(NSDate *)date;
 @end
