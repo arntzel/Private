@@ -18,7 +18,11 @@
 #import "UserModel.h"
 #import "CoreDataModel.h"
 #import "UserSetting.h"
+
 #import <Crashlytics/Crashlytics.h>
+#import "MobClick.h"
+
+#define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
 @implementation AppDelegate
 @synthesize session = _session;
@@ -38,6 +42,21 @@
     [self redirectNSLogToDocumentFolder];
 #endif
 
+    
+    [MobClick setCrashReportEnabled:YES]; // 如果不需要捕捉异常，注释掉此行
+    //[MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+    [MobClick setAppVersion:XcodeAppVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    
+    //[MobClick startWithAppkey:UMENG_APPKEY reportPolicy:(ReportPolicy) REALTIME channelId:nil];
+    
+    [MobClick startWithAppkey:UMENG_APPKEY];
+    
+    [MobClick updateOnlineConfig];  //在线参数配置
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
+
+    
+    
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     application.applicationIconBadgeNumber = 0;
@@ -76,6 +95,12 @@
     }
 
     return YES;
+}
+
+
+- (void)onlineConfigCallBack:(NSNotification *)note
+{
+    NSLog(@"online config has fininshed and note = %@", note.userInfo);
 }
 
 - (void)registerForRemoteNotificationToGetToken
