@@ -94,7 +94,7 @@
 {
     EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatView];
     CGRect frame = view.frame;
-    frame.origin.x = 7;
+    frame.origin.x = 0;
     frame.origin.y = 7;
     view.frame = frame;
     

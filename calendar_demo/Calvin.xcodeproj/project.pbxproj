@@ -40,6 +40,7 @@
 		23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B16DE61859A32000650A54 /* libOHAttributedLabel.a */; };
 		23B870FE1868684300F7F62F /* anchal.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FC1868684300F7F62F /* anchal.png */; };
 		23B870FF1868684300F7F62F /* anchal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FD1868684300F7F62F /* anchal@2x.png */; };
+		23B871021868904E00F7F62F /* EventDetailRoundDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B871011868904E00F7F62F /* EventDetailRoundDateView.m */; };
 		23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B8C76B184A12A7002B7021 /* UIColor+Hex.m */; };
 		23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD1184C6ED200CC7D3D /* list_check_mark.png */; };
 		23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECD2184C6ED200CC7D3D /* list_check_mark@2x.png */; };
@@ -577,6 +578,8 @@
 		23B16DE61859A32000650A54 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOHAttributedLabel.a; sourceTree = "<group>"; };
 		23B870FC1868684300F7F62F /* anchal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anchal.png; sourceTree = "<group>"; };
 		23B870FD1868684300F7F62F /* anchal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anchal@2x.png"; sourceTree = "<group>"; };
+		23B871001868904E00F7F62F /* EventDetailRoundDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailRoundDateView.h; sourceTree = "<group>"; };
+		23B871011868904E00F7F62F /* EventDetailRoundDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailRoundDateView.m; sourceTree = "<group>"; };
 		23B8C76A184A12A7002B7021 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		23B8C76B184A12A7002B7021 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		23DFECD1184C6ED200CC7D3D /* list_check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_check_mark.png; sourceTree = "<group>"; };
@@ -2245,6 +2248,8 @@
 				3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */,
 				3D32F06318094203000C4D3A /* EventTimeDetailViewController.h */,
 				3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */,
+				23B871001868904E00F7F62F /* EventDetailRoundDateView.h */,
+				23B871011868904E00F7F62F /* EventDetailRoundDateView.m */,
 			);
 			path = EventDetail;
 			sourceTree = "<group>";
@@ -3255,6 +3260,7 @@
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
+				23B871021868904E00F7F62F /* EventDetailRoundDateView.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
 				769ABCA017DF542A0033E677 /* ATMHudView.m in Sources */,
 				769ABCA117DF542A0033E677 /* ATMProgressLayer.m in Sources */,

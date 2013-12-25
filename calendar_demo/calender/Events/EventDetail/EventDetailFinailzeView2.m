@@ -1,5 +1,6 @@
 
 #import "EventDetailFinailzeView2.h"
+#import "EventDetailRoundDateView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation EventDetailFinailzeView2
@@ -15,9 +16,9 @@
 
 - (void)updateUI
 {
-    [self.contentView.layer setCornerRadius:5.0f];
-    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.contentView.layer setBorderWidth:1.0f];
+//    [self.contentView.layer setCornerRadius:5.0f];
+//    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.contentView.layer setBorderWidth:1.0f];
 
     [self.layer setCornerRadius:5.0f];
     [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
@@ -31,7 +32,11 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailFinailzeView2" owner:self options:nil];
     EventDetailFinailzeView2 * view = (EventDetailFinailzeView2*)[nibView objectAtIndex:0];
+    [view setBackgroundColor:[UIColor colorWithRed:236.0/255.0 green:243.0/255.0 blue:236.0/255.0 alpha:0.7]];
     [view updateUI];
+    
+    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 8.0, 50.0, 50.0)];
+    [view addSubview:dateView];
     return view;
 }
 

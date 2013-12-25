@@ -33,9 +33,9 @@
 //    [self.contentView.layer setShadowRadius:1.0f];
 //    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
 //    [self.contentView.layer setBorderWidth:1.0f];
-//    
-//
-//    
+    
+
+    
 //    [self.layer setCornerRadius:5.0f];
 //    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
 //    [self.layer setShadowRadius:3.0f];
@@ -46,7 +46,7 @@
     
 
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:12];
-    self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(5, 27, 147, 59) camera:camera] retain];
+    self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(5, 27, 145, 40) camera:camera] retain];
     _gmsMapView.settings.compassButton = NO;
     _gmsMapView.camera = camera;
     _gmsMapView.userInteractionEnabled = NO;
@@ -70,6 +70,12 @@
     UIView *glassView = [[UIView alloc] initWithFrame:maskView.frame];
     [glassView setAlpha:0.7f];
     [glassView setBackgroundColor:[UIColor whiteColor]];
+    [glassView.layer setCornerRadius:3.0f];
+    [glassView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.2f].CGColor];
+    [glassView.layer setBorderWidth:1.0f];
+    [glassView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.20f].CGColor];
+    [glassView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+    [glassView.layer setShadowRadius:1.0f];
     [maskView addSubview:glassView];
     [glassView release];
     
