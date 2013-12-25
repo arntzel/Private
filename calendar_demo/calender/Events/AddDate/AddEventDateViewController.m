@@ -162,29 +162,42 @@
 
 - (void)rightNavBtnClick
 {
-    if ([self timeIsInFuture])
+    
+    if([eventDate getDurationMins] == 0)
     {
-        if (self.isUpdate) {
-            if ([self.delegate respondsToSelector:@selector(updateEventDate:)])
-            {
-                [self.delegate updateEventDate:eventDate];
-            }
-        }
-        else
-        {
-            if ([self.delegate respondsToSelector:@selector(setEventDate:)])
-            {
-                [self.delegate setEventDate:eventDate];
-            }
-        }
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Warning"
+                                                        message:@"Please choose a duration!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
         
-
-        [self.navigationController popViewControllerAnimated:YES];
+        [alert show];
+        return;
+    }
+    
+    if (![self timeIsInFuture])
+    {
+        [self showTimeErrorWarning];
+        return;
+    }
+   
+    
+    if (self.isUpdate) {
+        if ([self.delegate respondsToSelector:@selector(updateEventDate:)])
+        {
+            [self.delegate updateEventDate:eventDate];
+        }
     }
     else
     {
-        [self showTimeErrorWarning];
+        if ([self.delegate respondsToSelector:@selector(setEventDate:)])
+        {
+            [self.delegate setEventDate:eventDate];
+        }
     }
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showTimeErrorWarning

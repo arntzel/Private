@@ -150,14 +150,14 @@
         }
 
 
-        NSString * day = [Utils formateDay2:[Utils convertLocalDate:eventTime.start]];
+        //NSString * day = [Utils formateDay2:[Utils convertLocalDate:eventTime.start]];
         
-        if(![day isEqualToString:dayTitle]) {
-            EventDetailTimeLabelView * view = [self createTimeLabelView];
-            [self addSubview:view];
-            dayTitle = day;
-            view.title.text = dayTitle;
-        }
+//        if(![day isEqualToString:dayTitle]) {
+//            EventDetailTimeLabelView * view = [self createTimeLabelView];
+//            [self addSubview:view];
+//            dayTitle = day;
+//            view.title.text = dayTitle;
+//        }
         
         EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
         [self addSubview:voteView];

@@ -11,13 +11,13 @@ static CoreDataModel * instance;
 @implementation CoreDataModel {
 
     //数据模型对象
-    NSManagedObjectModel * managedObjectModel;
+    //NSManagedObjectModel * managedObjectModel;
 
     //上下文对象
     NSManagedObjectContext * managedObjectContext;
 
     //持久性存储区
-    NSPersistentStoreCoordinator * persistentStoreCoordinator;
+    //NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
     NSMutableArray * delegates;
     
@@ -26,21 +26,8 @@ static CoreDataModel * instance;
 
 -(void) reset {
  
-    managedObjectModel = nil;
     managedObjectContext = nil;
-    persistentStoreCoordinator = nil;
     
-    //Delete old db file
-//    NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"events.sqlite"]];
-//    
-//    NSError *error = nil;
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    [fileManager removeItemAtURL:storeUrl error: &error];
-//    LOG_D(@"error=%@", error);
-
-    
-
     delegates = [[NSMutableArray alloc] init];
     cache = [[DataCache alloc] init];
 
@@ -49,14 +36,10 @@ static CoreDataModel * instance;
 
 -(void) initDBContext:(User *) user
 {
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    NSPersistentStoreCoordinator * coordinator =[self persistentStoreCoordinator:user];
 
-    NSPersistentStoreCoordinator *coordinator =[self persistentStoreCoordinator:user];
-
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc]init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
+    managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [managedObjectContext setPersistentStoreCoordinator:coordinator];
 
     self.inited = YES;
 }
@@ -73,20 +56,20 @@ static CoreDataModel * instance;
 
 
 
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator:(User *) user
+-(NSPersistentStoreCoordinator *) persistentStoreCoordinator:(User *) user
 {
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
-    }
-
     NSString * dbname = [NSString stringWithFormat:@"calvin%d.sqlite", user.id];
 
+    NSManagedObjectModel * managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
     //得到数据库的路径
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
     //CoreData是建立在SQLite之上的，数据库名称需与Xcdatamodel文件同名
     NSURL *storeUrl = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:dbname]];
+    
     NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
+    NSPersistentStoreCoordinator * persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
 
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
         NSLog(@"Error: %@,%@",error,[error userInfo]);
@@ -94,18 +77,6 @@ static CoreDataModel * instance;
 
     return persistentStoreCoordinator;
 }
-
--(NSManagedObjectContext *)managedObjectContext
-{
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
-    }
-
-    managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
-    return managedObjectContext;
-}
-
 
 
 -(void) addDelegate:(id<CoreDataModelDelegate>) delegate
