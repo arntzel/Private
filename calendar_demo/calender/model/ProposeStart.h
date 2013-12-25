@@ -32,8 +32,10 @@
 @property int finalized;
 
 - (NSString *)parseStartTimeString;
+- (NSString *)parseStartTimeStringWithFirstCapitalized;
 - (NSString *)parseStartDateString;
 - (NSString *)parseDuringDateString;
+- (NSString *)parseDuringDateString2;
 
 - (void)convertMinToQuarterMode;
 

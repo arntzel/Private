@@ -49,6 +49,8 @@
  */
 +(NSString *) formateTime:(NSDate *) time;
 
++(NSString *) formateMonthOnly:(NSDate *) month;
+
 +(NSString *) formateTimeAMPM:(NSDate *) time;
 
 /*
@@ -131,5 +133,6 @@
 +(BOOL)isValidatePhoneNumber:(NSString *) phoneNUmber;
 
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps;
++(NSString *) getProposeStatLabel2:(ProposeStart *) ps;
 
 @end

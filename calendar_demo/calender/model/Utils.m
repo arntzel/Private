@@ -87,6 +87,17 @@ static NSTimeZone * userTimeZone;
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formateMonthOnly:(NSDate *) month
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"MMM"];
+    
+    
+    return [dateFormatter stringFromDate:month];
+}
+
 +(NSString *) formateTimeAMPM:(NSDate *) time
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -443,5 +454,33 @@ static NSTimeZone * userTimeZone;
         NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
         return lable;
     }
+}
+
++(NSString *) getProposeStatLabel2:(ProposeStart *) ps
+{
+    NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
+    NSString * duration = [ps parseDuringDateString2];
+    
+    NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%@</font> for ", startTime];
+    return [formattedStartTime stringByAppendingString:duration];
+    
+//    if(ps.is_all_day) {
+//        
+//        NSString * duration;
+//        if(ps.duration_days<=1) {
+//            duration = @"All day";
+//        } else {
+//            duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
+//        }
+//        
+//        NSString * lable = [NSString stringWithFormat:@"%@ <font name=\"Avenir Next Bold\" size=\"12\">(duration:%@)</font> ", startTime, duration];
+//        return lable;
+//        
+//    } else {
+//        
+//        NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
+//        NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+//        return lable;
+//    }
 }
 @end

@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface EventDetailRoundDateView : UIView
+{
+    NSDate *date;
+}
 
--(void)updateDateText:(NSDate *)date;
+@property (nonatomic, retain)NSDate *date;
+
+- (id)initWithFrame:(CGRect)frame withDate:(NSDate *)startDate;
+
 @end
