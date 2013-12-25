@@ -12,6 +12,7 @@
 @property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *eventTimeBtn;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *VoteStateBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *eventTypeLabel;
 +(EventDetailFinailzeView2 *) creatView;

@@ -108,6 +108,10 @@
     UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
     [view.eventTimeBtn addGestureRecognizer:tapGestureTel];
     [tapGestureTel release];
+    
+    UITapGestureRecognizer *tapGestureVote = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapHeaderListView:)];
+    [view.VoteStateBtn addGestureRecognizer:tapGestureVote];
+    [tapGestureVote release];
 }
 
 
@@ -168,27 +172,27 @@
         [statuses addObject: [NSNumber numberWithInt:vote.status]];
     }
 
-    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:statuses andCountLimit:8 ShowArraw:YES];
-
-    [urls release];
-    [statuses release];
-    
-    CGRect frame = headerListView.frame;
-    frame.origin.x = 7;
-    //frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 10;
-    headerListView.frame = frame;
-    
-    [self addSubview:headerListView];
-
-
-    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapHeaderListView:)];
-    [headerListView addGestureRecognizer:gesture];
-    [gesture release];
-
-    if(_eventTime.finalized == 2) {
-        self.userInteractionEnabled = NO;
-        headerListView.alpha = ALPHA;
-    }
+//    headerListView = [[EventDetailHeaderListView alloc] initWithHeaderArray:urls andStatusArray:statuses andCountLimit:8 ShowArraw:YES];
+//
+//    [urls release];
+//    [statuses release];
+//    
+//    CGRect frame = headerListView.frame;
+//    frame.origin.x = 7;
+//    //frame.origin.y = finailzeView.frame.origin.y + finailzeView.frame.size.height + 10;
+//    headerListView.frame = frame;
+//    
+//    [self addSubview:headerListView];
+//
+//
+//    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapHeaderListView:)];
+//    [headerListView addGestureRecognizer:gesture];
+//    [gesture release];
+//
+//    if(_eventTime.finalized == 2) {
+//        self.userInteractionEnabled = NO;
+//        headerListView.alpha = ALPHA;
+//    }
 }
 
 -(void) singleTapEventTimeLabel: (UITapGestureRecognizer*) tap
@@ -199,6 +203,7 @@
         [self.delegate onVoteTimeClick:_eventTime];
     }
 }
+
 
 -(void) singleTapHeaderListView: (UITapGestureRecognizer*) tap
 {

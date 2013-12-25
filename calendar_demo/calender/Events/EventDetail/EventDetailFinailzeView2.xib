@@ -82,9 +82,18 @@
                     <rect key="frame" x="300" y="76" width="10" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HBT-xc-4TM">
+                    <rect key="frame" x="46" y="67" width="272" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="VoteStateBtn" destination="HBT-xc-4TM" id="p1y-FG-gMY"/>
                 <outlet property="contentView" destination="4" id="91"/>
                 <outlet property="eventTimeBtn" destination="pRa-5W-5tj" id="S3k-Rv-kCx"/>
                 <outlet property="eventTimeLabel" destination="6" id="92"/>
