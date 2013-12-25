@@ -13,6 +13,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *eventTimeBtn;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) IBOutlet UILabel *eventTypeLabel;
 +(EventDetailFinailzeView2 *) creatView;
+
++(EventDetailFinailzeView2 *) creatViewWithStartDate:(NSDate *)date;
 
 @end

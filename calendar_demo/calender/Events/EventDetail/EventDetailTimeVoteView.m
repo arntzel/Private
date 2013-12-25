@@ -92,18 +92,18 @@
 
 -(void) addConformedFinalzeView
 {
-    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatView];
+    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatViewWithStartDate:_eventTime.start];
     CGRect frame = view.frame;
     frame.origin.x = 0;
     frame.origin.y = 7;
     view.frame = frame;
     
-    view.eventTimeLabel.text = [Utils getProposeStatLabel:_eventTime];
+    view.eventTimeLabel.text = [Utils getProposeStatLabel2:_eventTime];
     view.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:view.eventTimeLabel.attributedText];
     view.eventTimeLabel.centerVertically = YES;
     
+    view.eventTypeLabel.text = [_eventTime parseStartTimeStringWithFirstCapitalized];
     [self addSubview:view];
-    
     
     UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
     [view.eventTimeBtn addGestureRecognizer:tapGestureTel];

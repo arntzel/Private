@@ -159,6 +159,26 @@
     return [preStr stringByAppendingString:dateStr];
 }
 
+- (NSString *)parseStartTimeStringWithFirstCapitalized
+{
+    
+    //NSString *dateStr = [NSString stringWithFormat:% %@",intHour,intMin,strAMPM];
+    //NSString * dateStr = [Utils formateTimeAMPM:self.start];
+    NSString *preStr = @"";
+    
+    if ([self.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+        preStr = @"Exactly At ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEWITHIN]) {
+        preStr = @"Within An Hour Of ";
+    }
+    else if ([self.start_type isEqualToString:START_TYPEAFTER]) {
+        preStr = @"Anytime After ";
+    }
+    
+    return preStr;
+}
+
 - (NSString *)parseStartDateString
 {
     
@@ -178,6 +198,20 @@
     }
     
     NSString *duringDateString = [NSString stringWithFormat:@"%d hours %d minutes", self.duration_hours, self.duration_minutes];
+    
+    return duringDateString;
+}
+
+- (NSString *)parseDuringDateString2
+{
+    
+    if (self.is_all_day) {
+        return [NSString stringWithFormat:@"All <font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> days",self.duration_days];
+    }
+    
+//    NSString *duringDateString = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> Hours <font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> Minutes", self.duration_hours, self.duration_minutes];
+    
+    NSString *duringDateString = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> Hours", self.duration_hours];
     
     return duringDateString;
 }
