@@ -21,6 +21,10 @@
 		232442A618546BC5008930EA /* Calvin_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A018546BC5008930EA /* Calvin_logo@2x.png */; };
 		232442A718546BC5008930EA /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A118546BC5008930EA /* settings_icon.png */; };
 		232442A818546BC5008930EA /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 232442A218546BC5008930EA /* settings_icon@2x.png */; };
+		232F1A38186B22DE00238CA5 /* gray1_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A34186B22DE00238CA5 /* gray1_error.png */; };
+		232F1A39186B22DE00238CA5 /* gray2_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A35186B22DE00238CA5 /* gray2_error.png */; };
+		232F1A3A186B22DE00238CA5 /* green_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A36186B22DE00238CA5 /* green_error.png */; };
+		232F1A3B186B22DE00238CA5 /* red_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A37186B22DE00238CA5 /* red_error.png */; };
 		2345850D1853688100086FB3 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585041853688100086FB3 /* BLRView.m */; };
 		2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585061853688100086FB3 /* UIImage+ImageEffects.m */; };
 		2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585081853688100086FB3 /* UIImage+REFrostedViewController.m */; };
@@ -383,7 +387,7 @@
 		769ABB2E17DF52090033E677 /* EventDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAE517DF52090033E677 /* EventDetailHeader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAE617DF52090033E677 /* EventDetailHeader.xib */; };
 		769ABB3017DF52090033E677 /* EventDetailHeaderListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAE817DF52090033E677 /* EventDetailHeaderListView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		769ABB3117DF52090033E677 /* EventDetailInviteeConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAEA17DF52090033E677 /* EventDetailInviteeConformView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		769ABB3117DF52090033E677 /* EventDetailInviteeConformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAEA17DF52090033E677 /* EventDetailInviteeConformView.m */; };
 		769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAEB17DF52090033E677 /* EventDetailInviteeConformView.xib */; };
 		769ABB3317DF52090033E677 /* EventDetailInviteePlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAED17DF52090033E677 /* EventDetailInviteePlaceView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB3417DF52090033E677 /* EventDetailInviteeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAEF17DF52090033E677 /* EventDetailInviteeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -546,6 +550,10 @@
 		232442A018546BC5008930EA /* Calvin_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calvin_logo@2x.png"; sourceTree = "<group>"; };
 		232442A118546BC5008930EA /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon.png; sourceTree = "<group>"; };
 		232442A218546BC5008930EA /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon@2x.png"; sourceTree = "<group>"; };
+		232F1A34186B22DE00238CA5 /* gray1_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray1_error.png; sourceTree = "<group>"; };
+		232F1A35186B22DE00238CA5 /* gray2_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray2_error.png; sourceTree = "<group>"; };
+		232F1A36186B22DE00238CA5 /* green_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_error.png; sourceTree = "<group>"; };
+		232F1A37186B22DE00238CA5 /* red_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_error.png; sourceTree = "<group>"; };
 		234585031853688100086FB3 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BlurView/BLRView.h; sourceTree = "<group>"; };
 		234585041853688100086FB3 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BlurView/BLRView.m; sourceTree = "<group>"; };
 		234585051853688100086FB3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "BlurView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1825,6 +1833,10 @@
 		769AB93117DF51340033E677 /* event_detail_conform */ = {
 			isa = PBXGroup;
 			children = (
+				232F1A34186B22DE00238CA5 /* gray1_error.png */,
+				232F1A35186B22DE00238CA5 /* gray2_error.png */,
+				232F1A36186B22DE00238CA5 /* green_error.png */,
+				232F1A37186B22DE00238CA5 /* red_error.png */,
 				7643519518100F330004ADFC /* event_detail_comment_sep_line.png */,
 				769AB93217DF51340033E677 /* event_detail_comment_conform_line.png */,
 				769AB93317DF51340033E677 /* event_detail_comment_conformed.png */,
@@ -2842,6 +2854,7 @@
 				2313197C1867271A00F076C7 /* people.png in Resources */,
 				34B1F1A917F8FCE200AA5C97 /* NotificaitonViewController.xib in Resources */,
 				23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */,
+				232F1A38186B22DE00238CA5 /* gray1_error.png in Resources */,
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
@@ -2999,6 +3012,7 @@
 				34B1F1BE17F8FCE200AA5C97 /* settings_main_gmail_icon.png in Resources */,
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
 				769ABAA217DF51EC0033E677 /* navigationNotifySectionHeader.xib in Resources */,
+				232F1A39186B22DE00238CA5 /* gray2_error.png in Resources */,
 				34B1F1B617F8FCE200AA5C97 /* settings_main_back_btn.png in Resources */,
 				232442A318546BC5008930EA /* add_icon.png in Resources */,
 				769ABB0C17DF52090033E677 /* AddDateTypeView.xib in Resources */,
@@ -3013,6 +3027,7 @@
 				769ABB1B17DF52090033E677 /* AddEventPlaceView.xib in Resources */,
 				769ABB1D17DF52090033E677 /* AddEventSettingView.xib in Resources */,
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
+				232F1A3B186B22DE00238CA5 /* red_error.png in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
 				23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */,
 				231319751867253400F076C7 /* arrow@2x.png in Resources */,
@@ -3097,6 +3112,7 @@
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,
 				94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */,
 				76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */,
+				232F1A3A186B22DE00238CA5 /* green_error.png in Resources */,
 				34B1F1BB17F8FCE200AA5C97 /* settings_main_connect_btn@2x.png in Resources */,
 				34262E191869C1A300288EA9 /* iCalEventShowSettingsCell.xib in Resources */,
 				7662F75417F0761900B64E40 /* login_main_sign_bg.png in Resources */,

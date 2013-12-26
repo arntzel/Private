@@ -7,6 +7,7 @@
 //
 
 #import "EventDetailInviteeConformView.h"
+#import "EventDetailRoundDateView.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -53,21 +54,29 @@
 
 
 
-- (void)dealloc {
-    [_tickedBtn release];
-    [_crossedbtn release];
-    [_contentView release];
-
-    self.eventTimeLabel = nil;
-    self.eventTimeConflictLabel = nil;
-    [super dealloc];
-}
+//- (void)dealloc {
+//    [_tickedBtn release];
+//    [_crossedbtn release];
+//    [_cfmedLabel release];
+//    [_eventTypeLabel release];
+//    [_declinesLabel release];
+//    [_voteStateBtn release];
+//    [_contentView release];
+//    self.voteStateBtn = nil;
+//    
+//    self.eventTimeLabel = nil;
+//    self.eventTypeLabel = nil;
+//    self.cfmedLabel = nil;
+//    self.declinesLabel = nil;
+//    self.eventTimeConflictLabel = nil;
+//    [super dealloc];
+//}
 
 - (void)updateUI
 {
-    [self.contentView.layer setCornerRadius:5.0f];
-    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.contentView.layer setBorderWidth:1.0f];
+//    [self.contentView.layer setCornerRadius:5.0f];
+//    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.contentView.layer setBorderWidth:1.0f];
     
     [self.layer setCornerRadius:5.0f];
     [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
@@ -119,18 +128,18 @@
     
     switch (vote) {
         case 0:
-            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_black.png"] forState:UIControlStateNormal];
-            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_black.png"] forState:UIControlStateNormal];
+            [self.tickedBtn setBackgroundImage:[UIImage imageNamed:@"gray1_error.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setBackgroundImage:[UIImage imageNamed:@"gray2_error.png"] forState:UIControlStateNormal];
             break;
 
         case 1:
-            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_enable.png"] forState:UIControlStateNormal];
-            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_disable.png"] forState:UIControlStateNormal];
+            [self.tickedBtn setBackgroundImage:[UIImage imageNamed:@"green_error.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setBackgroundImage:[UIImage imageNamed:@"gray2_error.png"] forState:UIControlStateNormal];
             break;
             
         case -1:
-            [self.tickedBtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_tick_disable.png"] forState:UIControlStateNormal];
-            [self.crossedbtn setImage:[UIImage imageNamed:@"event_detail_invitee_time_cross_enable.png"] forState:UIControlStateNormal];
+            [self.tickedBtn setBackgroundImage:[UIImage imageNamed:@"gray1_error.png"] forState:UIControlStateNormal];
+            [self.crossedbtn setBackgroundImage:[UIImage imageNamed:@"red_error.png"] forState:UIControlStateNormal];
             break;
 
         default:
@@ -140,9 +149,20 @@
 
 +(EventDetailInviteeConformView *) creatView
 {
+    return [self creatViewWithStartDate:nil];
+}
+
++(EventDetailInviteeConformView *) creatViewWithStartDate:(NSDate *)date
+{
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeConformView" owner:self options:nil];
     EventDetailInviteeConformView * view = (EventDetailInviteeConformView*)[nibView objectAtIndex:0];
+    
+    [view setBackgroundColor:[UIColor colorWithRed:236.0/255.0 green:243.0/255.0 blue:236.0/255.0 alpha:0.7]];
     [view updateUI];
+    
+    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 8.0, 50.0, 50.0) withDate:date];
+    [view addSubview:dateView];
+    
     
     return view;
 }

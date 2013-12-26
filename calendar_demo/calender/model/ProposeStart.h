@@ -53,6 +53,10 @@
 
 -(int) getDurationMins;
 
+-(int) getAcceptCount;
+
+-(int) getDeclinedCount;
+
 +(ProposeStart *) parse:(NSDictionary *) json;
 
 
