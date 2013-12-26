@@ -28,6 +28,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *finailzeBtn;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UILabel *cfmedLabel;
+@property (retain, nonatomic) IBOutlet UILabel *declinesLabel;
+@property (retain, nonatomic) IBOutlet UIButton *voteStateBtn;
 @property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *eventTimeBtn;
 @property (retain, nonatomic) IBOutlet UILabel *eventTimeConflictLabel;
@@ -40,5 +43,7 @@
 -(void) updateView:(ProposeStart *) eventTime;
 
 +(EventDetailFinailzeView *) creatView;
+
++(EventDetailFinailzeView *) creatViewWithStartDate:(NSDate *)date;
 
 @end

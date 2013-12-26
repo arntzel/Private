@@ -8,6 +8,7 @@
 
 #import "EventDetailFinailzeView.h"
 #import "EventDetailTimeVoteView.h"
+#import "EventDetailRoundDateView.h"
 #import "Utils.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -33,8 +34,12 @@ static CGFloat const getstureDistance = 50;
     
     [_finailzeView release];
     [_finailzeBtn release];
+    [_voteStateBtn release];
+    [_cfmedLabel release];
+    [_declinesLabel release];
     [_removeView release];
     [_contentView release];
+    
 
     self.eventTimeConflictLabel = nil;
     self.eventTimeLabel = nil;
@@ -62,13 +67,13 @@ static CGFloat const getstureDistance = 50;
 - (void)setConflictCount:(NSInteger)count
 {
     if (count > 0) {
-        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d CONFLICT", count];
+        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
         [self.eventTimeConflictLabel setHidden:NO];
-        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+//        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
     }
     else
     {
-        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+        //[self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
         [self.eventTimeConflictLabel setHidden:YES];
     }
     
@@ -76,12 +81,12 @@ static CGFloat const getstureDistance = 50;
 
 -(void) updateView:(ProposeStart *) eventTime
 {
-    CGRect frame = self.frame;
-    frame.origin.x = 7;
-    frame.origin.y = 7;
-    self.frame = frame;
+//    CGRect frame = self.frame;
+//    frame.origin.x = 7;
+//    frame.origin.y = 7;
+//    self.frame = frame;
 
-    NSString * label = [Utils getProposeStatLabel:eventTime];
+    NSString * label = [Utils getProposeStatLabel2:eventTime];
     self.eventTimeLabel.text = label;
     
     self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
@@ -95,9 +100,9 @@ static CGFloat const getstureDistance = 50;
 
 - (void)updateUI
 {
-    [self.contentView.layer setCornerRadius:5.0f];
-    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
-    [self.contentView.layer setBorderWidth:1.0f];
+//    [self.contentView.layer setCornerRadius:5.0f];
+//    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
+//    [self.contentView.layer setBorderWidth:1.0f];
     
     [self.layer setCornerRadius:5.0f];
     [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
@@ -106,6 +111,15 @@ static CGFloat const getstureDistance = 50;
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
 
+    //_finailzeBtn.layer
+    _finailzeBtn.layer.cornerRadius = 2;
+//    _finailzeBtn.layer.shadowOffset =  CGSizeMake(0, 2);
+//    _finailzeBtn.layer.shadowOpacity = 0.8;
+//    _finailzeBtn.layer.shadowColor =  [UIColor blackColor].CGColor;
+    _finailzeBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    [_finailzeBtn.layer setBorderWidth:0.3f];
+    //_finailzeBtn.layer.borderWidth = 1.0f;
+    
     [_finailzeBtn addTarget:self action:@selector(setFinalze:) forControlEvents:UIControlEventTouchUpInside];
     [self.removeView setHidden:YES];
 }
@@ -227,6 +241,18 @@ static CGFloat const getstureDistance = 50;
     EventDetailFinailzeView * view = (EventDetailFinailzeView*)[nibView objectAtIndex:0];
     [view updateUI];
     
+    return view;
+}
+
++(EventDetailFinailzeView *) creatViewWithStartDate:(NSDate *)date;
+{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailFinailzeView" owner:self options:nil];
+    EventDetailFinailzeView * view = (EventDetailFinailzeView*)[nibView objectAtIndex:0];
+    [view setBackgroundColor:[UIColor colorWithRed:236.0/255.0 green:243.0/255.0 blue:236.0/255.0 alpha:0.7]];
+    [view updateUI];
+    
+    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 8.0, 50.0, 50.0) withDate:date];
+    [view addSubview:dateView];
     return view;
 }
 @end

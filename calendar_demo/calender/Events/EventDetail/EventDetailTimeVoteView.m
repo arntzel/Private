@@ -78,15 +78,22 @@
     }
     else
     {
-        finailzeView = [[EventDetailFinailzeView creatView] retain];
+        finailzeView = [[EventDetailFinailzeView creatViewWithStartDate:_eventTime.start] retain];
         [finailzeView updateView:_eventTime];
         [finailzeView setConflictCount:[self getConfilictEventCount]];
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
+        
+        finailzeView.cfmedLabel.text = [NSString stringWithFormat:@"%d Confirmed", [_eventTime getAcceptCount]];
+        finailzeView.declinesLabel.text =[NSString stringWithFormat:@"%d Declined", [_eventTime getDeclinedCount]];
 
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
         [finailzeView.eventTimeBtn addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
+        
+        UITapGestureRecognizer *tapGestureVote = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapHeaderListView:)];
+        [finailzeView.voteStateBtn addGestureRecognizer:tapGestureVote];
+        [tapGestureVote release];
     }
 }
 

@@ -40,9 +40,16 @@
 - (void)setConflictCount:(NSInteger)count
 {
     if (count > 0) {
-        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d CONFLICT", count];
+        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
         [self.eventTimeConflictLabel setHidden:NO];
-        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+        CGRect frame = self.eventTimeLabel.frame;
+        frame.origin.y = 20;
+        [self.eventTimeLabel setFrame:frame];
+        
+        frame = self.timeLabelButton.frame;
+        frame.origin.y = 20;
+        [self.timeLabelButton setFrame:frame];
+//        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
     }
     else
     {
@@ -104,9 +111,10 @@
 {
     [self.finalizedTick setHidden:NO];
     [self.finalizedLabel setHidden:NO];
-    CGRect timeFrame = self.eventTimeLabel.frame;
-    timeFrame.origin.y = 8;
-    [self.eventTimeLabel setFrame:timeFrame];
+    [self.viewVoteArrow setHidden:YES];
+//    CGRect timeFrame = self.eventTimeLabel.frame;
+//    timeFrame.origin.y = 8;
+//    [self.eventTimeLabel setFrame:timeFrame];
 }
 
 - (void)setTicked

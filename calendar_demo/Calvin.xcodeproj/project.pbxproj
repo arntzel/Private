@@ -25,6 +25,8 @@
 		232F1A39186B22DE00238CA5 /* gray2_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A35186B22DE00238CA5 /* gray2_error.png */; };
 		232F1A3A186B22DE00238CA5 /* green_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A36186B22DE00238CA5 /* green_error.png */; };
 		232F1A3B186B22DE00238CA5 /* red_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 232F1A37186B22DE00238CA5 /* red_error.png */; };
+		2344AC2B186BFD69001A4AD0 /* green_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2344AC29186BFD69001A4AD0 /* green_right.png */; };
+		2344AC2C186BFD69001A4AD0 /* green_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2344AC2A186BFD69001A4AD0 /* green_right@2x.png */; };
 		2345850D1853688100086FB3 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585041853688100086FB3 /* BLRView.m */; };
 		2345850E1853688100086FB3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585061853688100086FB3 /* UIImage+ImageEffects.m */; };
 		2345850F1853688100086FB3 /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234585081853688100086FB3 /* UIImage+REFrostedViewController.m */; };
@@ -554,6 +556,8 @@
 		232F1A35186B22DE00238CA5 /* gray2_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray2_error.png; sourceTree = "<group>"; };
 		232F1A36186B22DE00238CA5 /* green_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_error.png; sourceTree = "<group>"; };
 		232F1A37186B22DE00238CA5 /* red_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_error.png; sourceTree = "<group>"; };
+		2344AC29186BFD69001A4AD0 /* green_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_right.png; sourceTree = "<group>"; };
+		2344AC2A186BFD69001A4AD0 /* green_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_right@2x.png"; sourceTree = "<group>"; };
 		234585031853688100086FB3 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BlurView/BLRView.h; sourceTree = "<group>"; };
 		234585041853688100086FB3 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BlurView/BLRView.m; sourceTree = "<group>"; };
 		234585051853688100086FB3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "BlurView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1833,6 +1837,8 @@
 		769AB93117DF51340033E677 /* event_detail_conform */ = {
 			isa = PBXGroup;
 			children = (
+				2344AC29186BFD69001A4AD0 /* green_right.png */,
+				2344AC2A186BFD69001A4AD0 /* green_right@2x.png */,
 				232F1A34186B22DE00238CA5 /* gray1_error.png */,
 				232F1A35186B22DE00238CA5 /* gray2_error.png */,
 				232F1A36186B22DE00238CA5 /* green_error.png */,
@@ -2919,6 +2925,7 @@
 				769AB9BD17DF51340033E677 /* event_detail_invitee_time_cross_disable.png in Resources */,
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
+				2344AC2B186BFD69001A4AD0 /* green_right.png in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
 				23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */,
@@ -3097,6 +3104,7 @@
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
+				2344AC2C186BFD69001A4AD0 /* green_right@2x.png in Resources */,
 				235693551847968A0003AD8E /* add_event_icon.png in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,

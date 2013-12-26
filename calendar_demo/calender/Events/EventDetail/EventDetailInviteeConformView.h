@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *eventTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *voteStateBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *viewVoteArrow;
 
 @property (weak, nonatomic) IBOutlet UILabel *declinesLabel;
 
