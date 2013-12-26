@@ -103,6 +103,9 @@
     view.eventTimeLabel.centerVertically = YES;
     
     view.eventTypeLabel.text = [_eventTime parseStartTimeStringWithFirstCapitalized];
+    
+    view.cfmedLabel.text = [NSString stringWithFormat:@"%d Confirmed", [_eventTime getAcceptCount]];
+    view.declinesLabel.text =[NSString stringWithFormat:@"%d Declined", [_eventTime getDeclinedCount]];
     [self addSubview:view];
     
     UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapEventTimeLabel:)];
@@ -232,15 +235,18 @@
     }
     else
     {
-        conformView = [[EventDetailInviteeConformView creatView] retain];
+        conformView = [[EventDetailInviteeConformView creatViewWithStartDate:_eventTime.start] retain];
 
         CGRect frame = conformView.frame;
-        frame.origin.x = 7;
+        frame.origin.x = 0;
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
-        [conformView setTime:[Utils getProposeStatLabel:_eventTime]];
+        [conformView setTime:[Utils getProposeStatLabel2:_eventTime]];
         [conformView setConflictCount:[self getConfilictEventCount]];
+        conformView.eventTypeLabel.text = [_eventTime parseStartTimeStringWithFirstCapitalized];
         
+        conformView.cfmedLabel.text = [NSString stringWithFormat:@"%d Confirmed", [_eventTime getAcceptCount]];
+        conformView.declinesLabel.text =[NSString stringWithFormat:@"%d Declined", [_eventTime getDeclinedCount]];
         int status = 0;
         User * me = [[UserModel getInstance] getLoginUser];
 
@@ -279,6 +285,10 @@
         //conformView.eventTimeLabel.userInteractionEnabled = YES;
         [conformView.timeLabelButton addGestureRecognizer:tapGestureTel];
         [tapGestureTel release];
+        
+        UITapGestureRecognizer *tapGestureVote = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapHeaderListView:)];
+        [conformView.voteStateBtn addGestureRecognizer:tapGestureVote];
+        [tapGestureVote release];
     }    
 }
 

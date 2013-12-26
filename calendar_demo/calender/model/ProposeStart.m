@@ -255,4 +255,28 @@
            (self.duration_days == ps.duration_days);
 }
 
+-(int)getAcceptCount
+{
+    int totalAccpet = 0;
+    
+    for (EventTimeVote *vote in self.votes) {
+        if (vote.status == 1) {
+            totalAccpet ++;
+        }
+    }
+    return totalAccpet;
+}
+
+-(int)getDeclinedCount
+{
+    int totalDecline = 0;
+    
+    for (EventTimeVote *vote in self.votes) {
+        if (vote.status == -1) {
+            totalDecline ++;
+        }
+    }
+    return totalDecline;
+}
+
 @end
