@@ -290,7 +290,6 @@
         [conformView.voteStateBtn addGestureRecognizer:tapGestureVote];
         [tapGestureVote release];
     }
-}
 
 -(void) onEventTimtVoteAgree
 {
