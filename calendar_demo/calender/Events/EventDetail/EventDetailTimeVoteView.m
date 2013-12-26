@@ -235,7 +235,7 @@
 //    }
 //    else
 //    {
-        conformView = [[EventDetailInviteeConformView creatView] retain];
+        conformView = [[EventDetailInviteeConformView creatViewWithStartDate:_eventTime.start] retain];
 
         CGRect frame = conformView.frame;
         frame.origin.x = 0;
