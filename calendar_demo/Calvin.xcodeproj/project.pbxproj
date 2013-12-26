@@ -124,8 +124,6 @@
 		3D272CF91825EA8800C1AE04 /* EventFilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */; };
 		3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */; };
 		3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */; };
-		3D3A51F3186B19EB006B50E0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3A51F0186B19EB006B50E0 /* libMobClickLibrary.a */; };
-		3D3A51F4186B19EB006B50E0 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3A51F1186B19EB006B50E0 /* libMobClickLibrary_armv6.a */; };
 		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D593A9D180692F000AA5E50 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D593A9C180692F000AA5E50 /* EmptyCell.xib */; };
 		3D5A3C9B181E0A97000AED71 /* ContactEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A3C9A181E0A97000AED71 /* ContactEntity.m */; };
@@ -139,6 +137,8 @@
 		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92521017784AAE0066927A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D925278177960460066927A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925277177960450066927A /* Security.framework */; };
+		3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29286186BC204009759C2 /* libMobClickLibrary.a */; };
+		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
 		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
 		3DCD5DD4181510C4000E2E56 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD3181510C4000E2E56 /* MessageEntity.m */; };
 		3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DD6181510C4000E2E56 /* Setting.m */; };
@@ -685,9 +685,6 @@
 		3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFilterViewCell.m; sourceTree = "<group>"; };
 		3D32F06318094203000C4D3A /* EventTimeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTimeDetailViewController.h; sourceTree = "<group>"; };
 		3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTimeDetailViewController.m; sourceTree = "<group>"; };
-		3D3A51F0186B19EB006B50E0 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		3D3A51F1186B19EB006B50E0 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
-		3D3A51F2186B19EB006B50E0 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
 		3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeVoteView.m; sourceTree = "<group>"; };
 		3D593A9C180692F000AA5E50 /* EmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
@@ -706,6 +703,9 @@
 		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3D92521017784AAE0066927A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3D925277177960450066927A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3DC29286186BC204009759C2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
+		3DC29288186BC204009759C2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventViewNoEventCell.xib; path = calender/pending/PendingEventViewNoEventCell.xib; sourceTree = SOURCE_ROOT; };
 		3DCD5DD2181510C4000E2E56 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = calender/coredata/MessageEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DD3181510C4000E2E56 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = calender/coredata/MessageEntity.m; sourceTree = SOURCE_ROOT; };
@@ -1308,14 +1308,14 @@
 				764404B817523BB100B11BDE /* CoreText.framework in Frameworks */,
 				34659DCB180E840800E5632F /* EventKit.framework in Frameworks */,
 				34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */,
-				3D3A51F4186B19EB006B50E0 /* libMobClickLibrary_armv6.a in Frameworks */,
+				3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */,
 				34B1F1D317F8FD3F00AA5C97 /* MessageUI.framework in Frameworks */,
 				7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */,
 				76795BF8183E50AC0062DC32 /* FacebookSDK.framework in Frameworks */,
 				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
 				3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */,
 				3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */,
-				3D3A51F3186B19EB006B50E0 /* libMobClickLibrary.a in Frameworks */,
+				3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */,
 				3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */,
 				764404C817523C6E00B11BDE /* SystemConfiguration.framework in Frameworks */,
 				3D925278177960460066927A /* Security.framework in Frameworks */,
@@ -1494,16 +1494,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3D3A51EF186B19EB006B50E0 /* UMAnalytics_Sdk_2.2.1.OpenUDID */ = {
-			isa = PBXGroup;
-			children = (
-				3D3A51F0186B19EB006B50E0 /* libMobClickLibrary.a */,
-				3D3A51F1186B19EB006B50E0 /* libMobClickLibrary_armv6.a */,
-				3D3A51F2186B19EB006B50E0 /* MobClick.h */,
-			);
-			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
-			sourceTree = "<group>";
-		};
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
@@ -1583,6 +1573,16 @@
 				34CC551E181CB7FB00E23246 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DC29285186BC204009759C2 /* UMAnalytics_Sdk_2.2.1.OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				3DC29286186BC204009759C2 /* libMobClickLibrary.a */,
+				3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */,
+				3DC29288186BC204009759C2 /* MobClick.h */,
+			);
+			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
 			sourceTree = "<group>";
 		};
 		3DFB113F18337F7200084EF2 /* OHAttributedLabel */ = {
@@ -2406,7 +2406,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				3D3A51EF186B19EB006B50E0 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
+				3DC29285186BC204009759C2 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
 				234585021853687300086FB3 /* BlurView */,
 				768404C3180115B200C69240 /* JSTokenField */,
@@ -3548,9 +3548,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
-					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
-					"/Users/fangxiang/project/calvinapp/calendar_demo/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
@@ -3578,9 +3577,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel",
-					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
-					"/Users/fangxiang/project/calvinapp/calendar_demo/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
+					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
