@@ -42,6 +42,7 @@
 
     NSString * msg = @"";
     NSString * content = [json objectForKey:@"content"];
+    cmt.commentType = type;
     switch (type) {
         case 0: {
             msg = [content stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

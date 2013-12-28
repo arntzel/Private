@@ -51,6 +51,7 @@
     [_commentAutherPhotoView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [_commentAutherPhotoView.layer setBorderWidth:1.0f];
     
+    _bubleBackground.image = [[UIImage imageNamed:@"buble.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:14];
 }
 
 -(void) updateView:(Comment *) cmt
@@ -58,6 +59,21 @@
     [self setHeaderPhotoUrl:cmt.commentor.avatar_url];
     self.commentContentLabel.text = cmt.msg;
     self.commentTimeLabel.text = [Utils getTimeText:cmt.createTime];
+    if (cmt.commentType == 0) {
+        self.bubleBackground.hidden = NO;
+    } else {
+        CGRect contentFrame = self.commentContentLabel.frame;
+        float y = contentFrame.origin.y;
+        y = y + 20;
+        contentFrame.origin.y = y;
+        self.commentContentLabel.frame = contentFrame;
+        
+        CGRect timeFrame = self.commentTimeLabel.frame;
+        y = timeFrame.origin.y;
+        y = y + 20;
+        timeFrame.origin.y = y;
+        self.commentTimeLabel.frame = timeFrame;
+    }
 }
 
 +(EventDetailCommentView *) creatView
@@ -65,6 +81,7 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailCommentView" owner:self options:nil];
     EventDetailCommentView * view = (EventDetailCommentView*)[nibView objectAtIndex:0];
     [view updateUI];
+    [view setBackgroundColor:[UIColor clearColor]];
     return view;
 }
 

@@ -42,7 +42,7 @@
     [btnLoadMore addTarget:self action:@selector(btnLoadMoreClick:) forControlEvents:UIControlEventTouchUpInside];
     
     maskView = [[UIView alloc] initWithFrame:self.bounds];
-    [maskView setBackgroundColor:[UIColor whiteColor]];
+    [maskView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:maskView];
     
     [self stopLoading];

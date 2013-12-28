@@ -13,6 +13,7 @@
 
 +(EventDetailCommentView *) creatView;
 @property (retain, nonatomic) IBOutlet UIImageView *commentAutherPhotoView;
+@property (strong, nonatomic) IBOutlet UIImageView *bubleBackground;
 @property (retain, nonatomic) IBOutlet UILabel *commentContentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *commentTimeLabel;
 

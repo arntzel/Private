@@ -58,7 +58,8 @@
     [_autherPhotoView.layer setBorderWidth:1.0f];
     
 
-    
+    //[self setBackgroundColor:[UIColor colorWithRed:227.0/255.0 green:233.0/255.0 blue:231.0/255.0 alpha:0.9f]];
+    [self setBackgroundColor:[UIColor clearColor]];
     [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
     [self.layer setShadowRadius:3.0f];
     [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];

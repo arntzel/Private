@@ -15,6 +15,8 @@
 
 @property int eventID;
 
+@property int commentType;
+
 @property(strong) Contact * commentor;
 
 @property(strong) NSString * msg;
