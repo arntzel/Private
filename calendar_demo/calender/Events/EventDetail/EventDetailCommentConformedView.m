@@ -28,6 +28,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailCommentConformedView" owner:self options:nil];
     EventDetailCommentConformedView * view = (EventDetailCommentConformedView*)[nibView objectAtIndex:0];
+    [view setBackgroundColor:[UIColor clearColor]];
     return view;
 }
 
