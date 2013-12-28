@@ -104,10 +104,10 @@ static CGFloat const getstureDistance = 50;
 //    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
 //    [self.contentView.layer setBorderWidth:1.0f];
     
-    [self.layer setCornerRadius:5.0f];
-    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
-    [self.layer setShadowRadius:3.0f];
-    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
+//    [self.layer setCornerRadius:5.0f];
+//    [self.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.16f].CGColor];
+//    [self.layer setShadowRadius:3.0f];
+//    [self.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
     [self.layer setBorderWidth:1.0f];
 

@@ -217,7 +217,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
 - (void)setFrameToMonthMode
 {
     if (self.hideActionBar) {
-        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height - 45)];
+        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height)];
     } else {
         [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 45)];
     }
