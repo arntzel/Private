@@ -34,7 +34,7 @@
 @property(nonatomic,retain) NSMutableArray *commentArray;
 @end
 
-#define DETAIL_COMMENT_CELL_HEIGHT 80
+#define DETAIL_COMMENT_CELL_HEIGHT 75
 
 @implementation EventDetailCommentContentView
 @synthesize commentArray;
