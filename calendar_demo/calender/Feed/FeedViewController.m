@@ -157,6 +157,10 @@
                     }
                     [userDefaults setObject:_iCalTypes forKey:@"iCalTypes"];
                     [userDefaults synchronize];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.calendarView.filterView updateView];
+                    });
+                    
                 }
                 
                 

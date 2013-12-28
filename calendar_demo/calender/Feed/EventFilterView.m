@@ -132,6 +132,40 @@
     cell.btnSelect.selected = item.select;
     cell.selectionStyle =  UITableViewCellSelectionStyleNone;
     
+    if (item.eventType == 5)
+    {
+        __weak EventFilterViewCell *weakCell = cell;
+        weakCell.btnSelect.userInteractionEnabled = YES;
+        weakCell.btnBeClickedBlock = ^{
+        
+            item.select = !item.select;
+            cell.btnSelect.selected = item.select;
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            if (item.select)
+            {
+                NSMutableArray *iCalTypes = [[NSMutableArray alloc] init];
+                EKEventStore *store = [[EKEventStore alloc] init];
+                NSArray *iCals = [store calendarsForEntityType:EKEntityTypeEvent];
+                for (EKCalendar *iCal in iCals)
+                {
+                    
+                    [iCalTypes addObject:iCal.calendarIdentifier];
+                    
+                }
+                [userDefaults setObject:iCalTypes forKey:@"iCalTypes"];
+                
+            }
+            else
+            {
+                [userDefaults removeObjectForKey:@"iCalTypes"];
+            }
+            [userDefaults synchronize];
+            
+            [self onFilterChanged];
+        };
+    }
+    
     return cell;
 }
 

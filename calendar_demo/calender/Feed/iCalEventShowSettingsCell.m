@@ -25,5 +25,8 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)test:(id)sender {
+    
+}
 
 @end

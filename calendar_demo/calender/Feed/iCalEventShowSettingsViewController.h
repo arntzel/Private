@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *iCalID;
 @property (assign, nonatomic) BOOL isSelect;
-
+@property (nonatomic, strong) NSString *belongToSource;
 @end
 
 

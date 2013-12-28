@@ -16,7 +16,7 @@
 static NSString *const cellID = @"CellID";
 @interface iCalEventShowSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSMutableSet *sourceSet;
 @end
 
 @implementation iCalEventShowSettingsViewController
@@ -35,6 +35,7 @@ static NSString *const cellID = @"CellID";
     [super viewDidLoad];
     [self setupViews];
     self.dataSource = [[NSMutableArray alloc] init];
+    self.sourceSet = [[NSMutableSet alloc]init];
     [self.tableView registerNib:[UINib nibWithNibName:@"iCalEventShowSettingsCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self requestData];
     // Do any additional setup after loading the view from its nib.
@@ -77,13 +78,16 @@ static NSString *const cellID = @"CellID";
                         iCalendar *iCal = [[iCalendar alloc] init];
                         iCal.title = tmp.title;
                         iCal.iCalID = tmp.calendarIdentifier;
+                        iCal.belongToSource = tmp.source.title;
                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self=%@",iCal.iCalID];
                         NSArray *result = [iCalTypes filteredArrayUsingPredicate:predicate];
+                        NSLog(@"title:%@ sourceTitle:%@",tmp.title,tmp.source.title);
                         if ([result count]>0)
                         {
                             iCal.isSelect = YES;
                         }
                         [self.dataSource addObject:iCal];
+                        [self.sourceSet addObject:iCal.belongToSource];
                     }
                     
                 }
@@ -121,16 +125,31 @@ static NSString *const cellID = @"CellID";
 }
 
 #pragma mark -  UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.sourceSet count];
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    
+    return [self.sourceSet allObjects][section];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataSource count];
+    NSString *sourceName = [self.sourceSet allObjects][section];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.belongToSource=%@",sourceName];
+    
+    return [[self.dataSource filteredArrayUsingPredicate:predicate] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     iCalEventShowSettingsCell *cell = (iCalEventShowSettingsCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
     
-    iCalendar *iCal = [self.dataSource objectAtIndex:indexPath.row];
+    NSString *sourceName = [self.sourceSet allObjects][indexPath.section];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.belongToSource=%@",sourceName];
+    iCalendar *iCal = [[self.dataSource filteredArrayUsingPredicate:predicate] objectAtIndex:indexPath.row];
     cell.titleLabel.text = iCal.title;
     cell.isSelectBtn.selected = iCal.isSelect;
     return cell;
@@ -138,7 +157,9 @@ static NSString *const cellID = @"CellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    iCalendar *iCal = [self.dataSource objectAtIndex:indexPath.row];
+    NSString *sourceName = [self.sourceSet allObjects][indexPath.section];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.belongToSource=%@",sourceName];
+    iCalendar *iCal = [[self.dataSource filteredArrayUsingPredicate:predicate] objectAtIndex:indexPath.row];
     iCal.isSelect = !iCal.isSelect;
     [self.tableView reloadData];
 }

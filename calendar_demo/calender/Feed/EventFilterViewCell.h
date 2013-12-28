@@ -15,6 +15,7 @@
 @property IBOutlet UILabel * labelEventTypeName;
 @property IBOutlet UIButton * btnSelect;
 
+@property (nonatomic, copy) void (^btnBeClickedBlock)(void);
 +(EventFilterViewCell *) createView:(int) eventType;
 
 @end

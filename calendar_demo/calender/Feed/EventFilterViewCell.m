@@ -31,7 +31,6 @@
     EventFilterViewCell * view = (EventFilterViewCell*)[nibView objectAtIndex:0];
     
     view.btnSelect.selected = YES;
-    
     view.colorDot.layer.cornerRadius = view.colorDot.frame.size.width/2;
     view.colorDot.layer.masksToBounds = YES;
     view.colorDot.backgroundColor = [ViewUtils getUIColor:[ViewUtils getEventTypeColor:eventType]];
@@ -41,6 +40,17 @@
     //CGFloat lineColor1[4]={209.0/255.0,217.0/255.0,210.0/255.0,1.0};
     UIColor *lineColor = [UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:1.0];
     [view.bottomLine setBackgroundColor:lineColor];
+    
     return view;
 }
+
+- (IBAction)btnBeClicked:(UIButton *)sender
+{
+    
+    if (self.btnBeClickedBlock)
+    {
+        self.btnBeClickedBlock();
+    }
+}
+
 @end
