@@ -94,6 +94,7 @@ static CGFloat const getstureDistance = 50;
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
+        self.finailzeView.hidden = YES;
         self.alpha = ALPHA;
     }
 }
