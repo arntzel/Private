@@ -19,7 +19,7 @@ const CGSize kDateViewSize = { 40.0f, 40.0f };
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.date = theDate;
+        self.date = [Utils convertLocalDate:theDate];
         self.clipsToBounds = YES;
         [self setBackgroundColor:[UIColor clearColor]];
     }

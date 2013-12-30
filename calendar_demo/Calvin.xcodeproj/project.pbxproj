@@ -3557,8 +3557,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3576,8 +3576,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
+				"PROVISIONING_PROFILE[sdk=*]" = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3586,8 +3586,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3605,8 +3605,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
