@@ -286,7 +286,12 @@
         
         if(error == 0) {
             
-            NSArray * show_notification_types = [settings objectForKey:@"show_notification_types"];
+            NSArray * show_notification_types = nil;
+            if ([[settings objectForKey:@"show_notification_types"] isKindOfClass:[NSArray class]])
+            {
+                show_notification_types = [settings objectForKey:@"show_notification_types"];
+            }
+            
             NSMutableString * strNotiTypes = [[NSMutableString alloc] init];
             
             for(int i=0 ; i<show_notification_types.count; i++) {
