@@ -66,7 +66,9 @@
 //    UIImage *image = view.leftBtn.imageView.image;
 //    image = [image resizableImageWithCapInsets:insets];
 //    view.leftBtn.imageEdgeInsets = insets;
-
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:15.f],UITextAttributeFont ,nil];
+    [view.calPendingSegment setTitleTextAttributes:dic forState:UIControlStateNormal];
     return view;
 }
 

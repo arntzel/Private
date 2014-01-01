@@ -263,7 +263,7 @@
         [view refreshView:event];
     
         [cell setBackgroundColor:[UIColor clearColor]];
-
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
     } else {
@@ -282,7 +282,7 @@
         [view refreshView:event];
         
         [cell setBackgroundColor:[UIColor clearColor]];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
@@ -292,29 +292,26 @@
     NSString * sectionName = [[cache allDays] objectAtIndex:section];
     sectionName = [Utils toReadableDay:sectionName];
 
-    CGRect frame = CGRectMake(0, 0, 320, 36);
+    CGRect frame = CGRectMake(0, 0, 320, 38);
 
     UIView * view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:0.9]];
-//    UIImageView * bg = [[UIImageView alloc] initWithFrame:frame];
-//    bg.image = [UIImage imageNamed:@"bg_section_header"];
-//    [view addSubview:bg];
+    [view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
 
     UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
     //float colorVal = 227.0/255.0;
     line.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:1];
     [view addSubview:line];
 
-    UIImageView * clockView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"clock.png"]];
-    clockView.frame = CGRectMake(18, 11, 14, 14);
-    [view addSubview:clockView];
+//    UIImageView * clockView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"clock.png"]];
+//    clockView.frame = CGRectMake(18, 11, 14, 14);
+//    [view addSubview:clockView];
 
     float fontColor = 172.0/255.0;
 
-    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 320-50, 16)];
+    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 320-50, 18)];
     dayLabel.text = sectionName;
     dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
-    dayLabel.font = [UIFont systemFontOfSize:12];
+    [dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17]];
     dayLabel.textAlignment = NSTextAlignmentLeft;
     dayLabel.backgroundColor = [UIColor clearColor];
 
@@ -326,7 +323,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 36;
+    return 38;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

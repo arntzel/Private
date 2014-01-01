@@ -75,10 +75,13 @@
     //CGRect bannerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     CGRect tableRect = CGRectMake(0, BANNER_HEIGHT+20, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
     
-    UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
-    [sepLine setBackgroundColor:[UIColor lightGrayColor]];
-    [self.view addSubview:sepLine];
-    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame =CGRectMake(20, 75, 280, 1);
+    [bottomBorder setBackgroundColor:[UIColor colorWithRed:122.0/255.0 green:138.0/255.0 blue:132.0/255.0 alpha:1].CGColor];
+    [self.view.layer addSublayer:bottomBorder];
+//    UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
+//    [sepLine setBackgroundColor:[UIColor lightGrayColor]];
+//    [self.view addSubview:sepLine];
     CGRect logoRect = CGRectMake(20, 40, 64, 20);
     
     //UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:logoRect];
