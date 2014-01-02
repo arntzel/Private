@@ -94,12 +94,15 @@
     
     UIColor *labelColor = [UIColor generateUIColorByHexString:@"#6b706f"];
     [self.labAttendees setTextColor:labelColor];
+    [self.labLocation setTextColor:labelColor];
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
     if ([self.labLocation.text isEqual: @"No Location"]) {
-        [self.labLocation setTextColor:[UIColor redColor]];
+        [self.labLocation setHidden:YES];
+        [self.iconLocation setHidden:YES];
     } else {
-        [self.labLocation setTextColor:labelColor];
+        [self.labLocation setHidden:NO];
+        [self.iconLocation setHidden:NO];
     }
     
     self.labTitle.text = event.title;

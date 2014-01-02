@@ -18,5 +18,6 @@
 
 
 -(void) reload;
+-(void) updateBlurBackground;
 
 @end

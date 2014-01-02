@@ -31,6 +31,7 @@
 		234585101853688100086FB3 /* UIStopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850A1853688100086FB3 /* UIStopWatch.m */; };
 		234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */; };
 		234DAFAC18560AF500558B4A /* KalActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234DAFAB18560AF500558B4A /* KalActionsView.m */; };
+		235047CA18754E50001DB8EF /* FeedEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235047C918754E50001DB8EF /* FeedEventTableViewCell.m */; };
 		235693551847968A0003AD8E /* add_event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693531847968A0003AD8E /* add_event_icon.png */; };
 		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
 		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
@@ -570,6 +571,8 @@
 		2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+REFrostedViewController.m"; path = "BlurView/UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
 		234DAFAA18560AF500558B4A /* KalActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalActionsView.h; sourceTree = "<group>"; };
 		234DAFAB18560AF500558B4A /* KalActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalActionsView.m; sourceTree = "<group>"; };
+		235047C818754E50001DB8EF /* FeedEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventTableViewCell.h; sourceTree = "<group>"; };
+		235047C918754E50001DB8EF /* FeedEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableViewCell.m; sourceTree = "<group>"; };
 		235693531847968A0003AD8E /* add_event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_event_icon.png; sourceTree = "<group>"; };
 		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
 		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
@@ -2370,6 +2373,8 @@
 				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
 				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
 				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
+				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
+				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -3187,6 +3192,7 @@
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
 				769AB92117DF51160033E677 /* PendingEventViewCell.m in Sources */,
 				769AB92317DF51160033E677 /* PendingEventViewCell2.m in Sources */,
+				235047CA18754E50001DB8EF /* FeedEventTableViewCell.m in Sources */,
 				769AB92517DF51160033E677 /* PendingTableView.m in Sources */,
 				76411AF5180830D1001C2125 /* ExtendArray.m in Sources */,
 				769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */,

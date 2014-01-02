@@ -32,6 +32,7 @@
     BOOL loading;
     
     MessageModel * msgModel;
+    BLRView *blrView;
 }
 @end
 
@@ -55,7 +56,6 @@
     return YES;
 }
 
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
@@ -64,10 +64,10 @@
     self.view.clipsToBounds = YES;
     
     //Load BLRView
-    BLRView *blrView = [[BLRView alloc] init];
+    blrView = [[BLRView alloc] init];
     blrView.frame = self.view.bounds;
     blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [self.view addSubview:blrView];
     
     menuDataSource = [[navigationMenuDataSource alloc] init];
@@ -320,6 +320,18 @@
 //    if(selectPath != nil && selectPath.section == 0) {
 //        [_tableView selectRowAtIndexPath:selectPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 //    }
+}
+
+-(void) updateBlurBackground
+{
+    if (blrView) {
+        [blrView  blurWithColor:[BLRColorComponents darkEffect]];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self updateBlurBackground];
 }
 
 -(BOOL)prefersStatusBarHidden

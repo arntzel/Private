@@ -88,8 +88,8 @@
 
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
-    frame.size.height -=(y + 64);
-    
+    //frame.size.height -=(y + 64);
+    frame.size.height -=y;
     
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -105,9 +105,11 @@
     
     //Load BLRView
     blrView = [[BLRView alloc] init];
-    blrView.frame = self.view.bounds;
+    CGRect blurFrame = self.view.bounds;
+    //blurFrame.size.height = self.view.bounds.size.height / 2;
+    blrView.frame = blurFrame;
     blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //[blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [blrView setHidden:YES];
     [self.view addSubview:blrView];
     isBlured = NO;
@@ -262,10 +264,9 @@
 {
     if (blrView) {
         if (!isBlured) {
-            [blrView  blurWithColor:[BLRColorComponents lightEffect]];
+            [blrView  blurWithColor:[BLRColorComponents darkEffect]];
             isBlured = YES;
         }
-        
         [blrView setHidden:NO];
     }
 }

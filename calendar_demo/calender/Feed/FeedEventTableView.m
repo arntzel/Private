@@ -12,6 +12,8 @@
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"
 #import "FeedEventEntity.h"
+#import "UIColor+Hex.h"
+#import "FeedEventTableViewCell.h"
 #import <EventKit/EventKit.h>
 #define FETECH_EVENTS 20
 
@@ -254,7 +256,7 @@
         if(cell == nil) {
             view = [EventView createEventView];
             view.tag = 1;
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
             [cell addSubview:view];
         } else {
             view = (EventView*)[cell viewWithTag:1];
@@ -264,6 +266,7 @@
     
         [cell setBackgroundColor:[UIColor clearColor]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
 
     } else {
@@ -273,16 +276,14 @@
         if(cell == nil) {
             view = [BirthdayEventView createEventView];
             view.tag = 2;
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
             [cell addSubview:view];
-        } else {
-            view = (BirthdayEventView*)[cell viewWithTag:2];
         }
-
         [view refreshView:event];
         
         [cell setBackgroundColor:[UIColor clearColor]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
     }
 }
@@ -297,10 +298,14 @@
     UIView * view = [[UIView alloc] initWithFrame:frame];
     [view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
 
-    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-    //float colorVal = 227.0/255.0;
-    line.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:1];
-    [view addSubview:line];
+//    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 1)];
+//    //float colorVal = 227.0/255.0;
+//    line.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2"];
+//    [view addSubview:line];
+//    CALayer *layer = [CALayer layer];
+//    layer.frame = CGRectMake(0, -0.5, 50, 1);
+//    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2"].CGColor;
+//    [view.layer addSublayer:layer];
 
 //    UIImageView * clockView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"clock.png"]];
 //    clockView.frame = CGRectMake(18, 11, 14, 14);
@@ -366,10 +371,8 @@
     NSArray * events = [wrap sortedEvents];
     
     FeedEventEntity * event = [events objectAtIndex:indexPath.row];
-    
     return event;
 }
-
 
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {

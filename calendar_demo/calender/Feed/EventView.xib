@@ -71,6 +71,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="iconLocation" destination="29" id="5PA-AJ-v2b"/>
                 <outlet property="imgEventType" destination="46" id="47"/>
                 <outlet property="imgUser" destination="25" id="41"/>
                 <outlet property="labAttendees" destination="28" id="42"/>

@@ -77,6 +77,8 @@ typedef enum {
 ///
 + (BLRColorComponents *) lightEffect;
 
++ (BLRColorComponents *) whiteEffect;
+
 ///Dark color effect.
 ///
 + (BLRColorComponents *) darkEffect;

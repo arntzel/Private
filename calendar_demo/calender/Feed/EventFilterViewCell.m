@@ -31,6 +31,7 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventFilterViewCell" owner:self options:nil];
     EventFilterViewCell * view = (EventFilterViewCell*)[nibView objectAtIndex:0];
     
+    view.backgroundColor = [UIColor clearColor];
     view.btnSelect.selected = YES;
     view.colorDot.layer.cornerRadius = view.colorDot.frame.size.width/2;
     view.colorDot.layer.masksToBounds = YES;
