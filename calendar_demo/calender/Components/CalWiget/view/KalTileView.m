@@ -111,7 +111,7 @@ const CGSize kTileSize = { 45.7f, 50.f };
     
   textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
 //  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
-    if (n == 1 || self.selected) {
+    if (n == 1) {
         textY = 14.0f;
     }
     else
@@ -122,7 +122,7 @@ const CGSize kTileSize = { 45.7f, 50.f };
   CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
 
     //draw month
-    if (n == 1 || self.isSelected) {
+    if (n == 1) {
         fontSize = 10.0f;
         UIFont *monthFont = [UIFont boldSystemFontOfSize:fontSize];
         
