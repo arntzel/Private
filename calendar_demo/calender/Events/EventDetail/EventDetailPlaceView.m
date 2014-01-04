@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "GPlaceApi.h"
+#import "UIColor+Hex.h"
 
 @interface EventDetailPlaceView()
 {
@@ -56,6 +57,7 @@
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [_gmsMapView.layer setShadowRadius:1.0f];
     
+    [[self locationNameLabel] setTextColor:[UIColor generateUIColorByHexString:@"#7c7c7c"]];
 
 }
 

@@ -9,6 +9,7 @@
 #import "EventDetailInviteeView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EventDetailHeaderListView.h"
+#import "UIColor+Hex.h"
 
 #import "UserModel.h"
 
@@ -133,6 +134,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailInviteeView" owner:self options:nil];
     EventDetailInviteeView * view = (EventDetailInviteeView*)[nibView objectAtIndex:0];
+    [[view inviteeLabel] setTextColor:[UIColor generateUIColorByHexString:@"#7c7c7c"]];
     //[view updateUI];
     [view setBackgroundColor:[UIColor clearColor]];
     return view;
