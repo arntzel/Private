@@ -461,7 +461,7 @@ static NSTimeZone * userTimeZone;
     NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
     NSString * duration = [ps parseDuringDateString2];
     
-    NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%@</font> for ", startTime];
+    NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
     return [formattedStartTime stringByAppendingString:duration];
     
 //    if(ps.is_all_day) {
