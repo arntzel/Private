@@ -360,6 +360,41 @@ static BLRView *_sharedInstance = nil;
     });
 }
 
+- (void) blurBackgroundImage:(UIImage *) snapshot {
+    
+    //__block UIImage *snapshot = nil;
+    
+    //UIStopWatch *watch = [[UIStopWatch alloc] init];
+    
+    //if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+    //   snapshot = [self screenshot4iOS7];
+    //else
+    snapshot = [self screenshot];
+    
+    //DEBUG_INFO(@"screenshot = [%.05f]", [watch getDelta]);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            //UIStopWatch *watch1 = [[UIStopWatch alloc] init];
+            
+            //            UIImage *blurShnapShotImage = [snapshot applyBlurWithCrop:CGRectMake(0.0, 0.0f, snapshot.size.width, snapshot.size.height)
+            //                                                               resize:snapshot.size
+            //                                                           blurRadius:5.0f
+            //                                                            tintColor:[UIColor colorWithRed:0.0/255.0 green:27.0/255.0 blue:45.0/255.0 alpha:0.5] saturationDeltaFactor:1.8
+            //                                                            maskImage:nil];
+            
+            //DEBUG_INFO(@"applyBlurWithCrop = [%.05f]", [watch1 getDelta]);
+            UIImage *blurShnapShotImage = [snapshot re_applyBlurWithRadius:self.colorComponents.radius tintColor:self.colorComponents.tintColor saturationDeltaFactor:self.colorComponents.saturationDeltaFactor maskImage:self.colorComponents.maskImage];
+            self.backgroundImageView.image = blurShnapShotImage;
+            
+        });
+    });
+}
+
 - (void) blurWithColor:(BLRColorComponents *) components {
     if(self.blurType == KBlurUndefined) {
         
