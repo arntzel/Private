@@ -333,37 +333,52 @@
     
     [[Model getInstance] createVote:eventTime.id andVoteStatus:status andCallback:^(NSInteger error, int voteID) {
         
-        [self showIndicatorView:NO];
-        
         if (error == 0) {
             
-            for(ProposeStart * p in _event.propose_starts) {
-                
-                if(p.id == eventTime.id) {
-                    NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
-                    
-                    EventTimeVote * vote = [[EventTimeVote alloc] init];
-                    vote.id = voteID;
-                    vote.email = [[UserModel getInstance] getLoginUser].email;
-                    vote.status = status;
-                    
-                    [array addObject:vote];
-                    p.votes = array;
-                    
-                    [vote release];
-                    
-                    break;
-                }
-            }
+            [self updateEvent];
             
-            [self updateView];
+//            for(ProposeStart * p in _event.propose_starts) {
+//                
+//                if(p.id == eventTime.id) {
+//                    NSMutableArray * array = [NSMutableArray arrayWithArray:p.votes];
+//                    
+//                    EventTimeVote * vote = [[EventTimeVote alloc] init];
+//                    vote.id = voteID;
+//                    vote.email = [[UserModel getInstance] getLoginUser].email;
+//                    vote.status = status;
+//                    
+//                    [array addObject:vote];
+//                    p.votes = array;
+//                    
+//                    [vote release];
+//                    
+//                    break;
+//                }
+//            }
+//            
+//            [self updateView];
             
         } else {
+            [self showIndicatorView:NO];
             [Utils showUIAlertView:@"Error" andMessage:@"Vote failed, please try again!"];
         }
         
         [eventTime release];
         
+    }];
+}
+
+
+-(void) updateEvent
+{
+    [[Model getInstance] getEvent:_event.id andCallback:^(NSInteger error, Event *event) {
+        
+        [self showIndicatorView:NO];
+        if(error == 0) {
+            [self.delegate onEventChanged:event];
+        } else {
+            
+        }
     }];
 }
 
