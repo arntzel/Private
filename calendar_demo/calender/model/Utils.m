@@ -459,10 +459,22 @@ static NSTimeZone * userTimeZone;
 +(NSString *) getProposeStatLabel2:(ProposeStart *) ps
 {
     NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
-    NSString * duration = [ps parseDuringDateString2];
     
-    NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
-    return [formattedStartTime stringByAppendingString:duration];
+    
+    if ([ps.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+       NSString *duration = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.getEndTime]];
+        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> to <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
+        return formattedStartTime;
+    } else if ([ps.start_type isEqualToString:START_TYPEAFTER]){
+        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime];
+        return formattedStartTime;
+    } else{
+        NSString * duration = [ps parseDuringDateString2];
+        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
+        return [formattedStartTime stringByAppendingString:duration];
+    }
+    
+   
     
 //    if(ps.is_all_day) {
 //        
