@@ -34,7 +34,8 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailNavigationBar" owner:self options:nil];
     EventDetailNavigationBar * view = (EventDetailNavigationBar*)[nibView objectAtIndex:0];
-    view.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+    //view.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+    view.backgroundColor = [UIColor clearColor];
     return view;
 }
 

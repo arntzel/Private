@@ -32,6 +32,8 @@
     [_photoView release];
     
     self.photoView = blurView;
+    
+    [_titleLabel setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.6f]];
     [self insertSubview:blurView belowSubview:_titleLabel];
     [blurView release];
 
@@ -172,7 +174,9 @@
     
     CGFloat currentFont = maxFont - (maxFont - minFont) * fontRadio;
     
-    [self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
+    //[self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
+    UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
+    [self.titleLabel setFont:titleLabelFont];
 }
 
 - (void)setNavgation:(UIView *)navigation
