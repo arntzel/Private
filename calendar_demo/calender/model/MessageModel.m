@@ -104,6 +104,11 @@
                 entity = [dataModel createEntity:@"MessageEntity"];
                 [entity convertFromMessage:msg];
             }
+            
+            //if a event is deleted, delete the local cache of the event
+            if(msg.msgType == 1) {
+                [dataModel deleteFeedEventEntity:msg.eventID];
+            }
         }
         
         [dataModel saveData];
@@ -125,7 +130,7 @@
 
 -(void) updateMessageReadStatus: (void (^)(NSInteger error))callback
 {
-    [self setUnReadMsgCount:0];
+    //[self setUnReadMsgCount:0];
     [[Model getInstance] readAllMessage:nil];
 }
 

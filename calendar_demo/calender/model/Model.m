@@ -875,6 +875,8 @@ static Model * instance;
             {
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
                 
+                LOG_D(@"doGetMessage: json=%@", json);
+                
                 NSArray * objects = [json objectForKey:@"objects"];
                 
                 NSMutableArray * events = [[NSMutableArray alloc] init];

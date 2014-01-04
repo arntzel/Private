@@ -154,7 +154,7 @@
 
     int badge = [[aps objectForKey:@"badge"] integerValue];
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-    //[[[Model getInstance] getMessageModel] refreshModel];
+    //[[[Model getInstance] getMessageModel] refreshModel:nil];
     
      [self synchronizedFromServer];
 }
@@ -215,7 +215,7 @@
     
     if(badge>0) {
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-        //[[[Model getInstance] getMessageModel] refreshModel];
+        [[[Model getInstance] getMessageModel] refreshModel:nil];
     }
     
     [self registerForRemoteNotificationToGetToken];

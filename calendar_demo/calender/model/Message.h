@@ -45,6 +45,14 @@
 @property BOOL unread;
 
 /*
+ msg的类型：
+ 1：delete event
+ 0: 其他类型
+ */
+
+@property int msgType;
+
+/*
  Parse Message object from json data.
  */
 +(Message *) parseMSeesage:(NSDictionary *) json;
