@@ -152,6 +152,9 @@
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
 		3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */; };
+		3DF1568C1879969F0070A650 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF156861879969F0070A650 /* libTestFlight.a */; };
+		3DF1568D1879969F0070A650 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156871879969F0070A650 /* README.md */; };
+		3DF1568E1879969F0070A650 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156881879969F0070A650 /* release_notes.md */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -733,6 +736,12 @@
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
 		3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
+		3DF156861879969F0070A650 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		3DF156871879969F0070A650 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3DF156881879969F0070A650 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		3DF156891879969F0070A650 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		3DF1568A1879969F0070A650 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		3DF1568B1879969F0070A650 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		3DFB114018337F7200084EF2 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
 		3DFB114118337F7200084EF2 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
 		3DFB114218337F7200084EF2 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
@@ -1330,6 +1339,7 @@
 				7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */,
 				76795BF8183E50AC0062DC32 /* FacebookSDK.framework in Frameworks */,
 				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
+				3DF1568C1879969F0070A650 /* libTestFlight.a in Frameworks */,
 				3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */,
 				3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */,
 				3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */,
@@ -1613,6 +1623,19 @@
 				3DC29288186BC204009759C2 /* MobClick.h */,
 			);
 			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
+			sourceTree = "<group>";
+		};
+		3DF156851879969E0070A650 /* TestFlightSDK2.1.3 */ = {
+			isa = PBXGroup;
+			children = (
+				3DF156861879969F0070A650 /* libTestFlight.a */,
+				3DF156871879969F0070A650 /* README.md */,
+				3DF156881879969F0070A650 /* release_notes.md */,
+				3DF156891879969F0070A650 /* TestFlight+AsyncLogging.h */,
+				3DF1568A1879969F0070A650 /* TestFlight+ManualSessions.h */,
+				3DF1568B1879969F0070A650 /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.1.3;
 			sourceTree = "<group>";
 		};
 		3DFB113F18337F7200084EF2 /* OHAttributedLabel */ = {
@@ -2441,6 +2464,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3DF156851879969E0070A650 /* TestFlightSDK2.1.3 */,
 				3DC29285186BC204009759C2 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
 				234585021853687300086FB3 /* BlurView */,
@@ -2906,6 +2930,7 @@
 				23818342186F1EE20080F169 /* buble.png in Resources */,
 				34262E0E1869BE6800288EA9 /* country.txt in Resources */,
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
+				3DF1568E1879969F0070A650 /* release_notes.md in Resources */,
 				34B1F1B017F8FCE200AA5C97 /* settings_detail_full_circle.png in Resources */,
 				34B1F1B417F8FCE200AA5C97 /* settings_main_arrow.png in Resources */,
 				7643519618100F330004ADFC /* event_detail_comment_sep_line.png in Resources */,
@@ -2992,6 +3017,7 @@
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
 				2313197D1867271A00F076C7 /* people@2x.png in Resources */,
 				769AB9DD17DF51340033E677 /* btn_login_google@2x.png in Resources */,
+				3DF1568D1879969F0070A650 /* README.md in Resources */,
 				769AB9DE17DF51340033E677 /* btn_menu@2x.png in Resources */,
 				9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */,
 				769AB9DF17DF51340033E677 /* btn_ok@2x.png in Resources */,
@@ -3575,8 +3601,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3592,6 +3618,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
@@ -3604,8 +3631,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (82W7QRWGQT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3621,6 +3648,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";

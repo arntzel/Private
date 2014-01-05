@@ -21,6 +21,7 @@
 
 #import <Crashlytics/Crashlytics.h>
 #import "MobClick.h"
+#import "TestFlight.h"
 
 #define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
@@ -42,6 +43,10 @@
     [self redirectNSLogToDocumentFolder];
 #endif
 
+    // start of your application:didFinishLaunchingWithOptions // ...
+    [TestFlight takeOff:@"f939b97c-20c5-4003-b61c-137e5cf7ff92"];
+    // The rest of your application:didFinishLaunchingWithOptions method// ...
+    
     
     [MobClick setCrashReportEnabled:YES]; // 如果不需要捕捉异常，注释掉此行
     //[MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
