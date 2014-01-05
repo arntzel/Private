@@ -44,7 +44,7 @@
 #endif
 
     // start of your application:didFinishLaunchingWithOptions // ...
-    [TestFlight takeOff:@"f939b97c-20c5-4003-b61c-137e5cf7ff92"];
+    [TestFlight takeOff:@"1ad5c564-019b-459f-b3a3-89d675d59e6f"];
     // The rest of your application:didFinishLaunchingWithOptions method// ...
     
     
