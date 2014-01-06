@@ -35,6 +35,9 @@
     
     [_titleLabel setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.6f]];
     [self insertSubview:blurView belowSubview:_titleLabel];
+    
+    [_subTitle setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.6f]];
+    
     [blurView release];
 
     orgHeight = self.frame.size.height;
@@ -163,6 +166,10 @@
     }
     
     [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
+    
+    [self.subTitle setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20)];
+    
+    [self.finalizedImg setCenter:CGPointMake(self.titleLabel.center.x - 40, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20)];
 
 
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);

@@ -18,6 +18,8 @@
 @interface EventDetailPhotoView : UIView
 @property (retain, nonatomic) DKLiveBlurView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *subTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *finalizedImg;
 @property (assign, nonatomic) UIViewController<EventDetailPhotoViewDelegate> *controller;
 
 - (void)setDefaultImage;

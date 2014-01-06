@@ -325,7 +325,7 @@
 
 - (void)refreshTimeString
 {
-    [calView setStartTimeString:[eventDate parseStartTimeString]];
+    [calView setStartTimeString:[eventDate parseStartTimeStringWithFirstCapitalized]];
     [calView setDuringTimeString:[eventDate parseDuringDateString]];
 }
 

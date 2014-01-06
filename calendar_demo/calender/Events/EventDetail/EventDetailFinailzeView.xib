@@ -141,6 +141,7 @@
                 <outlet property="eventTimeBtn" destination="q3V-vu-Csw" id="lDE-Az-29I"/>
                 <outlet property="eventTimeConflictLabel" destination="26" id="28"/>
                 <outlet property="eventTimeLabel" destination="24" id="27"/>
+                <outlet property="eventTypeLabel" destination="mrn-jE-Rb4" id="DpK-hz-Y9h"/>
                 <outlet property="finailzeBtn" destination="efU-rd-bVg" id="AWj-6F-2w0"/>
                 <outlet property="finailzeView" destination="13" id="20"/>
                 <outlet property="removeView" destination="17" id="21"/>

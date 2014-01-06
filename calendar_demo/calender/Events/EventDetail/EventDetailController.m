@@ -253,7 +253,20 @@
 - (void)updateUIByEvent
 {
     [photoView setImageUrl:event.thumbnail_url];
+    
+    BOOL isCreator = [self isMyCreatEvent];
     photoView.titleLabel.text = event.title;
+    if (!isCreator) {
+        photoView.subTitle.text = [NSString stringWithFormat:@"Invited by %@", event.creator.getReadableUsername];
+    } else {
+        if (!event.start) {
+            photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet finalized"];
+        } else {
+            photoView.finalizedImg.hidden = NO;
+            photoView.subTitle.text = [NSString stringWithFormat:@"Finalized"];
+        }
+    }
+    
     
     [invitePlaceContentView updateInvitee:event.attendees];
     [invitePlaceContentView setLocation:event.location];

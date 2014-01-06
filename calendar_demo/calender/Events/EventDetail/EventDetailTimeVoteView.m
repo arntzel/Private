@@ -84,6 +84,9 @@
         finailzeView.delegate = self;
         [self addSubview:finailzeView];
         
+        
+        finailzeView.eventTypeLabel.text = [_eventTime parseStartTimeStringWithFirstCapitalized];
+        
         finailzeView.cfmedLabel.text = [NSString stringWithFormat:@"%d Confirmed", [_eventTime getAcceptCount]];
         finailzeView.declinesLabel.text =[NSString stringWithFormat:@"%d Declined", [_eventTime getDeclinedCount]];
 
