@@ -296,7 +296,8 @@
     CGRect frame = CGRectMake(0, 0, 320, 38);
 
     UIView * view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
+    //[view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
+    [view setBackgroundColor:[UIColor generateUIColorByHexString:@"#dae4e0" withAlpha:0.97]];
 
 //    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 1)];
 //    //float colorVal = 227.0/255.0;

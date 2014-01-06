@@ -51,7 +51,8 @@
     if (self) {
         // Initialization code
         //[self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
-        [self setBackgroundColor:[UIColor clearColor]];
+        //[self setBackgroundColor:[UIColor clearColor]];
+        [self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
         isCreator = creator;
         canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
