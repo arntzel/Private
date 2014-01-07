@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *viewVoteArrow;
 
 @property (weak, nonatomic) IBOutlet UILabel *declinesLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *cfmImg;
+@property (strong, nonatomic) IBOutlet UIImageView *dclImg;
 
 - (IBAction)tickBtnClick:(id)sender;
 - (IBAction)crossBtnClick:(id)sender;

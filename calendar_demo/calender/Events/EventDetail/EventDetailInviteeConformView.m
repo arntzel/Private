@@ -42,20 +42,26 @@
     if (count > 0) {
         self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
         [self.eventTimeConflictLabel setHidden:NO];
-        CGRect frame = self.eventTimeLabel.frame;
-        frame.origin.y = 20;
-        [self.eventTimeLabel setFrame:frame];
-        
-        frame = self.timeLabelButton.frame;
-        frame.origin.y = 20;
-        [self.timeLabelButton setFrame:frame];
-//        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
-    }
-    else
-    {
-        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+    } else {
         [self.eventTimeConflictLabel setHidden:YES];
     }
+//    if (count > 0) {
+//        self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
+//        [self.eventTimeConflictLabel setHidden:NO];
+//        CGRect frame = self.eventTimeLabel.frame;
+//        frame.origin.y = 20;
+//        [self.eventTimeLabel setFrame:frame];
+//        
+//        frame = self.timeLabelButton.frame;
+//        frame.origin.y = 20;
+//        [self.timeLabelButton setFrame:frame];
+////        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
+//    }
+//    else
+//    {
+//        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, self.frame.size.height / 2)];
+//        [self.eventTimeConflictLabel setHidden:YES];
+//    }
     
 }
 
@@ -108,6 +114,22 @@
     [self.finalizedTick setHidden:NO];
     [self.finalizedLabel setHidden:NO];
     [self.viewVoteArrow setHidden:YES];
+    
+    CGRect frame = self.cfmImg.frame;
+    frame.origin.x -= 13;
+    self.cfmImg.frame = frame;
+    
+    frame = self.cfmedLabel.frame;
+    frame.origin.x -=13;
+    self.cfmedLabel.frame = frame;
+    
+    frame = self.declinesLabel.frame;
+    frame.origin.x -=13;
+    self.declinesLabel.frame = frame;
+    
+    frame = self.dclImg.frame;
+    frame.origin.x -=13;
+    self.dclImg.frame = frame;
 //    CGRect timeFrame = self.eventTimeLabel.frame;
 //    timeFrame.origin.y = 8;
 //    [self.eventTimeLabel setFrame:timeFrame];

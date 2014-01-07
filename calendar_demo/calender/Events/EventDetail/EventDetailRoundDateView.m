@@ -72,7 +72,7 @@ const CGSize kDateViewSize = { 40.0f, 40.0f };
     const char *monthStr = [monthText cStringUsingEncoding:NSUTF8StringEncoding];
     textSize = [monthText sizeWithFont:fontMonth];
     
-    textX = roundf(0.5f * (kDateViewSize.width - textSize.width)) +11;
+    textX = roundf(0.5f * (kDateViewSize.width - textSize.width)) +9;
     textY = 17;
     [textColor setFill];
     CGContextShowTextAtPoint(ctx, textX, textY, monthStr, 3);
