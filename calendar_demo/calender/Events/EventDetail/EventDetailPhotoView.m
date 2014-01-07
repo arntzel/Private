@@ -165,11 +165,11 @@
         scrollOffsetY = scrollScope;
     }
     
-    [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
+    [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
     
-    [self.subTitle setCenter:CGPointMake(self.titleLabel.center.x+10, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20)];
+    [self.subTitle setCenter:CGPointMake(self.titleLabel.center.x+10, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
     
-    [self.finalizedImg setCenter:CGPointMake(self.titleLabel.center.x - 30, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20)];
+    [self.finalizedImg setCenter:CGPointMake(self.titleLabel.center.x - 30, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
 
 
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);

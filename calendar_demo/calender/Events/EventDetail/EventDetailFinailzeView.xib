@@ -51,7 +51,7 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="event_detail_invitee_time_tick_enable.png" id="15">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="event_detail_invitee_time_tick_disable.png" id="15">
                                     <rect key="frame" x="10" y="24" width="18" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -154,6 +154,5 @@
         <image name="event_detail_invitee_time_cross_disable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_cross_enable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_tick_disable.png" width="36" height="26"/>
-        <image name="event_detail_invitee_time_tick_enable.png" width="36" height="26"/>
     </resources>
 </document>
