@@ -327,7 +327,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(alertView.tag == 2) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:newAppVersionUrl]];
+        
+        if(buttonIndex != 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:newAppVersionUrl]];
+        }
         return;
     }
     
