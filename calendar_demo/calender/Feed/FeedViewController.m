@@ -56,6 +56,8 @@
     CustomerIndicatorView * dataLoadingView;
     
     //bool fristLoadData;
+    //For update new app version
+    NSString * newAppVersionUrl;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -78,6 +80,9 @@
     } else {
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
+    
+    
+    [self checkAppUpdated];
     
     //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
     self.navigation.calPendingSegment.hidden = NO;
@@ -321,6 +326,12 @@
 #pragma mark kalViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if(alertView.tag == 2) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:newAppVersionUrl]];
+        return;
+    }
+    
+    
     if(buttonIndex == 0) {
         
         [[UserModel getInstance] setLoginUser:nil];
@@ -341,7 +352,12 @@
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
-    [[self navigationController] popViewControllerAnimated:YES];
+    if(alertView.tag == 2) {
+     
+        //TODO::
+    } else {
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark -
@@ -501,6 +517,33 @@
 
 }
 
+-(void) checkAppUpdated
+{
+    
+    [[Model getInstance] getLatestVersion:^(NSInteger error, NSDictionary *dic) {
+        
+        if(error != 0) return;
+        
+        
+        NSString * latestVersion = [dic objectForKey:@"version"];
+        NSString * downlaod_url = [dic objectForKey:@"download_url"];
+        
+        NSString *curVer = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+        if([curVer compare:latestVersion] < 0) {
+         
+            newAppVersionUrl = downlaod_url;
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"New version is available" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Update", nil];
+            
+            alertView.tag = 2;
+            
+            [alertView show];
+        }
+        
+    }];
+    
+}
 
 @end
 
