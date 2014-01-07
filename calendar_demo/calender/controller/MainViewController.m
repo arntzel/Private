@@ -66,6 +66,7 @@
 - (void)showLeftController:(BOOL)animated {
     //[menuNavigationController updateBlurBackground];
     //[super showLeftController:animated];
+    menuNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
 
     
