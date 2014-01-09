@@ -210,7 +210,7 @@
         cmt.commentor.email = me.email;
         cmt.commentor.avatar_url = me.avatar_url;
         
-        cmt.createTime = [NSDate date];
+        cmt.createTime = [Utils convertGMTDate: [NSDate date] andTimezone:[NSTimeZone systemTimeZone]];
         cmt.msg = msg;
         cmt.eventID = self.eventID;
         [commentTextView showSending:YES];
