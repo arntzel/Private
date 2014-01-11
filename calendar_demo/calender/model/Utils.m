@@ -70,10 +70,17 @@ static NSTimeZone * userTimeZone;
     if(strDate == nil || [strDate isKindOfClass:[NSNull class]]) {
        return nil;
     }
-
+ 
+    
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [format setTimeZone: [NSTimeZone timeZoneWithName:@"GMT"]];
+    
     NSDate * date =[format dateFromString:strDate];
+    
+    //NSInteger interval = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:date];
+    //NSDate * gmtDate = [date dateByAddingTimeInterval:interval];
+    
     return date;
 }
 
@@ -101,6 +108,7 @@ static NSTimeZone * userTimeZone;
 +(NSString *) formateTimeAMPM:(NSDate *) time
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:@"hh:mma"];
 
@@ -435,7 +443,7 @@ static NSTimeZone * userTimeZone;
 
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps
 {
-    NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
+    NSString * startTime = [Utils formateTimeAMPM: ps.start];
     
     if(ps.is_all_day) {
         
@@ -450,7 +458,7 @@ static NSTimeZone * userTimeZone;
         return lable;
         
     } else {
-        NSString * endTime = [Utils formateTimeAMPM: [Utils convertLocalDate:[ps getEndTime]]];
+        NSString * endTime = [Utils formateTimeAMPM: [ps getEndTime]];
         NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
         return lable;
     }
@@ -458,11 +466,12 @@ static NSTimeZone * userTimeZone;
 
 +(NSString *) getProposeStatLabel2:(ProposeStart *) ps
 {
-    NSString * startTime = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.start]];
+    NSString * startTime = [Utils formateTimeAMPM: ps.start];
     
     
     if ([ps.start_type isEqualToString:START_TYPEEXACTLYAT]) {
-       NSString *duration = [Utils formateTimeAMPM: [Utils convertLocalDate:ps.getEndTime]];
+        
+        NSString *duration = [Utils formateTimeAMPM: ps.getEndTime];
         NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> to <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
         return formattedStartTime;
     } else if ([ps.start_type isEqualToString:START_TYPEAFTER]){

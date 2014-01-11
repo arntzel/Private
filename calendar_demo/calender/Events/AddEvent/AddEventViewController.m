@@ -557,11 +557,11 @@
     event.timezone = settingView.timeZoneLabel.text;
     
     NSMutableArray * propstarts = [[NSMutableArray alloc] init];
-    NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
+    //NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
     
     for(ProposeStart * ps in [timesView getEventDates]) {
         ProposeStart * ps2 = [ps copy];
-        ps2.start = [Utils convertGMTDate:ps2.start andTimezone:tz];
+        ps2.start = [Utils convertGMTDate:ps2.start];
         [propstarts addObject:ps2];
         [ps2 release];
     }

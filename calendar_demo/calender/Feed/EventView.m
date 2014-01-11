@@ -1,4 +1,5 @@
 
+
 #import "EventView.h"
 #import "Utils.h"
 #import "ViewUtils.h"
@@ -53,7 +54,8 @@
         }
 
         //self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];
-        time =[Utils formateTimeAMPM:[event getLocalStart]];
+        
+        time =[Utils formateTimeAMPM:event.start];
         duration = event.duration;
         //self.labEventDuration.text = [NSString stringWithFormat:@",%@", event.duration];
         if ((!duration) || ([duration length] == 0)) {
