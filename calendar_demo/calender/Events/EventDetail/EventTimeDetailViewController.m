@@ -67,7 +67,7 @@
     [super viewDidLoad];
 	
     NSString * time =  [Utils getProposeStatLabel:self.eventTime];
-    NSString * day = [Utils formateDay2:[Utils convertLocalDate:self.eventTime.start]];
+    NSString * day = [Utils formateDay2:self.eventTime.start];
     
     EventDateNavigationBar * navBar = [EventDateNavigationBar creatView];
     [navBar setTitle:time];
@@ -80,7 +80,9 @@
     
     logic = [[KalLogic alloc] initForDate:[NSDate date]];
     
-    NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
+    //TODO:: Xiang convertLocalDate is need?
+    //NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
+    NSDate * localeDate = self.eventTime.start;
     KalDate * date = [KalDate dateFromNSDate:localeDate];
     kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date hideActionBar:YES];
     [kalView swapToMonthMode];

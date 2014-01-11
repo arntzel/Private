@@ -78,7 +78,7 @@
     }
     else
     {
-        finailzeView = [[EventDetailFinailzeView creatViewWithStartDate:[Utils convertLocalDate:_eventTime.start]] retain];
+        finailzeView = [[EventDetailFinailzeView creatViewWithStartDate:_eventTime.start] retain];
         [finailzeView updateView:_eventTime];
         [finailzeView setConflictCount:[self getConfilictEventCount]];
         finailzeView.delegate = self;
@@ -102,7 +102,7 @@
 
 -(void) addConformedFinalzeView
 {
-    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatViewWithStartDate:[Utils convertLocalDate:_eventTime.start]];
+    EventDetailFinailzeView2 * view = [EventDetailFinailzeView2 creatViewWithStartDate:_eventTime.start];
     CGRect frame = view.frame;
     frame.origin.x = 0;
     frame.origin.y = 7;
@@ -245,7 +245,7 @@
 //    }
 //    else
 //    {
-        conformView = [[EventDetailInviteeConformView creatViewWithStartDate:[Utils convertLocalDate:_eventTime.start]] retain];
+        conformView = [[EventDetailInviteeConformView creatViewWithStartDate:_eventTime.start] retain];
 
         CGRect frame = conformView.frame;
         frame.origin.x = 0;

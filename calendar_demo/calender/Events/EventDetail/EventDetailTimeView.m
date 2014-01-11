@@ -150,7 +150,7 @@
         }
 
 
-        //NSString * day = [Utils formateDay2:[Utils convertLocalDate:eventTime.start]];
+        //NSString * day = [Utils formateDay2:eventTime.start];
         
 //        if(![day isEqualToString:dayTitle]) {
 //            EventDetailTimeLabelView * view = [self createTimeLabelView];

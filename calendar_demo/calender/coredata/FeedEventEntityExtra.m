@@ -11,7 +11,7 @@
 
 -(NSDate*) getLocalStart
 {
-    return [Utils convertLocalDate:self.start];
+    return self.start;
 }
 
 -(UserEntity*) getCreator

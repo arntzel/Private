@@ -257,7 +257,9 @@ static Model * instance;
     {
         FeedEventEntity *evt = [newEvents objectAtIndex:i];
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setTimeStyle:NSDateFormatterShortStyle];
         [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        [format setTimeZone:[NSTimeZone timeZoneWithName:evt.timezone]];
         NSString *startTime = [format stringFromDate:evt.start];
         NSString *endTime = [format stringFromDate:evt.end];
         NSString *last_modified = [format stringFromDate:evt.last_modified];
@@ -366,7 +368,9 @@ static Model * instance;
     
     FeedEventEntity *evt = eventEntity;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setTimeStyle:NSDateFormatterShortStyle];
     [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [format setTimeZone:[NSTimeZone timeZoneWithName:evt.timezone]];
     NSString *startTime = [format stringFromDate:evt.start];
     NSString *endTime = [format stringFromDate:evt.end];
     NSString *last_modified = [format stringFromDate:evt.last_modified];

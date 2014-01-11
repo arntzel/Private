@@ -104,8 +104,8 @@
         return @"";
     }
 
-    NSDate * start =  [Utils convertLocalDate:[Utils parseNSDate:[dates objectAtIndex:0]]];
-    NSDate * end = [Utils convertLocalDate:[Utils parseNSDate:[dates objectAtIndex:1]]];
+    NSDate * start =  [Utils parseNSDate:[dates objectAtIndex:0]];
+    NSDate * end = [Utils parseNSDate:[dates objectAtIndex:1]];
 
     NSString * startTime = [Utils formateTimeAMPM:start];
     NSString * startDay = [Utils formateDay3:start];

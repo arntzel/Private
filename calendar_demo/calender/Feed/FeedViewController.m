@@ -76,7 +76,8 @@
 
     User * me = [[UserModel getInstance] getLoginUser];
     if(me.timezone != nil) {
-        [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+        //[Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+        [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     } else {
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
