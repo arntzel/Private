@@ -3,7 +3,7 @@
 #import "DeviceInfo.h"
 #import "FeedViewController.h"
 
-#define weekViewHeight 65
+#define weekViewHeight 67
 #define topGap 100
 
 @interface FeedCalenderView()
@@ -75,6 +75,7 @@ extern const CGSize kTileSize;
     [eventScrollView setScrollEnabled:YES];
     [eventScrollView setShowsHorizontalScrollIndicator:YES];
     [eventScrollView setBounces:NO];
+    //eventScrollView.backgroundColor = [UIColor whiteColor];
     eventScrollView.backgroundColor = [UIColor whiteColor];
     [self ajustEventScrollPosition];
 }

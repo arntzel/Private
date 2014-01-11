@@ -51,7 +51,7 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="event_detail_invitee_time_tick_enable.png" id="15">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="event_detail_invitee_time_tick_disable.png" id="15">
                                     <rect key="frame" x="10" y="24" width="18" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -59,7 +59,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" contentMode="left" text="11:30 for 1hour" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24" customClass="OHAttributedLabel">
-                            <rect key="frame" x="55" y="16" width="240" height="40"/>
+                            <rect key="frame" x="60" y="18" width="240" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -70,7 +70,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 CONFLICT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="26">
-                            <rect key="frame" x="55" y="41" width="138" height="21"/>
+                            <rect key="frame" x="60" y="43" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                             <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,31 +90,31 @@
                             <color key="backgroundColor" white="0.89000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anytime After" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mrn-jE-Rb4">
-                            <rect key="frame" x="55" y="5" width="140" height="21"/>
+                            <rect key="frame" x="60" y="5" width="140" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 Confirmed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zP8-Sp-TWt">
-                            <rect key="frame" x="88" y="72" width="74" height="21"/>
+                            <rect key="frame" x="81" y="72" width="74" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Declined" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gu9-1w-ibb">
-                            <rect key="frame" x="193" y="72" width="76" height="21"/>
+                            <rect key="frame" x="186" y="72" width="76" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_detail_invitee_time_tick_disable.png" id="ysx-m6-MAB">
-                            <rect key="frame" x="67" y="76" width="18" height="13"/>
+                            <rect key="frame" x="60" y="76" width="18" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_detail_invitee_time_cross_disable.png" id="CV1-sa-zN1">
-                            <rect key="frame" x="173" y="76" width="16" height="15"/>
+                            <rect key="frame" x="166" y="76" width="16" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arr.png" id="QTC-pq-pkE">
@@ -141,6 +141,7 @@
                 <outlet property="eventTimeBtn" destination="q3V-vu-Csw" id="lDE-Az-29I"/>
                 <outlet property="eventTimeConflictLabel" destination="26" id="28"/>
                 <outlet property="eventTimeLabel" destination="24" id="27"/>
+                <outlet property="eventTypeLabel" destination="mrn-jE-Rb4" id="DpK-hz-Y9h"/>
                 <outlet property="finailzeBtn" destination="efU-rd-bVg" id="AWj-6F-2w0"/>
                 <outlet property="finailzeView" destination="13" id="20"/>
                 <outlet property="removeView" destination="17" id="21"/>
@@ -153,6 +154,5 @@
         <image name="event_detail_invitee_time_cross_disable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_cross_enable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_tick_disable.png" width="36" height="26"/>
-        <image name="event_detail_invitee_time_tick_enable.png" width="36" height="26"/>
     </resources>
 </document>

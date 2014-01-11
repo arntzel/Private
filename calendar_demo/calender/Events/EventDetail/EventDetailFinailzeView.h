@@ -30,6 +30,7 @@
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *cfmedLabel;
 @property (retain, nonatomic) IBOutlet UILabel *declinesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *eventTypeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *voteStateBtn;
 @property (retain, nonatomic) IBOutlet OHAttributedLabel *eventTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *eventTimeBtn;

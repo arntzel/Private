@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "GPlaceApi.h"
+#import "UIColor+Hex.h"
 
 @interface EventDetailPlaceView()
 {
@@ -28,7 +29,7 @@
 - (void)updateUI
 {
     isLocation = NO;
-    
+    [self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
 //    [self.contentView.layer setCornerRadius:5.0f];
 //    [self.contentView.layer setShadowRadius:1.0f];
 //    [self.contentView.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
@@ -56,6 +57,7 @@
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [_gmsMapView.layer setShadowRadius:1.0f];
     
+    [[self locationNameLabel] setTextColor:[UIColor generateUIColorByHexString:@"#7c7c7c"]];
 
 }
 

@@ -37,6 +37,8 @@ typedef enum {
 ///
 @interface BLRView : UIView
 
+- (void) blurBackgroundImage:(UIImage *) snapshot;
+
 - (void) setBlurBackgroundImageViewPosition:(CGPoint)point;
 
 ///Remove.
@@ -76,6 +78,8 @@ typedef enum {
 ///Light color effect.
 ///
 + (BLRColorComponents *) lightEffect;
+
++ (BLRColorComponents *) whiteEffect;
 
 ///Dark color effect.
 ///

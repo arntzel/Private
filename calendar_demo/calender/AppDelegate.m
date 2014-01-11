@@ -21,6 +21,7 @@
 
 #import <Crashlytics/Crashlytics.h>
 #import "MobClick.h"
+#import "TestFlight.h"
 
 #define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
@@ -42,6 +43,10 @@
     [self redirectNSLogToDocumentFolder];
 #endif
 
+    // start of your application:didFinishLaunchingWithOptions // ...
+    [TestFlight takeOff:@"1ad5c564-019b-459f-b3a3-89d675d59e6f"];
+    // The rest of your application:didFinishLaunchingWithOptions method// ...
+    
     
     [MobClick setCrashReportEnabled:YES]; // 如果不需要捕捉异常，注释掉此行
     //[MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
@@ -154,7 +159,7 @@
 
     int badge = [[aps objectForKey:@"badge"] integerValue];
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-    //[[[Model getInstance] getMessageModel] refreshModel];
+    //[[[Model getInstance] getMessageModel] refreshModel:nil];
     
      [self synchronizedFromServer];
 }
@@ -215,7 +220,7 @@
     
     if(badge>0) {
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-        //[[[Model getInstance] getMessageModel] refreshModel];
+        [[[Model getInstance] getMessageModel] refreshModel:nil];
     }
     
     [self registerForRemoteNotificationToGetToken];

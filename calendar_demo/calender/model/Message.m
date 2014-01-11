@@ -42,14 +42,26 @@
     
     NSString * url = [json objectForKey:@"url"];
     
+    // json data like:
+    // /schedule/event/261275/
+    // /schedule/event/261275/delete
     if(![url isKindOfClass:[NSNull class]]) {
         NSString * prefix = @"/schedule/event/";
         NSRange range;
         range.location = [prefix length];
+        
+    
         range.length = [url length] -1 - range.location;
         
         NSString * strEventID = [url substringWithRange:range];
         msg.eventID = [strEventID intValue];
+        
+        //if the message about an event is deleted
+        NSRange deleteRange = [url rangeOfString:@"delete"];
+        if(deleteRange.location > 0)
+        {
+            msg.msgType = 1;
+        }
     }
     
     return msg;

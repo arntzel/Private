@@ -3,7 +3,7 @@
 #import "FeedEventEntityExtra.h"
 #import "UserEntityExtra.h"
 
-#define BirthdayEventView_Height  55
+#define BirthdayEventView_Height  120
 
 @interface BirthdayEventView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *labTime;

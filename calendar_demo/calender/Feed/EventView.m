@@ -91,8 +91,19 @@
     int color = [self getEventTypeColor:[event.eventType intValue]];
     self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
    
+    
+    UIColor *labelColor = [UIColor generateUIColorByHexString:@"#6b706f"];
+    [self.labAttendees setTextColor:labelColor];
+    [self.labLocation setTextColor:labelColor];
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
+    if ([self.labLocation.text isEqual: @"No Location"]) {
+        [self.labLocation setHidden:YES];
+        [self.iconLocation setHidden:YES];
+    } else {
+        [self.labLocation setHidden:NO];
+        [self.iconLocation setHidden:NO];
+    }
     
     self.labTitle.text = event.title;
 }
@@ -155,7 +166,7 @@
 -(NSString *) getAttendeesText:(FeedEventEntity*) event
 {
     NSSet * attendees = event.attendees;
-    return [NSString stringWithFormat:@"%d invitees", attendees.count];
+    return [NSString stringWithFormat:@"%d Invitees", attendees.count];
 //    if(attendees.count>100) {
 //        
 //        return [NSString stringWithFormat:@"%d attendees", attendees.count];

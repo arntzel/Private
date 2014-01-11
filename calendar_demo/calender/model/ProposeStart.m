@@ -206,7 +206,7 @@
 {
     
     if (self.is_all_day) {
-        return [NSString stringWithFormat:@"All <font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> days",self.duration_days];
+        return [NSString stringWithFormat:@"All <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%d</font> days",self.duration_days];
     }
     
 //    NSString *duringDateString = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> Hours <font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> Minutes", self.duration_hours, self.duration_minutes];
@@ -215,7 +215,7 @@
     if (self.duration_hours > 1) {
         hour = @"hours";
     }
-    NSString *duringDateString = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Bold\" size=\"17\">%d</font> %@", self.duration_hours, hour];
+    NSString *duringDateString = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%d</font> %@", self.duration_hours, hour];
     
     return duringDateString;
 }

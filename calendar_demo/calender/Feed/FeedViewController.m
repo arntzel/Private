@@ -56,6 +56,8 @@
     CustomerIndicatorView * dataLoadingView;
     
     //bool fristLoadData;
+    //For update new app version
+    NSString * newAppVersionUrl;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -74,10 +76,14 @@
 
     User * me = [[UserModel getInstance] getLoginUser];
     if(me.timezone != nil) {
-        [Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+        //[Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
+        [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     } else {
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
+    
+    
+    [self checkAppUpdated];
     
     //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
     self.navigation.calPendingSegment.hidden = NO;
@@ -88,8 +94,8 @@
 
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
-    frame.size.height -=(y + 64);
-    
+    //frame.size.height -=(y + 64);
+    frame.size.height -=y;
     
     tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -105,9 +111,11 @@
     
     //Load BLRView
     blrView = [[BLRView alloc] init];
-    blrView.frame = self.view.bounds;
+    CGRect blurFrame = self.view.bounds;
+    //blurFrame.size.height = self.view.bounds.size.height / 2;
+    blrView.frame = blurFrame;
     blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //[blrView  blurWithColor:[BLRColorComponents blueEffect]];
+    //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [blrView setHidden:YES];
     [self.view addSubview:blrView];
     isBlured = NO;
@@ -262,10 +270,9 @@
 {
     if (blrView) {
         if (!isBlured) {
-            [blrView  blurWithColor:[BLRColorComponents lightEffect]];
+            [blrView  blurWithColor:[BLRColorComponents darkEffect]];
             isBlured = YES;
         }
-        
         [blrView setHidden:NO];
     }
 }
@@ -320,6 +327,15 @@
 #pragma mark kalViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if(alertView.tag == 2) {
+        
+        if(buttonIndex != 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:newAppVersionUrl]];
+        }
+        return;
+    }
+    
+    
     if(buttonIndex == 0) {
         
         [[UserModel getInstance] setLoginUser:nil];
@@ -340,7 +356,12 @@
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
-    [[self navigationController] popViewControllerAnimated:YES];
+    if(alertView.tag == 2) {
+     
+        //TODO::
+    } else {
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark -
@@ -500,6 +521,33 @@
 
 }
 
+-(void) checkAppUpdated
+{
+    
+    [[Model getInstance] getLatestVersion:^(NSInteger error, NSDictionary *dic) {
+        
+        if(error != 0) return;
+        
+        
+        NSString * latestVersion = [dic objectForKey:@"version"];
+        NSString * downlaod_url = [dic objectForKey:@"download_url"];
+        
+        NSString *curVer = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+        if([curVer compare:latestVersion] < 0) {
+         
+            newAppVersionUrl = downlaod_url;
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"New version is available" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Update", nil];
+            
+            alertView.tag = 2;
+            
+            [alertView show];
+        }
+        
+    }];
+    
+}
 
 @end
 

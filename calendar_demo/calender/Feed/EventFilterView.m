@@ -42,7 +42,9 @@
     self = [super initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.backgroundColor = [UIColor whiteColor];
+    //self.backgroundColor = [UIColor whiteColor];
+    //self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:.5f];
     
     self.dataSource = self;
     self.delegate = self;

@@ -180,6 +180,10 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) inviteContacts:(int) eventID andContact:(NSArray *) invitees andCallback:(void (^)(NSInteger error, Event * newEvent))callback;
 
 
+-(void) getLatestVersion:(void (^)(NSInteger error, NSDictionary * dic))callback;
+
+
+
 -(EventModel *) getEventModel;
 
 -(MessageModel *) getMessageModel;

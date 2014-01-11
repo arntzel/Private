@@ -32,7 +32,12 @@
     [_photoView release];
     
     self.photoView = blurView;
+    
+    [_titleLabel setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.4f]];
     [self insertSubview:blurView belowSubview:_titleLabel];
+    
+    [_subTitle setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.4f]];
+    
     [blurView release];
 
     orgHeight = self.frame.size.height;
@@ -160,7 +165,11 @@
         scrollOffsetY = scrollScope;
     }
     
-    [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
+    [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+    
+    [self.subTitle setCenter:CGPointMake(self.titleLabel.center.x+10, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+    
+    [self.finalizedImg setCenter:CGPointMake(self.titleLabel.center.x - 30, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
 
 
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
@@ -172,7 +181,9 @@
     
     CGFloat currentFont = maxFont - (maxFont - minFont) * fontRadio;
     
-    [self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
+    //[self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
+    UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
+    [self.titleLabel setFont:titleLabelFont];
 }
 
 - (void)setNavgation:(UIView *)navigation

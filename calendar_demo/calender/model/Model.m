@@ -877,6 +877,8 @@ static Model * instance;
             {
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
                 
+                LOG_D(@"doGetMessage: json=%@", json);
+                
                 NSArray * objects = [json objectForKey:@"objects"];
                 
                 NSMutableArray * events = [[NSMutableArray alloc] init];
@@ -1101,7 +1103,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 200) {
+        if(status == 200 && data != nil) {
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
             
@@ -1593,6 +1595,41 @@ static Model * instance;
             
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             LOG_D(@"inviteContacts error=%@, resp:%@", error, aStr);
+            
+            callback(-1, nil);
+        }
+    }];
+}
+
+
+-(void) getLatestVersion:(void (^)(NSInteger error, NSDictionary * dic))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/currentversion/", HOST];
+    
+    LOG_D(@"getLatestVersion url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+ 
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"getLatestVersion resp:%@", json);
+            
+            callback(0, json);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"getLatestVersion error=%@, resp:%@", error, aStr);
+            }
             
             callback(-1, nil);
         }

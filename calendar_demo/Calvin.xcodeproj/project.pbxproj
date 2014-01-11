@@ -31,6 +31,7 @@
 		234585101853688100086FB3 /* UIStopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850A1853688100086FB3 /* UIStopWatch.m */; };
 		234585111853688100086FB3 /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */; };
 		234DAFAC18560AF500558B4A /* KalActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 234DAFAB18560AF500558B4A /* KalActionsView.m */; };
+		235047CA18754E50001DB8EF /* FeedEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235047C918754E50001DB8EF /* FeedEventTableViewCell.m */; };
 		235693551847968A0003AD8E /* add_event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693531847968A0003AD8E /* add_event_icon.png */; };
 		235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 235693541847968A0003AD8E /* add_event_icon@2x.png */; };
 		23569359184797050003AD8E /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569357184797050003AD8E /* menu_icon.png */; };
@@ -58,6 +59,8 @@
 		23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */; };
 		23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDB184C94F200CC7D3D /* location_icon.png */; };
 		23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDC184C94F200CC7D3D /* location_icon@2x.png */; };
+		23FAE7961875CC0100323C1F /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAE7931875CC0100323C1F /* DRNRealTimeBlurView.m */; };
+		23FAE7971875CC0100323C1F /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAE7951875CC0100323C1F /* UIImage+BoxBlur.m */; };
 		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
 		34262E0E1869BE6800288EA9 /* country.txt in Resources */ = {isa = PBXBuildFile; fileRef = 34262E0D1869BE6800288EA9 /* country.txt */; };
 		34262E181869C1A300288EA9 /* iCalEventShowSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */; };
@@ -149,6 +152,9 @@
 		3DCD5DDD181510C5000E2E56 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDC181510C5000E2E56 /* LocationEntity.m */; };
 		3DCD5DE01815116F000E2E56 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD5DDF1815116F000E2E56 /* UserEntity.m */; };
 		3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */; };
+		3DF1568C1879969F0070A650 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF156861879969F0070A650 /* libTestFlight.a */; };
+		3DF1568D1879969F0070A650 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156871879969F0070A650 /* README.md */; };
+		3DF1568E1879969F0070A650 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156881879969F0070A650 /* release_notes.md */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -570,6 +576,8 @@
 		2345850C1853688100086FB3 /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+REFrostedViewController.m"; path = "BlurView/UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
 		234DAFAA18560AF500558B4A /* KalActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalActionsView.h; sourceTree = "<group>"; };
 		234DAFAB18560AF500558B4A /* KalActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalActionsView.m; sourceTree = "<group>"; };
+		235047C818754E50001DB8EF /* FeedEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedEventTableViewCell.h; sourceTree = "<group>"; };
+		235047C918754E50001DB8EF /* FeedEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableViewCell.m; sourceTree = "<group>"; };
 		235693531847968A0003AD8E /* add_event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_event_icon.png; sourceTree = "<group>"; };
 		235693541847968A0003AD8E /* add_event_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_event_icon@2x.png"; sourceTree = "<group>"; };
 		23569357184797050003AD8E /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
@@ -608,6 +616,10 @@
 		23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitee_icon@2x.png"; sourceTree = "<group>"; };
 		23DFECDB184C94F200CC7D3D /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
 		23DFECDC184C94F200CC7D3D /* location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_icon@2x.png"; sourceTree = "<group>"; };
+		23FAE7921875CC0100323C1F /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRNRealTimeBlurView.h; path = BlurView/DRNRealTimeBlurView.h; sourceTree = "<group>"; };
+		23FAE7931875CC0100323C1F /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DRNRealTimeBlurView.m; path = BlurView/DRNRealTimeBlurView.m; sourceTree = "<group>"; };
+		23FAE7941875CC0100323C1F /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BoxBlur.h"; path = "BlurView/UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		23FAE7951875CC0100323C1F /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BoxBlur.m"; path = "BlurView/UIImage+BoxBlur.m"; sourceTree = "<group>"; };
 		34055C721833B13000A2AD8E /* Legal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Legal.plist; sourceTree = "<group>"; };
 		34262E0D1869BE6800288EA9 /* country.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = country.txt; sourceTree = "<group>"; };
 		34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalEventShowSettingsCell.h; sourceTree = "<group>"; };
@@ -724,6 +736,12 @@
 		3DCD5DDE1815116F000E2E56 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = calender/coredata/UserEntity.h; sourceTree = SOURCE_ROOT; };
 		3DCD5DDF1815116F000E2E56 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEntity.m; path = calender/coredata/UserEntity.m; sourceTree = SOURCE_ROOT; };
 		3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
+		3DF156861879969F0070A650 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		3DF156871879969F0070A650 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3DF156881879969F0070A650 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		3DF156891879969F0070A650 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		3DF1568A1879969F0070A650 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		3DF1568B1879969F0070A650 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		3DFB114018337F7200084EF2 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
 		3DFB114118337F7200084EF2 /* NSTextCheckingResult+ExtendedURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextCheckingResult+ExtendedURL.h"; sourceTree = "<group>"; };
 		3DFB114218337F7200084EF2 /* OHASBasicHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASBasicHTMLParser.h; sourceTree = "<group>"; };
@@ -1321,6 +1339,7 @@
 				7696F55717AE929E009FFEC8 /* Accelerate.framework in Frameworks */,
 				76795BF8183E50AC0062DC32 /* FacebookSDK.framework in Frameworks */,
 				76943B6617925AED0006FCA9 /* AudioToolbox.framework in Frameworks */,
+				3DF1568C1879969F0070A650 /* libTestFlight.a in Frameworks */,
 				3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */,
 				3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */,
 				3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */,
@@ -1359,6 +1378,10 @@
 		234585021853687300086FB3 /* BlurView */ = {
 			isa = PBXGroup;
 			children = (
+				23FAE7921875CC0100323C1F /* DRNRealTimeBlurView.h */,
+				23FAE7931875CC0100323C1F /* DRNRealTimeBlurView.m */,
+				23FAE7941875CC0100323C1F /* UIImage+BoxBlur.h */,
+				23FAE7951875CC0100323C1F /* UIImage+BoxBlur.m */,
 				234585031853688100086FB3 /* BLRView.h */,
 				234585041853688100086FB3 /* BLRView.m */,
 				234585051853688100086FB3 /* UIImage+ImageEffects.h */,
@@ -1600,6 +1623,19 @@
 				3DC29288186BC204009759C2 /* MobClick.h */,
 			);
 			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
+			sourceTree = "<group>";
+		};
+		3DF156851879969E0070A650 /* TestFlightSDK2.1.3 */ = {
+			isa = PBXGroup;
+			children = (
+				3DF156861879969F0070A650 /* libTestFlight.a */,
+				3DF156871879969F0070A650 /* README.md */,
+				3DF156881879969F0070A650 /* release_notes.md */,
+				3DF156891879969F0070A650 /* TestFlight+AsyncLogging.h */,
+				3DF1568A1879969F0070A650 /* TestFlight+ManualSessions.h */,
+				3DF1568B1879969F0070A650 /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.1.3;
 			sourceTree = "<group>";
 		};
 		3DFB113F18337F7200084EF2 /* OHAttributedLabel */ = {
@@ -2370,6 +2406,8 @@
 				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
 				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
 				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
+				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
+				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -2426,6 +2464,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3DF156851879969E0070A650 /* TestFlightSDK2.1.3 */,
 				3DC29285186BC204009759C2 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
 				234585021853687300086FB3 /* BlurView */,
@@ -2744,13 +2783,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "fang xiang";
+				ORGANIZATIONNAME = "Pencil Me, Inc.";
 				TargetAttributes = {
 					34CC551C181CB7FB00E23246 = {
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = 2Y54HQJPY5;
+						DevelopmentTeam = GGN58EVK65;
 					};
 				};
 			};
@@ -2891,6 +2930,7 @@
 				23818342186F1EE20080F169 /* buble.png in Resources */,
 				34262E0E1869BE6800288EA9 /* country.txt in Resources */,
 				769AB9A517DF51340033E677 /* event_detail_invite_icon.png in Resources */,
+				3DF1568E1879969F0070A650 /* release_notes.md in Resources */,
 				34B1F1B017F8FCE200AA5C97 /* settings_detail_full_circle.png in Resources */,
 				34B1F1B417F8FCE200AA5C97 /* settings_main_arrow.png in Resources */,
 				7643519618100F330004ADFC /* event_detail_comment_sep_line.png in Resources */,
@@ -2977,6 +3017,7 @@
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
 				2313197D1867271A00F076C7 /* people@2x.png in Resources */,
 				769AB9DD17DF51340033E677 /* btn_login_google@2x.png in Resources */,
+				3DF1568D1879969F0070A650 /* README.md in Resources */,
 				769AB9DE17DF51340033E677 /* btn_menu@2x.png in Resources */,
 				9441400C17F719230059BCBA /* AddEventTimeButton.xib in Resources */,
 				769AB9DF17DF51340033E677 /* btn_ok@2x.png in Resources */,
@@ -3179,6 +3220,7 @@
 				764C3F8B17F326C30014B8B1 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				9441401217F720530059BCBA /* AddEventTimesView.m in Sources */,
 				9441400F17F71B830059BCBA /* AddEventTimeButton.m in Sources */,
+				23FAE7961875CC0100323C1F /* DRNRealTimeBlurView.m in Sources */,
 				942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */,
 				23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */,
 				769AB91B17DF51160033E677 /* EventPendingToolbar.m in Sources */,
@@ -3187,6 +3229,7 @@
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
 				769AB92117DF51160033E677 /* PendingEventViewCell.m in Sources */,
 				769AB92317DF51160033E677 /* PendingEventViewCell2.m in Sources */,
+				235047CA18754E50001DB8EF /* FeedEventTableViewCell.m in Sources */,
 				769AB92517DF51160033E677 /* PendingTableView.m in Sources */,
 				76411AF5180830D1001C2125 /* ExtendArray.m in Sources */,
 				769ABA1A17DF514C0033E677 /* CoreDataModel.m in Sources */,
@@ -3311,6 +3354,7 @@
 				768404C8180115B200C69240 /* JSTokenButton.m in Sources */,
 				769ABC9D17DF542A0033E677 /* ASINetworkQueue.m in Sources */,
 				34B1F1A617F8FCE200AA5C97 /* LegalViewController.m in Sources */,
+				23FAE7971875CC0100323C1F /* UIImage+BoxBlur.m in Sources */,
 				3DCD5DD7181510C4000E2E56 /* Setting.m in Sources */,
 				234DAFAC18560AF500558B4A /* KalActionsView.m in Sources */,
 				76431E011806ED36009DAFFE /* EventDateNavigationBar+GlassStyle.m in Sources */,
@@ -3490,8 +3534,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3513,7 +3557,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
+				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3531,8 +3575,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Hu (52887JFV52)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Hu (52887JFV52)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3547,7 +3591,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "DAA25DC5-84E0-4582-8C0F-7E53BBE6D1B2";
+				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3557,8 +3601,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3574,10 +3618,11 @@
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3586,8 +3631,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ChangWei Tu (SLQVT3V7VP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3603,10 +3648,11 @@
 					"$(inherited)",
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
+					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7EC237DF-19E4-4A6B-B750-3D334B7D6901";
+				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

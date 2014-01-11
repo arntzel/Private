@@ -15,6 +15,7 @@
 @property IBOutlet UILabel * labAttendees;
 //@property IBOutlet UILabel * labTime;
 //@property IBOutlet UILabel * labTimeType;
+@property (strong, nonatomic) IBOutlet UIImageView *iconLocation;
 @property IBOutlet UILabel * labLocation;
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgStatus;

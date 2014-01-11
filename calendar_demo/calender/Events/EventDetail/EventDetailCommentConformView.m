@@ -45,7 +45,7 @@
     }
     
     containtView = [[UIView alloc] initWithFrame:CGRectMake(7, 0, 304, 50)];
-    containtView.backgroundColor = [UIColor whiteColor];
+    containtView.backgroundColor = [UIColor clearColor];
     [self addSubview:containtView];
 
     [containtView.layer setCornerRadius:5.0f];
@@ -128,7 +128,10 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    //[btn setBackgroundColor:[UIColor colorWithRed:224.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:0.5]];
+    [btn setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.25]];
+    //[btn setBackgroundColor:[UIColor clearColor]];
+    //[btn setBackgroundColor:[UIColor redColor]];
+    
     btn.titleLabel.font = [UIFont systemFontOfSize:15];
     return btn;
 }

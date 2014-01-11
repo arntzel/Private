@@ -149,6 +149,9 @@
 {
     
     CGSize targetSize = self.imageViewAddPhoto.frame.size;
+    targetSize.height = 300;
+    targetSize.width = 300;
+    
     UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
     
     self.imageViewAddPhoto.image = newImage;
