@@ -122,7 +122,7 @@ static NSTimeZone * userTimeZone;
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:@"h:mma"];
 
-    return [dateFormatter stringFromDate:time];
+    return [[dateFormatter stringFromDate:time] lowercaseString];
 }
 
 

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *subTitle;
 @property (strong, nonatomic) IBOutlet UIImageView *finalizedImg;
 @property (assign, nonatomic) UIViewController<EventDetailPhotoViewDelegate> *controller;
+@property (assign, nonatomic) BOOL isFinalized;
 
 - (void)setDefaultImage;
 - (void)addCreatorAction;
