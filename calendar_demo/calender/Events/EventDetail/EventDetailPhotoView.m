@@ -92,6 +92,9 @@
 {
     
     CGSize targetSize = self.photoView.frame.size;
+    targetSize.height*=2;
+    targetSize.width*=2;
+    
     UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
     
     [self setImage:newImage];
