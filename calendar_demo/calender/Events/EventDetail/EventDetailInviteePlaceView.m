@@ -52,12 +52,19 @@
         // Initialization code
         //[self setBackgroundColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f]];
         //[self setBackgroundColor:[UIColor clearColor]];
-        [self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
+        //[self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
         isCreator = creator;
         canChangePlace = canChangeLocation;
         showAllDescitpion = NO;
         
         [self addInviteeView];
+        CALayer *bgLayer = [CALayer layer];
+        CGRect bgFrame = CGRectMake(0, 0, self.inviteeView.frame.size.width * 2-2, self.inviteeView.frame.size.height);
+        bgLayer.frame = bgFrame;
+        [bgLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2].CGColor];
+        //[self.layer addSublayer:bgLayer];
+        [self.layer insertSublayer:bgLayer below:self.inviteeView.layer];
+        
         [self addHorizontalSep];
         [self addVerticalSep];
         [self addPlaceView];
