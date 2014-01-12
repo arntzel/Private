@@ -468,19 +468,34 @@ static NSTimeZone * userTimeZone;
 {
     NSString * startTime = [Utils formateTimeAMPM: ps.start];
     
-    
-    if ([ps.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+    if(ps.is_all_day) {
         
-        NSString *duration = [Utils formateTimeAMPM: ps.getEndTime];
-        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> to <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
-        return formattedStartTime;
-    } else if ([ps.start_type isEqualToString:START_TYPEAFTER]){
-        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime];
-        return formattedStartTime;
-    } else{
-        NSString * duration = [ps parseDuringDateString2];
-        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
-        return [formattedStartTime stringByAppendingString:duration];
+        NSString * duration;
+        if(ps.duration_days<=1) {
+            duration = @"All day";
+        } else {
+            duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
+        }
+        
+        NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", duration];
+        return lable;
+        
+    } else {
+        if ([ps.start_type isEqualToString:START_TYPEEXACTLYAT]) {
+            
+            NSString *duration = [Utils formateTimeAMPM: ps.getEndTime];
+            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> to <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
+            return formattedStartTime;
+        }
+        //    else if ([ps.start_type isEqualToString:START_TYPEAFTER]){
+        //        NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime];
+        //        return formattedStartTime;
+        //    }
+        else{
+            NSString * duration = [ps parseDuringDateString2];
+            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
+            return [formattedStartTime stringByAppendingString:duration];
+        }
     }
     
    
