@@ -2,8 +2,8 @@
 //  LocationEntity.h
 //  Calvin
 //
-//  Created by fang xiang on 13-10-21.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//  Created by fangxiang on 14-1-12.
+//  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -2,8 +2,8 @@
 //  FeedEventEntity.m
 //  Calvin
 //
-//  Created by fang xiang on 13-10-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//  Created by fangxiang on 14-1-12.
+//  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import "FeedEventEntity.h"
@@ -13,6 +13,7 @@
 @implementation FeedEventEntity
 
 @dynamic archived;
+@dynamic belongToiCal;
 @dynamic confirmed;
 @dynamic created_on;
 @dynamic creatoremail;
@@ -25,19 +26,20 @@
 @dynamic end;
 @dynamic eventType;
 @dynamic ext_event_id;
-@dynamic hasModified;
 @dynamic hasDeleted;
+@dynamic hasModified;
 @dynamic id;
 @dynamic is_all_day;
 @dynamic last_modified;
 @dynamic locationName;
+@dynamic maxProposeStarTime;
 @dynamic start;
 @dynamic start_type;
 @dynamic thumbnail_url;
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic maxProposeStarTime;
 @dynamic attendees;
-@dynamic belongToiCal;
+@dynamic propose_starts;
+
 @end

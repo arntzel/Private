@@ -2,8 +2,8 @@
 //  ContactEntity.m
 //  Calvin
 //
-//  Created by fang xiang on 13-10-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//  Created by fangxiang on 14-1-12.
+//  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import "ContactEntity.h"
@@ -15,9 +15,9 @@
 @dynamic calvinuser;
 @dynamic email;
 @dynamic first_name;
+@dynamic fullname;
 @dynamic id;
 @dynamic last_name;
 @dynamic phone;
-@dynamic fullname;
 
 @end

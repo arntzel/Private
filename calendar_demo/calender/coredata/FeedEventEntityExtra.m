@@ -1,6 +1,7 @@
 
 
 #import "FeedEventEntityExtra.h"
+#import "ProposeStartEntityExtra.h"
 #import "CoreDataModel.h"
 #import "Utils.h"
 #import "UserEntityExtra.h"
@@ -84,15 +85,16 @@
         
         for(ProposeStart * ps in event.propose_starts) {
             if([finalTime isEqual:ps]) {
-                
                 for (EventTimeVote * vote in ps.votes) {
-                    
                     if([me.email caseInsensitiveCompare:vote.email] == NSOrderedSame && vote.status == 1) {
                         accepted = YES;
-                        break;
                     }
                 }
             }
+            
+            ProposeStartEntity * entity = [[CoreDataModel getInstance] createEntity:@"ProposeStartEntity"];
+            [entity convertFromProposeStart:ps];
+            [self addPropose_startsObject:entity];
         }
         
         self.confirmed = @(accepted);

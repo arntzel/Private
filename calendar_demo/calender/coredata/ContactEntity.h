@@ -2,8 +2,8 @@
 //  ContactEntity.h
 //  Calvin
 //
-//  Created by fang xiang on 13-10-28.
-//  Copyright (c) 2013年 fang xiang. All rights reserved.
+//  Created by fangxiang on 14-1-12.
+//  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,9 +16,9 @@
 @property (nonatomic, retain) NSNumber * calvinuser;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * first_name;
+@property (nonatomic, retain) NSString * fullname;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * last_name;
 @property (nonatomic, retain) NSString * phone;
-@property (nonatomic, retain) NSString * fullname;
 
 @end
