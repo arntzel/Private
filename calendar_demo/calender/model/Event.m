@@ -119,7 +119,7 @@
     [dic setObject:[NSNumber numberWithBool:self.published]               forKey:@"published"];
     //[dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
 
-    NSString * created_on = [Utils formateDate:self.created_on];
+    NSString * created_on = [Utils formateGMTDate:self.created_on];
     [dic setObject:created_on forKey:@"created_on"];
 
 

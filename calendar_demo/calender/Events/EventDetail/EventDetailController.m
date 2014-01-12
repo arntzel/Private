@@ -530,7 +530,7 @@
 - (void)setEventDate:(ProposeStart *)eventDate
 {
     
-    eventDate.start = [Utils convertGMTDate:eventDate.start];
+    eventDate.start = eventDate.start;
     for(ProposeStart * p in self.event.propose_starts) {
         if([eventDate isEqual:p]) {
             [Utils showUIAlertView:@"Warning" andMessage:@"Already picked that time"];
