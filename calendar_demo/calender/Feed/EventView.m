@@ -40,7 +40,7 @@
         if([START_TYPEEXACTLYAT isEqualToString:startType]) {
 
             //self.labTimeType.hidden = YES;
-            timeType = @"";
+            timeType = @"Exactly at";
 
         } else if([START_TYPEAFTER isEqualToString:startType]) {
             
@@ -57,18 +57,24 @@
         
         time =[Utils formateTimeAMPM:event.start];
         duration = event.duration;
+        BOOL isExactlyType = [event.start_type isEqualToString:START_TYPEEXACTLYAT] ? YES: NO;
         //self.labEventDuration.text = [NSString stringWithFormat:@",%@", event.duration];
-        if ((!duration) || ([duration length] == 0)) {
-            if ([timeType length] == 0) {
-                self.labTimeStr.text = time;
-            } else {
-                self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@", timeType, time];
-            }
+        if (isExactlyType) {
+            NSString *endTime = [Utils formateTimeAMPM:event.end];
+            self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@ to %@", timeType, time, endTime];
         } else {
-            if ([timeType length] == 0) {
-                self.labTimeStr.text = [NSString stringWithFormat:@"%@,%@", time, duration];
-            }else {
-                self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@,%@", timeType, time, duration];
+            if ((!duration) || ([duration length] == 0)) {
+                if ([timeType length] == 0) {
+                    self.labTimeStr.text = time;
+                } else {
+                    self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@", timeType, time];
+                }
+            } else {
+                if ([timeType length] == 0) {
+                    self.labTimeStr.text = [NSString stringWithFormat:@"%@,%@", time, duration];
+                }else {
+                    self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@,%@", timeType, time, duration];
+                }
             }
         }
     }
