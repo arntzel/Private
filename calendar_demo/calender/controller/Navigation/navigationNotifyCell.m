@@ -66,7 +66,7 @@
     
     NSString * subject = msg.subject;
     //UIFont *font = [UIFont systemFontOfSize:11];
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:13.0];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
 //        [self.NotifyDetailLabel setColor:[UIColor colorWithRed:237.0/255.0f green:237.0/255.0f blue:237.0/255.0f alpha:1.0] fromIndex:0 length:subject.length];
 //    [self.NotifyDetailLabel setFont:font fromIndex:0 length:subject.length];
     //[self.NotifyDetailLabel setFont:[UIFont boldSystemFontOfSize:12] fromIndex:0 length:4];
@@ -92,7 +92,7 @@
 
 
 
-    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue" size:11.0];
+    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
     self.notifyDateLabel.font = font2;
     self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
     
