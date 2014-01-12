@@ -170,9 +170,13 @@
     
     [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
     
-    [self.subTitle setCenter:CGPointMake(self.titleLabel.center.x+10, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+    [self.subTitle setCenter:CGPointMake(self.subTitle.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
     
-    [self.finalizedImg setCenter:CGPointMake(self.titleLabel.center.x - 30, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+    CGSize maxSize = CGSizeMake(1000.0f, self.subTitle.frame.size.height);
+    CGSize fontSize = [self.subTitle.text sizeWithFont:self.subTitle.font constrainedToSize:maxSize lineBreakMode:self.subTitle.lineBreakMode];
+    
+    
+    [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
 
 
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
@@ -217,6 +221,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDetailPhotoView" owner:self options:nil];
     EventDetailPhotoView * view = (EventDetailPhotoView*)[nibView objectAtIndex:0];
+    view.isFinalized = NO;
     [view updateUI];
     return view;
 }
