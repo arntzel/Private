@@ -109,6 +109,11 @@
     view.frame = frame;
     
     view.eventTimeLabel.text = [Utils getProposeStatLabel2:_eventTime];
+    if (_eventTime.is_all_day) {
+        view.eventTypeLabel.hidden = YES;
+    } else {
+        view.eventTypeLabel.hidden = NO;
+    }
     view.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:view.eventTimeLabel.attributedText];
     view.eventTimeLabel.centerVertically = YES;
     
@@ -252,6 +257,11 @@
         //frame.origin.y = headerListView.frame.origin.y + headerListView.frame.size.height + 15;
         conformView.frame = frame;
         [conformView setTime:[Utils getProposeStatLabel2:_eventTime]];
+    if (_eventTime.is_all_day) {
+        conformView.eventTypeLabel.hidden = YES;
+    } else {
+        conformView.eventTypeLabel.hidden = NO;
+    }
         [conformView setConflictCount:[self getConfilictEventCount]];
         conformView.eventTypeLabel.text = [_eventTime parseStartTimeStringWithFirstCapitalized];
         
