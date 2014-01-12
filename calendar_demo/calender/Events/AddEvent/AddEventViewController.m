@@ -559,18 +559,17 @@
 
     event.timezone = settingView.timeZoneLabel.text;
     
-    NSMutableArray * propstarts = [[NSMutableArray alloc] init];
-    //NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
-    
-    for(ProposeStart * ps in [timesView getEventDates]) {
-        ProposeStart * ps2 = [ps copy];
-        ps2.start = [Utils convertGMTDate:ps2.start];
-        [propstarts addObject:ps2];
-        [ps2 release];
-    }
-    
-    event.propose_starts = propstarts;
-
+//    NSMutableArray * propstarts = [[NSMutableArray alloc] init];
+//    //NSTimeZone * tz = [NSTimeZone timeZoneWithName:event.timezone];
+//    
+//    for(ProposeStart * ps in [timesView getEventDates]) {
+//        ProposeStart * ps2 = [ps copy];
+//        ps2.start = [Utils convertGMTDate:ps2.start];
+//        [propstarts addObject:ps2];
+//        [ps2 release];
+//    }
+//    
+    event.propose_starts = [timesView getEventDates];
     event.location = self.locationPlace;
 
 //    if(event.start == nil) {
