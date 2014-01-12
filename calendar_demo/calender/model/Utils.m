@@ -53,6 +53,16 @@ static NSTimeZone * userTimeZone;
     return gmtDate;
 }
 
++(NSString *) formateGMTDate:(NSDate *) time
+{
+ 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    return [dateFormatter stringFromDate:time];
+}
+
 +(NSDate *) gmtDate2LocatDate:(NSDate *) gmtdate andTimezone:(NSTimeZone *) tinezone
 {
     if(gmtdate == nil) {
