@@ -87,6 +87,11 @@ static CGFloat const getstureDistance = 50;
 //    self.frame = frame;
 
     NSString * label = [Utils getProposeStatLabel2:eventTime];
+    if (eventTime.is_all_day) {
+        self.eventTypeLabel.hidden = YES;
+    } else {
+        self.eventTypeLabel.hidden = NO;
+    }
     self.eventTimeLabel.text = label;
     
     self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
