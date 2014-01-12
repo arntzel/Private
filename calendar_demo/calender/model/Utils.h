@@ -27,6 +27,8 @@
 
 +(NSDate *) convertGMTDate:(NSDate *) date andTimezone:(NSTimeZone *) tinezone;
 
++(NSString *) formateGMTDate:(NSDate *) time;
+
 /*
  convert a NSString to NSDate object
  strDate: the date of string format, example: "2013-06-02 12:12:10"

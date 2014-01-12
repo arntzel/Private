@@ -34,7 +34,7 @@
         [dic setObject:[NSNumber numberWithInt:self.id] forKey:@"id"];
     }
 
-    [dic setObject:[Utils formateDate:self.start] forKey:@"start"];
+    [dic setObject:[Utils formateGMTDate:self.start] forKey:@"start"];
     [dic setObject:self.start_type forKey:@"start_type"];
 
     [dic setObject:[NSNumber numberWithBool:self.is_all_day] forKey:@"is_all_day"];
