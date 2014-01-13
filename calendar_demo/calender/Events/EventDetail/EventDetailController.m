@@ -37,6 +37,7 @@
 #import "SettingsModel.h"
 #import "UserModel.h"
 #import "CoreDataModel.h"
+#import "FeedEventEntityExtra.h"
 
 #import "ATMHud.h"
 #import "ATMHudDelegate.h"
@@ -446,7 +447,15 @@
     self.event = newEvent;
     [self updateUIByEvent];
     
-    [[[Model getInstance] getEventModel] synchronizedFromServer];
+    FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
+    
+    if(entity != nil) {
+        [entity convertFromEvent:newEvent];
+        [[CoreDataModel getInstance] saveData];
+        [[CoreDataModel getInstance] notifyModelChange];
+    }
+    
+    //[[[Model getInstance] getEventModel] synchronizedFromServer];
 }
 
 #pragma mark -
