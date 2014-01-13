@@ -58,15 +58,45 @@
     //bool fristLoadData;
     //For update new app version
     NSString * newAppVersionUrl;
+    
+    UIDynamicAnimator * animator;
+    UIGravityBehavior* gravity;
+    UICollisionBehavior* collision;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
+@property(nonatomic, readwrite, retain)UIView *animationView;
 
 @end
 
 @implementation FeedViewController
 
 @synthesize calendarView;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
+    {
+        CGRect animationViewFrame = self.view.bounds;
+        animationViewFrame.origin.y = -self.calendarView.bounds.size.height * 2;
+        self.animationView.frame = animationViewFrame;
+        
+        [animator removeAllBehaviors];
+        animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+        //animator.delegate = self.view;
+        
+        collision = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
+        [collision addBoundaryWithIdentifier:@"TopWall" fromPoint:CGPointMake(0, self.view.bounds.size.height) toPoint:CGPointMake(self.view.frame.size.width, self.view.bounds.size.height)];
+        [animator addBehavior:collision];
+        
+        gravity = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
+        [animator addBehavior:gravity];
+    }
+}
+
 
 - (void)viewDidLoad
 {
@@ -91,7 +121,7 @@
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     int y = self.navigation.frame.size.height;
-
+    
     CGRect frame = self.view.bounds;
     frame.origin.y = y;
     //frame.size.height -=(y + 64);
@@ -120,15 +150,46 @@
     [self.view addSubview:blrView];
     isBlured = NO;
     
-    
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
+    
+    self.animationView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.animationView.backgroundColor = [UIColor clearColor];
+    self.animationView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.animationView.userInteractionEnabled = NO;
+    [self.view addSubview:self.animationView];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touchDetected)];
+    [panGesture setDelegate:self];
+    [self.animationView addGestureRecognizer:panGesture];
     
     self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self controllerDelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
-    [self.view addSubview:self.calendarView];
+    [self.animationView addSubview:self.calendarView];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
+    {
+        CGRect animationViewFrame = self.view.bounds;
+        animationViewFrame.origin.y = -20;
+        self.animationView.frame = animationViewFrame;
+        
+        [animator removeAllBehaviors];
+        animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+        //animator.delegate = self.view;
+        
+        collision = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
+        [collision addBoundaryWithIdentifier:@"BottomWall" fromPoint:CGPointMake(0, self.view.bounds.size.height) toPoint:CGPointMake(self.view.frame.size.width, self.view.bounds.size.height)];
+        [animator addBehavior:collision];
+        
+        gravity = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
+        [animator addBehavior:gravity];
+        
+        UIDynamicItemBehavior *_dyitem= [[UIDynamicItemBehavior alloc] initWithItems:@[self.animationView]];
+        _dyitem.elasticity = 1;
+        [animator addBehavior:_dyitem];
+    }
+    
 
     int filters = [[UserSetting getInstance] getEventfilters];
     LOG_D(@"Read filterVal:0x %x", filters);
@@ -259,6 +320,12 @@
     
 }
 
+-(void) touchDetected
+{
+    [self.view addSubview:self.calendarView];
+    self.animationView.userInteractionEnabled = NO;
+}
+
 - (void)dealloc
 {
     if (blrView) {
@@ -274,6 +341,13 @@
             isBlured = YES;
         }
         [blrView setHidden:NO];
+    }
+}
+
+-(void)disableCalendarBouns
+{
+    if (animator) {
+        [animator removeAllBehaviors];
     }
 }
 
@@ -302,12 +376,6 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
-}
 
 
 

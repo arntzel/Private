@@ -8,6 +8,8 @@
 -(void)blurBackground;
 -(void)unloadBlurBackground;
 -(void)scrollToTodayFeeds;
+
+-(void)disableCalendarBouns;
 @end
 
 @interface FeedViewController : BaseMenuViewController<UIGestureRecognizerDelegate>

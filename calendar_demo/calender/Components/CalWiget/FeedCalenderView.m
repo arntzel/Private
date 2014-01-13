@@ -183,6 +183,7 @@ extern const CGSize kTileSize;
 
 - (void)panGesture:(UIPanGestureRecognizer *)pan
 {
+    [self.controllerDelegate disableCalendarBouns];
     //[self.controllerDelegate blurBackground];
     if (pan.state == UIGestureRecognizerStateBegan) {
         if (kalView.KalMode == WEEK_MODE)

@@ -118,8 +118,8 @@ static CGFloat const getstureDistance = 50;
 //    _finailzeBtn.layer.shadowOffset =  CGSizeMake(0, 2);
 //    _finailzeBtn.layer.shadowOpacity = 0.8;
 //    _finailzeBtn.layer.shadowColor =  [UIColor blackColor].CGColor;
-    _finailzeBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    [_finailzeBtn.layer setBorderWidth:0.3f];
+    //_finailzeBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    //[_finailzeBtn.layer setBorderWidth:0.3f];
     //_finailzeBtn.layer.borderWidth = 1.0f;
     
     [_finailzeBtn addTarget:self action:@selector(setFinalze:) forControlEvents:UIControlEventTouchUpInside];
