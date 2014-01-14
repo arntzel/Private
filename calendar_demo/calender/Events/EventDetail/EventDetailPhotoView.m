@@ -134,7 +134,11 @@
 {
     if(imageUrl != nil) {
         UIImage * img = self.photoView.image;
-        [self.photoView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:img];
+        //[self.photoView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:img];
+        
+        [self.photoView setImageWithURL:[NSURL URLWithString:imageUrl]  placeholderImage:img completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [self setImage:image];
+        }];
     }
 }
 
