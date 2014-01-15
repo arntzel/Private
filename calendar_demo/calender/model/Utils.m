@@ -493,7 +493,7 @@ static NSTimeZone * userTimeZone;
             duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
         }
         
-        NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"20\" color=\"#494949\">%@</font>", duration];
+        NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", duration];
         return lable;
         
     } else {

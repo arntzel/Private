@@ -59,7 +59,7 @@
         
         [self addInviteeView];
         CALayer *bgLayer = [CALayer layer];
-        CGRect bgFrame = CGRectMake(0, 0, self.inviteeView.frame.size.width * 2-2, self.inviteeView.frame.size.height);
+        CGRect bgFrame = CGRectMake(0, 0, 320, self.inviteeView.frame.size.height);
         bgLayer.frame = bgFrame;
         [bgLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2].CGColor];
         //[self.layer addSublayer:bgLayer];
@@ -106,7 +106,7 @@
 
 -(void)addVerticalSep
 {
-    UIView *verSep = [[UIView alloc]initWithFrame:CGRectMake(8 + self.inviteeView.frame.size.width, 2, 1, self.inviteeView.frame.size.height)];
+    UIView *verSep = [[UIView alloc]initWithFrame:CGRectMake(8 + self.inviteeView.frame.size.width, 2, 1, self.inviteeView.frame.size.height-2)];
     [verSep setBackgroundColor:[UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:0.5]];
     [self addSubview:verSep];
 }
