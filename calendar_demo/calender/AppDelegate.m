@@ -42,6 +42,13 @@
     [Crashlytics startWithAPIKey:@"bf0c5f52126e61ccb51c68eecf9a761324301f9a"];
     [self redirectNSLogToDocumentFolder];
 #endif
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+    }
 
     // start of your application:didFinishLaunchingWithOptions // ...
     [TestFlight takeOff:@"1ad5c564-019b-459f-b3a3-89d675d59e6f"];

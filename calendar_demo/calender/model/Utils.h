@@ -137,4 +137,6 @@
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps;
 +(NSString *) getProposeStatLabel2:(ProposeStart *) ps;
 
++(BOOL)isCalvinFirstLaunched;
+
 @end

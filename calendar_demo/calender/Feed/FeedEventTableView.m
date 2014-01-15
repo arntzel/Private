@@ -278,6 +278,8 @@
             view.tag = 2;
             cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
             [cell addSubview:view];
+        } else {
+            view = (BirthdayEventView*)[cell viewWithTag:2];
         }
         [view refreshView:event];
         
@@ -339,7 +341,11 @@
     if([event isBirthdayEvent] ) {
         return BirthdayEventView_Height;
     } else {
-        return PlanView_HEIGHT;
+        //NSString *eventTitle = event.title;
+        CGSize maxSize = CGSizeMake(270.0, 1000.0f);
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:17];
+        CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+        return fontSize.height + 85;
     }
 }
 

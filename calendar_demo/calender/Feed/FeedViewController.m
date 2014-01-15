@@ -62,10 +62,13 @@
     UIDynamicAnimator * animator;
     UIGravityBehavior* gravity;
     UICollisionBehavior* collision;
+    UIAttachmentBehavior *spring;
+    
+    NSTimer *animationTimer;
+    CGPoint calendarViewCenter;
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
-@property(nonatomic, readwrite, retain)UIView *animationView;
 
 @end
 
@@ -78,23 +81,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
-    {
-        CGRect animationViewFrame = self.view.bounds;
-        animationViewFrame.origin.y = -self.calendarView.bounds.size.height * 2;
-        self.animationView.frame = animationViewFrame;
-        
-        [animator removeAllBehaviors];
-        animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-        //animator.delegate = self.view;
-        
-        collision = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
-        [collision addBoundaryWithIdentifier:@"TopWall" fromPoint:CGPointMake(0, self.view.bounds.size.height) toPoint:CGPointMake(self.view.frame.size.width, self.view.bounds.size.height)];
-        [animator addBehavior:collision];
-        
-        gravity = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
-        [animator addBehavior:gravity];
-    }
 }
 
 
@@ -111,7 +97,6 @@
     } else {
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
-    
     
     [self checkAppUpdated];
     
@@ -145,7 +130,6 @@
     //blurFrame.size.height = self.view.bounds.size.height / 2;
     blrView.frame = blurFrame;
     blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [blrView setHidden:YES];
     [self.view addSubview:blrView];
     isBlured = NO;
@@ -153,41 +137,21 @@
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
-    self.animationView = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.animationView.backgroundColor = [UIColor clearColor];
-    self.animationView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //self.animationView.userInteractionEnabled = NO;
-    [self.view addSubview:self.animationView];
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touchDetected)];
-    [panGesture setDelegate:self];
-    [self.animationView addGestureRecognizer:panGesture];
     
     self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self controllerDelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
-    [self.animationView addSubview:self.calendarView];
+    [self.view addSubview:self.calendarView];
     
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
+    if (([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) && ([Utils isCalvinFirstLaunched]))
     {
-        CGRect animationViewFrame = self.view.bounds;
-        animationViewFrame.origin.y = -20;
-        self.animationView.frame = animationViewFrame;
-        
-        [animator removeAllBehaviors];
+        calendarViewCenter = self.calendarView.center;
         animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-        //animator.delegate = self.view;
-        
-        collision = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
-        [collision addBoundaryWithIdentifier:@"BottomWall" fromPoint:CGPointMake(0, self.view.bounds.size.height) toPoint:CGPointMake(self.view.frame.size.width, self.view.bounds.size.height)];
-        [animator addBehavior:collision];
-        
-        gravity = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
-        [animator addBehavior:gravity];
-        
-        UIDynamicItemBehavior *_dyitem= [[UIDynamicItemBehavior alloc] initWithItems:@[self.animationView]];
-        _dyitem.elasticity = 1;
-        [animator addBehavior:_dyitem];
+        [self playCalendarAnimation];
+        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
+        //[self playCalendarAnimation];
     }
     
 
@@ -231,9 +195,6 @@
                     });
                     
                 }
-                
-                
-                
             }];
         }
         
@@ -320,10 +281,26 @@
     
 }
 
--(void) touchDetected
+-(void)playCalendarAnimation
 {
-    [self.view addSubview:self.calendarView];
-    self.animationView.userInteractionEnabled = NO;
+    //CGRect calendarViewFrame = self.calendarView.frame;
+    //calendarViewFrame.origin.y -= 20;
+    //self.calendarView.frame = calendarViewFrame;
+    self.calendarView.center = calendarViewCenter;
+    CGRect calendarViewFrame = self.calendarView.frame;
+    calendarViewFrame.origin.y -= 20;
+    self.calendarView.frame = calendarViewFrame;
+    
+    [animator removeAllBehaviors];
+    CGPoint anchorPoint = CGPointMake(self.calendarView.center.x, self.calendarView.center.y);
+    spring = [[UIAttachmentBehavior alloc] initWithItem:self.calendarView attachedToAnchor:anchorPoint];
+    [spring setFrequency:1.0];
+    [spring setDamping:0.1];
+    [animator addBehavior:spring];
+    
+    gravity = [[UIGravityBehavior alloc] initWithItems:@[self.calendarView]];
+    [animator addBehavior:gravity];
+    
 }
 
 - (void)dealloc
@@ -347,8 +324,11 @@
 -(void)disableCalendarBouns
 {
     if (animator) {
+        //self.animationView.frame  = self.view.bounds;
         [animator removeAllBehaviors];
     }
+    [animationTimer invalidate];
+    animationTimer = nil;
 }
 
 -(void)unloadBlurBackground

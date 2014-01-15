@@ -22,6 +22,12 @@
     return self;
 }
 
+-(float)getEventViewHeight
+{
+    float dynamicEventViewHeight = self.iconAttendee.frame.origin.y + self.iconAttendee.frame.size.height+25;
+    return dynamicEventViewHeight;
+}
+
 -(void) refreshView:(FeedEventEntity *) event
 {
 
@@ -113,7 +119,63 @@
         [self.iconLocation setHidden:NO];
     }
     
+    
+    CGSize maxSize = CGSizeMake(self.labTitle.frame.size.width, 1000.0f);
+    CGSize fontSize = [event.title sizeWithFont:self.labTitle.font constrainedToSize:maxSize lineBreakMode:self.labTitle.lineBreakMode];
+    
+    [self.labTitle setNumberOfLines:0];
     self.labTitle.text = event.title;
+    CGRect strFrame = CGRectMake(0, 18, 210, fontSize.height);
+    self.labTitle.frame = strFrame;
+    
+//    CGRect labTitleFrame = self.labTitle.frame;
+//    labTitleFrame.origin.y = self.labTimeStr.frame.origin.y + 5;
+//    self.labTitle.frame = labTitleFrame;
+    //self.labTitle.backgroundColor = [UIColor greenColor];
+    
+    float metaY = strFrame.origin.y + fontSize.height + 5;
+    
+//    CGRect iconUserFrame = self.iconUser.frame;
+//    iconUserFrame.origin.y = metaY;
+    
+    CGRect iconLocationFrame = self.iconLocation.frame;
+    iconLocationFrame.origin.y = metaY;
+    
+    CGRect labAttendeesFrame = self.labAttendees.frame;
+    labAttendeesFrame.origin.y = metaY - 3;
+    
+    CGRect labLocationFrame = self.labLocation.frame;
+    labLocationFrame.origin.y = metaY - 3;
+    
+    CGRect iconAttedeeFrame = self.iconAttendee.frame;
+    iconAttedeeFrame.origin.y = metaY;
+    
+    //self.iconUser.frame = iconUserFrame;
+    self.iconLocation.frame = iconLocationFrame;
+    self.labLocation.frame = labLocationFrame;
+    self.labAttendees.frame = labAttendeesFrame;
+    self.iconAttendee.frame = iconAttedeeFrame;
+    
+    CGRect contentViewFrame = self.contentView.frame;
+    contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
+    contentViewFrame.origin.y = 25;
+    self.contentView.frame = contentViewFrame;
+    NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
+//    CGRect viewFrame = [self frame];
+//    viewFrame.size.height = contentViewFrame.size.height + 25;
+//    self.frame = viewFrame;
+    //self.iconUser.frame.origin.y = metaY;
+//    float dynamicEventViewHeight = iconAttedeeFrame.origin.y + iconAttedeeFrame.size.height+12+25;
+//    CGRect viewFrame = self.frame;
+//    viewFrame.size.height = dynamicEventViewHeight;
+//    self.frame = viewFrame;
+    
+    //NSLog(@"event title:%@, height:%f", event.title, fontSize.height);
+//    if (fontSize.height > 30) {
+//        CGRect contentViewFrame = self.contentView.frame;
+//        contentViewFrame.origin.y = 25;
+//        self.contentView.frame = contentViewFrame;
+//    }
 }
 
 -(int) getEventTypeColor:(int) eventType

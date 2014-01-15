@@ -451,6 +451,12 @@ static NSTimeZone * userTimeZone;
     return [emailTest evaluateWithObject:phoneNUmber];
 }
 
++(BOOL)isCalvinFirstLaunched
+{
+    BOOL firstLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"];
+    return firstLaunched;
+}
+
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps
 {
     NSString * startTime = [Utils formateTimeAMPM: ps.start];
