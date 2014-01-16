@@ -54,6 +54,11 @@
         _backgroundGlassView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
         [self addSubview: _backgroundGlassView];
+        
+        
+        UIImageView * frontView = [[UIImageView alloc] initWithFrame: self.bounds];
+        frontView.image = [[UIImage imageNamed:@"shadow_ovlerlay_asset"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+        [self addSubview:frontView];
     }
     return self;
 }
