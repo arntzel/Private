@@ -142,6 +142,7 @@
 		3D92520F17784A680066927A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92520E17784A680066927A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92521017784AAE0066927A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D925278177960460066927A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D925277177960450066927A /* Security.framework */; };
+		3DBD82C8188778B90007EF36 /* shadow_ovlerlay_asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD82C7188778B90007EF36 /* shadow_ovlerlay_asset.png */; };
 		3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29286186BC204009759C2 /* libMobClickLibrary.a */; };
 		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
 		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
@@ -723,6 +724,7 @@
 		3D92520E17784A680066927A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3D92521017784AAE0066927A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3D925277177960450066927A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3DBD82C7188778B90007EF36 /* shadow_ovlerlay_asset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_ovlerlay_asset.png; sourceTree = "<group>"; };
 		3DC29286186BC204009759C2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		3DC29288186BC204009759C2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
@@ -1930,6 +1932,7 @@
 		769AB93917DF51340033E677 /* event_detail_random_header */ = {
 			isa = PBXGroup;
 			children = (
+				3DBD82C7188778B90007EF36 /* shadow_ovlerlay_asset.png */,
 				769AB93A17DF51340033E677 /* event_detail_random_header1.png */,
 				769AB93B17DF51340033E677 /* event_detail_random_header2.png */,
 				769AB93C17DF51340033E677 /* event_detail_random_header3.png */,
@@ -3118,6 +3121,7 @@
 				34B1F1B817F8FCE200AA5C97 /* settings_main_bottom_row.png in Resources */,
 				769ABB2417DF52090033E677 /* EventDetailCommentConformedView.xib in Resources */,
 				769ABB2917DF52090033E677 /* EventDetailCommentTextView.xib in Resources */,
+				3DBD82C8188778B90007EF36 /* shadow_ovlerlay_asset.png in Resources */,
 				23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */,
 				769ABB2B17DF52090033E677 /* EventDetailCommentView.xib in Resources */,
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
@@ -3625,8 +3629,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3645,8 +3649,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
-				"PROVISIONING_PROFILE[sdk=*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				PROVISIONING_PROFILE = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
+				"PROVISIONING_PROFILE[sdk=*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3655,8 +3659,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3675,8 +3679,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				PROVISIONING_PROFILE = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
