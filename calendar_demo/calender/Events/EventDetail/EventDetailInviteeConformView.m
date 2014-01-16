@@ -42,6 +42,13 @@
     if (count > 0) {
         self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
         [self.eventTimeConflictLabel setHidden:NO];
+        CGRect eventTypeLabelFrame = self.eventTypeLabel.frame;
+        eventTypeLabelFrame.origin.y -= 15;
+        self.eventTypeLabel.frame = eventTypeLabelFrame;
+        
+        CGRect eventTimeLabelFrame = self.eventTimeLabel.frame;
+        eventTimeLabelFrame.origin.y -= 15;
+        self.eventTimeLabel.frame = eventTimeLabelFrame;
     } else {
         [self.eventTimeConflictLabel setHidden:YES];
     }
@@ -187,7 +194,7 @@
     [view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
     [view updateUI];
     
-    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 8.0, 50.0, 50.0) withDate:date];
+    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 12.0, 50.0, 50.0) withDate:date];
     [view addSubview:dateView];
     
     

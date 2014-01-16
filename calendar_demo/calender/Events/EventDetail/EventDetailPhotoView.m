@@ -20,6 +20,7 @@
     UIScrollView *scrollView;
     CGFloat orgHeight;
     CGFloat scrollScope;
+    
 }
 
 @synthesize controller;
@@ -132,7 +133,7 @@
 
 -(void) setImageUrl:(NSString *) imageUrl
 {
-    if(imageUrl != nil) {
+    if((imageUrl != nil) && ([imageUrl length] > 0)) {
         UIImage * img = self.photoView.image;
         //[self.photoView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:img];
         

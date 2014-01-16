@@ -44,6 +44,7 @@
                     </connections>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="leftBtn" destination="3" id="21"/>
                 <outlet property="rightbtn" destination="10" id="22"/>

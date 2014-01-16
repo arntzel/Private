@@ -160,22 +160,7 @@
     contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
     contentViewFrame.origin.y = 25;
     self.contentView.frame = contentViewFrame;
-    NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
-//    CGRect viewFrame = [self frame];
-//    viewFrame.size.height = contentViewFrame.size.height + 25;
-//    self.frame = viewFrame;
-    //self.iconUser.frame.origin.y = metaY;
-//    float dynamicEventViewHeight = iconAttedeeFrame.origin.y + iconAttedeeFrame.size.height+12+25;
-//    CGRect viewFrame = self.frame;
-//    viewFrame.size.height = dynamicEventViewHeight;
-//    self.frame = viewFrame;
-    
-    //NSLog(@"event title:%@, height:%f", event.title, fontSize.height);
-//    if (fontSize.height > 30) {
-//        CGRect contentViewFrame = self.contentView.frame;
-//        contentViewFrame.origin.y = 25;
-//        self.contentView.frame = contentViewFrame;
-//    }
+    //NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
 }
 
 -(int) getEventTypeColor:(int) eventType
@@ -237,49 +222,7 @@
 {
     NSSet * attendees = event.attendees;
     return [NSString stringWithFormat:@"%d Invitees", attendees.count];
-//    if(attendees.count>100) {
-//        
-//        return [NSString stringWithFormat:@"%d attendees", attendees.count];
-//        
-//    } else if(attendees.count>5) {
-//        
-//        NSMutableString * str = [[NSMutableString alloc] init];
-//
-//        int count = 0;
-//        for(UserEntity * user in attendees) {
-//
-//            if(count == 0) {
-//                [str appendString: [user getReadableUsername]];
-//                [str appendString:@" "];
-//            } else if(count == 1) {
-//                [str appendString: [user getReadableUsername]];
-//            } else {
-//                break;
-//            }
-//            count++;
-//        }
-//
-//        [str appendFormat:@" and %dattendees", attendees.count-2];
-//        return str;
-//        
-//    } else if(attendees.count>0){
-//
-//        NSMutableString * str = [[NSMutableString alloc] init];
-//
-//        int i =0 ;
-//        for(UserEntity * user in attendees) {
-//           [str appendString: [user getReadableUsername]];
-//
-//            if(i<attendees.count-1) {
-//                [str appendString:@", "];
-//            }
-//            i++;
-//        }
-//        
-//        return str;
-//    } else {
-//        return @"No guests invited";
-//    }
+
 }
 
 
@@ -300,20 +243,8 @@
     UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
     UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
     [view.labTitle setTextColor:kalTitleColor];
-//    [view.labTime setTextColor:kalStandardColor];
-//    [view.labTimeType setTextColor:kalStandardColor];
-//    [view.labEventDuration setTextColor:kalStandardColor];
+
     [view.labTimeStr setTextColor:kalStandardColor];
-    
-    //[ViewUtils resetUILabelFont:view];
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextBeginPath(context);
-//    CGContextMoveToPoint(context, 0,PlanView_HEIGHT-1);
-//    CGContextSetLineWidth(context, 10.0);
-//    CGContextSetLineCap(context, kCGLineCapButt);
-//    CGContextSetRGBStrokeColor(context, 209, 217, 210, 1);
-//    CGContextAddLineToPoint(context, 320, PlanView_HEIGHT-1);
-//    CGContextStrokePath(context);
     
     view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
     
