@@ -139,7 +139,7 @@
     if (!commentTextView.hidden) {
         frame.size.height = commentTextView.frame.size.height;
     }
-    CGFloat tableHeight = [self.commentArray count] * DETAIL_COMMENT_CELL_HEIGHT;
+    CGFloat tableHeight = [self.commentArray count] * DETAIL_COMMENT_CELL_HEIGHT + 30;
     [tableView setFrame:CGRectMake(0, frame.size.height, frame.size.width, tableHeight)];
     frame.size.height = tableView.frame.origin.y + tableView.frame.size.height;
     

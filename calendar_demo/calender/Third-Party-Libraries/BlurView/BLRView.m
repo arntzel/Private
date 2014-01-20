@@ -486,6 +486,17 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     return components;
 }
 
++ (BLRColorComponents *) clearEffect {
+    BLRColorComponents *components = [[BLRColorComponents alloc] init];
+    
+    components.radius = 20.0f;
+    components.tintColor = [UIColor clearColor];
+    components.saturationDeltaFactor = 1.0f;
+    components.maskImage = nil;
+    
+    return components;
+}
+
 + (BLRColorComponents *) coralEffect {
     BLRColorComponents *components = [[BLRColorComponents alloc] init];
     
