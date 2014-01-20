@@ -20,6 +20,8 @@
     UIScrollView *scrollView;
     CGFloat orgHeight;
     CGFloat scrollScope;
+    BOOL isFinalizeImageHidden;
+    CGFloat orgWidth;
     
 }
 
@@ -42,6 +44,10 @@
     [blurView release];
 
     orgHeight = self.frame.size.height;
+    orgWidth = _titleLabel.frame.size.width;
+    
+    isFinalizeImageHidden = YES;
+    self.finalizedImg.hidden = isFinalizeImageHidden;
     self.clipsToBounds = YES;
 }
 
@@ -176,7 +182,7 @@
         scrollOffsetY = scrollScope;
     }
     
-    [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+    //[self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
     
     [self.subTitle setCenter:CGPointMake(self.subTitle.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
     
@@ -200,6 +206,22 @@
     UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
     [self.titleLabel setFont:titleLabelFont];
     
+    if (currentFont < 18) {
+        self.subTitle.hidden = YES;
+        self.finalizedImg.hidden = YES;
+        [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 10)];
+        CGRect titleFrame = self.titleLabel.frame;
+        titleFrame.size.width = 250;
+        self.titleLabel.frame = titleFrame;
+
+    } else if (currentFont > 18) {
+        self.subTitle.hidden = NO;
+        self.finalizedImg.hidden = isFinalizeImageHidden;
+        [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+        CGRect titleFrame = self.titleLabel.frame;
+        titleFrame.size.width = orgWidth;
+        self.titleLabel.frame = titleFrame;
+    }
     
     frame = self.shadowOverlay.frame;
     frame.origin.y = self.frame.size.height - frame.size.height;
@@ -211,6 +233,12 @@
     navBar = nil;
     navBar = navigation;
     scrollScope = orgHeight - navBar.frame.size.height;
+}
+
+-(void)hideFinalizeImage:(BOOL)hide
+{
+    isFinalizeImageHidden = hide;
+    self.finalizedImg.hidden = hide;
 }
 
 /*
