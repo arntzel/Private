@@ -95,15 +95,19 @@ static CGFloat const getstureDistance = 50;
 //    self.frame = frame;
 
     NSString * label = [Utils getProposeStatLabel2:eventTime];
-    if (eventTime.is_all_day) {
-        self.eventTypeLabel.hidden = YES;
-    } else {
-        self.eventTypeLabel.hidden = NO;
-    }
     self.eventTimeLabel.text = label;
     
     self.eventTimeLabel.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.eventTimeLabel.attributedText];
     self.eventTimeLabel.centerVertically = YES;
+    
+    if (eventTime.is_all_day) {
+        self.eventTypeLabel.hidden = YES;
+        CGRect eventTimeLabelFrame = self.eventTimeLabel.frame;
+        eventTimeLabelFrame.origin.y -= 11;
+        self.eventTimeLabel.frame = eventTimeLabelFrame;
+    } else {
+        self.eventTypeLabel.hidden = NO;
+    }
     
     if(eventTime.finalized == 2) {
         self.userInteractionEnabled = NO;
@@ -262,7 +266,7 @@ static CGFloat const getstureDistance = 50;
     [view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
     [view updateUI];
     
-    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 12.0, 50.0, 50.0) withDate:date];
+    EventDetailRoundDateView *dateView = [[EventDetailRoundDateView alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0) withDate:date];
     [view addSubview:dateView];
     return view;
 }

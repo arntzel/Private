@@ -110,6 +110,9 @@
     
     view.eventTimeLabel.text = [Utils getProposeStatLabel2:_eventTime];
     if (_eventTime.is_all_day) {
+        CGRect eventTimeLabelFrame = view.eventTimeLabel.frame;
+        eventTimeLabelFrame.origin.y -= 11;
+        view.eventTimeLabel.frame = eventTimeLabelFrame;
         view.eventTypeLabel.hidden = YES;
     } else {
         view.eventTypeLabel.hidden = NO;
@@ -258,6 +261,9 @@
         conformView.frame = frame;
         [conformView setTime:[Utils getProposeStatLabel2:_eventTime]];
     if (_eventTime.is_all_day) {
+        CGRect eventTimeLabelFrame = conformView.eventTimeLabel.frame;
+        eventTimeLabelFrame.origin.y -= 11;
+        conformView.eventTimeLabel.frame = eventTimeLabelFrame;
         conformView.eventTypeLabel.hidden = YES;
     } else {
         conformView.eventTypeLabel.hidden = NO;
