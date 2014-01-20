@@ -22,6 +22,7 @@
 -(void) refreshView:(FeedEventEntity *) event
 {
     self.labTitle.text = event.title;
+    self.labTime.text = @"Exactly at";
 
     NSString * headerUrl = event.thumbnail_url;
 

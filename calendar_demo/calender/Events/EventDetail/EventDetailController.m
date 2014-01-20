@@ -264,7 +264,7 @@
         if (!event.start) {
             photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet finalized"];
         } else {
-            photoView.finalizedImg.hidden = NO;
+            [photoView hideFinalizeImage:NO];
             photoView.subTitle.text = [NSString stringWithFormat:@"Finalized"];
         }
     }

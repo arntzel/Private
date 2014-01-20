@@ -33,6 +33,8 @@
 - (void)setScrollView:(UIScrollView *)_scrollView;
 - (void)setNavgation:(UIView *)navigation;
 
+-(void)hideFinalizeImage:(BOOL)hide;
+
 + (EventDetailPhotoView *) creatView;
 
 
