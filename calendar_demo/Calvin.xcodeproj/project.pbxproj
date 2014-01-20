@@ -11,8 +11,6 @@
 		231319791867257C00F076C7 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319771867257C00F076C7 /* circle@2x.png */; };
 		2313197C1867271A00F076C7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197A1867271A00F076C7 /* people.png */; };
 		2313197D1867271A00F076C7 /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197B1867271A00F076C7 /* people@2x.png */; };
-		23131980186727DA00F076C7 /* arr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197E186727DA00F076C7 /* arr.png */; };
-		23131981186727DA00F076C7 /* arr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197F186727DA00F076C7 /* arr@2x.png */; };
 		232442A318546BC5008930EA /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429D18546BC5008930EA /* add_icon.png */; };
 		232442A418546BC5008930EA /* add_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429E18546BC5008930EA /* add_icon@2x.png */; };
 		232442A518546BC5008930EA /* Calvin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2324429F18546BC5008930EA /* Calvin_logo.png */; };
@@ -38,6 +36,8 @@
 		2356935A184797050003AD8E /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23569358184797050003AD8E /* menu_icon@2x.png */; };
 		23818342186F1EE20080F169 /* buble.png in Resources */ = {isa = PBXBuildFile; fileRef = 23818340186F1EE20080F169 /* buble.png */; };
 		23818343186F1EE20080F169 /* buble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23818341186F1EE20080F169 /* buble@2x.png */; };
+		239D90C4188D066300E7A042 /* notch.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D90C2188D066300E7A042 /* notch.png */; };
+		239D90C5188D066300E7A042 /* notch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D90C3188D066300E7A042 /* notch@2x.png */; };
 		23A15CD51855BF9700B12865 /* notification_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD31855BF9700B12865 /* notification_btn.png */; };
 		23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD41855BF9700B12865 /* notification_btn@2x.png */; };
 		23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */; };
@@ -599,8 +599,6 @@
 		231319771867257C00F076C7 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
 		2313197A1867271A00F076C7 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		2313197B1867271A00F076C7 /* people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people@2x.png"; sourceTree = "<group>"; };
-		2313197E186727DA00F076C7 /* arr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arr.png; sourceTree = "<group>"; };
-		2313197F186727DA00F076C7 /* arr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arr@2x.png"; sourceTree = "<group>"; };
 		2324429D18546BC5008930EA /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
 		2324429E18546BC5008930EA /* add_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_icon@2x.png"; sourceTree = "<group>"; };
 		2324429F18546BC5008930EA /* Calvin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calvin_logo.png; sourceTree = "<group>"; };
@@ -633,6 +631,8 @@
 		23569358184797050003AD8E /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		23818340186F1EE20080F169 /* buble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buble.png; sourceTree = "<group>"; };
 		23818341186F1EE20080F169 /* buble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buble@2x.png"; sourceTree = "<group>"; };
+		239D90C2188D066300E7A042 /* notch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notch.png; sourceTree = "<group>"; };
+		239D90C3188D066300E7A042 /* notch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notch@2x.png"; sourceTree = "<group>"; };
 		23A15CD31855BF9700B12865 /* notification_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_btn.png; sourceTree = "<group>"; };
 		23A15CD41855BF9700B12865 /* notification_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_btn@2x.png"; sourceTree = "<group>"; };
 		23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
@@ -2070,10 +2070,10 @@
 		769AB93417DF51340033E677 /* event_detail_invite_place */ = {
 			isa = PBXGroup;
 			children = (
+				239D90C2188D066300E7A042 /* notch.png */,
+				239D90C3188D066300E7A042 /* notch@2x.png */,
 				23B870FC1868684300F7F62F /* anchal.png */,
 				23B870FD1868684300F7F62F /* anchal@2x.png */,
-				2313197E186727DA00F076C7 /* arr.png */,
-				2313197F186727DA00F076C7 /* arr@2x.png */,
 				2313197A1867271A00F076C7 /* people.png */,
 				2313197B1867271A00F076C7 /* people@2x.png */,
 				769AB93717DF51340033E677 /* event_detail_invite_icon.png */,
@@ -3240,6 +3240,7 @@
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
 				2344AC2B186BFD69001A4AD0 /* green_right.png in Resources */,
+				239D90C5188D066300E7A042 /* notch@2x.png in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
 				769CB5711886CD740082400D /* add_event_location_v2.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
@@ -3294,7 +3295,6 @@
 				769AB9E417DF51340033E677 /* clock.png in Resources */,
 				7662F74617F075F400B64E40 /* LoginMainTitileView.xib in Resources */,
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
-				23131981186727DA00F076C7 /* arr@2x.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
 				769AB9E617DF51340033E677 /* colordot2.png in Resources */,
 				23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */,
@@ -3312,7 +3312,6 @@
 				769AB9EC17DF51340033E677 /* email@2x.png in Resources */,
 				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
 				769AB9EE17DF51340033E677 /* google@2x.png in Resources */,
-				23131980186727DA00F076C7 /* arr.png in Resources */,
 				769AB9EF17DF51340033E677 /* header.png in Resources */,
 				769AB9F017DF51340033E677 /* header_mask.png in Resources */,
 				769AB9F117DF51340033E677 /* location.png in Resources */,
@@ -3428,6 +3427,7 @@
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
 				2344AC2C186BFD69001A4AD0 /* green_right@2x.png in Resources */,
 				235693551847968A0003AD8E /* add_event_icon.png in Resources */,
+				239D90C4188D066300E7A042 /* notch.png in Resources */,
 				769ABD4617DF54950033E677 /* customSwitchBg@2x.png in Resources */,
 				769ABD4717DF54950033E677 /* customSwitchFront@2x.png in Resources */,
 				23D8D226186D492200C39F8C /* back_arrow@2x.png in Resources */,
@@ -3899,8 +3899,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3919,8 +3919,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
-				"PROVISIONING_PROFILE[sdk=*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
+				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				"PROVISIONING_PROFILE[sdk=*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3929,8 +3929,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3949,8 +3949,8 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
+				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

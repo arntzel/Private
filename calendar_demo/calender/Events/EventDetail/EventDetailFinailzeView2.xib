@@ -78,8 +78,8 @@
                     <rect key="frame" x="166" y="76" width="16" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arr.png" id="xFq-Yl-PT5">
-                    <rect key="frame" x="300" y="76" width="10" height="12"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notch.png" id="xFq-Yl-PT5">
+                    <rect key="frame" x="300" y="76" width="10" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HBT-xc-4TM">
@@ -104,9 +104,9 @@
         </view>
     </objects>
     <resources>
-        <image name="arr.png" width="12" height="19"/>
         <image name="event_detail_invitee_time_cross_disable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_tick_disable.png" width="36" height="26"/>
         <image name="event_detail_invitee_time_tick_enable.png" width="36" height="26"/>
+        <image name="notch.png" width="7" height="10"/>
     </resources>
 </document>

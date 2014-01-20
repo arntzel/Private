@@ -87,14 +87,14 @@
         [maskView addSubview:label];
         [label release];
         [label setText:@"Pick a location"];
-        [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+        [label setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:13]];
         [label setTextColor:[UIColor blackColor]];
         [label setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
         [maskView addSubview:arrawView];
         [arrawView release];
-        arrawView.image = [UIImage imageNamed:@"event_palce_arraw.png"];
+        arrawView.image = [UIImage imageNamed:@"notch.png"];
     }
 }
 

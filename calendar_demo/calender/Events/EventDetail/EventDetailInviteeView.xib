@@ -25,8 +25,8 @@
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arr.png" id="dq9-mf-WbE">
-                            <rect key="frame" x="125" y="9" width="10" height="12"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notch.png" id="dq9-mf-WbE">
+                            <rect key="frame" x="125" y="9" width="10" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
@@ -42,7 +42,7 @@
         </view>
     </objects>
     <resources>
-        <image name="arr.png" width="12" height="19"/>
+        <image name="notch.png" width="7" height="10"/>
         <image name="people.png" width="23" height="23"/>
     </resources>
 </document>
