@@ -25,6 +25,7 @@ typedef enum
 @interface respondedInfo:NSObject
 
 @property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *email;
 @property(nonatomic,strong) UIImage *headPhoto;
 @property(nonatomic,strong) NSString *headPhotoUrl;
 @property(nonatomic,strong) NSString *declinedTime;
@@ -136,6 +137,7 @@ typedef enum
         respondedInfo * responded = [[respondedInfo alloc] init];
         
         responded.name = [contact getReadableUsername];
+        responded.email = contact.email;
         responded.headPhotoUrl = contact.avatar_url;
         
         
@@ -200,7 +202,7 @@ typedef enum
     }
     
     [controller setType:AddInviteeTypeRest];
-    [controller setSelectedUser:userArray];
+    //[controller setSelectedUser:userArray];
     
     [self.navigationController pushViewController:controller animated:YES];
     
@@ -289,6 +291,7 @@ typedef enum
             
             respondedInfo *responded = [array objectAtIndex:row];
             cell.peopleName.text = responded.name;
+            cell.peopleEmail.text = responded.email;
             [cell setHeaderImageUrl:responded.headPhotoUrl];
             [cell.btnSelect setHidden:YES];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -316,11 +319,26 @@ typedef enum
     if ([inviteArray count] > 0) {
         
         NSMutableArray * invitees = [[NSMutableArray alloc] init];
-        for( Contact * contact in inviteArray) {
+        for(Contact * contact in inviteArray) {
+            
+            if([self.event.creator.email isEqualToString:contact.email]) {
+                continue;
+            }
+            
+            for(EventAttendee * atd in self.event.attendees)
+            {
+                if( [atd.contact.email isEqualToString:contact.email]) {
+                    continue;
+                }
+            }
+            
+            
             Invitee * invitee = [[Invitee alloc] init];
             invitee.email = contact.email;
             [invitees addObject:invitee];
         }
+        
+        if(invitees.count == 0) return;
         
         [self showIndictor:YES];
         [[Model getInstance] inviteContacts:_event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
