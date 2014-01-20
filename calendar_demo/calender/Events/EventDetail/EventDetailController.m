@@ -160,6 +160,7 @@
 
         if(error == ERROCODE_EVENT_NOTEXITED) {
 
+            LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             //[self.navigationController popViewControllerAnimated:YES];
 
@@ -641,6 +642,7 @@
             //[self updateUIByEvent];
             //[self layOutSubViews];
             
+            LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             
             [self.navigationController popViewControllerAnimated:YES];
@@ -677,6 +679,7 @@
         
         if(error == 0) {
             
+            LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             [self.navigationController popViewControllerAnimated:YES];
             

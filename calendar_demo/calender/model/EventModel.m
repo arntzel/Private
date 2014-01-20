@@ -139,6 +139,7 @@
             
             if(evt.confirmed && [evt isDeclineEvent]) {
                 if(entity != nil) {
+                    LOG_I(@"deleteFeedEventEntity2:%d, %@", evt.id, evt.title);
                     [model deleteFeedEventEntity2:entity];
                 }
                 
