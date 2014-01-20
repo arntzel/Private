@@ -40,13 +40,13 @@
 		239D90C5188D066300E7A042 /* notch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D90C3188D066300E7A042 /* notch@2x.png */; };
 		239D90C8188D0AB800E7A042 /* back_button_asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D90C6188D0AB800E7A042 /* back_button_asset.png */; };
 		239D90C9188D0AB800E7A042 /* back_button_asset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D90C7188D0AB800E7A042 /* back_button_asset@2x.png */; };
+		239D90CC188D153E00E7A042 /* libOHAttributedLabel_universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 239D90CB188D153E00E7A042 /* libOHAttributedLabel_universal.a */; };
 		23A15CD51855BF9700B12865 /* notification_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD31855BF9700B12865 /* notification_btn.png */; };
 		23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A15CD41855BF9700B12865 /* notification_btn@2x.png */; };
 		23A9C2021853025E009FECF9 /* LocationChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C1FD1853025E009FECF9 /* LocationChangedViewController.m */; };
 		23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C1FE1853025E009FECF9 /* LocationChangedViewController.xib */; };
 		23A9C2041853025E009FECF9 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9C2001853025E009FECF9 /* SelectCountryViewController.m */; };
 		23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9C2011853025E009FECF9 /* SelectCountryViewController.xib */; };
-		23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B16DE61859A32000650A54 /* libOHAttributedLabel.a */; };
 		23B870FE1868684300F7F62F /* anchal.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FC1868684300F7F62F /* anchal.png */; };
 		23B870FF1868684300F7F62F /* anchal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B870FD1868684300F7F62F /* anchal@2x.png */; };
 		23B871021868904E00F7F62F /* EventDetailRoundDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B871011868904E00F7F62F /* EventDetailRoundDateView.m */; };
@@ -159,7 +159,6 @@
 		3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29286186BC204009759C2 /* libMobClickLibrary.a */; };
 		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
 		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
-		3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */; };
 		3DF11F3C1882DCFA00F16140 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F3B1882DCFA00F16140 /* FeedEventEntity.m */; };
 		3DF11F3F1882DCFB00F16140 /* LocationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F3E1882DCFB00F16140 /* LocationEntity.m */; };
 		3DF11F421882DCFB00F16140 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F411882DCFB00F16140 /* MessageEntity.m */; };
@@ -637,6 +636,7 @@
 		239D90C3188D066300E7A042 /* notch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notch@2x.png"; sourceTree = "<group>"; };
 		239D90C6188D0AB800E7A042 /* back_button_asset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button_asset.png; sourceTree = "<group>"; };
 		239D90C7188D0AB800E7A042 /* back_button_asset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button_asset@2x.png"; sourceTree = "<group>"; };
+		239D90CB188D153E00E7A042 /* libOHAttributedLabel_universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel_universal.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel_universal.a"; sourceTree = "<group>"; };
 		23A15CD31855BF9700B12865 /* notification_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_btn.png; sourceTree = "<group>"; };
 		23A15CD41855BF9700B12865 /* notification_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_btn@2x.png"; sourceTree = "<group>"; };
 		23A9C1FC1853025E009FECF9 /* LocationChangedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationChangedViewController.h; sourceTree = "<group>"; };
@@ -1464,7 +1464,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DD6068A18339D3C007C36A3 /* libOHAttributedLabel.a in Frameworks */,
+				239D90CC188D153E00E7A042 /* libOHAttributedLabel_universal.a in Frameworks */,
 				764404B817523BB100B11BDE /* CoreText.framework in Frameworks */,
 				34659DCB180E840800E5632F /* EventKit.framework in Frameworks */,
 				34657A17180BD6C700079CBD /* AddressBook.framework in Frameworks */,
@@ -1482,7 +1482,6 @@
 				3D925278177960460066927A /* Security.framework in Frameworks */,
 				3D92521117784AAE0066927A /* AdSupport.framework in Frameworks */,
 				3D92520F17784A680066927A /* Accounts.framework in Frameworks */,
-				23B16DE71859A32000650A54 /* libOHAttributedLabel.a in Frameworks */,
 				3D92520D17784A430066927A /* libsqlite3.0.dylib in Frameworks */,
 				3D92520B17784A100066927A /* Social.framework in Frameworks */,
 				764404B617523BA100B11BDE /* CoreLocation.framework in Frameworks */,
@@ -1706,6 +1705,7 @@
 		3D6151A21734A391003D72B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				239D90CB188D153E00E7A042 /* libOHAttributedLabel_universal.a */,
 				76795BF7183E50AB0062DC32 /* FacebookSDK.framework */,
 				3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */,
 				3DFB113F18337F7200084EF2 /* OHAttributedLabel */,
@@ -3925,6 +3925,7 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
@@ -3955,6 +3956,7 @@
 					"$(SRCROOT)/calender/Third-Party-Libraries/OHAttributedLabel/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID/**",
 					"$(SRCROOT)/calender/Third-Party-Libraries/TestFlightSDK2.1.3",
+					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
