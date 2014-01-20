@@ -217,13 +217,13 @@
         self.finalizedImg.hidden = isFinalizeImageHidden;
         if (orgHeight == CUSTOM_IMG_HEIGHT) {
             [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
-            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
-            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 8)];
+            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 8)];
             [self adjustTitleLabelFrame:NO];
         } else {
             [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 10)];
-            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 10)];
-            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 10)];
+            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 3)];
+            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 3)];
             [self adjustTitleLabelFrame:YES];
         }
     }
