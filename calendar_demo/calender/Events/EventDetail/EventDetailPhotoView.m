@@ -11,6 +11,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ViewUtils.h"
 
+#define CUSTOM_IMG_HEIGHT 207
+#define DEFAULT_IMG_HEIGHT 85
+
 @interface EventDetailPhotoView()<UIActionSheetDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 @end
 
@@ -22,7 +25,6 @@
     CGFloat scrollScope;
     BOOL isFinalizeImageHidden;
     CGFloat orgWidth;
-    
 }
 
 @synthesize controller;
@@ -184,13 +186,11 @@
     
     //[self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
     
-    [self.subTitle setCenter:CGPointMake(self.subTitle.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
-    
     CGSize maxSize = CGSizeMake(1000.0f, self.subTitle.frame.size.height);
     CGSize fontSize = [self.subTitle.text sizeWithFont:self.subTitle.font constrainedToSize:maxSize lineBreakMode:self.subTitle.lineBreakMode];
     
     
-    [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+    //[self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
 
     //NSLog(@"scrollOffsetY:%f, %f, %f", scrollOffsetY, self.frame.origin.y, self.frame.size.height);
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
@@ -206,18 +206,36 @@
     UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
     [self.titleLabel setFont:titleLabelFont];
     
-    if (currentFont < 18) {
+    if (currentFont < 16) {
         self.subTitle.hidden = YES;
         self.finalizedImg.hidden = YES;
         [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 10)];
+        [self adjustTitleLabelFrame:YES];
+
+    } else if (currentFont > 16) {
+        self.subTitle.hidden = NO;
+        self.finalizedImg.hidden = isFinalizeImageHidden;
+        if (orgHeight == CUSTOM_IMG_HEIGHT) {
+            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
+            [self adjustTitleLabelFrame:NO];
+        } else {
+            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 10)];
+            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 10)];
+            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 10)];
+            [self adjustTitleLabelFrame:YES];
+        }
+    }
+}
+
+-(void)adjustTitleLabelFrame:(BOOL)truncate
+{
+    if (truncate) {
         CGRect titleFrame = self.titleLabel.frame;
         titleFrame.size.width = 250;
         self.titleLabel.frame = titleFrame;
-
-    } else if (currentFont > 18) {
-        self.subTitle.hidden = NO;
-        self.finalizedImg.hidden = isFinalizeImageHidden;
-        [self.titleLabel setCenter:CGPointMake(self.titleLabel.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+    } else {
         CGRect titleFrame = self.titleLabel.frame;
         titleFrame.size.width = orgWidth;
         self.titleLabel.frame = titleFrame;
@@ -255,6 +273,21 @@
     [_photoView release];
     [_titleLabel release];
     [super dealloc];
+}
+
+-(void)setIsDefaultBackgroundImage:(BOOL)flag
+{
+    self.isDefaultBgImg = flag;
+    if (flag) {
+        orgHeight = DEFAULT_IMG_HEIGHT;
+    } else {
+        orgHeight = CUSTOM_IMG_HEIGHT;
+    }
+}
+
+-(CGFloat)getOriginalHeight
+{
+    return orgHeight;
 }
 
 

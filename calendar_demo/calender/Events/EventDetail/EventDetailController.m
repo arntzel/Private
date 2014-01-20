@@ -222,7 +222,7 @@
     [self.view insertSubview:scrollView belowSubview:photoView];
     [photoView setScrollView:scrollView];
     
-    height = photoView.frame.size.height - navBar.frame.size.height;
+    height = [photoView getOriginalHeight] - navBar.frame.size.height;
     UIView * emptyView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, height)] autorelease];
     [scrollView addSubview:emptyView];
     
@@ -426,6 +426,11 @@
 - (void)addPhotoView
 {
     photoView = [[EventDetailPhotoView creatView] retain];
+    if (event.thumbnail_url && ([event.thumbnail_url length] > 0)) {
+        [photoView setIsDefaultBackgroundImage:NO];
+    } else {
+        [photoView setIsDefaultBackgroundImage:YES];
+    }
     [self.view insertSubview:photoView belowSubview:navBar];
     photoView.controller = self;
     [photoView setDefaultImage];

@@ -24,6 +24,7 @@
 
 @property (assign, nonatomic) UIViewController<EventDetailPhotoViewDelegate> *controller;
 @property (assign, nonatomic) BOOL isFinalized;
+@property (assign, nonatomic) BOOL isDefaultBgImg;
 
 - (void)setDefaultImage;
 - (void)addCreatorAction;
@@ -39,5 +40,7 @@
 
 + (EventDetailPhotoView *) creatView;
 
+-(void)setIsDefaultBackgroundImage:(BOOL)flag;
 
+-(CGFloat)getOriginalHeight;
 @end
