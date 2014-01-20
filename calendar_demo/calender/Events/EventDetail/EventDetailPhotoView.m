@@ -241,9 +241,9 @@
         self.titleLabel.frame = titleFrame;
     }
     
-    frame = self.shadowOverlay.frame;
-    frame.origin.y = self.frame.size.height - frame.size.height;
-    self.shadowOverlay.frame = frame;
+//    frame = self.shadowOverlay.frame;
+//    frame.origin.y = self.frame.size.height - frame.size.height;
+//    self.shadowOverlay.frame = frame;
 }
 
 - (void)setNavgation:(UIView *)navigation
