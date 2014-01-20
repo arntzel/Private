@@ -65,7 +65,7 @@
     }
     
     NSDate * current = [NSDate date];
-    current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
+    //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
     return [current compare:self.maxProposeStarTime] > 0;
 }
 
