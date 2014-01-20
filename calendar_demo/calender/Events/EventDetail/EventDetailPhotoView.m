@@ -35,7 +35,7 @@
     self.photoView = blurView;
     
     [_titleLabel setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.4f]];
-    [self insertSubview:blurView belowSubview:_titleLabel];
+    [self insertSubview:blurView belowSubview:self.shadowOverlay];
     
     [_subTitle setShadowColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.4f]];
     
@@ -186,7 +186,7 @@
     
     [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 15)];
 
-
+    //NSLog(@"scrollOffsetY:%f, %f, %f", scrollOffsetY, self.frame.origin.y, self.frame.size.height);
     //NSLog(@"%f, %f", self.titleLabel.center.x, self.titleLabel.center.y);
 
     CGFloat maxFont = 20;
@@ -199,6 +199,11 @@
     //[self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
     UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
     [self.titleLabel setFont:titleLabelFont];
+    
+    
+    frame = self.shadowOverlay.frame;
+    frame.origin.y = self.frame.size.height - frame.size.height;
+    self.shadowOverlay.frame = frame;
 }
 
 - (void)setNavgation:(UIView *)navigation

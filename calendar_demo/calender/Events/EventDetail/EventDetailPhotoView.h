@@ -19,7 +19,9 @@
 @property (retain, nonatomic) DKLiveBlurView *photoView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *subTitle;
-@property (strong, nonatomic) IBOutlet UIImageView *finalizedImg;
+@property (strong, nonatomic) IBOutlet UIImageView * finalizedImg;
+@property (strong, nonatomic) IBOutlet UIImageView * shadowOverlay;
+
 @property (assign, nonatomic) UIViewController<EventDetailPhotoViewDelegate> *controller;
 @property (assign, nonatomic) BOOL isFinalized;
 
