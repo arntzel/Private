@@ -17,11 +17,15 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView * peopleHeader;
 @property (retain, nonatomic) IBOutlet UILabel * peopleName;
+@property (retain, nonatomic) IBOutlet UILabel * peopleEmail;
 @property (retain, nonatomic) IBOutlet UIImageView * btnSelect;
 
-@property (retain, nonatomic) IBOutlet UILabel * labNoData;
+
+//@property (retain, nonatomic) IBOutlet UILabel * labNoData;
 
 - (void) refreshView: (AddEventInvitePeople*) user;
+
+- (void) refreshView: (NSString *) name andEmal:(NSString *)  email;
 
 - (void)setHeaderImageUrl:(NSString *)url;
 

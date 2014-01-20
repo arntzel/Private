@@ -8,43 +8,34 @@
 #import "NavgationBar.h"
 #import "CSqlite.h"
 #import "AddLocationTextView.h"
+#import "EventLocationCell.h"
 
 //#define NearBySearchRadius 5000
 #define NearBySearchRadius 300
 
-@interface AddLocationViewController ()<UISearchBarDelegate,GPlaceApiDelegate,GPlaceDataSourceDelegate,GPlaceAutoCompleteSourceDelegate,CLLocationManagerDelegate,NavgationBarDelegate,GMSMapViewDelegate>
+@interface AddLocationViewController ()< NavgationBarDelegate,
+                                         GPlaceApiDelegate,
+                                         UITableViewDataSource,
+                                         UITableViewDelegate,
+                                         UITextFieldDelegate >
 {
-    BOOL firstLocationUpdate_;
-    CLLocationCoordinate2D currentCoordinate;
-    CLLocationCoordinate2D myLocationCoordinate;
     
-    GPlaceApi *GPTxtSearchApi;
-    GPlaceApi *GPNearByApi;
-    GPlaceApi *GPComplitionApi;
+    GPlaceApi * GPTxtSearchApi;
     
-    GPlaceAutoCompleteSource *autoComplitionSource;
-    GPlaceDataSource *txtSearchDataSource;
-    GPlaceDataSource *nearByDataSource;
+    UITextField * textField;
     
-    GMSMarker *nowLoacalmarker;
-    GMSMarker *myLoacalmarker;
-    GMSMarker *touchedLoacalmarker;
-    CLLocationManager *locationManager;
     
-    CSqlite *m_sqlite;
+    Location * customLocation;
     
-    //AddLocationTextView *textView;
+    //Location objects list
+    NSMutableArray * locations;
 }
-@property (weak, nonatomic) GMSMapView *mapView;
-@property (strong, nonatomic) Location* markedLocation;
-@property (strong, nonatomic) NSMutableArray* nearByMarkers;
+
 @end
 
 @implementation AddLocationViewController
 @synthesize delegate;
-@synthesize mapView;
-@synthesize markedLocation;
-@synthesize nearByMarkers;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,140 +45,205 @@
         GPTxtSearchApi = [[GPlaceApi alloc] init];
         GPTxtSearchApi.delegate = self;
         
-        GPNearByApi = [[GPlaceApi alloc] init];
-        GPNearByApi.delegate = self;
-        
-        GPComplitionApi = [[GPlaceApi alloc] init];
-        GPComplitionApi.delegate = self;
-        
-        autoComplitionSource = [[GPlaceAutoCompleteSource alloc] init];
-        autoComplitionSource.delegate = self;
-        
-        nearByDataSource = [[GPlaceDataSource alloc] init];
-        nearByDataSource.delegate = self;
-        
-        txtSearchDataSource = [[GPlaceDataSource alloc] init];
-        txtSearchDataSource.delegate = self;
-        
-        self.nearByMarkers = [NSMutableArray array];
-        
-        m_sqlite = [[CSqlite alloc]init];
-        [m_sqlite openSqlite];
-        
-       
+        locations = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 
-
-- (GMSMarker *)touchedLoacalmarker
-{
-    if (touchedLoacalmarker == nil) {
-        touchedLoacalmarker = [[GMSMarker alloc] init];
-        touchedLoacalmarker.title = @"Selected Location";
-        //UIImage *iconImage = [UIImage imageNamed:@"colordot1.png"];
-        touchedLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-    }
-    return touchedLoacalmarker;
-}
-
-- (GMSMarker *)myLoacalmarker
-{
-    if (myLoacalmarker == nil) {
-        myLoacalmarker = [[GMSMarker alloc] init];
-        myLoacalmarker.map = self.mapView;
-        myLoacalmarker.title = @"My Location";
-        myLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-    }
-    return myLoacalmarker;
-}
-
-- (GMSMarker *)nowLoacalmarker
-{
-    if (nowLoacalmarker == nil) {
-        nowLoacalmarker = [[GMSMarker alloc] init];
-        nowLoacalmarker.map = self.mapView;
-        nowLoacalmarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-    }
-    return nowLoacalmarker;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:16];
-    
-    self.mapView = [GMSMapView mapWithFrame:CGRectMake(0, 88, 320, 156) camera:camera];
-    self.mapView.settings.compassButton = YES;
-    self.mapView.delegate = self;
-//    self.mapView.settings.myLocationButton = YES;
-    [self.view insertSubview:self.mapView belowSubview:self.locationSearchBar];
-    
-    UIButton *btnMyLocation = [[UIButton alloc] initWithFrame:CGRectMake(260, 100, 46, 46)];
-    [self.mapView addSubview:btnMyLocation];
-    [btnMyLocation setImage:[UIImage imageNamed:@"map_my_location.png"] forState:UIControlStateNormal];
-    [btnMyLocation addTarget:self action:@selector(animationToMyLocation) forControlEvents:UIControlEventTouchUpInside];
-
-    self.locationSearchBar.delegate = self;
-    
-    self.txtSearchTabView.dataSource = autoComplitionSource;
-    self.txtSearchTabView.delegate = autoComplitionSource;
-    self.txtSearchTabView.hidden = YES;
-    
-    self.nearBySearchTabView.dataSource = nearByDataSource;
-    self.nearBySearchTabView.delegate = nearByDataSource;
-    
-    [self addTopBar];
-    
-    self.locationInputView.hidden = YES;
-    [self.locationInputView setUserInteractionEnabled:YES];
-    [self.locationInputView setImage:[UIImage imageNamed:@"navBar_bg.png"]];
-    [self.locationInputField addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventEditingDidEndOnExit];
-
-    if(self.location != nil) {
-        
-        self.locationInputField.text = self.location.location;
-        
-        self.locationInputView.hidden = NO;
-        [self.locationInputField becomeFirstResponder];
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = self.location.lat;
-        coordinate.longitude = self.location.lng;
-
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:coordinate zoom:16];
-        self.touchedLoacalmarker.position = coordinate;
-        self.touchedLoacalmarker.map = mapView;        
-    } else {
-        [self startLocation];
-
-    }    
-}
-
-- (void)addTopBar
-{
     NavgationBar * navBar = [[NavgationBar alloc] init];
-    [navBar setTitle:@"Add Place"];
-    [navBar setLeftBtnText:@"Cancel"];
-    [navBar setRightBtnText:@"Add"];
+    [navBar setTitle:@""];
+    [navBar setLeftBtnText:@""];
+    [navBar setRightBtnText:@"Done"];
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
-    [navBar setRightBtnHidden:YES];
+    //[navBar setRightBtnHidden:YES];
+    
+    
+    CGRect searchViewFrame;
+    searchViewFrame.origin.x = 0;
+    searchViewFrame.origin.y = navBar.frame.origin.y + navBar.frame.size.height;
+    searchViewFrame.size.width = 320;
+    searchViewFrame.size.height = 59;
+    
+    UIView * searchView = [[UIView alloc] initWithFrame:searchViewFrame];
+    searchView.backgroundColor = [UIColor colorWithRed:249/255.0f green:251/255.0f blue:245/255.0f alpha:1.0f];
+    [self.view addSubview:searchView];
+    
+    
+    UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"location"]];
+    CGRect headerFrame = imgView.frame;
+    headerFrame.origin.x = 8;
+    headerFrame.origin.y = 15;
+    headerFrame.size.width = 35;
+    headerFrame.size.height = 35;
+    imgView.frame = headerFrame;
+    [searchView addSubview:imgView];
+    
+    
+    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 58, 320, 1)];
+    line.backgroundColor = [UIColor colorWithRed:220/255.0f green:224/255.0f blue:216/255.0f alpha:1.0f];
+    [searchView addSubview:line];
+    
+    
+    CGRect bgFrame = self.view.frame;
+    bgFrame.origin.y = searchView.frame.origin.y + searchView.frame.size.height;
+    UIImageView * backgroundView = [[UIImageView alloc] initWithFrame:bgFrame];
+    backgroundView.image = [UIImage imageNamed:@"invitee_people_bg"];
+    [self.view addSubview:backgroundView];
+    
+    
+    
+    CGRect textFieldFrame = searchViewFrame;
+    textFieldFrame.origin.x = 52;
+    textFieldFrame.origin.y = 5;
+    textFieldFrame.size.width -= 52;
+    
+    textField = [[UITextField alloc] initWithFrame:textFieldFrame];
+    textField.backgroundColor = [UIColor redColor];
+    [textField setDelegate:self];
+    [textField setBorderStyle:UITextBorderStyleNone];
+    [textField setBackground:nil];
+    [textField setBackgroundColor:[UIColor clearColor]];
+    [textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [textField setTextColor: [UIColor colorWithRed:45/255.0f green:172/255.0f blue:149/255.0f alpha:1.0f]];
+    [textField setFont:[UIFont fontWithName:@"Helvetica Neue" size:13.0]];
+    textField.returnKeyType = UIReturnKeySearch;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.placeholder = @"Search location...";
+    [searchView addSubview:textField];
+    
+    
+    self.txtSearchTabView.dataSource = self;
+    self.txtSearchTabView.delegate = self;
+    self.txtSearchTabView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.txtSearchTabView.hidden = NO;
+    
+    
+    CGRect tableViewFrame = self.view.frame;
+    tableViewFrame.origin.y = searchView.frame.origin.y + searchView.frame.size.height;
+    tableViewFrame.size.height -= tableViewFrame.origin.y;
+    self.txtSearchTabView.frame = tableViewFrame;
+    
+    if(self.location != nil) {
+        
+        textField.text = self.location.location;
+        textField.hidden = NO;
+        [textField becomeFirstResponder];
+       
+    }
+}
+#pragma mark -
+#pragma mark UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(customLocation == nil) {
+        return locations.count;
+    } else {
+        return locations.count + 1;
+    }
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([searchText isEqualToString:@""] || searchText == nil) {
-        [self.locationSearchBar resignFirstResponder];
-        self.txtSearchTabView.hidden = YES;
+    EventLocationCell * cell =  [EventLocationCell creatView];
+    
+    int row = indexPath.row;
+    
+    if(customLocation != nil) {
+       
+        if(row == 0) {
+            cell.name.text = customLocation.location;
+            cell.address.text = @"Custom Location";
+        } else {
+            Location * location = [locations objectAtIndex:row-1];
+            cell.name.text = location.location;
+            cell.address.text = location.formatted_address;
+        }
+        
+    } else {
+        Location * location = [locations objectAtIndex:row];
+        cell.name.text = location.location;
+        cell.address.text = location.formatted_address;
     }
-    else
-    {
-        NSString *place = [self urlEncodeString:searchText];
-        [GPComplitionApi startAutoComplitionWithTxtSearchQuery:place];
-    }
+    
+    return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 53;
+}
+
+#pragma mark -
+#pragma mark UITextFieldDelegate
+- (BOOL)textField:(UITextField *)tf shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSMutableString * text = [[NSMutableString alloc] init];
+    [text appendString:tf.text];
+    [text replaceCharactersInRange:range withString:string];
+
+     NSLog(@"shouldChangeCharactersInRange:%@", text);
+    
+    if(text.length == 0) {
+        customLocation = nil;
+    } else {
+        if(customLocation == nil) {
+            customLocation = [[Location alloc] init];
+        }
+        
+        customLocation.location = text;
+    }
+    
+    [self.txtSearchTabView reloadData];
+    
+//    
+//    if([string isEqualToString:@" "])
+//    {
+//        NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//        if(![textStr isEqualToString:@""])
+//        {
+//             NSLog(@"startAutoComplitionWithTxtSearchQuery:%@", textStr);
+//            [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
+//        }
+//    }
+    
+	return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField;
+{
+    customLocation = nil;
+    [self.txtSearchTabView reloadData];
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)tf
+{
+    NSLog(@"textFieldShouldReturn");
+
+    
+    NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if(![textStr isEqualToString:@""])
+    {
+        NSLog(@"startRequestWithTxtSearchQuery:%@", textStr);
+        [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
+    }
+    
+    [textField resignFirstResponder];
+    [self.txtSearchTabView reloadData];
+	return YES;
+}
+
+
 
 - (NSString *)urlEncodeString:(NSString *)orgString
 {
@@ -195,98 +251,14 @@
     return result;
 }
 
-- (void)didSelectPlaceWithName:(NSString *)placeName GPlaceDataSource:(GPlaceAutoCompleteSource*)dataSource
-{
-    
-    NSString *place = [self urlEncodeString:placeName];
-    [GPTxtSearchApi startRequestWithTxtSearchQuery:place];
-    self.txtSearchTabView.hidden = YES;
-}
 
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
-    if (api == GPComplitionApi) {
-        [autoComplitionSource setData:array];
-        [self.txtSearchTabView reloadData];
-        self.txtSearchTabView.hidden = NO;
-    }
-    if (api == GPTxtSearchApi) {
-        Location *location = [array objectAtIndex:0];
-        self.markedLocation = location;
-        
-        currentCoordinate = CLLocationCoordinate2DMake(location.lat, location.lng);
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:currentCoordinate
-                                                             zoom:16];
-        self.nowLoacalmarker.position = currentCoordinate;
-        self.nowLoacalmarker.title = location.location;
-        
-        [self.mapView animateToLocation:currentCoordinate];
-        
-        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(currentCoordinate.latitude, currentCoordinate.longitude) Radius:NearBySearchRadius];
-        [self.locationSearchBar resignFirstResponder];
-    }
-    else if (api == GPNearByApi)
-    {
-        NSMutableArray *mutArray = [NSMutableArray array];
-        if (self.markedLocation) {
-            [mutArray addObject:self.markedLocation];
-        }
-        
-        for (Location *loc in array) {
-            if (![loc.location isEqualToString:self.markedLocation.location]) {
-                [mutArray addObject:loc];
-            }
-        }
-        
-        [nearByDataSource setData:mutArray];
-        [self updateNearByMarkersFromLocations:array];
-        [self.nearBySearchTabView reloadData];
-    }
-}
-
-- (void)updateNearByMarkersFromLocations:(NSArray *)locations
-{
-    for (GMSMarker *maker in self.nearByMarkers) {
-        maker.map = nil;
-    }
+    NSLog(@"upDateWithArray:%d", array.count);
     
-    [self.nearByMarkers removeAllObjects];
-    for (Location *loc in locations) {
-        if ([loc.location isEqualToString:self.markedLocation.location]) {
-            continue;
-        }
-        
-        GMSMarker *nearBymarker = [[GMSMarker alloc] init];
-        nearBymarker.map = self.mapView;
-        nearBymarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
-        nearBymarker.position = CLLocationCoordinate2DMake(loc.lat, loc.lng);
-        nearBymarker.title = loc.location;
-        
-        [self.nearByMarkers addObject:nearBymarker];
-    }
-    
-}
-
-- (void)didSelectPlace:(Location *)location GPlaceDataSource:(GPlaceDataSource*)dataSource
-{
-    [self.delegate setLocation:location];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)tableViewDidScroll:(GPlaceDataSource *)tableViewSource
-{
-    if (tableViewSource == nearByDataSource)
-    {
-        self.txtSearchTabView.hidden = YES;
-    }
-    
-    [self.locationSearchBar resignFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [locations removeAllObjects];
+    [locations addObjectsFromArray:array];
+    [self.txtSearchTabView reloadData];
 }
 
 
@@ -297,129 +269,33 @@
 
 - (void)rightNavBtnClick
 {
+    if(textField.text.length != 0) {
+        Location * location = [[Location alloc] init];
+        location.location = textField.text;
+        [self.delegate setLocation:location];
+
+    [self.navigationController popViewControllerAnimated:YES];
+    }
+
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
     
-}
-
-#pragma mark - KVO updates
-
-- (void)animationToMyLocation
-{
-    if (myLocationCoordinate.latitude == 0 && myLocationCoordinate.longitude == 0) {
-        [self startLocation];
-    }
-    else
-    {
-        [mapView animateToLocation:myLocationCoordinate];
-    }
-}
-
-
-- (void)startLocation
-{
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.distanceFilter=0.5;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [locationManager startUpdatingLocation];
-    }
-}
-
-- (IBAction)backToSearchBar:(id)sender {
-    self.locationInputView.hidden = YES;
-    [self.locationInputField resignFirstResponder];
-    self.touchedLoacalmarker.map = nil;
-}
-
-
-// location success
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    if (!firstLocationUpdate_) {
-        firstLocationUpdate_ = YES;
-        myLocationCoordinate = newLocation.coordinate;
-//        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
-        self.myLoacalmarker.position = myLocationCoordinate;
-        
-        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
-    }
-}
-
-// location failed
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
-}
-
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if (!firstLocationUpdate_) {
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
-        firstLocationUpdate_ = YES;
-        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        myLocationCoordinate = location.coordinate;
-        myLocationCoordinate = [self zzTransGPS:myLocationCoordinate];
-        self.myLoacalmarker.position = myLocationCoordinate;
-        
-        [GPNearByApi startRequestWithNearBySearchQuery:CGPointMake(myLocationCoordinate.latitude, myLocationCoordinate.longitude) Radius:NearBySearchRadius];
-        self.mapView.camera = [GMSCameraPosition cameraWithTarget:myLocationCoordinate zoom:16];
-    }
-}
-
--(CLLocationCoordinate2D)zzTransGPS:(CLLocationCoordinate2D)yGps
-{
-    int TenLat=0;
-    int TenLog=0;
-    TenLat = (int)(yGps.latitude*10);
-    TenLog = (int)(yGps.longitude*10);
-    NSString *sql = [[NSString alloc]initWithFormat:@"select offLat,offLog from gpsT where lat=%d and log = %d",TenLat,TenLog];
-    LOG_D(@"%@",sql);
-    sqlite3_stmt* stmtL = [m_sqlite NSRunSql:sql];
-    int offLat=0;
-    int offLog=0;
-    while (sqlite3_step(stmtL)==SQLITE_ROW)
-    {
-        offLat = sqlite3_column_int(stmtL, 0);
-        offLog = sqlite3_column_int(stmtL, 1);
-        
+    Location * selectedLocation = nil;
+    if(customLocation != nil) {
+        if(row == 0) {
+            selectedLocation = customLocation;
+        } else {
+            selectedLocation = [locations objectAtIndex:row-1];
+        }
+    } else {
+        selectedLocation = [locations objectAtIndex:row];
     }
     
-    yGps.latitude = yGps.latitude+offLat*0.0001;
-    yGps.longitude = yGps.longitude + offLog*0.0001;
-    return yGps;
-}
-
-#pragma mark - GMSMapViewDelegate
-- (void)mapView:(GMSMapView *)_mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{    
-    self.locationInputView.hidden = NO;
-    [self.locationInputField becomeFirstResponder];
-    self.touchedLoacalmarker.position = coordinate;
-    self.touchedLoacalmarker.map = mapView;
-}
-
-- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
-{
-
-}
-
-#pragma mark - AddLocationTextViewDelegate
-- (void)addPlace
-{
-    NSString * placeName = self.locationInputField.text;
-    
-    Location * location = [[Location alloc] init];
-    location.location = placeName;
-    location.lat = self.touchedLoacalmarker.position.latitude;
-    location.lng = self.touchedLoacalmarker.position.longitude;
-    [self.delegate setLocation:location];
+    [self.delegate setLocation:selectedLocation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

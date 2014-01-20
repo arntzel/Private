@@ -3,6 +3,7 @@
 
 #import "KalGridView.h"
 #import "KalActionsView.h"
+#import "UIViewAdditions.h"
 
 @class KalGridView, KalLogic, KalDate;
 @protocol KalViewDelegate, KalDataSourceCallbacks, FeedViewControllerDelegate, FeedCalendarViewDelegate;

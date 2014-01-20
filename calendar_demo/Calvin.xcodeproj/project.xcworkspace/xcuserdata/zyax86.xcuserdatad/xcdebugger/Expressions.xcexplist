@@ -3,6 +3,31 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[AddLocationViewController tableView:numberOfRowsInSection:]:AddLocationViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "locations.count">
+            </PersistentString>
+            <PersistentString
+               value = "locations">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[ShareLoginFacebook isFacebookLoginIn]:ShareLoginFacebook.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "accountStore.facebookEmail">
+            </PersistentString>
+            <PersistentString
+               value = "user.facebookToken">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AddEventDateViewController setDurationHours:Minutes:]:AddEventDateViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[AddEventDateViewController setStartTimeHours:Minutes:AMPM:]:AddEventDateViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -20,18 +45,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[AddEventDateViewController setDurationHours:Minutes:]:AddEventDateViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "+[ShareLoginFacebook isFacebookLoginIn]:ShareLoginFacebook.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "accountStore.facebookEmail">
-            </PersistentString>
-            <PersistentString
-               value = "user.facebookToken">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[AddEventInviteViewController rightNavBtnClick]:AddEventInviteViewController.m">
       </ContextState>
       <ContextState
          contextName = "+[ContactSort resortListByName:]:ContactSort.m">
@@ -48,7 +62,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[AddEventInviteViewController rightNavBtnClick]:AddEventInviteViewController.m">
+         contextName = "-[AddEventControllerV2 initImagePickerView]:AddEventControllerV2.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "maskImageView">
+            </PersistentString>
+            <PersistentString
+               value = "imageTitleBgView">
+            </PersistentString>
+            <PersistentString
+               value = "txtFieldTitle">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

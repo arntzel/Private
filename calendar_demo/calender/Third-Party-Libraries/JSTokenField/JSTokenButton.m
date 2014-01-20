@@ -15,21 +15,25 @@
 + (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj isValid:(BOOL)valid
 {
 	JSTokenButton *button = (JSTokenButton *)[self buttonWithType:UIButtonTypeCustom];
-	[button setNormalBg:[[UIImage imageNamed:@"tokenNormal.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:0]];
-	[button setHighlightedBg:[[UIImage imageNamed:@"tokenHighlighted.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:0]];
-	[button setAdjustsImageWhenHighlighted:NO];
-	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[[button titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:15]];
+	//[button setNormalBg:[[UIImage imageNamed:@"tokenNormal.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
+    //[button setHighlightedBg:[[UIImage imageNamed:@"tokenHighlighted.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
+	
+    [button setAdjustsImageWhenHighlighted:NO];
+	[button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [[button titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:13]];
 	[[button titleLabel] setLineBreakMode:NSLineBreakByTruncatingTail];
-	[button setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 10)];
+	//[button setTitleEdgeInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
 	
 	[button setTitle:string forState:UIControlStateNormal];
     button.valid = valid;
+    button.layer.cornerRadius = 2;
+    button.layer.masksToBounds = YES;
     
 	[button sizeToFit];
 	CGRect frame = [button frame];
-	frame.size.width += 20;
-	frame.size.height = 25;
+	frame.size.width += 4;
+	frame.size.height = 18;
+    
 	[button setFrame:frame];
 	
 	[button setToggled:NO];
@@ -50,13 +54,15 @@
 	
 	if (_toggled)
 	{
-		[self setBackgroundImage:self.highlightedBg forState:UIControlStateNormal];
+		//[self setBackgroundImage:self.highlightedBg forState:UIControlStateNormal];
+        self.backgroundColor = [UIColor colorWithRed:45/255.0f green:172/255.0f blue:149/255.0f alpha:1.0f];
 		[self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	}
 	else
 	{
-		[self setBackgroundImage:self.normalBg forState:UIControlStateNormal];
-		[self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		//[self setBackgroundImage:self.normalBg forState:UIControlStateNormal];
+        self.backgroundColor = [UIColor clearColor];
+		[self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 	}
 
     if(!self.valid) {

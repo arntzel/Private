@@ -205,7 +205,8 @@
 {
     
     BOOL isCreator = [self isMyCreatEvent];
-    navBar.rightbtn.hidden = !isCreator;
+    navBar.rightbtn.hidden = NO;
+    
     [self addPhotoView];
     if (isCreator) {
         [photoView addCreatorAction];
@@ -269,7 +270,7 @@
     }
     
     
-    [invitePlaceContentView updateInvitee:event.attendees];
+    [invitePlaceContentView updateInvitee:[event getAllContact]];
     [invitePlaceContentView setLocation:event.location];
     [invitePlaceContentView setDesciption:event.description];
     
@@ -310,7 +311,10 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    NSLog(@"actionSheet.tag=%d, clickedButtonAtIndex:%d", actionSheet.tag, buttonIndex);
+    
     if (actionSheet.tag == 1) {
+        
         switch (buttonIndex) {
             case 0:
                 [self deleteEvent];
@@ -334,7 +338,26 @@
     } else if(actionSheet.tag == 2) {
         
     } else if(actionSheet.tag == 3) {
+        
         [self leftBtnPress:nil];
+        
+    } else if(actionSheet.tag == 4) {
+        
+        switch (buttonIndex) {
+            case 0:
+                [self shareOnFacebook];
+                break;
+                
+            case 1:
+                [self shareViaEmail];
+                break;
+                
+            case 2:
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -374,15 +397,29 @@
 - (void)rightBtnPress:(id)sender
 {
     LOG_D(@"rightBtnPress");
-    UIActionSheet * moreActionSheet = [[UIActionSheet alloc]
-                                        initWithTitle:nil
-                                             delegate:self
-                                    cancelButtonTitle:@"Cancel"
-                               destructiveButtonTitle:@"Delete Event"
-                                    otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
-    moreActionSheet.tag = 1;
-    [moreActionSheet showInView:self.view];
-    [moreActionSheet release];
+    
+    if([self isMyCreatEvent]) {
+        UIActionSheet * moreActionSheet = [[UIActionSheet alloc]
+                                           initWithTitle:nil
+                                           delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           destructiveButtonTitle:@"Delete Event"
+                                           otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
+        moreActionSheet.tag = 1;
+        [moreActionSheet showInView:self.view];
+        [moreActionSheet release];
+        
+    } else {
+        UIActionSheet * moreActionSheet = [[UIActionSheet alloc]
+                                           initWithTitle:nil
+                                           delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           destructiveButtonTitle:nil
+                                           otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
+        moreActionSheet.tag = 4;
+        [moreActionSheet showInView:self.view];
+        [moreActionSheet release];
+    }
 }
 
 - (void)addPhotoView
@@ -997,7 +1034,7 @@
 - (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 {
     self.event = newEvent;
-    [invitePlaceContentView updateInvitee:newEvent.attendees];
+    [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
     
     [[[Model getInstance] getEventModel] synchronizedFromServer];
 }

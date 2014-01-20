@@ -99,6 +99,10 @@
 @property int eventType;
 
 
+//return all contact obj in attendees list
+-(NSArray *) getAllContact;
+
+
 -(BOOL) isDeclineEvent;
 
 

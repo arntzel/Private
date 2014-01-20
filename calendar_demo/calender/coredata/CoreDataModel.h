@@ -113,6 +113,9 @@
  */
 - (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 -(NSArray *) getAllContactEntity;
+
+-(NSArray *) queryContactEntity:(NSString *) prefix andOffset:(NSInteger) offset;
+
 -(NSArray *) getLimitContactEntity:(int)offset;
 - (void)deleteContactEntityWith:(NSString *)phone andEmail:(NSString *)email;
 

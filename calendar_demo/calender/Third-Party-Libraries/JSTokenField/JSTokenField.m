@@ -8,8 +8,8 @@ NSString *const JSTokenFieldNewFrameKey = @"JSTokenFieldNewFrameKey";
 NSString *const JSTokenFieldOldFrameKey = @"JSTokenFieldOldFrameKey";
 NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 
-#define HEIGHT_PADDING 3
-#define WIDTH_PADDING 3
+#define HEIGHT_PADDING 10
+#define WIDTH_PADDING 5
 
 #define DEFAULT_HEIGHT 31
 
@@ -56,12 +56,12 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     CGRect frame = self.frame;
     [self setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
     
-    _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, frame.size.height)];
-    [_label setBackgroundColor:[UIColor clearColor]];
-    [_label setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
-    [_label setFont:[UIFont fontWithName:@"Helvetica Neue" size:17.0]];
-    
-    [self addSubview:_label];
+//    _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, frame.size.height)];
+//    [_label setBackgroundColor:[UIColor clearColor]];
+//    [_label setTextColor:[UIColor colorWithRed:0.27 green:0.27 blue:0.27 alpha:1.0]];
+//    [_label setFont:[UIFont fontWithName:@"Helvetica Neue" size:13.0]];
+//    
+//    [self addSubview:_label];
     
     //		self.layer.borderColor = [[UIColor blueColor] CGColor];
     //		self.layer.borderWidth = 1.0;
@@ -70,6 +70,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     
     frame.origin.y += HEIGHT_PADDING;
     frame.size.height -= HEIGHT_PADDING * 2;
+    
     _textField = [[JSBackspaceReportingTextField alloc] initWithFrame:frame];
     [_textField setDelegate:self];
     [_textField setBorderStyle:UITextBorderStyleNone];
@@ -77,9 +78,12 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     [_textField setBackgroundColor:[UIColor clearColor]];
     [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_textField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_textField setTextColor: [UIColor colorWithRed:45/255.0f green:172/255.0f blue:149/255.0f alpha:1.0f]];
+    [_textField setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+    _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    //		[_textField.layer setBorderColor:[[UIColor redColor] CGColor]];
-    //		[_textField.layer setBorderWidth:1.0];
+    //[_textField.layer setBorderColor:[[UIColor redColor] CGColor]];
+    //[_textField.layer setBorderWidth:1.0];
     
     [self addSubview:_textField];
     
@@ -88,9 +92,12 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 
 - (void)dealloc
 {
-	[_textField release], _textField = nil;
-	[_label release], _label = nil;
-	[_tokens release], _tokens = nil;
+	[_textField release],
+    _textField = nil;
+//	[_label release],
+//    _label = nil;
+	[_tokens release],
+    _tokens = nil;
 	
 	[super dealloc];
 }
@@ -208,9 +215,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 	
 	[token setFrame:frame];
 	
-	[token addTarget:self
-			  action:@selector(toggle:)
-	forControlEvents:UIControlEventTouchUpInside];
+	[token addTarget:self action:@selector(toggle:) forControlEvents:UIControlEventTouchUpInside];
 	
 	return token;
 }
@@ -219,14 +224,16 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 {
 	CGRect currentRect = CGRectZero;
 	
-	[_label sizeToFit];
-	[_label setFrame:CGRectMake(WIDTH_PADDING, HEIGHT_PADDING, [_label frame].size.width, [_label frame].size.height + HEIGHT_PADDING)];
+//	[_label sizeToFit];
+//	[_label setFrame:CGRectMake(WIDTH_PADDING, HEIGHT_PADDING, [_label frame].size.width, [_label frame].size.height + HEIGHT_PADDING)];
+//	
+//	currentRect.origin.x = _label.frame.origin.x;
+//	if (_label.frame.size.width > 0) {
+//		currentRect.origin.x += _label.frame.size.width + WIDTH_PADDING;
+//	}
 	
-	currentRect.origin.x = _label.frame.origin.x;
-	if (_label.frame.size.width > 0) {
-		currentRect.origin.x += _label.frame.size.width + WIDTH_PADDING;
-	}
-	
+    currentRect.origin.x = WIDTH_PADDING;
+    
 	NSMutableArray *lastLineTokens = [NSMutableArray array];
     
 	for (UIButton *token in _tokens)

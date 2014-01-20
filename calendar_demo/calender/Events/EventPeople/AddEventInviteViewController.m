@@ -20,18 +20,14 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
                                            JSTokenFieldDelegate,
                                            NavgationBarDelegate>
 {
+    UIView * searchView;
+    UIView * line;
     JSTokenField *searchBar;
+    
     NSMutableArray * selectedUsers;
-    
-
     NSMutableArray * calvinSearchedUsers;
-    NSMutableArray * contactSearchedUsers;
     int offset;
-    
 }
-
-@property(nonatomic,retain) NSMutableArray *calvinUsers;
-@property(nonatomic,retain) NSMutableArray *contactUsers;
 
 @end
 
@@ -42,18 +38,16 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [selectedUsers release];
-    self.calvinUsers = nil;
     [calvinSearchedUsers release];
     
-    self.contactUsers = nil;
-    [contactSearchedUsers release];
     
     self.tableView = nil;
     self.indicatorView = nil;
     
     searchBar.delegate = nil;
     [searchBar release];
-    
+    [line release];
+    [searchView release];
     [super dealloc];
 }
 
@@ -61,30 +55,59 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [super viewDidLoad];
 
+    
     NavgationBar * navBar = [[NavgationBar alloc] init];
-    [navBar setTitle:@"Invite People"];
-    [navBar setLeftBtnText:@"Cancel"];
-    [navBar setRightBtnText:@"Invite"];
+    [navBar setTitle:@""];
+    [navBar setLeftBtnText:@""];
+    [navBar setRightBtnText:@"Done"];
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
     [navBar release];
     
-    searchBar = [[JSTokenField alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, 44)];
-    [self.view addSubview:searchBar];
-    [searchBar setBackgroundColor:[UIColor whiteColor]];
+    
+    CGRect searchViewFrame;
+    searchViewFrame.origin.x = 0;
+    searchViewFrame.origin.y = navBar.frame.origin.y + navBar.frame.size.height;
+    searchViewFrame.size.width = 320;
+    searchViewFrame.size.height = 59;
+    
+    searchView = [[UIView alloc] initWithFrame:searchViewFrame];
+    searchView.backgroundColor = [UIColor colorWithRed:249/255.0f green:251/255.0f blue:245/255.0f alpha:1.0f];
+    
+    [self.view addSubview:searchView];
+    
+    
+    UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"invitee_people_header"]];
+    CGRect headerFrame = imgView.frame;
+    headerFrame.origin.x = 8;
+    headerFrame.origin.y = 15;
+    headerFrame.size.width = 35;
+    headerFrame.size.height = 35;
+    imgView.frame = headerFrame;
+    [searchView addSubview:imgView];
+    
+    searchBar = [[JSTokenField alloc] initWithFrame:CGRectMake(53, 0, 320-53, 58)];
+    searchBar.backgroundColor = [UIColor clearColor];
+    [searchView addSubview:searchBar];
+    
+    line = [[UIView alloc] initWithFrame:CGRectMake(0, 58, 320, 1)];
+    line.backgroundColor = [UIColor colorWithRed:220/255.0f green:224/255.0f blue:216/255.0f alpha:1.0f];
+    [searchView addSubview:line];
+    
     searchBar.delegate = self;
     
-    self.calvinUsers = [NSMutableArray array];
     calvinSearchedUsers = [[NSMutableArray alloc] init];
     
-    self.contactUsers = [NSMutableArray array];
-    contactSearchedUsers = [[NSMutableArray alloc] init];
-    
+    CGRect tableViewFrame = self.tableView.frame;
+    tableViewFrame.origin.y = searchViewFrame.origin.x + searchViewFrame.size.height;
+    tableViewFrame.size.height = self.view.frame.size.height - tableViewFrame.origin.y;
+    self.tableView.frame = tableViewFrame;
+    self.tableView.clipsToBounds = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
 
-     UINib *myCustomCellNib = [UINib nibWithNibName:CellIdentifier bundle:nil];
+    UINib *myCustomCellNib = [UINib nibWithNibName:CellIdentifier bundle:nil];
     [self.tableView registerNib:myCustomCellNib forCellReuseIdentifier:CellIdentifier];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -99,112 +122,35 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             LOG_D(@"getInvitePeopleData");
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.type == AddInviteeTypeAll)
-                {
-                    [self getAllInvitePeople];
-                }
-                else if(self.type == AddInviteeTypeRest)
-                {
-                    [self getRestInvitePeople];
-                }
+                
+                 [self refreshTableView];
+                
             });
         }];
     });
-}
-
-- (void)getRestInvitePeople
-{
-    CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray *contacts = [model getAllContactEntity];
-    User * me = [[UserModel getInstance] getLoginUser];
     
-    for(ContactEntity * entity in contacts) {
-        
-        
-        //暂时不支持短信联系人的邀请
-        if(entity.email == nil || entity.email.length == 0){
-            continue;
-        }
-        
-        if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
-            //exclude creator in the event
-            continue;
-        }
-        
-        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-        people.user = [entity getContact];
-        BOOL isExsit = [self isUserExsit:people.user];
-        
-        if (isExsit) {
-            continue;
-        }
-        
-        if(people.user.calvinUser) {
-            [self.calvinUsers addObject:people];
-        } else {
-            [self.contactUsers addObject:people];
-        }
-        
-        [people release];
+    [self handleTokenFieldFrameDidChange:nil];
+    
+    
+    for(Contact * contact in selectedUsers)
+    {
+        AddEventInvitePeople * people = [[[AddEventInvitePeople alloc] init] autorelease];
+        people.user = contact;
+        [self addOjbToTokenFieldName:[contact getReadableUsername] Obj:people isValid:YES];
     }
-    
-    self.calvinUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.calvinUsers]];
-    self.contactUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.contactUsers]];
     
     [self refreshTableView];
 }
-
-- (void)getAllInvitePeople
-{
-    CoreDataModel * model = [CoreDataModel getInstance];
-    NSArray *contacts = [model getAllContactEntity];
-    User * me = [[UserModel getInstance] getLoginUser];
-
-    for(ContactEntity * entity in contacts) {
-        
-        //暂时不支持短信联系人的邀请
-        if(entity.email == nil || entity.email.length == 0){
-            continue;
-        }
-        
-        if([me.email caseInsensitiveCompare:entity.email] == NSOrderedSame) {
-            //exclude creator in the event
-            continue;
-        }
-        
-        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];
-        
-        people.user = [entity getContact];
-        people.selected = [self isUserSelected:people.user];
-        if (people.selected) {
-            [self addOjbToTokenFieldName:[people.user getReadableUsername] Obj:people isValid:YES];
-        }
-        
-        if(people.user.calvinUser) {
-            [self.calvinUsers addObject:people];
-        } else {
-            [self.contactUsers addObject:people];
-        }
-        
-        [people release];
-    }
-    
-    self.calvinUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.calvinUsers]];
-    self.contactUsers = [NSMutableArray arrayWithArray:[AddEventInvitePeople resortListByName:self.contactUsers]];
-    
-    [self addLastManuInputContact];
-    
-    [self refreshTableView];
-}
-
 
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
 {
-    [selectedUsers release];
-    selectedUsers = nil;
-    selectedUsers = [[NSMutableArray alloc] init];
-    [selectedUsers addObjectsFromArray:[_selectedUsers copy]];
+    if(selectedUsers == nil) {
+        selectedUsers = [[NSMutableArray alloc] init];
+    }
+    
+    [selectedUsers removeAllObjects];
+    [selectedUsers addObjectsFromArray:_selectedUsers];
 }
 
 - (BOOL)isUserExsit:(Contact *)user
@@ -267,29 +213,25 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 -(void) searchUser:(NSString *) searchText
 {
-    [calvinSearchedUsers removeAllObjects];
-    [contactSearchedUsers removeAllObjects];
-    
+    NSArray * contacts;
     if(searchText == nil || searchText.length == 0) {
-        [calvinSearchedUsers addObjectsFromArray:self.calvinUsers];
-        [contactSearchedUsers addObjectsFromArray:self.contactUsers];
-        return;
+       contacts = [[CoreDataModel getInstance] queryContactEntity:nil andOffset:0];
+    } else {
+        contacts = [[CoreDataModel getInstance] queryContactEntity:searchText andOffset:0];
     }
     
-    searchText = [searchText lowercaseString];
+    [calvinSearchedUsers removeAllObjects];
     
-    for(AddEventInvitePeople * people in self.calvinUsers) {
-        NSString * username = [[people.user getReadableUsername] lowercaseString];
-        if( [username hasPrefix:searchText]) {
-            [calvinSearchedUsers addObject:people];
+    User * me = [[UserModel getInstance] getLoginUser];
+    for(ContactEntity * contactEntity in contacts) {
+        
+        if([me.email isEqualToString:contactEntity.email]) {
+            continue;
         }
-    }
-    
-    for(AddEventInvitePeople * people in self.contactUsers) {
-        NSString * username = [[people.user getReadableUsername] lowercaseString];
-        if( [username hasPrefix:searchText]) {
-            [contactSearchedUsers addObject:people];
-        }
+        
+        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+        people.user = [contactEntity getContact];
+        [calvinSearchedUsers addObject:people];
     }
 }
 
@@ -301,76 +243,78 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 48;
+    return 54;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 20;
-}
 
 -(AddEventInvitePeople *) getPeople:(NSIndexPath*)indexPath
 {
-    AddEventInvitePeople *people = nil;
-    
-    int section = indexPath.section;
-    
-    if(section == 0) {
-        people = [calvinSearchedUsers objectAtIndex:indexPath.row];
-    } else {
-        people = [contactSearchedUsers objectAtIndex:indexPath.row];
-    }
-    
-    return people;
+    return [calvinSearchedUsers objectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddEventInvitePeople * people = [self getPeople:indexPath];
-    people.selected = !people.selected;
+    if(calvinSearchedUsers.count == 0) {
+        return;
+    }
     
-    if (people.selected) {
-        [self addOjbToTokenFieldName:[people.user getReadableUsername]  Obj:people isValid:YES];
-    }
-    else
+    AddEventInvitePeople * invitePeople = [self getPeople:indexPath];
+    
+    for (JSTokenButton *token in searchBar.tokens)
     {
-        [self removeObjFromTokenField:people];
+        AddEventInvitePeople * people = [token representedObject];
+        
+        if( [invitePeople.user.email isEqualToString:people.user.email]) {
+            return;
+        }
     }
+    
+    [self addOjbToTokenFieldName:[invitePeople.user getReadableUsername]  Obj:invitePeople isValid:YES];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    AddEventInvitePeopleHeaderView * header = (AddEventInvitePeopleHeaderView *)[ViewUtils createView:@"AddEventInvitePeopleHeaderView"];
-    
-    if(section == 0) {
-        header.label.text = @"CALVIN USER";
-    } else {
-        header.label.text = @"CONTACTS";
-    }
-    
-    return header;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0) {
-        return [calvinSearchedUsers count];
+    if(calvinSearchedUsers.count == 0) {
+ 
+        NSString * text = searchBar.textField.text;
+    
+        if(text.length > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
     } else {
-        return [contactSearchedUsers count];
+        return [calvinSearchedUsers count];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    AddEventInvitePeople *people = [self getPeople:indexPath];
-    [cell refreshView:people];
-    return cell;
+    
+    if(calvinSearchedUsers.count == 0) {
+    
+        AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+         NSString * email = searchBar.textField.text;
+        [cell refreshView:@"Not in Contacts" andEmal:email];
+
+        return cell;
+        
+    } else  {
+    
+        AddEventInvitePeopleCell *cell = (AddEventInvitePeopleCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+        AddEventInvitePeople *people = [self getPeople:indexPath];
+        [cell refreshView:people];
+        return cell;
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -421,16 +365,31 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 - (void)handleTokenFieldFrameDidChange:(NSNotification *)note
 {
-    [self.tableView setFrame:CGRectMake(0, searchBar.frame.size.height + searchBar.frame.origin.y, self.tableView.frame.size.width, self.view.frame.size.height - searchBar.frame.size.height - searchBar.frame.origin.y)];
+    
+    int heigth = searchBar.frame.size.height;
+    LOG_D(@"handleTokenFieldFrameDidChange:%d", heigth);
+
+    CGRect frame = searchView.frame;
+    frame.size.height = heigth;
+    searchView.frame = frame;
+    
+    CGRect lineFrame = line.frame;
+    lineFrame.origin.y = frame.size.height-1;
+    line.frame = lineFrame;
+    
+    CGFloat top = frame.size.height + frame.origin.y;
+    [self.tableView setFrame:CGRectMake(0, top, self.tableView.frame.size.width, self.view.frame.size.height - top)];
 }
 
 - (void)tokenField:(JSTokenField *)tokenField didAddToken:(NSString *)title representedObject:(id)obj
 {
-    
+    LOG_D(@"didAddToken");
 }
 
 - (void)tokenField:(JSTokenField *)tokenField didRemoveToken:(NSString *)title representedObject:(id)obj
 {
+    LOG_D(@"didRemoveToken");
+    
     AddEventInvitePeople * people = (AddEventInvitePeople *)obj;
     people.selected = NO;
     
@@ -439,6 +398,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 - (BOOL)tokenField:(JSTokenField *)tokenField shouldRemoveToken:(NSString *)title representedObject:(id)obj
 {
+    LOG_D(@"shouldRemoveToken");
     return YES;
 }
 

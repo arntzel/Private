@@ -63,8 +63,6 @@
     UIGravityBehavior* gravity;
     UICollisionBehavior* collision;
     UIAttachmentBehavior *spring;
-    
-    NSTimer *animationTimer;
     CGPoint calendarViewCenter;
 }
 
@@ -81,8 +79,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
+    [self playCalendarAnimation];
 }
-
 
 - (void)viewDidLoad
 {
@@ -149,8 +147,8 @@
         calendarViewCenter = self.calendarView.center;
         animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
         [self playCalendarAnimation];
-        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
+//        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
         //[self playCalendarAnimation];
     }
     
@@ -283,22 +281,30 @@
 
 -(void)playCalendarAnimation
 {
+    BOOL isFirst = [Utils isCalvinFirstLaunched];
+    if (!isFirst) {
+        return;
+    }
     //CGRect calendarViewFrame = self.calendarView.frame;
     //calendarViewFrame.origin.y -= 20;
     //self.calendarView.frame = calendarViewFrame;
     self.calendarView.center = calendarViewCenter;
     CGRect calendarViewFrame = self.calendarView.frame;
-    calendarViewFrame.origin.y -= 20;
+    calendarViewFrame.origin.y -= 10;
     self.calendarView.frame = calendarViewFrame;
     
     [animator removeAllBehaviors];
     CGPoint anchorPoint = CGPointMake(self.calendarView.center.x, self.calendarView.center.y);
     spring = [[UIAttachmentBehavior alloc] initWithItem:self.calendarView attachedToAnchor:anchorPoint];
-    [spring setFrequency:1.0];
+    [spring setFrequency:4.0];
     [spring setDamping:0.1];
     [animator addBehavior:spring];
     
     gravity = [[UIGravityBehavior alloc] initWithItems:@[self.calendarView]];
+    
+//    CGVector vector = CGVectorMake(0.0, 1.0);
+//    [gravity setGravityDirection:vector];
+    gravity.magnitude = 8.0f;
     [animator addBehavior:gravity];
     
 }
@@ -327,8 +333,7 @@
         //self.animationView.frame  = self.view.bounds;
         [animator removeAllBehaviors];
     }
-    [animationTimer invalidate];
-    animationTimer = nil;
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
 }
 
 -(void)unloadBlurBackground

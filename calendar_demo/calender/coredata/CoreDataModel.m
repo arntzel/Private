@@ -640,6 +640,7 @@ static CoreDataModel * instance;
     
     return results;
 }
+
 -(NSArray *) getAllContactEntity
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -652,6 +653,34 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
 }
+
+-(NSArray *) queryContactEntity:(NSString *) prefix  andOffset:(NSInteger) offset
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    if(prefix != nil) {
+        NSString * queryStr = [NSString stringWithFormat:@"(calvinuser != 0) AND ((first_name LIKE[c] '*%@*') OR (last_name LIKE[c] '*%@*') OR (email LIKE[c] '*%@*'))", prefix, prefix, prefix];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:queryStr];
+        [fetchRequest setPredicate:predicate];
+    } else {
+        NSString * queryStr = [NSString stringWithFormat:@"(calvinuser != 0)"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:queryStr];
+        [fetchRequest setPredicate:predicate];
+    }
+    
+    
+    NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fullname" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    [fetchRequest setFetchOffset:offset];
+    [fetchRequest setFetchLimit:50];
+
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
 -(NSArray *) getLimitContactEntity:(int)offset
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

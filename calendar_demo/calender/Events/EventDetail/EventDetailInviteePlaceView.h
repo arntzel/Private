@@ -12,6 +12,7 @@
 
 @protocol EventDetailInviteePlaceViewDelegate <NSObject>
 
+@optional
 - (void) onInviteeViewClicked;
 
 - (void)changeLocation;
@@ -21,6 +22,12 @@
 @end
 
 @interface EventDetailInviteePlaceView : UIView
+{
+    UIView *verSep;
+}
+
+@property(retain, nonatomic) EventDetailInviteeView *inviteeView;
+@property(retain, nonatomic) EventDetailPlaceView *placeView;
 
 @property(nonatomic, assign) id<EventDetailInviteePlaceViewDelegate> delegate;
 
@@ -33,5 +40,7 @@
 - (void)updateInvitee:(NSArray *) users;
 
 - (void) setLocation:(Location*) location;
+
+-(void)addBgView;
 
 @end

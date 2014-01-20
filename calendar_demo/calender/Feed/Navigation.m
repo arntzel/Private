@@ -55,8 +55,9 @@
     Navigation * view = (Navigation*)[nibView objectAtIndex:0];
     view.frame = CGRectMake(0, 0, 320, 64);
 
-    view.unreadCount.hidden = YES;
-    view.unreadCount.layer.cornerRadius = view.unreadCount.frame.size.height/2; //设置那个圆角的有多圆
+    view.unreadCount.hidden =  YES;
+
+    view.unreadCount.layer.cornerRadius = view.unreadCount.frame.size.height/2;//设置那个圆角的有多圆
     view.unreadCount.layer.masksToBounds = YES;//设为NO去试试
     
     //[view.calPendingSegment addTarget:self action:@selector(onSegmentPressed) forControlEvents:UIControlEventTouchUpInside];

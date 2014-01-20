@@ -16,9 +16,13 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UILabel *inviteeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *inviteeNamesLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *arrawView;
+
+
 
 +(EventDetailInviteeView *) creatView;
 
+//users is Contact array
 - (void)updateInvitee:(NSArray *) users;
 
 @end

@@ -81,6 +81,8 @@ typedef enum {
     NSError *err;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&err];
     
+    NSLog(@"google api, json:%@", json);
+    
     switch (connectionType) {
         case GPlaceApiTypeTextQuery:
         case GPlaceApiTypeTextNearBySearch:
@@ -143,7 +145,7 @@ typedef enum {
     Location * location = [[Location alloc] init];
     location.location = [json objectForKey:@"name"];
     location.photo = [json objectForKey:@"icon"];
-    
+    location.formatted_address = [json objectForKey:@"formatted_address"];
     NSDictionary *geometryDict = [json objectForKey:@"geometry"];
     NSDictionary *locationDict = [geometryDict objectForKey:@"location"];
     
@@ -157,7 +159,9 @@ typedef enum {
     return location;
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {    
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"google api, connection:didFailWithError:%@", error);
 }
 
 - (void)disconnect
@@ -165,11 +169,17 @@ typedef enum {
     [queryConnect cancel];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"google api, didReceiveResponse");
+
     responseData = [[NSMutableData alloc] init];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"google api, didReceiveData");
+
     [responseData appendData:data];
 }
 

@@ -69,7 +69,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.17254901960784313" green="0.6705882352941176" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="calPendingSegment" destination="yid-le-JZf" id="Hxs-Fu-SmR"/>

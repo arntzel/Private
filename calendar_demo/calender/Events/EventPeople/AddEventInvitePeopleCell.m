@@ -6,11 +6,6 @@
 #import "pinyin.h"
 
 @implementation AddEventInvitePeople
-- (void)dealloc
-{
-    self.user = nil;
-    [super dealloc];
-}
 
 -(NSComparisonResult)comparePerson:(AddEventInvitePeople *)people{
     NSComparisonResult result = [[self.user getReadableUsername] compare:[people.user getReadableUsername]];
@@ -91,55 +86,88 @@
 
 - (void) refreshView: (AddEventInvitePeople*) iuser
 {
-    if(iuser == nil) {
-        self.labNoData.hidden = NO;
-        return;
-    } else {
-        self.labNoData.hidden = YES;
-    }
+    self.peopleHeader.hidden = NO;
+    CGRect frame = self.peopleName.frame;
+    frame.origin.x = self.peopleHeader.frame.origin.x + self.peopleHeader.frame.size.width + 10;
+    self.peopleName.frame = frame;
     
-    [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
-    self.selectedBackgroundView = view;
-    [view setBackgroundColor:[UIColor clearColor]];
+    frame = self.peopleEmail.frame;
+    frame.origin.x = self.peopleHeader.frame.origin.x + self.peopleHeader.frame.size.width + 10;
+    self.peopleEmail.frame = frame;
+    
+    
+//    [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+//    self.selectedBackgroundView = view;
+//    [view setBackgroundColor:[UIColor clearColor]];
     
     Contact * user = iuser.user;
     
     NSString *fullName = [user getReadableUsername];
     self.peopleName.text = fullName;
     
+    if(user.email == nil) {
+        self.peopleEmail.hidden = YES;
+    } else {
+        self.peopleEmail.hidden = NO;
+        self.peopleEmail.text = user.email;
+    }
+    
     NSString * headerUrl = user.avatar_url;
 
     if(!user.calvinUser) {
         
-        CGRect frame = self.peopleName.frame;
-        frame.origin.x = self.peopleHeader.frame.origin.x;
-        self.peopleName.frame = frame;
-        self.peopleHeader.hidden = YES;
-
+        //CGRect frame = self.peopleName.frame;
+        //frame.origin.x = self.peopleHeader.frame.origin.x;
+        //self.peopleName.frame = frame;
+        //self.peopleHeader.hidden = YES;
+        
     } else {
-        CGRect frame = self.peopleName.frame;
-        frame.origin.x = 49;
-        self.peopleName.frame = frame;
-        self.peopleHeader.hidden = NO;
-        if(headerUrl == nil) {
-            self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
-        } else {
-            [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
-                              placeholderImage:[UIImage imageNamed:@"header.png"]];
-        }
+        //CGRect frame = self.peopleName.frame;
+        //frame.origin.x = 49;
+        //self.peopleName.frame = frame;
+        //self.peopleHeader.hidden = NO;
+        //if(headerUrl == nil) {
+        //    self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
+        //} else {
+        //    [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
+        //                      placeholderImage:[UIImage imageNamed:@"header.png"]];
+        //}
     }
 
+    if(headerUrl == nil) {
+        self.peopleHeader.image = [UIImage imageNamed:@"header.png"];
+    } else {
+        [self.peopleHeader setImageWithURL:[NSURL URLWithString:headerUrl]
+                          placeholderImage:[UIImage imageNamed:@"header.png"]];
+    }
 
     //self.btnSelect.selected = iuser.selected;
+    self.btnSelect.hidden = YES;
     
-    if(iuser.selected) {
-        self.btnSelect.image = [UIImage imageNamed:@"list_check_mark"];
-    } else {
-        self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
-    }
+//    if(iuser.selected) {
+//        self.btnSelect.image = [UIImage imageNamed:@"list_check_mark"];
+//    } else {
+//        self.btnSelect.image = [UIImage imageNamed:@"btn_ok"];
+//    }
 
 
+}
+
+- (void) refreshView: (NSString *) name andEmal:(NSString *)  email
+{
+    self.peopleHeader.hidden = YES;
+    
+    self.peopleName.text = name;
+    self.peopleEmail.text = email;
+    
+    CGRect frame = self.peopleName.frame;
+    frame.origin.x = self.peopleHeader.frame.origin.x;
+    self.peopleName.frame = frame;
+    
+    frame = self.peopleEmail.frame;
+    frame.origin.x = self.peopleHeader.frame.origin.x;
+    self.peopleEmail.frame = frame;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -36,9 +36,14 @@
     if (self) {
         // Initialization code
         [self setUserInteractionEnabled:YES];
-        [self setImage:[UIImage imageNamed:@"navBar_bg.png"]];
+        self.backgroundColor = [UIColor colorWithRed:45/255.0f green:172/255.0f blue:149/255.0f alpha:1.0f];
+        //[self setImage:[UIImage imageNamed:@"navBar_bg.png"]];
         
-        labelTitle = [[UILabel alloc] initWithFrame:frame];
+        CGRect titleFrame = frame;
+        titleFrame.origin.y += 20;
+        titleFrame.size.height -= 20;
+        
+        labelTitle = [[UILabel alloc] initWithFrame:titleFrame];
         [labelTitle setBackgroundColor:[UIColor clearColor]];
         
         labelTitle.textAlignment = NSTextAlignmentCenter;
@@ -52,19 +57,22 @@
         [labelTitle setTextColor:[UIColor whiteColor]];
         [labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
         
-        leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 28, 51, 29)];
-        [leftBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];
-        [leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
-        [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
-        [leftBtn setTitleColor:[UIColor colorWithRed:78.0f/255.0f green:78.0f/255.0f blue:78.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+        leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 26, 32, 32)];
+        leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        [leftBtn setImage:[UIImage imageNamed:@"event_detail_nav_back_white"] forState:UIControlStateNormal];
+        [leftBtn setTitle:@"" forState:UIControlStateNormal];
+        [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+        
+        //[leftBtn setTitleColor:[UIColor colorWithRed:78.0f/255.0f green:78.0f/255.0f blue:78.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         [self addSubview:leftBtn];
         [leftBtn addTarget:self action:@selector(leftBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(264, 28, 51, 29)];
-        [rightBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];
+        //[rightBtn setBackgroundImage:[UIImage imageNamed:@"navBtn_bg.png"] forState:UIControlStateNormal];
         [rightBtn setTitle:@"Create" forState:UIControlStateNormal];
-        [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0f]];
-        [rightBtn setTitleColor:[UIColor colorWithRed:78.0f/255.0f green:78.0f/255.0f blue:78.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+        [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+        //[rightBtn setTitleColor:[UIColor colorWithRed:78.0f/255.0f green:78.0f/255.0f blue:78.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+        [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:rightBtn];
         [rightBtn addTarget:self action:@selector(rightBtnCick:) forControlEvents:UIControlEventTouchUpInside];
     }

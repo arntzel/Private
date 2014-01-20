@@ -216,7 +216,7 @@ static NSTimeZone * userTimeZone;
     } else if( [day isEqualToString:tomorrom]) {
         return @"Tomorrow";
     } else if( [day isEqualToString:yestoday]) {
-        return @"Yestoday";
+        return @"Yesterday";
     }
     
     NSDate *date = [self parseNSStringDay:day];
@@ -455,6 +455,7 @@ static NSTimeZone * userTimeZone;
 {
     BOOL firstLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"];
     return firstLaunched;
+    //return YES;
 }
 
 +(NSString *) getProposeStatLabel:(ProposeStart *) ps

@@ -1333,16 +1333,23 @@ static Model * instance;
 
             LOG_D(@"RESP: %@", json);
 
-            int pId = [[json objectForKey:@"id"] intValue];
-            proposeStat.id = pId;
+            //int pId = [[json objectForKey:@"id"] intValue];
+            //proposeStat.id = pId;
+            
+            ProposeStart * newTime = [ProposeStart parse:json];
+//            
+//            
+//            EventTimeVote * vote = [[EventTimeVote alloc] init];
+//            vote.email = [[UserModel getInstance] getLoginUser].email;
+//            vote.status = 1;
+//
+//            NSMutableArray * votes = [[NSMutableArray alloc] init];
+//            
+//            
+//            
+//            proposeStat.votes = votes;
 
-            EventTimeVote * vote = [[EventTimeVote alloc] init];
-            vote.email = [[UserModel getInstance] getLoginUser].email;
-            vote.status = 1;
-
-            proposeStat.votes = [NSMutableArray arrayWithObject:vote];
-
-            callback(ERROCODE_OK, proposeStat);
+            callback(ERROCODE_OK, newTime);
 
         } else {
 

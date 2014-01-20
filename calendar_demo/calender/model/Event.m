@@ -189,6 +189,17 @@
     return dic;
 }
 
+-(NSArray *) getAllContact
+{
+    NSMutableArray * contacts = [[NSMutableArray alloc] init];
+
+    for(EventAttendee * atd in self.attendees)
+    {
+        [contacts addObject:atd.contact];
+    }
+    
+    return contacts;
+}
 
 -(BOOL) isDeclineEvent
 {

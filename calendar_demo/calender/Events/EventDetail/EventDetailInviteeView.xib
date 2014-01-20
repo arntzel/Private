@@ -35,6 +35,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="arrawView" destination="dq9-mf-WbE" id="gTa-D4-7pg"/>
                 <outlet property="contentView" destination="17" id="18"/>
                 <outlet property="inviteeLabel" destination="15" id="16"/>
             </connections>

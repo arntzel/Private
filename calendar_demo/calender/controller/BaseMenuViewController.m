@@ -1,6 +1,6 @@
 
 #import "BaseMenuViewController.h"
-#import "AddEventViewController.h"
+#import "AddEventControllerV2.h"
 #import "RootNavContrller.h"
 #import "Model.h"
 #import "MessageModel.h"
@@ -62,7 +62,7 @@
 #pragma mark btnEvent
 - (void)btnAddEvent:(id)sender
 {
-    AddEventViewController *addEvent = [[AddEventViewController alloc] init];
+    AddEventControllerV2 *addEvent = [[AddEventControllerV2 alloc] init];
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
 }
 

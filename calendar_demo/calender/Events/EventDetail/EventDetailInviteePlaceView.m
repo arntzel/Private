@@ -18,8 +18,6 @@
     BOOL showAllDescitpion;
 }
 
-@property(retain, nonatomic) EventDetailInviteeView *inviteeView;
-@property(retain, nonatomic) EventDetailPlaceView *placeView;
 @property(retain, nonatomic) UILabel * desciptionView;
 
 @property(retain, nonatomic) NSMutableArray * actionSheetButtonTitles;
@@ -106,9 +104,22 @@
 
 -(void)addVerticalSep
 {
-    UIView *verSep = [[UIView alloc]initWithFrame:CGRectMake(8 + self.inviteeView.frame.size.width, 2, 1, self.inviteeView.frame.size.height-2)];
+    verSep = [[UIView alloc]initWithFrame:CGRectMake(8 + self.inviteeView.frame.size.width, 2, 1, self.inviteeView.frame.size.height)];
     [verSep setBackgroundColor:[UIColor colorWithRed:209.0/255.0 green:217.0/255.0 blue:210.0/255.0 alpha:0.5]];
     [self addSubview:verSep];
+}
+
+-(void)addBgView
+{
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.inviteeView.frame.size.height)];
+    [bgView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.33f]];
+    
+    UIView * line  = [[UIView alloc] initWithFrame:CGRectMake(0, bgView.frame.size.height-0.5, bgView.frame.size.width, 0.5)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    line.alpha = 0.5f;
+    [bgView addSubview:line];
+    
+    [self insertSubview:bgView atIndex:0];
 }
 
 -(void)addHorizontalSep
@@ -267,7 +278,7 @@
 //    [self.layer setBorderColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor];
 //    [self.layer setBorderWidth:1.0f];
 //
-//    [self updateFrame];
+    [self updateFrame];
 }
 
 - (void)updateFrame

@@ -19,7 +19,7 @@ extern NSString *const JSDeletedTokenKey;
 	
 	JSTokenButton *_deletedToken;
 	
-	UILabel *_label;
+	//UILabel *_label;
 }
 
 @property (nonatomic, readonly) UITextField *textField;

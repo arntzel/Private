@@ -80,9 +80,9 @@
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(int i=0;i<users.count;i++) {
+                
+        Contact * user =  [users objectAtIndex:i];
         
-        EventAttendee * attendee = [users objectAtIndex:i];
-        Contact * user = attendee.contact;
         
         if([user.email caseInsensitiveCompare:me.email] == NSOrderedSame) continue;
 
@@ -110,9 +110,7 @@
     }
 
     for(int i=0;i<users.count;i++) {
-        
-        EventAttendee * attendee = [users objectAtIndex:i];
-        Contact * user = attendee.contact;
+        Contact * user = [users objectAtIndex:i];
 
         if([user.email caseInsensitiveCompare:me.email] == NSOrderedSame) continue;
 
