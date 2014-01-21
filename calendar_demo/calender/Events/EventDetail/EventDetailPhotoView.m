@@ -198,9 +198,12 @@
     CGFloat maxFont = 20;
     CGFloat minFont = 13;
     
-    CGFloat fontRadio = 1 - (scrollScope - scrollOffsetY) / scrollScope;
+    CGFloat currentFont = maxFont;
+    if (scrollScope > 0) {
+        CGFloat fontRadio = 1 - (scrollScope - scrollOffsetY) / scrollScope;
+        currentFont = maxFont - (maxFont - minFont) * fontRadio;
+    }
     
-    CGFloat currentFont = maxFont - (maxFont - minFont) * fontRadio;
     
     //[self.titleLabel setFont:[UIFont systemFontOfSize:currentFont]];
     UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:currentFont];
@@ -209,21 +212,21 @@
     if (currentFont < 16) {
         self.subTitle.hidden = YES;
         self.finalizedImg.hidden = YES;
-        [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 10)];
+        [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 5)];
         [self adjustTitleLabelFrame:YES];
 
     } else if (currentFont > 16) {
         self.subTitle.hidden = NO;
         self.finalizedImg.hidden = isFinalizeImageHidden;
         if (orgHeight == CUSTOM_IMG_HEIGHT) {
-            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 15)];
+            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 20)];
             [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 8)];
             [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 8)];
             [self adjustTitleLabelFrame:NO];
         } else {
-            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) - 10)];
-            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 3)];
-            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 20 - 3)];
+            [self.titleLabel setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY))];
+            [self.finalizedImg setCenter:CGPointMake(160 - fontSize.width/2 - 12, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 25)];
+            [self.subTitle setCenter:CGPointMake(navBar.center.x, navBar.frame.size.height / 2 + (scrollScope - scrollOffsetY) + 25)];
             [self adjustTitleLabelFrame:YES];
         }
     }

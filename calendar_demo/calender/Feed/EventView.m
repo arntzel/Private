@@ -90,6 +90,7 @@
 
     //Birthday
     if( [event isBirthdayEvent] ) {
+        self.labTimeStr.text = @"Exactly At";
         headerUrl = event.thumbnail_url;
     }
 

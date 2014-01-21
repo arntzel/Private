@@ -489,9 +489,9 @@ static NSTimeZone * userTimeZone;
         
         NSString * duration;
         if(ps.duration_days<=1) {
-            duration = @"All day";
+            duration = @"All Day";
         } else {
-            duration = [NSString stringWithFormat:@"%ddays", ps.duration_days];
+            duration = [NSString stringWithFormat:@"%d Days", ps.duration_days];
         }
         
         NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", duration];
