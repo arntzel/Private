@@ -75,10 +75,12 @@
     CGSize fontSize = [subject sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
     [self.NotifyDetailLabel setNumberOfLines:0];
     
+    CGRect strFrame = CGRectMake(60, 18, 210, fontSize.height);
+    self.NotifyDetailLabel.frame = strFrame;
     
-    CGRect frame = self.frame;
-    frame.size.height = fontSize.height + 32;
-    self.frame = frame;
+//    CGRect frame = self.frame;
+//    frame.size.height = fontSize.height + 32;
+//    self.frame = frame;
     
     self.NotifyDetailLabel.text = subject;
     [self.NotifyDetailLabel setFont:font];
@@ -95,6 +97,18 @@
     UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
     self.notifyDateLabel.font = font2;
     self.notifyDateLabel.text = [Utils getTimeText:msg.sendTime];
+    
+    CGRect dateLabel = self.notifyDateLabel.frame;
+    if (fontSize.height > 33) {
+        dateLabel.origin.y = self.NotifyDetailLabel.frame.origin.y + fontSize.height;
+    } else {
+        dateLabel.origin.y = self.NotifyDetailLabel.frame.origin.y + fontSize.height + 10;
+        CGRect detailLabelFrame = self.NotifyDetailLabel.frame;
+        detailLabelFrame.origin.y += 10;
+        self.NotifyDetailLabel.frame = detailLabelFrame;
+    }
+    
+    self.notifyDateLabel.frame = dateLabel;
     
     if([msg.unread boolValue]) {
         self.notifyDateLabel.textColor = [UIColor whiteColor];
