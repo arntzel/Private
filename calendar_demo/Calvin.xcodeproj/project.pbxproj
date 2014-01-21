@@ -3919,8 +3919,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小康 吴 (25Y97H3CC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3941,7 +3941,7 @@
 				);
 				PRODUCT_NAME = Calvin;
 				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
-				"PROVISIONING_PROFILE[sdk=*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
+				"PROVISIONING_PROFILE[sdk=*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

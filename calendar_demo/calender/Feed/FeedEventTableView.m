@@ -313,8 +313,9 @@
     [view addSubview:dayLabel];
     
     CALayer *layer = [CALayer layer];
-    layer.frame = CGRectMake(0, -1, 50, 1);
-    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d92"].CGColor;
+    layer.frame = CGRectMake(0, -0.78, 50, 1);
+    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+    //layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     [view.layer addSublayer:layer];
 
     return view;

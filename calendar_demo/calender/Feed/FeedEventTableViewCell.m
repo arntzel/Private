@@ -34,7 +34,7 @@
     CGContextFillRect(context, rect);
     
     CGContextSetStrokeColorWithColor(context, [UIColor generateUIColorByHexString:@"#d1d9d2"].CGColor);
-    CGContextStrokeRect(context, CGRectMake(50, rect.size.height + 1, rect.size.width - 50, 1));
+    CGContextStrokeRect(context, CGRectMake(50, rect.size.height, rect.size.width - 50, 1));
 }
 
 @end
