@@ -25,6 +25,7 @@
 #import "UploadUIImageView.h"
 
 #import "Utils.h"
+#import "RootNavContrller.h"
 
 @interface AddEventControllerV2 ()<AddEventAddTitleBarDelegate,
                                     UIScrollViewDelegate,
@@ -495,7 +496,14 @@
 #pragma mark NavBarDelegate
 - (void)leftNavBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.3];
+    [animation setType: kCATransitionMoveIn];
+    [animation setSubtype: kCATransitionFromBottom];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    
+    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+    [[RootNavContrller defaultInstance].view.layer addAnimation:animation forKey:nil];
 }
 
 - (void)rightNavBtnClick
@@ -577,7 +585,7 @@
             [model saveData];
             [model notifyModelChange];
             
-            [self.navigationController popViewControllerAnimated:YES];
+            [self leftNavBtnClick];
             
         } else {
             

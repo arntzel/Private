@@ -63,7 +63,16 @@
 - (void)btnAddEvent:(id)sender
 {
     AddEventControllerV2 *addEvent = [[AddEventControllerV2 alloc] init];
-    [[RootNavContrller defaultInstance] pushViewController:addEvent animated:YES];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.3];
+    [animation setType: kCATransitionMoveIn];
+    [animation setSubtype: kCATransitionFromTop];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    
+    [[RootNavContrller defaultInstance] pushViewController:addEvent animated:NO];
+    [[RootNavContrller defaultInstance].view.layer  addAnimation:animation forKey:nil];
+
 }
 
 
