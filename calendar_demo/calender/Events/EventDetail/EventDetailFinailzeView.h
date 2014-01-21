@@ -25,6 +25,7 @@
 
 @interface EventDetailFinailzeView : UIView
 @property (retain, nonatomic) IBOutlet UIView *finailzeView;
+@property (strong, nonatomic) IBOutlet UILabel *finalizeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *finailzeBtn;
 @property (retain, nonatomic) IBOutlet UIView *removeView;
 @property (retain, nonatomic) IBOutlet UIView *contentView;

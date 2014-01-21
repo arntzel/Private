@@ -10,6 +10,7 @@
 #import "EventDetailTimeVoteView.h"
 #import "EventDetailRoundDateView.h"
 #import "Utils.h"
+#import "UIColor+Hex.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -70,13 +71,18 @@ static CGFloat const getstureDistance = 50;
         self.eventTimeConflictLabel.text = [NSString stringWithFormat:@"%d Conflicts", count];
         [self.eventTimeConflictLabel setHidden:NO];
         
+        CGRect conflictLabelFrame = self.eventTimeConflictLabel.frame;
+        conflictLabelFrame.origin.y +=3;
+        self.eventTimeConflictLabel.frame = conflictLabelFrame;
+        
         CGRect eventTypeLabelFrame = self.eventTypeLabel.frame;
-        eventTypeLabelFrame.origin.y -= 15;
+        eventTypeLabelFrame.origin.y -= 10;
         self.eventTypeLabel.frame = eventTypeLabelFrame;
         
         CGRect eventTimeLabelFrame = self.eventTimeLabel.frame;
-        eventTimeLabelFrame.origin.y -= 15;
+        eventTimeLabelFrame.origin.y -= 10;
         self.eventTimeLabel.frame = eventTimeLabelFrame;
+        
 //        [self.eventTimeLabel setCenter:CGPointMake(self.eventTimeLabel.center.x, 20)];
     }
     else
@@ -125,15 +131,15 @@ static CGFloat const getstureDistance = 50;
     bottomBorder.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor;
     [self.layer addSublayer:bottomBorder];
 
+    UIColor *btnColor = [UIColor generateUIColorByHexString:@"#44a998"];
     //_finailzeBtn.layer
-    _finailzeBtn.layer.cornerRadius = 2;
+    _finailzeBtn.layer.cornerRadius = 4;
 //    _finailzeBtn.layer.shadowOffset =  CGSizeMake(0, 2);
 //    _finailzeBtn.layer.shadowOpacity = 0.8;
 //    _finailzeBtn.layer.shadowColor =  [UIColor blackColor].CGColor;
-    //_finailzeBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    //[_finailzeBtn.layer setBorderWidth:0.3f];
-    //_finailzeBtn.layer.borderWidth = 1.0f;
-    
+    _finailzeBtn.layer.borderColor = btnColor.CGColor;
+    [_finailzeBtn.layer setBorderWidth:2.0f];
+    self.finalizeLabel.textColor = btnColor;
     [_finailzeBtn addTarget:self action:@selector(setFinalze:) forControlEvents:UIControlEventTouchUpInside];
     [self.removeView setHidden:YES];
 }

@@ -2,6 +2,7 @@
 #import "EventDetailFinailzeView2.h"
 #import "EventDetailRoundDateView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIColor+Hex.h"
 
 @implementation EventDetailFinailzeView2
 
@@ -21,6 +22,8 @@
     float width=self.frame.size.width;
     bottomBorder.frame = CGRectMake(0.0f, height, width, 1.0f);
     bottomBorder.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f].CGColor;
+    UIColor *color = [UIColor generateUIColorByHexString:@"#a2a5a3"];
+    self.finalizedLabel.textColor = color;
     [self.layer addSublayer:bottomBorder];
 }
 

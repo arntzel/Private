@@ -479,7 +479,7 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     BLRColorComponents *components = [[BLRColorComponents alloc] init];
     
     components.radius = 10;
-    components.tintColor = [UIColor colorWithRed:0.0f green:0.0 blue:0.0f alpha:.5f];
+    components.tintColor = [UIColor colorWithRed:0.0f green:0.0 blue:0.0f alpha:.003f];
     components.saturationDeltaFactor = 0.8f;
     components.maskImage = nil;
     
@@ -490,7 +490,7 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     BLRColorComponents *components = [[BLRColorComponents alloc] init];
     
     components.radius = 20.0f;
-    components.tintColor = [UIColor clearColor];
+    components.tintColor = [UIColor colorWithWhite:0.1f alpha:0.3f];
     components.saturationDeltaFactor = 1.0f;
     components.maskImage = nil;
     
