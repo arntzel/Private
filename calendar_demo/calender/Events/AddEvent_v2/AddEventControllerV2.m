@@ -266,24 +266,53 @@
 
 - (void)addNewDate
 {
+
+    
+    CEventTimePicker *timePicker = [[CEventTimePicker alloc] init];
+    
     ProposeStart *start = [[ProposeStart alloc] init];
     start.start = [NSDate date];
     start.start_type = START_TYPEWITHIN;
     start.duration_hours = 1;
     start.duration_minutes = 0;
     
-    CEventTimePicker *timePicker = [[CEventTimePicker alloc] init];
-    timePicker.delegate = self;
+    if([self.timePickerArray count] == 0)
+    {
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:start.start];
+        
+        NSInteger minutes = parts.minute;
+        NSInteger remainder = minutes % 5;
+        if (remainder != 0) {
+            NSDateComponents *c = [[NSDateComponents alloc] init];
+            c.minute = 5 - remainder;
+            start.start = [[NSCalendar currentCalendar] dateByAddingComponents:c toDate:start.start options:0];
+        }
+    }
+    else if ([self.timePickerArray count] > 0)
+    {
+        CEventTimePicker *picker = [self.timePickerArray objectAtIndex:[self.timePickerArray count] - 1];
+        ProposeStart *time = [picker getTime];
+        start.start_type = time.start_type;
+        start.duration_hours = time.duration_hours;
+        start.duration_minutes = time.duration_minutes;
+        
+        NSDateComponents *c = [[NSDateComponents alloc] init];
+        c.hour = 1;
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        start.start = [gregorian dateByAddingComponents:c toDate:time.start options:0];
+    }
+    
     [timePicker setTime:start];
     [self.timePickerArray addObject:timePicker];
     [timePicker setOrginY:timeEntry.frame.origin.y];
     [scrollView addSubview:timePicker];
+    timePicker.delegate = self;
     [timePicker getFocus];
     
     if ([self.timePickerArray count] >= 1) {
         [timeEntry setTitleText:[NSString stringWithFormat: @"Add %drd Date or Time Option", [self.timePickerArray count] + 1]];
     }
-    
     timeEntry.hidden = [self.timePickerArray count] >= 3;
     
     [self layoutSubViews];

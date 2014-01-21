@@ -102,19 +102,9 @@
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
     [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     
-    [self updateHour:parts.hour];
-    [self updateMin:parts.minute];
-}
-
-- (void)updateHour:(NSInteger)hour
-{
-    self.currentHour = hour % 12;
-    self.currentAMPM = hour / 12;
-}
-
-- (void)updateMin:(NSInteger)min
-{
-    self.currentMin = min / MIN_GAP_IN_HOUR;
+    self.currentHour = parts.hour % 12;
+    self.currentAMPM = parts.hour / 12;
+    self.currentMin = parts.minute;
 }
 
 - (void)definePickerWidth
@@ -164,7 +154,7 @@
     [dateTypePicker scrollToIndex:self.currentType WithAnimation:NO];
     [datePicker scrollToIndex:MAX_REPETA_DATA_NUMBER / 2 + 1 WithAnimation:NO];
     [hourPicker scrollToIndex:self.currentHour WithAnimation:NO];
-    [minPicker scrollToIndex:self.currentMin WithAnimation:NO];
+    [minPicker scrollToIndex:self.currentMin / MIN_GAP_IN_HOUR WithAnimation:NO];
     [ampmPicker scrollToIndex:self.currentAMPM WithAnimation:NO];
 }
 
