@@ -301,19 +301,6 @@
     //[view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
     [view setBackgroundColor:[UIColor generateUIColorByHexString:@"#dae4e0" withAlpha:0.97]];
 
-//    UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 1)];
-//    //float colorVal = 227.0/255.0;
-//    line.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2"];
-//    [view addSubview:line];
-//    CALayer *layer = [CALayer layer];
-//    layer.frame = CGRectMake(0, -0.5, 50, 1);
-//    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2"].CGColor;
-//    [view.layer addSublayer:layer];
-
-//    UIImageView * clockView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"clock.png"]];
-//    clockView.frame = CGRectMake(18, 11, 14, 14);
-//    [view addSubview:clockView];
-
     float fontColor = 172.0/255.0;
 
     UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 320-50, 18)];
@@ -324,6 +311,11 @@
     dayLabel.backgroundColor = [UIColor clearColor];
 
     [view addSubview:dayLabel];
+    
+    CALayer *layer = [CALayer layer];
+    layer.frame = CGRectMake(0, -1, 50, 1);
+    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d92"].CGColor;
+    [view.layer addSublayer:layer];
 
     return view;
 }

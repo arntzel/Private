@@ -190,6 +190,7 @@ extern const CGSize kTileSize;
         {
             //[self.controllerDelegate unloadBlurBackground];
             [kalView swapToMonthMode];
+            
         }
         orgFrame = self.frame;
     }

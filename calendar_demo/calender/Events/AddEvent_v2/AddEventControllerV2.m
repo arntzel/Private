@@ -146,10 +146,21 @@
     [invitePlaceContentView setHidden:YES];
 }
 
+-(UIImage *) getRandomPhoto
+{
+    //event_detail_random_header1.png
+    int value = (arc4random() % 8) + 1;
+    
+    NSString * name = [NSString stringWithFormat:@"event_detail_random_header%d.png", value];
+    UIImage * img = [UIImage imageNamed:name];
+    return img;
+}
+
 - (void)initImagePickerView
 {
     uploadImageView = [[UploadUIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 207)];
-    uploadImageView.imagePickerView.image = [UIImage imageNamed:@"imagePicker_bg.jpg"];
+    //uploadImageView.imagePickerView.image = [UIImage imageNamed:@"imagePicker_bg.jpg"];
+    uploadImageView.imagePickerView.image = [self getRandomPhoto];
     uploadImageView.controller = self;
     [scrollView addSubview:uploadImageView];
     
@@ -170,7 +181,11 @@
     [txtFieldTitle addTarget:self action:@selector(txtDidEnd) forControlEvents:UIControlEventEditingDidEndOnExit];
     txtFieldTitle.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     [uploadImageView addSubview:txtFieldTitle];
-    [txtFieldTitle becomeFirstResponder];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.3), dispatch_get_main_queue(),  ^(void) {
+        [txtFieldTitle becomeFirstResponder];
+    });
+    
 }
 
 - (void)initOptionView

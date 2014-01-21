@@ -14,6 +14,9 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>calvin_app_icon_114x114</string>
+				<string>calvin_app_icon_120x120</string>
+				<string>calvin_app_icon_57x57</string>
 				<string>icon.png</string>
 				<string>Icon@2x.png</string>
 			</array>
