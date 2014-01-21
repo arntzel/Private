@@ -661,11 +661,11 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     if(prefix != nil) {
-        NSString * queryStr = [NSString stringWithFormat:@"(calvinuser != 0) AND ((first_name LIKE[c] '*%@*') OR (last_name LIKE[c] '*%@*') OR (email LIKE[c] '*%@*'))", prefix, prefix, prefix];
+        NSString * queryStr = [NSString stringWithFormat:@"(email != '') AND ((first_name LIKE[c] '*%@*') OR (last_name LIKE[c] '*%@*') OR (email LIKE[c] '*%@*'))", prefix, prefix, prefix];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:queryStr];
         [fetchRequest setPredicate:predicate];
     } else {
-        NSString * queryStr = [NSString stringWithFormat:@"(calvinuser != 0)"];
+        NSString * queryStr = [NSString stringWithFormat:@"(email != '')"];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:queryStr];
         [fetchRequest setPredicate:predicate];
     }
