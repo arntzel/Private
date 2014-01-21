@@ -143,7 +143,7 @@
     }
 
     if (selectedIndexPath!=nil) {
-        NSIndexPath *finalSelect = [NSIndexPath indexPathForRow:selectedIndexPath.row + 1 inSection:selectedIndexPath.section];
+        NSIndexPath *finalSelect = [NSIndexPath indexPathForRow:selectedIndexPath.row + 2 inSection:selectedIndexPath.section];
         [tableView scrollToRowAtIndexPath:finalSelect atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         
         NSInteger index = finalSelect.row % numberOfData;
