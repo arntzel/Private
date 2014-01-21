@@ -230,6 +230,10 @@
             [self adjustTitleLabelFrame:YES];
         }
     }
+    
+    CGRect overlayFrame = self.shadowOverlay.frame;
+    overlayFrame.origin.y = self.frame.size.height - overlayFrame.size.height;
+    self.shadowOverlay.frame = overlayFrame;
 }
 
 -(void)adjustTitleLabelFrame:(BOOL)truncate
