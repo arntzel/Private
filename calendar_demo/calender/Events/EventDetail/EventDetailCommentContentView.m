@@ -68,6 +68,7 @@
         tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [tableView setBackgroundColor: [UIColor clearColor]];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.bounces = NO;
         [tableView setAllowsSelection:NO];
         [tableView setDelegate:self];
         [tableView setDataSource:self];
