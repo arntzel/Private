@@ -114,7 +114,7 @@
 
 -(void) setLocation:(Location *) location
 {
-    if (location == nil || (location.lat == 0 && location.lng == 0)) {
+    if (location == nil ) {
         isLocation = NO;
     }
     else
