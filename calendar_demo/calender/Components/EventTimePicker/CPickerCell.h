@@ -8,4 +8,6 @@
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment;
 
+- (void)setMasked:(BOOL)masked;
+
 @end

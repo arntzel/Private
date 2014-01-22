@@ -14,6 +14,9 @@
     
     NSTextAlignment cellAlignment;
     Boolean txtHidden;
+    
+    BOOL didSetMasked;
+    NSIndexPath *finalSelect;
 }
 
 @end
@@ -31,7 +34,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor clearColor]];
+        [self setBackgroundColor:[UIColor colorWithRed:225/255.0f green:225/255.0f blue:225/255.0f alpha:1.0f]];
         numberOfData = 0;
         maxRepeatDataNumber = MAX_REPETA_DATA_NUMBER;
         cellAlignment = NSTextAlignmentLeft;
@@ -43,21 +46,21 @@
 }
 
 - (void)createContentTableView {
+    maskViewRect = CGRectMake(0, 0, self.bounds.size.width, CellHeight);
+    maskView = [[UIView alloc] initWithFrame:maskViewRect];
+    [maskView setBackgroundColor:[UIColor colorWithRed:202/255.0f green:210/255.0f blue:207/255.0f alpha:1.0f]];
+    [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
+    [self addSubview:maskView];
+    
     tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];    
-    [tableView setBackgroundColor:[UIColor colorWithRed:225/255.0f green:225/255.0f blue:225/255.0f alpha:1.0f]];
+    [tableView setBackgroundColor:[UIColor clearColor]];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.showsHorizontalScrollIndicator = NO;
     [self addSubview:tableView];
-    
-    maskViewRect = CGRectMake(0, 0, self.bounds.size.width, CellHeight);
-    maskView = [[UIView alloc] initWithFrame:maskViewRect];
-    [maskView setBackgroundColor:[UIColor colorWithRed:207/255.0f green:201/255.0f blue:206/255.0f alpha:0.7f]];
-    [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
-    
-    [self addSubview:maskView];
+
     [maskView setUserInteractionEnabled:NO];
 }
 
@@ -75,6 +78,16 @@
 {
     NSInteger indexTo = (maxRepeatDataNumber / numberOfData) / 2 * numberOfData + index;
     [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:indexTo inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:animation];
+    
+    finalSelect = [NSIndexPath indexPathForItem:indexTo inSection:0];
+    [self maskSelectedCell];
+}
+
+- (void)maskSelectedCell
+{
+    CPickerCell *cell = (CPickerCell *)[tableView cellForRowAtIndexPath:finalSelect];
+    [cell setMasked:YES];
+    didSetMasked = YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -104,6 +117,9 @@
     [cell setTextAlignment:cellAlignment];
     [cell.label setHidden:txtHidden];
     [cell.label setBackgroundColor:[UIColor clearColor]];
+    if (indexPath.row == finalSelect.row) {
+        [cell setMasked:YES];
+    }
     return cell;
 }
 
@@ -114,6 +130,17 @@
 //}
 
 #pragma mark Scroll view methods
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if (didSetMasked) {
+        didSetMasked = NO;
+        NSArray *cellArry = [tableView visibleCells];
+        for (CPickerCell *cell in cellArry) {
+            [cell setMasked:NO];
+        }
+    }
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self scrollToTheSelectedCell];
@@ -133,7 +160,7 @@
     NSIndexPath *selectedIndexPath = nil;
     
     for (NSIndexPath *index in indexPathArray) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:index];
+        CPickerCell *cell = (CPickerCell *)[tableView cellForRowAtIndexPath:index];
         CGRect intersectedRect = CGRectIntersection(cell.frame, selectionRectConverted);
         if (intersectedRect.size.height >= intersectionHeight) {
             
@@ -143,8 +170,10 @@
     }
 
     if (selectedIndexPath!=nil) {
-        NSIndexPath *finalSelect = [NSIndexPath indexPathForRow:selectedIndexPath.row + 2 inSection:selectedIndexPath.section];
+        finalSelect = [NSIndexPath indexPathForRow:selectedIndexPath.row + 2 inSection:selectedIndexPath.section];
         [tableView scrollToRowAtIndexPath:finalSelect atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        
+        [self maskSelectedCell];
         
         NSInteger index = finalSelect.row % numberOfData;
         [self.delegate Picker:self didSelectRowAtIndex:index];

@@ -22,6 +22,20 @@
     self.label.textColor = [UIColor colorWithRed:73/255.0f green:73/255.0f blue:73/255.0f alpha:1.0f];
 }
 
+- (void)setMasked:(BOOL)masked
+{
+    if (masked)
+    {
+        self.label.textColor = [UIColor colorWithRed:21/255.0f green:155/255.0f blue:131/255.0f alpha:1.0f];
+//        self.label.textColor = [UIColor redColor];
+    }
+    else
+    {
+        self.label.textColor = [UIColor colorWithRed:73/255.0f green:73/255.0f blue:73/255.0f alpha:1.0f];
+//        self.label.textColor = [UIColor blackColor];
+    }
+}
+
 //- (void)setFrame:(CGRect)frame
 //{
 //    [super setFrame:frame];

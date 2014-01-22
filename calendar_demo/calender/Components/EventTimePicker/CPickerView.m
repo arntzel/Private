@@ -25,6 +25,12 @@
         rowNumber = 1;
         itemArray = [[NSMutableArray alloc] init];
         
+        maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
+        [maskView setBackgroundColor:[UIColor colorWithRed:202/255.0f green:210/255.0f blue:207/255.0f alpha:1.0f]];
+        [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
+        [maskView setUserInteractionEnabled:NO];
+        [self addSubview:maskView];
+        
         scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollView];
         [scrollView setBounces:YES];
@@ -32,12 +38,6 @@
         scrollView.showsVerticalScrollIndicator = NO;
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setDelegate:self];
-
-        maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
-        [maskView setBackgroundColor:[UIColor colorWithRed:207/255.0f green:201/255.0f blue:206/255.0f alpha:0.7f]];
-        [maskView setCenter:CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)];
-        [maskView setUserInteractionEnabled:NO];
-        [self addSubview:maskView];
     }
     return self;
 }
@@ -49,7 +49,9 @@
 
 - (void)scrollToIndex:(NSInteger)index WithAnimation:(BOOL)animation
 {
+    [self deMaskSelectedCell];
     selectedIndex = index;
+    [self maskSelectedCell];
     [scrollView setContentOffset:CGPointMake(0, CellHeight * selectedIndex) animated:YES];
 }
 
@@ -76,7 +78,9 @@
         cell.label.text = [self.delegate stringOfRowsInPicker:self AtIndex:index];
         
         [cell initUI];
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
+    [self maskSelectedCell];
     
     [scrollView setContentSize:CGSizeMake(self.bounds.size.width, CellHeight * rowNumber + offsetY * 2)];
 }
@@ -93,6 +97,11 @@
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self deMaskSelectedCell];
+}
+
 - (void)scrollToTheSelectedCell
 {
     CGFloat yOffset = scrollView.contentOffset.y;
@@ -103,11 +112,24 @@
         selectedIndex++;
     }
     
+    [self maskSelectedCell];
     [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [scrollView setContentOffset:CGPointMake(0, CellHeight * selectedIndex)];
     } completion:^(BOOL finished) {
         [self.delegate Picker:self didSelectRowAtIndex:selectedIndex];
     }];
+}
+
+- (void)maskSelectedCell
+{
+    CPickerCell *cell = (CPickerCell *)[itemArray objectAtIndex:selectedIndex];
+    [cell setMasked:YES];
+}
+
+- (void)deMaskSelectedCell
+{
+    CPickerCell *cell = (CPickerCell *)[itemArray objectAtIndex:selectedIndex];
+    [cell setMasked:NO];
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment
