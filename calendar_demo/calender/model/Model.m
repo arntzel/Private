@@ -9,6 +9,8 @@
 
 #import "NSData+Hex.h"
 #import "CoreDataModel.h"
+#import "Utils.h"
+
 static Model * instance;
 
 @interface ASIHTTPRequestDelegateAdapter : NSObject <ASIHTTPRequestDelegate>
@@ -220,14 +222,25 @@ static Model * instance;
                         loc.location = event.location;
                         event1.location = loc;
                     }
-                    event1.start = [Utils convertGMTDate:event.startDate andTimezone:event.timeZone];
+                    //event1.start = [Utils convertGMTDate:event.startDate andTimezone:event.timeZone];
+                    event1.start = event.startDate;
+                    event1.start_type = @"exactly_at";
                     LOG_D(@"event1.start:%@",event1.start);
-                    event1.end = [Utils convertGMTDate:event.endDate andTimezone:event.timeZone];
+                    
+                    int duration = [event.endDate timeIntervalSince1970] - [event.startDate timeIntervalSince1970];
+                    duration /= 60;
+                    
+                    event1.duration_minutes = duration%60;
+                    event1.duration_hours = duration/60;
+                    event1.duration_days = 0;
+                    
+                    //event1.end = [Utils convertGMTDate:event.endDate andTimezone:event.timeZone];
+                    
                     LOG_D(@"event1.end:%@",event1.end);
                     event1.published = YES;
                     event1.timezone = event.timeZone.name;
                     event1.title = event.title;
-                    event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
+                    //event1.last_modified = [Utils convertGMTDate:event.lastModifiedDate andTimezone:event.timeZone];
                     event1.confirmed = YES;
                     LOG_D(@"event1.last_modified:%@",event1.last_modified);
                     [_allEvents addObject:event1];
@@ -256,13 +269,11 @@ static Model * instance;
     for (int i = 0; i < [newEvents count]; i++)
     {
         FeedEventEntity *evt = [newEvents objectAtIndex:i];
-        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        [format setTimeStyle:NSDateFormatterShortStyle];
-        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-        [format setTimeZone:[NSTimeZone timeZoneWithName:evt.timezone]];
-        NSString *startTime = [format stringFromDate:evt.start];
-        NSString *endTime = [format stringFromDate:evt.end];
-        NSString *last_modified = [format stringFromDate:evt.last_modified];
+        NSString *startTime = [Utils formateGMTDate:evt.start];
+        
+        //NSString *endTime = [format stringFromDate:evt.end];
+        
+        NSString *last_modified = [Utils formateGMTDate:evt.last_modified];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary]; /*@{@"event_type": @(5)};*/
         [dic setObject:@(5) forKey:@"event_type"];
         [dic setObject:@(YES) forKey:@"confirmed"];
@@ -290,10 +301,9 @@ static Model * instance;
         {
             [dic setObject:startTime forKey:@"start"];
         }
-        if (endTime)
-        {
-            [dic setObject:endTime forKey:@"end"];
-        }
+        
+        
+        
         if (evt.timezone)
         {
             [dic setObject:evt.timezone forKey:@"timezone"];
@@ -303,7 +313,13 @@ static Model * instance;
             [dic setObject:@{@"lat": @(0), @"lng":@(0),@"location":evt.locationName} forKey:@"location"];
         }
         [newEvents replaceObjectAtIndex:i withObject:dic];
+        
+        [dic setObject:evt.duration_days    forKey:@"duration_days"];
+        [dic setObject:evt.duration_hours   forKey:@"duration_hours"];
+        [dic setObject:evt.duration_minutes forKey:@"duration_minutes"];
+
     }
+    
     NSDictionary  *postDataDic = @{@"objects": newEvents};
     NSString * postContent = [Utils dictionary2String:postDataDic];
 
