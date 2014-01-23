@@ -14,6 +14,7 @@
 @property int id;
 
 @property(strong) NSDate * start;
+@property(strong) NSDate * end;
 
 @property(strong) NSString * start_type;
 

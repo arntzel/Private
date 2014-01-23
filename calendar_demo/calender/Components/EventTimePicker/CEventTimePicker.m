@@ -81,16 +81,18 @@
 {
     pickerTime = time_;
     
-    [self.endTimeView setMode:EndTimeType_During];
     NSString *type = [CEventTimePicker getStartTypeFromePropseType:pickerTime];
     
-    [self.endTimeView setMode:EndTimeType_During];
+    [self.startTimeView setStartTime:pickerTime.start StartType:type];
+    [self.endTimeView setEndTime:pickerTime.end During:pickerTime.duration_hours * 60 + pickerTime.duration_minutes];
+    
     if ([type isEqualToString:DATE_TYPE_EXACTLY_AT]) {
         [self.endTimeView setMode:EndTimeType_End];
     }
-    
-    [self.startTimeView setStartTime:pickerTime.start StartType:type];
-    [self.endTimeView setEndTime:[NSDate date] During:pickerTime.duration_hours * 60 + pickerTime.duration_minutes];
+    else
+    {
+        [self.endTimeView setMode:EndTimeType_During];
+    }
     [self updateTitleView];
 }
 

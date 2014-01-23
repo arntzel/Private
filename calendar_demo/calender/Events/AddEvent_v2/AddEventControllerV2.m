@@ -311,12 +311,10 @@
         start.start_type = time.start_type;
         start.duration_hours = time.duration_hours;
         start.duration_minutes = time.duration_minutes;
-        
-        NSDateComponents *c = [[NSDateComponents alloc] init];
-        c.hour = 1;
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        start.start = [gregorian dateByAddingComponents:c toDate:time.start options:0];
+        start.start = [self dateFrom:time.start hourOffset:1];
     }
+    
+    start.end = [self dateFrom:start.start hourOffset:1];
     
     [timePicker setTime:start];
     [self.timePickerArray addObject:timePicker];
@@ -331,6 +329,14 @@
     timeEntry.hidden = [self.timePickerArray count] >= 3;
     
     [self layoutSubViews];
+}
+
+- (NSDate *)dateFrom:(NSDate* )fomeDate hourOffset:(NSInteger)hour
+{
+    NSDateComponents *c = [[NSDateComponents alloc] init];
+    c.hour = hour;
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    return [gregorian dateByAddingComponents:c toDate:fomeDate options:0];
 }
 
 - (NSArray *)getTimesArray
