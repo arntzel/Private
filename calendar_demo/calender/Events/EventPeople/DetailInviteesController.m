@@ -80,7 +80,7 @@ typedef enum
     
     navBar = [EventNavigationBar creatView];
     [navBar setTitle:@"Invitees"];
-    [navBar setGlassImage:self.titleBgImage];
+    //[navBar setGlassImage:self.titleBgImage];
     
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(242, 28, 70, 29)];
     [rightBtn setBackgroundImage:[UIImage imageNamed:@"nav_roundbtn_bg.png"] forState:UIControlStateNormal];

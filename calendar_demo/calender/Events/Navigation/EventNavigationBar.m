@@ -7,6 +7,7 @@
 //
 
 #import "EventNavigationBar.h"
+#import "UIColor+Hex.h"
 
 @interface EventNavigationBar()
 
@@ -28,8 +29,8 @@
 
 - (void)awakeFromNib
 {
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self.bgView setBackgroundColor:[UIColor clearColor]];
+    //[self setBackgroundColor:[UIColor clearColor]];
+    //[self.bgView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)setTitle:(NSString *)title
@@ -41,7 +42,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventNavigationBar" owner:self options:nil];
     EventNavigationBar * view = (EventNavigationBar*)[nibView objectAtIndex:0];
-    
+    [view setBackgroundColor:[UIColor generateUIColorByHexString:@"18a48b"]];
     return view;
 }
 

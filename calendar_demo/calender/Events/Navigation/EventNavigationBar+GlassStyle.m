@@ -13,13 +13,13 @@
 
 - (void)setGlassImage:(UIImage *)image
 {
-    DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.bgView.frame];
-    blurView.isGlassEffectOn = YES;
-    [blurView setBlurLevel:kDKBlurredBackgroundDefaultGlassLevel];
-    [self.bgView removeFromSuperview];
-    blurView.originalImage = image;
-    self.bgView = blurView;
-    [self insertSubview:self.bgView atIndex:0];
+//    DKLiveBlurView *blurView = [[DKLiveBlurView alloc] initWithFrame:self.bgView.frame];
+//    blurView.isGlassEffectOn = YES;
+//    [blurView setBlurLevel:kDKBlurredBackgroundDefaultGlassLevel];
+//    [self.bgView removeFromSuperview];
+//    blurView.originalImage = image;
+//    self.bgView = blurView;
+//    [self insertSubview:self.bgView atIndex:0];
 }
 
 @end

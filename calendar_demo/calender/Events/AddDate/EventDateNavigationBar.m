@@ -11,6 +11,7 @@
 #import <OHAttributedLabel/OHASBasicHTMLParser.h>
 #import <OHAttributedLabel/OHASBasicMarkupParser.h>
 #import <OHAttributedLabel/OHAttributedLabel.h>
+#import "UIColor+Hex.h"
 
 @interface EventDateNavigationBar()
 
@@ -33,8 +34,8 @@
 
 - (void)awakeFromNib
 {
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self.bgView setBackgroundColor:[UIColor clearColor]];
+    //[self setBackgroundColor:[UIColor clearColor]];
+    //[self.bgView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)setTitle:(NSString *)title
@@ -54,7 +55,7 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventDateNavigationBar" owner:self options:nil];
     EventDateNavigationBar * view = (EventDateNavigationBar*)[nibView objectAtIndex:0];
-    
+    [view setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     return view;
 }
 

@@ -11,10 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bg_green.png" id="fXv-jR-YUR">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3">
                     <rect key="frame" x="0.0" y="20" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -42,7 +38,6 @@
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="bgView" destination="fXv-jR-YUR" id="LhM-qx-nnF"/>
                 <outlet property="leftBtn" destination="3" id="21"/>
                 <outlet property="titleLabel" destination="HGz-td-oXk" id="2zn-Tk-OVt"/>
             </connections>
@@ -50,6 +45,5 @@
     </objects>
     <resources>
         <image name="back_button_asset.png" width="22" height="22"/>
-        <image name="nav_bg_green.png" width="640" height="88"/>
     </resources>
 </document>

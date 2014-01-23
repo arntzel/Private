@@ -16,7 +16,7 @@
 
 @interface EventNavigationBar : UIView
 @property(nonatomic,assign) id<EventNavigationBarDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIImageView *bgView;
+//@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 
 - (IBAction)leftBtnClick:(id)sender;
