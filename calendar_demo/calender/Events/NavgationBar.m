@@ -59,7 +59,7 @@
         
         leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 26, 32, 32)];
         leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        [leftBtn setImage:[UIImage imageNamed:@"event_detail_nav_back_white"] forState:UIControlStateNormal];
+        [leftBtn setImage:[UIImage imageNamed:@"back_button_asset"] forState:UIControlStateNormal];
         [leftBtn setTitle:@"" forState:UIControlStateNormal];
         [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
         
