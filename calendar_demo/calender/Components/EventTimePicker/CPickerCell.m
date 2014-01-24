@@ -17,7 +17,8 @@
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
     [self.selectedBackgroundView setBackgroundColor:[UIColor clearColor]];
     self.backgroundView.backgroundColor = [UIColor clearColor];
-    [self setBackgroundColor:[UIColor colorWithRed:225/255.0f green:225/255.0f blue:225/255.0f alpha:1.0f]];
+    [self setBackgroundColor:[UIColor clearColor]];
+//    [self setBackgroundColor:[UIColor colorWithRed:225/255.0f green:225/255.0f blue:225/255.0f alpha:1.0f]];
     
     self.label.textColor = [UIColor colorWithRed:73/255.0f green:73/255.0f blue:73/255.0f alpha:1.0f];
 }
