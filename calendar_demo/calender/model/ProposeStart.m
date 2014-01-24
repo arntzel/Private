@@ -105,6 +105,7 @@
     newDate.id = self.id;
 
     newDate.start = [self.start copy];
+    newDate.end = [self.end copy];
     newDate.is_all_day = self.is_all_day;
     newDate.start_type = [self.start_type copy];
     

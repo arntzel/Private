@@ -343,10 +343,33 @@
 {
     NSMutableArray *timeArray = [[NSMutableArray alloc] initWithCapacity:3];
     for (CEventTimePicker *picker in self.timePickerArray) {
-        [timeArray addObject:[picker getTime]];
+        ProposeStart *start = [[picker getTime] copy];
+        [timeArray addObject:start];
     }
     
     return timeArray;
+}
+
+- (BOOL)ajastTime:(NSArray *)timeArray
+{
+    for (CEventTimePicker *picker in self.timePickerArray) {
+        ProposeStart *start = [[picker getTime] copy];
+        if ([start.start_type isEqualToString:START_TYPEEXACTLYAT])
+        {
+            double endIntival = [start.end timeIntervalSince1970];
+            double startIntival = [start.start timeIntervalSince1970];
+            double timeIntival = endIntival - startIntival;
+            if (timeIntival < 0) {
+                return NO;
+            }
+            start.duration_days = (NSInteger)timeIntival / (24 * 3600);
+            timeIntival = (NSInteger)timeIntival % (24 * 3600);
+            start.duration_hours = timeIntival / 3600;
+            timeIntival = (NSInteger)timeIntival % 3600;
+            start.duration_minutes = timeIntival / 60;
+        }
+    }
+    return YES;
 }
 
 - (void)layoutSubViews
@@ -598,6 +621,13 @@
     
     event.timezone = [NSTimeZone systemTimeZone].name;
     event.propose_starts = [self getTimesArray];
+    if (![self ajastTime:event.propose_starts])
+    {
+        [Utils showUIAlertView:@"Error" andMessage:@"End Time Can't Be Earlier Than The Start Time"];
+        return;
+    }
+    
+    
     event.location = self.locationPlace;
     
     if(imgUrl == nil) {

@@ -296,6 +296,7 @@
 
 - (void)endTimeView:(CEndTimeView *)picker timeDidChanged:(NSDate *)endDate_
 {
+    pickerTime.end = endDate_;
     [self updateTitleView];
 }
 
