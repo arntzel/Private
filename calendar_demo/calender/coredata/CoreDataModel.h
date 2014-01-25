@@ -112,6 +112,10 @@
  *  @return ContactEntity
  */
 - (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
+
+- (ContactEntity *) getContactEntityWithEmail:(NSString *)email;
+
+
 -(NSArray *) getAllContactEntity;
 
 -(NSArray *) queryContactEntity:(NSString *) prefix andOffset:(NSInteger) offset;

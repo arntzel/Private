@@ -694,6 +694,7 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return [results sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
+
 - (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email
 {
     
@@ -701,6 +702,24 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(phone = %@ AND email = %@)", phone, email];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if(results.count >0)
+    {
+        return [results objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
+
+- (ContactEntity *) getContactEntityWithEmail:(NSString *)email
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(email = %@)", email];
     [fetchRequest setPredicate:predicate];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
