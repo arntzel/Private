@@ -177,7 +177,8 @@
                 NSMutableArray * times = [[NSMutableArray alloc] init];
                 
                 NSDate * current = [NSDate date];
-                current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
+                //FangXiang: the times in event are gmt,  so we need't to convent timezone.
+                //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
                 
                 for (ProposeStart* proposeStart in  self.event.propose_starts) {
                     if([proposeStart.start compare:current] > 0) {
