@@ -78,7 +78,10 @@
 
 -(void) touchedInImagePickerView:(UITapGestureRecognizer *) tap
 {
-    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
+    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                 cancelButtonTitle:@"Cancel"
+                                                 destructiveButtonTitle:nil
+                                                 otherButtonTitles:@"Choose Existing", @"Take Photo", nil];
     [menu showInView:self];
 }
 
