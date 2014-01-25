@@ -107,6 +107,7 @@
             
             //if a event is deleted, delete the local cache of the event
             if(msg.msgType == 1) {
+                LOG_I(@"Message %@, Delete event[%d]", msg.body, msg.eventID);
                 [dataModel deleteFeedEventEntity:msg.eventID];
             }
         }

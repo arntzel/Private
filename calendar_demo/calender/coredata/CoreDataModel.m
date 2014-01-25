@@ -137,7 +137,6 @@ static CoreDataModel * instance;
 
 -(NSArray *) getPendingFeedEventEntitys
 {
-    NSLog(@"NSFetchRequest: getPendingFeedEventEntitys");
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -149,6 +148,9 @@ static CoreDataModel * instance;
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    LOG_I(@"NSFetchRequest: getPendingFeedEventEntitys, count:%d", results.count);
+    
     return results;
 }
 

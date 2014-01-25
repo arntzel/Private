@@ -58,7 +58,7 @@
         
         //if the message about an event is deleted
         NSRange deleteRange = [url rangeOfString:@"delete"];
-        if(deleteRange.location > 0)
+        if(deleteRange.location > 0 && deleteRange.length > 0)
         {
             msg.msgType = 1;
         }
