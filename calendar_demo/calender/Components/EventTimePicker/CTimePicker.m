@@ -85,10 +85,32 @@
 
 - (void)initDate:(NSDate *)day Type:(NSString *)type
 {
+    NSDate *currentDay = [day copy];
     self.dateTypeArray = [CTimePicker dateTypeArray];
     self.monthNameArray = [CTimePicker monthNameArray];
     self.weekDayArray = [CTimePicker weekDayArray];
     self.ampmArray = [CTimePicker ampmArray];
+
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:currentDay];
+    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    
+    NSInteger hour = 0;
+    NSInteger ampm = 0;
+    if (parts.hour == 0) {
+        hour = 12;
+        ampm = 1;
+        currentDay = [currentDay cc_dateByMovingToThePreviousDayCout:1];
+    }
+    else
+    {
+        hour = parts.hour % 12;
+        ampm = parts.hour / 12;
+    }
+    
+    self.currentHour = hour;
+    self.currentAMPM = ampm;
+    self.currentMin = parts.minute;
     
     self.currentType = [self.dateTypeArray indexOfObject:type];
     self.markDay = day;
@@ -98,13 +120,7 @@
 
 - (void)updateHourAndMin:(NSDate *)date
 {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
-    [parts setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    
-    self.currentHour = parts.hour % 12;
-    self.currentAMPM = parts.hour / 12;
-    self.currentMin = parts.minute;
+
 }
 
 - (void)definePickerWidth
@@ -153,7 +169,7 @@
     
     [dateTypePicker scrollToIndex:self.currentType WithAnimation:NO];
     [datePicker scrollToIndex:MAX_REPETA_DATA_NUMBER / 2 + 1 WithAnimation:NO];
-    [hourPicker scrollToIndex:self.currentHour WithAnimation:NO];
+    [hourPicker scrollToIndex:self.currentHour - 1 WithAnimation:NO];
     [minPicker scrollToIndex:self.currentMin / MIN_GAP_IN_HOUR WithAnimation:NO];
     [ampmPicker scrollToIndex:self.currentAMPM WithAnimation:NO];
 }
@@ -191,7 +207,7 @@
     }
     else if (picker == hourPicker)
     {
-        self.currentHour = index;
+        self.currentHour = index + 1;
     }
     else if (picker == minPicker)
     {
@@ -246,7 +262,7 @@
     }
     else if (picker == hourPicker)
     {
-        NSString *valueString = [NSString stringWithFormat:@"%02d",index];
+        NSString *valueString = [NSString stringWithFormat:@"%02d",index + 1];
         return valueString;
     }
     else if (picker == minPicker)
@@ -294,15 +310,43 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
     
-    [parts setHour:self.currentHour + self.currentAMPM * 12];
+    [parts setHour:(self.currentHour + self.currentAMPM * 12) % 24];
     [parts setMinute:self.currentMin];
     NSDate *startDate = [gregorian dateFromComponents:parts];
-    
-    return startDate;
+    if (self.currentAMPM == 1 && self.currentHour == 12)
+    {
+        return [startDate cc_dateByMovingToTheFollowingDayCout:1];
+    }
+    else
+    {
+        return startDate;
+    }
 }
 
 + (NSString *)getCurrentDateDescriptionFromeDate:(NSDate *)date type:(NSString *)type
 {
+    NSString *timeStr = @"";
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
+    
+    NSInteger hour = 0;
+    NSInteger ampm = 0;
+    if (parts.hour == 0) {
+        hour = 12;
+        ampm = 1;
+        date = [date cc_dateByMovingToThePreviousDayCout:1];
+    }
+    else
+    {
+        hour = parts.hour % 12;
+        ampm = parts.hour / 12;
+    }
+    timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", hour]];
+    timeStr = [timeStr stringByAppendingString:@":"];
+    timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
+    timeStr = [timeStr stringByAppendingString:[self.ampmArray objectAtIndex:ampm]];
+    
+    
     KalDate *kalDate = [KalDate dateFromNSDate:date];
     NSInteger year = [kalDate year];
     NSInteger month = [kalDate month] - 1;
@@ -314,15 +358,6 @@
     dateStr = [dateStr stringByAppendingString:[NSString stringWithFormat:@"%d", day]];
     dateStr = [dateStr stringByAppendingString:@","];
     dateStr = [dateStr stringByAppendingString:[NSString stringWithFormat:@"%d", year]];
-    
-    NSString *timeStr = @"";
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
-    
-    timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", parts.hour % 12]];
-    timeStr = [timeStr stringByAppendingString:@":"];
-    timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
-    timeStr = [timeStr stringByAppendingString:[self.ampmArray objectAtIndex:parts.hour / 12]];
 
     if ([type isEqualToString:DATE_TYPE_ALL_DAY]) {
         return [NSString stringWithFormat:@"%@ %@", type, dateStr];
