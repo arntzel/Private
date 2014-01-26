@@ -95,8 +95,6 @@
         
         [self setSynchronizeData:NO];
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
-
-       
         
         if(![[UserModel getInstance] isLogined]) {
             [self setSynchronizeData:NO];
@@ -409,7 +407,6 @@
                     [delegate onSynchronizeDataCompleted];
                 }
             });
-            
         }];
     });
 }
@@ -449,7 +446,6 @@
                     });
                 }];
             });
-            
         }
         else
         {
@@ -457,7 +453,6 @@
         }
         
     });
-    
     
 }
 
@@ -524,10 +519,7 @@
                         [self deleteIcalEvent];
                     });
                 }
-               
-                
             }];
-            
         });
     }
     else
@@ -535,18 +527,48 @@
         [self uploadCalendarEvents];
     }
 }
+
+
 - (void)uploadContacts
 {
-    if(![[UserModel getInstance] isLogined])
-    {
+    assert([[UserModel getInstance] isLogined]);
+    
+    CoreDataModel * model = [CoreDataModel getInstance];
+    
+    NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
+    
+    if ([neverUploadedContactsArray count] <= 0) {
         return;
     }
+    
+    [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
+        
+        if (respContacts && [respContacts count]>0)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in respContacts)
+            {
+                ContactEntity *enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                if (enity)
+                {
+                    [enity convertContact:contact];
+                }
+            }
+            [model saveData];
+        }
+    }];
+}
+
+- (void)uploadContacts000
+{
+    assert([[UserModel getInstance] isLogined]);
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         
         CoreDataModel * model = [CoreDataModel getInstance];
+        
         NSMutableArray *neverUploadedContactsArray = [NSMutableArray arrayWithArray:[model getContactEntitysWithID:0]];
-        //dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
+        
             [[UserModel getInstance] uploadAddressBookContacts:neverUploadedContactsArray callback:^(NSInteger error, NSArray *respContacts) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -556,18 +578,11 @@
                         CoreDataModel * model = [CoreDataModel getInstance];
                         for(Contact * contact in respContacts)
                         {
-                            if(![[UserModel getInstance] isLogined])
-                            {
-                                [model saveData];
-                                return;
-                            }
-                            
                             ContactEntity *   enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
                             if (enity)
                             {
                                 [enity convertContact:contact];
                             }
-                            
                         }
                         [model saveData];
                     }
@@ -575,9 +590,7 @@
                 
             }];
         });
-        
     //});
-    
 }
 
 -(NSString *) getSecondsFromEpoch

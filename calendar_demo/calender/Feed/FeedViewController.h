@@ -15,4 +15,5 @@
 @interface FeedViewController : BaseMenuViewController<UIGestureRecognizerDelegate>
 
 -(void)playCalendarAnimation;
+
 @end

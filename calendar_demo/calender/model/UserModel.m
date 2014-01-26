@@ -416,10 +416,10 @@ static UserModel * instance;
              {
                  CFRelease(addressBook);
              }
-             
          }
     });
 }
+
 - (void)uploadAddressBookContacts:(NSMutableArray *)contactsArr callback:(void (^)(NSInteger error, NSArray * respContacts))callback
 {
      if (contactsArr == nil||[contactsArr count]==0)
@@ -469,7 +469,6 @@ static UserModel * instance;
          
          if(status == 202 && data != nil)
          {
-             
              NSError * err;
              NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
              LOG_D(@"upload addressbook contacts return data :%@",json);
@@ -494,7 +493,6 @@ static UserModel * instance;
              callback(-1, nil);
          }
      }];
-
 }
 
 - (void)insertAddressBookContactsToDBWithOffset:(int)offset CallBack:(void (^)(NSInteger error, NSMutableArray * contacts, BOOL finish))callback
@@ -551,7 +549,6 @@ static UserModel * instance;
 
 -(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback
 {
-
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/password/reset/", HOST];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
 

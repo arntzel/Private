@@ -51,7 +51,6 @@
     [TestFlight takeOff:@"1ad5c564-019b-459f-b3a3-89d675d59e6f"];
     // The rest of your application:didFinishLaunchingWithOptions method// ...
     
-    
     [MobClick setCrashReportEnabled:YES]; // 如果不需要捕捉异常，注释掉此行
     //[MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
     [MobClick setAppVersion:XcodeAppVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
@@ -188,7 +187,6 @@
     if(loginUser != nil) {
         [[UserSetting getInstance] saveLoginUser:loginUser];
     }
-
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
   
@@ -197,17 +195,12 @@
 }
 
 
-
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
      NSLog(@"applicationWillEnterForeground");
     
     [self.timer invalidate];
     self.timer = nil;
-    [self.uploadContactsTimer invalidate];
-    self.uploadContactsTimer = nil;
 }
 
 
@@ -222,7 +215,8 @@
     int badge = [UIApplication sharedApplication].applicationIconBadgeNumber ;
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    if(badge>0) {
+    if (badge>0) {
+        
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
         
         [[[Model getInstance] getMessageModel] refreshModel:^(NSInteger error) {
@@ -239,19 +233,12 @@
                                          selector:@selector(synchronizedFromServer)
                                          userInfo:nil
                                           repeats:YES];
-    self.uploadContactsTimer = [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(uploadContacts) userInfo:nil repeats:YES];
 }
 
 -(void) synchronizedFromServer
 {
     [[[Model getInstance] getEventModel] synchronizedFromServer];
-
     [[[Model getInstance] getEventModel] checkContactUpdate];
-}
-
-- (void)uploadContacts
-{
-    [[[Model getInstance] getEventModel] uploadContacts];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

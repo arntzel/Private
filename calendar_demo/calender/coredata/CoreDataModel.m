@@ -249,7 +249,6 @@ static CoreDataModel * instance;
     return results;
 }
 
-
 -(NSArray *) getFeedEventEntitys:(NSDate *) day
 {
     
@@ -297,6 +296,7 @@ static CoreDataModel * instance;
     }
     return nil;
 }
+
 - (FeedEventEntity *)getDeletedICalFeedEventWithExtEventID:(NSString *)ext_event_id
 {
     if (!managedObjectContext)
@@ -320,6 +320,7 @@ static CoreDataModel * instance;
     }
     return nil;
 }
+
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id WithLimit:(int)limit
 {
     if (!managedObjectContext)
@@ -369,6 +370,7 @@ static CoreDataModel * instance;
     }
     return nil;
 }
+
 - (NSArray *)getDeletediCalFeedEvents
 {
     if (!managedObjectContext)

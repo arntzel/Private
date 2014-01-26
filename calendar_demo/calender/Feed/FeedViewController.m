@@ -191,11 +191,9 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.calendarView.filterView updateView];
                     });
-                    
                 }
             }];
         }
-        
     }
     
     dataLoadingView = [[CustomerIndicatorView alloc] init];
@@ -206,77 +204,73 @@
    
     [self.view addSubview:dataLoadingView];
     
-    
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
-    
-    
-    
-    
     [[[Model getInstance] getEventModel] checkSettingUpdate];
     
-    
-    [[CoreDataModel getInstance] addDelegate:self];
-    [[[Model getInstance] getEventModel] addDelegate:self];
-    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(uploadCalendarEvents1) userInfo:nil repeats:YES];
-    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
     //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
     if(last_modify_num == nil) {
-        
-        NSDate * today =  [Utils getCurrentDate];
-        
-        [[[Model getInstance] getEventModel] setSynchronizeData:YES];
-        
-        NSMutableString * eventType = [[NSMutableString alloc] init];
-        [eventType appendString:@"0,5"];
-        
-        if([me isFacebookConnected]) {
-            [eventType appendString:@",3,4"];
-        }
-        
-        if( [me isGoogleConnected]) {
-            [eventType appendString:@",1,2"];
-        }
-        
-        
-        [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-        
-            [[[Model getInstance] getEventModel] setSynchronizeData:NO];
-            
-            if(error == 0) {
-                CoreDataModel * model = [CoreDataModel getInstance];
-                for(Event * evt in events) {
-                    
-                    FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-                    
-                    if(entity == nil) {
-                        entity = [model createEntity:@"FeedEventEntity"];
-                    } else {
-                        for(UserEntity * user in entity.attendees) {
-                            [model deleteEntity:user];
-                        }
-                        
-                        [entity clearAttendee];
-                    }
-                    
-                    [entity convertFromEvent:evt];
-                    [model updateFeedEventEntity:entity];
-                }
-                
-                [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
-                [self scroll2Today];
-            }
-            
-            [[[Model getInstance] getEventModel] synchronizedFromServer];
-        }];
+
+        [self firstTimeLogic];
         
     } else {
+        
         [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
         [self scroll2Today];
     }
+}
+
+-(void)firstTimeLogic {
+    User * me = [[UserModel getInstance] getLoginUser];
     
+    NSDate * today =  [Utils getCurrentDate];
+    
+    [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+    
+    NSMutableString * eventType = [[NSMutableString alloc] init];
+    [eventType appendString:@"0,5"];
+    
+    if([me isFacebookConnected]) {
+        [eventType appendString:@",3,4"];
+    }
+    
+    if( [me isGoogleConnected]) {
+        [eventType appendString:@",1,2"];
+    }
+    
+    
+    [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+        
+        [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+        
+        if(error == 0) {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Event * evt in events) {
+                
+                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+                
+                if(entity == nil) {
+                    entity = [model createEntity:@"FeedEventEntity"];
+                } else {
+                    for(UserEntity * user in entity.attendees) {
+                        [model deleteEntity:user];
+                    }
+                    [entity clearAttendee];
+                }
+                
+                [entity convertFromEvent:evt];
+                [model updateFeedEventEntity:entity];
+            }
+            
+            [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
+            [self scroll2Today];
+        }
+        
+        [[[Model getInstance] getEventModel] synchronizedFromServer];
+    }];
 }
 
 -(void)playCalendarAnimation
@@ -567,11 +561,13 @@
     [self.calendarView.filterView setFilter:filter];
 }
 
-- (void)uploadCalendarEvents1
+- (void)doUploads
 {
     LOG_D(@"================start upload events=============");
+    
     [[[Model getInstance] getEventModel] deleteIcalEvent];
-
+    
+    [[[Model getInstance] getEventModel] uploadContacts];
 }
 
 -(void) checkAppUpdated
