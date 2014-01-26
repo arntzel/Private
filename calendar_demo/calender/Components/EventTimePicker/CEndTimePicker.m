@@ -27,10 +27,16 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
     NSString *timeStr = @"";
+    
+    
     NSInteger hour = 0;
     NSInteger ampm = 0;
     if (parts.hour == 0) {
-        date = [date cc_dateByMovingToThePreviousDayCout:1];
+        hour = 12;
+        ampm = 0;
+    }
+    else if (parts.hour == 12)
+    {
         hour = 12;
         ampm = 1;
     }

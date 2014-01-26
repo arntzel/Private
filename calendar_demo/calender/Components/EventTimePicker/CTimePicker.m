@@ -99,8 +99,12 @@
     NSInteger ampm = 0;
     if (parts.hour == 0) {
         hour = 12;
+        ampm = 0;
+    }
+    else if (parts.hour == 12)
+    {
+        hour = 12;
         ampm = 1;
-        currentDay = [currentDay cc_dateByMovingToThePreviousDayCout:1];
     }
     else
     {
@@ -310,17 +314,28 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
     
-    [parts setHour:(self.currentHour + self.currentAMPM * 12) % 24];
-    [parts setMinute:self.currentMin];
-    NSDate *startDate = [gregorian dateFromComponents:parts];
-    if (self.currentAMPM == 1 && self.currentHour == 12)
+    NSInteger hour = 0;
+    NSInteger ampm = 0;
+    if (self.currentHour == 12 && self.currentAMPM == 0) {
+        hour = 0;
+        ampm = 0;
+    }
+    else if (self.currentHour == 12 && self.currentAMPM == 1)
     {
-        return [startDate cc_dateByMovingToTheFollowingDayCout:1];
+        hour = 12;
+        ampm = 0;
     }
     else
     {
-        return startDate;
+        hour = self.currentHour;
+        ampm = self.currentAMPM;
     }
+    
+    [parts setHour:hour + ampm * 12];
+    [parts setMinute:self.currentMin];
+    NSDate *startDate = [gregorian dateFromComponents:parts];
+
+    return startDate;
 }
 
 + (NSString *)getCurrentDateDescriptionFromeDate:(NSDate *)date type:(NSString *)type
@@ -333,8 +348,12 @@
     NSInteger ampm = 0;
     if (parts.hour == 0) {
         hour = 12;
+        ampm = 0;
+    }
+    else if (parts.hour == 12)
+    {
+        hour = 12;
         ampm = 1;
-        date = [date cc_dateByMovingToThePreviousDayCout:1];
     }
     else
     {

@@ -5,7 +5,6 @@
 #import "EventTimePickerDefine.h"
 #import "KalDate.h"
 #import "CTimePicker.h"
-#import "NSDateAdditions.h"
 
 
 @interface CEventTimeTitle()
@@ -82,11 +81,15 @@
         
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:startDate];
-        NSString *timeStr = @"";
+        
         NSInteger hour = 0;
         NSInteger ampmMark = 0;
         if (parts.hour == 0) {
-            startDate = [startDate cc_dateByMovingToThePreviousDayCout:1];
+            hour = 12;
+            ampmMark = 0;
+        }
+        else if (parts.hour == 12)
+        {
             hour = 12;
             ampmMark = 1;
         }
@@ -95,6 +98,8 @@
             hour = parts.hour % 12;
             ampmMark = parts.hour / 12;
         }
+        
+        NSString *timeStr = @"";
         timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", hour]];
         timeStr = [timeStr stringByAppendingString:@":"];
         timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
@@ -108,11 +113,15 @@
 
             NSDate *endDate = [startTime.end copy];
             parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:endDate];
-            NSString *endTimeStr = @"";
+
             NSInteger endHour = 0;
             NSInteger endAmpm = 0;
             if (parts.hour == 0) {
-                endDate = [endDate cc_dateByMovingToThePreviousDayCout:1];
+                endHour = 12;
+                endAmpm = 0;
+            }
+            else if (parts.hour == 12)
+            {
                 endHour = 12;
                 endAmpm = 1;
             }
@@ -121,6 +130,8 @@
                 endHour = parts.hour % 12;
                 endAmpm = parts.hour / 12;
             }
+            
+            NSString *endTimeStr = @"";
             endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%d", endHour]];
             endTimeStr = [endTimeStr stringByAppendingString:@":"];
             endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
