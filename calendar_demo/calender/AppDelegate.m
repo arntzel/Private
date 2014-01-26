@@ -224,7 +224,10 @@
     
     if(badge>0) {
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
-        [[[Model getInstance] getMessageModel] refreshModel:nil];
+        
+        [[[Model getInstance] getMessageModel] refreshModel:^(NSInteger error) {
+            
+        }];
     }
     
     [self registerForRemoteNotificationToGetToken];
@@ -239,19 +242,18 @@
     self.uploadContactsTimer = [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(uploadContacts) userInfo:nil repeats:YES];
 }
 
-
 -(void) synchronizedFromServer
 {
     [[[Model getInstance] getEventModel] synchronizedFromServer];
 
     [[[Model getInstance] getEventModel] checkContactUpdate];
-
 }
 
 - (void)uploadContacts
 {
     [[[Model getInstance] getEventModel] uploadContacts];
 }
+
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     NSLog(@"applicationWillTerminate");

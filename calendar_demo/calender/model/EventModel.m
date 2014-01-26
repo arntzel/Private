@@ -77,7 +77,6 @@
 
 -(void) synchronizedFromServer
 {
-    
     if (![[UserModel getInstance] isLogined]) {
         return;
     }
@@ -186,8 +185,6 @@
     }];
 }
 
-
-
 -(void) checkContactUpdate
 {
     if(![[UserModel getInstance] isLogined]) {
@@ -202,14 +199,11 @@
 -(void) updateContacts
 {
     LOG_D(@"updateContacts");
-
-   
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_CONTACTUPDATETIME];
     if(last_modify_num == nil) {
         last_modify_num = [self getSecondsFromEpoch];
     }
-    
     
     synchronizingContactData = YES;
     [[UserModel getInstance] getMyContacts:last_modify_num andCallback:^(NSInteger error, int totalCount, NSArray * contacts) {
@@ -254,8 +248,7 @@
             
             [model saveData];
 
-            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIME andStringValue:maxlatmodify];
-            
+            [[UserSetting getInstance] saveKey:KEY_CONTACTUPDATETIME andStringValue:maxlatmodify];            
 
             if(contactsupdated) {
                 LOG_D(@"Contact updated");
