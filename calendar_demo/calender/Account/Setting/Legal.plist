@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>TermOfUse</key>
-	<string>http://www.google.com</string>
+	<string>https://www.calvinapp.com/terms/</string>
 	<key>PrivacyPolicy</key>
-	<string>http://www.google.com</string>
+	<string>https://www.calvinapp.com/privacy/</string>
 	<key>AboutUs</key>
-	<string>http://www.google.com</string>
+	<string>https://www.calvinapp.com/about/</string>
 </dict>
 </plist>
