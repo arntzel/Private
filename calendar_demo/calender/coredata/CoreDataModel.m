@@ -787,7 +787,6 @@ static CoreDataModel * instance;
     [managedObjectContext save:nil];
 }
 
-
 +(CoreDataModel *) getInstance
 {
     if(instance == nil) {

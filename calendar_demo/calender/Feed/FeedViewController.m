@@ -209,6 +209,8 @@
     [[CoreDataModel getInstance] addDelegate:self];
     [[[Model getInstance] getEventModel] addDelegate:self];
     [[[Model getInstance] getEventModel] checkSettingUpdate];
+    [[[Model getInstance] getEventModel] synchronizedFromServer];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
     
@@ -216,7 +218,8 @@
     //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
     if(last_modify_num == nil) {
 
-        [self firstTimeLogic];
+        //YK: this may be not necessarily at all
+        //[self firstTimeLogic];
         
     } else {
         
@@ -226,11 +229,12 @@
 }
 
 -(void)firstTimeLogic {
+    
     User * me = [[UserModel getInstance] getLoginUser];
     
     NSDate * today =  [Utils getCurrentDate];
     
-    [[[Model getInstance] getEventModel] setSynchronizeData:YES];
+  //  [[[Model getInstance] getEventModel] setSynchronizeData:YES];
     
     NSMutableString * eventType = [[NSMutableString alloc] init];
     [eventType appendString:@"0,5"];
@@ -243,10 +247,9 @@
         [eventType appendString:@",1,2"];
     }
     
-    
     [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
         
-        [[[Model getInstance] getEventModel] setSynchronizeData:NO];
+    //    [[[Model getInstance] getEventModel] setSynchronizeData:NO];
         
         if(error == 0) {
             CoreDataModel * model = [CoreDataModel getInstance];
@@ -486,7 +489,6 @@
     if( (filters & FILTER_FB) != 0)          [types appendString:@"3,"];
     if( (filters & FILTER_BIRTHDAY) != 0)    [types appendString:@"4,"];
     if( (filters & FILTER_IOS) != 0)         [types appendString:@"5,"];
-    
     
     [setting setObject:types forKey:KEY_SHOW_EVENT_TYPES];
     

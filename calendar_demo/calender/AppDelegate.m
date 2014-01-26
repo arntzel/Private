@@ -228,11 +228,11 @@
 
     //[self synchronizedFromServer];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60
-                                           target:self
-                                         selector:@selector(synchronizedFromServer)
-                                         userInfo:nil
-                                          repeats:YES];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:6
+//                                           target:self
+//                                         selector:@selector(synchronizedFromServer)
+//                                         userInfo:nil
+//                                          repeats:YES];
 }
 
 -(void) synchronizedFromServer

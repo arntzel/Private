@@ -30,12 +30,6 @@
 
 -(void) removeDelegate:(id<EventModelDelegate>) delegate;
 
-
--(BOOL) isSynchronizeData;
-
--(void) setSynchronizeData:(BOOL) loading;
-
-
 -(void) synchronizedFromServer;
 
 -(void) checkContactUpdate;

@@ -11,8 +11,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation EventModel {
 
-    BOOL synchronizingData;
-
     BOOL synchronizingContactData;
     
     NSMutableArray * delegates;
@@ -35,10 +33,10 @@
     [delegates removeObject:delegate];
 }
 
--(void) nofityModelChanged
+-(void) nofityModelChanged:(BOOL) loading
 {
     for(id<EventModelDelegate> delegate in delegates) {
-        [delegate onEventModelChanged:synchronizingData];
+        [delegate onEventModelChanged:loading];
     }
 }
 
@@ -62,26 +60,15 @@
     }
 }
 
--(BOOL) isSynchronizeData
-{
-    return synchronizingData;
-}
-
--(void) setSynchronizeData:(BOOL) loading
-{
-    if(synchronizingData != loading) {
-        synchronizingData = loading;
-        [self nofityModelChanged];
-    }
-}
-
 -(void) synchronizedFromServer
 {
-    if (![[UserModel getInstance] isLogined]) {
-        return;
-    }
+    [self synchronizedFromServerPrivate];
+}
+
+-(void) synchronizedFromServerPrivate
+{
+    assert([[UserModel getInstance] isLogined]);
     
-    if([self isSynchronizeData]) return;
     NSLog(@"synchronizedFromServer begin");
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
@@ -89,26 +76,10 @@
         last_modify_num = [self getSecondsFromEpoch];
     }
     
-    [self setSynchronizeData:YES];
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
-        [self setSynchronizeData:NO];
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
-        
-        if(![[UserModel getInstance] isLogined]) {
-            [self setSynchronizeData:NO];
-            return;
-        }
-        
-        if(error != 0) {
-            
-//            for(id<EventModelDelegate> delegate in delegates) {
-//                [delegate onSynchronizeDataError:error];
-//            }
-            [self updateEventsFromCalendarApp];
-            return;
-        }
         
         if(events.count == 0) {
             LOG_D(@"synchronizedFromServer, no updated event");
@@ -121,7 +92,7 @@
         
         CoreDataModel * model = [CoreDataModel getInstance];
         NSLog(@"========before download=========");
-        [model getFeedEventWithEventType:5];
+    //    [model getFeedEventWithEventType:5];
         for(Event * evt in events) {
             
             if([evt.modified_num compare:maxlastupdatetime] > 0) {
@@ -161,7 +132,7 @@
         
         [model saveData];
         NSLog(@"========after download=========");
-        [model getFeedEventWithEventType:5];
+       // [model getFeedEventWithEventType:5];
         
         [model notifyModelChange];
         
@@ -169,7 +140,7 @@
             //还有数据没更新，继续从服务器拉取数据
             [NSTimer scheduledTimerWithTimeInterval:0.1
                                              target:self
-                                           selector:@selector(synchronizedFromServer)
+                                           selector:@selector(synchronizedFromServerPrivate)
                                            userInfo:nil
                                             repeats:NO];
         } else {
@@ -331,9 +302,6 @@
 }
 
 
-
-
-
 - (void)updateEventsFromCalendarApp
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -398,7 +366,7 @@
                     
                     [model saveData];
                     
-                    [model getFeedEventWithEventType:5];
+                    //[model getFeedEventWithEventType:5];
                     [model notifyModelChange];
                 }
                 
