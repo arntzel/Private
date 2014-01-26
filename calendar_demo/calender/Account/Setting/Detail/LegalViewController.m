@@ -61,8 +61,8 @@
             break;
     }
     self.navigation.titleLable.text = title;
-    self.navigation.leftBtn.frame = CGRectMake(8, 29, 26, 26);
-    [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_noti_back"] forState:UIControlStateNormal];
+    self.navigation.leftBtn.frame = CGRectMake(8, 33, 20, 20);
+    [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"back_button_asset"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:nil forState:UIControlStateNormal];
     self.navigation.rightBtn.hidden = YES;
     
