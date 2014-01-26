@@ -96,7 +96,9 @@
         [Utils setUserTimeZone:[NSTimeZone systemTimeZone]];
     }
     
+#ifndef DEBUG
     [self checkAppUpdated];
+#endif
     
     //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
     self.navigation.calPendingSegment.hidden = NO;
