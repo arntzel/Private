@@ -101,11 +101,13 @@
     }
     
     NSDate * maxStartTime = nil;
+    NSDate * endTime = nil;
     for(ProposeStart * ps in event.propose_starts) {
         
-        if(maxStartTime == nil || [ps.start compare:maxStartTime] > 0)
+        endTime = [ps getEndTime];
+        if(maxStartTime == nil || [endTime compare:maxStartTime] > 0)
         {
-            maxStartTime = ps.start;
+            maxStartTime = endTime;
         }
     }
     self.maxProposeStarTime = maxStartTime;

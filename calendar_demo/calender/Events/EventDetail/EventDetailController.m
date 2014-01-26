@@ -181,7 +181,8 @@
                 //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
                 
                 for (ProposeStart* proposeStart in  self.event.propose_starts) {
-                    if([proposeStart.start compare:current] > 0) {
+                    NSDate * endTime = [proposeStart getEndTime];
+                    if([endTime compare:current] > 0) {
                         [times addObject:proposeStart];
                     }
                 }
