@@ -47,8 +47,14 @@ static NSString * const CellID = @"CountryCell";
 {
     self.navigation.titleLable.text = @"Select Country";
     self.navigation.leftBtn.frame = CGRectMake(8, 29, 67, 26);
-    [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
+    //[self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.navigation.leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.navigation.leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [self.navigation.leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [self.navigation.leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+
     self.navigation.rightBtn.hidden = YES;
 }
 

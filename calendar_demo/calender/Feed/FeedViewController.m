@@ -79,7 +79,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
-    [self playCalendarAnimation];
+    //[self playCalendarAnimation];
 }
 
 - (void)viewDidLoad

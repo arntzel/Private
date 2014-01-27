@@ -59,19 +59,9 @@
 - (void)setTime:(ProposeStart *)startTime
 {
 
-    NSDate *startDate = startTime.start;
-    KalDate *kalDate = [KalDate dateFromNSDate:startDate];
-    NSInteger month = [kalDate month] - 1;
-    NSInteger day = [kalDate day];
-    
-    NSString *monthStr = [[CTimePicker monthNameArray] objectAtIndex:month];
-    self.monthLabel.text = monthStr;
-    self.dayLabel.text = [NSString stringWithFormat:@"%d", day];
-    
-    
+    NSDate *startDate = [startTime.start copy];
+
     NSString *type = [CEventTimePicker getStartTypeFromePropseType:startTime];
-    self.dateTypeLable.text = type;
-    
     self.dateTypeLable.text = type;
     if ([type isEqualToString:DATE_TYPE_ALL_DAY])
     {
@@ -87,39 +77,74 @@
         [self.duringTimeLabel setHidden:NO];
         
         
+        NSString *fullString = @"";
+        
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:startDate];
+        
+        NSInteger hour = 0;
+        NSInteger ampmMark = 0;
+        if (parts.hour == 0) {
+            hour = 12;
+            ampmMark = 0;
+        }
+        else if (parts.hour == 12)
+        {
+            hour = 12;
+            ampmMark = 1;
+        }
+        else
+        {
+            hour = parts.hour % 12;
+            ampmMark = parts.hour / 12;
+        }
+        
+        NSString *timeStr = @"";
+        timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", hour]];
+        timeStr = [timeStr stringByAppendingString:@":"];
+        timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
+        NSString *ampm = [[CTimePicker ampmArray] objectAtIndex:ampmMark];
+        
+        
         if ([type isEqualToString:DATE_TYPE_EXACTLY_AT])
         {
             //exact at
-            NSString *fullString = @"";
-            
-            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:startDate];
-            NSString *timeStr = @"";
-            timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", parts.hour % 12]];
-            timeStr = [timeStr stringByAppendingString:@":"];
-            timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
-            NSString *ampm = [[CTimePicker ampmArray] objectAtIndex:parts.hour / 12];
             ampm = [ampm stringByAppendingString:@" ends "];
+
+            NSDate *endDate = [startTime.end copy];
+            parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:endDate];
+
+            NSInteger endHour = 0;
+            NSInteger endAmpm = 0;
+            if (parts.hour == 0) {
+                endHour = 12;
+                endAmpm = 0;
+            }
+            else if (parts.hour == 12)
+            {
+                endHour = 12;
+                endAmpm = 1;
+            }
+            else
+            {
+                endHour = parts.hour % 12;
+                endAmpm = parts.hour / 12;
+            }
             
+            NSString *endTimeStr = @"";
+            endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%d", endHour]];
+            endTimeStr = [endTimeStr stringByAppendingString:@":"];
+            endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
+            NSString *endAmpmStr = [[CTimePicker ampmArray] objectAtIndex:endAmpm];
             
-            NSDate *endDate = startTime.end;
             KalDate *kalDate = [KalDate dateFromNSDate:endDate];
             NSInteger month = [kalDate month] - 1;
             NSInteger day = [kalDate day];
             NSString *monthStr = [[CTimePicker monthNameArray] objectAtIndex:month];
             monthStr = [monthStr stringByAppendingString:@" "];
-
             NSString *dayStr = [NSString stringWithFormat:@"%d ", day];
-            parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:endDate];
             
-            NSString *endTimeStr = @"";
-            endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%d", parts.hour % 12]];
-            endTimeStr = [endTimeStr stringByAppendingString:@":"];
-            endTimeStr = [endTimeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
-
-            NSString *endAmpm = [[CTimePicker ampmArray] objectAtIndex:parts.hour / 12];
-            
-            fullString = [NSString stringWithFormat:@"%@%@%@%@%@%@",timeStr, ampm, monthStr, dayStr, endTimeStr, endAmpm];
+            fullString = [NSString stringWithFormat:@"%@%@%@%@%@%@",timeStr, ampm, monthStr, dayStr, endTimeStr, endAmpmStr];
             self.duringTimeLabel.text = fullString;
             
             NSInteger seekPointPre = 0;
@@ -138,22 +163,13 @@
             seekPointNex = endTimeStr.length;
             [self.duringTimeLabel setFont:[UIFont systemFontOfSize:16] fromIndex:seekPointPre length:seekPointNex];
             seekPointPre += seekPointNex;
-            seekPointNex = endAmpm.length;
+            seekPointNex = endAmpmStr.length;
             [self.duringTimeLabel setFont:[UIFont systemFontOfSize:11] fromIndex:seekPointPre length:seekPointNex];
 
         }
         else
         {
             //duration
-            NSString *fullString = @"";
-            
-            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDateComponents *parts = [gregorian components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:startDate];
-            NSString *timeStr = @"";
-            timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%d", parts.hour % 12]];
-            timeStr = [timeStr stringByAppendingString:@":"];
-            timeStr = [timeStr stringByAppendingString:[NSString stringWithFormat:@"%02d", parts.minute]];
-            NSString *ampm = [[CTimePicker ampmArray] objectAtIndex:parts.hour / 12];
             ampm = [ampm stringByAppendingString:@" for "];
             
             NSString *duringHourStr = [NSString stringWithFormat:@"%d", startTime.duration_hours];
@@ -194,6 +210,14 @@
         }
     }
     
+    KalDate *kalDate = [KalDate dateFromNSDate:startDate];
+    NSInteger month = [kalDate month] - 1;
+    NSInteger day = [kalDate day];
+    
+    NSString *monthStr = [[CTimePicker monthNameArray] objectAtIndex:month];
+    self.monthLabel.text = monthStr;
+    self.dayLabel.text = [NSString stringWithFormat:@"%d", day];
+
     [self.duringTimeLabel setColor:[UIColor colorWithRed:73/255.0f green:73/255.0f blue:73/255.0f alpha:1.0f] fromIndex:0 length:self.duringTimeLabel.text.length];
 }
 
