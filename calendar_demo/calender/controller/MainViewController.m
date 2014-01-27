@@ -59,7 +59,7 @@
     
     [[CoreDataModel getInstance] initDBContext:me];
     
-    [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+    [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
 
         [feedViewCtr onCoreDataModelStarted];
         

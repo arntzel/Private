@@ -251,7 +251,7 @@
             [self refreshWithDate:[Utils getCurrentDate]];
         }
         
-        [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         }];
     }];
 }
@@ -376,7 +376,9 @@
     }
     else {
         
-        [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        //YK: what is this?
+        
+        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         }];
     }
 }

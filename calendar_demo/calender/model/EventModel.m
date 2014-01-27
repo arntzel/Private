@@ -60,7 +60,7 @@
     }
 }
 
--(void) synchronizedFromServer:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+-(void) downloadServerEvents:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
     assert([[UserModel getInstance] isLogined]);
     
@@ -147,7 +147,7 @@
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), queue, ^{
 
-                [self synchronizedFromServer:unused onComplete:completion];
+                [self downloadServerEvents:unused onComplete:completion];
             });
         }
         else
