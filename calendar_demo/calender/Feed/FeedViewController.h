@@ -1,9 +1,10 @@
-
-
 #import <UIKit/UIKit.h>
+
+#import "CoreDataModel.h"
 #import "BaseMenuViewController.h"
 
 @protocol FeedViewControllerDelegate <NSObject>
+
 @optional
 -(void)blurBackground;
 -(void)unloadBlurBackground;
@@ -12,7 +13,7 @@
 -(void)disableCalendarBouns;
 @end
 
-@interface FeedViewController : BaseMenuViewController<UIGestureRecognizerDelegate>
+@interface FeedViewController : BaseMenuViewController<UIGestureRecognizerDelegate, CoreDataModelDelegate>
 
 -(void)playCalendarAnimation;
 

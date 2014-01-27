@@ -237,8 +237,8 @@
 
 -(void) synchronizedFromServer
 {
-    [[[Model getInstance] getEventModel] synchronizedFromServer];
-    [[[Model getInstance] getEventModel] checkContactUpdate];
+//    [[[Model getInstance] getEventModel] synchronizedFromServer];
+//    [[[Model getInstance] getEventModel] checkContactUpdate];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

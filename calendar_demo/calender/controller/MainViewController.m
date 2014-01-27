@@ -1,4 +1,4 @@
-
+//
 #import "MainViewController.h"
 #import "FeedViewController.h"
 #import "menuNavigation.h"
@@ -55,8 +55,22 @@
     
     currentIndex = 0;
 
-    User * me = [[UserModel getInstance] getLoginUser];
+    User *me = [[UserModel getInstance] getLoginUser];
+    
     [[CoreDataModel getInstance] initDBContext:me];
+    
+    [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+
+        [feedViewCtr onCoreDataModelStarted];
+        
+//        [feedViewCtr onCoreDataModelChanged];
+//        [pendingEventViewCtr onCoreDataModelChanged];
+        
+        [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+            [feedViewCtr onCoreDataModelChanged];
+            [pendingEventViewCtr onCoreDataModelChanged];
+        }];
+    }];
     
     return self;
 }
@@ -147,6 +161,7 @@
 {
     if (self.rootViewController == settingViewCtr)
         return;
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -161,6 +176,7 @@
 {
     if (self.rootViewController == feedViewCtr)
         return;
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -188,7 +204,6 @@
         [UIView animateWithDuration:.1 animations:^{
             
             [self setRootViewController:pendingEventViewCtr];
-            
             
         } completion:^(BOOL finished) {
             //[segControl setSelectedSegmentIndex:1];

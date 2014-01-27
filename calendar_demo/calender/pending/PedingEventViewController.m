@@ -1,20 +1,15 @@
-
-
 #import "PedingEventViewController.h"
 #import "EventPendingToolbar.h"
 #import "PendingEventViewCell.h"
 #import "PendingEventViewCell2.h"
-
 #import "RootNavContrller.h"
 #import "PendingTableView.h"
-
 #import "UserModel.h"
 #import "Model.h"
-
 #import "CustomerIndicatorView.h"
 #import "CoreDataModel.h"
 
-@interface PedingEventViewController () <EventPendingToolbarDelegate, CoreDataModelDelegate>
+@interface PedingEventViewController () <EventPendingToolbarDelegate>
 
 @end
 
@@ -31,18 +26,16 @@
     NSMutableArray * yourPendingEvents;
     NSMutableArray * invitedCompletedEvents;
     NSMutableArray * invitedPedingEvents;
-
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     yourCompletedEvents = [[NSMutableArray alloc] init];
     yourPendingEvents = [[NSMutableArray alloc] init];
     invitedCompletedEvents = [[NSMutableArray alloc] init];
     invitedPedingEvents = [[NSMutableArray alloc] init];
-
 
     //[self.navigation.calPendingSegment setSelectedSegmentIndex:1];
     self.navigation.calPendingSegment.hidden = NO;
@@ -55,7 +48,6 @@
     toolbar = [EventPendingToolbar createView];
     toolbar.delegate = self;
 
-
     CGRect frame = toolbar.frame;
     frame.origin.y = y;
     toolbar.frame = frame;
@@ -63,7 +55,6 @@
 
     y += toolbar.frame.size.height;
 
-    
     frame = self.view.bounds;
     frame.origin.y = y;
     frame.size.height -= y;
@@ -83,8 +74,6 @@
     table1.hidden = NO;
     table2.hidden = YES;
 
-  
-
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
     frame.origin.x = 320 + 40;
@@ -92,15 +81,10 @@
     dataLoadingView.frame = frame;
 
     [self.view addSubview:dataLoadingView];
-
-    [[CoreDataModel getInstance] addDelegate:self];
-
-    //[self loadData];
 }
 
 -(void) viewDidUnload
 {  
-    [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
 }
 
@@ -111,6 +95,16 @@
     if (self.navigation) {
         [self.navigation.calPendingSegment setSelectedSegmentIndex:1];
     }
+
+    [self loadData];
+}
+
+-(void) onCoreDataModelStarted
+{
+}
+
+-(void) onCoreDataModelChanged
+{
     [self loadData];
 }
 
@@ -196,9 +190,4 @@
     }
 }
 
-
--(void) onCoreDataModelChanged
-{
-    [self loadData];
-}
 @end

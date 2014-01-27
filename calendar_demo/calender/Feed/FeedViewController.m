@@ -1,39 +1,26 @@
-
 #import "FeedViewController.h"
-
-
 #import "EventView.h"
-
 #import "Location.h"
-
 #import "KalLogic.h"
 #import "KalDate.h"
 #import "NSDateAdditions.h"
-
 #import "UserModel.h"
 #import "Model.h"
 #import "Utils.h"
-
 #import "RootNavContrller.h"
 #import "AddEventViewController.h"
-
-
 #import "FeedEventTableView.h"
-
 #import "FeedCalenderView.h"
-
 #import "CustomerIndicatorView.h"
 #import "NSDateAdditions.h"
 #import "CoreDataModel.h"
 #import "LoadingProgressView.h"
 #import "ViewUtils.h"
-#import "EventModel.h"
-
 #import "LoginMainViewController.h"
-
 #import "UserSetting.h"
 #import "BLRView.h"
 #import "iCalEventShowSettingsViewController.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -41,8 +28,6 @@
                                   KalTileViewDataSource,
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,
-                                  CoreDataModelDelegate,
-                                  EventModelDelegate,
                                   FeedViewControllerDelegate,
                                   UIAlertViewDelegate>
 {
@@ -137,7 +122,6 @@
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
     
-    
     self.calendarView = [[FeedCalenderView alloc] initWithdelegate:self controllerDelegate:self logic:logic selectedDate:[KalDate dateFromNSDate:date]];
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
@@ -206,10 +190,9 @@
    
     [self.view addSubview:dataLoadingView];
     
-    [[CoreDataModel getInstance] addDelegate:self];
-    [[[Model getInstance] getEventModel] addDelegate:self];
+    [[[Model getInstance] getEventModel] addDelegate:self]; //YK: will be going next
+    
     [[[Model getInstance] getEventModel] checkSettingUpdate];
-    [[[Model getInstance] getEventModel] synchronizedFromServer];
     [[[Model getInstance] getEventModel] checkContactUpdate];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
@@ -222,19 +205,16 @@
         //[self firstTimeLogic];
         
     } else {
-        
-        [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
-        [self scroll2Today];
+
+        [self refreshWithDate:[Utils getCurrentDate]];
     }
 }
 
--(void)firstTimeLogic {
+-(void)firstTimeLogic000 {
     
     User * me = [[UserModel getInstance] getLoginUser];
     
     NSDate * today =  [Utils getCurrentDate];
-    
-  //  [[[Model getInstance] getEventModel] setSynchronizeData:YES];
     
     NSMutableString * eventType = [[NSMutableString alloc] init];
     [eventType appendString:@"0,5"];
@@ -248,8 +228,6 @@
     }
     
     [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-        
-    //    [[[Model getInstance] getEventModel] setSynchronizeData:NO];
         
         if(error == 0) {
             CoreDataModel * model = [CoreDataModel getInstance];
@@ -269,12 +247,12 @@
                 [entity convertFromEvent:evt];
                 [model updateFeedEventEntity:entity];
             }
-            
-            [tableView reloadFeedEventEntitys:[Utils getCurrentDate]];
-            [self scroll2Today];
+
+            [self refreshWithDate:[Utils getCurrentDate]];
         }
         
-        [[[Model getInstance] getEventModel] synchronizedFromServer];
+        [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        }];
     }];
 }
 
@@ -354,14 +332,10 @@
 }
 
 -(void)viewDidUnload {
-    [[CoreDataModel getInstance] removeDelegate:self];
-    [[[Model getInstance] getEventModel] removeDelegate:self];
+    [[[Model getInstance] getEventModel] removeDelegate:self]; //YK: will be going next
     
     [super viewDidUnload];
 }
-
-
-
 
 -(void) scroll2Today
 {
@@ -387,7 +361,6 @@
         return;
     }
     
-    
     if(buttonIndex == 0) {
         
         [[UserModel getInstance] setLoginUser:nil];
@@ -400,9 +373,11 @@
         LoginMainViewController* rootController = [[LoginMainViewController alloc] init];
         [navController pushViewController:rootController animated:NO];
         
-    } else {
+    }
+    else {
         
-        [[[Model getInstance] getEventModel] synchronizedFromServer];
+        [[[Model getInstance] getEventModel] synchronizedFromServer:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        }];
     }
 }
 
@@ -434,19 +409,30 @@
     return YES;
 }
 
-
 #pragma mark -
 #pragma mark CoreDataModelDelegate
+
+-(void) onCoreDataModelStarted
+{
+    [dataLoadingView startAnim];
+}
+
 -(void) onCoreDataModelChanged
 {
     NSDate * date = [tableView getFirstVisibleDay];
-    if (date == nil) {
+    
+    [self refreshWithDate:date];
+    
+    [dataLoadingView stopAnim];
+}
+
+-(void)refreshWithDate:(NSDate*)date {
+    if (date==nil) {
         date = [Utils getCurrentDate];
     }
     
     [tableView reloadFeedEventEntitys:date];
     [tableView scroll2Date:[Utils formateDay:date] animated:NO];
-    
     [self.calendarView setNeedsDisplay];
 }
 
@@ -521,37 +507,6 @@
 {
     NSLog(@"onDisplayFirstDayChanged:%@", firstDay);
     [self.calendarView.kalView swith2Date:firstDay];
-}
-
--(void) onEventModelChanged:(BOOL) isSynchronizingData
-{
-    if(isSynchronizingData) {
-        [dataLoadingView startAnim];
-    } else {
-        [dataLoadingView stopAnim];
-    }
-}
-
--(void) onSynchronizeDataError:(int) errorCode
-{
-    //TOOD::
-    //[dataLoadingView stopAnim];
-    //[self onSynchronizeDataCompleted];
-}
-
--(void) onSynchronizeDataCompleted
-{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        if(fristLoadData) {
-//            LOG_D(@"onSynchronizeDataCompleted scroll feed table to today");
-//            fristLoadData = NO;
-//            
-//            NSDate * now = [Utils getCurrentDate];
-//            NSString * day = [Utils formateDay:now];
-//            [tableView scroll2SelectedDate:day];
-//        }
-//    });
 }
 
 -(void) onUserAccountChanged

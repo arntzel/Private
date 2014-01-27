@@ -262,8 +262,6 @@
     }
 }
 
-
-
 -(void) onLogined
 {
     MainViewController *rootController = [[MainViewController alloc] init];
@@ -279,9 +277,7 @@
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-    
     [alert show];
-    
 }
 
 #pragma mark -

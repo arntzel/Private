@@ -1,5 +1,3 @@
-
-
 #import "CoreDataModel.h"
 #import "Utils.h"
 #import "NSDateAdditions.h"

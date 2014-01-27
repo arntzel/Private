@@ -60,12 +60,7 @@
     }
 }
 
--(void) synchronizedFromServer
-{
-    [self synchronizedFromServerPrivate];
-}
-
--(void) synchronizedFromServerPrivate
+-(void) synchronizedFromServer:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
     assert([[UserModel getInstance] isLogined]);
     
@@ -81,10 +76,19 @@
         
         LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
         
-        if(events.count == 0) {
+        if (error) {
+            if (completion) {
+                completion(NO,totalCount);
+            }
+            return;
+        }
+        
+        if (events.count == 0) {
             LOG_D(@"synchronizedFromServer, no updated event");
-            [self updateEventsFromCalendarApp];
-           
+            
+            if (completion) {
+                completion(NO,totalCount);
+            }
             return;
         }
         
@@ -131,24 +135,25 @@
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
         [model saveData];
+        
         NSLog(@"========after download=========");
        // [model getFeedEventWithEventType:5];
         
         [model notifyModelChange];
         
         if(events.count < totalCount) {
-            //还有数据没更新，继续从服务器拉取数据
-            [NSTimer scheduledTimerWithTimeInterval:0.1
-                                             target:self
-                                           selector:@selector(synchronizedFromServerPrivate)
-                                           userInfo:nil
-                                            repeats:NO];
-        } else {
             
-            //[self updateEventsFromCalendarApp];
-            
-            for(id<EventModelDelegate> delegate in delegates) {
-                [delegate onSynchronizeDataCompleted];
+            //next page - test some more please
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), queue, ^{
+
+                [self synchronizedFromServer:unused onComplete:completion];
+            });
+        }
+        else
+        {
+            if (completion) {
+                completion(NO,totalCount);
             }
         }
     }];
@@ -238,6 +243,86 @@
     }];
 }
 
+-(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+{
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        [[Model getInstance] getEventsFromCalendarApp:^(NSMutableArray *allEvents) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            BOOL success = NO;
+            
+            if (allEvents != nil)
+            {
+                success = YES;
+                
+                CoreDataModel * model = [CoreDataModel getInstance];
+                NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
+                
+                for (Event *tmp in allEvents)
+                {
+                    for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
+                    {
+                        if ([tmp.ext_event_id isEqualToString:iCalEventInDB.ext_event_id])
+                        {
+                            [allICalEventsInDB removeObject:iCalEventInDB];
+                            break;
+                        }
+                    }
+                }
+                
+                for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
+                {
+                    LOG_D(@"have %d event(s) has been deleted!!!",[allICalEventsInDB count]);
+                    FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:iCalEventInDB.ext_event_id];
+                    eventEntity.hasDeleted = @(YES);
+                }
+                for (Event *event1 in allEvents)
+                {
+                    FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
+                    if (eventEntity)
+                    {
+                        NSTimeInterval entitySec = (int)[eventEntity.last_modified timeIntervalSince1970];
+                        NSTimeInterval eventSec = (int)[event1.last_modified timeIntervalSince1970];
+                        if (entitySec < eventSec)
+                        {
+                            
+                            NSNumber *tmpID = eventEntity.id;
+                            
+                            [eventEntity convertFromCalendarEvent:event1];
+                            eventEntity.id = tmpID;
+                            eventEntity.hasModified = @(YES);
+                            //新加属性 belongToiCal，因无须同步到服务器，所以不在convertFromCalendarEvent:方法中封装，如果
+                            //封装则可能从服务器获得空值。
+                            eventEntity.belongToiCal = event1.belongToiCal;
+                            [model updateFeedEventEntity:eventEntity];
+                        }
+                    }
+                    else
+                    {
+                        FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
+                        [entity convertFromCalendarEvent:event1];
+                        entity.belongToiCal = event1.belongToiCal;
+                        [model updateFeedEventEntity:entity];
+                    }
+                }
+                
+                [model saveData];
+                
+                //[model getFeedEventWithEventType:5];
+                //[model notifyModelChange];
+            }
+            
+            if (completion) {
+                completion(success, [allEvents count]);
+            }
+            });
+        }];
+    });
+}
+
 
 -(void) checkSettingUpdate
 {
@@ -300,7 +385,6 @@
         }
     }];
 }
-
 
 - (void)updateEventsFromCalendarApp
 {
@@ -372,7 +456,7 @@
                 
                 for(id<EventModelDelegate> delegate in delegates)
                 {
-                    [delegate onSynchronizeDataCompleted];
+                    //[delegate onSynchronizeDataCompleted];
                 }
             });
         }];
@@ -419,9 +503,7 @@
         {
             [self modifyCalendarEventsFromServer];
         }
-        
     });
-    
 }
 
 - (void)modifyCalendarEventsFromServer

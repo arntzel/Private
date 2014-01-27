@@ -10,8 +10,6 @@
 
 -(void) onSynchronizeDataError:(int) errorCode;
 
--(void) onSynchronizeDataCompleted;
-
 
 @optional
 
@@ -30,7 +28,9 @@
 
 -(void) removeDelegate:(id<EventModelDelegate>) delegate;
 
--(void) synchronizedFromServer;
+-(void) synchronizedFromServer:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
+
+-(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
 
 -(void) checkContactUpdate;
 -(void) checkSettingUpdate;

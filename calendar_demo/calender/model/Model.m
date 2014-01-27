@@ -377,7 +377,7 @@ static Model * instance;
 }
 - (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback;
 {
-    LOG_D(@"updateEventsFromCalendarApp");
+    LOG_D(@"modifyICalEventWithEventEntity");
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, [eventEntity.id intValue]];
     NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
     [[UserModel getInstance] setAuthHeader:request];
@@ -580,7 +580,7 @@ static Model * instance;
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=40&offset=0&modified_num__gt=%@", HOST, modified_num];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=10&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 

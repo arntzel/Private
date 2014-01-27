@@ -12,6 +12,7 @@
 
 @protocol CoreDataModelDelegate <NSObject>
 
+-(void) onCoreDataModelStarted;
 -(void) onCoreDataModelChanged;
 
 @end
