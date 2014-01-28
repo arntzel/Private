@@ -103,6 +103,10 @@
     allDays = nil;
 }
 
+-(NSMutableDictionary *) dict {
+    return dict;
+}
+
 -(NSArray *) allDays
 {
     if(allDays == nil) {

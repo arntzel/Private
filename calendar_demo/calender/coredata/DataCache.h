@@ -56,6 +56,7 @@
 
 -(NSArray *) allDays;
 
+-(NSMutableDictionary *) dict;
 
 -(BOOL) containDay:(NSString *) day;
 

@@ -26,11 +26,13 @@
     NSString * currentFirstDay;
     CoreDataModel * model;
     DataCache * cache;
+    NSDate *startDate;
+    NSDate *endDate;
+    NSCalendar *gregorianCalendar;
 
     NSDate * firstVisibleDay;
     BOOL onDisplayFirstDayChangedNotify;
 }
-
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -52,7 +54,6 @@
     return self;
 }
 
-
 -(void) initTableView {
   
     self.dataSource = self;
@@ -61,6 +62,12 @@
     model = [CoreDataModel getInstance];
     cache = [model getCache];
     onDisplayFirstDayChangedNotify = YES;
+    
+    NSTimeInterval day = 60*60*24;
+    NSDate *d = [NSDate dateWithTimeInterval:day * -10 sinceDate:[NSDate date]];
+    startDate = [self dateAtBeginningOfDayForDate:d];
+    endDate = [self dateByAddingYears:1 toDate:startDate];
+    gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 }
 
 -(NSDate *) getFirstVisibleDay
@@ -84,7 +91,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if(onDisplayFirstDayChangedNotify) {
-        [self changeCalOnDisplayDay];
+//        [self changeCalOnDisplayDay];
     }
 }
 
@@ -143,7 +150,6 @@
         //if(allDay.count == 0) return;
 
         NSLog(@"scrollViewDidScroll: load pre more events:%@，%d", cache.date, cache.followCount);
-        
 
         NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:cache.followCount andEventTypeFilter:self.eventTypeFilters];
         
@@ -152,12 +158,13 @@
         
         [self reloadData];
         [self flashScrollIndicators];
-
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+{    
+ //crash   [self changeCalOnDisplayDay];
+    
     int y = scrollView.contentOffset.y;
     [self reloadMoreData:y];
     onDisplayFirstDayChangedNotify = YES;
@@ -226,20 +233,70 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSArray * allDay = [cache allDays];
-    return allDay.count;
+    
+//    NSArray * allDay = [cache allDays];
+//    return allDay.count;
+    
+    return 365;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSTimeInterval day = 60*60*24;
+    NSDate *d = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
+    
+    //NSString * sectionName = @"2014-01-20";//[[cache allDays] objectAtIndex:section];
+    NSString *sectionName = [Utils formateDay:d];
+    
+    sectionName = [Utils toReadableDay:sectionName];
+    
+    CGRect frame = CGRectMake(0, 0, 320, 38);
+    
+    UIView * view = [[UIView alloc] initWithFrame:frame];
+    //[view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
+    [view setBackgroundColor:[UIColor generateUIColorByHexString:@"#dae4e0" withAlpha:0.97]];
+    
+    float fontColor = 0;//172.0/255.0;
+    
+    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 320-50, 18)];
+    dayLabel.text = sectionName;
+    dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
+    [dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17]];
+    dayLabel.textAlignment = NSTextAlignmentLeft;
+    dayLabel.backgroundColor = [UIColor clearColor];
+    
+    [view addSubview:dayLabel];
+    
+    CALayer *layer = [CALayer layer];
+    layer.frame = CGRectMake(0, -0.78, 50, 1);
+    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+    //layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [view.layer addSublayer:layer];
+    
+    return view;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    NSArray * allDays = [cache allDays];
-    NSString * day = [allDays objectAtIndex:section];
-    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
+    NSTimeInterval day = 60*60*24;
+    NSDate *d = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
+    NSString *sectionName = [Utils formateDay:d];
+ 
+    NSDictionary *hash = [cache dict];
+    
+    if ([hash objectForKey:sectionName]==nil)
+        return 0;
+    
+//    NSArray * allDays = [cache allDays];
+//    NSString * day = [allDays objectAtIndex:section];
+//    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
+    
+    DayFeedEventEntitysWrap *wrap = [hash objectForKey:sectionName];
     if(wrap.eventTypeFilter != self.eventTypeFilters) {
         wrap.eventTypeFilter = self.eventTypeFilters;
         [wrap resetSortedEvents];
     }
-   
+    
     int count =  [wrap sortedEvents].count;
     
     return count;
@@ -290,7 +347,7 @@
     }
 }
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView*)tableView000:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSString * sectionName = [[cache allDays] objectAtIndex:section];
     sectionName = [Utils toReadableDay:sectionName];
@@ -320,7 +377,6 @@
 
     return view;
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -359,9 +415,27 @@
 
 -(FeedEventEntity *) getFeedEventEntity:(NSIndexPath *)indexPath
 {
-    NSArray * allDays = [cache allDays];
-    NSString * day = [allDays objectAtIndex:indexPath.section];
-    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
+    NSTimeInterval day = 60*60*24;
+    NSDate *d = [NSDate dateWithTimeInterval:day * indexPath.section sinceDate:startDate];
+    NSString *sectionName = [Utils formateDay:d];
+    
+    NSDictionary *hash = [cache dict];
+    
+    if ([hash objectForKey:sectionName]==nil) {
+        assert(NO);
+    }
+    
+    DayFeedEventEntitysWrap *wrap = [hash objectForKey:sectionName];
+    if(wrap.eventTypeFilter != self.eventTypeFilters) {
+        wrap.eventTypeFilter = self.eventTypeFilters;
+        [wrap resetSortedEvents];
+    }
+    
+
+//prev
+//    NSArray * allDays = [cache allDays];
+//    NSString * day = [allDays objectAtIndex:indexPath.section];
+//    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
 
     if(wrap.eventTypeFilter != self.eventTypeFilters) {
         wrap.eventTypeFilter = self.eventTypeFilters;
@@ -438,9 +512,40 @@
     
     NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:i];
     if (i > 0) {
-        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+        //YKTEMP:[self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
     }
+}
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
+{
+    // Use the user's current calendar and time zone
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [calendar setTimeZone:timeZone];
     
+    // Selectively convert the date components (year, month, day) of the input date
+    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+    
+    // Set the time components manually
+    [dateComps setHour:0];
+    [dateComps setMinute:0];
+    [dateComps setSecond:0];
+    
+    // Convert back
+    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
+    return beginningOfDay;
+}
+
+- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate
+{
+    // Use the user's current calendar
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setYear:numberOfYears];
+    
+    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
+    return newDate;
 }
 
 @end
