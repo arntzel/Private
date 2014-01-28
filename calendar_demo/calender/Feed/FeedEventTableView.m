@@ -154,9 +154,9 @@
         [self reloadData];
         [self scroll2Date:firtDay];
         [self flashScrollIndicators];
-        
     }
-    else if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
+    else
+    if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
         
         //NSArray * allDay = [cache allDays];
         //if(allDay.count == 0) return;
@@ -174,24 +174,31 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{    
+{
+    //YK: wrong place.
     [self changeCalOnDisplayDay];
     
-    int y = scrollView.contentOffset.y;
-    [self reloadMoreData:y];
+    
+//YKTEMP:
+//    int y = scrollView.contentOffset.y;
+//    [self reloadMoreData:y];
+    
     onDisplayFirstDayChangedNotify = YES;
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void)scrollViewDidEndDragging000:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 //    if (!decelerate) {
 //        [self changeCalOnDisplayDay];
 //    }
-    int y = scrollView.contentOffset.y;
-    if (!decelerate) {
-        [self reloadMoreData:y];
-    }
+    
+
+//YKTEMP:
+//    int y = scrollView.contentOffset.y;
+//    if (!decelerate) {
+//        [self reloadMoreData:y];
+//    }
     
     
 //    if(y < 60) {
@@ -317,8 +324,8 @@
         return c;
     }
     
-    if( ![event isBirthdayEvent] ) {
-
+    if( ![event isBirthdayEvent] )
+    {
         UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
         EventView * view;
         if(cell == nil) {
@@ -336,10 +343,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         return cell;
-
     }
-    else {
-
+    else
+    {
         UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"birthdayEventView"];
         BirthdayEventView * view;
         if(cell == nil) {

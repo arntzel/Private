@@ -507,7 +507,7 @@
 #pragma mark FeedEventTableViewDelegate
 -(void) onDisplayFirstDayChanged:(NSDate *) firstDay
 {
-    NSLog(@"onDisplayFirstDayChanged:%@", firstDay);
+    NSLog(@"onDisplayFirstDayChanged: %@", firstDay);
     [self.calendarView.kalView swith2Date:firstDay];
 }
 
