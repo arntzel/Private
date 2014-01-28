@@ -18,6 +18,7 @@
 #import "NoEventsCell.h"
 
 #define FETECH_EVENTS 20
+#define MAX_FORWARD 365
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -245,7 +246,7 @@
 //    NSArray * allDay = [cache allDays];
 //    return allDay.count;
     
-    return 365;
+    return MAX_FORWARD;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -476,7 +477,23 @@
     [self scroll2Date:day animated:NO];
 }
 
--(void) scroll2Date:(NSString *) day animated:(BOOL) animated
+-(void) scroll2Date:(NSString *) day1 animated:(BOOL) animated
+{
+    for (int i=0; i < MAX_FORWARD; i++) {
+        NSTimeInterval day = 60*60*24;
+        NSDate *sectionDate = [NSDate dateWithTimeInterval:day * i sinceDate:startDate];
+        NSString *sectionName = [Utils formateDay:sectionDate];
+        if ([sectionName isEqualToString:day1]) {
+            
+            NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:i];
+           [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+
+            return;
+        }
+    }
+}
+
+-(void) scroll2Date000:(NSString *) day animated:(BOOL) animated
 {
     NSArray * allDays = [cache allDays];
     
