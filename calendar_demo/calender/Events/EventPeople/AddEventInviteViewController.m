@@ -28,7 +28,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     NSMutableArray * calvinSearchedUsers;
     int offset;
     
-    NSOperationQueue * queue;
+    //NSOperationQueue * queue;
 }
 
 @end
@@ -51,8 +51,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [line release];
     [searchView release];
     
-    [queue cancelAllOperations];
-    [queue release];
     [super dealloc];
 }
 
@@ -60,9 +58,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [super viewDidLoad];
 
-    queue  = [[NSOperationQueue alloc]init];
-    queue.maxConcurrentOperationCount = 1;
-    
     NavgationBar * navBar = [[NavgationBar alloc] init];
     [navBar setTitle:@""];
     [navBar setLeftBtnText:@""];
@@ -218,10 +213,11 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     LOG_I(@"refreshTableView:%@", searchText);
     
     [self searchUser:searchText];
+    [self.tableView reloadData];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.tableView reloadData];
+//    });
 }
 
 -(void) searchUser:(NSString *) searchText
@@ -419,10 +415,13 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     LOG_D(@"tokenFieldTextDidChange:%@", tokenField.textField.text);
     
-    [queue cancelAllOperations];
-    [queue addOperationWithBlock:^{
-        [self refreshTableView];
-    }];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.3f];
+    
+//    [queue cancelAllOperations];
+//    [queue addOperationWithBlock:^{
+//        [self refreshTableView];
+//    }];
 }
 
 - (void)addOjbToTokenFieldName:(NSString *)string Obj:(id)obj isValid:(BOOL)isvalid

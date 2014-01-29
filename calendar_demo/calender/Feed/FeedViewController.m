@@ -85,7 +85,6 @@
     [self checkAppUpdated];
 #endif
     
-    //[self.navigation.calPendingSegment setSelectedSegmentIndex:0];
     self.navigation.calPendingSegment.hidden = NO;
     [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -128,11 +127,12 @@
     [self.calendarView setKalTileViewDataSource:self];
     [self.view addSubview:self.calendarView];
     
-    if (([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) && ([Utils isCalvinFirstLaunched]))
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
     {
         calendarViewCenter = self.calendarView.center;
         animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-        [self playCalendarAnimation];
+        [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:NO];
+        //[self playCalendarAnimation];
 //        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
 //        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
         //[self playCalendarAnimation];
