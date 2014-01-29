@@ -82,7 +82,7 @@
 //    UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
 //    [sepLine setBackgroundColor:[UIColor lightGrayColor]];
 //    [self.view addSubview:sepLine];
-    CGRect logoRect = CGRectMake(20, 40, 64, 20);
+    CGRect logoRect = CGRectMake(125, 40, 64, 20);
     
     //UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:logoRect];
     UIButton *logoButton = [[UIButton alloc]initWithFrame:logoRect];
@@ -122,8 +122,8 @@
     NSIndexPath * path = [NSIndexPath indexPathForRow:0 inSection:0];
     [_tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
     
-    float y = [[UIScreen mainScreen] bounds].size.height - 58;
-    UIButton *settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(266, y, 50, 50)];
+    //float y = [[UIScreen mainScreen] bounds].size.height - 58;
+    UIButton *settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 30, 50, 50)];
     [settingBtn setImage:[UIImage imageNamed:@"settings_icon"] forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(onSettingButtonTyped) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:settingBtn aboveSubview:self.tableView];

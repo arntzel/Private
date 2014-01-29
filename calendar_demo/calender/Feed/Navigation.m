@@ -30,7 +30,7 @@
 
 -(void)setUpMainNavigationButtons:(ViewMode)mode
 {
-    UIEdgeInsets insets = UIEdgeInsetsMake(10, 12, 10, 0);
+    UIEdgeInsets insets = UIEdgeInsetsMake(10, 0, 10, 0);
     UIImage *bgImage = [UIImage imageNamed:@"notification_btn.png"];
     //bgImage = [bgImage resizableImageWithCapInsets:insets];
     [self.leftBtn setImage:bgImage forState:UIControlStateNormal];
