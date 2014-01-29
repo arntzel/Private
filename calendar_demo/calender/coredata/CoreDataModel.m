@@ -154,8 +154,7 @@ static CoreDataModel * instance;
 
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter
 {
-    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:andPreLimit:%@", date);
-    
+    NSLog(@"NSFetchRequest: getDayFeedEventEntitys:andPreLimit:%@", date);    
     NSArray * results = [self getFeedEventEntitys:date andFollow:NO andLimit:limit andOffset:offset andEventTypeFilter:eventTypeFilter];
     return results;
 }

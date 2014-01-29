@@ -21,8 +21,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
+#if 0
     [super setSelected:selected animated:animated];
-
+#endif
 }
 
 @end
