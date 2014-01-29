@@ -98,7 +98,7 @@
     
     [self checkAppUpdated];
     
-    //self.navigation.calPendingSegment.hidden = NO;
+    self.navigation.calPendingSegment.hidden = NO;
     [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
     
