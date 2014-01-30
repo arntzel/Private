@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00171F49189AA2D600CB9CAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00171F48189AA2D600CB9CAA /* Images.xcassets */; };
 		231319781867257C00F076C7 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319761867257C00F076C7 /* circle.png */; };
 		231319791867257C00F076C7 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319771867257C00F076C7 /* circle@2x.png */; };
 		2313197C1867271A00F076C7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197A1867271A00F076C7 /* people.png */; };
@@ -130,9 +131,6 @@
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
-		3D10CF24188EB9A3003B096E /* calvin_app_icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D10CF21188EB9A3003B096E /* calvin_app_icon_57x57.png */; };
-		3D10CF25188EB9A3003B096E /* calvin_app_icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D10CF22188EB9A3003B096E /* calvin_app_icon_114x114.png */; };
-		3D10CF26188EB9A3003B096E /* calvin_app_icon_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D10CF23188EB9A3003B096E /* calvin_app_icon_120x120.png */; };
 		3D1EAC5A188AB00A0002F627 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EAC59188AB00A0002F627 /* location@2x.png */; };
 		3D1EAC5D188ACA0F0002F627 /* ContactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1EAC5C188ACA0F0002F627 /* ContactViewCell.m */; };
 		3D1EAC5F188ACA230002F627 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EAC5E188ACA230002F627 /* ContactViewCell.xib */; };
@@ -601,6 +599,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00171F40189A9F5300CB9CAA /* iPhone_Calvin_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_Calvin_Icon.png; sourceTree = "<group>"; };
+		00171F41189A9F5300CB9CAA /* iPhone_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
+		00171F42189A9F5300CB9CAA /* Settings_Calvin_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings_Calvin_Icon.png; sourceTree = "<group>"; };
+		00171F43189A9F5300CB9CAA /* Settings_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
+		00171F44189A9F5300CB9CAA /* Spotlight_Calvin_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_Calvin_Icon.png; sourceTree = "<group>"; };
+		00171F45189A9F5300CB9CAA /* Spotlight_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
+		00171F46189AA11D00CB9CAA /* Iphone_Calvin_Icon_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Iphone_Calvin_Icon_57x57.png; path = "../../../../../../../Downloads/iTunes Icon PNG/Iphone_Calvin_Icon_57x57.png"; sourceTree = "<group>"; };
+		00171F47189AA11D00CB9CAA /* iPhone_Calvin_Icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone_Calvin_Icon_114x114.png; path = "../../../../../../../Downloads/iTunes Icon PNG/iPhone_Calvin_Icon_114x114.png"; sourceTree = "<group>"; };
+		00171F48189AA2D600CB9CAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Calvin/Images.xcassets; sourceTree = "<group>"; };
 		231319761867257C00F076C7 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		231319771867257C00F076C7 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
 		2313197A1867271A00F076C7 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
@@ -758,9 +765,6 @@
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		3D10CF21188EB9A3003B096E /* calvin_app_icon_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calvin_app_icon_57x57.png; sourceTree = "<group>"; };
-		3D10CF22188EB9A3003B096E /* calvin_app_icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calvin_app_icon_114x114.png; sourceTree = "<group>"; };
-		3D10CF23188EB9A3003B096E /* calvin_app_icon_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calvin_app_icon_120x120.png; sourceTree = "<group>"; };
 		3D1EAC59188AB00A0002F627 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		3D1EAC5B188ACA0F0002F627 /* ContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewCell.h; sourceTree = "<group>"; };
 		3D1EAC5C188ACA0F0002F627 /* ContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewCell.m; sourceTree = "<group>"; };
@@ -1682,6 +1686,7 @@
 		3D6151971734A391003D72B0 = {
 			isa = PBXGroup;
 			children = (
+				00171F48189AA2D600CB9CAA /* Images.xcassets */,
 				76A457E7183CEBAC002127D1 /* Share */,
 				769ABD0517DF54950033E677 /* Components */,
 				769ABCFA17DF54860033E677 /* Utils */,
@@ -2021,9 +2026,14 @@
 		769AB92617DF51340033E677 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				3D10CF21188EB9A3003B096E /* calvin_app_icon_57x57.png */,
-				3D10CF22188EB9A3003B096E /* calvin_app_icon_114x114.png */,
-				3D10CF23188EB9A3003B096E /* calvin_app_icon_120x120.png */,
+				00171F46189AA11D00CB9CAA /* Iphone_Calvin_Icon_57x57.png */,
+				00171F47189AA11D00CB9CAA /* iPhone_Calvin_Icon_114x114.png */,
+				00171F40189A9F5300CB9CAA /* iPhone_Calvin_Icon.png */,
+				00171F41189A9F5300CB9CAA /* iPhone_Calvin_Icon@2x.png */,
+				00171F42189A9F5300CB9CAA /* Settings_Calvin_Icon.png */,
+				00171F43189A9F5300CB9CAA /* Settings_Calvin_Icon@2x.png */,
+				00171F44189A9F5300CB9CAA /* Spotlight_Calvin_Icon.png */,
+				00171F45189A9F5300CB9CAA /* Spotlight_Calvin_Icon@2x.png */,
 				76431DFA1806E680009DAFFE /* common */,
 				76318B2517E09A69000BC88B /* Xcassets */,
 				769ABB5017DF53C00033E677 /* en.lproj */,
@@ -3065,7 +3075,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = LVD3R2HGH3;
+						DevelopmentTeam = GGN58EVK65;
 					};
 				};
 			};
@@ -3198,7 +3208,6 @@
 				769AB92417DF51160033E677 /* PendingEventViewCell2.xib in Resources */,
 				769AB99A17DF51340033E677 /* push.caf in Resources */,
 				769AB99B17DF51340033E677 /* push.wav in Resources */,
-				3D10CF25188EB9A3003B096E /* calvin_app_icon_114x114.png in Resources */,
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				769CB5841886CDC10082400D /* AELocalEntry.xib in Resources */,
 				769AB9A217DF51340033E677 /* event_detail_comment_conformed.png in Resources */,
@@ -3266,6 +3275,7 @@
 				769AB9BD17DF51340033E677 /* event_detail_invitee_time_cross_disable.png in Resources */,
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
+				00171F49189AA2D600CB9CAA /* Images.xcassets in Resources */,
 				2344AC2B186BFD69001A4AD0 /* green_right.png in Resources */,
 				239D90C5188D066300E7A042 /* notch@2x.png in Resources */,
 				769AB9BF17DF51340033E677 /* event_detail_invitee_time_tick_disable.png in Resources */,
@@ -3329,7 +3339,6 @@
 				769AB9E817DF51340033E677 /* colordot4.png in Resources */,
 				769AB9E917DF51340033E677 /* colordot5.png in Resources */,
 				769AB9EA17DF51340033E677 /* colordot6.png in Resources */,
-				3D10CF24188EB9A3003B096E /* calvin_app_icon_57x57.png in Resources */,
 				7662F75117F0761900B64E40 /* login_main_login_facebook.png in Resources */,
 				7678229E187971A000CEF40E /* AddDateEntryView.xib in Resources */,
 				34055C731833B13000A2AD8E /* Legal.plist in Resources */,
@@ -3451,7 +3460,6 @@
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
 				769ABCA517DF542A0033E677 /* 19-check.png in Resources */,
-				3D10CF26188EB9A3003B096E /* calvin_app_icon_120x120.png in Resources */,
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769CB56F1886CD740082400D /* add_event_arraw_v2.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
@@ -3931,8 +3939,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3952,8 +3962,8 @@
 					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "04748347-B8E9-4DE6-B204-5CD200A53A5F";
-				"PROVISIONING_PROFILE[sdk=*]" = "04748347-B8E9-4DE6-B204-5CD200A53A5F";
+				PROVISIONING_PROFILE = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
+				"PROVISIONING_PROFILE[sdk=*]" = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3962,8 +3972,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -3983,8 +3995,8 @@
 					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "04748347-B8E9-4DE6-B204-5CD200A53A5F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F904596-19E3-4A13-8845-01BF0B309A97";
+				PROVISIONING_PROFILE = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
