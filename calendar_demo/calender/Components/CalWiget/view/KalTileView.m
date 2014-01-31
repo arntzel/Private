@@ -24,6 +24,20 @@ const CGSize kTileSize = { 45.7f, 50.f };
   return self;
 }
 
+static inline NSString *stringFromWeekday(int weekday)
+{
+    static NSString *strings[] = {
+        @"Sunday",
+        @"Monday",
+        @"Tuesday",
+        @"Wednesday",
+        @"Thursday",
+        @"Friday",
+        @"Saturday",
+    };
+    
+    return strings[weekday - 1];
+}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -60,8 +74,6 @@ const CGSize kTileSize = { 45.7f, 50.f };
         textColor = [UIColor generateUIColorByHexString:@"#232525"];
         //textColor = [UIColor colorWithRed:140.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0];
     }
-    
-    
     
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, 0,self.frame.size.height);
@@ -121,9 +133,25 @@ const CGSize kTileSize = { 45.7f, 50.f };
   [textColor setFill];
   CGContextShowTextAtPoint(ctx, textX, textY, day, n >= 10 ? 2 : 1);
 
+    BOOL drawMonth = NO;
+    
     //draw month
     if (n == 1) {
-        fontSize = 10.0f;
+    //if ((n % 3)==0) {
+        drawMonth = YES;
+    }
+    else {
+        //sunday?
+        NSDate *dt = [self.date NSDate];
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
+        //NSLog(@"%@", stringFromWeekday([components weekday]));
+        if ([components weekday] == 1) {
+            drawMonth = YES; //sunday
+        }
+    }
+    
+    if (drawMonth && date) {
+        fontSize = 10.0;//2.0f;
         UIFont *monthFont = [UIFont boldSystemFontOfSize:fontSize];
         
         CGContextSelectFont(ctx, [font.fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
@@ -134,7 +162,7 @@ const CGSize kTileSize = { 45.7f, 50.f };
         textSize = [monthName sizeWithFont:monthFont];
         
         textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
-        textY = 30;
+        textY = 34;
         
         [textColor setFill];
         CGContextShowTextAtPoint(ctx, textX, textY, cMonthName, [monthName length]);
