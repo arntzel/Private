@@ -223,7 +223,7 @@ static NSTimeZone * userTimeZone;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    [dateFormatter setDateFormat:@"EEEE,MMM d"];
+    [dateFormatter setDateFormat:@"EEEE, MMM d"];
     
     return [dateFormatter stringFromDate:date];
 }

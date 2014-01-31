@@ -24,11 +24,12 @@
 @property IBOutlet UIImageView * imgEventType;
 //@property IBOutlet UILabel * labEventDuration;
 @property IBOutlet UILabel *labTimeStr;
+@property (weak, nonatomic) IBOutlet UIView *separator;
 
 /*
  Update the date in the View
  */
--(void) refreshView:(FeedEventEntity *) event;
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay;
 
 -(float) getEventViewHeight;
 

@@ -191,7 +191,7 @@
     if( ![event isBirthdayEvent] ) {
         EventView * view = [EventView createEventView];
         
-        [view refreshView:event];
+        [view refreshView:event lastForThisDay:NO];
         
         UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
         [cell addSubview:view];

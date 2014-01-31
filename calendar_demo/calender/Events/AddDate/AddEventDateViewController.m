@@ -103,7 +103,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if(dayEvents == nil || dayEvents.count == 0) {
         UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
         return cell;
@@ -114,7 +113,7 @@
     if( ![event isBirthdayEvent] ) {
         EventView * view = [EventView createEventView];
 
-        [view refreshView:event];
+        [view refreshView:event lastForThisDay:NO];
 
         UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
         [cell addSubview:view];

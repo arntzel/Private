@@ -57,3 +57,8 @@
 - (void)removePropose_starts:(NSSet *)values;
 
 @end
+
+//@interface FeedEventEntity (transient)
+//@property (nonatomic, retain) NSNumber * lastForThisDay;
+//
+//@end

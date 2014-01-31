@@ -28,9 +28,10 @@
     return dynamicEventViewHeight;
 }
 
--(void) refreshView:(FeedEventEntity *) event
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay
 {
-
+    self.separator.hidden = lastForThisDay;
+    
     NSString *time, *timeType, *duration;
     if([event.is_all_day boolValue]) {
         
@@ -104,9 +105,9 @@
     //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
     
     int color = [self getEventTypeColor:[event.eventType intValue]];
+    
     self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
    
-    
     UIColor *labelColor = [UIColor generateUIColorByHexString:@"#6b706f"];
     [self.labAttendees setTextColor:labelColor];
     [self.labLocation setTextColor:labelColor];
@@ -120,7 +121,6 @@
         [self.iconLocation setHidden:NO];
     }
     
-    
     CGSize maxSize = CGSizeMake(self.labTitle.frame.size.width, 1000.0f);
     CGSize fontSize = [event.title sizeWithFont:self.labTitle.font constrainedToSize:maxSize lineBreakMode:self.labTitle.lineBreakMode];
     
@@ -133,6 +133,7 @@
 //    labTitleFrame.origin.y = self.labTimeStr.frame.origin.y + 5;
 //    self.labTitle.frame = labTitleFrame;
     //self.labTitle.backgroundColor = [UIColor greenColor];
+    
     
     float metaY = strFrame.origin.y + fontSize.height + 5;
     
@@ -157,10 +158,12 @@
     self.labAttendees.frame = labAttendeesFrame;
     self.iconAttendee.frame = iconAttedeeFrame;
     
+    
     CGRect contentViewFrame = self.contentView.frame;
     contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
-    contentViewFrame.origin.y = 25;
+    contentViewFrame.origin.y = 10;//25;
     self.contentView.frame = contentViewFrame;
+    
     //NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
 }
 
@@ -223,14 +226,13 @@
 {
     NSSet * attendees = event.attendees;
     return [NSString stringWithFormat:@"%d Invitees", attendees.count];
-
 }
-
 
 +(EventView *) createEventView
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventView" owner:self options:nil];
     EventView * view = (EventView*)[nibView objectAtIndex:0];
+    
     view.imgUser.layer.cornerRadius = view.imgUser.frame.size.width/2;
     view.imgUser.layer.masksToBounds = YES;
     
@@ -244,10 +246,9 @@
     UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
     UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
     [view.labTitle setTextColor:kalTitleColor];
-
     [view.labTimeStr setTextColor:kalStandardColor];
     
-    view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
+    //view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
     
     return view;
 }

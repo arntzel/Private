@@ -9,6 +9,9 @@
 #import "FeedEventEntity.h"
 #import "UserEntity.h"
 
+//@implementation FeedEventEntity (transient)
+//    @dynamic lastForThisDay;
+//@end
 
 @implementation FeedEventEntity
 

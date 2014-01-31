@@ -17,6 +17,8 @@
 #define FETECH_EVENTS 20
 #define MAX_FORWARD 365
 #define DAY 60*60*24
+#define HEADER_HEIGHT 28
+#define TAG_SECTION_TEXT_LABEL 555
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -183,25 +185,52 @@
     NSString *sectionName = [Utils formateDay:sectionDate];
     sectionName = [Utils toReadableDay:sectionName];
     
-    CGRect frame = CGRectMake(0, 0, 320, 38);
+    CGRect frame = CGRectMake(0, 0, 320, HEADER_HEIGHT);
     UIView * view = [[UIView alloc] initWithFrame:frame];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UIView *viewSection = [ViewUtils createView:@"FeedEventHeader"];
+    UILabel * dayLabel = (UILabel *)[viewSection viewWithTag:TAG_SECTION_TEXT_LABEL];
+    dayLabel.text = sectionName;
+    
+    CALayer *layerTop = [CALayer layer];
+    layerTop.frame = CGRectMake(0, 0, 320, 0.5f);
+    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+    layerTop.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [viewSection.layer addSublayer:layerTop];
+
+    CALayer *layerBottom = [CALayer layer];
+    layerBottom.frame = CGRectMake(0, HEADER_HEIGHT - 0.5f, 320, 0.5f);
+    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+    layerBottom.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [viewSection.layer addSublayer:layerBottom];
+    
+    return viewSection;
     
     //[view setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:221.0/255.0 alpha:1]];
-    [view setBackgroundColor:[UIColor generateUIColorByHexString:@"#dae4e0" withAlpha:0.97]];
+    //[view setBackgroundColor:[UIColor generateUIColorByHexString:@"#dae4e0" withAlpha:0.97]];
     
-    float fontColor = 0;//172.0/255.0;
-    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 320-50, 18)];
-    dayLabel.text = sectionName;
-    dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
-    [dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17]];
-    dayLabel.textAlignment = NSTextAlignmentLeft;
-    dayLabel.backgroundColor = [UIColor clearColor];
-    [view addSubview:dayLabel];
-    CALayer *layer = [CALayer layer];
-    layer.frame = CGRectMake(0, -0.78, 50, 1);
-    layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
-    //layer.backgroundColor = [UIColor lightGrayColor].CGColor;
-    [view.layer addSublayer:layer];
+//    float fontColor = 0;//172.0/255.0;
+//    UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 320-30, HEADER_HEIGHT)];
+//    dayLabel.text = sectionName;
+//    dayLabel.textColor = [UIColor colorWithRed:fontColor green:fontColor blue:fontColor alpha:1];
+//    [dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:14]];
+//    dayLabel.textAlignment = NSTextAlignmentLeft;
+//    dayLabel.backgroundColor = [UIColor clearColor];
+//    [view addSubview:dayLabel];
+//
+//    CALayer *layerTop = [CALayer layer];
+//    layerTop.frame = CGRectMake(0, 0, 320, 0.5f);
+//    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+//    layerTop.backgroundColor = [UIColor lightGrayColor].CGColor;
+//    [view.layer addSublayer:layerTop];
+//    
+//    CALayer *layerBottom = [CALayer layer];
+//    layerBottom.frame = CGRectMake(0, HEADER_HEIGHT - 0.5f, 320, 0.5f);
+//    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
+//    layerBottom.backgroundColor = [UIColor lightGrayColor].CGColor;
+//    [view.layer addSublayer:layerBottom];
+    
     
     return view;
 }
@@ -225,7 +254,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath];
+    NSNumber *lastForThisDay = nil;
+    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
     
     if (event == nil) {
         NoEventsCell *c = (NoEventsCell*)[tableView dequeueReusableCellWithIdentifier:@"NoEventsCell"];
@@ -245,7 +275,8 @@
             view = (EventView*)[cell viewWithTag:1];
         }
 
-        [view refreshView:event];
+//        NSLog(@"lastForThisDay=%@", lastForThisDay);
+        [view refreshView:event lastForThisDay:[lastForThisDay boolValue]];
     
         [cell setBackgroundColor:[UIColor clearColor]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -275,12 +306,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 38;
+    return HEADER_HEIGHT;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath];
+    NSNumber *lastForThisDay = nil;
+    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
 
     if (event == nil) {
         return 42.0f;
@@ -291,10 +323,13 @@
     }
     else {
         //NSString *eventTitle = event.title;
+#if 0
         CGSize maxSize = CGSizeMake(270.0, 1000.0f);
-        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:17];
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
         CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
         return fontSize.height + 85;
+#endif
+        return 76;//87;
     }
 }
 
@@ -302,17 +337,17 @@
 {
     LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
     
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath];
+    NSNumber *lastForThisDay = nil;
+    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
 
-    if( ([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
-
+    if (([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
         detailCtl.eventID = [event.id intValue];
         [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
     }
 }
 
--(FeedEventEntity *) getFeedEventEntity:(NSIndexPath *)indexPath
+-(FeedEventEntity *) getFeedEventEntity:(NSIndexPath *)indexPath lastForThisDay:(NSNumber**)lastForThisDay
 {
     NSTimeInterval day = 60*60*24;
     NSDate *sectionDate = [NSDate dateWithTimeInterval:day * indexPath.section sinceDate:startDate];
@@ -330,8 +365,14 @@
         [wrap resetSortedEvents];
     }
 
-    NSArray * events = [wrap sortedEvents];
+    NSArray *events = [wrap sortedEvents];
+    
     FeedEventEntity * event = [events objectAtIndex:indexPath.row];
+
+    *lastForThisDay = @NO;
+    if (indexPath.row >= [events count] - 1)
+        *lastForThisDay = @YES;
+    
     return event;
 }
 

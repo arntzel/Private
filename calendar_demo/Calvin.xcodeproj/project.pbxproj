@@ -577,6 +577,9 @@
 		76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */; };
 		938B2836189806520074C424 /* NoEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B2835189806520074C424 /* NoEventsCell.m */; };
 		938B2838189806650074C424 /* NoEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938B2837189806650074C424 /* NoEventsCell.xib */; };
+		93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E273189C251D00A3753F /* clock-header@2x.png */; };
+		93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E275189C293400A3753F /* FeedEventHeader.xib */; };
+		93A8E278189C2B8000A3753F /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E277189C2B8000A3753F /* clock@2x.png */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
 		942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B9180A9FCE00548901 /* ContactEntityExtra.m */; };
@@ -1448,6 +1451,9 @@
 		938B2834189806520074C424 /* NoEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoEventsCell.h; sourceTree = "<group>"; };
 		938B2835189806520074C424 /* NoEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoEventsCell.m; sourceTree = "<group>"; };
 		938B2837189806650074C424 /* NoEventsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoEventsCell.xib; sourceTree = "<group>"; };
+		93A8E273189C251D00A3753F /* clock-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-header@2x.png"; sourceTree = "<group>"; };
+		93A8E275189C293400A3753F /* FeedEventHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedEventHeader.xib; sourceTree = "<group>"; };
+		93A8E277189C2B8000A3753F /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
@@ -2214,6 +2220,8 @@
 				769AB97917DF51340033E677 /* circle.png */,
 				769AB97A17DF51340033E677 /* circle2.png */,
 				769AB97B17DF51340033E677 /* clock.png */,
+				93A8E277189C2B8000A3753F /* clock@2x.png */,
+				93A8E273189C251D00A3753F /* clock-header@2x.png */,
 				769AB97C17DF51340033E677 /* colordot */,
 				769AB98317DF51340033E677 /* dot.png */,
 				769AB98417DF51340033E677 /* email@2x.png */,
@@ -2606,6 +2614,7 @@
 				938B2834189806520074C424 /* NoEventsCell.h */,
 				938B2835189806520074C424 /* NoEventsCell.m */,
 				938B2837189806650074C424 /* NoEventsCell.xib */,
+				93A8E275189C293400A3753F /* FeedEventHeader.xib */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -3230,6 +3239,7 @@
 				34262E1B1869C1A300288EA9 /* iCalEventShowSettingsViewController.xib in Resources */,
 				769AB9A817DF51340033E677 /* event_detail_random_header2.png in Resources */,
 				7662F75717F0761900B64E40 /* login_main_singnup_profile_bg.png in Resources */,
+				93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */,
 				34B1F1AE17F8FCE200AA5C97 /* settings_detail_empty_circle.png in Resources */,
 				769AB9A917DF51340033E677 /* event_detail_random_header3.png in Resources */,
 				769AB9AA17DF51340033E677 /* event_detail_random_header4.png in Resources */,
@@ -3402,6 +3412,7 @@
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
 				769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */,
 				7662F75617F0761900B64E40 /* login_main_singnup_addphoto.png in Resources */,
+				93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */,
 				769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */,
 				34B1F1CC17F8FCE200AA5C97 /* settings_main_userinfo_bg.png in Resources */,
 				23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */,
@@ -3479,6 +3490,7 @@
 				7662F74417F075F400B64E40 /* LoginMainSignInView.xib in Resources */,
 				23A15CD51855BF9700B12865 /* notification_btn.png in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
+				93A8E278189C2B8000A3753F /* clock@2x.png in Resources */,
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				23D8D225186D492200C39F8C /* back_arrow.png in Resources */,
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,
