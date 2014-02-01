@@ -329,7 +329,7 @@
         CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
         return fontSize.height + 85;
 #endif
-        return 76;//87;
+        return 87;//76;//87;
     }
 }
 
