@@ -1,5 +1,3 @@
-
-
 #import "EventView.h"
 #import "Utils.h"
 #import "ViewUtils.h"
@@ -17,7 +15,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }

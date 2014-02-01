@@ -15,26 +15,23 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+//    [super setSelected:selected animated:animated];
 }
 
--(void)drawRect000:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    CGContextFillRect(context, rect);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor generateUIColorByHexString:@"#d1d9d2"].CGColor);
-    CGContextStrokeRect(context, CGRectMake(50, rect.size.height, rect.size.width - 50, 1));
-}
+//-(void)drawRect000:(CGRect)rect
+//{
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+//    CGContextFillRect(context, rect);
+//    
+//    CGContextSetStrokeColorWithColor(context, [UIColor generateUIColorByHexString:@"#d1d9d2"].CGColor);
+//    CGContextStrokeRect(context, CGRectMake(50, rect.size.height, rect.size.width - 50, 1));
+//}
 
 @end
