@@ -22,7 +22,8 @@
 #import "EventDetailController.h"
 #import "BLRView.h"
 
-#define BANNER_HEIGHT 55
+#define BANNER_HEIGHT 65 //55
+
 #define BANNER_LEFT_MARGIN 20
 
 @interface menuNavigation()<UITableViewDelegate,UITableViewDataSource, MessageModelDelegate >
@@ -30,7 +31,6 @@
     navigationMenuDataSource *menuDataSource;
     //NSArray * _messages;
     BOOL loading;
-    
     MessageModel * msgModel;
     BLRView *blrView;
 }
@@ -40,7 +40,6 @@
 @implementation menuNavigation
 
 @synthesize tableView=_tableView;
-
 
 - (id)init {
     if ((self = [super init])) {
@@ -63,57 +62,56 @@
     
     self.view.clipsToBounds = YES;
     
-    //Load BLRView
     blrView = [[BLRView alloc] init];
-    blrView.frame = self.view.bounds;
-    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    blrView.frame = CGRectMake(0, BANNER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
     //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [self.view addSubview:blrView];
+    
+   //self.view.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithRed:24.0/255.0f  green:164.0/255.0f blue:139.0/255.0f alpha:1.0]; //greenish
     
     menuDataSource = [[navigationMenuDataSource alloc] init];
     
     //CGRect bannerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    CGRect tableRect = CGRectMake(0, BANNER_HEIGHT+20, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
+    CGRect tableRect = CGRectMake(0, BANNER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
     
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame =CGRectMake(20, 75, 280, 1);
-    [bottomBorder setBackgroundColor:[UIColor colorWithRed:122.0/255.0 green:138.0/255.0 blue:132.0/255.0 alpha:1].CGColor];
-    [self.view.layer addSublayer:bottomBorder];
+//    CALayer *bottomBorder = [CALayer layer];
+//    bottomBorder.frame =CGRectMake(20, 75, 280, 1);
+//    [bottomBorder setBackgroundColor:[UIColor colorWithRed:122.0/255.0 green:138.0/255.0 blue:132.0/255.0 alpha:1].CGColor];
+//    [self.view.layer addSublayer:bottomBorder];
+    
 //    UIView *sepLine = [[UIView alloc]initWithFrame:CGRectMake(20, 75, 280, 1)];
 //    [sepLine setBackgroundColor:[UIColor lightGrayColor]];
 //    [self.view addSubview:sepLine];
-    CGRect logoRect = CGRectMake(125, 40, 64, 20);
     
     //UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:logoRect];
-    UIButton *logoButton = [[UIButton alloc]initWithFrame:logoRect];
+//    UIButton *logoButton = [[UIButton alloc]initWithFrame:logoRect];    
+//    UIImage *logoImage = [UIImage imageNamed:@"Calvin_logo"];
+//    [logoButton setImage:logoImage forState:UIControlStateNormal];
+//    [logoButton addTarget:self action:@selector(onLogoButtonTyped) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:logoButton];
     
-    UIImage *logoImage = [UIImage imageNamed:@"Calvin_logo"];
-    [logoButton setImage:logoImage forState:UIControlStateNormal];
-    [logoButton addTarget:self action:@selector(onLogoButtonTyped) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:logoButton];
-    
-    UIButton *closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(266, 30, 50, 50)];
-    [closeBtn setImage:[UIImage imageNamed:@"add_icon"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(onCloseButtonTyped) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:closeBtn];
+    CGRect logoRect = CGRectMake(100, 30, 164, 20);
+    UILabel *l = [[UILabel alloc] initWithFrame:logoRect];
+//  UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:20.0];
+    [l setFont:font];
+    [l setTextColor:[UIColor whiteColor]];
+    l.text = @"Notifications";
+    [self.view addSubview:l];
     
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:tableRect style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         tableView.bounces = YES;
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        //tableView.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
         [tableView setBackgroundColor:[UIColor clearColor]];
         tableView.dataSource = self;
         tableView.delegate = self;
-        
-        
         [self.view addSubview:tableView];
-
         self.tableView = tableView;
     }
-    
-   
     
     msgModel = [[Model getInstance] getMessageModel];
     [msgModel addDelegate:self];
@@ -123,7 +121,13 @@
     [_tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     //float y = [[UIScreen mainScreen] bounds].size.height - 58;
-    UIButton *settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 30, 50, 50)];
+    
+    UIButton *closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 50, 50)];
+    [closeBtn setImage:[UIImage imageNamed:@"add_icon"] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(onCloseButtonTyped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeBtn];
+    
+    UIButton *settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(266, 20, 50, 50)];
     [settingBtn setImage:[UIImage imageNamed:@"settings_icon"] forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(onSettingButtonTyped) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:settingBtn aboveSubview:self.tableView];
@@ -139,6 +143,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return  [msgModel getMessagesCount];
+    
 //    if (section == 0) {
 //        return [menuDataSource numberOfObjects];
 //    }
@@ -148,7 +153,6 @@
 //    }
 //    return 0;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -223,25 +227,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 80;
-//    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.frame.size.height;
-//    if (indexPath.section == 0) {
-//        return [menuDataSource heightForCellAtIndex:indexPath.row];
-//    }
-//    else
-//    {
-//        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//        return cell.frame.size.height;
-////        return [menuDataSource heightForCellAtIndex:indexPath.row];
-////        return 55;
-//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 23;
+    return 0;//23;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -252,7 +243,6 @@
 {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"navigationNotifySectionHeader" owner:self options:nil] ;
     navigationNotifySectionHeader *header = [nib objectAtIndex:0];
-    //[header.title setText:@"NOTIFICATIONS"];
     
     if(loading) {
         [header.loadingView startAnimating];
@@ -267,8 +257,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
-    
+//  LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
     MessageEntity * msg = [msgModel getMessage:indexPath.row];
     
     if([msg.eventID intValue] > 0) {
@@ -300,6 +289,7 @@
 //    }
 }
 
+
 -(void) onMessageModelChanged
 {
     [self reload];
@@ -313,30 +303,19 @@
 
 -(void) reload
 {
-    //NSIndexPath * selectPath = [_tableView indexPathForSelectedRow];
-    
     [_tableView reloadData];
-    
-//    if(selectPath != nil && selectPath.section == 0) {
-//        [_tableView selectRowAtIndexPath:selectPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-//    }
 }
 
--(void) updateBlurBackground
+-(void)viewWillAppear:(BOOL)animated
 {
     if (blrView) {
         [blrView  blurWithColor:[BLRColorComponents darkEffect]];
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self updateBlurBackground];
-}
-
 -(BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 -(void)onCloseButtonTyped

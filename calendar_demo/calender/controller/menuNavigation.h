@@ -16,8 +16,6 @@
 
 @property(nonatomic, weak) id<MenuNavigationDelegate> delegate;
 
-
 -(void) reload;
--(void) updateBlurBackground;
 
 @end
