@@ -11,12 +11,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="header.png" id="25">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default_person.png" id="25">
                     <rect key="frame" x="8" y="9" width="33" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" id="Qx1-cU-M1k" userLabel="separator">
-                    <rect key="frame" x="50" y="86.5" width="270" height="1"/>
+                    <rect key="frame" x="50" y="86" width="270" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.5"/>
@@ -91,8 +91,8 @@
         </view>
     </objects>
     <resources>
-        <image name="header.png" width="128" height="128"/>
+        <image name="default_person.png" width="33" height="33"/>
         <image name="invitee_icon.png" width="12" height="12"/>
-        <image name="location_icon.png" width="8" height="13"/>
+        <image name="location_icon.png" width="9" height="13"/>
     </resources>
 </document>

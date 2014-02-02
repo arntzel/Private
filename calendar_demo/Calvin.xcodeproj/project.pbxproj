@@ -575,6 +575,8 @@
 		76CF7FCB1805919300018B95 /* DetailVoteCreatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FC91805919300018B95 /* DetailVoteCreatorCell.m */; };
 		76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FCE1805958E00018B95 /* DetailVoteCell.m */; };
 		76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */; };
+		93537E95189DC23400808E55 /* default_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E93189DC23400808E55 /* default_person@2x.png */; };
+		93537E96189DC23400808E55 /* default_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E94189DC23400808E55 /* default_person.png */; };
 		938B2836189806520074C424 /* NoEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B2835189806520074C424 /* NoEventsCell.m */; };
 		938B2838189806650074C424 /* NoEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938B2837189806650074C424 /* NoEventsCell.xib */; };
 		93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E273189C251D00A3753F /* clock-header@2x.png */; };
@@ -608,8 +610,6 @@
 		00171F43189A9F5300CB9CAA /* Settings_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
 		00171F44189A9F5300CB9CAA /* Spotlight_Calvin_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_Calvin_Icon.png; sourceTree = "<group>"; };
 		00171F45189A9F5300CB9CAA /* Spotlight_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
-		00171F46189AA11D00CB9CAA /* Iphone_Calvin_Icon_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Iphone_Calvin_Icon_57x57.png; path = "../../../../../../../Downloads/iTunes Icon PNG/Iphone_Calvin_Icon_57x57.png"; sourceTree = "<group>"; };
-		00171F47189AA11D00CB9CAA /* iPhone_Calvin_Icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone_Calvin_Icon_114x114.png; path = "../../../../../../../Downloads/iTunes Icon PNG/iPhone_Calvin_Icon_114x114.png"; sourceTree = "<group>"; };
 		00171F48189AA2D600CB9CAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Calvin/Images.xcassets; sourceTree = "<group>"; };
 		231319761867257C00F076C7 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		231319771867257C00F076C7 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
@@ -1447,6 +1447,8 @@
 		76CF7FCD1805958E00018B95 /* DetailVoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVoteCell.h; sourceTree = "<group>"; };
 		76CF7FCE1805958E00018B95 /* DetailVoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVoteCell.m; sourceTree = "<group>"; };
 		76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_roundbtn_bg.png; sourceTree = "<group>"; };
+		93537E93189DC23400808E55 /* default_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_person@2x.png"; sourceTree = "<group>"; };
+		93537E94189DC23400808E55 /* default_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_person.png; sourceTree = "<group>"; };
 		938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableViewPrev.m; sourceTree = "<group>"; };
 		938B2834189806520074C424 /* NoEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoEventsCell.h; sourceTree = "<group>"; };
 		938B2835189806520074C424 /* NoEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoEventsCell.m; sourceTree = "<group>"; };
@@ -2032,8 +2034,6 @@
 		769AB92617DF51340033E677 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				00171F46189AA11D00CB9CAA /* Iphone_Calvin_Icon_57x57.png */,
-				00171F47189AA11D00CB9CAA /* iPhone_Calvin_Icon_114x114.png */,
 				00171F40189A9F5300CB9CAA /* iPhone_Calvin_Icon.png */,
 				00171F41189A9F5300CB9CAA /* iPhone_Calvin_Icon@2x.png */,
 				00171F42189A9F5300CB9CAA /* Settings_Calvin_Icon.png */,
@@ -2193,6 +2193,8 @@
 			children = (
 				23A15CD31855BF9700B12865 /* notification_btn.png */,
 				23A15CD41855BF9700B12865 /* notification_btn@2x.png */,
+				93537E93189DC23400808E55 /* default_person@2x.png */,
+				93537E94189DC23400808E55 /* default_person.png */,
 				23DFECD9184C94F200CC7D3D /* invitee_icon.png */,
 				23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */,
 				23DFECDB184C94F200CC7D3D /* location_icon.png */,
@@ -3209,6 +3211,7 @@
 				34B1F1A917F8FCE200AA5C97 /* NotificaitonViewController.xib in Resources */,
 				23DFECDD184C94F200CC7D3D /* invitee_icon.png in Resources */,
 				232F1A38186B22DE00238CA5 /* gray1_error.png in Resources */,
+				93537E96189DC23400808E55 /* default_person.png in Resources */,
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
@@ -3471,6 +3474,7 @@
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
 				769ABCA517DF542A0033E677 /* 19-check.png in Resources */,
+				93537E95189DC23400808E55 /* default_person@2x.png in Resources */,
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
 				769CB56F1886CD740082400D /* add_event_arraw_v2.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,

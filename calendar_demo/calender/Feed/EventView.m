@@ -93,14 +93,13 @@
     }
 
     if(headerUrl == nil) {
-        self.imgUser.image = [UIImage imageNamed:@"header.png"];
+        self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
     } else {
         [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
-                     placeholderImage:[UIImage imageNamed:@"header.png"]];
+                     placeholderImage:[UIImage imageNamed:@"default_person.png"]];
     }
 
     //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
-    
     int color = [self getEventTypeColor:[event.eventType intValue]];
     
     self.imgEventType.backgroundColor = [ViewUtils getUIColor:color];
