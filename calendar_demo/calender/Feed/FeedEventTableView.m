@@ -193,11 +193,11 @@
     UILabel * dayLabel = (UILabel *)[viewSection viewWithTag:TAG_SECTION_TEXT_LABEL];
     dayLabel.text = sectionName;
     
-    CALayer *layerTop = [CALayer layer];
-    layerTop.frame = CGRectMake(0, 0, 320, 0.5f);
+    //CALayer *layerTop = [CALayer layer];
+    //layerTop.frame = CGRectMake(0, 0, 320, 0.5f);
     //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
-    layerTop.backgroundColor = [UIColor lightGrayColor].CGColor;
-    [viewSection.layer addSublayer:layerTop];
+    //layerTop.backgroundColor = [UIColor lightGrayColor].CGColor;
+    //[viewSection.layer addSublayer:layerTop];
 
     CALayer *layerBottom = [CALayer layer];
     layerBottom.frame = CGRectMake(0, HEADER_HEIGHT - 0.5f, 320, 0.5f);
