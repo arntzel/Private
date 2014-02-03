@@ -16,6 +16,8 @@
 
 +(void) setUserTimeZone:(NSTimeZone *) timezone;
 
++(NSString *) dayHeaderMiddle:(NSString *) day;
++(NSString *) dayHeaderLeft:(NSString *) day;
 
 +(NSDate *) getCurrentDate;
 

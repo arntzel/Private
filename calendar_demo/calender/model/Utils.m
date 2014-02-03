@@ -204,6 +204,41 @@ static NSTimeZone * userTimeZone;
     return str;
 }
 
++(NSString *) dayHeaderMiddle:(NSString *) day
+{
+    NSDate *date = [self parseNSStringDay:day];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"MMM d"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
++(NSString *) dayHeaderLeft:(NSString *) day
+{
+    NSDate * currentDate = [Utils getCurrentDate];
+    NSString * today = [self formateDay:currentDate];
+    NSString * tomorrom = [self formateDay:[currentDate dateByAddingTimeInterval:24*3600] ];
+    NSString * yestoday = [self formateDay:[currentDate dateByAddingTimeInterval:-24*3600]];
+    
+    if( [day isEqualToString:today]) {
+        return @"Today";
+    } else if( [day isEqualToString:tomorrom]) {
+        return @"Tomorrow";
+    } else if( [day isEqualToString:yestoday]) {
+        return @"Yesterday";
+    }
+    
+    NSDate *date = [self parseNSStringDay:day];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"EEE"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 +(NSString *) toReadableDay:(NSString *) day
 {
     NSDate * currentDate = [Utils getCurrentDate];
@@ -239,7 +274,6 @@ static NSTimeZone * userTimeZone;
     return [dateFormatter stringFromDate:time];
 
 }
-
 
 +(NSString *) formateDate:(NSDate *) time
 {
@@ -312,7 +346,6 @@ static NSTimeZone * userTimeZone;
 
     return array;
 }
-
 
 +(NSMutableDictionary *) getEventSectionDict: (NSArray*)events
 {
