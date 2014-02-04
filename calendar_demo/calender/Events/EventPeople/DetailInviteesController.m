@@ -311,8 +311,6 @@ typedef enum
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 #pragma mark AddEventInviteViewControllerDelegate
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
 {

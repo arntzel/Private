@@ -260,15 +260,18 @@
 //  LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
     MessageEntity * msg = [msgModel getMessage:indexPath.row];
     
-    if([msg.eventID intValue] > 0) {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([msg.eventID intValue] > 0) {
+        
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
         detailCtl.eventID = [msg.eventID intValue];
-        [self dismissViewControllerAnimated:YES completion:^{
-            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        
+        [self presentViewController:detailCtl animated:YES completion:^{
         }];
     }
     
-    if([msg.unread boolValue]) {
+    if ([msg.unread boolValue]) {
         [msgModel readMessage:msg];
     }
 

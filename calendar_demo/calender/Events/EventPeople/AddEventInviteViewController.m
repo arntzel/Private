@@ -344,8 +344,13 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 }
 - (void)leftNavBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
-
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
 }
 
 - (NSArray *)getSelectedUsers

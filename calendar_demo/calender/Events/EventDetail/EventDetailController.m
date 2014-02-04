@@ -162,7 +162,6 @@
 
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
-            //[self.navigationController popViewControllerAnimated:YES];
 
             [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted" andDeletegate:self].tag = 2;
 
@@ -394,7 +393,12 @@
 
 - (void)leftBtnPress:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];    
 }
 
 - (void)rightBtnPress:(id)sender
@@ -549,7 +553,14 @@
     
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
-    [self.navigationController pushViewController:addDate animated:YES];
+    
+    if (self.navigationController) {
+        [self.navigationController pushViewController:addDate animated:YES];
+    }
+    else {
+        [self presentViewController:addDate animated:YES completion:^{
+        }];
+    }
     
     [tempEventDate release];
 }
@@ -563,9 +574,15 @@
     controller.event = self.event;
     controller.titleBgImage = [photoView getImage];
     
-    [self.navigationController pushViewController:controller animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:^{
+        }];
+    }
+
     [controller release];
-    
 }
 
 -(void) onVoteTimeClick:(ProposeStart *) eventTime
@@ -576,10 +593,16 @@
     controller.eventTime = eventTime;
     controller.titleBgImage = [photoView getImage];
     
-    [self.navigationController pushViewController:controller animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:^{
+        }];
+    }
+
     [controller release];
 }
-
 
 - (void)setEventDate:(ProposeStart *)eventDate
 {
@@ -652,9 +675,15 @@
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } else {
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                [self dismissViewControllerAnimated:YES completion:^{
+                }];
+            }
+        }
+        else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }
     }];
@@ -688,7 +717,14 @@
             
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
-            [self.navigationController popViewControllerAnimated:YES];
+
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                [self dismissViewControllerAnimated:YES completion:^{
+                }];
+            }
             
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Delete event failed."];
@@ -917,7 +953,13 @@
 {
     LOG_D(@"changeLocation");
     AddLocationViewController * changeLocationController = [[AddLocationViewController alloc] init];
-    [self.navigationController pushViewController:changeLocationController animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:changeLocationController animated:YES];
+    }
+    else {
+        [self presentViewController:changeLocationController animated:YES completion:^{
+        }];
+    }
 
     Location *location = [self.event.location copy];
     changeLocationController.location = location;
@@ -931,10 +973,15 @@
     LOG_D(@"viewInMaps");
     EventLocationViewController * mapViewController = [[EventLocationViewController alloc] init];
     [mapViewController setPlaceLocation:self.event.location];
-    [self.navigationController pushViewController:mapViewController animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:mapViewController animated:YES];
+    }
+    else {
+        [self presentViewController:mapViewController animated:YES completion:^{
+        }];
+    }
 
     [mapViewController release];
-    
 }
 
 - (void) onInviteeViewClicked
@@ -946,7 +993,13 @@
     inviteesController.titleBgImage = [photoView getImage];
     inviteesController.delegate = self;
     
-    [self.navigationController pushViewController:inviteesController animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:inviteesController animated:YES];
+    }
+    else {
+        [self presentViewController:inviteesController animated:YES completion:^{
+        }];
+    }
     [inviteesController release];
 }
 

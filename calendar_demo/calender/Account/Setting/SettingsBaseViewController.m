@@ -45,6 +45,12 @@
 #pragma mark - User Interaction
 - (void)leftNavBtnClicked:(UIButton *)btn
 {
-    [self.navigationController   popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
 }
 @end

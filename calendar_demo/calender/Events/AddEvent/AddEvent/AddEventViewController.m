@@ -448,10 +448,17 @@
 #pragma mark NavBarDelegate
 - (void)leftNavBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
     if(request  != nil) {
         [request cancel];
         request = nil;
+    }
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
     }
 }
 
@@ -476,20 +483,20 @@
 
 - (BOOL)timeIsInFuture
 {
-//    if ([arrangedDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-//        return YES;
-//    }
-//    else
-//    {
-//        return NO;
-//    }
-
+    //    if ([arrangedDate.start timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+    //        return YES;
+    //    }
+    //    else
+    //    {
+    //        return NO;
+    //    }
+    
     return YES;
 }
 
 - (void)createEvent:(NSString *) imgUrl
 {
-   
+    
     NSString *title = txtFieldTitle.text;
     
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -508,11 +515,11 @@
     event.invitees = invitees;
     
     
-//    event.duration_days = arrangedDate.duration_days;
-//    event.duration_hours = arrangedDate.duration_hours;
-//    event.duration_minutes = arrangedDate.duration_minutes;
-//    event.is_all_day = arrangedDate.is_all_day;
-//    event.start = arrangedDate.start;
+    //    event.duration_days = arrangedDate.duration_days;
+    //    event.duration_hours = arrangedDate.duration_hours;
+    //    event.duration_minutes = arrangedDate.duration_minutes;
+    //    event.is_all_day = arrangedDate.is_all_day;
+    //    event.start = arrangedDate.start;
 //    event.start_type = arrangedDate.start_type;
 
 
