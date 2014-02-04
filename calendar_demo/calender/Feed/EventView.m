@@ -107,8 +107,10 @@
     UIColor *labelColor = [UIColor generateUIColorByHexString:@"#6b706f"];
     [self.labAttendees setTextColor:labelColor];
     [self.labLocation setTextColor:labelColor];
+    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
+    
     if ([self.labLocation.text isEqual: @"No Location"]) {
         [self.labLocation setHidden:YES];
         [self.iconLocation setHidden:YES];
@@ -116,14 +118,17 @@
         [self.labLocation setHidden:NO];
         [self.iconLocation setHidden:NO];
     }
+
+    self.labTitle.text = event.title;
     
+/*
     CGSize maxSize = CGSizeMake(self.labTitle.frame.size.width, 1000.0f);
     CGSize fontSize = [event.title sizeWithFont:self.labTitle.font constrainedToSize:maxSize lineBreakMode:self.labTitle.lineBreakMode];
     
     [self.labTitle setNumberOfLines:0];
-    self.labTitle.text = event.title;
     CGRect strFrame = CGRectMake(0, 18, 210, fontSize.height);
     self.labTitle.frame = strFrame;
+*/
     
 //    CGRect labTitleFrame = self.labTitle.frame;
 //    labTitleFrame.origin.y = self.labTimeStr.frame.origin.y + 5;
@@ -131,34 +136,34 @@
     //self.labTitle.backgroundColor = [UIColor greenColor];
     
     
-    float metaY = strFrame.origin.y + fontSize.height + 5;
+//    float metaY = strFrame.origin.y + fontSize.height + 5;
     
 //    CGRect iconUserFrame = self.iconUser.frame;
 //    iconUserFrame.origin.y = metaY;
     
-    CGRect iconLocationFrame = self.iconLocation.frame;
-    iconLocationFrame.origin.y = metaY;
+//    CGRect iconLocationFrame = self.iconLocation.frame;
+//    iconLocationFrame.origin.y = metaY;
+//    
+//    CGRect labAttendeesFrame = self.labAttendees.frame;
+//    labAttendeesFrame.origin.y = metaY - 7;
+//    
+//    CGRect labLocationFrame = self.labLocation.frame;
+//    labLocationFrame.origin.y = metaY - 7;
+//    
+//    CGRect iconAttedeeFrame = self.iconAttendee.frame;
+//    iconAttedeeFrame.origin.y = metaY;
+//    
+//    //self.iconUser.frame = iconUserFrame;
+//    self.iconLocation.frame = iconLocationFrame;
+//    self.labLocation.frame = labLocationFrame;
+//    self.labAttendees.frame = labAttendeesFrame;
+//    self.iconAttendee.frame = iconAttedeeFrame;
+//    
     
-    CGRect labAttendeesFrame = self.labAttendees.frame;
-    labAttendeesFrame.origin.y = metaY - 3;
-    
-    CGRect labLocationFrame = self.labLocation.frame;
-    labLocationFrame.origin.y = metaY - 3;
-    
-    CGRect iconAttedeeFrame = self.iconAttendee.frame;
-    iconAttedeeFrame.origin.y = metaY;
-    
-    //self.iconUser.frame = iconUserFrame;
-    self.iconLocation.frame = iconLocationFrame;
-    self.labLocation.frame = labLocationFrame;
-    self.labAttendees.frame = labAttendeesFrame;
-    self.iconAttendee.frame = iconAttedeeFrame;
-    
-    
-    CGRect contentViewFrame = self.contentView.frame;
-    contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
-    contentViewFrame.origin.y = 10;//25;
-    self.contentView.frame = contentViewFrame;
+//    CGRect contentViewFrame = self.contentView.frame;
+//    contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
+//    contentViewFrame.origin.y = 10;//25;
+//    self.contentView.frame = contentViewFrame;
     
     //NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
 }
@@ -240,8 +245,8 @@
     view.imgEventType.layer.masksToBounds = YES;
     
     UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
-    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
-    [view.labTitle setTextColor:kalTitleColor];
+//    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
+//    [view.labTitle setTextColor:kalTitleColor];
     [view.labTimeStr setTextColor:kalStandardColor];
     
     //view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);

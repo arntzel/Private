@@ -17,7 +17,10 @@
 #define FETECH_EVENTS 20
 #define MAX_FORWARD 365
 #define DAY 60*60*24
-#define HEADER_HEIGHT 59 //28
+
+#define HEADER_HEIGHT 28
+#define NO_EVENTS_HEADER_CELL 31
+
 #define TAG_SECTION_TEXT_LABEL 555
 #define TAG_SECTION_TEXT_LABEL_LEFT 556
 
@@ -181,6 +184,10 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+//    UIView *s = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 22)];
+//    [s setBackgroundColor:[UIColor whiteColor]];
+//    return s;
+    
     NSTimeInterval day = DAY;
     NSDate *sectionDate = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
     
@@ -288,7 +295,7 @@
     FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
 
     if (event == nil) {
-        return 42.0f;
+        return NO_EVENTS_HEADER_CELL;
     }
     
     if ([event isBirthdayEvent] ) {

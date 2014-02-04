@@ -467,7 +467,6 @@
 		769ABC8217DF542A0033E677 /* LoadingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB8E17DF54290033E677 /* LoadingProgressView.xib */; };
 		769ABC8317DF542A0033E677 /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9017DF54290033E677 /* Navigation.m */; };
 		769ABC8417DF542A0033E677 /* Navigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB9117DF54290033E677 /* Navigation.xib */; };
-		769ABC8517DF542A0033E677 /* NoEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB9217DF54290033E677 /* NoEventView.xib */; };
 		769ABC8617DF542A0033E677 /* Buddy.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9517DF54290033E677 /* Buddy.m */; };
 		769ABC8717DF542A0033E677 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9717DF54290033E677 /* Comment.m */; };
 		769ABC8817DF542A0033E677 /* CreateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB9917DF54290033E677 /* CreateUser.m */; };
@@ -579,6 +578,7 @@
 		93537E96189DC23400808E55 /* default_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E94189DC23400808E55 /* default_person.png */; };
 		938B2836189806520074C424 /* NoEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B2835189806520074C424 /* NoEventsCell.m */; };
 		938B2838189806650074C424 /* NoEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938B2837189806650074C424 /* NoEventsCell.xib */; };
+		93A67B7718A077D100DA4068 /* event_header_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A67B7618A077D100DA4068 /* event_header_add@2x.png */; };
 		93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E273189C251D00A3753F /* clock-header@2x.png */; };
 		93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E275189C293400A3753F /* FeedEventHeader.xib */; };
 		93A8E278189C2B8000A3753F /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E277189C2B8000A3753F /* clock@2x.png */; };
@@ -1242,7 +1242,6 @@
 		769ABB8F17DF54290033E677 /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
 		769ABB9017DF54290033E677 /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navigation.m; sourceTree = "<group>"; };
 		769ABB9117DF54290033E677 /* Navigation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Navigation.xib; sourceTree = "<group>"; };
-		769ABB9217DF54290033E677 /* NoEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoEventView.xib; sourceTree = "<group>"; };
 		769ABB9417DF54290033E677 /* Buddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buddy.h; sourceTree = "<group>"; };
 		769ABB9517DF54290033E677 /* Buddy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Buddy.m; sourceTree = "<group>"; };
 		769ABB9617DF54290033E677 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -1453,6 +1452,7 @@
 		938B2834189806520074C424 /* NoEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoEventsCell.h; sourceTree = "<group>"; };
 		938B2835189806520074C424 /* NoEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoEventsCell.m; sourceTree = "<group>"; };
 		938B2837189806650074C424 /* NoEventsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoEventsCell.xib; sourceTree = "<group>"; };
+		93A67B7618A077D100DA4068 /* event_header_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_header_add@2x.png"; sourceTree = "<group>"; };
 		93A8E273189C251D00A3753F /* clock-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-header@2x.png"; sourceTree = "<group>"; };
 		93A8E275189C293400A3753F /* FeedEventHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedEventHeader.xib; sourceTree = "<group>"; };
 		93A8E277189C2B8000A3753F /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
@@ -2191,6 +2191,7 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				93A67B7618A077D100DA4068 /* event_header_add@2x.png */,
 				23A15CD31855BF9700B12865 /* notification_btn.png */,
 				23A15CD41855BF9700B12865 /* notification_btn@2x.png */,
 				93537E93189DC23400808E55 /* default_person@2x.png */,
@@ -2604,7 +2605,6 @@
 				769ABB8F17DF54290033E677 /* Navigation.h */,
 				769ABB9017DF54290033E677 /* Navigation.m */,
 				769ABB9117DF54290033E677 /* Navigation.xib */,
-				769ABB9217DF54290033E677 /* NoEventView.xib */,
 				34262E151869C1A300288EA9 /* iCalEventShowSettingsViewController.h */,
 				34262E161869C1A300288EA9 /* iCalEventShowSettingsViewController.m */,
 				34262E171869C1A300288EA9 /* iCalEventShowSettingsViewController.xib */,
@@ -3273,6 +3273,7 @@
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				34B1F1C217F8FCE200AA5C97 /* settings_main_middle_row.png in Resources */,
 				767822B01879720800CEF40E /* add_event_addtitle_bg.png in Resources */,
+				93A67B7718A077D100DA4068 /* event_header_add@2x.png in Resources */,
 				769AB9B817DF51340033E677 /* header9.jpg in Resources */,
 				769AB9B917DF51340033E677 /* event_detail_header_cross.png in Resources */,
 				768404B81800FD5200C69240 /* DetailInviteesController.xib in Resources */,
@@ -3470,7 +3471,6 @@
 				3D1EAC69188ACD0A0002F627 /* AddEventInvitePeopleCell.xib in Resources */,
 				769ABC8417DF542A0033E677 /* Navigation.xib in Resources */,
 				23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */,
-				769ABC8517DF542A0033E677 /* NoEventView.xib in Resources */,
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
 				769ABCA517DF542A0033E677 /* 19-check.png in Resources */,
