@@ -150,7 +150,6 @@
         filters &= FILTER_IMCOMPLETE|FILTER_FB|FILTER_BIRTHDAY|FILTER_IOS;
     }
     
-    
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     self.calendarView.filterView.filterDelegate = self;
@@ -190,8 +189,6 @@
    
     [self.view addSubview:dataLoadingView];
     
-    [[[Model getInstance] getEventModel] addDelegate:self]; //YK: will be going next
-    
     [[[Model getInstance] getEventModel] checkSettingUpdate];
     [[[Model getInstance] getEventModel] checkContactUpdate];
     
@@ -200,12 +197,10 @@
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
     //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
     if(last_modify_num == nil) {
-
         //YK: this may be not necessarily at all
         //[self firstTimeLogic];
-        
-    } else {
-
+    }
+    else {
         [self refreshWithDate:[Utils getCurrentDate]];
     }
 }
@@ -331,12 +326,6 @@
     [tableView scroll2SelectedDate:day];
 }
 
--(void)viewDidUnload {
-    [[[Model getInstance] getEventModel] removeDelegate:self]; //YK: will be going next
-    
-    [super viewDidUnload];
-}
-
 -(void) scroll2Today
 {
     [self scroll2Date:[Utils getCurrentDate] animated:NO];
@@ -421,7 +410,7 @@
 
 -(void) onCoreDataModelChanged
 {
-    NSDate * date = [tableView getFirstVisibleDay];
+    NSDate * date = date = [Utils getCurrentDate]; //[tableView getFirstVisibleDay];
     
     [self refreshWithDate:date];
     

@@ -1097,9 +1097,8 @@
 - (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 {
     self.event = newEvent;
-    [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
     
-    [[[Model getInstance] getEventModel] synchronizedFromServer];
+    [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
 }
 
 @end

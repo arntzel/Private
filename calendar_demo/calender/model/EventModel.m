@@ -326,7 +326,7 @@
 
 -(void) checkSettingUpdate
 {
-    if(![[UserModel getInstance] isLogined]) {
+    if (![[UserModel getInstance] isLogined]) {
         return;
     }
     
