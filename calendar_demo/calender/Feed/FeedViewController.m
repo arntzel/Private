@@ -367,7 +367,7 @@
         
         //YK: what is this?
         
-        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
         }];
     }
 }

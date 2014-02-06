@@ -28,7 +28,7 @@
 
 -(void) removeDelegate:(id<EventModelDelegate>) delegate;
 
--(void) downloadServerEvents:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
+-(void) downloadServerEvents:(NSString *) last_modify_num onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
 
 -(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
 

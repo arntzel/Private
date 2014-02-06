@@ -60,14 +60,14 @@
     }
 }
 
--(void) downloadServerEvents:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+-(void) downloadServerEvents:(NSString *) last_modify_num onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
     assert([[UserModel getInstance] isLogined]);
     
     NSLog(@"synchronizedFromServer begin");
     
-    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
-    if(last_modify_num == nil) {
+    //NSString * last_modify_num = nil;//[[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+    if (last_modify_num == nil) {
         last_modify_num = [self getSecondsFromEpoch];
     }
     
@@ -97,7 +97,7 @@
         CoreDataModel * model = [CoreDataModel getInstance];
         NSLog(@"========before download=========");
     //    [model getFeedEventWithEventType:5];
-        for(Event * evt in events) {
+        for (Event * evt in events) {
             
             if([evt.modified_num compare:maxlastupdatetime] > 0) {
                 maxlastupdatetime = evt.modified_num;
@@ -105,29 +105,35 @@
             
             FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
             
-            if(entity == nil && evt.eventType == 5) {
+            if (entity == nil && evt.eventType == 5) {
                 entity = [model getFeedEventWithEventType:evt.eventType WithExtEventID:evt.ext_event_id];
             }
             
-            if(evt.confirmed && [evt isDeclineEvent]) {
+            if (evt.confirmed && [evt isDeclineEvent]) {
                 if(entity != nil) {
                     LOG_I(@"deleteFeedEventEntity2:%d, %@", evt.id, evt.title);
                     [model deleteFeedEventEntity2:entity];
                 }
                 
-            } else {
+            }
+            else {
                 
-                if(entity == nil) {
+                if (entity == nil) {
                     entity = [model createEntity:@"FeedEventEntity"];
-                } else {
+                }
+                else {
                     for(UserEntity * user in entity.attendees) {
                         [model deleteEntity:user];
                     }
-                    
                     [entity clearAttendee];
                 }
                 
+//                if (evt.eventType == 3) {
+                    NSLog(@"eventType == 3 %@", evt.title);
+//                }
+                
                 [entity convertFromEvent:evt];
+                
                 [model updateFeedEventEntity:entity];
             }
         }
@@ -147,7 +153,7 @@
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), queue, ^{
 
-                [self downloadServerEvents:unused onComplete:completion];
+                [self downloadServerEvents:maxlastupdatetime onComplete:completion];
             });
         }
         else
@@ -489,12 +495,9 @@
                                 FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:respEvent.ext_event_id];
                                 [oldEntity convertFromCalendarEvent:respEvent];
                                 [model updateFeedEventEntity:oldEntity];
-                                
-                                
                             }
                             [model saveData];
                         }
-                        
                     });
                 }];
             });
