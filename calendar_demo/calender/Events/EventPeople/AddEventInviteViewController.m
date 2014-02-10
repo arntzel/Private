@@ -421,7 +421,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     LOG_D(@"tokenFieldTextDidChange:%@", tokenField.textField.text);
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.3f];
+    [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.5f];
     
 //    [queue cancelAllOperations];
 //    [queue addOperationWithBlock:^{
