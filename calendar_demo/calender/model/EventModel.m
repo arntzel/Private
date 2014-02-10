@@ -129,7 +129,7 @@
                 }
                 
 //                if (evt.eventType == 3) {
-                    NSLog(@"eventType == 3 %@", evt.title);
+                    NSLog(@"eventType: %@  %@", @(evt.eventType), evt.title);
 //                }
                 
                 [entity convertFromEvent:evt];
@@ -294,9 +294,7 @@
                         NSTimeInterval eventSec = (int)[event1.last_modified timeIntervalSince1970];
                         if (entitySec < eventSec)
                         {
-                            
                             NSNumber *tmpID = eventEntity.id;
-                            
                             [eventEntity convertFromCalendarEvent:event1];
                             eventEntity.id = tmpID;
                             eventEntity.hasModified = @(YES);

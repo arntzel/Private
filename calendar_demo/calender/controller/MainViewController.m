@@ -58,17 +58,24 @@
     User *me = [[UserModel getInstance] getLoginUser];
     
     [[CoreDataModel getInstance] initDBContext:me];
-    
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
 
+    [feedViewCtr onCoreDataModelStarted];
+
+    [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        
+        [feedViewCtr onCoreDataModelChanged];
+        [pendingEventViewCtr onCoreDataModelChanged];
+        
         [feedViewCtr onCoreDataModelStarted];
         
-//        [feedViewCtr onCoreDataModelChanged];
-//        [pendingEventViewCtr onCoreDataModelChanged];
-        
-        [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+        [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
+
             [feedViewCtr onCoreDataModelChanged];
             [pendingEventViewCtr onCoreDataModelChanged];
+            
+            if (success == NO) {
+                [Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
+            }
         }];
     }];
     

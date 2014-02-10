@@ -189,20 +189,19 @@
    
     [self.view addSubview:dataLoadingView];
     
-    [[[Model getInstance] getEventModel] checkSettingUpdate];
-    [[[Model getInstance] getEventModel] checkContactUpdate];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
-    
-    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
-    //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
-    if(last_modify_num == nil) {
+    /*
+     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+     //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
+     
+    if (last_modify_num == nil) {
         //YK: this may be not necessarily at all
         //[self firstTimeLogic];
     }
     else {
         [self refreshWithDate:[Utils getCurrentDate]];
-    }
+    }*/
+    
+    [self refreshWithDate:[Utils getCurrentDate]];
 }
 
 -(void)firstTimeLogic000 {
@@ -415,6 +414,13 @@
     [self refreshWithDate:date];
     
     [dataLoadingView stopAnim];
+
+    //-->    //-->    //-->    //-->    //-->    //-->
+    
+    [[[Model getInstance] getEventModel] checkSettingUpdate];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
 }
 
 -(void)refreshWithDate:(NSDate*)date {

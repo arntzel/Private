@@ -18,7 +18,6 @@
         self.layer.cornerRadius = 15;
         self.layer.masksToBounds = YES;
 
-
         indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         indicatorView.hidesWhenStopped = NO;
         indicatorView.center = self.center;
@@ -44,7 +43,7 @@
     [UIView setAnimationDuration:0.3];
 
     CGRect frame = self.frame;
-    frame.origin.x = 320 - 40;
+    frame.origin.x = 220 - 160;
     self.frame = frame;
 
     [UIView commitAnimations];
@@ -60,7 +59,7 @@
     [UIView setAnimationDuration:0.3];
 
     CGRect frame = self.frame;
-    frame.origin.x = 320 + 40;
+    frame.origin.x = 220 + 160;
     self.frame = frame;
 
     [UIView commitAnimations];

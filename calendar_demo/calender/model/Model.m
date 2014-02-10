@@ -580,7 +580,7 @@ static Model * instance;
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=10&offset=0&modified_num__gt=%@", HOST, modified_num];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=1000&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 
@@ -601,7 +601,7 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            LOG_D(@"Event resp:%@", json);
+            //LOG_D(@"Event resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
@@ -614,7 +614,8 @@ static Model * instance;
 
             callback(ERROCODE_OK, count, events);
 
-        } else {
+        }
+        else {
 
             if(data != nil) {
                 NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
