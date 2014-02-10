@@ -38,7 +38,10 @@
 
     user.id = [[jsonData objectForKey:@"id"] intValue];
     user.email = [Utils chekcNullClass:[jsonData objectForKey:@"email"]];
-
+    if(user.email==nil) {
+        user.email = @"";
+    }
+    
     user.avatar_url = [jsonData objectForKey:@"avatar_url"];
     if([user.avatar_url isKindOfClass: [NSNull class]]) {
         user.avatar_url = nil;
@@ -61,6 +64,9 @@
 
     
     user.phone = [Utils chekcNullClass:[jsonData objectForKey:@"phone"]];
+    if(user.phone==nil) {
+        user.phone = @"";
+    }
     
     NSString * owner = [jsonData objectForKey:@"user"];
     user.calvinUser = [Utils chekcNullClass:owner] != nil;
