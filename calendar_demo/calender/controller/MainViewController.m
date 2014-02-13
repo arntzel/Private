@@ -232,9 +232,6 @@
         [feedViewCtr onCoreDataModelChanged];
         [pendingEventViewCtr onCoreDataModelChanged];
         
-        if (success == NO) {
-            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
-        }
     }];
 }
 

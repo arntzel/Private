@@ -87,7 +87,7 @@
             LOG_D(@"synchronizedFromServer, no updated event");
             
             if (completion) {
-                completion(NO,totalCount);
+                completion(YES,totalCount);
             }
             return;
         }
@@ -147,7 +147,7 @@
         
         [model notifyModelChange];
         
-        if(events.count < totalCount) {
+        if (events.count < totalCount) {
             
             //next page - test some more please
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
@@ -159,7 +159,7 @@
         else
         {
             if (completion) {
-                completion(NO,totalCount);
+                completion(YES, totalCount);
             }
         }
     }];
@@ -243,7 +243,6 @@
                                                selector:@selector(checkContactUpdate)
                                                userInfo:nil
                                                 repeats:NO];
-
             }
         }
     }];
