@@ -61,12 +61,15 @@
 
     table1 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table1.popDelegate = self.popDelegate;
     //[table1 setAllowsSelection:NO];
     [table1 setSectionHeader:@"WAITING FOR FINALIZATION"];
     [self.view addSubview:table1];
 
     table2 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table2.popDelegate = self.popDelegate;
+    
     //[table2 setAllowsSelection:NO];
     [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];

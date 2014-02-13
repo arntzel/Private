@@ -577,6 +577,10 @@
     
     [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
     [[RootNavContrller defaultInstance].view.layer addAnimation:animation forKey:nil];
+    
+    if (self.popDelegate) {
+        [self.popDelegate onControlledPopped:YES];
+    }
 }
 
 - (void)rightNavBtnClick

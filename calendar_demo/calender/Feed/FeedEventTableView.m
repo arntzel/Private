@@ -322,6 +322,7 @@
 
     if (([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
+        detailCtl.popDelegate = self.popDelegate;
         detailCtl.eventID = [event.id intValue];
         [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
     }

@@ -151,7 +151,6 @@ static CGFloat const getstureDistance = 50;
     }
 }
 
-
 - (void)setToFinalizeViewMode
 {
     [self.finailzeView setHidden:NO];

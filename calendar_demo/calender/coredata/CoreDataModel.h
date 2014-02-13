@@ -11,12 +11,13 @@
 #import "DataCache.h"
 
 @protocol CoreDataModelDelegate <NSObject>
-
--(void) onCoreDataModelStarted;
--(void) onCoreDataModelChanged;
-
+    -(void) onCoreDataModelStarted;
+    -(void) onCoreDataModelChanged;
 @end
 
+@protocol PopDelegate <NSObject>
+    -(void) onControlledPopped:(BOOL)dataChanged;
+@end
 
 
 @interface CoreDataModel : NSObject

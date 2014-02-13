@@ -5,4 +5,6 @@
 
 @interface PedingEventViewController : BaseMenuViewController <CoreDataModelDelegate>
 
+@property(assign) id<PopDelegate> popDelegate;
+
 @end

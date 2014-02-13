@@ -17,4 +17,7 @@
 
 -(void)playCalendarAnimation;
 
+@property(assign) id<PopDelegate> popDelegate;
+
+
 @end

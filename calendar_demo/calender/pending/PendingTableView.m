@@ -8,18 +8,15 @@
 
 #import "ViewUtils.h"
 
-@interface PendingTableView() <UITableViewDataSource, UITableViewDelegate>
+@interface PendingTableView() <UITableViewDataSource, UITableViewDelegate, PopDelegate>
 
 @end
 
 @implementation PendingTableView 
 {
-
     NSMutableArray * completedEvents;
     NSMutableArray * pendingEvents;
-
     NSString * sectionHeader;
-    
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -171,10 +168,17 @@
 
         if( [event isCalvinEvent] ) {
             EventDetailController * detailCtl = [[EventDetailController alloc] init];
+            detailCtl.popDelegate = self;
             detailCtl.eventID = [event.id intValue];
             [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
         }
     }
+}
+
+-(void)onControlledPopped:(BOOL)dataChanged
+{
+    [self reloadData];
+    [self.popDelegate onControlledPopped:dataChanged];
 }
 
 #pragma mark -

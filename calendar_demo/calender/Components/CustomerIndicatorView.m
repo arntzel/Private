@@ -43,7 +43,7 @@
     [UIView setAnimationDuration:0.3];
 
     CGRect frame = self.frame;
-    frame.origin.x = 220 - 160;
+    frame.origin.x = 320 - 40;
     self.frame = frame;
 
     [UIView commitAnimations];
@@ -59,7 +59,7 @@
     [UIView setAnimationDuration:0.3];
 
     CGRect frame = self.frame;
-    frame.origin.x = 220 + 160;
+    frame.origin.x = 320 + 40;
     self.frame = frame;
 
     [UIView commitAnimations];

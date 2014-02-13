@@ -1,9 +1,9 @@
-
 #import "BaseMenuViewController.h"
 #import "AddEventControllerV2.h"
 #import "RootNavContrller.h"
 #import "Model.h"
 #import "MessageModel.h"
+#import "MainViewController.h"
 
 @interface BaseMenuViewController () <MessageModelDelegate>
 @end
@@ -43,8 +43,8 @@
 
 - (void)btnMenu:(id)sender
 {
-    if(self.delegate != nil) {
-        [self.delegate onBtnMenuClick];
+    if (self.delegate != nil) {
+       [self.delegate onBtnMenuClick];
     }
 }
 
@@ -63,6 +63,7 @@
 - (void)btnAddEvent:(id)sender
 {
     AddEventControllerV2 *addEvent = [[AddEventControllerV2 alloc] init];
+    addEvent.popDelegate = self;
     
     CATransition *animation = [CATransition animation];
     [animation setDuration:0.3];
@@ -72,9 +73,7 @@
     
     [[RootNavContrller defaultInstance] pushViewController:addEvent animated:NO];
     [[RootNavContrller defaultInstance].view.layer  addAnimation:animation forKey:nil];
-
 }
-
 
 -(void) onMessageModelChanged
 {
@@ -87,4 +86,10 @@
         self.navigation.unreadCount.hidden = YES;
     }
 }
+
+-(void)onControlledPopped:(BOOL)dataChanged
+{
+    [self.delegate onControlledPopped:dataChanged];
+}
+
 @end

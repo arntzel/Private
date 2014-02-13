@@ -62,12 +62,12 @@
                                     SharePhotoDelegate>
 {
     EventDetailNavigationBar *navBar;
+    
     EventDetailPhotoView *photoView;
     
     EventDetailInviteePlaceView *invitePlaceContentView;
     
     EventDetailTimeView *timeContentView;
-    
     
     EventDetailCommentConformView *conformView;
     
@@ -205,7 +205,6 @@
 
 - (void)configViews
 {
-    
     BOOL isCreator = [self isMyCreatEvent];
     navBar.rightbtn.hidden = NO;
     
@@ -253,7 +252,6 @@
     return user.id == creator.id;
 }
 
-
 - (void)updateUIByEvent
 {
     [photoView setImageUrl:event.thumbnail_url];
@@ -289,13 +287,11 @@
     }
 }
 
-
 -(void) updateEventTimeView
 {
     BOOL isCreator = [self isMyCreatEvent];
     [timeContentView updateView:isCreator andEvent:event];
 }
-
 
 -(void) updateConformView
 {
@@ -393,6 +389,10 @@
 
 - (void)leftBtnPress:(id)sender
 {
+    if (self.popDelegate) {
+        [self.popDelegate onControlledPopped:YES];
+    }
+    
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -614,7 +614,6 @@
             return;
         }
     }
-    
 
     [eventDate retain];
 
@@ -645,7 +644,6 @@
 -(void) onDeclineTime
 {
     LOG_D(@"onDeclineTime");
-    
     
     User * me = [[UserModel getInstance] getLoginUser];
     

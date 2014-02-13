@@ -36,7 +36,11 @@
     leftController.delegate = self;
 
     feedViewCtr = [[FeedViewController alloc] init];
+    feedViewCtr.popDelegate = self;
+    
     pendingEventViewCtr = [[PedingEventViewController alloc] init];
+    pendingEventViewCtr.popDelegate = self;
+    
     settingViewCtr = [[SettingViewController alloc] init];
     
     self = [super initWithRootViewController:feedViewCtr];
@@ -74,7 +78,7 @@
             [pendingEventViewCtr onCoreDataModelChanged];
             
             if (success == NO) {
-                [Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
+                //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
             }
         }];
     }];
@@ -129,8 +133,6 @@
     //self show
     [self onLogoButtonTyped];
 }
-
-
 
 #pragma mark - MenuNavigationDelegate
 -(void) onMenuSelected:(int) menuIndex
@@ -219,4 +221,21 @@
         }];
     }
 }
+
+
+-(void) onControlledPopped:(BOOL)dataChanged {
+    
+    [feedViewCtr onCoreDataModelStarted];
+    
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
+        
+        [feedViewCtr onCoreDataModelChanged];
+        [pendingEventViewCtr onCoreDataModelChanged];
+        
+        if (success == NO) {
+            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
+        }
+    }];
+}
+
 @end
