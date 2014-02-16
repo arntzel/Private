@@ -419,7 +419,7 @@
         [alertTextField setPlaceholder:@"Please input your email"];
         alertTextField.keyboardType = UIKeyboardTypeEmailAddress;
         alertTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        [alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        //[alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
        
         if(email != nil) {
@@ -448,7 +448,7 @@
             self.alertTextField.text = email;
         }
         
-        [self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        //[self.alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         [alertView addSubview:self.alertTextField];
     }
