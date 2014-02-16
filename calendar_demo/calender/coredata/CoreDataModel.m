@@ -69,10 +69,16 @@ static CoreDataModel * instance;
     NSError *error = nil;
     NSPersistentStoreCoordinator * persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
 
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+   
+    
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
         NSLog(@"Error: %@,%@",error,[error userInfo]);
     }
 
+    
     return persistentStoreCoordinator;
 }
 
@@ -671,9 +677,9 @@ static CoreDataModel * instance;
         [fetchRequest setPredicate:predicate];
     }
     
-    
-    NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fullname" ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSSortDescriptor * sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"lastest_timestamp" ascending:NO];
+    NSSortDescriptor * sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"fullname" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2, nil]];
     
     [fetchRequest setFetchOffset:offset];
     [fetchRequest setFetchLimit:50];

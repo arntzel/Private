@@ -8,6 +8,7 @@
         <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastest_timestamp" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="EventTimeVoteEntity" representedClassName="EventTimeVoteEntity" syncable="YES">
@@ -87,12 +88,12 @@
     </entity>
     <elements>
         <element name="ContactEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EventTimeVoteEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="FeedEventEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="LocationEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ProposeStartEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ProposeStartEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="EventTimeVoteEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
