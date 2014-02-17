@@ -370,6 +370,21 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [self addSearchBarObj];
     NSArray * selectUsers = [self getSelectedUsers];
     
+    
+    NSDate * now = [NSDate date];
+    float interval = [now timeIntervalSince1970];
+    
+    for(Contact * contact in selectedUsers)
+    {
+        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
+        if(entity != nil) {
+            entity.lastest_timestamp = @(interval);
+        }
+    }
+    
+    [[CoreDataModel getInstance] saveData];
+    
+    
     [self.delegate setInVitePeopleArray:selectUsers];
     [self.navigationController popViewControllerAnimated:YES];
 }
