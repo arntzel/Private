@@ -556,7 +556,7 @@
         NSString  * acesssToken  = auth.accessToken;
         LOG_D(@"Google acesssToken:%@, client secet=%@", acesssToken, auth.clientSecret);
         [loadingView startAnimating];
-        [[UserModel getInstance] signinGooglePlus:acesssToken andCallback:^(NSInteger error, User *user) {
+        [[UserModel getInstance] signinGooglePlus:acesssToken andRefeshToken:auth.refreshToken andCallback:^(NSInteger error, User *user) {
             
             LOG_D(@"signinGooglePlus:%d", error);
             
