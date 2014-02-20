@@ -56,6 +56,8 @@
     ASIFormDataRequest * request;
     
     AddEventInviteePlaceView *invitePlaceContentView;
+    
+    NSString * ext_event_id;
 }
 
 @property(nonatomic, strong) NSArray *invitedPeoples;
@@ -119,6 +121,8 @@
     [self.view addSubview:navBar];
     navBar.delegate = self;
     [navBar setTitleHidden:YES];
+    
+    ext_event_id = [Utils gen_uuid];
 }
 
 - (void)touchedInView:(UITapGestureRecognizer*) tap
@@ -647,6 +651,7 @@
     event.allow_new_location = YES;
     event.created_on = [NSDate date];
     event.published = YES;
+    event.ext_event_id = ext_event_id;
     
     Model *model = [Model getInstance];
     

@@ -141,4 +141,6 @@
 
 +(BOOL)isCalvinFirstLaunched;
 
++ (NSString *) gen_uuid;
+
 @end
