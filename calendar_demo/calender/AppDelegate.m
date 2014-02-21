@@ -43,8 +43,11 @@
     [self redirectNSLogToDocumentFolder];
 #endif
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstLaunch"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     }
 
     // start of your application:didFinishLaunchingWithOptions // ...

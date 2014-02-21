@@ -304,7 +304,7 @@
         //self.animationView.frame  = self.view.bounds;
         [animator removeAllBehaviors];
     }
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
 }
 
 -(void)unloadBlurBackground
