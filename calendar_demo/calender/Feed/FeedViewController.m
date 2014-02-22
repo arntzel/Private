@@ -256,6 +256,7 @@
     if (!isFirst) {
         return;
     }
+    [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     //CGRect calendarViewFrame = self.calendarView.frame;
     //calendarViewFrame.origin.y -= 20;
     //self.calendarView.frame = calendarViewFrame;
