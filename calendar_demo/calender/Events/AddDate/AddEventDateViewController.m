@@ -104,7 +104,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(dayEvents == nil || dayEvents.count == 0) {
-        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
+        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"PendingEventViewNoEventCell"];
         return cell;
     }
     
@@ -184,7 +184,6 @@
         [self showTimeErrorWarning];
         return;
     }
-   
     
     if (self.isUpdate) {
         if ([self.delegate respondsToSelector:@selector(updateEventDate:)])
@@ -201,7 +200,12 @@
     }
     
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)showTimeErrorWarning
