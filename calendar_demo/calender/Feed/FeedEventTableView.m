@@ -16,13 +16,38 @@
 
 #define FETECH_EVENTS 20
 #define MAX_FORWARD 365
-#define DAY 60*60*24
+#define DAY (60*60*24)
 
 #define HEADER_HEIGHT 28
 #define NO_EVENTS_HEADER_CELL 31
 
 #define TAG_SECTION_TEXT_LABEL 555
 #define TAG_SECTION_TEXT_LABEL_LEFT 556
+
+
+//一天的所有FeedEvent集合
+@interface DayFeedEventEntitys : NSObject
+
+@property NSString * day;
+
+//FeedEventEntity array
+@property NSMutableArray * events;
+
+@end
+
+
+@implementation DayFeedEventEntitys
+
+-(id) init {
+    self = [super init];
+    self.events = [[NSMutableArray alloc] init];
+    return  self;
+}
+
+@end
+
+
+
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -32,13 +57,17 @@
 @implementation FeedEventTableView {
     NSString * currentFirstDay;
     CoreDataModel * model;
-    DataCache * cache;
-    NSDate *startDate;
-    NSDate *endDate;
+   
     NSCalendar *gregorianCalendar;
 
     NSDate * firstVisibleDay;
     BOOL onDisplayFirstDayChangedNotify;
+    
+    
+    NSDate *startDate;
+    NSDate *endDate;
+    NSMutableDictionary * dayFeedEventEntitysDic;
+
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -65,16 +94,12 @@
     self.delegate = self;
 
     model = [CoreDataModel getInstance];
-    cache = [model getCache];
     onDisplayFirstDayChangedNotify = YES;
     
-    NSTimeInterval day = DAY;
-    NSDate *d = [NSDate dateWithTimeInterval:day * -10 sinceDate:[NSDate date]];
-    startDate = [self dateAtBeginningOfDayForDate:d];
-    endDate = [self dateByAddingYears:1 toDate:startDate];
     gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    
     [self registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
+    
+    dayFeedEventEntitysDic = [[NSMutableDictionary alloc] init];
 }
 
 -(NSDate *) getFirstVisibleDay
@@ -126,40 +151,40 @@
 
 - (void)reloadMoreData:(NSInteger)offsetY
 {
-    if(offsetY < 60) {
-        NSArray * allDay = [cache allDays];
-        if(allDay.count == 0) return;
-        
-        NSString* firtDay = [allDay objectAtIndex:0];
-        
-        NSLog(@"scrollViewDidScroll: load pre more events:%@, %d", cache.date, cache.preCount);
-
-        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:cache.preCount andEventTypeFilter:self.eventTypeFilters];
-        
-        [cache putFeedEventEntitys:feedEntiys];
-        
-        cache.preCount += feedEntiys.count;
-
-        [self reloadData];
-        [self scroll2Date:firtDay];
-        [self flashScrollIndicators];
-    }
-    else
-    if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
-        
-        //NSArray * allDay = [cache allDays];
-        //if(allDay.count == 0) return;
-
-        NSLog(@"scrollViewDidScroll: load pre more events:%@，%d", cache.date, cache.followCount);
-
-        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:cache.followCount andEventTypeFilter:self.eventTypeFilters];
-        
-        [cache putFeedEventEntitys:feedEntiys];
-        cache.followCount += feedEntiys.count;
-        
-        [self reloadData];
-        [self flashScrollIndicators];
-    }
+//    if(offsetY < 60) {
+//        NSArray * allDay = [cache allDays];
+//        if(allDay.count == 0) return;
+//        
+//        NSString* firtDay = [allDay objectAtIndex:0];
+//        
+//        NSLog(@"scrollViewDidScroll: load pre more events:%@, %d", cache.date, cache.preCount);
+//
+//        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:cache.preCount andEventTypeFilter:self.eventTypeFilters];
+//        
+//        [cache putFeedEventEntitys:feedEntiys];
+//        
+//        cache.preCount += feedEntiys.count;
+//
+//        [self reloadData];
+//        [self scroll2Date:firtDay];
+//        [self flashScrollIndicators];
+//    }
+//    else
+//    if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
+//        
+//        //NSArray * allDay = [cache allDays];
+//        //if(allDay.count == 0) return;
+//
+//        NSLog(@"scrollViewDidScroll: load pre more events:%@，%d", cache.date, cache.followCount);
+//
+//        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:cache.followCount andEventTypeFilter:self.eventTypeFilters];
+//        
+//        [cache putFeedEventEntitys:feedEntiys];
+//        cache.followCount += feedEntiys.count;
+//        
+//        [self reloadData];
+//        [self flashScrollIndicators];
+//    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -179,7 +204,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return MAX_FORWARD;
+    NSTimeInterval intreval = [endDate timeIntervalSinceDate:startDate];
+    return (intreval / DAY);
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -217,70 +243,78 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    NSTimeInterval day = DAY;
-    NSDate *sectionDate = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
+    NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString *sectionName = [Utils formateDay:sectionDate];
-    NSDictionary *hash = [cache dict];
-    if ([hash objectForKey:sectionName]==nil)
-        return 1; //[no events] cell
-    
-    DayFeedEventEntitysWrap *wrap = [hash objectForKey:sectionName];
-    if (wrap.eventTypeFilter != self.eventTypeFilters) {
-        wrap.eventTypeFilter = self.eventTypeFilters;
-        [wrap resetSortedEvents];
+   
+    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
+   
+    if(dayEvents == nil || dayEvents.events.count == 0) {
+        return 1; //No event cell
+    } else {
+        return  dayEvents.events.count;
     }
-    return [wrap sortedEvents].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *lastForThisDay = nil;
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
+    int section = indexPath.section;
+    NSDate * sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
+    NSString * sectionName = [Utils formateDay:sectionDate];
+
+    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
     
-    if (event == nil) {
+    if(dayEvents == nil || dayEvents.events.count == 0) {
+        
         NoEventsCell *c = (NoEventsCell*)[tableView dequeueReusableCellWithIdentifier:@"NoEventsCell"];
         return c;
-    }
-    
-    if( ![event isBirthdayEvent] )
-    {
-        UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
-        EventView * view;
-        if(cell == nil) {
-            view = [EventView createEventView];
-            view.tag = 1;
-            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-            [cell addSubview:view];
-        } else {
-            view = (EventView*)[cell viewWithTag:1];
-        }
-
-//        NSLog(@"lastForThisDay=%@", lastForThisDay);
-        [view refreshView:event lastForThisDay:[lastForThisDay boolValue]];
-    
-//        [cell setBackgroundColor:[UIColor clearColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        return cell;
-    }
-    else
-    {
-        UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"birthdayEventView"];
-        BirthdayEventView * view;
-        if(cell == nil) {
-            view = [BirthdayEventView createEventView];
-            view.tag = 2;
-            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
-            [cell addSubview:view];
-        } else {
-            view = (BirthdayEventView*)[cell viewWithTag:2];
-        }
-        [view refreshView:event];
         
-//        [cell setBackgroundColor:[UIColor clearColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
         
-        return cell;
+        int row = indexPath.row;
+        
+        BOOL lastForThisDay = (row == (dayEvents.events.count-1));
+        
+        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
+    
+        if( ![event isBirthdayEvent])
+        {
+            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
+            EventView * view;
+            if(cell == nil) {
+                view = [EventView createEventView];
+                view.tag = 1;
+                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+                [cell addSubview:view];
+            } else {
+                view = (EventView*)[cell viewWithTag:1];
+            }
+            
+            [view refreshView:event lastForThisDay:lastForThisDay];
+            
+            //[cell setBackgroundColor:[UIColor clearColor]];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
+        else
+        {
+            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"birthdayEventView"];
+            BirthdayEventView * view;
+            if(cell == nil) {
+                view = [BirthdayEventView createEventView];
+                view.tag = 2;
+                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+                [cell addSubview:view];
+            } else {
+                view = (BirthdayEventView*)[cell viewWithTag:2];
+            }
+            [view refreshView:event];
+            
+            //[cell setBackgroundColor:[UIColor clearColor]];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
     }
 }
 
@@ -291,25 +325,35 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *lastForThisDay = nil;
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
 
-    if (event == nil) {
-        return NO_EVENTS_HEADER_CELL;
-    }
+    int section = indexPath.section;
+    NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
+    NSString *sectionName = [Utils formateDay:sectionDate];
     
-    if ([event isBirthdayEvent] ) {
-        return BirthdayEventView_Height;
-    }
-    else {
-        //NSString *eventTitle = event.title;
+    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
+    
+    if(dayEvents == nil || dayEvents.events.count == 0) {
+        return NO_EVENTS_HEADER_CELL; //No event cell
+    } else {
+        
+        int row = indexPath.row;
+        
+        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
+
+        if ([event isBirthdayEvent] ) {
+            return BirthdayEventView_Height;
+        }
+        else {
+            //NSString *eventTitle = event.title;
 #if 0
-        CGSize maxSize = CGSizeMake(270.0, 1000.0f);
-        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-        CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
-        return fontSize.height + 85;
+            CGSize maxSize = CGSizeMake(270.0, 1000.0f);
+            UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+            CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+            return fontSize.height + 85;
 #endif
-        return 87;//76;//87;
+            return 87;//76;//87;
+        }
+
     }
 }
 
@@ -317,61 +361,54 @@
 {
     LOG_D(@"tableView:didSelectRowAtIndexPath:%@", indexPath);
     
-    NSNumber *lastForThisDay = nil;
-    FeedEventEntity * event = [self getFeedEventEntity:indexPath lastForThisDay:&lastForThisDay];
-
-    if (([event.eventType intValue] & FILTER_IMCOMPLETE) != 0) {
-        EventDetailController * detailCtl = [[EventDetailController alloc] init];
-        detailCtl.popDelegate = self.popDelegate;
-        detailCtl.eventID = [event.id intValue];
-        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
-    }
-}
-
--(FeedEventEntity *) getFeedEventEntity:(NSIndexPath *)indexPath lastForThisDay:(NSNumber**)lastForThisDay
-{
-    NSTimeInterval day = 60*60*24;
-    NSDate *sectionDate = [NSDate dateWithTimeInterval:day * indexPath.section sinceDate:startDate];
+    int section = indexPath.section;
+    NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString *sectionName = [Utils formateDay:sectionDate];
     
-    NSDictionary *hash = [cache dict];
+    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
     
-    if ([hash objectForKey:sectionName]==nil) {
-        return nil;
-    }
-    
-    DayFeedEventEntitysWrap *wrap = [hash objectForKey:sectionName];
-    if(wrap.eventTypeFilter != self.eventTypeFilters) {
-        wrap.eventTypeFilter = self.eventTypeFilters;
-        [wrap resetSortedEvents];
-    }
+    if(dayEvents == nil || dayEvents.events.count == 0) {
+        return; //No event cell
+    } else {
+        
+        int row = indexPath.row;
+        
+        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
 
-    NSArray *events = [wrap sortedEvents];
-    
-    FeedEventEntity * event = [events objectAtIndex:indexPath.row];
-
-    *lastForThisDay = @NO;
-    if (indexPath.row >= [events count] - 1)
-        *lastForThisDay = @YES;
-    
-    return event;
+        if([event.eventType intValue]== 0) {
+            
+            EventDetailController * detailCtl = [[EventDetailController alloc] init];
+            detailCtl.popDelegate = self.popDelegate;
+            detailCtl.eventID = [event.id intValue];
+            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+        }
+    }
 }
+
+
 
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
-    [cache clearAllDayFeedEventEntitys];
+    startDate = [day cc_dateByMovingToBeginningOfDay];
+    endDate = [startDate cc_dateByMovingToTheFollowingDayCout:7];
     
-    cache.date = [Utils convertGMTDate:[day cc_dateByMovingToBeginningOfDay]];
-    cache.preCount = 0;
-    cache.followCount = 0;
-
-    NSArray * feedEvents = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
-    [cache putFeedEventEntitys:feedEvents];
-    cache.preCount += feedEvents.count;
+    [dayFeedEventEntitysDic removeAllObjects];
     
-    NSArray * feedEvents2 = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:0 andEventTypeFilter:self.eventTypeFilters];
-    [cache putFeedEventEntitys:feedEvents2];
-    cache.followCount += feedEvents2.count;
+    NSArray * feedEvents = [model getDayFeedEventEntitys:startDate andEndDate:endDate];
+    
+    for (FeedEventEntity * entity in feedEvents) {
+        NSString * day = [Utils formateDay:entity.start];
+        DayFeedEventEntitys * dayEntity = [dayFeedEventEntitysDic objectForKey:day];
+        
+        if(dayEntity == nil) {
+            dayEntity = [[DayFeedEventEntitys alloc] init];
+            [dayFeedEventEntitysDic setObject:dayEntity forKey:day];
+            dayEntity.day = day;
+            [dayEntity.events addObject:entity];
+        } else {
+            [dayEntity.events addObject:entity];
+        }
+    }
     
     [self reloadData];
 }

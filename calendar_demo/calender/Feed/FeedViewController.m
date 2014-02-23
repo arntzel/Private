@@ -49,6 +49,7 @@
     UICollisionBehavior* collision;
     UIAttachmentBehavior *spring;
     CGPoint calendarViewCenter;
+    
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -204,51 +205,6 @@
     [self refreshWithDate:[Utils getCurrentDate]];
 }
 
--(void)firstTimeLogic000 {
-    
-    User * me = [[UserModel getInstance] getLoginUser];
-    
-    NSDate * today =  [Utils getCurrentDate];
-    
-    NSMutableString * eventType = [[NSMutableString alloc] init];
-    [eventType appendString:@"0,5"];
-    
-    if([me isFacebookConnected]) {
-        [eventType appendString:@",3,4"];
-    }
-    
-    if( [me isGoogleConnected]) {
-        [eventType appendString:@",1,2"];
-    }
-//    
-//    [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-//        
-//        if(error == 0) {
-//            CoreDataModel * model = [CoreDataModel getInstance];
-//            for(Event * evt in events) {
-//                
-//                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-//                
-//                if(entity == nil) {
-//                    entity = [model createEntity:@"FeedEventEntity"];
-//                } else {
-//                    for(UserEntity * user in entity.attendees) {
-//                        [model deleteEntity:user];
-//                    }
-//                    [entity clearAttendee];
-//                }
-//                
-//                [entity convertFromEvent:evt];
-//                [model updateFeedEventEntity:entity];
-//            }
-//
-//            [self refreshWithDate:[Utils getCurrentDate]];
-//        }
-//        
-//        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-//        }];
-//    }];
-}
 
 -(void)playCalendarAnimation
 {
@@ -552,7 +508,6 @@
         }
         
     }];
-    
 }
 
 @end

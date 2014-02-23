@@ -45,6 +45,9 @@
 //GMT date
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
 
+//GMT date: 获取从一段时间内的所有event
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) begin andEndDate:(NSDate *) end;
+
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;
 

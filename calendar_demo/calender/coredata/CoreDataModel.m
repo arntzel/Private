@@ -181,72 +181,38 @@ static CoreDataModel * instance;
     
     NSPredicate *predicate;
     NSSortDescriptor *sortDescriptor;
+
     
-    eventTypeFilter = 0xFFFFF;
-    
-    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
-    //if (status == EKAuthorizationStatusAuthorized)
-    if(false)
-    {
-        EKEventStore *store = [[EKEventStore alloc] init];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *iCalTypesLocal = [userDefaults objectForKey:@"iCalTypes"];
-        NSArray *iCals = [store calendarsForEntityType:EKEntityTypeEvent];
-        NSMutableArray *iCalTypes = [[NSMutableArray alloc] init];
-        for (EKCalendar *tmp in iCals)
-        {
-            [iCalTypes addObject:tmp.calendarIdentifier];
-        }
-        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",iCalTypes];
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF in %@",iCalTypes];
-        NSArray *supportediCalType = [iCalTypesLocal filteredArrayUsingPredicate:predicate1];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",supportediCalType];
-        NSArray *notSupportediCalType = [iCalTypes filteredArrayUsingPredicate:predicate2];
-        
-        if ([notSupportediCalType count]>0)
-        {
-            if(follow) {
-                predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0 AND (NOT (belongToiCal in %@))", date, eventTypeFilter,notSupportediCalType];
-                //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
-            } else {
-                predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0 AND (NOT (belongToiCal in %@))", date, eventTypeFilter,notSupportediCalType];
-                //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
-            }
-        }
-        else
-        {
-            
-            if(follow) {
-                predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0", date, eventTypeFilter];
-                //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
-            } else {
-                predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0", date, eventTypeFilter];
-                //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
-            }
-        }
-        
+    if(follow) {
+        [self getFeedEventWithEventType:5];
+        predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
+        //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
+        //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
     }
-    else
-    {
-        if(follow) {
-            [self getFeedEventWithEventType:5];
-            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
-            //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start >= %@)", date];
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
-        } else {
-            predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start < %@) AND (eventType & %d)>0 AND belongToiCal=%@", date, eventTypeFilter,@"0"];
-            //predicate = [NSPredicate predicateWithFormat:@"(start != NULL) AND (start < %@)", date];
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
-        }
-    }
-    
 
     [fetchRequest setFetchOffset:offset];
     [fetchRequest setFetchLimit:limit];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
+
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) begin andEndDate:(NSDate *) end
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (start<%@)", begin, end];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
+
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [fetchRequest setPredicate:predicate];
     
