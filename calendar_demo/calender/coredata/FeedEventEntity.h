@@ -2,14 +2,14 @@
 //  FeedEventEntity.h
 //  Calvin
 //
-//  Created by fangxiang on 14-1-12.
+//  Created by fangxiang on 14-2-23.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class UserEntity;
+@class CreatorEntity, LocationEntity;
 
 @interface FeedEventEntity : NSManagedObject
 
@@ -33,32 +33,20 @@
 @property (nonatomic, retain) NSNumber * is_all_day;
 @property (nonatomic, retain) NSDate * last_modified;
 @property (nonatomic, retain) NSString * locationName;
-@property (nonatomic, retain) NSDate * maxProposeStarTime;
+@property (nonatomic, retain) NSDate * max_proposed_end_time;
 @property (nonatomic, retain) NSDate * start;
 @property (nonatomic, retain) NSString * start_type;
 @property (nonatomic, retain) NSString * thumbnail_url;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
-@property (nonatomic, retain) NSSet *attendees;
-@property (nonatomic, retain) NSSet *propose_starts;
-@end
-
-@interface FeedEventEntity (CoreDataGeneratedAccessors)
-
-- (void)addAttendeesObject:(UserEntity *)value;
-- (void)removeAttendeesObject:(UserEntity *)value;
-- (void)addAttendees:(NSSet *)values;
-- (void)removeAttendees:(NSSet *)values;
-
-- (void)addPropose_startsObject:(NSManagedObject *)value;
-- (void)removePropose_startsObject:(NSManagedObject *)value;
-- (void)addPropose_starts:(NSSet *)values;
-- (void)removePropose_starts:(NSSet *)values;
+@property (nonatomic, retain) NSNumber * all_responded;
+@property (nonatomic, retain) NSNumber * allow_attendee_invite;
+@property (nonatomic, retain) NSNumber * allow_new_dt;
+@property (nonatomic, retain) NSNumber * allow_new_location;
+@property (nonatomic, retain) NSNumber * attendee_num;
+@property (nonatomic, retain) NSString * modified_num;
+@property (nonatomic, retain) CreatorEntity *creator;
+@property (nonatomic, retain) LocationEntity *location;
 
 @end
-
-//@interface FeedEventEntity (transient)
-//@property (nonatomic, retain) NSNumber * lastForThisDay;
-//
-//@end

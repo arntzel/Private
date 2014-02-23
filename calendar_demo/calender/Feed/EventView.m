@@ -5,7 +5,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "UserEntity.h"
+#import "CreatorEntity.h"
 #import "ContactEntity.h"
 #import "UIColor+Hex.h"
 
@@ -83,8 +83,7 @@
         }
     }
 
-    UserEntity * user = [event getCreator];
-    NSString * headerUrl = user.contact.avatar_url;
+    NSString * headerUrl = event.creator.avatar_url;
 
     //Birthday
     if( [event isBirthdayEvent] ) {
@@ -225,8 +224,7 @@
 
 -(NSString *) getAttendeesText:(FeedEventEntity*) event
 {
-    NSSet * attendees = event.attendees;
-    return [NSString stringWithFormat:@"%d Invitees", attendees.count];
+    return [NSString stringWithFormat:@"%d Invitees", [event.attendee_num intValue]];
 }
 
 +(EventView *) createEventView

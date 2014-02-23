@@ -7,14 +7,9 @@
 
 @interface FeedEventEntity (FeedEventEntityExtra)
 
--(void)clearAttendee;
 
 -(NSDate*) getLocalStart;
 
--(UserEntity*) getCreator;
-
-
--(BOOL) isAllAttendeeResped;
 
 -(BOOL) isBirthdayEvent;
 
@@ -24,5 +19,8 @@
 
 -(void) convertFromEvent:(Event*) event;
 -(void) convertFromCalendarEvent:(Event*) event;
+
+-(void) parserFromJsonData:(NSDictionary *) jsonData;
+
 
 @end

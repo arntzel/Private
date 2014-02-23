@@ -423,24 +423,10 @@ static NSTimeZone * userTimeZone;
 +(NSString *) getAttendeeText:(FeedEventEntity*)event {
     
     //NSArray * atendees = event.attendees;
-    
-    int respCount = 0;
-    int allCount = event.attendees.count;
+    //TODO::
     
     
-    for(UserEntity * entity in event.attendees) {
-        
-        if([[entity is_owner] boolValue]) {
-            respCount++;
-            continue;
-        }
-        
-        if([entity.status intValue] == 3 || [entity.status intValue] == -1) {
-            respCount ++;
-        }
-    }
-    
-    return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];
+    return [NSString stringWithFormat:@"%d/%d invitees have responsed", 0, [event.attendee_num intValue]];
 }
 
 

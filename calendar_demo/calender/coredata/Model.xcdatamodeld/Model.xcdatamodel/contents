@@ -11,13 +11,25 @@
         <attribute name="lastest_timestamp" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="CreatorEntity" representedClassName="CreatorEntity" syncable="YES">
+        <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="EventTimeVoteEntity" representedClassName="EventTimeVoteEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="FeedEventEntity" representedClassName="FeedEventEntity" syncable="YES">
+        <attribute name="all_responded" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="allow_attendee_invite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="allow_new_dt" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="allow_new_location" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="attendee_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="belongToiCal" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="confirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="created_on" optional="YES" attributeType="Date" syncable="YES"/>
@@ -37,15 +49,16 @@
         <attribute name="is_all_day" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="last_modified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="maxProposeStarTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="max_proposed_end_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_num" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="start_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userstatus" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attendees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="feedEvent" inverseEntity="UserEntity" syncable="YES"/>
-        <relationship name="propose_starts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProposeStartEntity" syncable="YES"/>
+        <relationship name="creator" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CreatorEntity" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LocationEntity" syncable="YES"/>
     </entity>
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -84,7 +97,7 @@
         <attribute name="is_owner" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContactEntity" syncable="YES"/>
-        <relationship name="feedEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeedEventEntity" inverseName="attendees" inverseEntity="FeedEventEntity" syncable="YES"/>
+        <relationship name="feedEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeedEventEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="ContactEntity" positionX="0" positionY="0" width="0" height="0"/>
@@ -95,5 +108,6 @@
         <element name="ProposeStartEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CreatorEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

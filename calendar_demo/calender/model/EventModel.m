@@ -96,55 +96,15 @@
         
         CoreDataModel * model = [CoreDataModel getInstance];
         NSLog(@"========before download=========");
-    //    [model getFeedEventWithEventType:5];
-        for (Event * evt in events) {
-            
-            if([evt.modified_num compare:maxlastupdatetime] > 0) {
-                maxlastupdatetime = evt.modified_num;
-            }
-            
-            FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-            
-            if (entity == nil && evt.eventType == 5) {
-                entity = [model getFeedEventWithEventType:evt.eventType WithExtEventID:evt.ext_event_id];
-            }
-            
-            if (evt.confirmed && [evt isDeclineEvent]) {
-                if(entity != nil) {
-                    LOG_I(@"deleteFeedEventEntity2:%d, %@", evt.id, evt.title);
-                    [model deleteFeedEventEntity2:entity];
-                }
-                
-            }
-            else {
-                
-                if (entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                }
-                else {
-                    for(UserEntity * user in entity.attendees) {
-                        [model deleteEntity:user];
-                    }
-                    [entity clearAttendee];
-                }
-                
-//                if (evt.eventType == 3) {
-                    NSLog(@"eventType: %@  %@", @(evt.eventType), evt.title);
-//                }
-                
-                [entity convertFromEvent:evt];
-                
-                [model updateFeedEventEntity:entity];
+        for (FeedEventEntity * entity in events) {
+            if([entity.modified_num compare:maxlastupdatetime] > 0) {
+                maxlastupdatetime = entity.modified_num;
             }
         }
 
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
-        [model saveData];
-        
         NSLog(@"========after download=========");
-       // [model getFeedEventWithEventType:5];
-        
         [model notifyModelChange];
         
         if (events.count < totalCount) {
@@ -250,6 +210,8 @@
 
 -(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
+    
+    return;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         

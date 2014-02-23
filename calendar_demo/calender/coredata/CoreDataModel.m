@@ -182,9 +182,11 @@ static CoreDataModel * instance;
     NSPredicate *predicate;
     NSSortDescriptor *sortDescriptor;
     
+    eventTypeFilter = 0xFFFFF;
     
     EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
-    if (status == EKAuthorizationStatusAuthorized)
+    //if (status == EKAuthorizationStatusAuthorized)
+    if(false)
     {
         EKEventStore *store = [[EKEventStore alloc] init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

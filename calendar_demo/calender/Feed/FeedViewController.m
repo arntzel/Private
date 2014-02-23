@@ -220,34 +220,34 @@
     if( [me isGoogleConnected]) {
         [eventType appendString:@",1,2"];
     }
-    
-    [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-        
-        if(error == 0) {
-            CoreDataModel * model = [CoreDataModel getInstance];
-            for(Event * evt in events) {
-                
-                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-                
-                if(entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                } else {
-                    for(UserEntity * user in entity.attendees) {
-                        [model deleteEntity:user];
-                    }
-                    [entity clearAttendee];
-                }
-                
-                [entity convertFromEvent:evt];
-                [model updateFeedEventEntity:entity];
-            }
-
-            [self refreshWithDate:[Utils getCurrentDate]];
-        }
-        
-        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-        }];
-    }];
+//    
+//    [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
+//        
+//        if(error == 0) {
+//            CoreDataModel * model = [CoreDataModel getInstance];
+//            for(Event * evt in events) {
+//                
+//                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
+//                
+//                if(entity == nil) {
+//                    entity = [model createEntity:@"FeedEventEntity"];
+//                } else {
+//                    for(UserEntity * user in entity.attendees) {
+//                        [model deleteEntity:user];
+//                    }
+//                    [entity clearAttendee];
+//                }
+//                
+//                [entity convertFromEvent:evt];
+//                [model updateFeedEventEntity:entity];
+//            }
+//
+//            [self refreshWithDate:[Utils getCurrentDate]];
+//        }
+//        
+//        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+//        }];
+//    }];
 }
 
 -(void)playCalendarAnimation

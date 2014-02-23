@@ -7,6 +7,9 @@
 #import "UserEntityExtra.h"
 #import "UserModel.h"
 
+#import "CreatorEntityExtra.h"
+#import "LocationEntityExtra.h"
+
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
 
@@ -15,35 +18,7 @@
     return self.start;
 }
 
--(UserEntity*) getCreator
-{
-    for(UserEntity * user in self.attendees)
-    {
-        if([user.contact.email caseInsensitiveCompare:self.creatoremail] == NSOrderedSame)
-        {
-            return user;
-        }
-    }
-    
-    return nil;
-}
 
-
--(BOOL) isAllAttendeeResped
-{
-    for(UserEntity * user in self.attendees)
-    {
-        if([user.is_owner boolValue]) {
-            continue;
-        }
-        
-        if( [user.status intValue] != -1 && [user.status intValue] != 3) {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
 
 -(BOOL) isBirthdayEvent
 {
@@ -60,13 +35,13 @@
 
 -(BOOL) isHistory
 {
-    if(self.maxProposeStarTime == nil) {
+    if(self.max_proposed_end_time == nil) {
         return NO;
     }
     
     NSDate * current = [NSDate date];
     //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
-    return [current compare:self.maxProposeStarTime] > 0;
+    return [current compare:self.max_proposed_end_time] > 0;
 }
 
 -(void) convertFromEvent:(Event*) event
@@ -91,10 +66,6 @@
                     }
                 }
             }
-            
-            ProposeStartEntity * entity = [[CoreDataModel getInstance] createEntity:@"ProposeStartEntity"];
-            [entity convertFromProposeStart:ps];
-            [self addPropose_startsObject:entity];
         }
         
         self.confirmed = @(accepted);
@@ -110,7 +81,7 @@
             maxStartTime = endTime;
         }
     }
-    self.maxProposeStarTime = maxStartTime;
+    self.max_proposed_end_time = maxStartTime;
     
     
     self.created_on = event.created_on;
@@ -139,22 +110,22 @@
     self.locationName = event.location.location;
 
 
-    self.creatorID = [NSNumber numberWithInt:event.creator.id];
+    self.creatorID = @(event.creator.id);
     self.creatoremail = event.creator.email;
     
-    [self clearAttendee];
-    for(EventAttendee * atd in event.attendees) {
-        UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:atd];
-        [self addAttendeesObject:entity];
-    }
     self.ext_event_id = event.ext_event_id;
     self.hasModified = @(event.hasModified);
     self.last_modified = event.last_modified;
+    self.modified_num = event.modified_num;
+    
+    int attendee_num = event.attendees.count;
+    self.attendee_num = @(attendee_num);
+    
 }
 
 -(void) convertFromCalendarEvent:(Event*) event
 {
+    /*
     self.id = [NSNumber numberWithInt:event.id];
     
     self.archived =  [NSNumber numberWithBool:event.archived];
@@ -184,7 +155,7 @@
     self.creatorID = [NSNumber numberWithInt:event.creator.id];
     self.creatoremail = event.creator.email;
     
-    [self clearAttendee];
+ 
     for(EventAttendee * atd in event.attendees) {
         UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
         [entity convertFromUser:atd];
@@ -196,12 +167,66 @@
     self.last_modified = event.last_modified;
     
     //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");
+     */
 }
--(void)clearAttendee
+
+
+-(void) parserFromJsonData:(NSDictionary *) json
 {
-    if(self.attendees.count > 0) {
-        NSSet * attendees = [[NSSet alloc] initWithSet:self.attendees];
-        [self removeAttendees:attendees];
+    
+    self.id = [json objectForKey:@"id"];
+    
+    self.allow_attendee_invite   = [json objectForKey:@"allow_attendee_invite"];
+    self.allow_new_dt            = [json objectForKey:@"allow_new_dt"];
+    self.allow_new_location      = [json objectForKey:@"allow_new_location"];
+    self.archived                = [json objectForKey:@"archived"];
+    self.is_all_day              = [json objectForKey:@"is_all_day"];
+    self.confirmed               = [json objectForKey:@"confirmed"];
+    
+    self.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
+    self.last_modified = [Utils parseNSDate:[json objectForKey:@"last_modified"]];
+    
+    self.creator   = [CreatorEntity createCreatorEntity:[json objectForKey:@"creator"]];
+    self.location  = [LocationEntity createLocationEntity:[json objectForKey:@"location"]];
+    
+    self.descript = [Utils chekcNullClass:[json objectForKey:@"description"]];
+    
+    
+    self.duration = [json objectForKey:@"duration"];
+    
+    id obj = [json objectForKey:@"duration_days"];
+    if(![obj isKindOfClass:[NSNull class]]) {
+        self.duration_days = obj;
     }
+    
+    obj = [json objectForKey:@"duration_hours"];
+    obj = [Utils chekcNullClass:obj];
+    self.duration_hours = obj;
+    
+    
+    obj = [json objectForKey:@"duration_minutes"];
+    obj = [Utils chekcNullClass:obj];
+    self.duration_minutes = obj;
+    
+    self.start_type = [json objectForKey:@"start_type"];
+    
+    NSDate * startDate = [Utils parseNSDate:[json objectForKey:@"start"]];
+    self.start = startDate;
+    
+    self.thumbnail_url = [Utils chekcNullClass:[json objectForKey:@"thumbnail_url"]];
+    
+    self.title = [json objectForKey:@"title"];
+    self.timezone = [json objectForKey:@"timezone"];
+    
+    self.all_responded         = [json objectForKey:@"all_responded"];
+    self.allow_attendee_invite = [json objectForKey:@"allow_attendee_invite"];
+    self.allow_new_dt          = [json objectForKey:@"allow_new_dt"];
+    self.allow_new_location    = [json objectForKey:@"allow_new_location"];
+    self.attendee_num          = [json objectForKey:@"attendee_num"];
+    
+    self.eventType = [json objectForKey:@"event_type"];
+    
+    self.modified_num = [NSString stringWithFormat:@"%@", [json objectForKey:@"modified_num"]];
+    self.ext_event_id = [NSString stringWithFormat:@"%@", [json objectForKey:@"ext_event_id"]];
 }
 @end

@@ -65,6 +65,7 @@
 
     [feedViewCtr onCoreDataModelStarted];
 
+    /*
     [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         
         [feedViewCtr onCoreDataModelChanged];
@@ -81,6 +82,17 @@
                 //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
             }
         }];
+    }];
+     */
+    
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
+        
+        [feedViewCtr onCoreDataModelChanged];
+        [pendingEventViewCtr onCoreDataModelChanged];
+        
+        if (success == NO) {
+            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
+        }
     }];
     
     return self;

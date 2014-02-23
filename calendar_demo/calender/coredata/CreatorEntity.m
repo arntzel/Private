@@ -1,18 +1,20 @@
 //
-//  EventTimeVoteEntity.m
+//  CreatorEntity.m
 //  Calvin
 //
 //  Created by fangxiang on 14-2-23.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
-#import "EventTimeVoteEntity.h"
+#import "CreatorEntity.h"
 
 
-@implementation EventTimeVoteEntity
+@implementation CreatorEntity
 
+@dynamic avatar_url;
 @dynamic email;
+@dynamic first_name;
+@dynamic last_name;
 @dynamic id;
-@dynamic status;
 
 @end

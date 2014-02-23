@@ -601,17 +601,30 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            //LOG_D(@"Event resp:%@", json);
+            LOG_D(@"FeedEvent resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
             NSMutableArray * events = [[NSMutableArray alloc] init];
 
             for(int i=0; i<objects.count;i++) {
-                Event * e = [Event parseEvent:[objects objectAtIndex:i]];
-                [events addObject:e];
+                
+                NSDictionary * json = [objects objectAtIndex:i];
+                int eventId = [[json objectForKey:@"id"] intValue];;
+                
+                FeedEventEntity * eventEntity = [[CoreDataModel getInstance] getFeedEventEntity:eventId];
+                if(eventEntity == nil) {
+                    eventEntity = [[CoreDataModel getInstance] createEntity:@"FeedEventEntity"];
+                }
+                
+                [eventEntity parserFromJsonData:json];
+                [events addObject:eventEntity];
             }
 
+            if(objects.count>0 ) {
+                [[CoreDataModel getInstance] saveData];
+            }
+            
             callback(ERROCODE_OK, count, events);
 
         }
@@ -1436,7 +1449,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
 
-        if(status == 202) {
+        if(status == 200) {
 
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];

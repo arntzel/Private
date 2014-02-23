@@ -2,7 +2,7 @@
 //  EventTimeVoteEntity.h
 //  Calvin
 //
-//  Created by fangxiang on 14-1-12.
+//  Created by fangxiang on 14-2-23.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 
 @interface EventTimeVoteEntity : NSManagedObject
 
+@property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * status;
-@property (nonatomic, retain) NSString * email;
 
 @end
