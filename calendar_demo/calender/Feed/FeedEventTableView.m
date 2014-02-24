@@ -390,7 +390,7 @@
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
     startDate = [day cc_dateByMovingToBeginningOfDay];
-    endDate = [startDate cc_dateByMovingToTheFollowingDayCout:7];
+    endDate = [startDate cc_dateByMovingToTheFollowingDayCout:14];
     
     [dayFeedEventEntitysDic removeAllObjects];
     

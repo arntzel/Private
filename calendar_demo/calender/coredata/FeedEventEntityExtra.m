@@ -30,7 +30,8 @@
 -(BOOL) isCalvinEvent
 {
     int eventType = [self.eventType intValue];
-    return  (eventType & FILTER_IMCOMPLETE) != 0;
+    return eventType == 0;
+    //return  (eventType & FILTER_IMCOMPLETE) != 0;
 }
 
 -(BOOL) isHistory
@@ -212,6 +213,16 @@
     
     NSDate * startDate = [Utils parseNSDate:[json objectForKey:@"start"]];
     self.start = startDate;
+    
+    
+    if(self.start != nil) {
+        int mins = self.duration_minutes.intValue + self.duration_hours.intValue*60 + self.duration_days.intValue*60*24;
+        int durationSeconds =  mins*60;
+        self.end = [self.start dateByAddingTimeInterval:durationSeconds];
+    } else {
+        self.end = nil;
+    }
+    
     
     self.thumbnail_url = [Utils chekcNullClass:[json objectForKey:@"thumbnail_url"]];
     

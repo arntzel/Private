@@ -16,6 +16,8 @@
 #import "CoreDataModel.h"
 #import "ViewUtils.h"
 
+#import "NSDateAdditions.h"
+
 @interface AddEventDateViewController ()<AddDateCalenderViewDelegate,
                                          KalViewDelegate,
                                          KalTileViewDataSource,
@@ -104,7 +106,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(dayEvents == nil || dayEvents.count == 0) {
-        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
+        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventsCell"];
         return cell;
     }
     
@@ -319,11 +321,12 @@
 
 -(void) loadEvents: (NSDate*) date
 {
-    NSString * day = [Utils formateDay:date];
     
+    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
+
     CoreDataModel * model = [CoreDataModel getInstance];
-    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE | FILTER_IOS;
-    dayEvents =[model getFeedEvents:day evenTypeFilter:filetVal];
+    dayEvents =[model getDayFeedEventEntitys:beginDate andEndDate:endDate];
     [feedTableView reloadData];
 }
 

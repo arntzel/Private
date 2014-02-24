@@ -1240,7 +1240,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             

@@ -223,24 +223,26 @@ static CoreDataModel * instance;
 -(NSArray *) getFeedEventEntitys:(NSDate *) day
 {
     
-    NSDate * beginDate = [Utils convertGMTDate:[day cc_dateByMovingToBeginningOfDay]];
-    NSDate * endDate = [Utils convertGMTDate:[day cc_dateByMovingToEndOfDay]];
+    NSDate * beginDate = [day cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [day cc_dateByMovingToEndOfDay];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
+    return [self getDayFeedEventEntitys:beginDate andEndDate:endDate];
     
-    NSPredicate *predicate;
-    NSSortDescriptor *sortDescriptor;
-    
-    predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (start < %@)", beginDate, endDate];
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
-    
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    [fetchRequest setPredicate:predicate];
-    
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    return results;
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    
+//    NSPredicate *predicate;
+//    NSSortDescriptor *sortDescriptor;
+//    
+//    predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (start >= %@) AND (start < %@)", beginDate, endDate];
+//    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
+//    
+//    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+//    [fetchRequest setPredicate:predicate];
+//    
+//    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+//    return results;
 
 }
 
@@ -388,30 +390,34 @@ static CoreDataModel * instance;
 
 -(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
 {
-    NSLog(@"getFeedEvents,day=%@, filter=%d", day, filter);
+//    NSLog(@"getFeedEvents,day=%@, filter=%d", day, filter);
+//    
+//    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
+//    
+//    if(wrap != nil) {
+//        if(wrap.eventTypeFilter != filter) {
+//            wrap.eventTypeFilter = filter;
+//            [wrap resetSortedEvents];
+//        }
+//        return wrap.sortedEvents;
+//    } 
+//    
+//    NSDate * date = [Utils parseNSStringDay:day];
+//
+//    
+//    NSArray * entitys = [self getFeedEventEntitys:date];
+//    
+//    wrap = [[DayFeedEventEntitysWrap alloc] init:day andFeedEvents:entitys];
+//
+//    wrap.eventTypeFilter = filter;
+//    [wrap resetSortedEvents];
+//    
+//    return wrap.sortedEvents;
     
-    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
-    
-    if(wrap != nil) {
-        if(wrap.eventTypeFilter != filter) {
-            wrap.eventTypeFilter = filter;
-            [wrap resetSortedEvents];
-        }
-        return wrap.sortedEvents;
-    } 
-    
-    NSDate * date = [Utils parseNSStringDay:day];
-
-    
-    NSArray * entitys = [self getFeedEventEntitys:date];
-    
-    wrap = [[DayFeedEventEntitysWrap alloc] init:day andFeedEvents:entitys];
-
-    wrap.eventTypeFilter = filter;
-    [wrap resetSortedEvents];
-    
-    return wrap.sortedEvents;
-} 
+     NSDate * date = [Utils parseNSStringDay:day];
+     NSArray * entitys = [self getFeedEventEntitys:date];
+     return entitys;
+}
 
 
 -(int) getFeedEventCountByStart:(NSDate *) start andEnd:(NSDate *) end;
