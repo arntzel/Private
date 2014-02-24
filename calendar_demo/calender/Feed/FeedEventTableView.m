@@ -151,43 +151,44 @@
 
 - (void)reloadMoreData:(NSInteger)offsetY
 {
-//    if(offsetY < 60) {
-//        NSArray * allDay = [cache allDays];
-//        if(allDay.count == 0) return;
-//        
-//        NSString* firtDay = [allDay objectAtIndex:0];
-//        
-//        NSLog(@"scrollViewDidScroll: load pre more events:%@, %d", cache.date, cache.preCount);
-//
-//        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andPreLimit:FETECH_EVENTS andOffset:cache.preCount andEventTypeFilter:self.eventTypeFilters];
-//        
-//        [cache putFeedEventEntitys:feedEntiys];
-//        
-//        cache.preCount += feedEntiys.count;
-//
-//        [self reloadData];
-//        [self scroll2Date:firtDay];
-//        [self flashScrollIndicators];
-//    }
-//    else
-//    if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
-//        
-//        //NSArray * allDay = [cache allDays];
-//        //if(allDay.count == 0) return;
-//
-//        NSLog(@"scrollViewDidScroll: load pre more events:%@，%d", cache.date, cache.followCount);
-//
-//        NSArray * feedEntiys = [model getDayFeedEventEntitys:cache.date andFollowLimit:FETECH_EVENTS andOffset:cache.followCount andEventTypeFilter:self.eventTypeFilters];
-//        
-//        [cache putFeedEventEntitys:feedEntiys];
-//        cache.followCount += feedEntiys.count;
-//        
-//        [self reloadData];
-//        [self flashScrollIndicators];
-//    }
+    if(offsetY <=0) {
+       
+        NSString* firtDay = [Utils formateDay:startDate];
+        
+        NSDate * preStartDate = [startDate cc_dateByMovingToThePreviousDayCout:10];
+        
+        NSLog(@"scrollViewDidScroll: load pre more events:%@ to %@", preStartDate, startDate);
+
+        
+        [self loadDateFromLocalDB:preStartDate withEndDate:startDate];
+        
+        startDate = preStartDate;
+        
+        [self reloadData];
+        [self scroll2Date:firtDay];
+        [self flashScrollIndicators];
+        
+    } else if( (offsetY + self.frame.size.height) + 60 > self.contentSize.height) {
+        
+        
+        NSDate * nextEndDate = [endDate cc_dateByMovingToTheFollowingDayCout:10];
+        
+        NSLog(@"scrollViewDidScroll: load pre more events:%@ to %@", endDate, nextEndDate);
+        
+        
+        [self loadDateFromLocalDB:endDate withEndDate:nextEndDate];
+        
+        endDate = nextEndDate;
+        
+        [self reloadData];
+        [self flashScrollIndicators];
+    }
 }
 
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             if (onDisplayFirstDayChangedNotify) {
@@ -199,6 +200,10 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    int y = scrollView.contentOffset.y;
+    NSLog(@"scrollViewDidEndDecelerating=%d", y);
+    [self reloadMoreData:y];
+
     onDisplayFirstDayChangedNotify = YES;
 }
 
@@ -394,7 +399,15 @@
     
     [dayFeedEventEntitysDic removeAllObjects];
     
-    NSArray * feedEvents = [model getDayFeedEventEntitys:startDate andEndDate:endDate];
+    [self loadDateFromLocalDB:startDate withEndDate:endDate];
+    
+    [self reloadData];
+}
+
+-(void) loadDateFromLocalDB:(NSDate *) startDate1 withEndDate:(NSDate *) endDate1
+{
+    
+    NSArray * feedEvents = [model getDayFeedEventEntitys:startDate1 andEndDate:endDate1];
     
     for (FeedEventEntity * entity in feedEvents) {
         NSString * day = [Utils formateDay:entity.start];
@@ -409,8 +422,6 @@
             [dayEntity.events addObject:entity];
         }
     }
-    
-    [self reloadData];
 }
 
 -(void)scroll2SelectedDate:(NSString *) day {
@@ -473,9 +484,9 @@
     return newDate;
 }
 
-- (void)scrollViewDidEndDragging000:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+//- (void)scrollViewDidEndDragging000:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
     //    if (!decelerate) {
     //        [self changeCalOnDisplayDay];
     //    }
@@ -532,6 +543,6 @@
     //        
     //        //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
     //    }
-}
+//}
 
 @end

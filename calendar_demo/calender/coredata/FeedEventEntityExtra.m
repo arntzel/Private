@@ -47,10 +47,10 @@
 
 -(void) convertFromEvent:(Event*) event
 {
-    self.id = [NSNumber numberWithInt:event.id];
+    self.id = @(event.id);
     
-    self.archived =  [NSNumber numberWithBool:event.archived];
-    self.confirmed =  [NSNumber numberWithBool:event.confirmed];
+    self.archived =  @(event.archived);
+    self.confirmed =  @(event.confirmed);
     
     if(event.confirmed ==  YES) {
         
@@ -90,17 +90,16 @@
     self.descript = event.description;
 
     self.duration = event.duration;
-    self.duration_days = [NSNumber numberWithInt:event.duration_days];
-    self.duration_hours = [NSNumber numberWithInt:event.duration_hours];
-    self.duration_minutes = [NSNumber numberWithInt:event.duration_minutes];
+    self.duration_days = @(event.duration_days);
+    self.duration_hours = @(event.duration_hours);
+    self.duration_minutes = @(event.duration_minutes);
 
     if(event.eventType!=0) {
         self.confirmed = @(YES);
     }
     
-    int eventType = 0x00000001 << event.eventType;
-    self.eventType = [NSNumber numberWithInt:eventType];
-    self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
+    self.eventType = @(event.eventType);
+    self.is_all_day = @(event.is_all_day);
 
     self.start = event.start;
     self.end = [event getEndTime];
@@ -114,6 +113,7 @@
     self.creatorID = @(event.creator.id);
     self.creatoremail = event.creator.email;
     
+    
     self.ext_event_id = event.ext_event_id;
     self.hasModified = @(event.hasModified);
     self.last_modified = event.last_modified;
@@ -122,6 +122,8 @@
     int attendee_num = event.attendees.count;
     self.attendee_num = @(attendee_num);
     
+    //self.creator   = [CreatorEntity createCreatorEntity:[json objectForKey:@"creator"]];
+    //self.location  = [LocationEntity createLocationEntity:[json objectForKey:@"location"]];
 }
 
 -(void) convertFromCalendarEvent:(Event*) event
