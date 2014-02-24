@@ -67,7 +67,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
 
     
-    
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     application.applicationIconBadgeNumber = 0;
@@ -82,12 +81,13 @@
 
     UIViewController * rootController;
     User * loginUser = [[UserSetting getInstance] getLoginUserData];
-    if(loginUser != nil) {
+    if (loginUser != nil) {
     
         [[UserModel getInstance] setLoginUser:loginUser];
         rootController = [[MainViewController alloc] init];
 
-    } else {
+    }
+    else {
         rootController = [[LoginMainViewController alloc] init];
     }
 
@@ -135,9 +135,6 @@
     
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
     NSLog(@"获取令牌失败:  %@",str);
-    
-    //如果device token获取失败则需要重新获取一次
-    //[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(registerForRemoteNotificationToGetToken) userInfo:nil repeats:NO];
 }
 
 
@@ -198,12 +195,22 @@
 }
 
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-     NSLog(@"applicationWillEnterForeground");
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     
-    [self.timer invalidate];
-    self.timer = nil;
+    User * loginUser = [[UserModel getInstance] getLoginUser];
+    if (loginUser != nil) {
+    
+            RootNavContrller *navController = (RootNavContrller *)self.window.rootViewController;
+            for (int i=0; i < [[navController childViewControllers] count]; i++) {
+            UIViewController *c = [[navController childViewControllers] objectAtIndex:i];
+            
+            if ([c isKindOfClass:[MainViewController class]]) {
+               
+                MainViewController *mvc = (MainViewController*)c;
+                [mvc refreshViews];
+            }
+        }
+    }
 }
 
 
@@ -223,19 +230,10 @@
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
         
         [[[Model getInstance] getMessageModel] refreshModel:^(NSInteger error) {
-            
         }];
     }
     
     [self registerForRemoteNotificationToGetToken];
-
-    //[self synchronizedFromServer];
-    
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:6
-//                                           target:self
-//                                         selector:@selector(synchronizedFromServer)
-//                                         userInfo:nil
-//                                          repeats:YES];
 }
 
 -(void) synchronizedFromServer
@@ -248,7 +246,6 @@
 {
     NSLog(@"applicationWillTerminate");
     [FBSession.activeSession close];
-    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

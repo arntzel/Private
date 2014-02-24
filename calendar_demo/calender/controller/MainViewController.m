@@ -1,8 +1,8 @@
-//
 #import "MainViewController.h"
 #import "FeedViewController.h"
 #import "menuNavigation.h"
 #import "PedingEventViewController.h"
+#import "PedingEventViewControllerNew.h"
 #import "BaseMenuViewController.h"
 #import "SettingViewController.h"
 
@@ -18,7 +18,10 @@
 @implementation MainViewController {
 
     FeedViewController * feedViewCtr;
-    PedingEventViewController * pendingEventViewCtr;
+    
+//    PedingEventViewController * pendingEventViewCtr;
+    PedingEventViewControllerNew * pendingEventViewCtr;
+    
     SettingViewController * settingViewCtr;
     
     menuNavigation * menuNavigationController;
@@ -38,7 +41,8 @@
     feedViewCtr = [[FeedViewController alloc] init];
     feedViewCtr.popDelegate = self;
     
-    pendingEventViewCtr = [[PedingEventViewController alloc] init];
+//    pendingEventViewCtr = [[PedingEventViewController alloc] init];
+    pendingEventViewCtr = [[PedingEventViewControllerNew alloc] initWithNibName:@"PedingEventViewControllerNew" bundle:nil];
     pendingEventViewCtr.popDelegate = self;
     
     settingViewCtr = [[SettingViewController alloc] init];
@@ -142,7 +146,6 @@
         return;
     }
     
-
     currentIndex = menuIndex;
 
     switch (menuIndex) {
@@ -222,9 +225,7 @@
     }
 }
 
-
--(void) onControlledPopped:(BOOL)dataChanged {
-    
+-(void)refreshViews {
     [feedViewCtr onCoreDataModelStarted];
     
     [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
@@ -233,6 +234,11 @@
         [pendingEventViewCtr onCoreDataModelChanged];
         
     }];
+}
+
+-(void) onControlledPopped:(BOOL)dataChanged {
+
+    [self refreshViews];
 }
 
 @end
