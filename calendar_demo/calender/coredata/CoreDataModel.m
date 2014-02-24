@@ -448,10 +448,9 @@ static CoreDataModel * instance;
     //LOG_D(@"getDayFeedEventType：%@", day);
     
     NSDate * date = [Utils parseNSStringDay:day];
-    NSDate * beginDate = [Utils convertGMTDate:[date cc_dateByMovingToBeginningOfDay]];
-    NSDate * endDate = [Utils convertGMTDate:[date cc_dateByMovingToEndOfDay]];
+    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
     
-  
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
@@ -471,7 +470,41 @@ static CoreDataModel * instance;
     int eventType = 0;
     for(NSDictionary * dic in results) {
         int type = [[dic objectForKey:@"eventType"] intValue];
-        eventType |= type;
+        
+        
+         /*
+         Calvin: 0
+         Google Personal: 1
+         Google work: 2
+         Fackbook: 3
+         Birthdays: 4
+         iOSCalendar: 5
+         */
+        switch (type) {
+            case 0:
+                eventType |= FILTER_IMCOMPLETE;
+                break;
+                
+            case 1:
+            case 2:
+                eventType |= FILTER_GOOGLE;
+                break;
+                
+            case 3:
+                eventType |= FILTER_FB;
+                break;
+                
+            case 4:
+                eventType |= FILTER_BIRTHDAY;
+                break;
+                
+            case 5:
+                eventType |= FILTER_IOS;
+                break;
+                
+            default:
+                break;
+        }
     }
     
     
