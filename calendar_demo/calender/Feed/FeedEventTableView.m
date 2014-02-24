@@ -14,8 +14,7 @@
 #import <EventKit/EventKit.h>
 #import "NoEventsCell.h"
 
-#define FETECH_EVENTS 20
-#define MAX_FORWARD 365
+
 #define DAY (60*60*24)
 
 #define HEADER_HEIGHT 28
@@ -24,7 +23,7 @@
 #define TAG_SECTION_TEXT_LABEL 555
 #define TAG_SECTION_TEXT_LABEL_LEFT 556
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //一天的所有FeedEvent集合
 @interface DayFeedEventEntitys : NSObject
 
@@ -32,6 +31,10 @@
 
 //FeedEventEntity array
 @property NSMutableArray * events;
+
+//eventtype's filter
+@property int filter;
+@property NSMutableArray * filterEvents;
 
 @end
 
@@ -45,9 +48,7 @@
 }
 
 @end
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface FeedEventTableView() <UITableViewDataSource, UITableViewDelegate>
 
@@ -55,11 +56,10 @@
 
 
 @implementation FeedEventTableView {
-    NSString * currentFirstDay;
+    
     CoreDataModel * model;
    
-    NSCalendar *gregorianCalendar;
-
+    
     NSDate * firstVisibleDay;
     BOOL onDisplayFirstDayChangedNotify;
     
@@ -96,7 +96,6 @@
     model = [CoreDataModel getInstance];
     onDisplayFirstDayChangedNotify = YES;
     
-    gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [self registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
     
     dayFeedEventEntitysDic = [[NSMutableDictionary alloc] init];
@@ -373,7 +372,9 @@
     DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
     
     if(dayEvents == nil || dayEvents.events.count == 0) {
-        return; //No event cell
+        
+        [self.feedEventdelegate onAddNewEvent];
+        
     } else {
         
         int row = indexPath.row;
@@ -389,8 +390,6 @@
         }
     }
 }
-
-
 
 -(void) reloadFeedEventEntitys:(NSDate *) day
 {
@@ -424,6 +423,7 @@
     }
 }
 
+
 -(void)scroll2SelectedDate:(NSString *) day {
     
     if ([self isDecelerating]) {
@@ -431,7 +431,7 @@
     }
     
     onDisplayFirstDayChangedNotify = NO;
-
+    
     [self scroll2Date:day animated:YES];
 }
 
@@ -442,107 +442,20 @@
 
 -(void) scroll2Date:(NSString *) day1 animated:(BOOL) animated
 {
-    for (int i=0; i < MAX_FORWARD; i++) {
-        NSTimeInterval day = 60*60*24;
-        NSDate *sectionDate = [NSDate dateWithTimeInterval:day * i sinceDate:startDate];
-        NSString *sectionName = [Utils formateDay:sectionDate];
-        if ([sectionName isEqualToString:day1]) {
-            
-            NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:i];
-
-            [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
-
-            return;
-        }
+    
+    NSDate * date = [Utils parseNSStringDay:day1];
+    
+    if([date compare:startDate] >=0 && [date compare:endDate] < 0) {
+        
+        NSTimeInterval seconds = [date timeIntervalSinceDate:startDate];
+        
+        int section = seconds / DAY;
+        
+        NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:section];
+        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+        
+    } else  {
+        [self reloadFeedEventEntitys:date];
     }
 }
-
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
-{
-    // Use the user's current calendar and time zone
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    [calendar setTimeZone:timeZone];
-    // Selectively convert the date components (year, month, day) of the input date
-    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
-    // Set the time components manually
-    [dateComps setHour:0];
-    [dateComps setMinute:0];
-    [dateComps setSecond:0];
-    // Convert back
-    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
-    return beginningOfDay;
-}
-
-- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate
-{
-    // Use the user's current calendar
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
-    [dateComps setYear:numberOfYears];
-    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
-    return newDate;
-}
-
-//- (void)scrollViewDidEndDragging000:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-    //    if (!decelerate) {
-    //        [self changeCalOnDisplayDay];
-    //    }
-    
-    
-    //YKTEMP:
-    //    int y = scrollView.contentOffset.y;
-    //    if (!decelerate) {
-    //        [self reloadMoreData:y];
-    //    }
-    
-    
-    //    if(y < 60) {
-    //        NSArray * allDay = [cache allDays];
-    //        if(allDay.count == 0) return;
-    //
-    //        NSString* firtDay = [allDay objectAtIndex:0];
-    //
-    //        NSLog(@"scrollViewDidScroll: load pre more events:%@", firtDay);
-    //
-    //        NSDate * date = [Utils parseNSStringDay:firtDay];
-    //
-    //        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andPreLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
-    //
-    //        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
-    //            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-    //            [cache putDayFeedEventEntitysWrap:wrap];
-    //        }
-    //
-    //        [self reloadData];
-    //
-    //        [self performSelector:@selector(scroll2Date:) withObject:firtDay afterDelay:0.1];
-    //        //[self scroll2Date:firtDay animated:NO];
-    //
-    //    } else if( (y + scrollView.frame.size.height) + 60 > scrollView.contentSize.height) {
-    //
-    //        NSArray * allDay = [cache allDays];
-    //        if(allDay.count == 0) return;
-    //
-    //        NSString* lastDay = [allDay lastObject];
-    //
-    //        NSLog(@"scrollViewDidScroll: load pre more events:%@", lastDay);
-    //
-    //        NSDate * date = [Utils parseNSStringDay:lastDay];
-    //
-    //        NSArray * dayFeedEntiys = [model getDayFeedEventEntitys:date andFollowLimit:FETECH_DAYS andEventTypeFilter:self.eventTypeFilters];
-    //
-    //        for(DayFeedEventEntitys * evt in dayFeedEntiys) {
-    //            DayFeedEventEntitysWrap * wrap = [[DayFeedEventEntitysWrap alloc] init:evt];
-    //            [cache putDayFeedEventEntitysWrap:wrap];
-    //        }
-    //        
-    //        [self reloadData];
-    //        
-    //        //[self performSelector:@selector(scroll2Date:) withObject:lastDay afterDelay:0.1];
-    //    }
-//}
-
 @end

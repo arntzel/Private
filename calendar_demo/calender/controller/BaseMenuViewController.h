@@ -24,4 +24,7 @@
 -(BOOL)prefersStatusBarHidden;
 - (UIStatusBarStyle)preferredStatusBarStyle;
 
+
+- (void)btnAddEvent:(id)sender;
+
 @end

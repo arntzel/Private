@@ -463,6 +463,11 @@
     [self.calendarView.kalView swith2Date:firstDay];
 }
 
+-(void) onAddNewEvent
+{
+    [self btnAddEvent:nil];
+}
+
 -(void) onUserAccountChanged
 {
     [self.calendarView.filterView updateView];

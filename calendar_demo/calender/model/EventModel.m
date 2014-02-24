@@ -72,9 +72,13 @@
     }
     
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
+    NSDate * begin = [NSDate date];
+    
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
-        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
+        int seconds = [[NSDate date] timeIntervalSinceDate:begin];
+        
+        LOG_D(@"SynchronizedFromServer end, time=%d, %@ , error=%d, count:%d, allcount:%d", seconds, last_modify_num, error, events.count, totalCount);
         
         if (error) {
             if (completion) {

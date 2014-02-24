@@ -9,6 +9,8 @@
 
 -(void) onDisplayFirstDayChanged:(NSDate *) firstDay;
 
+-(void) onAddNewEvent;
+
 @end
 
 @interface FeedEventTableView : UITableView
