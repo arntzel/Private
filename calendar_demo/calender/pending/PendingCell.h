@@ -10,12 +10,17 @@
 
 @class FeedEventEntity;
 
+typedef enum {
+    pendingCellTypeMine = 0,
+    pendingCellTypeNotMine = 1
+} PendingCellType;
+
 @interface PendingCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *actionText;
 @property (weak, nonatomic) IBOutlet UIView *separator;
 
--(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay;
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay PendingCellType:(PendingCellType)ct;
 
 @end

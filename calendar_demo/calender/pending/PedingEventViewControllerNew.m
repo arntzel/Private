@@ -187,6 +187,18 @@
     return array;
 }
 
+-(PendingCellType) getEventsListType:(int)section
+{
+    if (section == 0) {
+        return pendingCellTypeNotMine;
+    }
+    if (section == 1) {
+        return pendingCellTypeMine;
+    }
+    assert(NO);
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
@@ -208,7 +220,9 @@
     if (indexPath.row >= [eventList count]-1)
         last = YES;
     
-    [c refreshView:evt lastForThisDay:last];
+    PendingCellType pt = [self getEventsListType:section];
+    
+    [c refreshView:evt lastForThisDay:last PendingCellType:pt];
     
     return c;
 }

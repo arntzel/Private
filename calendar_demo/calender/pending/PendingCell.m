@@ -36,13 +36,35 @@
     // Configure the view for the selected state
 }
 
--(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay PendingCellType:(PendingCellType)ct
 {
     self.separator.hidden = lastForThisDay;
     
     self.title.text = event.title;
+
+    if (pendingCellTypeMine == ct) {
+        if (event.propose_starts != nil && event.propose_starts.count > 0)
+        {
+            self.actionText.text = @"Confirm Time";
+        }
+        else {
+            self.actionText.text = @"Add time";
+        }
+    }
+    else
+    if (pendingCellTypeNotMine == ct) {
+        if (event.propose_starts != nil && event.propose_starts.count > 0)
+        {
+            self.actionText.text = @"Vote";
+        }
+        else {
+            self.actionText.text = @"Propose time";
+        }
+    }
+    else {
+        assert(NO);
+    }
     
-    self.actionText.text = @"Add Time";
     
     UserEntity * user = [event getCreator];
     NSString * headerUrl = user.contact.avatar_url;
