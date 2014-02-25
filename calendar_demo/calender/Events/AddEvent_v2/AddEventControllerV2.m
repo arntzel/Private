@@ -27,6 +27,8 @@
 #import "Utils.h"
 #import "RootNavContrller.h"
 
+#import "EventDetailController.h"
+
 @interface AddEventControllerV2 ()<AddEventAddTitleBarDelegate,
                                     UIScrollViewDelegate,
                                     AddEventInviteViewControllerDelegate,
@@ -673,8 +675,17 @@
             [model addFeedEventEntity:entity];
             [model saveData];
             [model notifyModelChange];
+           
             
-            [self leftNavBtnClick];
+            
+            [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+            
+            EventDetailController * detailCtl = [[EventDetailController alloc] init];
+            detailCtl.popDelegate = self.popDelegate;
+            detailCtl.eventID = newEvent.id;
+            detailCtl.event = newEvent;
+            
+            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
             
         } else {
             

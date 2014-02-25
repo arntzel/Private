@@ -15,6 +15,6 @@
 @property(assign) id<PopDelegate> popDelegate;
 
 @property int eventID;
-
+@property(nonatomic, retain) Event *event;
 
 @end

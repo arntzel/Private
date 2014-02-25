@@ -84,7 +84,7 @@
 }
 
 
-@property(nonatomic, retain) Event *event;
+
 @property(nonatomic, retain) ShareLoginBase *shareloginFacebook;
 @property(nonatomic, retain) SharePhotoBase *sharePhotoFacebook;
 @end
@@ -153,6 +153,11 @@
 
     [self showIndicatorView];
     
+    if(self.event != nil) {
+        [self refreshView];
+        return;
+    }
+    
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
@@ -169,38 +174,45 @@
         }
 
         if(error == 0) {
+            
             self.event = evt;
-
-            //if a date is in the past, it should automatically be removed if it's in the pending section
-            if(!self.event.confirmed) {
-                NSMutableArray * times = [[NSMutableArray alloc] init];
-                
-                NSDate * current = [NSDate date];
-                //FangXiang: the times in event are gmt,  so we need't to convent timezone.
-                //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
-                
-                for (ProposeStart* proposeStart in  self.event.propose_starts) {
-                    NSDate * endTime = [proposeStart getEndTime];
-                    if([endTime compare:current] > 0) {
-                        [times addObject:proposeStart];
-                    }
-                }
-                
-                self.event.propose_starts = times;
-            }
+            [self refreshView];
             
-            //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
-
-            [self configViews];
-            [self updateUIByEvent];
-            [self layOutSubViews];
-            
-            hud = [[ATMHud alloc] initWithDelegate:self];
-            [self.view addSubview:hud.view];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
+}
+
+
+-(void) refreshView {
+    
+    //if a date is in the past, it should automatically be removed if it's in the pending section
+    if(!self.event.confirmed) {
+        NSMutableArray * times = [[NSMutableArray alloc] init];
+        
+        NSDate * current = [NSDate date];
+        //FangXiang: the times in event are gmt,  so we need't to convent timezone.
+        //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
+        
+        for (ProposeStart* proposeStart in  self.event.propose_starts) {
+            NSDate * endTime = [proposeStart getEndTime];
+            if([endTime compare:current] > 0) {
+                [times addObject:proposeStart];
+            }
+        }
+        
+        self.event.propose_starts = times;
+    }
+    
+    //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
+    
+    [self configViews];
+    [self updateUIByEvent];
+    [self layOutSubViews];
+    
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [self.view addSubview:hud.view];
 }
 
 - (void)configViews
