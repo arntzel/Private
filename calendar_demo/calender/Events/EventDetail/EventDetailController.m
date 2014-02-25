@@ -151,13 +151,13 @@
     
     [self addNavBar];
 
-    [self showIndicatorView];
-    
     if(self.event != nil) {
         [self refreshView];
         return;
     }
     
+    
+    [self showIndicatorView];
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         

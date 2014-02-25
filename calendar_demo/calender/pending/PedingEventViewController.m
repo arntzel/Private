@@ -8,6 +8,7 @@
 #import "Model.h"
 #import "CustomerIndicatorView.h"
 #import "CoreDataModel.h"
+#import "CreatorEntity.h"
 
 @interface PedingEventViewController () <EventPendingToolbarDelegate>
 
@@ -177,7 +178,7 @@
 
 -(BOOL) isMyEvent:(FeedEventEntity *) event
 {
-    return [event.creatorID intValue] == [[UserModel getInstance] getLoginUser].id;
+    return [event.creator.id intValue] == [[UserModel getInstance] getLoginUser].id;
 }
 
 -(void) onButtonSelected:(int)index
