@@ -170,27 +170,7 @@
 //TODO::
 -(int) getEventTypeColor:(int) eventType
 {
-    if( (eventType & FILTER_IMCOMPLETE) != 0) {
-        return  0xFFF44258;
-    }
-
-    if( (eventType & FILTER_GOOGLE) != 0) {
-        return  0xFFD5AD3E;
-    }
-
-    if( (eventType & FILTER_FB) != 0) {
-        return  0xFF477DBD;
-    }
-
-    if( (eventType & FILTER_BIRTHDAY) != 0) {
-        return  0xFF71A189;
-    }
-
-    if( (eventType & FILTER_IOS) !=0 ) {
-        return 0xFFB34BAC;
-    }
-    
-    return 0x00000000;
+    return  [ViewUtils getEventTypeColor:eventType];
 }
 
 -(NSString *) getEventDutationText:(FeedEventEntity*)event

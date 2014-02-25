@@ -23,15 +23,13 @@
 -(BOOL) isBirthdayEvent
 {
     int eventType = [self.eventType intValue];
-    
-    return (eventType & FILTER_BIRTHDAY) != 0 ;
+    return eventType == 4;
 }
 
 -(BOOL) isCalvinEvent
 {
     int eventType = [self.eventType intValue];
     return eventType == 0;
-    //return  (eventType & FILTER_IMCOMPLETE) != 0;
 }
 
 -(BOOL) isHistory
