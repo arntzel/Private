@@ -142,11 +142,13 @@ static inline NSString *stringFromWeekday(int weekday)
     }
     else {
         //sunday?
-        NSDate *dt = [self.date NSDate];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
-        //NSLog(@"%@", stringFromWeekday([components weekday]));
-        if ([components weekday] == 1) {
-            drawMonth = YES; //sunday
+        if(self.date != nil) {
+            NSDate *dt = [self.date NSDate];
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
+            //NSLog(@"%@", stringFromWeekday([components weekday]));
+            if ([components weekday] == 1) {
+                drawMonth = YES; //sunday
+            }
         }
     }
     

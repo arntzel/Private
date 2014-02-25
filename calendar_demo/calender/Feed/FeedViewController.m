@@ -29,6 +29,7 @@
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,
                                   FeedViewControllerDelegate,
+                                  CoreDataModelDelegate,
                                   UIAlertViewDelegate>
 {
     KalLogic *logic;
@@ -202,9 +203,16 @@
         [self refreshWithDate:[Utils getCurrentDate]];
     }*/
     
+    [[CoreDataModel getInstance] addDelegate:self];
+    
     [self refreshWithDate:[Utils getCurrentDate]];
 }
 
+-(void) viewDidUnload
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
+    [super viewDidUnload];
+}
 
 -(void)playCalendarAnimation
 {
@@ -359,21 +367,23 @@
 
 -(void) onCoreDataModelStarted
 {
+    LOG_D(@"onCoreDataModelStarted");
     [dataLoadingView startAnim];
 }
 
 -(void) onCoreDataModelChanged
 {
-    NSDate * date = date = [Utils getCurrentDate]; //[tableView getFirstVisibleDay];
+    LOG_D(@"onCoreDataModelChanged");
     
+    NSDate * date = [tableView getFirstVisibleDay];
     [self refreshWithDate:date];
     
     [dataLoadingView stopAnim];
 
     //-->    //-->    //-->    //-->    //-->    //-->
     
-    [[[Model getInstance] getEventModel] checkSettingUpdate];
-    [[[Model getInstance] getEventModel] checkContactUpdate];
+    //[[[Model getInstance] getEventModel] checkSettingUpdate];
+    //[[[Model getInstance] getEventModel] checkContactUpdate];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
 }
