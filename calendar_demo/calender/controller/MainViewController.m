@@ -85,15 +85,13 @@
     }];
      */
     
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
-        
-        [feedViewCtr onCoreDataModelChanged];
-        [pendingEventViewCtr onCoreDataModelChanged];
-        
-        if (success == NO) {
-            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
-        }
-    }];
+    
+    
+//    [[[Model getInstance] getEventModel] downloadServerEvents:^(NSInteger success, NSInteger totalCount) {
+//        if (success == NO) {
+//            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
+//        }
+//    }];
     
     return self;
 }
@@ -236,15 +234,7 @@
 
 
 -(void) onControlledPopped:(BOOL)dataChanged {
-    
-    [feedViewCtr onCoreDataModelStarted];
-    
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
-        
-        [feedViewCtr onCoreDataModelChanged];
-        [pendingEventViewCtr onCoreDataModelChanged];
-        
-    }];
+   
 }
 
 @end

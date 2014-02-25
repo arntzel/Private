@@ -270,6 +270,10 @@ static inline NSString *stringFromWeekday(int weekday)
 
 - (BOOL)isToday
 {
+    if(self.date == nil) {
+        return NO;
+    }
+    
     NSDate *today = [NSDate date];
     return [self.date isEqual:[KalDate dateFromNSDate:today]];
 }

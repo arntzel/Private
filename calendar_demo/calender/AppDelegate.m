@@ -229,19 +229,18 @@
     
     [self registerForRemoteNotificationToGetToken];
 
-    //[self synchronizedFromServer];
-    
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:6
-//                                           target:self
-//                                         selector:@selector(synchronizedFromServer)
-//                                         userInfo:nil
-//                                          repeats:YES];
+    [self synchronizedFromServer];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60
+                                           target:self
+                                         selector:@selector(synchronizedFromServer)
+                                         userInfo:nil
+                                          repeats:YES];
 }
 
 -(void) synchronizedFromServer
 {
-//    [[[Model getInstance] getEventModel] synchronizedFromServer];
-//    [[[Model getInstance] getEventModel] checkContactUpdate];
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

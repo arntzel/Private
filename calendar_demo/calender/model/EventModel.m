@@ -13,6 +13,8 @@
 
     BOOL synchronizingContactData;
     
+    BOOL downloadingServerEvents;
+    
     NSMutableArray * delegates;
 }
 
@@ -60,22 +62,30 @@
     }
 }
 
--(void) downloadServerEvents:(NSString *) last_modify_num onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+
+-(void) downloadServerEvents:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
-    //assert([[UserModel getInstance] isLogined]);
     if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
+    
+    if(downloadingServerEvents) {
         return;
     }
     
     NSLog(@"synchronizedFromServer begin");
     
-    //NSString * last_modify_num = nil;//[[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
     if (last_modify_num == nil) {
         last_modify_num = [self getSecondsFromEpoch];
+        //NSTimeInterval time = [[[NSDate date] cc_dateByMovingToThePreviousDayCout:365] timeIntervalSince1970];
+        //last_modify_num = [NSString stringWithFormat:@"%f", time];
     }
     
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
     NSDate * begin = [NSDate date];
+    
+    downloadingServerEvents = true;
     
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
@@ -87,6 +97,7 @@
             if (completion) {
                 completion(NO,totalCount);
             }
+            downloadingServerEvents = false;
             return;
         }
         
@@ -96,6 +107,8 @@
             if (completion) {
                 completion(YES,totalCount);
             }
+            
+            downloadingServerEvents = false;
             return;
         }
         
@@ -114,13 +127,15 @@
         NSLog(@"========after download=========");
         [model notifyModelChange];
         
+         downloadingServerEvents = false;
+        
         if (events.count < totalCount) {
             
             //next page - test some more please
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), queue, ^{
 
-                [self downloadServerEvents:maxlastupdatetime onComplete:completion];
+                [self downloadServerEvents:completion];
             });
         }
         else
