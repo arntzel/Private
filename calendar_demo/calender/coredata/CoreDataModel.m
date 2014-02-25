@@ -670,6 +670,8 @@ static CoreDataModel * instance;
 
 -(NSArray *) queryContactEntity:(NSString *) prefix  andOffset:(NSInteger) offset
 {
+    NSDate * begin = [NSDate date];
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -692,6 +694,8 @@ static CoreDataModel * instance;
     [fetchRequest setFetchLimit:50];
 
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    LOG_D(@"queryContactEntity time=%d", (int)([[NSDate date] timeIntervalSinceDate:begin]));
     return results;
 }
 
@@ -763,6 +767,7 @@ static CoreDataModel * instance;
     [managedObjectContext deleteObject:entity];
     //[self saveData];
 }
+
 -(Setting *) getSetting:(NSString *) key
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

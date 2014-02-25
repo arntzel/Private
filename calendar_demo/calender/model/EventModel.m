@@ -62,7 +62,10 @@
 
 -(void) downloadServerEvents:(NSString *) last_modify_num onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
-    assert([[UserModel getInstance] isLogined]);
+    //assert([[UserModel getInstance] isLogined]);
+    if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
     
     NSLog(@"synchronizedFromServer begin");
     
@@ -548,7 +551,7 @@
 - (void)uploadContacts
 {
     //assert([[UserModel getInstance] isLogined]);
-    if([[UserModel getInstance] isLogined]) {
+    if(![[UserModel getInstance] isLogined]) {
         return;
     }
     
