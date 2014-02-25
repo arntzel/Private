@@ -374,7 +374,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     NSDate * now = [NSDate date];
     float interval = [now timeIntervalSince1970];
     
-    for(Contact * contact in selectedUsers)
+    for(Contact * contact in selectUsers)
     {
         ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
         if(entity != nil) {
