@@ -579,6 +579,8 @@
 		9345ABD218BA9D7A005ABE9C /* PendingEventsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9345ABD118BA9D7A005ABE9C /* PendingEventsSectionHeader.xib */; };
 		93537E95189DC23400808E55 /* default_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E93189DC23400808E55 /* default_person@2x.png */; };
 		93537E96189DC23400808E55 /* default_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E94189DC23400808E55 /* default_person.png */; };
+		938AFC4718BCE8C8009C2D80 /* PendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AFC4618BCE8C8009C2D80 /* PendingCell.m */; };
+		938AFC4918BCE8F7009C2D80 /* PendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938AFC4818BCE8F7009C2D80 /* PendingCell.xib */; };
 		938B2836189806520074C424 /* NoEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B2835189806520074C424 /* NoEventsCell.m */; };
 		938B2838189806650074C424 /* NoEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938B2837189806650074C424 /* NoEventsCell.xib */; };
 		93A67B7718A077D100DA4068 /* event_header_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A67B7618A077D100DA4068 /* event_header_add@2x.png */; };
@@ -1455,6 +1457,9 @@
 		9345ABD118BA9D7A005ABE9C /* PendingEventsSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventsSectionHeader.xib; path = calender/pending/PendingEventsSectionHeader.xib; sourceTree = SOURCE_ROOT; };
 		93537E93189DC23400808E55 /* default_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_person@2x.png"; sourceTree = "<group>"; };
 		93537E94189DC23400808E55 /* default_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_person.png; sourceTree = "<group>"; };
+		938AFC4518BCE8C8009C2D80 /* PendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingCell.h; path = calender/pending/PendingCell.h; sourceTree = SOURCE_ROOT; };
+		938AFC4618BCE8C8009C2D80 /* PendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PendingCell.m; path = calender/pending/PendingCell.m; sourceTree = SOURCE_ROOT; };
+		938AFC4818BCE8F7009C2D80 /* PendingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingCell.xib; path = calender/pending/PendingCell.xib; sourceTree = SOURCE_ROOT; };
 		938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableViewPrev.m; sourceTree = "<group>"; };
 		938B2834189806520074C424 /* NoEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoEventsCell.h; sourceTree = "<group>"; };
 		938B2835189806520074C424 /* NoEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoEventsCell.m; sourceTree = "<group>"; };
@@ -2037,6 +2042,9 @@
 				9345ABCC18BA92CA005ABE9C /* PedingEventViewControllerNew.h */,
 				9345ABCD18BA92CA005ABE9C /* PedingEventViewControllerNew.m */,
 				9345ABCE18BA92CA005ABE9C /* PedingEventViewControllerNew.xib */,
+				938AFC4518BCE8C8009C2D80 /* PendingCell.h */,
+				938AFC4618BCE8C8009C2D80 /* PendingCell.m */,
+				938AFC4818BCE8F7009C2D80 /* PendingCell.xib */,
 			);
 			name = Pending;
 			path = calender/Pending;
@@ -3429,6 +3437,7 @@
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
 				769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */,
 				7662F75617F0761900B64E40 /* login_main_singnup_addphoto.png in Resources */,
+				938AFC4918BCE8F7009C2D80 /* PendingCell.xib in Resources */,
 				93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */,
 				769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */,
 				34B1F1CC17F8FCE200AA5C97 /* settings_main_userinfo_bg.png in Resources */,
@@ -3608,6 +3617,7 @@
 				769ABB1017DF52090033E677 /* DuringTimePicker.m in Sources */,
 				769CB5681886CD1A0082400D /* AddEventControllerV2.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
+				938AFC4718BCE8C8009C2D80 /* PendingCell.m in Sources */,
 				34262E1A1869C1A300288EA9 /* iCalEventShowSettingsViewController.m in Sources */,
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
 				769CB58B1886D70C0082400D /* UIView+FrameResize.m in Sources */,

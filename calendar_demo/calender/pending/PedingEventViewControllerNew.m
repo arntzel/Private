@@ -17,6 +17,7 @@
 #import "EventDetailController.h"
 #import "RootNavContrller.h"
 #import "ViewUtils.h"
+#import "PendingCell.h"
 
 @interface PedingEventViewControllerNew() <UITableViewDataSource, UITableViewDelegate, PopDelegate>
 
@@ -59,9 +60,11 @@
     frame.size.height -= y;
     
     table1 = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table1.separatorStyle = UITableViewCellSeparatorStyleNone;
     table1.dataSource = self;
     table1.delegate = self;
+    
+    [table1 registerNib:[UINib nibWithNibName:@"PendingCell" bundle:nil] forCellReuseIdentifier:@"PendingCell"];
     
     [self.view addSubview:table1];
     
@@ -186,12 +189,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     int section = indexPath.section;
     int row = indexPath.row;
     
     NSArray * eventList = [self getEventsList:section];
-    
     
     if (eventList.count == 0)
     {
@@ -200,16 +201,16 @@
     
     FeedEventEntity * evt = [eventList objectAtIndex:row];
     
-    if(section == 0) {
-        PendingEventViewCell2 * cell = [PendingEventViewCell2 createView];
-        [cell refreshView:evt];
-        return cell;
-    } else {
-        PendingEventViewCell2 * cell = [PendingEventViewCell2 createView];
-        [cell refreshView:evt];
-        return cell;
-    }
+	PendingCell *c = (PendingCell*)[tableView dequeueReusableCellWithIdentifier:@"PendingCell"];
+    [c setSelectionStyle:UITableViewCellSelectionStyleGray];
+
+    BOOL last = NO;
+    if (indexPath.row >= [eventList count]-1)
+        last = YES;
     
+    [c refreshView:evt lastForThisDay:last];
+    
+    return c;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -239,7 +240,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 84;//60;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
