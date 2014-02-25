@@ -547,7 +547,10 @@
 
 - (void)uploadContacts
 {
-    assert([[UserModel getInstance] isLogined]);
+    //assert([[UserModel getInstance] isLogined]);
+    if([[UserModel getInstance] isLogined]) {
+        return;
+    }
     
     CoreDataModel * model = [CoreDataModel getInstance];
     

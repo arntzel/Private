@@ -167,6 +167,7 @@
     //NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
 }
 
+//TODO::
 -(int) getEventTypeColor:(int) eventType
 {
     if( (eventType & FILTER_IMCOMPLETE) != 0) {
