@@ -138,10 +138,8 @@ static CoreDataModel * instance;
     [managedObjectContext deleteObject:entity];
 }
 
-
 -(NSArray *) getPendingFeedEventEntitys
 {
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];

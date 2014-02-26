@@ -227,6 +227,7 @@
 
 -(void)refreshViews {
     [feedViewCtr onCoreDataModelStarted];
+    [pendingEventViewCtr onCoreDataModelStarted];
     
     [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
         

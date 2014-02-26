@@ -71,7 +71,7 @@
     dataLoadingView = [[CustomerIndicatorView alloc] init];
     frame = dataLoadingView.frame;
     frame.origin.x = 320 + 40;
-    frame.origin.y = 100;
+    frame.origin.y = 55;
     dataLoadingView.frame = frame;
     
     [self.view addSubview:dataLoadingView];
@@ -95,11 +95,14 @@
 
 -(void) onCoreDataModelStarted
 {
+   [dataLoadingView startAnim];
 }
 
 -(void) onCoreDataModelChanged
 {
     [self loadData];
+    
+    [dataLoadingView stopAnim];
 }
 
 -(void) loadData
