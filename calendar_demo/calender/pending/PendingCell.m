@@ -46,9 +46,11 @@
         if (event.propose_starts != nil && event.propose_starts.count > 0)
         {
             self.actionText.text = @"Confirm Time";
+            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
         }
         else {
             self.actionText.text = @"Add time";
+            self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
         }
     }
     else
@@ -56,9 +58,11 @@
         if (event.propose_starts != nil && event.propose_starts.count > 0)
         {
             self.actionText.text = @"Vote";
+            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
         }
         else {
             self.actionText.text = @"Propose time";
+            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
         }
     }
     else {

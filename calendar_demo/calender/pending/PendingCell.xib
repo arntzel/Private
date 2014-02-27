@@ -44,7 +44,7 @@
                         <rect key="frame" x="299" y="11" width="12" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-L0-ASJ">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add_time_lg.png" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-L0-ASJ">
                         <rect key="frame" x="62" y="45" width="22" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -53,6 +53,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="actionImage" destination="uY4-L0-ASJ" id="6Ib-OL-WNd"/>
                 <outlet property="actionText" destination="vRI-Lj-mtf" id="CLJ-ps-xl2"/>
                 <outlet property="avatar" destination="rB0-3Q-iCO" id="Y7I-Ze-VgE"/>
                 <outlet property="separator" destination="fwT-Kp-0ps" id="Njx-gJ-KPL"/>
@@ -61,8 +62,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="add_time_lg.png" width="14" height="14"/>
         <image name="arrow_right.png" width="9" height="16"/>
-        <image name="circle2.png" width="50" height="50"/>
         <image name="default_person.png" width="33" height="33"/>
     </resources>
 </document>

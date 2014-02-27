@@ -19,6 +19,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *actionText;
+@property (weak, nonatomic) IBOutlet UIImageView *actionImage;
 @property (weak, nonatomic) IBOutlet UIView *separator;
 
 -(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay PendingCellType:(PendingCellType)ct;
