@@ -1496,7 +1496,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             
@@ -1537,7 +1537,9 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        LOG_D(@"updateEventAttendeeStatus respone: httpcode=%d", status);
+
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             
