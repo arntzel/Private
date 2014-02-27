@@ -580,7 +580,7 @@ static Model * instance;
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=0&modified_num__gt=%@", HOST, modified_num];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=50&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 
@@ -601,7 +601,7 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            LOG_D(@"FeedEvent resp:%@", json);
+            //LOG_D(@"FeedEvent resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
@@ -1621,7 +1621,9 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        LOG_D(@"inviteContacts, http status=%d", status);
+        
+        if(status == 200) {
             
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];

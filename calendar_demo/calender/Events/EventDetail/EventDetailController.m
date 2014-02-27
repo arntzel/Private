@@ -1003,13 +1003,7 @@
     inviteesController.titleBgImage = [photoView getImage];
     inviteesController.delegate = self;
     
-    if (self.navigationController) {
-        [self.navigationController pushViewController:inviteesController animated:YES];
-    }
-    else {
-        [self presentViewController:inviteesController animated:YES completion:^{
-        }];
-    }
+    [self.navigationController pushViewController:inviteesController animated:YES];
     [inviteesController release];
 }
 

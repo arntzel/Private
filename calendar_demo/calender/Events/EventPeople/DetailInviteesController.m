@@ -344,33 +344,22 @@ typedef enum
             
             if(error == 0) {
                 
-                [self setEvent:newEvent];
-                [self initData];
-                [self.tableView reloadData];
+                //[self setEvent:newEvent];
+                //[self initData];
+                //[self.tableView reloadData];
                 
                 
                 if(self.delegate) {
                     [self.delegate addNewPeopleArray:invitees andNewEvent:newEvent];
                 }
-                
-                [self.navigationController popViewControllerAnimated:YES];
-                
+             
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.1), dispatch_get_main_queue(),  ^(void) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             } else {
                 [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
             }
         }];
-        
-        /*
-        NSArray *array = [self convertResponsedArrayFromContactArray:inviteArray];
-        [dataArray removeObject:notRespondedArray];
-        [dataArray addObject:notRespondedArray];
-        [notRespondedArray addObjectFromArray:array];
-        [self.tableView reloadData];
-        
-        if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
-            [self.delegate addNewPeopleArray:inviteArray];
-        }
-         */
     }
 }
 

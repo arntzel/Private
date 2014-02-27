@@ -444,7 +444,10 @@ static CoreDataModel * instance;
         return wrap.eventType;
     }
     
-    //LOG_D(@"getDayFeedEventType：%@", day);
+    LOG_D(@"getDayFeedEventType：%@", day);
+    
+    NSTimeInterval beginTime = [NSDate timeIntervalSinceReferenceDate];
+    
     
     NSDate * date = [Utils parseNSStringDay:day];
     NSDate * beginDate = [[[date cc_dateByMovingToFirstDayOfTheMonth] cc_dateByMovingToThePreviousDayCout:7] cc_dateByMovingToBeginningOfDay];
@@ -537,6 +540,8 @@ static CoreDataModel * instance;
     }
     
     wrap = [cache getDayEventTypeWrap:day];
+    
+    LOG_D(@"getDayFeedEventType: Time:%f", ([NSDate timeIntervalSinceReferenceDate] - beginTime));
     return wrap.eventType;
 }
 
