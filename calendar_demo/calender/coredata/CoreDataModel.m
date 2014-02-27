@@ -36,7 +36,7 @@ static CoreDataModel * instance;
 {
     NSPersistentStoreCoordinator * coordinator =[self persistentStoreCoordinator:user];
 
-    managedObjectContext = [[NSManagedObjectContext alloc] init];
+    managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [managedObjectContext setPersistentStoreCoordinator:coordinator];
 
     self.inited = YES;
@@ -763,19 +763,22 @@ static CoreDataModel * instance;
 
 - (ContactEntity *) getContactEntityWithEmail:(NSString *)email
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(email = %@)", email];
-    [fetchRequest setPredicate:predicate];
-    
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    if(results.count >0)
-    {
-        return [results objectAtIndex:0];
+    @synchronized(self) {
+
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(email = %@)", email];
+        [fetchRequest setPredicate:predicate];
+        
+        NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        if(results.count >0)
+        {
+            return [results objectAtIndex:0];
+        }
+        
+        return nil;
     }
-    
-    return nil;
 }
 
 - (void)deleteContactEntityWith:(NSString *)phone andEmail:(NSString *)email
@@ -784,6 +787,7 @@ static CoreDataModel * instance;
     {
         return;
     }
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entityDescription];

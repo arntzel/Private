@@ -379,7 +379,7 @@ static UserModel * instance;
                     
                  }
                  CFRelease(phoneNumberProperty);
-                 LOG_D(@"phone:%@",phoneNum);
+                 //LOG_D(@"phone:%@",phoneNum);
                  
                  NSString *email = @"";
                  ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
@@ -388,7 +388,7 @@ static UserModel * instance;
                      email = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(emailProperty, 0)));
                  }
                  CFRelease(emailProperty);
-                 LOG_D(@"email:%@",email);
+                 LOG_D(@"phone:%@, email:%@", phoneNum, email);
                  
                  //email and phone should not is empty at the same time.
                  if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
@@ -499,25 +499,27 @@ static UserModel * instance;
 {
     [self requestContactsFromAddressBookWithOffset:offset WithCallBack:^(NSMutableArray *contactsArr,BOOL finish) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (contactsArr)
+        LOG_D(@"insertAddressBookContactsToDBWithOffset, got contact count=%d, finish=%d", contactsArr.count, finish);
+        
+        if (contactsArr)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in contactsArr)
             {
-                CoreDataModel * model = [CoreDataModel getInstance];
-                for(Contact * contact in contactsArr)
-                {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
                     if(![model getContactEntityWithEmail:contact.email])
                     {
                         ContactEntity * enity = [model createEntity:@"ContactEntity"];
                         [enity convertContact:contact];
+                        [model saveData];
                     }
-                }
-                
-                [model saveData];
+                });
             }
-            callback(0,nil,finish);
-
-        });
+        }
+        
+        LOG_D(@"insertAddressBookContactsToDBWithOffset update contactentity done");
+        callback(0,nil,finish);
     }];
 }
 /*

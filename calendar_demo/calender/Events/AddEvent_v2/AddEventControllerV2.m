@@ -90,6 +90,8 @@
 
 - (void)viewDidLoad
 {
+    NSTimeInterval time = [NSDate timeIntervalSinceReferenceDate];
+    
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithRed:222/255.0f green:235/255.0f blue:238/255.0f alpha:1.0f]];
     
@@ -125,6 +127,9 @@
     [navBar setTitleHidden:YES];
     
     ext_event_id = [Utils gen_uuid];
+    
+    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - time;
+    LOG_D(@"viewDidLoad=%f", duration);
 }
 
 - (void)touchedInView:(UITapGestureRecognizer*) tap
