@@ -233,8 +233,6 @@
 -(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
     
-    return;
-    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         [[Model getInstance] getEventsFromCalendarApp:^(NSMutableArray *allEvents) {
@@ -247,7 +245,10 @@
             {
                 success = YES;
                 
+                
                 CoreDataModel * model = [CoreDataModel getInstance];
+                
+                //should be opt for performance
                 NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
                 
                 for (Event *tmp in allEvents)

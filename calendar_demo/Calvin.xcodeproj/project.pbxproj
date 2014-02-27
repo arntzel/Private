@@ -265,7 +265,7 @@
 		767822A8187971A000CEF40E /* AddEventTimeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76782290187971A000CEF40E /* AddEventTimeButton.xib */; };
 		767822A9187971A000CEF40E /* AddEventTimesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76782292187971A000CEF40E /* AddEventTimesView.m */; };
 		767822AA187971A000CEF40E /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76782294187971A000CEF40E /* AddEventViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		767822AB187971A000CEF40E /* AddEventViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76782296187971A000CEF40E /* AddEventViewControllerV2.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		767822AB187971A000CEF40E /* AddEventViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76782296187971A000CEF40E /* AddEventViewControllerV2.m */; };
 		767822B01879720800CEF40E /* add_event_addtitle_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 767822AF1879720800CEF40E /* add_event_addtitle_bg.png */; };
 		76795BF8183E50AC0062DC32 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76795BF7183E50AB0062DC32 /* FacebookSDK.framework */; };
 		768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768404B51800FD5200C69240 /* DetailInviteesController.m */; };

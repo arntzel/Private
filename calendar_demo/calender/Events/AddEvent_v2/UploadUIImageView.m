@@ -32,14 +32,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         
         self.imagePickerView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:self.imagePickerView];
-        
-        
         [self.imagePickerView setUserInteractionEnabled:YES];
-        [self.imagePickerView setFrame:self.bounds];
         [self addSubview:self.imagePickerView];
         
         [self.imagePickerView setContentMode:UIViewContentModeScaleAspectFill];
@@ -51,11 +46,12 @@
         
         
         UIImageView *imagePickerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerIcon"]];
-        CGRect frame = imagePickerIcon.frame;
-        frame.size.width/=2;
-        frame.size.height/=2;
-        imagePickerIcon.frame = frame;
         imagePickerIcon.center = self.center;
+        //CGRect frame = imagePickerIcon.frame;
+        //frame.size.width/=2;
+        //frame.size.height/=2;
+        //imagePickerIcon.frame = frame;
+        //imagePickerIcon.center = self.center;
         [self addSubview:imagePickerIcon];
         
         
@@ -74,6 +70,14 @@
         
     }
     return self;
+}
+
+-(void) dealloc
+{
+    if(request != nil) {
+        [request cancel];
+        request  = nil;
+    }
 }
 
 -(void) touchedInImagePickerView:(UITapGestureRecognizer *) tap

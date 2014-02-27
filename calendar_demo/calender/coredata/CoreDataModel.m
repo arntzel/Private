@@ -95,6 +95,7 @@ static CoreDataModel * instance;
 
 -(void) notifyModelChange
 {
+    [cache clearDayEventTypeWrap];
     for(id<CoreDataModelDelegate>  delegate in delegates) {
         [delegate onCoreDataModelChanged];
     }
@@ -376,8 +377,7 @@ static CoreDataModel * instance;
     
     NSPredicate *predicate;
     
-    int type = 0x00000001 << 5;
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0", type];
+    predicate = [NSPredicate predicateWithFormat:@"eventType==5"];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
@@ -444,19 +444,19 @@ static CoreDataModel * instance;
         return wrap.eventType;
     }
     
-    
     //LOG_D(@"getDayFeedEventType：%@", day);
     
     NSDate * date = [Utils parseNSStringDay:day];
-    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
-    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
+    NSDate * beginDate = [[[date cc_dateByMovingToFirstDayOfTheMonth] cc_dateByMovingToThePreviousDayCout:7] cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [[date cc_dateByMovingToTheFollowingDayCout:40] cc_dateByMovingToEndOfDay];
     
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
   
-    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"eventType"]];
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:[[entity propertiesByName] objectForKey:@"start"], [[entity propertiesByName] objectForKey:@"eventType"], nil];
+    
     fetchRequest.resultType = NSDictionaryResultType;
     
     
@@ -467,10 +467,21 @@ static CoreDataModel * instance;
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
-    int eventType = 0;
     for(NSDictionary * dic in results) {
+        
+        NSDate * date = [dic objectForKey:@"start"];
+        NSString * eventDay = [Utils formateDay:date];
         int type = [[dic objectForKey:@"eventType"] intValue];
         
+        wrap = [cache getDayEventTypeWrap:eventDay];
+        if(wrap == nil) {
+            wrap = [[DayEventTypeWrap alloc] init];
+            wrap.day = eventDay;
+            wrap.eventType = 0;
+            [cache putDayEventTypeWrap:wrap];
+        }
+        
+        int eventType = wrap.eventType;
         
          /*
          Calvin: 0
@@ -505,15 +516,28 @@ static CoreDataModel * instance;
             default:
                 break;
         }
+        
+        wrap.eventType = eventType;
     }
     
+    //Fill the cache if a day no any event
+    NSDate * begin = beginDate;
+    while ( [begin compare:endDate] < 0) {
+        
+        NSString * aDay = [Utils formateDay:begin];
+        wrap = [cache getDayEventTypeWrap:aDay];
+        if(wrap == nil) {
+            wrap = [[DayEventTypeWrap alloc] init];
+            wrap.day = aDay;
+            wrap.eventType = 0;
+            [cache putDayEventTypeWrap:wrap];
+        }
+        
+        begin = [begin cc_dateByMovingToTheFollowingDayCout:1];
+    }
     
-    wrap = [[DayEventTypeWrap alloc] init];
-    wrap.day = day;
-    wrap.eventType = eventType;
-    [cache putDayEventTypeWrap:wrap];
-    
-    return eventType;
+    wrap = [cache getDayEventTypeWrap:day];
+    return wrap.eventType;
 }
 
 -(void) updateFeedEventEntity:(FeedEventEntity*) entity
@@ -799,7 +823,9 @@ static CoreDataModel * instance;
 
 -(void) saveData
 {
-    [managedObjectContext save:nil];
+    if([managedObjectContext hasChanges]) {
+       [managedObjectContext save:nil];
+    }
 }
 
 +(CoreDataModel *) getInstance

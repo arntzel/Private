@@ -580,7 +580,7 @@ static Model * instance;
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=1000&offset=0&modified_num__gt=%@", HOST, modified_num];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=20&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 

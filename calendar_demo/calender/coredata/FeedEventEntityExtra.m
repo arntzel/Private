@@ -120,8 +120,31 @@
     int attendee_num = event.attendees.count;
     self.attendee_num = @(attendee_num);
     
-    //self.creator   = [CreatorEntity createCreatorEntity:[json objectForKey:@"creator"]];
-    //self.location  = [LocationEntity createLocationEntity:[json objectForKey:@"location"]];
+    
+    if(self.creator == nil) {
+        
+        self.creator = [[CoreDataModel getInstance] createEntity:@"CreatorEntity"];
+    
+        User * creator = event.creator;
+        self.creator.id = @(creator.id);
+        self.creator.email = creator.email;
+        self.creator.first_name = creator.first_name;
+        self.creator.last_name = creator.last_name;
+        self.creator.avatar_url = creator.avatar_url;
+    }
+    
+
+    if(event.location != nil) {
+        if(self.location == nil) {
+            self.location = [[CoreDataModel getInstance] createEntity:@"LocationEntity"];
+        }
+        
+        self.location.lat = @(event.location.lat);
+        self.location.lng = @(event.location.lng);
+        self.locationName = event.location.location;
+    } else {
+        self.location = nil;
+    }
 }
 
 -(void) convertFromCalendarEvent:(Event*) event

@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 - (void)uploadEventsFromCalendarApp:(NSMutableArray *)newEvents callback:(void (^)(NSInteger error, NSMutableArray * respEvents))callback;
 - (void)modifyICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error, Event * modifiedEvent))callback;
 - (void)deleteICalEventWithEventEntity:(FeedEventEntity *)eventEntity callback:(void (^)(NSInteger error))callback;
+
 -(void) getEvent:(int) eventID andCallback:(void (^)(NSInteger error, Event * event))callback;
 
 
@@ -56,7 +57,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 //-(void) getEvents:(int) year andMonth:(int) month andCallback:(void (^)(NSInteger error, NSArray* events))callback;
 
--(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andEventType:(NSString *) eventType andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
+//-(void) getEventsOfBegin:(NSDate *) begin andOffset:(int) offset andEventType:(NSString *) eventType andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
@@ -71,12 +72,12 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 /*
  Get all pending events
  */
--(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback;
+//-(void) getEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback;
 
 /*
  Get all pending events
  */
--(void) getRelativeEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback;
+//-(void) getRelativeEventsOfPending:(void (^)(NSInteger error, NSArray* events)) callback;
 
 /**
  Call WebService API to Update event title and description

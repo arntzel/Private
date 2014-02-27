@@ -221,29 +221,6 @@
     timeEntry.delegate = self;
 }
 
-- (void)addDate
-{
-//    NSArray * times = [timesView getEventDates];
-//    
-//    ProposeStart * tempEventDate = [[ProposeStart alloc] init];
-//    
-//    if(times.count == 0) {
-//        tempEventDate.duration_hours = 1;
-//        tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
-//        tempEventDate.start_type = START_TYPEEXACTLYAT;
-//        [tempEventDate convertMinToQuarterMode];
-//        
-//    } else {
-//        
-//        ProposeStart * time  = [times lastObject];
-//        tempEventDate.duration_minutes = time.duration_minutes;
-//        tempEventDate.duration_hours = time.duration_hours;
-//        tempEventDate.duration_days = time.duration_days;
-//        tempEventDate.is_all_day = time.is_all_day;
-//        tempEventDate.start = time.start;
-//        tempEventDate.start_type = time.start_type;
-//    }
-}
 
 - (void)txtDidEnd
 {
@@ -466,20 +443,20 @@
 
 - (void)doShowOptionViewAnimation
 {
-    if (!haveOptionViewShow) {
+    
+    if(!haveOptionViewShow) {
         haveOptionViewShow = YES;
+
+        [opentionEntry setHidden:NO];
+        [opentionEntry setAlpha:0.0f];
+        [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            [opentionEntry setAlpha:1.0f];
+            
+        } completion:^(BOOL finished) {
+            ;
+        }];
     }
-    else
-    {
-        return;
-    }
-    [opentionEntry setHidden:NO];
-    [opentionEntry setAlpha:0.0f];
-    [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [opentionEntry setAlpha:1.0f];
-    } completion:^(BOOL finished) {
-        ;
-    }];
 }
 
 - (void)doShowOptionViews
@@ -675,7 +652,6 @@
             [model addFeedEventEntity:entity];
             [model saveData];
             [model notifyModelChange];
-           
             
             
             [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];

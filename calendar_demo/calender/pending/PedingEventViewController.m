@@ -10,7 +10,7 @@
 #import "CoreDataModel.h"
 #import "CreatorEntity.h"
 
-@interface PedingEventViewController () <EventPendingToolbarDelegate>
+@interface PedingEventViewController () <EventPendingToolbarDelegate, CoreDataModelDelegate>
 
 @end
 
@@ -84,11 +84,14 @@
     frame.origin.y = 100;
     dataLoadingView.frame = frame;
 
+    [[CoreDataModel getInstance] addDelegate:self];
+    
     [self.view addSubview:dataLoadingView];
 }
 
 -(void) viewDidUnload
-{  
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
 }
 
