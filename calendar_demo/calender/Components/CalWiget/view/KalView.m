@@ -211,15 +211,15 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (void)setFrameToWeekMode
 {
-    [self setFrame:CGRectMake(0, 0, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
+    [self setFrame:CGRectMake(0, self.frame.origin.y, self.frame.size.width, weekGridView.height + headerView.frame.size.height)];
 }
 
 - (void)setFrameToMonthMode
 {
     if (self.hideActionBar) {
-        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height)];
+        [self setFrame:CGRectMake(0, self.frame.origin.y, self.frame.size.width, gridView.height + headerView.frame.size.height)];
     } else {
-        [self setFrame:CGRectMake(0, 0, self.frame.size.width, gridView.height + headerView.frame.size.height + 45)];
+        [self setFrame:CGRectMake(0, self.frame.origin.y, self.frame.size.width, gridView.height + headerView.frame.size.height + 45)];
     }
 }
 

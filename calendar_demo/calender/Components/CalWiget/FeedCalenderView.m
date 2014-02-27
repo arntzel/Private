@@ -43,7 +43,7 @@ extern const CGSize kTileSize;
 
 - (id)initWithdelegate:(id<KalViewDelegate,UIGestureRecognizerDelegate>)theDelegate logic:(KalLogic *)theLogic selectedDate:(KalDate *)_selectedDate
 {
-    CGRect frame = CGRectMake(0, [DeviceInfo fullScreenHeight] - weekViewHeight, 320, 40);
+    CGRect frame = CGRectMake(0, [DeviceInfo fullScreenHeight] - weekViewHeight - 20, 320, 40);
     return [self initWithFrame:frame delegate:theDelegate logic:theLogic selectedDate:_selectedDate];
 }
 
@@ -51,6 +51,9 @@ extern const CGSize kTileSize;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        frame.origin.y = 20;
+        
         kalView = [[KalView alloc] initWithFrame:frame delegate:theDelegate controllerDelegate:self.controllerDelegate logic:theLogic selectedDate:_selectedDate hideActionBar:NO];
         [kalView swapToWeekMode];
         kalMode = WEEK_MODE;
@@ -60,6 +63,9 @@ extern const CGSize kTileSize;
         
         [self addeventScrollView];
         [self addPanGestureRecognizer:theDelegate];
+        
+        //self.backgroundColor = [UIColor redColor];
+        //self.alpha = 0.8;
     }
     return self;
 }
@@ -75,7 +81,6 @@ extern const CGSize kTileSize;
     [eventScrollView setScrollEnabled:YES];
     [eventScrollView setShowsHorizontalScrollIndicator:YES];
     [eventScrollView setBounces:NO];
-    //eventScrollView.backgroundColor = [UIColor whiteColor];
     eventScrollView.backgroundColor = [UIColor whiteColor];
     [self ajustEventScrollPosition];
 }
@@ -116,7 +121,7 @@ extern const CGSize kTileSize;
 {
     [[self controllerDelegate] unloadBlurBackground];
     CGRect frame = self.frame;
-    frame.origin.y = [DeviceInfo fullScreenHeight] - weekViewHeight;
+    frame.origin.y = [DeviceInfo fullScreenHeight] - weekViewHeight - 20;
     self.frame = frame;
 }
 
@@ -124,7 +129,7 @@ extern const CGSize kTileSize;
 {
     [[self controllerDelegate] unloadBlurBackground];
     CGRect frame = self.frame;
-    frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height;
+    frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - 20;
     self.frame = frame;
 }
 
@@ -138,7 +143,7 @@ extern const CGSize kTileSize;
 
 - (void)ajustEventScrollPosition
 {
-    [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, [self.filterView displayHeight])];
+    [eventScrollView setFrame:CGRectMake(0, kalView.frame.origin.y + kalView.frame.size.height, self.bounds.size.width, [self.filterView displayHeight])];
     
     CGRect frame = self.frame;
     frame.size.height = kalView.frame.size.height + eventScrollView.frame.size.height;
@@ -157,16 +162,21 @@ extern const CGSize kTileSize;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frame"] && (object == kalView)) {
-        [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height, self.bounds.size.width, [self.filterView displayHeight])];
+        
+        LOG_D("kalView frame. y=%f h=%f", kalView.frame.origin.y, kalView.frame.size.height);
+        
+        [eventScrollView setFrame:CGRectMake(0, kalView.frame.size.height + kalView.frame.origin.y, self.bounds.size.width, [self.filterView displayHeight])];
         CGRect frame = self.frame;
-        frame.size.height = kalView.frame.size.height + eventScrollView.frame.size.height;
+        frame.size.height = eventScrollView.frame.origin.y + eventScrollView.frame.size.height;
         
         if (kalMode == MONTH_MODE) {
-            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height;
+            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - kalView.frame.origin.y;
         }
         if (kalMode == FILTER_MODE) {
-            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - eventScrollView.frame.size.height;
+            frame.origin.y = [DeviceInfo fullScreenHeight] - kalView.frame.size.height - eventScrollView.frame.size.height - kalView.frame.origin.y;
         }
+        LOG_D("Calendar frame. y=%f h=%f", frame.origin.y, frame.size.height);
+
         self.frame = frame;
     }
 }
