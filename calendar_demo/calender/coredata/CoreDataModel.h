@@ -116,7 +116,7 @@
  *
  *  @return ContactEntity
  */
-- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
+//- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 
 - (ContactEntity *) getContactEntityWithEmail:(NSString *)email;
 

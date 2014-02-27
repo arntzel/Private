@@ -506,7 +506,7 @@ static UserModel * instance;
                 CoreDataModel * model = [CoreDataModel getInstance];
                 for(Contact * contact in contactsArr)
                 {
-                    if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
+                    if(![model getContactEntityWithEmail:contact.email])
                     {
                         ContactEntity * enity = [model createEntity:@"ContactEntity"];
                         [enity convertContact:contact];

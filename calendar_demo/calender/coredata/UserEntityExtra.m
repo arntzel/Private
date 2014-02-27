@@ -30,13 +30,13 @@
     self.status        = [NSNumber numberWithInt:atd.status];
     
     
-    ContactEntity * contact;
+    ContactEntity * contact = [[CoreDataModel getInstance] getContactEntityWithEmail:user.email];
     
-    if(user.phone == nil) {
-        contact = [[CoreDataModel getInstance] getContactEntityWithEmail:user.email];
-    } else {
-        contact = [[CoreDataModel getInstance] getContactEntityWith:user.phone AndEmail:user.email];
-    }
+//    if(user.phone == nil) {
+//        contact = [[CoreDataModel getInstance] getContactEntityWithEmail:user.email];
+//    } else {
+//        contact = [[CoreDataModel getInstance] getContactEntityWith:user.phone AndEmail:user.email];
+//    }
     
     if(contact == nil) {
         contact = [[CoreDataModel getInstance] createEntity:@"ContactEntity"];

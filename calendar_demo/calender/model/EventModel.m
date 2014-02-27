@@ -195,7 +195,8 @@
                     maxlatmodify = contact.modified_num;
                 }
                 
-                ContactEntity * enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                //ContactEntity * enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                ContactEntity * enity = [model getContactEntityWithEmail:contact.email];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
                     LOG_D(@"Create new Contact[ %d, %@ ]", contact.id, contact.email);
@@ -586,7 +587,7 @@
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in respContacts)
             {
-                ContactEntity *enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                ContactEntity *enity = [model getContactEntityWithEmail:contact.email];
                 if (enity)
                 {
                     [enity convertContact:contact];
@@ -597,6 +598,7 @@
     }];
 }
 
+/*
 - (void)uploadContacts000
 {
     assert([[UserModel getInstance] isLogined]);
@@ -630,7 +632,8 @@
         });
     //});
 }
-
+*/
+ 
 -(NSString *) getSecondsFromEpoch
 {
     NSDate * now = [NSDate date];
