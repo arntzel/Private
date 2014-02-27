@@ -6,4 +6,7 @@
 -(void)onBtnMenuClick;
 -(void)onBtnCalendarClick;
 
+-(void)refreshViews;
+
+
 @end

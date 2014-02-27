@@ -577,8 +577,16 @@
 		76CF7FCB1805919300018B95 /* DetailVoteCreatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FC91805919300018B95 /* DetailVoteCreatorCell.m */; };
 		76CF7FCF1805958E00018B95 /* DetailVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CF7FCE1805958E00018B95 /* DetailVoteCell.m */; };
 		76ECEC63180C25CD00A596BA /* nav_roundbtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */; };
+		9345ABCF18BA92CA005ABE9C /* PedingEventViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 9345ABCD18BA92CA005ABE9C /* PedingEventViewControllerNew.m */; };
+		9345ABD018BA92CA005ABE9C /* PedingEventViewControllerNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9345ABCE18BA92CA005ABE9C /* PedingEventViewControllerNew.xib */; };
+		9345ABD218BA9D7A005ABE9C /* PendingEventsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9345ABD118BA9D7A005ABE9C /* PendingEventsSectionHeader.xib */; };
 		93537E95189DC23400808E55 /* default_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E93189DC23400808E55 /* default_person@2x.png */; };
 		93537E96189DC23400808E55 /* default_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 93537E94189DC23400808E55 /* default_person.png */; };
+		936DFD3A18BED32E0049EC55 /* down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936DFD3918BED32E0049EC55 /* down_arrow@2x.png */; };
+		936DFD3C18BED40B0049EC55 /* add_time_lg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936DFD3B18BED40B0049EC55 /* add_time_lg@2x.png */; };
+		936DFD3E18BED4130049EC55 /* confirm_time_lg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936DFD3D18BED4130049EC55 /* confirm_time_lg@2x.png */; };
+		938AFC4718BCE8C8009C2D80 /* PendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AFC4618BCE8C8009C2D80 /* PendingCell.m */; };
+		938AFC4918BCE8F7009C2D80 /* PendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938AFC4818BCE8F7009C2D80 /* PendingCell.xib */; };
 		938B2836189806520074C424 /* NoEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B2835189806520074C424 /* NoEventsCell.m */; };
 		938B2838189806650074C424 /* NoEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938B2837189806650074C424 /* NoEventsCell.xib */; };
 		93A67B7718A077D100DA4068 /* event_header_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A67B7618A077D100DA4068 /* event_header_add@2x.png */; };
@@ -1455,8 +1463,18 @@
 		76CF7FCD1805958E00018B95 /* DetailVoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVoteCell.h; sourceTree = "<group>"; };
 		76CF7FCE1805958E00018B95 /* DetailVoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVoteCell.m; sourceTree = "<group>"; };
 		76ECEC62180C25CD00A596BA /* nav_roundbtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_roundbtn_bg.png; sourceTree = "<group>"; };
+		9345ABCC18BA92CA005ABE9C /* PedingEventViewControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PedingEventViewControllerNew.h; path = calender/pending/PedingEventViewControllerNew.h; sourceTree = SOURCE_ROOT; };
+		9345ABCD18BA92CA005ABE9C /* PedingEventViewControllerNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PedingEventViewControllerNew.m; path = calender/pending/PedingEventViewControllerNew.m; sourceTree = SOURCE_ROOT; };
+		9345ABCE18BA92CA005ABE9C /* PedingEventViewControllerNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PedingEventViewControllerNew.xib; path = calender/pending/PedingEventViewControllerNew.xib; sourceTree = SOURCE_ROOT; };
+		9345ABD118BA9D7A005ABE9C /* PendingEventsSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventsSectionHeader.xib; path = calender/pending/PendingEventsSectionHeader.xib; sourceTree = SOURCE_ROOT; };
 		93537E93189DC23400808E55 /* default_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_person@2x.png"; sourceTree = "<group>"; };
 		93537E94189DC23400808E55 /* default_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_person.png; sourceTree = "<group>"; };
+		936DFD3918BED32E0049EC55 /* down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow@2x.png"; sourceTree = "<group>"; };
+		936DFD3B18BED40B0049EC55 /* add_time_lg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_time_lg@2x.png"; sourceTree = "<group>"; };
+		936DFD3D18BED4130049EC55 /* confirm_time_lg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm_time_lg@2x.png"; sourceTree = "<group>"; };
+		938AFC4518BCE8C8009C2D80 /* PendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingCell.h; path = calender/pending/PendingCell.h; sourceTree = SOURCE_ROOT; };
+		938AFC4618BCE8C8009C2D80 /* PendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PendingCell.m; path = calender/pending/PendingCell.m; sourceTree = SOURCE_ROOT; };
+		938AFC4818BCE8F7009C2D80 /* PendingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingCell.xib; path = calender/pending/PendingCell.xib; sourceTree = SOURCE_ROOT; };
 		938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedEventTableViewPrev.m; sourceTree = "<group>"; };
 		938B2834189806520074C424 /* NoEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoEventsCell.h; sourceTree = "<group>"; };
 		938B2835189806520074C424 /* NoEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoEventsCell.m; sourceTree = "<group>"; };
@@ -2035,6 +2053,13 @@
 				3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */,
 				769AB91917DF51160033E677 /* PendingTableView.h */,
 				769AB91A17DF51160033E677 /* PendingTableView.m */,
+				9345ABD118BA9D7A005ABE9C /* PendingEventsSectionHeader.xib */,
+				9345ABCC18BA92CA005ABE9C /* PedingEventViewControllerNew.h */,
+				9345ABCD18BA92CA005ABE9C /* PedingEventViewControllerNew.m */,
+				9345ABCE18BA92CA005ABE9C /* PedingEventViewControllerNew.xib */,
+				938AFC4518BCE8C8009C2D80 /* PendingCell.h */,
+				938AFC4618BCE8C8009C2D80 /* PendingCell.m */,
+				938AFC4818BCE8F7009C2D80 /* PendingCell.xib */,
 			);
 			name = Pending;
 			path = calender/Pending;
@@ -2200,6 +2225,9 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				936DFD3B18BED40B0049EC55 /* add_time_lg@2x.png */,
+				936DFD3918BED32E0049EC55 /* down_arrow@2x.png */,
+				936DFD3D18BED4130049EC55 /* confirm_time_lg@2x.png */,
 				93A67B7618A077D100DA4068 /* event_header_add@2x.png */,
 				23A15CD31855BF9700B12865 /* notification_btn.png */,
 				23A15CD41855BF9700B12865 /* notification_btn@2x.png */,
@@ -3312,6 +3340,7 @@
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
 				23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
+				9345ABD018BA92CA005ABE9C /* PedingEventViewControllerNew.xib in Resources */,
 				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
 				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
@@ -3359,6 +3388,7 @@
 				3D1EAC64188ACC1C0002F627 /* AddEventInvitePeopleHeaderView.xib in Resources */,
 				769AB9E317DF51340033E677 /* circle2.png in Resources */,
 				769AB9E417DF51340033E677 /* clock.png in Resources */,
+				9345ABD218BA9D7A005ABE9C /* PendingEventsSectionHeader.xib in Resources */,
 				7662F74617F075F400B64E40 /* LoginMainTitileView.xib in Resources */,
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
@@ -3392,6 +3422,7 @@
 				769AB9F617DF51340033E677 /* tab2.png in Resources */,
 				769AB9F717DF51340033E677 /* tab_bg.png in Resources */,
 				7662F75217F0761900B64E40 /* login_main_login_google.png in Resources */,
+				936DFD3A18BED32E0049EC55 /* down_arrow@2x.png in Resources */,
 				769AB9F817DF51340033E677 /* pull_arrow.png in Resources */,
 				34B1F1C017F8FCE200AA5C97 /* settings_main_head_portait_default.png in Resources */,
 				769AB9F917DF51340033E677 /* login_mainview_bg.jpg in Resources */,
@@ -3431,6 +3462,7 @@
 				769ABB2D17DF52090033E677 /* EventDetailFinailzeView.xib in Resources */,
 				769ABB2F17DF52090033E677 /* EventDetailHeader.xib in Resources */,
 				7662F75617F0761900B64E40 /* login_main_singnup_addphoto.png in Resources */,
+				938AFC4918BCE8F7009C2D80 /* PendingCell.xib in Resources */,
 				93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */,
 				769ABB3217DF52090033E677 /* EventDetailInviteeConformView.xib in Resources */,
 				34B1F1CC17F8FCE200AA5C97 /* settings_main_userinfo_bg.png in Resources */,
@@ -3474,6 +3506,7 @@
 				76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */,
 				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
 				769CB5861886CDC10082400D /* AEOptionentry.xib in Resources */,
+				936DFD3C18BED40B0049EC55 /* add_time_lg@2x.png in Resources */,
 				769CB5691886CD1A0082400D /* AddEventControllerV2.xib in Resources */,
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
@@ -3510,6 +3543,7 @@
 				23A15CD51855BF9700B12865 /* notification_btn.png in Resources */,
 				76318B2D17E09A69000BC88B /* Icon@2x.png in Resources */,
 				93A8E278189C2B8000A3753F /* clock@2x.png in Resources */,
+				936DFD3E18BED4130049EC55 /* confirm_time_lg@2x.png in Resources */,
 				94FDD7E717ED796B000FB797 /* event_detail_invitee_time_cross.png in Resources */,
 				23D8D225186D492200C39F8C /* back_arrow.png in Resources */,
 				34B1F1AC17F8FCE200AA5C97 /* settings_detail_cancel_btn.png in Resources */,
@@ -3608,6 +3642,7 @@
 				769CB5681886CD1A0082400D /* AddEventControllerV2.m in Sources */,
 				769ABB1117DF52090033E677 /* LoopPickerView.m in Sources */,
 				3DA84B6918BA194800651379 /* MessageEntity.m in Sources */,
+				938AFC4718BCE8C8009C2D80 /* PendingCell.m in Sources */,
 				34262E1A1869C1A300288EA9 /* iCalEventShowSettingsViewController.m in Sources */,
 				3DA84B6C18BA194900651379 /* UserEntity.m in Sources */,
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
@@ -3687,6 +3722,7 @@
 				76C512A21888195B00E5A31F /* CTimePicker.m in Sources */,
 				3DB2623B1886DC440056C0B9 /* EventLocationCell.m in Sources */,
 				34B1F1CE17F8FCE200AA5C97 /* SettingsBaseViewController.m in Sources */,
+				9345ABCF18BA92CA005ABE9C /* PedingEventViewControllerNew.m in Sources */,
 				769ABC8E17DF542A0033E677 /* Message.m in Sources */,
 				769ABC8F17DF542A0033E677 /* MessageModel.m in Sources */,
 				769ABC9017DF542A0033E677 /* Model.m in Sources */,
