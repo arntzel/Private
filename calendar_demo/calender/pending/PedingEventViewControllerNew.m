@@ -66,6 +66,10 @@
     
     [table1 registerNib:[UINib nibWithNibName:@"PendingCell" bundle:nil] forCellReuseIdentifier:@"PendingCell"];
     
+    UIView *bgview = [[UIView alloc] initWithFrame: table1.frame];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    table1.backgroundView = bgview;
+    
     [self.view addSubview:table1];
     
     dataLoadingView = [[CustomerIndicatorView alloc] init];
