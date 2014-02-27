@@ -25,7 +25,7 @@
                     <color key="textColor" red="0.30196079609999998" green="0.30196079609999998" blue="0.30196079609999998" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull_arrow.png" id="Sx4-ef-PJE">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down_arrow.png" id="Sx4-ef-PJE">
                     <rect key="frame" x="21" y="5" width="12" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -35,6 +35,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pull_arrow.png" width="36" height="56"/>
+        <image name="down_arrow.png" width="8" height="4"/>
     </resources>
 </document>
