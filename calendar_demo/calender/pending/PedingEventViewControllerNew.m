@@ -123,7 +123,7 @@
             
             int evtID = [evt.id intValue];
             
-            LOG_I(@"Delete history Event: %d %@, %@, %@",  evtID, evt.title, evt.maxProposeStarTime, evt.eventType);
+            //LOG_I(@"Delete history Event: %d %@, %@, %@",  evtID, evt.title, evt.maxProposeStarTime, evt.eventType);
             
             [[CoreDataModel getInstance] deleteFeedEventEntity:evtID];
             needSavaDB = YES;
@@ -148,19 +148,14 @@
 
         if ([self isMyEvent:evt]) {
             
-            if ([evt isAllAttendeeResped]) {
-                [myEvents addObject:evt];
-            } else {
-                [myEvents addObject:evt];
-            }
+            [myEvents addObject:evt];
+
         }
         else {
             
-            if ([evt isAllAttendeeResped]) {
-                [rsvpEvents addObject:evt];
-            } else {
-                [rsvpEvents addObject:evt];
-            }
+            [rsvpEvents addObject:evt];
+            
+            
         }
     }
     

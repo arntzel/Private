@@ -17,6 +17,7 @@
 #import "UserEntity.h"
 #import "ContactEntity.h"
 #import "UIColor+Hex.h"
+#import "CreatorEntity.h"
 
 @implementation PendingCell
 
@@ -42,36 +43,38 @@
     
     self.title.text = event.title;
 
-    if (pendingCellTypeMine == ct) {
-        if (event.propose_starts != nil && event.propose_starts.count > 0)
-        {
-            self.actionText.text = @"Confirm Time";
-            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
-        }
-        else {
-            self.actionText.text = @"Add time";
-            self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
-        }
-    }
-    else
-    if (pendingCellTypeNotMine == ct) {
-        if (event.propose_starts != nil && event.propose_starts.count > 0)
-        {
-            self.actionText.text = @"Vote";
-            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
-        }
-        else {
-            self.actionText.text = @"Propose time";
-            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
-        }
-    }
-    else {
-        assert(NO);
-    }
+//    if (pendingCellTypeMine == ct) {
+//        if (event.propose_starts != nil && event.propose_starts.count > 0)
+//        {
+//            self.actionText.text = @"Confirm Time";
+//            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+//        }
+//        else {
+//            self.actionText.text = @"Add time";
+//            self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
+//        }
+//    }
+//    else
+//    if (pendingCellTypeNotMine == ct) {
+//        if (event.propose_starts != nil && event.propose_starts.count > 0)
+//        {
+//            self.actionText.text = @"Vote";
+//            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+//        }
+//        else {
+//            self.actionText.text = @"Propose time";
+//            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+//        }
+//    }
+//    else {
+//        assert(NO);
+//    }
     
+    self.actionText.text = @"Propose time";
+    self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
     
-    UserEntity * user = [event getCreator];
-    NSString * headerUrl = user.contact.avatar_url;
+    //CreatorEntity * user = event.creator;
+    NSString * headerUrl = event.creator.avatar_url;
     
     if ( [event isBirthdayEvent] ) {
     }
