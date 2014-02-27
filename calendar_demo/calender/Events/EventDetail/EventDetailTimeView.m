@@ -132,7 +132,7 @@
         [subView removeFromSuperview];
     }
     
-    NSString * dayTitle = nil;
+    //NSString * dayTitle = nil;
 
     NSArray * times = _event.propose_starts;
 
