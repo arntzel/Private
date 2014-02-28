@@ -78,14 +78,6 @@
     }];
      
     
-    
-    
-//    [[[Model getInstance] getEventModel] downloadServerEvents:^(NSInteger success, NSInteger totalCount) {
-//        if (success == NO) {
-//            //[Utils showUIAlertView:@"Error" andMessage:@"Api server returned error"];
-//        }
-//    }];
-    
     return self;
 }
 
@@ -224,27 +216,10 @@
     }
 }
 
-<<<<<<< HEAD
-
--(void) onControlledPopped:(BOOL)dataChanged {
-   
-=======
--(void)refreshViews {
-    [feedViewCtr onCoreDataModelStarted];
-    [pendingEventViewCtr onCoreDataModelStarted];
-    
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil onComplete:^(NSInteger success, NSInteger totalCount) {
-        
-        [feedViewCtr onCoreDataModelChanged];
-        [pendingEventViewCtr onCoreDataModelChanged];
-        
-    }];
->>>>>>> yk
-}
 
 -(void) onControlledPopped:(BOOL)dataChanged {
 
-    [self refreshViews];
+    //[self refreshViews];
 }
 
 @end
