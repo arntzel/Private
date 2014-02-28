@@ -76,7 +76,8 @@
         //[pendingEventViewCtr onCoreDataModelChanged];
         
     }];
-     
+    
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
     return self;
 }
