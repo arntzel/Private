@@ -217,6 +217,10 @@
     }
 }
 
+-(void) refreshViews
+{
+    //Do nothing
+}
 
 -(void) onControlledPopped:(BOOL)dataChanged {
 
