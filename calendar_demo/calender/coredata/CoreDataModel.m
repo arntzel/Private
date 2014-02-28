@@ -34,6 +34,8 @@ static CoreDataModel * instance;
 
 -(void) initDBContext:(User *) user
 {
+    if(self.inited) return;
+    
     NSPersistentStoreCoordinator * coordinator =[self persistentStoreCoordinator:user];
 
     managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];

@@ -143,4 +143,6 @@
 
 + (NSString *) gen_uuid;
 
++(NSString *) getSecondsFromEpoch;
+
 @end

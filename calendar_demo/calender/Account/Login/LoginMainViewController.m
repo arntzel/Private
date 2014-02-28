@@ -13,7 +13,8 @@
 #import "LoginMainSignInView.h"
 
 
-#import "MainViewController.h"
+#import "LoadingEventViewController.h"
+
 #import "RootNavContrller.h"
 #import "UserModel.h"
 #import "ShareLoginFacebook.h"
@@ -27,6 +28,8 @@
 
 #import "Utils.h"
 #import "SysInfo.h"
+
+#import "CoreDataModel.h"
 
 @interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
@@ -263,8 +266,8 @@
 }
 
 -(void) onLogined
-{
-    MainViewController *rootController = [[MainViewController alloc] init];
+{ 
+    LoadingEventViewController *rootController = [[LoadingEventViewController alloc] init];
     
     [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
     [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];

@@ -64,7 +64,6 @@
     currentIndex = 0;
 
     User *me = [[UserModel getInstance] getLoginUser];
-    
     [[CoreDataModel getInstance] initDBContext:me];
 
     

@@ -2,6 +2,7 @@
 #import "Utils.h"
 
 #import <Foundation/NSObjCRuntime.h>
+#import "NSDateAdditions.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
@@ -567,5 +568,19 @@ static NSTimeZone * userTimeZone;
     
     CFRelease(uuid_string_ref);
     return uuid;
+}
+
+
++(NSString *) getSecondsFromEpoch
+{
+    NSDate * now = [NSDate date];
+    
+    NSDate * start = [now dateByAddingTimeInterval:-2*30*24*3600];
+    start = [start cc_dateByMovingToFirstDayOfThePreviousMonth];
+    
+    double seconds = [start timeIntervalSince1970];
+    
+    NSString * str = [NSString stringWithFormat:@"%lf", seconds];
+    return str;
 }
 @end
