@@ -27,14 +27,18 @@
 //一天的所有FeedEvent集合
 @interface DayFeedEventEntitys : NSObject
 
-@property NSString * day;
+@property(retain) NSString * day;
 
 //FeedEventEntity array
-@property NSMutableArray * events;
+@property(retain) NSMutableArray * events;
 
 //eventtype's filter
 @property int filter;
-@property NSMutableArray * filterEvents;
+@property(retain) NSMutableArray * filterEvents;
+
+-(void) resetFilterEvents;
+
+-(NSArray*) getFilterEvents:(int)eventTypefilter;
 
 @end
 
@@ -44,9 +48,72 @@
 -(id) init {
     self = [super init];
     self.events = [[NSMutableArray alloc] init];
+    self.filterEvents = [[NSMutableArray alloc] init];
+    self.filter = 0;
     return  self;
 }
 
+-(NSArray*) getFilterEvents:(int) eventTypefilter
+{
+    if(self.filter == eventTypefilter) {
+        return self.filterEvents;
+    }
+    
+    self.filter = eventTypefilter;
+    [self resetFilterEvents];
+    return self.filterEvents;
+}
+
+-(void) resetFilterEvents
+{
+    
+    [self.filterEvents removeAllObjects];
+    
+    
+    for(FeedEventEntity * event in self.events) {
+        
+        switch ([event.eventType intValue]) {
+            
+            case 0:
+                if ((self.filter & FILTER_IMCOMPLETE) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+                
+                break;
+                
+            case 1:
+                if ((self.filter & FILTER_GOOGLE) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+                break;
+                
+            case 2:
+                if ((self.filter & FILTER_GOOGLE) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+                break;
+                
+            case 3:
+                if ((self.filter & FILTER_FB) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+                break;
+                
+            case 4:
+                if ((self.filter & FILTER_BIRTHDAY) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+                
+            case 5:
+                if ((self.filter & FILTER_IOS) != 0) {
+                    [self.filterEvents addObject:event];
+                }
+            default:
+                break;
+        }
+        
+    }
+}
 @end
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -245,17 +312,28 @@
     return viewSection;
 }
 
+
+-(NSArray *) getEventsOfDay:(NSString *) day
+{
+    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:day];
+    
+    if(dayEvents == nil) {
+        return nil;
+    } else {
+        return [dayEvents getFilterEvents:self.eventTypeFilters];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString *sectionName = [Utils formateDay:sectionDate];
    
-    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
-   
-    if(dayEvents == nil || dayEvents.events.count == 0) {
+    NSArray * events = [self getEventsOfDay:sectionName];
+    if(events == nil || events.count == 0) {
         return 1; //No event cell
     } else {
-        return  dayEvents.events.count;
+        return  events.count;
     }
 }
 
@@ -265,9 +343,9 @@
     NSDate * sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString * sectionName = [Utils formateDay:sectionDate];
 
-    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
+    NSArray * events = [self getEventsOfDay:sectionName];
     
-    if(dayEvents == nil || dayEvents.events.count == 0) {
+    if(events == nil || events.count == 0) {
         
         NoEventsCell *c = (NoEventsCell*)[tableView dequeueReusableCellWithIdentifier:@"NoEventsCell"];
         return c;
@@ -276,9 +354,9 @@
         
         int row = indexPath.row;
         
-        BOOL lastForThisDay = (row == (dayEvents.events.count-1));
+        BOOL lastForThisDay = (row == (events.count-1));
         
-        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
+        FeedEventEntity * event = [events objectAtIndex:row];
     
         if( ![event isBirthdayEvent])
         {
@@ -334,15 +412,15 @@
     NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString *sectionName = [Utils formateDay:sectionDate];
     
-    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
+    NSArray * events = [self getEventsOfDay:sectionName];
     
-    if(dayEvents == nil || dayEvents.events.count == 0) {
+    if(events == nil || events.count == 0) {
         return NO_EVENTS_HEADER_CELL; //No event cell
     } else {
         
         int row = indexPath.row;
         
-        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
+        FeedEventEntity * event = [events objectAtIndex:row];
 
         if ([event isBirthdayEvent] ) {
             return BirthdayEventView_Height;
@@ -443,19 +521,25 @@
 -(void) scroll2Date:(NSString *) day1 animated:(BOOL) animated
 {
     
-    NSDate * date = [Utils parseNSStringDay:day1];
+    NSDate * date = [[Utils parseNSStringDay:day1] cc_dateByMovingToBeginningOfDay];
     
     if([date compare:startDate] >=0 && [date compare:endDate] < 0) {
         
         NSTimeInterval seconds = [date timeIntervalSinceDate:startDate];
         
         int section = seconds / DAY;
+    
+        LOG_D("FeedEventView scroll2Date:%@, startDate:%@, move to section:%d", date, startDate, section);
         
         NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:section];
         [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
         
     } else  {
+        
+        LOG_D("FeedEventView scroll2Date reloadFeedEventEntitys from %@", date);
         [self reloadFeedEventEntitys:date];
+        NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:0];
+        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
     }
 }
 @end

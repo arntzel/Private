@@ -351,6 +351,8 @@
 {
     NSDate * selectDate = [date NSDate];
     NSString * day = [Utils formateDay:selectDate];
+    
+    LOG_D(@"didSelectDate:%@", day);
     [tableView scroll2SelectedDate:day];
 }
 
@@ -439,7 +441,6 @@
     if( (filters & FILTER_IOS) != 0)         [types appendString:@"5,"];
     
     [setting setObject:types forKey:KEY_SHOW_EVENT_TYPES];
-    
     [[UserModel getInstance] updateSetting:setting andCallBack:nil];
 }
 
