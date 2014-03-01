@@ -323,22 +323,27 @@ typedef enum
                 continue;
             }
             
+            bool isInInviteeList = NO;
             for(EventAttendee * atd in self.event.attendees)
             {
                 if( [atd.contact.email isEqualToString:contact.email]) {
-                    continue;
+                    isInInviteeList = YES;
+                    break;
                 }
             }
             
-            
-            Invitee * invitee = [[Invitee alloc] init];
-            invitee.email = contact.email;
-            [invitees addObject:invitee];
+            if(!isInInviteeList) {
+                Invitee * invitee = [[Invitee alloc] init];
+                invitee.email = contact.email;
+                [invitees addObject:invitee];
+            }
         }
         
         if(invitees.count == 0) return;
         
         [self showIndictor:YES];
+        
+        
         [[Model getInstance] inviteContacts:_event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
             [self showIndictor:NO];
             
@@ -353,7 +358,7 @@ typedef enum
                     [self.delegate addNewPeopleArray:invitees andNewEvent:newEvent];
                 }
              
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.1), dispatch_get_main_queue(),  ^(void) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.2), dispatch_get_main_queue(),  ^(void) {
                     [self.navigationController popViewControllerAnimated:YES];
                 });
             } else {

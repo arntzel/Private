@@ -272,7 +272,6 @@
                             nil];
     FBSession *session = [[FBSession alloc] initWithPermissions:permissions];
     [FBSession setActiveSession:session];
-    BOOL isopen = session.state;
     
     NSString *fbAppUrl = @"fbauth2://authorize";
     if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:fbAppUrl]])

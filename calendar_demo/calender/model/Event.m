@@ -81,7 +81,7 @@
 
     event.userstatus = [[json objectForKey:@"userstatus"] boolValue];
 
-    NSArray * attendeedDic = [json objectForKey:@"attendees"];
+    NSArray * attendeedDic =  [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     NSMutableArray * attendees = [[NSMutableArray alloc] init];
     for(int i=0;i<attendeedDic.count;i++) {
         NSDictionary * dic = [attendeedDic objectAtIndex:i];

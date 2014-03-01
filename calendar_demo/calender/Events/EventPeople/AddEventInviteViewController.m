@@ -62,6 +62,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [navBar setTitle:@""];
     [navBar setLeftBtnText:@""];
     [navBar setRightBtnText:@"Done"];
+    [navBar setRightBtnHidden:YES];
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -344,13 +345,26 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 }
 - (void)leftNavBtnClick
 {
-    if (self.navigationController) {
-        [self.navigationController popViewControllerAnimated:YES];
+    [self addSearchBarObj];
+    NSArray * selectUsers = [self getSelectedUsers];
+    
+    
+    NSDate * now = [NSDate date];
+    float interval = [now timeIntervalSince1970];
+    
+    for(Contact * contact in selectUsers)
+    {
+        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
+        if(entity != nil) {
+            entity.lastest_timestamp = @(interval);
+        }
     }
-    else {
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
-    }
+    
+    [[CoreDataModel getInstance] saveData];
+    
+    
+    [self.delegate setInVitePeopleArray:selectUsers];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSArray *)getSelectedUsers
