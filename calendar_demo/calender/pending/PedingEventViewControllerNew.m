@@ -18,6 +18,7 @@
 #import "RootNavContrller.h"
 #import "ViewUtils.h"
 #import "PendingCell.h"
+#import "CreatorEntity.h"
 
 @interface PedingEventViewControllerNew() <UITableViewDataSource, UITableViewDelegate, PopDelegate>
 
@@ -164,7 +165,8 @@
 
 -(BOOL) isMyEvent:(FeedEventEntity *) event
 {
-    return [event.creatorID intValue] == [[UserModel getInstance] getLoginUser].id;
+    User * user = [[UserModel getInstance] getLoginUser];
+    return [event.creator.id intValue] == user.id;
 }
 
 #pragma mark -

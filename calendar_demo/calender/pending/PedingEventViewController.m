@@ -181,7 +181,9 @@
 
 -(BOOL) isMyEvent:(FeedEventEntity *) event
 {
-    return [event.creator.id intValue] == [[UserModel getInstance] getLoginUser].id;
+    //return [event.creator.id intValue] == [[UserModel getInstance] getLoginUser].id;
+    User * user = [[UserModel getInstance] getLoginUser];
+    return [event.creator.email isEqualToString:user.email];
 }
 
 -(void) onButtonSelected:(int)index
