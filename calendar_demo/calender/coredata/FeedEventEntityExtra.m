@@ -207,8 +207,9 @@
     self.is_all_day              = [json objectForKey:@"is_all_day"];
     self.confirmed               = [json objectForKey:@"confirmed"];
     
-    self.created_on = [Utils parseNSDate:[json objectForKey:@"created_on"]];
-    self.last_modified = [Utils parseNSDate:[json objectForKey:@"last_modified"]];
+    self.created_on              = [Utils parseNSDate:[json objectForKey:@"created_on"]];
+    self.last_modified           = [Utils parseNSDate:[json objectForKey:@"last_modified"]];
+    self.max_proposed_end_time   = [Utils parseNSDate:[json objectForKey:@"max_proposed_end_time"]];
     
     self.creator   = [CreatorEntity createCreatorEntity:[json objectForKey:@"creator"]];
     self.location  = [LocationEntity createLocationEntity:[json objectForKey:@"location"]];
