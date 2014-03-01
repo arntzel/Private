@@ -29,85 +29,99 @@
 
 @property(retain) NSString * day;
 
-//FeedEventEntity array
-@property(retain) NSMutableArray * events;
-
 //eventtype's filter
 @property int filter;
-@property(retain) NSMutableArray * filterEvents;
 
 -(void) resetFilterEvents;
 
 -(NSArray*) getFilterEvents:(int)eventTypefilter;
 
+-(void) addEvent:(FeedEventEntity *) event;
+
 @end
 
 
 @implementation DayFeedEventEntitys
+{
+    //FeedEventEntity array
+    NSMutableArray * events;
+    
+    NSMutableArray * filterEvents;
+}
 
 -(id) init {
     self = [super init];
-    self.events = [[NSMutableArray alloc] init];
-    self.filterEvents = [[NSMutableArray alloc] init];
     self.filter = 0;
+    events = [[NSMutableArray alloc] init];
+    filterEvents = [[NSMutableArray alloc] init];
+    
     return  self;
+}
+
+-(void) addEvent:(FeedEventEntity *) event
+{
+    [events addObject:event];
+    
+    if(([event.eventType intValue] & self.filter) != 0) {
+        [filterEvents addObject:event];
+    }
 }
 
 -(NSArray*) getFilterEvents:(int) eventTypefilter
 {
     if(self.filter == eventTypefilter) {
-        return self.filterEvents;
+        return filterEvents;
     }
     
     self.filter = eventTypefilter;
     [self resetFilterEvents];
-    return self.filterEvents;
+    return filterEvents;
 }
 
 -(void) resetFilterEvents
 {
     
-    [self.filterEvents removeAllObjects];
+    [filterEvents removeAllObjects];
     
     
-    for(FeedEventEntity * event in self.events) {
+    for(FeedEventEntity * event in events) {
         
         switch ([event.eventType intValue]) {
             
             case 0:
                 if ((self.filter & FILTER_IMCOMPLETE) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
-                
                 break;
                 
             case 1:
                 if ((self.filter & FILTER_GOOGLE) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
                 break;
                 
             case 2:
                 if ((self.filter & FILTER_GOOGLE) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
                 break;
                 
             case 3:
                 if ((self.filter & FILTER_FB) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
                 break;
                 
             case 4:
                 if ((self.filter & FILTER_BIRTHDAY) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
-                
+                break;
             case 5:
                 if ((self.filter & FILTER_IOS) != 0) {
-                    [self.filterEvents addObject:event];
+                    [filterEvents addObject:event];
                 }
+                break;
             default:
                 break;
         }
@@ -447,9 +461,9 @@
     NSDate *sectionDate = [NSDate dateWithTimeInterval:DAY * section sinceDate:startDate];
     NSString *sectionName = [Utils formateDay:sectionDate];
     
-    DayFeedEventEntitys * dayEvents = [dayFeedEventEntitysDic objectForKey:sectionName];
+    NSArray * events = [self getEventsOfDay:sectionName];
     
-    if(dayEvents == nil || dayEvents.events.count == 0) {
+    if(events == nil || events.count == 0) {
         
         [self.feedEventdelegate onAddNewEvent];
         
@@ -457,7 +471,7 @@
         
         int row = indexPath.row;
         
-        FeedEventEntity * event = [dayEvents.events objectAtIndex:row];
+        FeedEventEntity * event = [events objectAtIndex:row];
 
         //if([event.eventType intValue]== 0) {
             
@@ -485,8 +499,10 @@
 {
     
     NSArray * feedEvents = [model getDayFeedEventEntitys:startDate1 andEndDate:endDate1];
+   
     
     for (FeedEventEntity * entity in feedEvents) {
+        
         NSString * day = [Utils formateDay:entity.start];
         DayFeedEventEntitys * dayEntity = [dayFeedEventEntitysDic objectForKey:day];
         
@@ -494,9 +510,9 @@
             dayEntity = [[DayFeedEventEntitys alloc] init];
             [dayFeedEventEntitysDic setObject:dayEntity forKey:day];
             dayEntity.day = day;
-            [dayEntity.events addObject:entity];
+            [dayEntity addEvent:entity];
         } else {
-            [dayEntity.events addObject:entity];
+            [dayEntity addEvent:entity];
         }
     }
 }

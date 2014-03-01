@@ -84,9 +84,14 @@
 - (void)showLeftController:(BOOL)animated {
     //[menuNavigationController updateBlurBackground];
     //[super showLeftController:animated];
-    menuNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
+    //menuNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //[self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
 
+    menuNavigationController.hadBlur = NO;
+    menuNavigationController.view.alpha = 1;
+    [self.view addSubview:menuNavigationController.view];
+    
+    
     [menuNavigationController reload];
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];

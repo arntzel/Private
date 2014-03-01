@@ -16,6 +16,8 @@
 
 @property(nonatomic, weak) id<MenuNavigationDelegate> delegate;
 
+@property BOOL hadBlur;
+
 -(void) reload;
 
 @end
