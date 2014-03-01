@@ -164,7 +164,7 @@
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
     //[[[Model getInstance] getMessageModel] refreshModel:nil];
     
-     [self synchronizedFromServer];
+     [self synchronizedEventFromServer];
 }
 
 
@@ -249,6 +249,11 @@
 {
     //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
     [[[Model getInstance] getEventModel] checkContactUpdate];
+}
+
+-(void) synchronizedEventFromServer
+{
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
