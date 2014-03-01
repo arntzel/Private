@@ -39,11 +39,28 @@
     
     User *me = [[UserModel getInstance] getLoginUser];
     [[CoreDataModel getInstance] initDBContext:me];
-
-    NSData * gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"Calvin_loader" ofType:@"gif"]];
+ 
+   
+//    dispatch_time_t popTime1 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC));
+//    dispatch_after(popTime1, dispatch_get_main_queue(), ^(void){
+//        [self showMainViewController];
+//    });
+//    
+//    return;
     
-    self.webView.userInteractionEnabled = NO;//用户不可交互
-    [self.webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+    //TODO:: need
+//    NSArray *magesArray = [NSArray arrayWithObjects:
+//                           [UIImage imageNamed:@"image1.png"],
+//                           [UIImage imageNamed:@"image2.png"],
+//                           [UIImage imageNamed:@"image3.png"],
+//                           [UIImage imageNamed:@"image4.png"],
+//                           [UIImage imageNamed:@"image5.png"],nil];
+//
+//    self.loadingView.animationImages = magesArray;
+//    self.loadingView.animationDuration = 0.3f;
+//    self.loadingView.animationRepeatCount = 0;
+//    [self.loadingView startAnimating];
+    
     
     //begin to loading data
     self.progressView.progress = 0;
@@ -58,7 +75,6 @@
 //load a batch event data from server
 -(void) toLoadEventData
 {
-    NSLog(@"synchronizedFromServer begin");
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
     if (last_modify_num == nil) {
@@ -89,12 +105,12 @@
         } else if (events.count == 0) {
             
             [self showMainViewController];
+            return;
         }
         
         NSString * maxlastupdatetime = last_modify_num;
         
         //CoreDataModel * model = [CoreDataModel getInstance];
-        NSLog(@"========before download=========");
         for (FeedEventEntity * entity in events) {
             if([entity.modified_num compare:maxlastupdatetime] > 0) {
                 maxlastupdatetime = entity.modified_num;
@@ -103,8 +119,6 @@
         
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
-        NSLog(@"========after download=========");
-    
         allEventCount = loadedEventCount + totalCount;
         loadedEventCount += events.count;
     
@@ -120,13 +134,17 @@
 
 -(void) showMainViewController
 {
-    LOG_D(@"synchronizedFromServer is done, show the MainViewController");
     
-    MainViewController * rootController = [[MainViewController alloc] init];
-    
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
-    return;
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        LOG_D(@"synchronizedFromServer is done, show the MainViewController");
+        
+        MainViewController * rootController = [[MainViewController alloc] init];
+        
+        [[RootNavContrller defaultInstance] popToRootViewControllerAnimated:NO];
+        [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+    });
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -13,6 +13,6 @@
 
 @property IBOutlet UIProgressView * progressView;
 
-@property IBOutlet UIWebView * webView;
+@property IBOutlet UIImageView * loadingView;
 
 @end

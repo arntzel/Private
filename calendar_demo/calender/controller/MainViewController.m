@@ -35,6 +35,8 @@
 
 -(id) init
 {
+    LOG_D(@"MainViewController init");
+    
     menuNavigation *leftController = [[menuNavigation alloc] init];
     leftController.delegate = self;
 
@@ -69,16 +71,22 @@
     
     //[feedViewCtr onCoreDataModelStarted];
 
-    [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+    //[[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         
         //[feedViewCtr onCoreDataModelChanged];
         //[pendingEventViewCtr onCoreDataModelChanged];
         
-    }];
+    //}];
     
     [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
     return self;
+}
+
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    LOG_D(@"MainViewController viewDidLoad");
 }
 
 - (void)showLeftController:(BOOL)animated {
