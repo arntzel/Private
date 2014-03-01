@@ -196,6 +196,8 @@
 
 -(IBAction) logout:(id)sender
 {
+     [[FBSession activeSession] closeAndClearTokenInformation];
+    
     [[UserModel getInstance] setLoginUser:nil];
 
     [[UserSetting getInstance] reset];

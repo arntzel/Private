@@ -1453,7 +1453,7 @@ static Model * instance;
 
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            LOG_D(@"createEvent resp:%@", json);
+            LOG_D(@"finalizeProposeStart resp:%@", json);
 
             Event * newEvent = [Event parseEvent:json];
             callback(0, newEvent);
@@ -1461,7 +1461,7 @@ static Model * instance;
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+            LOG_D(@"finalizeProposeStart error=%@, resp:%@", error, aStr);
 
             callback(-1, nil);
         }

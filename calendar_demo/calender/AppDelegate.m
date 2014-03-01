@@ -268,17 +268,25 @@
   sourceApplication: (NSString *)sourceApplication
          annotation: (id)annotation {
     
-    NSLog(@"application openURL:%@", url);
+    BOOL result = NO;
     
-//    return [FBAppCall handleOpenURL:url
-//                  sourceApplication:sourceApplication
-//                    fallbackHandler:^(FBAppCall *call) {
-//                        NSLog(@"In fallback handler");
-//                    }];
+    if([@"com.facebook.Facebook" isEqualToString:sourceApplication]) {
+        
+       result = [FBAppCall handleOpenURL:url
+                     sourceApplication:sourceApplication
+                        fallbackHandler:^(FBAppCall *call) {
+                                NSLog(@"In fallback handler");
+              }];
+        
+    } else {
+        
+        result = [GPPURLHandler handleURL:url
+                             sourceApplication:sourceApplication
+                                    annotation:annotation];
+    }
     
-    BOOL result = [GPPURLHandler handleURL:url
-                  sourceApplication:sourceApplication
-                         annotation:annotation];
+    LOG_D(@"From [%@] result=%d openURL:%@", sourceApplication, result, url);
+    
     return result;
 }
 

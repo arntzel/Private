@@ -11,9 +11,8 @@
 #import "LoginMainAccessView.h"
 #import "LoginMainCreatView.h"
 #import "LoginMainSignInView.h"
-
-
 #import "LoadingEventViewController.h"
+#import "MainViewController.h"
 
 #import "RootNavContrller.h"
 #import "UserModel.h"
@@ -30,6 +29,7 @@
 #import "SysInfo.h"
 
 #import "CoreDataModel.h"
+#import "UserSetting.h"
 
 @interface LoginMainViewController ()<LoginMainAccessViewDelegate,LoginMainCreatViewDelegate,LoginMainSignInViewDelegate,ShareLoginDelegate, GPPSignInDelegate, UIAlertViewDelegate>
 {
@@ -253,24 +253,138 @@
     
     loginType = 1;
     
-    if(![LoginStatusCheck isFacebookAccountLoginIn])
+//    if (FBSession.activeSession.isOpen) {
+//        // if a user logs out explicitly, we delete any cached token information, and next
+//        // time they run the applicaiton they will be presented with log in UX again; most
+//        // users will simply close the app or switch away, without logging out; this will
+//        // cause the implicit cached-token login to occur on next launch of the application
+//        [[FBSession activeSession] closeAndClearTokenInformation];
+//        [[FBSession activeSession] close];
+//    }
+
+    [[FBSession activeSession] closeAndClearTokenInformation];
+    // Create a new, logged out session.
+    NSArray *permissions = [NSArray arrayWithObjects:
+                            @"email",
+                            @"user_likes",
+                            @"publish_actions",
+                            @"publish_stream",
+                            nil];
+    FBSession *session = [[FBSession alloc] initWithPermissions:permissions];
+    [FBSession setActiveSession:session];
+    BOOL isopen = session.state;
+    
+    NSString *fbAppUrl = @"fbauth2://authorize";
+    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:fbAppUrl]])
     {
-        snsLogin = [[ShareLoginFacebook alloc]init];
-        snsLogin.delegate = self;
-        [snsLogin shareLogin];
+        
+        [[FBSession activeSession] openWithCompletionHandler:^(FBSession *session,
+                                                               FBSessionState status,
+                                                               NSError *error)
+         {
+             if(status == FBSessionStateOpen) {
+                 [self loginResult:session statue:status Error:error];
+             }
+         }];
     }
     else
     {
-        [self shareDidLogin:nil];
+        snsLogin = [[ShareLoginFacebook alloc] init];
+        snsLogin.delegate = self;
+        [snsLogin shareLogin];
     }
+
+//    if(![LoginStatusCheck isFacebookAccountLoginIn])
+//    {
+//       
+//        NSString *fbAppUrl = @"fbauth2://authorize";
+//        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:fbAppUrl]])
+//        {
+//            
+//            [[FBSession activeSession] openWithCompletionHandler:^(FBSession *session,
+//                                                                   FBSessionState status,
+//                                                                   NSError *error)
+//             {
+//                 //[self loginResult:session statue:status Error:error];
+//             }];
+//        }
+//        else
+//        {
+//            snsLogin = [[ShareLoginFacebook alloc] init];
+//            snsLogin.delegate = self;
+//            [snsLogin shareLogin];
+//        }
+//
+//    }
+//    else
+//    {
+//        [self shareDidLogin:nil];
+//    }
 }
 
--(void) onLogined
-{ 
-    LoadingEventViewController *rootController = [[LoadingEventViewController alloc] init];
+
+- (void)loginResult:(FBSession *)session statue:(FBSessionState) status Error:(NSError *)error
+{
+    LOG_D(@"facebook loginResult:%d, error=%d, accesstoke=%@", status, error.code, session.accessToken);
     
-    [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
-    [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+    if(error.code == 0) {
+        
+        [self shareDidLogin:nil];
+    } else {
+        //TODO::
+        [Utils showUIAlertView:@"Error" andMessage:@"Login with facebook account failed"];
+    }
+//    
+//    if(error.code == -1009)
+//    {//无网络
+//        LOG_D(@"error.code: -1009");
+//        if([self.delegate respondsToSelector:@selector(shareDidNotNetWork:)])
+//            [self.delegate shareDidNotNetWork:self];
+//    }
+//    else if(error.code == -1001)
+//    {//超时
+//        LOG_D(@"error.code: -1001");
+//        if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
+//            [self.delegate shareDidLoginTimeOut:self];
+//    }
+//    else if(error.code == -1003)
+//    {//找不到服务器
+//        LOG_D(@"error.code: -1003");
+//        if([self.delegate respondsToSelector:@selector(shareDidLoginTimeOut:)])
+//            [self.delegate shareDidLoginTimeOut:self];
+//    }
+//    else if(error.code != 0)
+//    {
+//        if([self.delegate respondsToSelector:@selector(shareDidLoginErr:)])
+//            [self.delegate shareDidLoginErr:self];
+//    }
+//    else
+//    {
+//        [self shareDidLogin:nil];
+//        
+//    }
+}
+
+
+-(void) onLogined
+{
+    User *me = [[UserModel getInstance] getLoginUser];
+    [[CoreDataModel getInstance] initDBContext:me];
+    
+    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+    
+    if(last_modify_num == nil) {
+        LoadingEventViewController *rootController = [[LoadingEventViewController alloc] init];
+        [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+        [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+        
+    } else {
+        
+        MainViewController * rootController = [[MainViewController alloc] init];
+        
+        [[RootNavContrller defaultInstance] popToRootViewControllerAnimated:NO];
+        [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
+    }
 }
 
 -(void) showAlert:(NSString *) msg

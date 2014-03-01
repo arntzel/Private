@@ -454,6 +454,8 @@
 
 - (void)uploadCalendarEvents
 {
+    return;
+    
     if(![[UserModel getInstance] isLogined])
     {
         return;
@@ -567,6 +569,8 @@
 
 - (void)uploadContacts
 {
+    return;
+    
     //assert([[UserModel getInstance] isLogined]);
     if(![[UserModel getInstance] isLogined]) {
         return;
