@@ -15,6 +15,9 @@
 
 #import "AddEventInviteViewController.h"
 
+#import "UIView+FrameResize.h"
+
+
 typedef enum
 {
     DetailInviteesResponsed = 0,
@@ -82,6 +85,7 @@ typedef enum
     [navBar setTitle:@"Invitees"];
     //[navBar setGlassImage:self.titleBgImage];
     
+    
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(242, 28, 70, 29)];
     [rightBtn setBackgroundImage:[UIImage imageNamed:@"nav_roundbtn_bg.png"] forState:UIControlStateNormal];
     [rightBtn setTitle:@"+ Add" forState:UIControlStateNormal];
@@ -103,7 +107,7 @@ typedef enum
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
-
+    
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
     
