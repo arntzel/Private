@@ -16,6 +16,8 @@
 #import "CoreDataModel.h"
 #import "ViewUtils.h"
 
+#import "NSDateAdditions.h"
+
 @interface AddEventDateViewController ()<AddDateCalenderViewDelegate,
                                          KalViewDelegate,
                                          KalTileViewDataSource,
@@ -104,7 +106,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(dayEvents == nil || dayEvents.count == 0) {
-        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
+//<<<<<<< HEAD
+//        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventsCell"];
+//=======
+        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"PendingEventViewNoEventCell"];
+//>>>>>>> yk
         return cell;
     }
     
@@ -156,7 +162,12 @@
 
 - (void)leftNavBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)rightNavBtnClick
@@ -179,7 +190,6 @@
         [self showTimeErrorWarning];
         return;
     }
-   
     
     if (self.isUpdate) {
         if ([self.delegate respondsToSelector:@selector(updateEventDate:)])
@@ -196,7 +206,12 @@
     }
     
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)showTimeErrorWarning
@@ -314,11 +329,12 @@
 
 -(void) loadEvents: (NSDate*) date
 {
-    NSString * day = [Utils formateDay:date];
     
+    NSDate * beginDate = [date cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [date cc_dateByMovingToEndOfDay];
+
     CoreDataModel * model = [CoreDataModel getInstance];
-    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE | FILTER_IOS;
-    dayEvents =[model getFeedEvents:day evenTypeFilter:filetVal];
+    dayEvents =[model getDayFeedEventEntitys:beginDate andEndDate:endDate];
     [feedTableView reloadData];
 }
 

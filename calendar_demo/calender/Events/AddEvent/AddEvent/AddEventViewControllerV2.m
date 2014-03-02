@@ -2,10 +2,6 @@
 #import "AddEventNavigationBar.h"
 
 
-
-
-
-
 #import "AddEventViewController.h"
 #import "AddLocationViewController.h"
 #import "AddEventDateViewController.h"
@@ -85,33 +81,11 @@
 - (void)dealloc
 {
     hud.delegate = nil;
-    [hud release];
-    
-    [navBar release];
-    [scrollView release];
-    
-    [imagePickerView release];
-    [imagePickerbtn release];
+    navBar.delegate = nil;
     txtFieldTitle.delegate = nil;
-    [txtFieldTitle release];
-    [topImageView release];
-    
-    [inviteView release];
-    [placeView release];
-
     timesView.delegate = nil;
-    [timesView release];
-    [settingView release];
-    
-    [imageUrl release];
-    
-    [imageUploadingIndicator release];
-
-    
     self.invitedPeoples = nil;
     locationPlace = nil;
-
-    [super dealloc];
 }
 
 #pragma mark initUI
@@ -140,7 +114,7 @@
 
     [self initImagePickerView];
     
-    navBar = [[AddEventNavigationBar creatView] retain];
+    navBar = [AddEventNavigationBar creatView];
     [self.view addSubview:navBar];
     navBar.delegate = self;
     
@@ -202,7 +176,6 @@
     UIImageView *maskImageView = [[UIImageView alloc] initWithFrame:imagePickerView.bounds];
     maskImageView.image = [UIImage imageNamed:@"shadow_ovlerlay_asset.png"];
     [view addSubview:maskImageView];
-    [maskImageView release];
     
     
     UIImageView *imagePickerIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imagePickerIcon.png"]];
@@ -246,11 +219,9 @@
 
     UIView * subView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     [scrollView addSubview:subView];
-    [subView release];
 
 
     inviteView = (AddEventInviteView*)[ViewUtils createView:@"AddEventInviteView"];
-    [inviteView retain];
     CGRect frame = inviteView.frame;
     frame.origin.x = 8;
     frame.origin.y = 5;
@@ -260,7 +231,6 @@
     [subView addSubview:inviteView];
 
     placeView = (AddEventPlaceView*)[ViewUtils createView:@"AddEventPlaceView"];
-    [placeView retain];
 
     frame = placeView.frame;
     frame.origin.x = 162;
@@ -292,7 +262,7 @@
 
 - (void)initSettingView
 {
-    settingView = [[AddEventSettingView createEventSettingView] retain];
+    settingView = [AddEventSettingView createEventSettingView];
     [scrollView addSubview:settingView];
 }
 
@@ -378,8 +348,6 @@
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
-
-    [tempEventDate release];
 }
 
 //Add new EventDate
@@ -415,7 +383,6 @@
     [invitePeople setSelectedUser:invitedPeoples];
     
     [self.navigationController pushViewController:invitePeople animated:YES];
-    [invitePeople release];
 }
 
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
@@ -476,7 +443,6 @@
                                           otherButtonTitles:nil];
     
     [alert show];
-    [alert release];
 }
 
 
@@ -532,7 +498,6 @@
         ProposeStart * ps2 = [ps copy];
         ps2.start = [Utils convertGMTDate:ps2.start andTimezone:tz];
         [propstarts addObject:ps2];
-        [ps2 release];
     }
     
     event.propose_starts = propstarts;
@@ -625,16 +590,12 @@
         request = nil;
     }
     
-    if(imageUrl != nil) {
-        [imageUrl release];
-        imageUrl = nil;
-    }
+    imageUrl = nil;
     
     UIImage * img = imagePickerView.image;
     //[self startUploadIndicator];
     [imageUploadingIndicator startAnimating];
     request =[[Model getInstance] uploadImage:img andCallback:self];
-    [request retain];
 }
 
 -(void) onUploadStart
@@ -658,7 +619,6 @@
     
     [imageUploadingIndicator stopAnimating];
     
-    [request release];
     request = nil;
     
     if(error != 0) {
@@ -676,7 +636,7 @@
     } else {
         LOG_D(@"onUploadCompleted:%@", url);
         //[self createEvent:url];
-        imageUrl = [url retain];;
+        imageUrl = url;;
     }
 }
 

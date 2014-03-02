@@ -73,7 +73,7 @@
             return @"Facebook Events";
             
         case 4:
-            return @"Birthdays";
+            return @"Facebook Birthdays";
             
         case 5:
             return @"iCal Events";

@@ -33,11 +33,14 @@
     BOOL loading;
     MessageModel * msgModel;
     BLRView *blrView;
+    
 }
 @end
 
 
 @implementation menuNavigation
+
+@synthesize hadBlur;
 
 @synthesize tableView=_tableView;
 
@@ -63,13 +66,14 @@
     self.view.clipsToBounds = YES;
     
     blrView = [[BLRView alloc] init];
+    blrView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    hadBlur = NO;
     
-    blrView.frame = CGRectMake(0, BANNER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - BANNER_HEIGHT);
     //[blrView  blurWithColor:[BLRColorComponents darkEffect]];
     [self.view addSubview:blrView];
     
    //self.view.backgroundColor = [UIColor colorWithRed:75.0/255.0f green:80.0/255.0f blue:85.0/255.0f alpha:1.0];
-    self.view.backgroundColor = [UIColor colorWithRed:24.0/255.0f  green:164.0/255.0f blue:139.0/255.0f alpha:1.0]; //greenish
+    //self.view.backgroundColor = [UIColor colorWithRed:24.0/255.0f  green:164.0/255.0f blue:139.0/255.0f alpha:1.0]; //greenish
     
     menuDataSource = [[navigationMenuDataSource alloc] init];
     
@@ -93,7 +97,8 @@
 //    [self.view addSubview:logoButton];
     
     CGRect logoRect = CGRectMake(100, 30, 164, 20);
-    UILabel *l = [[UILabel alloc] initWithFrame:logoRect];
+    UILabel *l = [[UILabel alloc] initWithFrame:logoRect];//
+//  l.textAlignment = NSTextAlignmentCenter;
 //  UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:20.0];
     [l setFont:font];
@@ -109,6 +114,7 @@
         [tableView setBackgroundColor:[UIColor clearColor]];
         tableView.dataSource = self;
         tableView.delegate = self;
+        //tableView.clipsToBounds = NO;
         [self.view addSubview:tableView];
         self.tableView = tableView;
     }
@@ -260,15 +266,19 @@
 //  LOG_D(@"didSelectRowAtIndexPath:%@", indexPath);
     MessageEntity * msg = [msgModel getMessage:indexPath.row];
     
-    if([msg.eventID intValue] > 0) {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([msg.eventID intValue] > 0) {
+        
         EventDetailController * detailCtl = [[EventDetailController alloc] init];
         detailCtl.eventID = [msg.eventID intValue];
-        [self dismissViewControllerAnimated:YES completion:^{
-            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
-        }];
+        //[self presentViewController:detailCtl animated:YES completion:^{
+        //}];
+        
+        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
     }
     
-    if([msg.unread boolValue]) {
+    if ([msg.unread boolValue]) {
         [msgModel readMessage:msg];
     }
 
@@ -308,8 +318,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (blrView) {
+    if (!hadBlur && blrView) {
         [blrView  blurWithColor:[BLRColorComponents darkEffect]];
+        hadBlur = YES;
     }
 }
 
@@ -320,24 +331,51 @@
 
 -(void)onCloseButtonTyped
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.view.alpha = 1;
+    [UIView animateWithDuration:.2 animations:^{
+        
+        self.view.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+        self.view.alpha = 1;
+    }];
 }
 
 -(void)onSettingButtonTyped
 {
     //[self onCloseButtonTyped];
     //[self dismissViewControllerAnimated:YES completion:nil];
-    [self dismissViewControllerAnimated:YES completion:^ {
+//    [self dismissViewControllerAnimated:YES completion:^ {
+//        [self.delegate onSettingButtonTyped];
+//    }];
+    
+//    [self onCloseButtonTyped];
+//    
+//    double delayInSeconds = 0.3;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [self.delegate onSettingButtonTyped];
+//    });
+    
+    self.view.alpha = 1;
+    [UIView animateWithDuration:.2 animations:^{
+        
+        self.view.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+        self.view.alpha = 1;
         [self.delegate onSettingButtonTyped];
     }];
 }
 
--(void)onLogoButtonTyped
-{
-    //[self onCloseButtonTyped];
-    [self dismissViewControllerAnimated:YES completion:^ {
-        [self.delegate onLogoButtonTyped];
-    }];
-}
+//-(void)onLogoButtonTyped
+//{
+//    //[self onCloseButtonTyped];
+//    [self dismissViewControllerAnimated:YES completion:^ {
+//        [self.delegate onLogoButtonTyped];
+//    }];
+//}
 
 @end

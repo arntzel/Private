@@ -142,11 +142,13 @@ static inline NSString *stringFromWeekday(int weekday)
     }
     else {
         //sunday?
-        NSDate *dt = [self.date NSDate];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
-        //NSLog(@"%@", stringFromWeekday([components weekday]));
-        if ([components weekday] == 1) {
-            drawMonth = YES; //sunday
+        if(self.date != nil) {
+            NSDate *dt = [self.date NSDate];
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
+            //NSLog(@"%@", stringFromWeekday([components weekday]));
+            if ([components weekday] == 1) {
+                drawMonth = YES; //sunday
+            }
         }
     }
     
@@ -270,6 +272,10 @@ static inline NSString *stringFromWeekday(int weekday)
 
 - (BOOL)isToday
 {
+    if(self.date == nil) {
+        return NO;
+    }
+    
     NSDate *today = [NSDate date];
     return [self.date isEqual:[KalDate dateFromNSDate:today]];
 }

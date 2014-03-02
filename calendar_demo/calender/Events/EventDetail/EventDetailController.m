@@ -62,12 +62,12 @@
                                     SharePhotoDelegate>
 {
     EventDetailNavigationBar *navBar;
+    
     EventDetailPhotoView *photoView;
     
     EventDetailInviteePlaceView *invitePlaceContentView;
     
     EventDetailTimeView *timeContentView;
-    
     
     EventDetailCommentConformView *conformView;
     
@@ -84,7 +84,7 @@
 }
 
 
-@property(nonatomic, retain) Event *event;
+
 @property(nonatomic, retain) ShareLoginBase *shareloginFacebook;
 @property(nonatomic, retain) SharePhotoBase *sharePhotoFacebook;
 @end
@@ -151,8 +151,13 @@
     
     [self addNavBar];
 
-    [self showIndicatorView];
+    if(self.event != nil) {
+        [self refreshView];
+        return;
+    }
     
+    
+    [self showIndicatorView];
     
     [[Model getInstance] getEvent:self.eventID andCallback:^(NSInteger error, Event * evt) {
         
@@ -162,7 +167,6 @@
 
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
-            //[self.navigationController popViewControllerAnimated:YES];
 
             [Utils showUIAlertView:@"Error" andMessage:@"The event was deleted" andDeletegate:self].tag = 2;
 
@@ -170,43 +174,49 @@
         }
 
         if(error == 0) {
+            
             self.event = evt;
-
-            //if a date is in the past, it should automatically be removed if it's in the pending section
-            if(!self.event.confirmed) {
-                NSMutableArray * times = [[NSMutableArray alloc] init];
-                
-                NSDate * current = [NSDate date];
-                //FangXiang: the times in event are gmt,  so we need't to convent timezone.
-                //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
-                
-                for (ProposeStart* proposeStart in  self.event.propose_starts) {
-                    NSDate * endTime = [proposeStart getEndTime];
-                    if([endTime compare:current] > 0) {
-                        [times addObject:proposeStart];
-                    }
-                }
-                
-                self.event.propose_starts = times;
-            }
+            [self refreshView];
             
-            //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
-
-            [self configViews];
-            [self updateUIByEvent];
-            [self layOutSubViews];
-            
-            hud = [[ATMHud alloc] initWithDelegate:self];
-            [self.view addSubview:hud.view];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
     }];
 }
 
+
+-(void) refreshView {
+    
+    //if a date is in the past, it should automatically be removed if it's in the pending section
+    if(!self.event.confirmed) {
+        NSMutableArray * times = [[NSMutableArray alloc] init];
+        
+        NSDate * current = [NSDate date];
+        //FangXiang: the times in event are gmt,  so we need't to convent timezone.
+        //current = [Utils convertGMTDate:current andTimezone:[NSTimeZone systemTimeZone]];
+        
+        for (ProposeStart* proposeStart in  self.event.propose_starts) {
+            NSDate * endTime = [proposeStart getEndTime];
+            if([endTime compare:current] > 0) {
+                [times addObject:proposeStart];
+            }
+        }
+        
+        self.event.propose_starts = times;
+    }
+    
+    //FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:self.event.id];
+    
+    [self configViews];
+    [self updateUIByEvent];
+    [self layOutSubViews];
+    
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [self.view addSubview:hud.view];
+}
+
 - (void)configViews
 {
-    
     BOOL isCreator = [self isMyCreatEvent];
     navBar.rightbtn.hidden = NO;
     
@@ -254,7 +264,6 @@
     return user.id == creator.id;
 }
 
-
 - (void)updateUIByEvent
 {
     [photoView setImageUrl:event.thumbnail_url];
@@ -290,13 +299,11 @@
     }
 }
 
-
 -(void) updateEventTimeView
 {
     BOOL isCreator = [self isMyCreatEvent];
     [timeContentView updateView:isCreator andEvent:event];
 }
-
 
 -(void) updateConformView
 {
@@ -394,7 +401,16 @@
 
 - (void)leftBtnPress:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.popDelegate) {
+        [self.popDelegate onControlledPopped:YES];
+    }
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];    
 }
 
 - (void)rightBtnPress:(id)sender
@@ -549,7 +565,14 @@
     
     AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
     addDate.delegate = self;
-    [self.navigationController pushViewController:addDate animated:YES];
+    
+    if (self.navigationController) {
+        [self.navigationController pushViewController:addDate animated:YES];
+    }
+    else {
+        [self presentViewController:addDate animated:YES completion:^{
+        }];
+    }
     
     [tempEventDate release];
 }
@@ -563,9 +586,15 @@
     controller.event = self.event;
     controller.titleBgImage = [photoView getImage];
     
-    [self.navigationController pushViewController:controller animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:^{
+        }];
+    }
+
     [controller release];
-    
 }
 
 -(void) onVoteTimeClick:(ProposeStart *) eventTime
@@ -576,10 +605,16 @@
     controller.eventTime = eventTime;
     controller.titleBgImage = [photoView getImage];
     
-    [self.navigationController pushViewController:controller animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:^{
+        }];
+    }
+
     [controller release];
 }
-
 
 - (void)setEventDate:(ProposeStart *)eventDate
 {
@@ -591,7 +626,6 @@
             return;
         }
     }
-    
 
     [eventDate retain];
 
@@ -623,7 +657,6 @@
 {
     LOG_D(@"onDeclineTime");
     
-    
     User * me = [[UserModel getInstance] getLoginUser];
     
     for(EventAttendee * atd in self.event.attendees) {
@@ -652,9 +685,15 @@
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
             
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } else {
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                [self dismissViewControllerAnimated:YES completion:^{
+                }];
+            }
+        }
+        else {
             [Utils showUIAlertView:@"Error" andMessage:@"Decline event failed"];
         }
     }];
@@ -687,7 +726,10 @@
         if(error == 0) {
             
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
+            
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
+            [[CoreDataModel getInstance] notifyModelChange];
+            
             [self.navigationController popViewControllerAnimated:YES];
             
         } else {
@@ -917,7 +959,13 @@
 {
     LOG_D(@"changeLocation");
     AddLocationViewController * changeLocationController = [[AddLocationViewController alloc] init];
-    [self.navigationController pushViewController:changeLocationController animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:changeLocationController animated:YES];
+    }
+    else {
+        [self presentViewController:changeLocationController animated:YES completion:^{
+        }];
+    }
 
     Location *location = [self.event.location copy];
     changeLocationController.location = location;
@@ -931,10 +979,15 @@
     LOG_D(@"viewInMaps");
     EventLocationViewController * mapViewController = [[EventLocationViewController alloc] init];
     [mapViewController setPlaceLocation:self.event.location];
-    [self.navigationController pushViewController:mapViewController animated:YES];
+    if (self.navigationController) {
+        [self.navigationController pushViewController:mapViewController animated:YES];
+    }
+    else {
+        [self presentViewController:mapViewController animated:YES completion:^{
+        }];
+    }
 
     [mapViewController release];
-    
 }
 
 - (void) onInviteeViewClicked
@@ -1044,9 +1097,8 @@
 - (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 {
     self.event = newEvent;
-    [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
     
-    [[[Model getInstance] getEventModel] synchronizedFromServer];
+    [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
 }
 
 @end

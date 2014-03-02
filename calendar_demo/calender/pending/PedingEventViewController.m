@@ -8,8 +8,9 @@
 #import "Model.h"
 #import "CustomerIndicatorView.h"
 #import "CoreDataModel.h"
+#import "CreatorEntity.h"
 
-@interface PedingEventViewController () <EventPendingToolbarDelegate>
+@interface PedingEventViewController () <EventPendingToolbarDelegate, CoreDataModelDelegate>
 
 @end
 
@@ -61,12 +62,15 @@
 
     table1 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table1.popDelegate = self.popDelegate;
     //[table1 setAllowsSelection:NO];
     [table1 setSectionHeader:@"WAITING FOR FINALIZATION"];
     [self.view addSubview:table1];
 
     table2 = [[PendingTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     table2.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table2.popDelegate = self.popDelegate;
+    
     //[table2 setAllowsSelection:NO];
     [table2 setSectionHeader:@"WAITING FOR RESPONSES"];
     [self.view addSubview:table2];
@@ -80,11 +84,14 @@
     frame.origin.y = 100;
     dataLoadingView.frame = frame;
 
+    [[CoreDataModel getInstance] addDelegate:self];
+    
     [self.view addSubview:dataLoadingView];
 }
 
 -(void) viewDidUnload
-{  
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
 }
 
@@ -122,7 +129,7 @@
             
             int evtID = [evt.id intValue];
             
-            LOG_I(@"Delete history Event: %d %@, %@, %@",  evtID, evt.title, evt.maxProposeStarTime, evt.eventType);
+            LOG_I(@"Delete history Event: %d %@, %@, %@",  evtID, evt.title, evt.max_proposed_end_time, evt.eventType);
             
             [[CoreDataModel getInstance] deleteFeedEventEntity:evtID];
             needSavaDB = YES;
@@ -149,7 +156,7 @@
 
         if([self isMyEvent:evt]) {
 
-            if([evt isAllAttendeeResped]) {
+            if(evt.all_responded) {
                 [yourCompletedEvents addObject:evt];
             } else {
                 [yourPendingEvents addObject:evt];
@@ -157,7 +164,7 @@
 
         } else {
 
-            if([evt isAllAttendeeResped]) {
+            if(evt.all_responded) {
                 [invitedCompletedEvents addObject:evt];
             } else {
                 [invitedPedingEvents addObject:evt];
@@ -174,7 +181,9 @@
 
 -(BOOL) isMyEvent:(FeedEventEntity *) event
 {
-    return [event.creatorID intValue] == [[UserModel getInstance] getLoginUser].id;
+    //return [event.creator.id intValue] == [[UserModel getInstance] getLoginUser].id;
+    User * user = [[UserModel getInstance] getLoginUser];
+    return [event.creator.email isEqualToString:user.email];
 }
 
 -(void) onButtonSelected:(int)index

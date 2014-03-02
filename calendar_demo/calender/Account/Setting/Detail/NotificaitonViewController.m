@@ -88,15 +88,12 @@
             [self.indi stopAnimating];
             self.indi.hidden = YES;
             [super leftNavBtnClicked:btn];
-            
         }];
     }
     else
     {
         [super leftNavBtnClicked:btn];
     }
-    
-    
 }
 
 - (IBAction)viewBeClicked:(UITapGestureRecognizer *)sender

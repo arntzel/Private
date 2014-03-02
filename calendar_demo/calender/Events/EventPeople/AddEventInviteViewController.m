@@ -62,6 +62,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [navBar setTitle:@""];
     [navBar setLeftBtnText:@""];
     [navBar setRightBtnText:@"Done"];
+    [navBar setRightBtnHidden:YES];
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -344,8 +345,26 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 }
 - (void)leftNavBtnClick
 {
+    [self addSearchBarObj];
+    NSArray * selectUsers = [self getSelectedUsers];
+    
+    
+    NSDate * now = [NSDate date];
+    float interval = [now timeIntervalSince1970];
+    
+    for(Contact * contact in selectUsers)
+    {
+        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
+        if(entity != nil) {
+            entity.lastest_timestamp = @(interval);
+        }
+    }
+    
+    [[CoreDataModel getInstance] saveData];
+    
+    
+    [self.delegate setInVitePeopleArray:selectUsers];
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 - (NSArray *)getSelectedUsers
@@ -364,6 +383,21 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [self addSearchBarObj];
     NSArray * selectUsers = [self getSelectedUsers];
+    
+    
+    NSDate * now = [NSDate date];
+    float interval = [now timeIntervalSince1970];
+    
+    for(Contact * contact in selectUsers)
+    {
+        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
+        if(entity != nil) {
+            entity.lastest_timestamp = @(interval);
+        }
+    }
+    
+    [[CoreDataModel getInstance] saveData];
+    
     
     [self.delegate setInVitePeopleArray:selectUsers];
     [self.navigationController popViewControllerAnimated:YES];
@@ -416,7 +450,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     LOG_D(@"tokenFieldTextDidChange:%@", tokenField.textField.text);
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.3f];
+    [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.5f];
     
 //    [queue cancelAllOperations];
 //    [queue addOperationWithBlock:^{

@@ -81,7 +81,7 @@
 
     event.userstatus = [[json objectForKey:@"userstatus"] boolValue];
 
-    NSArray * attendeedDic = [json objectForKey:@"attendees"];
+    NSArray * attendeedDic =  [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     NSMutableArray * attendees = [[NSMutableArray alloc] init];
     for(int i=0;i<attendeedDic.count;i++) {
         NSDictionary * dic = [attendeedDic objectAtIndex:i];
@@ -119,6 +119,8 @@
     [dic setObject:[NSNumber numberWithBool:self.published]               forKey:@"published"];
     //[dic setObject:[NSNumber numberWithBool:self.confirmed]               forKey:@"confirmed"];
 
+    [dic setObject:self.ext_event_id               forKey:@"ext_event_id"];
+    
     NSString * created_on = [Utils formateGMTDate:self.created_on];
     [dic setObject:created_on forKey:@"created_on"];
 

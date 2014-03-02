@@ -2,6 +2,7 @@
 #import "Utils.h"
 
 #import <Foundation/NSObjCRuntime.h>
+#import "NSDateAdditions.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
@@ -204,6 +205,41 @@ static NSTimeZone * userTimeZone;
     return str;
 }
 
++(NSString *) dayHeaderMiddle:(NSString *) day
+{
+    NSDate *date = [self parseNSStringDay:day];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"MMM d"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
++(NSString *) dayHeaderLeft:(NSString *) day
+{
+    NSDate * currentDate = [Utils getCurrentDate];
+    NSString * today = [self formateDay:currentDate];
+    NSString * tomorrom = [self formateDay:[currentDate dateByAddingTimeInterval:24*3600] ];
+    NSString * yestoday = [self formateDay:[currentDate dateByAddingTimeInterval:-24*3600]];
+    
+    if( [day isEqualToString:today]) {
+        return @"Today";
+    } else if( [day isEqualToString:tomorrom]) {
+        return @"Tomorrow";
+    } else if( [day isEqualToString:yestoday]) {
+        return @"Yesterday";
+    }
+    
+    NSDate *date = [self parseNSStringDay:day];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"EEE"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 +(NSString *) toReadableDay:(NSString *) day
 {
     NSDate * currentDate = [Utils getCurrentDate];
@@ -239,7 +275,6 @@ static NSTimeZone * userTimeZone;
     return [dateFormatter stringFromDate:time];
 
 }
-
 
 +(NSString *) formateDate:(NSDate *) time
 {
@@ -312,7 +347,6 @@ static NSTimeZone * userTimeZone;
 
     return array;
 }
-
 
 +(NSMutableDictionary *) getEventSectionDict: (NSArray*)events
 {
@@ -390,24 +424,10 @@ static NSTimeZone * userTimeZone;
 +(NSString *) getAttendeeText:(FeedEventEntity*)event {
     
     //NSArray * atendees = event.attendees;
-    
-    int respCount = 0;
-    int allCount = event.attendees.count;
+    //TODO::
     
     
-    for(UserEntity * entity in event.attendees) {
-        
-        if([[entity is_owner] boolValue]) {
-            respCount++;
-            continue;
-        }
-        
-        if([entity.status intValue] == 3 || [entity.status intValue] == -1) {
-            respCount ++;
-        }
-    }
-    
-    return [NSString stringWithFormat:@"%d/%d invitees have responsed", respCount, allCount];
+    return [NSString stringWithFormat:@"%d/%d invitees have responsed", 0, [event.attendee_num intValue]];
 }
 
 
@@ -535,5 +555,32 @@ static NSTimeZone * userTimeZone;
 //        NSString * lable = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
 //        return lable;
 //    }
+}
+
+
++ (NSString *) gen_uuid
+{
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    
+    CFRelease(uuid_ref);
+    NSString *uuid = [NSString stringWithString:(__bridge NSString*) uuid_string_ref];
+    
+    CFRelease(uuid_string_ref);
+    return uuid;
+}
+
+
++(NSString *) getSecondsFromEpoch
+{
+    NSDate * now = [NSDate date];
+    
+    NSDate * start = [now dateByAddingTimeInterval:-2*30*24*3600];
+    start = [start cc_dateByMovingToFirstDayOfThePreviousMonth];
+    
+    double seconds = [start timeIntervalSince1970];
+    
+    NSString * str = [NSString stringWithFormat:@"%lf", seconds];
+    return str;
 }
 @end

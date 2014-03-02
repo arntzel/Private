@@ -27,6 +27,8 @@
 #import "Utils.h"
 #import "RootNavContrller.h"
 
+#import "EventDetailController.h"
+
 @interface AddEventControllerV2 ()<AddEventAddTitleBarDelegate,
                                     UIScrollViewDelegate,
                                     AddEventInviteViewControllerDelegate,
@@ -56,6 +58,8 @@
     ASIFormDataRequest * request;
     
     AddEventInviteePlaceView *invitePlaceContentView;
+    
+    NSString * ext_event_id;
 }
 
 @property(nonatomic, strong) NSArray *invitedPeoples;
@@ -86,6 +90,8 @@
 
 - (void)viewDidLoad
 {
+    NSTimeInterval time = [NSDate timeIntervalSinceReferenceDate];
+    
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithRed:222/255.0f green:235/255.0f blue:238/255.0f alpha:1.0f]];
     
@@ -119,6 +125,11 @@
     [self.view addSubview:navBar];
     navBar.delegate = self;
     [navBar setTitleHidden:YES];
+    
+    ext_event_id = [Utils gen_uuid];
+    
+    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - time;
+    LOG_D(@"viewDidLoad=%f", duration);
 }
 
 - (void)touchedInView:(UITapGestureRecognizer*) tap
@@ -215,29 +226,6 @@
     timeEntry.delegate = self;
 }
 
-- (void)addDate
-{
-//    NSArray * times = [timesView getEventDates];
-//    
-//    ProposeStart * tempEventDate = [[ProposeStart alloc] init];
-//    
-//    if(times.count == 0) {
-//        tempEventDate.duration_hours = 1;
-//        tempEventDate.start = [NSDate dateWithTimeIntervalSinceNow:300];
-//        tempEventDate.start_type = START_TYPEEXACTLYAT;
-//        [tempEventDate convertMinToQuarterMode];
-//        
-//    } else {
-//        
-//        ProposeStart * time  = [times lastObject];
-//        tempEventDate.duration_minutes = time.duration_minutes;
-//        tempEventDate.duration_hours = time.duration_hours;
-//        tempEventDate.duration_days = time.duration_days;
-//        tempEventDate.is_all_day = time.is_all_day;
-//        tempEventDate.start = time.start;
-//        tempEventDate.start_type = time.start_type;
-//    }
-}
 
 - (void)txtDidEnd
 {
@@ -460,20 +448,20 @@
 
 - (void)doShowOptionViewAnimation
 {
-    if (!haveOptionViewShow) {
+    
+    if(!haveOptionViewShow) {
         haveOptionViewShow = YES;
+
+        [opentionEntry setHidden:NO];
+        [opentionEntry setAlpha:0.0f];
+        [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            [opentionEntry setAlpha:1.0f];
+            
+        } completion:^(BOOL finished) {
+            ;
+        }];
     }
-    else
-    {
-        return;
-    }
-    [opentionEntry setHidden:NO];
-    [opentionEntry setAlpha:0.0f];
-    [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [opentionEntry setAlpha:1.0f];
-    } completion:^(BOOL finished) {
-        ;
-    }];
 }
 
 - (void)doShowOptionViews
@@ -577,6 +565,10 @@
     
     [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
     [[RootNavContrller defaultInstance].view.layer addAnimation:animation forKey:nil];
+    
+    if (self.popDelegate) {
+        [self.popDelegate onControlledPopped:YES];
+    }
 }
 
 - (void)rightNavBtnClick
@@ -643,6 +635,7 @@
     event.allow_new_location = YES;
     event.created_on = [NSDate date];
     event.published = YES;
+    event.ext_event_id = ext_event_id;
     
     Model *model = [Model getInstance];
     
@@ -665,7 +658,15 @@
             [model saveData];
             [model notifyModelChange];
             
-            [self leftNavBtnClick];
+            
+            [[RootNavContrller defaultInstance] popViewControllerAnimated:NO];
+            
+            EventDetailController * detailCtl = [[EventDetailController alloc] init];
+            detailCtl.popDelegate = self.popDelegate;
+            detailCtl.eventID = newEvent.id;
+            detailCtl.event = newEvent;
+            
+            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
             
         } else {
             

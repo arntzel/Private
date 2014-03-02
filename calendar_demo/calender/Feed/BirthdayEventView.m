@@ -27,10 +27,10 @@
     NSString * headerUrl = event.thumbnail_url;
 
     if(headerUrl == nil) {
-        self.imgUser.image = [UIImage imageNamed:@"header.png"];
+        self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
     } else {
         [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
-                     placeholderImage:[UIImage imageNamed:@"header.png"]];
+                     placeholderImage:[UIImage imageNamed:@"default_person.png"]];
     }
 }
 

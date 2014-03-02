@@ -11,12 +11,13 @@
 #import "DataCache.h"
 
 @protocol CoreDataModelDelegate <NSObject>
-
--(void) onCoreDataModelStarted;
--(void) onCoreDataModelChanged;
-
+    -(void) onCoreDataModelStarted;
+    -(void) onCoreDataModelChanged;
 @end
 
+@protocol PopDelegate <NSObject>
+    -(void) onControlledPopped:(BOOL)dataChanged;
+@end
 
 
 @interface CoreDataModel : NSObject
@@ -43,6 +44,9 @@
 
 //GMT date
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andFollowLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter;
+
+//GMT date: 获取从一段时间内的所有event
+-(NSArray *) getDayFeedEventEntitys:(NSDate *) begin andEndDate:(NSDate *) end;
 
 
 -(FeedEventEntity*) getFeedEventEntity:(int) id;
@@ -112,7 +116,7 @@
  *
  *  @return ContactEntity
  */
-- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
+//- (ContactEntity *) getContactEntityWith:(NSString *) phone AndEmail:(NSString *)email;
 
 - (ContactEntity *) getContactEntityWithEmail:(NSString *)email;
 

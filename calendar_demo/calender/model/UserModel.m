@@ -113,7 +113,7 @@ static UserModel * instance;
     [self doLogin:request andCallback:callback];
 }
 
--(void) signinGooglePlus:(NSString *)accessToken andRefeshToken:(NSString *) refreshToken andCallback:(void (^)(NSInteger, User *))callback
+-(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/google/connect/", HOST];
     
@@ -124,13 +124,8 @@ static UserModel * instance;
     
     LOG_D(@"url=%@", url);
     
-    
-    if(refreshToken == nil) {
-        refreshToken = @"";
-    }
-    
     NSString * timezone = [NSTimeZone systemTimeZone].name;
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&refresh_token=%@&timezone=%@", accessToken, refreshToken, timezone];
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
     
     if(self.device_token != nil) {
         [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
@@ -384,7 +379,7 @@ static UserModel * instance;
                     
                  }
                  CFRelease(phoneNumberProperty);
-                 LOG_D(@"phone:%@",phoneNum);
+                 //LOG_D(@"phone:%@",phoneNum);
                  
                  NSString *email = @"";
                  ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
@@ -393,7 +388,7 @@ static UserModel * instance;
                      email = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(emailProperty, 0)));
                  }
                  CFRelease(emailProperty);
-                 LOG_D(@"email:%@",email);
+                 LOG_D(@"phone:%@, email:%@", phoneNum, email);
                  
                  //email and phone should not is empty at the same time.
                  if ([email isEqualToString:@""]&&[phoneNum isEqualToString:@""])
@@ -504,25 +499,27 @@ static UserModel * instance;
 {
     [self requestContactsFromAddressBookWithOffset:offset WithCallBack:^(NSMutableArray *contactsArr,BOOL finish) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (contactsArr)
+        LOG_D(@"insertAddressBookContactsToDBWithOffset, got contact count=%d, finish=%d", contactsArr.count, finish);
+        
+        if (contactsArr)
+        {
+            CoreDataModel * model = [CoreDataModel getInstance];
+            for(Contact * contact in contactsArr)
             {
-                CoreDataModel * model = [CoreDataModel getInstance];
-                for(Contact * contact in contactsArr)
-                {
-                    if(![model getContactEntityWith:contact.phone AndEmail:contact.email])
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
+                    if(![model getContactEntityWithEmail:contact.email])
                     {
                         ContactEntity * enity = [model createEntity:@"ContactEntity"];
                         [enity convertContact:contact];
+                        [model saveData];
                     }
-                }
-                
-                [model saveData];
+                });
             }
-            callback(0,nil,finish);
-
-        });
+        }
+        
+        LOG_D(@"insertAddressBookContactsToDBWithOffset update contactentity done");
+        callback(0,nil,finish);
     }];
 }
 /*

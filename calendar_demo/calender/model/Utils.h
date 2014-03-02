@@ -16,6 +16,8 @@
 
 +(void) setUserTimeZone:(NSTimeZone *) timezone;
 
++(NSString *) dayHeaderMiddle:(NSString *) day;
++(NSString *) dayHeaderLeft:(NSString *) day;
 
 +(NSDate *) getCurrentDate;
 
@@ -138,5 +140,9 @@
 +(NSString *) getProposeStatLabel2:(ProposeStart *) ps;
 
 +(BOOL)isCalvinFirstLaunched;
+
++ (NSString *) gen_uuid;
+
++(NSString *) getSecondsFromEpoch;
 
 @end

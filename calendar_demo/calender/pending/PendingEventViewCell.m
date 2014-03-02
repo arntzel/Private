@@ -7,6 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UserEntity.h"
 #import "ContactEntity.h"
+#import "CreatorEntity.h"
 
 @implementation PendingEventViewCell
 
@@ -45,7 +46,7 @@
     
     self.labelTitle.text = event.title;
 
-    NSString * headerUrl = [event getCreator].contact.avatar_url;
+    NSString * headerUrl = event.creator.avatar_url;
 
     [self.imgView.layer setCornerRadius:self.imgView.frame.size.width / 2];
     self.imgView.layer.masksToBounds = YES;

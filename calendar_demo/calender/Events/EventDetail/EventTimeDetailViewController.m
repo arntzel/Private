@@ -182,7 +182,7 @@
 {
     
     if(dayEvents == nil || dayEvents.count == 0) {
-        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventView"];
+        UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventsCell"];
         return cell;
     }
     

@@ -1,7 +1,12 @@
-
-
 #import "DDMenuController.h"
+#import "CoreDataModel.h"
 
-@interface MainViewController : DDMenuController
+@interface MainViewController : DDMenuController <PopDelegate>
+
+-(void)onBtnMenuClick;
+-(void)onBtnCalendarClick;
+
+-(void)refreshViews;
+
 
 @end

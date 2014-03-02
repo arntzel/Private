@@ -15,6 +15,9 @@
 
 #import "AddEventInviteViewController.h"
 
+#import "UIView+FrameResize.h"
+
+
 typedef enum
 {
     DetailInviteesResponsed = 0,
@@ -82,6 +85,7 @@ typedef enum
     [navBar setTitle:@"Invitees"];
     //[navBar setGlassImage:self.titleBgImage];
     
+    
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(242, 28, 70, 29)];
     [rightBtn setBackgroundImage:[UIImage imageNamed:@"nav_roundbtn_bg.png"] forState:UIControlStateNormal];
     [rightBtn setTitle:@"+ Add" forState:UIControlStateNormal];
@@ -103,7 +107,7 @@ typedef enum
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
-
+    
     self.tableView.delegate = self;
     self.tableView.dataSource =  self;
     
@@ -311,8 +315,6 @@ typedef enum
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 #pragma mark AddEventInviteViewControllerDelegate
 - (void)setInVitePeopleArray:(NSArray *)inviteArray
 {
@@ -325,54 +327,48 @@ typedef enum
                 continue;
             }
             
+            bool isInInviteeList = NO;
             for(EventAttendee * atd in self.event.attendees)
             {
                 if( [atd.contact.email isEqualToString:contact.email]) {
-                    continue;
+                    isInInviteeList = YES;
+                    break;
                 }
             }
             
-            
-            Invitee * invitee = [[Invitee alloc] init];
-            invitee.email = contact.email;
-            [invitees addObject:invitee];
+            if(!isInInviteeList) {
+                Invitee * invitee = [[Invitee alloc] init];
+                invitee.email = contact.email;
+                [invitees addObject:invitee];
+            }
         }
         
         if(invitees.count == 0) return;
         
         [self showIndictor:YES];
+        
+        
         [[Model getInstance] inviteContacts:_event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
             [self showIndictor:NO];
             
             if(error == 0) {
                 
-                [self setEvent:newEvent];
-                [self initData];
-                [self.tableView reloadData];
+                //[self setEvent:newEvent];
+                //[self initData];
+                //[self.tableView reloadData];
                 
                 
                 if(self.delegate) {
                     [self.delegate addNewPeopleArray:invitees andNewEvent:newEvent];
                 }
-                
-                [self.navigationController popViewControllerAnimated:YES];
-                
+             
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.2), dispatch_get_main_queue(),  ^(void) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             } else {
                 [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
             }
         }];
-        
-        /*
-        NSArray *array = [self convertResponsedArrayFromContactArray:inviteArray];
-        [dataArray removeObject:notRespondedArray];
-        [dataArray addObject:notRespondedArray];
-        [notRespondedArray addObjectFromArray:array];
-        [self.tableView reloadData];
-        
-        if ([self.delegate respondsToSelector:@selector(addNewPeopleArray:)]) {
-            [self.delegate addNewPeopleArray:inviteArray];
-        }
-         */
     }
 }
 

@@ -89,8 +89,7 @@
 
 - (void)rightNavBtnBeClicked:(UIButton *)btn
 {
-    [self changePwd];
-    
+    [self changePwd];    
 }
 
 - (IBAction)showKeyboard:(UITapGestureRecognizer *)sender

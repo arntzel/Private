@@ -580,7 +580,7 @@ static Model * instance;
 
 -(void) getUpdatedEvents:(NSString *) modified_num andCallback:(void (^)(NSInteger error, NSInteger count, NSArray* events))callback;
 {
-    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=10&offset=0&modified_num__gt=%@", HOST, modified_num];
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event?limit=50&offset=0&modified_num__gt=%@", HOST, modified_num];
 
     LOG_D(@"url=%@", url);
 
@@ -601,20 +601,34 @@ static Model * instance;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
 
             int count = [[[json objectForKey:@"meta"] objectForKey:@"total_count"] intValue];
-            LOG_D(@"Event resp:%@", json);
+            //LOG_D(@"FeedEvent resp:%@", json);
 
             NSArray * objects = [json objectForKey:@"objects"];
 
             NSMutableArray * events = [[NSMutableArray alloc] init];
 
             for(int i=0; i<objects.count;i++) {
-                Event * e = [Event parseEvent:[objects objectAtIndex:i]];
-                [events addObject:e];
+                
+                NSDictionary * json = [objects objectAtIndex:i];
+                int eventId = [[json objectForKey:@"id"] intValue];;
+                
+                FeedEventEntity * eventEntity = [[CoreDataModel getInstance] getFeedEventEntity:eventId];
+                if(eventEntity == nil) {
+                    eventEntity = [[CoreDataModel getInstance] createEntity:@"FeedEventEntity"];
+                }
+                
+                [eventEntity parserFromJsonData:json];
+                [events addObject:eventEntity];
             }
 
+            if(objects.count>0 ) {
+                [[CoreDataModel getInstance] saveData];
+            }
+            
             callback(ERROCODE_OK, count, events);
 
-        } else {
+        }
+        else {
 
             if(data != nil) {
                 NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
@@ -1226,7 +1240,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             
@@ -1435,11 +1449,11 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
 
-        if(status == 202) {
+        if(status == 200) {
 
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-            LOG_D(@"createEvent resp:%@", json);
+            LOG_D(@"finalizeProposeStart resp:%@", json);
 
             Event * newEvent = [Event parseEvent:json];
             callback(0, newEvent);
@@ -1447,7 +1461,7 @@ static Model * instance;
         } else {
 
             NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            LOG_D(@"createEvent error=%@, resp:%@", error, aStr);
+            LOG_D(@"finalizeProposeStart error=%@, resp:%@", error, aStr);
 
             callback(-1, nil);
         }
@@ -1482,7 +1496,7 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             
@@ -1523,7 +1537,9 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        LOG_D(@"updateEventAttendeeStatus respone: httpcode=%d", status);
+
+        if(status == 200) {
             
             callback(ERROCODE_OK);
             
@@ -1607,7 +1623,9 @@ static Model * instance;
         NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
         int status = httpResp.statusCode;
         
-        if(status == 202) {
+        LOG_D(@"inviteContacts, http status=%d", status);
+        
+        if(status == 200) {
             
             NSError * err;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];

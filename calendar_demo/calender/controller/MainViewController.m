@@ -1,8 +1,8 @@
-//
 #import "MainViewController.h"
 #import "FeedViewController.h"
 #import "menuNavigation.h"
 #import "PedingEventViewController.h"
+#import "PedingEventViewControllerNew.h"
 #import "BaseMenuViewController.h"
 #import "SettingViewController.h"
 
@@ -18,7 +18,10 @@
 @implementation MainViewController {
 
     FeedViewController * feedViewCtr;
-    PedingEventViewController * pendingEventViewCtr;
+    
+//    PedingEventViewController * pendingEventViewCtr;
+    PedingEventViewControllerNew * pendingEventViewCtr;
+    
     SettingViewController * settingViewCtr;
     
     menuNavigation * menuNavigationController;
@@ -32,11 +35,18 @@
 
 -(id) init
 {
+    LOG_D(@"MainViewController init");
+    
     menuNavigation *leftController = [[menuNavigation alloc] init];
     leftController.delegate = self;
 
     feedViewCtr = [[FeedViewController alloc] init];
-    pendingEventViewCtr = [[PedingEventViewController alloc] init];
+    feedViewCtr.popDelegate = self;
+    
+//    pendingEventViewCtr = [[PedingEventViewController alloc] init];
+    pendingEventViewCtr = [[PedingEventViewControllerNew alloc] initWithNibName:@"PedingEventViewControllerNew" bundle:nil];
+    pendingEventViewCtr.popDelegate = self;
+    
     settingViewCtr = [[SettingViewController alloc] init];
     
     self = [super initWithRootViewController:feedViewCtr];
@@ -56,31 +66,40 @@
     currentIndex = 0;
 
     User *me = [[UserModel getInstance] getLoginUser];
-    
     [[CoreDataModel getInstance] initDBContext:me];
-    
-    [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
 
-        [feedViewCtr onCoreDataModelStarted];
+    
+    //[feedViewCtr onCoreDataModelStarted];
+
+    //[[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         
-//        [feedViewCtr onCoreDataModelChanged];
-//        [pendingEventViewCtr onCoreDataModelChanged];
+        //[feedViewCtr onCoreDataModelChanged];
+        //[pendingEventViewCtr onCoreDataModelChanged];
         
-        [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-            [feedViewCtr onCoreDataModelChanged];
-            [pendingEventViewCtr onCoreDataModelChanged];
-        }];
-    }];
+    //}];
+    
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
     return self;
+}
+
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    LOG_D(@"MainViewController viewDidLoad");
 }
 
 - (void)showLeftController:(BOOL)animated {
     //[menuNavigationController updateBlurBackground];
     //[super showLeftController:animated];
-    menuNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
+    //menuNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //[self.navigationController presentViewController:menuNavigationController animated:YES completion:nil];
 
+    menuNavigationController.hadBlur = NO;
+    menuNavigationController.view.alpha = 1;
+    [self.view addSubview:menuNavigationController.view];
+    
+    
     [menuNavigationController reload];
     
     MessageModel * msgModel = [[Model getInstance] getMessageModel];
@@ -123,8 +142,6 @@
     [self onLogoButtonTyped];
 }
 
-
-
 #pragma mark - MenuNavigationDelegate
 -(void) onMenuSelected:(int) menuIndex
 {
@@ -133,7 +150,6 @@
         return;
     }
     
-
     currentIndex = menuIndex;
 
     switch (menuIndex) {
@@ -212,4 +228,15 @@
         }];
     }
 }
+
+-(void) refreshViews
+{
+    //Do nothing
+}
+
+-(void) onControlledPopped:(BOOL)dataChanged {
+
+    //[self refreshViews];
+}
+
 @end

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseUIViewController.h"
+#import "CoreDataModel.h"
 
 @interface EventDetailController : BaseUIViewController
 
+@property(assign) id<PopDelegate> popDelegate;
+
 @property int eventID;
-
-
+@property(nonatomic, retain) Event *event;
 
 @end

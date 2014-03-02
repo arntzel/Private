@@ -18,7 +18,6 @@
         self.layer.cornerRadius = 15;
         self.layer.masksToBounds = YES;
 
-
         indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         indicatorView.hidesWhenStopped = NO;
         indicatorView.center = self.center;

@@ -29,6 +29,7 @@
                                   EventFilterViewDelegate,
                                   FeedEventTableViewDelegate,
                                   FeedViewControllerDelegate,
+                                  CoreDataModelDelegate,
                                   UIAlertViewDelegate>
 {
     KalLogic *logic;
@@ -49,6 +50,7 @@
     UICollisionBehavior* collision;
     UIAttachmentBehavior *spring;
     CGPoint calendarViewCenter;
+    
 }
 
 @property (nonatomic, retain) FeedCalenderView *calendarView;
@@ -150,7 +152,6 @@
         filters &= FILTER_IMCOMPLETE|FILTER_FB|FILTER_BIRTHDAY|FILTER_IOS;
     }
     
-    
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     self.calendarView.filterView.filterDelegate = self;
@@ -190,70 +191,27 @@
    
     [self.view addSubview:dataLoadingView];
     
-    [[[Model getInstance] getEventModel] addDelegate:self]; //YK: will be going next
-    
-    [[[Model getInstance] getEventModel] checkSettingUpdate];
-    [[[Model getInstance] getEventModel] checkContactUpdate];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
-    
-    NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
-    //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
-    if(last_modify_num == nil) {
-
+    /*
+     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
+     //第一次Load数据， 先Load当前事件的部分event 数据，然后在开始同步数据任务
+     
+    if (last_modify_num == nil) {
         //YK: this may be not necessarily at all
         //[self firstTimeLogic];
-        
-    } else {
-
-        [self refreshWithDate:[Utils getCurrentDate]];
     }
+    else {
+        [self refreshWithDate:[Utils getCurrentDate]];
+    }*/
+    
+    [[CoreDataModel getInstance] addDelegate:self];
+    
+    [self refreshWithDate:[Utils getCurrentDate]];
 }
 
--(void)firstTimeLogic000 {
-    
-    User * me = [[UserModel getInstance] getLoginUser];
-    
-    NSDate * today =  [Utils getCurrentDate];
-    
-    NSMutableString * eventType = [[NSMutableString alloc] init];
-    [eventType appendString:@"0,5"];
-    
-    if([me isFacebookConnected]) {
-        [eventType appendString:@",3,4"];
-    }
-    
-    if( [me isGoogleConnected]) {
-        [eventType appendString:@",1,2"];
-    }
-    
-    [[Model getInstance] getEventsOfBegin:today andOffset:0 andEventType:eventType andCallback:^(NSInteger error, NSInteger count, NSArray *events) {
-        
-        if(error == 0) {
-            CoreDataModel * model = [CoreDataModel getInstance];
-            for(Event * evt in events) {
-                
-                FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-                
-                if(entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                } else {
-                    for(UserEntity * user in entity.attendees) {
-                        [model deleteEntity:user];
-                    }
-                    [entity clearAttendee];
-                }
-                
-                [entity convertFromEvent:evt];
-                [model updateFeedEventEntity:entity];
-            }
-
-            [self refreshWithDate:[Utils getCurrentDate]];
-        }
-        
-        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-        }];
-    }];
+-(void) viewDidUnload
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
+    [super viewDidUnload];
 }
 
 -(void)playCalendarAnimation
@@ -262,6 +220,7 @@
     if (!isFirst) {
         return;
     }
+    [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     //CGRect calendarViewFrame = self.calendarView.frame;
     //calendarViewFrame.origin.y -= 20;
     //self.calendarView.frame = calendarViewFrame;
@@ -310,7 +269,7 @@
         //self.animationView.frame  = self.view.bounds;
         [animator removeAllBehaviors];
     }
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
 }
 
 -(void)unloadBlurBackground
@@ -329,12 +288,6 @@
     [self onDisplayFirstDayChanged:today];
     NSString * day = [Utils formateDay:today];
     [tableView scroll2SelectedDate:day];
-}
-
--(void)viewDidUnload {
-    [[[Model getInstance] getEventModel] removeDelegate:self]; //YK: will be going next
-    
-    [super viewDidUnload];
 }
 
 -(void) scroll2Today
@@ -376,10 +329,8 @@
     }
     else {
         
-        //YK: what is this?
-        
-        [[[Model getInstance] getEventModel] downloadServerEvents:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-        }];
+//        [[[Model getInstance] getEventModel] downloadServerEvents:^(NSInteger success, NSInteger totalCount) {
+//        }];
     }
 }
 
@@ -400,6 +351,8 @@
 {
     NSDate * selectDate = [date NSDate];
     NSString * day = [Utils formateDay:selectDate];
+    
+    LOG_D(@"didSelectDate:%@", day);
     [tableView scroll2SelectedDate:day];
 }
 
@@ -416,16 +369,25 @@
 
 -(void) onCoreDataModelStarted
 {
+    LOG_D(@"onCoreDataModelStarted");
     [dataLoadingView startAnim];
 }
 
 -(void) onCoreDataModelChanged
 {
-    NSDate * date = [tableView getFirstVisibleDay];
+    LOG_D(@"onCoreDataModelChanged");
     
+    NSDate * date = [tableView getFirstVisibleDay];
     [self refreshWithDate:date];
     
     [dataLoadingView stopAnim];
+
+    //-->    //-->    //-->    //-->    //-->    //-->
+    
+    //[[[Model getInstance] getEventModel] checkSettingUpdate];
+    //[[[Model getInstance] getEventModel] checkContactUpdate];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
 }
 
 -(void)refreshWithDate:(NSDate*)date {
@@ -479,7 +441,6 @@
     if( (filters & FILTER_IOS) != 0)         [types appendString:@"5,"];
     
     [setting setObject:types forKey:KEY_SHOW_EVENT_TYPES];
-    
     [[UserModel getInstance] updateSetting:setting andCallBack:nil];
 }
 
@@ -507,8 +468,13 @@
 #pragma mark FeedEventTableViewDelegate
 -(void) onDisplayFirstDayChanged:(NSDate *) firstDay
 {
-    NSLog(@"onDisplayFirstDayChanged: %@", firstDay);
+    //NSLog(@"onDisplayFirstDayChanged: %@", firstDay);
     [self.calendarView.kalView swith2Date:firstDay];
+}
+
+-(void) onAddNewEvent
+{
+    [self btnAddEvent:nil];
 }
 
 -(void) onUserAccountChanged
@@ -556,7 +522,6 @@
         }
         
     }];
-    
 }
 
 @end

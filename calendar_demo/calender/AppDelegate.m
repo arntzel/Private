@@ -43,8 +43,11 @@
     [self redirectNSLogToDocumentFolder];
 #endif
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstLaunch"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     }
 
     // start of your application:didFinishLaunchingWithOptions // ...
@@ -64,7 +67,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
 
     
-    
     LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     application.applicationIconBadgeNumber = 0;
@@ -79,12 +81,13 @@
 
     UIViewController * rootController;
     User * loginUser = [[UserSetting getInstance] getLoginUserData];
-    if(loginUser != nil) {
+    if (loginUser != nil) {
     
         [[UserModel getInstance] setLoginUser:loginUser];
         rootController = [[MainViewController alloc] init];
 
-    } else {
+    }
+    else {
         rootController = [[LoginMainViewController alloc] init];
     }
 
@@ -132,9 +135,6 @@
     
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
     NSLog(@"获取令牌失败:  %@",str);
-    
-    //如果device token获取失败则需要重新获取一次
-    //[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(registerForRemoteNotificationToGetToken) userInfo:nil repeats:NO];
 }
 
 
@@ -164,7 +164,7 @@
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
     //[[[Model getInstance] getMessageModel] refreshModel:nil];
     
-     [self synchronizedFromServer];
+     [self synchronizedEventFromServer];
 }
 
 
@@ -195,12 +195,22 @@
 }
 
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-     NSLog(@"applicationWillEnterForeground");
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     
-    [self.timer invalidate];
-    self.timer = nil;
+    User * loginUser = [[UserModel getInstance] getLoginUser];
+    if (loginUser != nil) {
+    
+            RootNavContrller *navController = (RootNavContrller *)self.window.rootViewController;
+            for (int i=0; i < [[navController childViewControllers] count]; i++) {
+            UIViewController *c = [[navController childViewControllers] objectAtIndex:i];
+            
+            if ([c isKindOfClass:[MainViewController class]]) {
+               
+                MainViewController *mvc = (MainViewController*)c;
+                [mvc refreshViews];
+            }
+        }
+    }
 }
 
 
@@ -220,32 +230,36 @@
         [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
         
         [[[Model getInstance] getMessageModel] refreshModel:^(NSInteger error) {
-            
         }];
     }
     
     [self registerForRemoteNotificationToGetToken];
-
-    //[self synchronizedFromServer];
     
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:6
-//                                           target:self
-//                                         selector:@selector(synchronizedFromServer)
-//                                         userInfo:nil
-//                                          repeats:YES];
+    
+    //[self synchronizedFromServer];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60
+                                           target:self
+                                         selector:@selector(synchronizedFromServer)
+                                         userInfo:nil
+                                          repeats:YES];
+
 }
 
 -(void) synchronizedFromServer
 {
-//    [[[Model getInstance] getEventModel] synchronizedFromServer];
-//    [[[Model getInstance] getEventModel] checkContactUpdate];
+    //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
+}
+
+-(void) synchronizedEventFromServer
+{
+    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     NSLog(@"applicationWillTerminate");
     [FBSession.activeSession close];
-    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -254,17 +268,25 @@
   sourceApplication: (NSString *)sourceApplication
          annotation: (id)annotation {
     
-    NSLog(@"application openURL:%@", url);
+    BOOL result = NO;
     
-//    return [FBAppCall handleOpenURL:url
-//                  sourceApplication:sourceApplication
-//                    fallbackHandler:^(FBAppCall *call) {
-//                        NSLog(@"In fallback handler");
-//                    }];
+    if([@"com.facebook.Facebook" isEqualToString:sourceApplication]) {
+        
+       result = [FBAppCall handleOpenURL:url
+                     sourceApplication:sourceApplication
+                        fallbackHandler:^(FBAppCall *call) {
+                                NSLog(@"In fallback handler");
+              }];
+        
+    } else {
+        
+        result = [GPPURLHandler handleURL:url
+                             sourceApplication:sourceApplication
+                                    annotation:annotation];
+    }
     
-    BOOL result = [GPPURLHandler handleURL:url
-                  sourceApplication:sourceApplication
-                         annotation:annotation];
+    LOG_D(@"From [%@] result=%d openURL:%@", sourceApplication, result, url);
+    
     return result;
 }
 

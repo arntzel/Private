@@ -5,7 +5,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "UserEntity.h"
+#import "CreatorEntity.h"
 #import "ContactEntity.h"
 #import "UIColor+Hex.h"
 
@@ -83,8 +83,7 @@
         }
     }
 
-    UserEntity * user = [event getCreator];
-    NSString * headerUrl = user.contact.avatar_url;
+    NSString * headerUrl = event.creator.avatar_url;
 
     //Birthday
     if( [event isBirthdayEvent] ) {
@@ -107,8 +106,10 @@
     UIColor *labelColor = [UIColor generateUIColorByHexString:@"#6b706f"];
     [self.labAttendees setTextColor:labelColor];
     [self.labLocation setTextColor:labelColor];
+    
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
+    
     if ([self.labLocation.text isEqual: @"No Location"]) {
         [self.labLocation setHidden:YES];
         [self.iconLocation setHidden:YES];
@@ -116,14 +117,17 @@
         [self.labLocation setHidden:NO];
         [self.iconLocation setHidden:NO];
     }
+
+    self.labTitle.text = event.title;
     
+/*
     CGSize maxSize = CGSizeMake(self.labTitle.frame.size.width, 1000.0f);
     CGSize fontSize = [event.title sizeWithFont:self.labTitle.font constrainedToSize:maxSize lineBreakMode:self.labTitle.lineBreakMode];
     
     [self.labTitle setNumberOfLines:0];
-    self.labTitle.text = event.title;
     CGRect strFrame = CGRectMake(0, 18, 210, fontSize.height);
     self.labTitle.frame = strFrame;
+*/
     
 //    CGRect labTitleFrame = self.labTitle.frame;
 //    labTitleFrame.origin.y = self.labTimeStr.frame.origin.y + 5;
@@ -131,61 +135,42 @@
     //self.labTitle.backgroundColor = [UIColor greenColor];
     
     
-    float metaY = strFrame.origin.y + fontSize.height + 5;
+//    float metaY = strFrame.origin.y + fontSize.height + 5;
     
 //    CGRect iconUserFrame = self.iconUser.frame;
 //    iconUserFrame.origin.y = metaY;
     
-    CGRect iconLocationFrame = self.iconLocation.frame;
-    iconLocationFrame.origin.y = metaY;
+//    CGRect iconLocationFrame = self.iconLocation.frame;
+//    iconLocationFrame.origin.y = metaY;
+//    
+//    CGRect labAttendeesFrame = self.labAttendees.frame;
+//    labAttendeesFrame.origin.y = metaY - 7;
+//    
+//    CGRect labLocationFrame = self.labLocation.frame;
+//    labLocationFrame.origin.y = metaY - 7;
+//    
+//    CGRect iconAttedeeFrame = self.iconAttendee.frame;
+//    iconAttedeeFrame.origin.y = metaY;
+//    
+//    //self.iconUser.frame = iconUserFrame;
+//    self.iconLocation.frame = iconLocationFrame;
+//    self.labLocation.frame = labLocationFrame;
+//    self.labAttendees.frame = labAttendeesFrame;
+//    self.iconAttendee.frame = iconAttedeeFrame;
+//    
     
-    CGRect labAttendeesFrame = self.labAttendees.frame;
-    labAttendeesFrame.origin.y = metaY - 3;
-    
-    CGRect labLocationFrame = self.labLocation.frame;
-    labLocationFrame.origin.y = metaY - 3;
-    
-    CGRect iconAttedeeFrame = self.iconAttendee.frame;
-    iconAttedeeFrame.origin.y = metaY;
-    
-    //self.iconUser.frame = iconUserFrame;
-    self.iconLocation.frame = iconLocationFrame;
-    self.labLocation.frame = labLocationFrame;
-    self.labAttendees.frame = labAttendeesFrame;
-    self.iconAttendee.frame = iconAttedeeFrame;
-    
-    
-    CGRect contentViewFrame = self.contentView.frame;
-    contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
-    contentViewFrame.origin.y = 10;//25;
-    self.contentView.frame = contentViewFrame;
+//    CGRect contentViewFrame = self.contentView.frame;
+//    contentViewFrame.size.height = self.iconAttendee.frame.origin.y + 12;
+//    contentViewFrame.origin.y = 10;//25;
+//    self.contentView.frame = contentViewFrame;
     
     //NSLog(@"event title:%@, height:%f, contentView.height=%f, fontSizeHeight=%f", event.title, fontSize.height, contentViewFrame.size.height, fontSize.height);
 }
 
+//TODO::
 -(int) getEventTypeColor:(int) eventType
 {
-    if( (eventType & FILTER_IMCOMPLETE) != 0) {
-        return  0xFFF44258;
-    }
-
-    if( (eventType & FILTER_GOOGLE) != 0) {
-        return  0xFFD5AD3E;
-    }
-
-    if( (eventType & FILTER_FB) != 0) {
-        return  0xFF477DBD;
-    }
-
-    if( (eventType & FILTER_BIRTHDAY) != 0) {
-        return  0xFF71A189;
-    }
-
-    if( (eventType & FILTER_IOS) !=0 ) {
-        return 0xFFB34BAC;
-    }
-    
-    return 0x00000000;
+    return  [ViewUtils getEventTypeColor:eventType];
 }
 
 -(NSString *) getEventDutationText:(FeedEventEntity*)event
@@ -220,8 +205,7 @@
 
 -(NSString *) getAttendeesText:(FeedEventEntity*) event
 {
-    NSSet * attendees = event.attendees;
-    return [NSString stringWithFormat:@"%d Invitees", attendees.count];
+    return [NSString stringWithFormat:@"%d Invitees", [event.attendee_num intValue]];
 }
 
 +(EventView *) createEventView
@@ -240,8 +224,8 @@
     view.imgEventType.layer.masksToBounds = YES;
     
     UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
-    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
-    [view.labTitle setTextColor:kalTitleColor];
+//    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
+//    [view.labTitle setTextColor:kalTitleColor];
     [view.labTimeStr setTextColor:kalStandardColor];
     
     //view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);

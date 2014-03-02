@@ -2,7 +2,7 @@
 //  ContactEntity.h
 //  Calvin
 //
-//  Created by fangxiang on 14-1-12.
+//  Created by fangxiang on 14-2-23.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * fullname;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * last_name;
+@property (nonatomic, retain) NSNumber * lastest_timestamp;
 @property (nonatomic, retain) NSString * phone;
 
 @end

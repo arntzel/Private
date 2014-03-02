@@ -1,9 +1,10 @@
-
-
 #import <UIKit/UIKit.h>
 #import "Navigation.h"
 #import "BaseUIViewController.h"
 #import "LogUtil.h"
+#import "CoreDataModel.h"
+
+@class MainViewController;
 
 @protocol BaseMenuViewControllerDelegate <NSObject>
 
@@ -13,14 +14,17 @@
 @end
 
 
-@interface BaseMenuViewController : BaseUIViewController
+@interface BaseMenuViewController : BaseUIViewController <PopDelegate>
 
 @property (strong) Navigation * navigation;
 
-@property(weak) id<BaseMenuViewControllerDelegate> delegate;
-
+//@property(weak) id<BaseMenuViewControllerDelegate> delegate;
+@property (strong) MainViewController* delegate;
 
 -(BOOL)prefersStatusBarHidden;
 - (UIStatusBarStyle)preferredStatusBarStyle;
+
+
+- (void)btnAddEvent:(id)sender;
 
 @end

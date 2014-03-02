@@ -243,14 +243,11 @@
 	return YES;
 }
 
-
-
 - (NSString *)urlEncodeString:(NSString *)orgString
 {
     NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)orgString,NULL,NULL,kCFStringEncodingUTF8);
     return result;
 }
-
 
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
@@ -261,10 +258,15 @@
     [self.txtSearchTabView reloadData];
 }
 
-
 - (void)leftNavBtnClick
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
 }
 
 - (void)rightNavBtnClick

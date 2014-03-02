@@ -77,12 +77,13 @@
         EventTypeItem * item = [[EventTypeItem alloc] init];
         item.eventType = [strType intValue];
         
-        if( (item.eventType == 3 || item.eventType == 4) && ![me isFacebookConnected])
+        if ((item.eventType == 3 || item.eventType == 4))
         {
-            continue;
+            if (![me isFacebookConnected])
+                continue;
         }
         
-        if(item.eventType == 1 && ![me isGoogleConnected])
+        if (item.eventType == 1 && ![me isGoogleConnected])
         {
             continue;
         }

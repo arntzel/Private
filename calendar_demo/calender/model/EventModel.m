@@ -13,6 +13,8 @@
 
     BOOL synchronizingContactData;
     
+    BOOL downloadingServerEvents;
+    
     NSMutableArray * delegates;
 }
 
@@ -60,26 +62,42 @@
     }
 }
 
--(void) downloadServerEvents:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+
+-(void) downloadServerEvents:(void(^)(NSInteger success, NSInteger totalCount))completion
 {
-    assert([[UserModel getInstance] isLogined]);
+    if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
+    
+    if(downloadingServerEvents) {
+        return;
+    }
     
     NSLog(@"synchronizedFromServer begin");
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
-    if(last_modify_num == nil) {
+    if (last_modify_num == nil) {
         last_modify_num = [self getSecondsFromEpoch];
+        //NSTimeInterval time = [[[NSDate date] cc_dateByMovingToThePreviousDayCout:365] timeIntervalSince1970];
+        //last_modify_num = [NSString stringWithFormat:@"%f", time];
     }
     
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
+    NSDate * begin = [NSDate date];
+    
+    downloadingServerEvents = true;
+    
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
-        LOG_D(@"synchronizedFromServer end, %@ , error=%d, count:%d, allcount:%d", last_modify_num, error, events.count, totalCount);
+        int seconds = [[NSDate date] timeIntervalSinceDate:begin];
+        
+        LOG_D(@"SynchronizedFromServer end, time=%d, %@ , error=%d, count:%d, allcount:%d", seconds, last_modify_num, error, events.count, totalCount);
         
         if (error) {
             if (completion) {
                 completion(NO,totalCount);
             }
+            downloadingServerEvents = false;
             return;
         }
         
@@ -87,8 +105,10 @@
             LOG_D(@"synchronizedFromServer, no updated event");
             
             if (completion) {
-                completion(NO,totalCount);
+                completion(YES,totalCount);
             }
+            
+            downloadingServerEvents = false;
             return;
         }
         
@@ -96,64 +116,32 @@
         
         CoreDataModel * model = [CoreDataModel getInstance];
         NSLog(@"========before download=========");
-    //    [model getFeedEventWithEventType:5];
-        for(Event * evt in events) {
-            
-            if([evt.modified_num compare:maxlastupdatetime] > 0) {
-                maxlastupdatetime = evt.modified_num;
-            }
-            
-            FeedEventEntity * entity =[model getFeedEventEntity:evt.id];
-            
-            if(entity == nil && evt.eventType == 5) {
-                entity = [model getFeedEventWithEventType:evt.eventType WithExtEventID:evt.ext_event_id];
-            }
-            
-            if(evt.confirmed && [evt isDeclineEvent]) {
-                if(entity != nil) {
-                    LOG_I(@"deleteFeedEventEntity2:%d, %@", evt.id, evt.title);
-                    [model deleteFeedEventEntity2:entity];
-                }
-                
-            } else {
-                
-                if(entity == nil) {
-                    entity = [model createEntity:@"FeedEventEntity"];
-                } else {
-                    for(UserEntity * user in entity.attendees) {
-                        [model deleteEntity:user];
-                    }
-                    
-                    [entity clearAttendee];
-                }
-                
-                [entity convertFromEvent:evt];
-                [model updateFeedEventEntity:entity];
+        for (FeedEventEntity * entity in events) {
+            if([entity.modified_num compare:maxlastupdatetime] > 0) {
+                maxlastupdatetime = entity.modified_num;
             }
         }
 
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
-        [model saveData];
-        
         NSLog(@"========after download=========");
-       // [model getFeedEventWithEventType:5];
-        
         [model notifyModelChange];
         
-        if(events.count < totalCount) {
+         downloadingServerEvents = false;
+        
+        if (events.count < totalCount) {
             
             //next page - test some more please
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), queue, ^{
 
-                [self downloadServerEvents:unused onComplete:completion];
+                [self downloadServerEvents:completion];
             });
         }
         else
         {
             if (completion) {
-                completion(NO,totalCount);
+                completion(YES, totalCount);
             }
         }
     }];
@@ -207,7 +195,8 @@
                     maxlatmodify = contact.modified_num;
                 }
                 
-                ContactEntity * enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                //ContactEntity * enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                ContactEntity * enity = [model getContactEntityWithEmail:contact.email];
                 if(enity == nil) {
                     enity = [model createEntity:@"ContactEntity"];
                     LOG_D(@"Create new Contact[ %d, %@ ]", contact.id, contact.email);
@@ -237,7 +226,6 @@
                                                selector:@selector(checkContactUpdate)
                                                userInfo:nil
                                                 repeats:NO];
-
             }
         }
     }];
@@ -258,7 +246,10 @@
             {
                 success = YES;
                 
+                
                 CoreDataModel * model = [CoreDataModel getInstance];
+                
+                //should be opt for performance
                 NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
                 
                 for (Event *tmp in allEvents)
@@ -288,9 +279,7 @@
                         NSTimeInterval eventSec = (int)[event1.last_modified timeIntervalSince1970];
                         if (entitySec < eventSec)
                         {
-                            
                             NSNumber *tmpID = eventEntity.id;
-                            
                             [eventEntity convertFromCalendarEvent:event1];
                             eventEntity.id = tmpID;
                             eventEntity.hasModified = @(YES);
@@ -326,7 +315,7 @@
 
 -(void) checkSettingUpdate
 {
-    if(![[UserModel getInstance] isLogined]) {
+    if (![[UserModel getInstance] isLogined]) {
         return;
     }
     
@@ -465,6 +454,8 @@
 
 - (void)uploadCalendarEvents
 {
+    return;
+    
     if(![[UserModel getInstance] isLogined])
     {
         return;
@@ -489,12 +480,9 @@
                                 FeedEventEntity * oldEntity = [model getFeedEventWithEventType:5 WithExtEventID:respEvent.ext_event_id];
                                 [oldEntity convertFromCalendarEvent:respEvent];
                                 [model updateFeedEventEntity:oldEntity];
-                                
-                                
                             }
                             [model saveData];
                         }
-                        
                     });
                 }];
             });
@@ -581,7 +569,12 @@
 
 - (void)uploadContacts
 {
-    assert([[UserModel getInstance] isLogined]);
+    return;
+    
+    //assert([[UserModel getInstance] isLogined]);
+    if(![[UserModel getInstance] isLogined]) {
+        return;
+    }
     
     CoreDataModel * model = [CoreDataModel getInstance];
     
@@ -598,7 +591,7 @@
             CoreDataModel * model = [CoreDataModel getInstance];
             for(Contact * contact in respContacts)
             {
-                ContactEntity *enity = [model getContactEntityWith:contact.phone AndEmail:contact.email];
+                ContactEntity *enity = [model getContactEntityWithEmail:contact.email];
                 if (enity)
                 {
                     [enity convertContact:contact];
@@ -609,6 +602,7 @@
     }];
 }
 
+/*
 - (void)uploadContacts000
 {
     assert([[UserModel getInstance] isLogined]);
@@ -642,7 +636,8 @@
         });
     //});
 }
-
+*/
+ 
 -(NSString *) getSecondsFromEpoch
 {
     NSDate * now = [NSDate date];
