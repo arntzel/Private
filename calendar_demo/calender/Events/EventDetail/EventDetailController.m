@@ -726,15 +726,11 @@
         if(error == 0) {
             
             LOG_I(@"deleteFeedEventEntity:%d, %@", self.eventID, self.event.title);
+            
             [[CoreDataModel getInstance] deleteFeedEventEntity:self.eventID];
-
-            if (self.navigationController) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            else {
-                [self dismissViewControllerAnimated:YES completion:^{
-                }];
-            }
+            [[CoreDataModel getInstance] notifyModelChange];
+            
+            [self.navigationController popViewControllerAnimated:YES];
             
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Delete event failed."];
