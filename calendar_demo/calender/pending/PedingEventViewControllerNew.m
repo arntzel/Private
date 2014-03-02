@@ -80,10 +80,14 @@
     dataLoadingView.frame = frame;
     
     [self.view addSubview:dataLoadingView];
+    
+    [[CoreDataModel getInstance] addDelegate:self];
+    
 }
 
 -(void) viewDidUnload
 {
+    [[CoreDataModel getInstance] removeDelegate:self];
     [super viewDidUnload];
 }
 
