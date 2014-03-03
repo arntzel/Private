@@ -38,6 +38,7 @@
     self.phone         = user.phone;
     self.calvinuser    = [NSNumber numberWithBool:user.calvinUser];
     self.fullname      = user.fullname;
+    self.lastest_timestamp = @(0);
 }
 
 -(Contact *) getContact

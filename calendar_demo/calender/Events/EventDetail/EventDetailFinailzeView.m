@@ -48,11 +48,10 @@ static CGFloat const getstureDistance = 50;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
-{
+{ 
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
-        
         panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHappened:)];
         panGesture.delegate = self;
         [self addGestureRecognizer:panGesture];

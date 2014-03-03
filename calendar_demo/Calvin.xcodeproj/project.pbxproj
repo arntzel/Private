@@ -143,6 +143,14 @@
 		3D272CFC1825EB3700C1AE04 /* EventFilterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */; };
 		3D32F06518094203000C4D3A /* EventTimeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */; };
 		3D3A5D7E17E705AD00F830C1 /* EventDetailTimeVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D4F1E1018C3652200899CFF /* icon_attendee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E0D18C3652200899CFF /* icon_attendee@2x.png */; };
+		3D4F1E1118C3652200899CFF /* icon_vote_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E0E18C3652200899CFF /* icon_vote_no@2x.png */; };
+		3D4F1E1218C3652200899CFF /* icon_vote_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E0F18C3652200899CFF /* icon_vote_yes@2x.png */; };
+		3D4F1E1718C367B000899CFF /* EventDetailTimeViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E1618C367B000899CFF /* EventDetailTimeViewItem.xib */; };
+		3D4F1E1A18C367C900899CFF /* EventDetailTimeViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F1E1918C367C900899CFF /* EventDetailTimeViewItem.m */; };
+		3D4F1E1D18C3813A00899CFF /* EventDetailTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F1E1C18C3813A00899CFF /* EventDetailTimeView.m */; };
+		3D4F1E2018C3F63100899CFF /* icon_conformbtn_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E1E18C3F63100899CFF /* icon_conformbtn_disable@2x.png */; };
+		3D4F1E2118C3F63100899CFF /* icon_conformbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F1E1F18C3F63100899CFF /* icon_conformbtn@2x.png */; };
 		3D6151A41734A391003D72B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A31734A391003D72B0 /* UIKit.framework */; };
 		3D6151A61734A391003D72B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A51734A391003D72B0 /* Foundation.framework */; };
 		3D6151A81734A391003D72B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6151A71734A391003D72B0 /* CoreGraphics.framework */; };
@@ -439,7 +447,6 @@
 		769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAF917DF52090033E677 /* EventDetailPlaceView.xib */; };
 		769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAFB17DF52090033E677 /* EventDetailTimeLabelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */; };
-		769ABB3E17DF52090033E677 /* EventDetailTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAFE17DF52090033E677 /* EventDetailTimeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4317DF52090033E677 /* NavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0717DF52090033E677 /* NavgationBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4417DF52090033E677 /* SelectTimeZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB0917DF52090033E677 /* SelectTimeZoneController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB4517DF52090033E677 /* SelectTimeZoneController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB0A17DF52090033E677 /* SelectTimeZoneController.xib */; };
@@ -803,6 +810,16 @@
 		3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTimeDetailViewController.m; sourceTree = "<group>"; };
 		3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeVoteView.h; sourceTree = "<group>"; };
 		3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeVoteView.m; sourceTree = "<group>"; };
+		3D4F1E0D18C3652200899CFF /* icon_attendee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_attendee@2x.png"; sourceTree = "<group>"; };
+		3D4F1E0E18C3652200899CFF /* icon_vote_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_vote_no@2x.png"; sourceTree = "<group>"; };
+		3D4F1E0F18C3652200899CFF /* icon_vote_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_vote_yes@2x.png"; sourceTree = "<group>"; };
+		3D4F1E1618C367B000899CFF /* EventDetailTimeViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailTimeViewItem.xib; sourceTree = "<group>"; };
+		3D4F1E1818C367C900899CFF /* EventDetailTimeViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeViewItem.h; sourceTree = "<group>"; };
+		3D4F1E1918C367C900899CFF /* EventDetailTimeViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeViewItem.m; sourceTree = "<group>"; };
+		3D4F1E1B18C3813A00899CFF /* EventDetailTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeView.h; sourceTree = "<group>"; };
+		3D4F1E1C18C3813A00899CFF /* EventDetailTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeView.m; sourceTree = "<group>"; };
+		3D4F1E1E18C3F63100899CFF /* icon_conformbtn_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_conformbtn_disable@2x.png"; sourceTree = "<group>"; };
+		3D4F1E1F18C3F63100899CFF /* icon_conformbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_conformbtn@2x.png"; sourceTree = "<group>"; };
 		3D6151A01734A391003D72B0 /* Calvin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calvin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6151A31734A391003D72B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6151A51734A391003D72B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1221,8 +1238,6 @@
 		769ABAFA17DF52090033E677 /* EventDetailTimeLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeLabelView.h; sourceTree = "<group>"; };
 		769ABAFB17DF52090033E677 /* EventDetailTimeLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeLabelView.m; sourceTree = "<group>"; };
 		769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailTimeLabelView.xib; sourceTree = "<group>"; };
-		769ABAFD17DF52090033E677 /* EventDetailTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTimeView.h; sourceTree = "<group>"; };
-		769ABAFE17DF52090033E677 /* EventDetailTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTimeView.m; sourceTree = "<group>"; };
 		769ABB0617DF52090033E677 /* NavgationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavgationBar.h; sourceTree = "<group>"; };
 		769ABB0717DF52090033E677 /* NavgationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavgationBar.m; sourceTree = "<group>"; };
 		769ABB0817DF52090033E677 /* SelectTimeZoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeZoneController.h; sourceTree = "<group>"; };
@@ -2200,6 +2215,11 @@
 		769AB94D17DF51340033E677 /* event_detail_time */ = {
 			isa = PBXGroup;
 			children = (
+				3D4F1E1E18C3F63100899CFF /* icon_conformbtn_disable@2x.png */,
+				3D4F1E1F18C3F63100899CFF /* icon_conformbtn@2x.png */,
+				3D4F1E0D18C3652200899CFF /* icon_attendee@2x.png */,
+				3D4F1E0E18C3652200899CFF /* icon_vote_no@2x.png */,
+				3D4F1E0F18C3652200899CFF /* icon_vote_yes@2x.png */,
 				76411AF618083AE4001C2125 /* event_detail_invitee_time_cross_black.png */,
 				76411AF718083AE4001C2125 /* event_detail_invitee_time_tick_black.png */,
 				94FDD7E517ED796A000FB797 /* event_detail_invitee_time_cross.png */,
@@ -2539,21 +2559,23 @@
 		769ABAD217DF52090033E677 /* EventDetail */ = {
 			isa = PBXGroup;
 			children = (
+				3D4F1E1B18C3813A00899CFF /* EventDetailTimeView.h */,
+				3D4F1E1C18C3813A00899CFF /* EventDetailTimeView.m */,
+				769ABAD317DF52090033E677 /* EventDetailCommentConformedView.h */,
+				769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */,
+				769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */,
 				769ABAD617DF52090033E677 /* EventDetailCommentConformView.h */,
 				769ABAD717DF52090033E677 /* EventDetailCommentConformView.m */,
+				769ABAD917DF52090033E677 /* EventDetailCommentContentView.h */,
+				769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */,
+				766C709618121DE400C5F42A /* EventDetailCommentLoadMoreView.h */,
+				766C709718121DE400C5F42A /* EventDetailCommentLoadMoreView.m */,
 				769ABADB17DF52090033E677 /* EventDetailCommentTextView.h */,
 				769ABADC17DF52090033E677 /* EventDetailCommentTextView.m */,
 				769ABADD17DF52090033E677 /* EventDetailCommentTextView.xib */,
 				769ABADE17DF52090033E677 /* EventDetailCommentView.h */,
 				769ABADF17DF52090033E677 /* EventDetailCommentView.m */,
 				769ABAE017DF52090033E677 /* EventDetailCommentView.xib */,
-				769ABAD317DF52090033E677 /* EventDetailCommentConformedView.h */,
-				769ABAD417DF52090033E677 /* EventDetailCommentConformedView.m */,
-				769ABAD517DF52090033E677 /* EventDetailCommentConformedView.xib */,
-				766C709618121DE400C5F42A /* EventDetailCommentLoadMoreView.h */,
-				766C709718121DE400C5F42A /* EventDetailCommentLoadMoreView.m */,
-				769ABAD917DF52090033E677 /* EventDetailCommentContentView.h */,
-				769ABADA17DF52090033E677 /* EventDetailCommentContentView.m */,
 				769ABD4B17DF579E0033E677 /* EventDetailController.h */,
 				769ABD4C17DF579E0033E677 /* EventDetailController.m */,
 				769ABAE117DF52090033E677 /* EventDetailFinailzeView.h */,
@@ -2584,17 +2606,18 @@
 				769ABAF717DF52090033E677 /* EventDetailPlaceView.h */,
 				769ABAF817DF52090033E677 /* EventDetailPlaceView.m */,
 				769ABAF917DF52090033E677 /* EventDetailPlaceView.xib */,
+				23B871001868904E00F7F62F /* EventDetailRoundDateView.h */,
+				23B871011868904E00F7F62F /* EventDetailRoundDateView.m */,
 				769ABAFA17DF52090033E677 /* EventDetailTimeLabelView.h */,
 				769ABAFB17DF52090033E677 /* EventDetailTimeLabelView.m */,
 				769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */,
-				769ABAFD17DF52090033E677 /* EventDetailTimeView.h */,
-				769ABAFE17DF52090033E677 /* EventDetailTimeView.m */,
+				3D4F1E1818C367C900899CFF /* EventDetailTimeViewItem.h */,
+				3D4F1E1918C367C900899CFF /* EventDetailTimeViewItem.m */,
+				3D4F1E1618C367B000899CFF /* EventDetailTimeViewItem.xib */,
 				3D3A5D7C17E705AD00F830C1 /* EventDetailTimeVoteView.h */,
 				3D3A5D7D17E705AD00F830C1 /* EventDetailTimeVoteView.m */,
 				3D32F06318094203000C4D3A /* EventTimeDetailViewController.h */,
 				3D32F06418094203000C4D3A /* EventTimeDetailViewController.m */,
-				23B871001868904E00F7F62F /* EventDetailRoundDateView.h */,
-				23B871011868904E00F7F62F /* EventDetailRoundDateView.m */,
 			);
 			path = EventDetail;
 			sourceTree = "<group>";
@@ -3319,6 +3342,7 @@
 				231319781867257C00F076C7 /* circle.png in Resources */,
 				769AB9B017DF51340033E677 /* header10.jpg in Resources */,
 				769AB9B117DF51340033E677 /* header2.jpg in Resources */,
+				3D4F1E2018C3F63100899CFF /* icon_conformbtn_disable@2x.png in Resources */,
 				239D90C8188D0AB800E7A042 /* back_button_asset.png in Resources */,
 				767822A6187971A000CEF40E /* AddEventSettingView.xib in Resources */,
 				34B1F1B117F8FCE200AA5C97 /* settings_detail_full_circle@2x.png in Resources */,
@@ -3403,6 +3427,7 @@
 				769AB9DE17DF51340033E677 /* btn_menu@2x.png in Resources */,
 				769AB9DF17DF51340033E677 /* btn_ok@2x.png in Resources */,
 				769AB9E017DF51340033E677 /* btn_ok_selected@2x.png in Resources */,
+				3D4F1E1218C3652200899CFF /* icon_vote_yes@2x.png in Resources */,
 				7662F75517F0761900B64E40 /* login_main_singnup_account_bg.png in Resources */,
 				769AB9E117DF51340033E677 /* calvin@2x.png in Resources */,
 				769AB9E217DF51340033E677 /* circle.png in Resources */,
@@ -3516,6 +3541,7 @@
 				767822A4187971A000CEF40E /* AddEventPlaceView.xib in Resources */,
 				769ABB7717DF54000033E677 /* imagePickerIcon.png in Resources */,
 				769ABB7817DF54000033E677 /* imagePickerTitleBg.png in Resources */,
+				3D4F1E1118C3652200899CFF /* icon_vote_no@2x.png in Resources */,
 				34B1F1D017F8FCE200AA5C97 /* SettingsContentView.xib in Resources */,
 				769ABB7917DF54000033E677 /* invitePeopleIcon.png in Resources */,
 				23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */,
@@ -3529,6 +3555,7 @@
 				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
 				769CB5861886CDC10082400D /* AEOptionentry.xib in Resources */,
 				936DFD3C18BED40B0049EC55 /* add_time_lg@2x.png in Resources */,
+				3D4F1E1718C367B000899CFF /* EventDetailTimeViewItem.xib in Resources */,
 				769CB5691886CD1A0082400D /* AddEventControllerV2.xib in Resources */,
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
@@ -3537,11 +3564,13 @@
 				34B1F1BC17F8FCE200AA5C97 /* settings_main_facebook_icon.png in Resources */,
 				7662F74217F075F400B64E40 /* LoginMainCreatView.xib in Resources */,
 				76431DF91806E02B009DAFFE /* EventDateNavigationBar.xib in Resources */,
+				3D4F1E1018C3652200899CFF /* icon_attendee@2x.png in Resources */,
 				34B1F1AB17F8FCE200AA5C97 /* PwdChangeViewController.xib in Resources */,
 				3D1EAC69188ACD0A0002F627 /* AddEventInvitePeopleCell.xib in Resources */,
 				769ABC8417DF542A0033E677 /* Navigation.xib in Resources */,
 				23DFECD4184C6ED200CC7D3D /* list_check_mark@2x.png in Resources */,
 				34B1F1B717F8FCE200AA5C97 /* settings_main_back_btn@2x.png in Resources */,
+				3D4F1E2118C3F63100899CFF /* icon_conformbtn@2x.png in Resources */,
 				769ABCA417DF542A0033E677 /* 11-x.png in Resources */,
 				769ABCA517DF542A0033E677 /* 19-check.png in Resources */,
 				93537E95189DC23400808E55 /* default_person@2x.png in Resources */,
@@ -3703,13 +3732,13 @@
 				76C5129E1888195B00E5A31F /* CPickerView.m in Sources */,
 				769ABB3817DF52090033E677 /* EventDetailPhotoView.m in Sources */,
 				938B2836189806520074C424 /* NoEventsCell.m in Sources */,
+				3D4F1E1D18C3813A00899CFF /* EventDetailTimeView.m in Sources */,
 				76C512981888195B00E5A31F /* CEventTimePicker.m in Sources */,
 				3DA84B7218BA194900651379 /* Setting.m in Sources */,
 				76431DF81806E02B009DAFFE /* EventDateNavigationBar.m in Sources */,
 				768DAC9918098E8D000A3CB6 /* SysInfo.m in Sources */,
 				769ABB3A17DF52090033E677 /* EventDetailPlaceView.m in Sources */,
 				769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */,
-				769ABB3E17DF52090033E677 /* EventDetailTimeView.m in Sources */,
 				76591A8517FFB09A00DE3AB2 /* AddLocationTextView.m in Sources */,
 				769ABB4317DF52090033E677 /* NavgationBar.m in Sources */,
 				76C5128A1888195B00E5A31F /* CDuringTimePicker.m in Sources */,
@@ -3750,6 +3779,7 @@
 				769ABC8E17DF542A0033E677 /* Message.m in Sources */,
 				769ABC8F17DF542A0033E677 /* MessageModel.m in Sources */,
 				769ABC9017DF542A0033E677 /* Model.m in Sources */,
+				3D4F1E1A18C367C900899CFF /* EventDetailTimeViewItem.m in Sources */,
 				769ABC9117DF542A0033E677 /* User.m in Sources */,
 				769ABC9217DF542A0033E677 /* UserModel.m in Sources */,
 				769ABC9317DF542A0033E677 /* UserProfile.m in Sources */,

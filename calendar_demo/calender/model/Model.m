@@ -1418,6 +1418,49 @@ static Model * instance;
     }];
 }
 
+-(void) unfinalizeProposeStart:(int) eventID  andCallback:(void (^)(NSInteger error, Event * event))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"url=%@", url);
+    
+    NSMutableURLRequest * request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:[NSNumber numberWithBool:NO] forKey:@"confirmed"];
+    
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    LOG_D(@"unfinalizeProposeStart: %@", postContent);
+    
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200) {
+            
+            NSError * err;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"unfinalizeProposeStart resp:%@", json);
+            
+            Event * newEvent = [Event parseEvent:json];
+            callback(0, newEvent);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"unfinalizeProposeStart error=%@, resp:%@", error, aStr);
+            
+            callback(-1, nil);
+        }
+    }];
+}
+
 -(void) finalizeProposeStart:(int) eventID ProposeStart:(ProposeStart *) proposeStart andCallback:(void (^)(NSInteger error, Event * event))callback
 {
 
