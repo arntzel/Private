@@ -225,6 +225,10 @@ static CGFloat const getstureDistance = 160;
     
     if(eventInfo.creator.id != me.id) {
         
+        CGRect frame = self.attentCountView.frame;
+        frame.origin.x = self.buttonVote.frame.origin.x - frame.size.width - 5;
+        self.attentCountView.frame = frame;
+        
         self.buttonConform.hidden = YES;
         self.buttonVote.hidden = NO;
         
@@ -245,6 +249,10 @@ static CGFloat const getstureDistance = 160;
         }
         
     } else {
+        
+        CGRect frame = self.attentCountView.frame;
+        frame.origin.x = self.buttonConform.frame.origin.x - frame.size.width - 5;
+        self.attentCountView.frame = frame;
         
         self.buttonConform.hidden = NO;
         self.buttonVote.hidden = YES;
