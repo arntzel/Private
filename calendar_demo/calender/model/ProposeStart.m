@@ -231,6 +231,8 @@
 
 -(BOOL) isEqual:(id)object {
 
+    if(object == nil) return  NO;
+    
     ProposeStart * ps = (ProposeStart *) object;
 
 

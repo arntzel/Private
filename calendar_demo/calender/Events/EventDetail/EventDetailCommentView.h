@@ -16,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *bubleBackground;
 @property (retain, nonatomic) IBOutlet UILabel *commentContentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *commentTimeLabel;
+@property (retain, nonatomic) IBOutlet UIView *commentContainer;
+
 
 - (void)setHeaderPhoto:(UIImage *)photo;
 -(void) setHeaderPhotoUrl:(NSString *) url;

@@ -12,6 +12,8 @@
 #import "Utils.h"
 #import "NSString+Hex.h"
 
+#import "UserModel.h"
+
 @implementation EventDetailCommentView
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,6 +58,7 @@
 
 -(void) updateView:(Comment *) cmt
 {
+    
     [self setHeaderPhotoUrl:cmt.commentor.avatar_url];
     self.commentContentLabel.text = cmt.msg;
     self.commentTimeLabel.text = [Utils getTimeText:cmt.createTime];
@@ -74,6 +77,31 @@
         timeFrame.origin.y = y;
         self.commentTimeLabel.frame = timeFrame;
     }
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    if( [me.email isEqualToString:cmt.commentor.email]) {
+        
+        _bubleBackground.image = [[UIImage imageNamed:@"buble_right"] stretchableImageWithLeftCapWidth:20 topCapHeight:14];
+        
+        CGRect frame = self.commentContainer.frame;
+        frame.origin.x = 17;
+        self.commentContainer.frame = frame;
+        
+        frame = _commentAutherPhotoView.frame;
+        frame.origin.x = 280;
+        _commentAutherPhotoView.frame = frame;
+        
+    } else {
+        _bubleBackground.image = [[UIImage imageNamed:@"buble"] stretchableImageWithLeftCapWidth:20 topCapHeight:14];
+        
+        CGRect frame = self.commentContainer.frame;
+        frame.origin.x = 45;
+        self.commentContainer.frame = frame;
+        
+        frame = _commentAutherPhotoView.frame;
+        frame.origin.x = 5;
+        _commentAutherPhotoView.frame = frame;
+    }
 }
 
 +(EventDetailCommentView *) creatView
@@ -89,6 +117,7 @@
     [_commentAutherPhotoView release];
     [_commentContentLabel release];
     [_commentTimeLabel release];
+    self.commentContainer = nil;
     [super dealloc];
 }
 @end

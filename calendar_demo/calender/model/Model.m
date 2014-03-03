@@ -1413,6 +1413,11 @@ static Model * instance;
             callback(ERROCODE_OK);
             
         } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"error=%d, resp:%@", status, aStr);
+            }
             callback(ERROCODE_SERVER);
         }
     }];

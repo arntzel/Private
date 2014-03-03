@@ -131,6 +131,7 @@
 		3D0381A2178BAA7E00809F1D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A1178BAA7E00809F1D /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A4178BABD700809F1D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A3178BABD600809F1D /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D0381A6178BABEF00809F1D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0381A5178BABEF00809F1D /* libxml2.dylib */; };
+		3D053BDA18C4DBDD00FC9637 /* buble_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D053BD918C4DBDD00FC9637 /* buble_right@2x.png */; };
 		3D1EAC5A188AB00A0002F627 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EAC59188AB00A0002F627 /* location@2x.png */; };
 		3D1EAC5D188ACA0F0002F627 /* ContactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1EAC5C188ACA0F0002F627 /* ContactViewCell.m */; };
 		3D1EAC5F188ACA230002F627 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EAC5E188ACA230002F627 /* ContactViewCell.xib */; };
@@ -791,6 +792,7 @@
 		3D0381A1178BAA7E00809F1D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3D0381A3178BABD600809F1D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3D0381A5178BABEF00809F1D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3D053BD918C4DBDD00FC9637 /* buble_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buble_right@2x.png"; sourceTree = "<group>"; };
 		3D1EAC59188AB00A0002F627 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		3D1EAC5B188ACA0F0002F627 /* ContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewCell.h; sourceTree = "<group>"; };
 		3D1EAC5C188ACA0F0002F627 /* ContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewCell.m; sourceTree = "<group>"; };
@@ -1610,6 +1612,7 @@
 		2381833F186F1EE20080F169 /* event_detail_message */ = {
 			isa = PBXGroup;
 			children = (
+				3D053BD918C4DBDD00FC9637 /* buble_right@2x.png */,
 				23818340186F1EE20080F169 /* buble.png */,
 				23818341186F1EE20080F169 /* buble@2x.png */,
 			);
@@ -3601,6 +3604,7 @@
 				94FDD7E817ED796B000FB797 /* event_detail_invitee_time_tick.png in Resources */,
 				76C5129D1888195B00E5A31F /* CPickerCell.xib in Resources */,
 				76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */,
+				3D053BDA18C4DBDD00FC9637 /* buble_right@2x.png in Resources */,
 				232F1A3A186B22DE00238CA5 /* green_error.png in Resources */,
 				34B1F1BB17F8FCE200AA5C97 /* settings_main_connect_btn@2x.png in Resources */,
 				34262E191869C1A300288EA9 /* iCalEventShowSettingsCell.xib in Resources */,

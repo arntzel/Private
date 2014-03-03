@@ -136,9 +136,8 @@
         [item refreshView:_event andTime:eventTime];
         [self addSubview:item];
 
-        CGRect frame = item.frame;
         
-        int confilctCount = [self getConfilictEventCount:finalTime];
+        int confilctCount = [self getConfilictEventCount:eventTime];
         //exclude the current event
         if(_event.confirmed && confilctCount>0) {
             confilctCount --;
