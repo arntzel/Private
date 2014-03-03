@@ -190,12 +190,11 @@ static CGFloat const getstureDistance = 160;
     
     
     if(time.is_all_day) {
+        self.labelTime.text = @"All Day";
+    } else {
         NSString * label = [Utils getProposeStatLabel2:propseStart];
         self.labelTime.text = label;
         self.labelTime.attributedText = [OHASBasicHTMLParser attributedStringByProcessingMarkupInAttributedString:self.labelTime.attributedText];
-        
-    } else {
-        self.labelTime.text = @"All Day";
     }
     
     [self.labelTime sizeToFit];
@@ -248,6 +247,13 @@ static CGFloat const getstureDistance = 160;
             [self.buttonVote setImage:[UIImage imageNamed:@"icon_vote_no"] forState:UIControlStateNormal];
         }
         
+        NSDate * now = [NSDate date];
+        if( [now compare:propseStart.start] > 0) {
+            self.buttonVote.enabled = NO;
+        } else {
+            self.buttonVote.enabled = YES;
+        }
+        
     } else {
         
         CGRect frame = self.attentCountView.frame;
@@ -262,6 +268,8 @@ static CGFloat const getstureDistance = 160;
             [self.buttonConform setTitle:@"Confirmed" forState:UIControlStateNormal];
             
             //ProposeStart * proposeTime = [event getFinalEventTime];
+            
+            
             if(time.finalized) {
                 self.buttonConform.enabled = YES;
                 [self.buttonConform setBackgroundImage:[UIImage imageNamed:@"icon_conformbtn"] forState:UIControlStateNormal];

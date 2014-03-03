@@ -53,6 +53,8 @@
     _gmsMapView.camera = camera;
     _gmsMapView.userInteractionEnabled = NO;
     [self.contentView addSubview:_gmsMapView];
+    
+    
 
     [_gmsMapView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.20f].CGColor];
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
@@ -123,7 +125,7 @@
     }
     
     if (isLocation == NO) {
-        location = [[Location alloc] init];
+        location = [[[Location alloc] init] autorelease];
         location.lat = CAL_DEFAULT_LOCATION_LAT;
         location.lng = CAL_DEFAULT_LOCATION_LNG;
         location.location = @"No Location";
@@ -153,7 +155,11 @@
 - (void)dealloc {
     self.gmsMapView = nil;
     self.locationNameLabel = nil;
+    
     self.marker = nil;
+    
+    [maskView release];
+    
     
     [_contentView release];
     [super dealloc];
