@@ -14,4 +14,9 @@
     return self.frame.origin.y + self.frame.size.height;
 }
 
+- (NSInteger)getMaxX
+{
+    return self.frame.origin.x + self.frame.size.width;
+}
+
 @end

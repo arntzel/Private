@@ -7,4 +7,6 @@
 
 - (NSInteger)getMaxY;
 
+- (NSInteger)getMaxX;
+
 @end

@@ -514,14 +514,14 @@ static NSTimeZone * userTimeZone;
             duration = [NSString stringWithFormat:@"%d Days", ps.duration_days];
         }
         
-        NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", duration];
+        NSString * lable = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"16\" color=\"#494949\">%@</font>", duration];
         return lable;
         
     } else {
         if ([ps.start_type isEqualToString:START_TYPEEXACTLYAT]) {
             
             NSString *duration = [Utils formateTimeAMPM: ps.getEndTime];
-            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> to <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
+            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"16\" color=\"#494949\">%@</font> - <font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font>", startTime, duration];
             return formattedStartTime;
         }
         //    else if ([ps.start_type isEqualToString:START_TYPEAFTER]){
@@ -530,7 +530,7 @@ static NSTimeZone * userTimeZone;
         //    }
         else{
             NSString * duration = [ps parseDuringDateString2];
-            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"15\" color=\"#494949\">%@</font> for ", startTime];
+            NSString *formattedStartTime = [NSString stringWithFormat:@"<font name=\"Helvetica Neue Medium\" size=\"16\" color=\"#494949\">%@</font> for ", startTime];
             return [formattedStartTime stringByAppendingString:duration];
         }
     }
