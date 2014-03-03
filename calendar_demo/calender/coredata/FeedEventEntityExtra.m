@@ -43,6 +43,13 @@
     return [current compare:self.max_proposed_end_time] > 0;
 }
 
+
+-(BOOL) isMyCreate
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    return  me.id = [self.creator.id intValue];
+}
+
 -(void) convertFromEvent:(Event*) event
 {
     self.id = @(event.id);
