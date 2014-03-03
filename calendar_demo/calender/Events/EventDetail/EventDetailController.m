@@ -506,7 +506,6 @@
 -(void) onEventChanged:(Event *) newEvent;
 {
     self.event = newEvent;
-    [self updateUIByEvent];
     
     FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
     
@@ -516,7 +515,7 @@
         [[CoreDataModel getInstance] notifyModelChange];
     }
     
-    //[[[Model getInstance] getEventModel] synchronizedFromServer];
+    [self updateUIByEvent];
 }
 
 #pragma mark -

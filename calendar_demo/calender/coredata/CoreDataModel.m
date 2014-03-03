@@ -430,11 +430,11 @@ static CoreDataModel * instance;
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@)) AND (eventType==0))", start,  end, start,  end];
     [fetchRequest setPredicate:predicate];
     
-    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-
-    for(FeedEventEntity * entity in results) {
-        LOG_D(@"Entity:%@", entity.title);
-    }
+//    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+//
+//    for(FeedEventEntity * entity in results) {
+//        LOG_D(@"Entity:%@", entity.title);
+//    }
     
     return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
 }

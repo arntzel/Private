@@ -168,32 +168,6 @@
 }
 
 
-#pragma mark -
-#pragma mark EventDetailTimeVoteViewDelegate
--(void) onVoteListClick:(ProposeStart *) eventTime
-{
-    LOG_D(@"onVoteListClick");
-    [self.delegate onVoteListClick:eventTime];
-}
-
--(void) onVoteTimeClick:(ProposeStart *) eventTime
-{
-    LOG_D(@"onVoteTimeClick");
-    [self.delegate onVoteTimeClick:eventTime];
-}
-
--(void) onVoteTimeFinalize:(ProposeStart *) eventTime
-{
-    _finalizeTime = eventTime;
-    
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to finalize this event?"
-                                                  message:@"Finalizing this event will add it to all invitee's calendars"
-                                                 delegate:self
-                                        cancelButtonTitle:@"Cancel"
-                                        otherButtonTitles:@"Finalize",nil];
-    
-    [alert show];
-}
 
 -(void) unfinalizeEvent:(ProposeStart *) eventTime
 {
@@ -331,10 +305,30 @@
 
 -(void) onConformBtnClicked:(ProposeStart *) time
 {
+    _finalizeTime = time;
+    
     if(_event.confirmed) {
-        [self unfinalizeEvent:time];
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to unfinalize this event?"
+                                                        message:@"Finalizing this event will add it to all invitee's calendars"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Unfinalize",nil];
+        alert.tag = 0;
+        [alert show];
+
+        
+        
     } else {
-        [self finalizeEvent:time];
+        
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to finalize this event?"
+                                                        message:@"Finalizing this event will add it to all invitee's calendars"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Finalize",nil];
+        alert.tag = 1;
+        [alert show];
     }
 }
 
@@ -427,7 +421,16 @@
     LOG_D(@"alertView, buttonIndex=%d", buttonIndex);
     
     if(buttonIndex == 1) {
-        [self finalizeEvent:_finalizeTime];
+        
+        if ( alertView.tag ==0 ) //unfinalize
+        {
+            [self unfinalizeEvent:_finalizeTime];
+            
+        } else {
+            
+            [self finalizeEvent:_finalizeTime];
+        }
+        
     } else {
         _finalizeTime = nil;
     }
