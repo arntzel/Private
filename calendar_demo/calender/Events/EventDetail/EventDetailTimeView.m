@@ -136,16 +136,30 @@
             if([eventTime isEqual:finalTime]) {
                 eventTime.finalized = 1;
             } else {
-                eventTime.finalized = 2;
+                eventTime.finalized = 0;
             }
         } else {
             eventTime.finalized = 0;
         }
 
+        
         EventDetailTimeViewItem * item = (EventDetailTimeViewItem *)[ViewUtils createView:@"EventDetailTimeViewItem"];
         item.delegate = self;
         [item refreshView:_event andTime:eventTime];
         [self addSubview:item];
+
+        int confilctCount = [self getConfilictEventCount:finalTime];
+        //exclude the current event
+        if(_event.confirmed && confilctCount>0) {
+            confilctCount --;
+        }
+        
+        if(confilctCount > 0)
+        {
+            item.labelTime.textColor = [UIColor redColor];
+        }
+
+        
         
 //        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
 //        [self addSubview:voteView];
@@ -322,10 +336,7 @@
     NSDate * start = eventtime.start;
     NSDate * end = [eventtime getEndTime];
     int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
-    if (count > 0) {
-        //need to fix
-        count--;
-    }
+   
     return count;
 }
 
