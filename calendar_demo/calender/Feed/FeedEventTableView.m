@@ -13,6 +13,7 @@
 #import "FeedEventTableViewCell.h"
 #import <EventKit/EventKit.h>
 #import "NoEventsCell.h"
+#import "EventViewCell.h"
 
 
 #define DAY (60*60*24)
@@ -178,6 +179,8 @@
     onDisplayFirstDayChangedNotify = YES;
     
     [self registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
+    
+    [self registerNib:[UINib nibWithNibName:@"EventViewCell" bundle:nil] forCellReuseIdentifier:@"EventViewCell"];
     
     dayFeedEventEntitysDic = [[NSMutableDictionary alloc] init];
 }
@@ -374,18 +377,22 @@
     
         if( ![event isBirthdayEvent])
         {
-            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
-            EventView * view;
-            if(cell == nil) {
-                view = [EventView createEventView];
-                view.tag = 1;
-                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-                [cell addSubview:view];
-            } else {
-                view = (EventView*)[cell viewWithTag:1];
-            }
+//            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
+//            EventView * view;
+//            if(cell == nil) {
+//                view = [EventView createEventView];
+//                view.tag = 1;
+//                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+//                [cell addSubview:view];
+//            } else {
+//                view = (EventView*)[cell viewWithTag:1];
+//            }
+//            
+//            [view refreshView:event lastForThisDay:lastForThisDay];
             
-            [view refreshView:event lastForThisDay:lastForThisDay];
+            EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
+            
+            [cell refreshView:event lastForThisDay:lastForThisDay];
             
             //[cell setBackgroundColor:[UIColor clearColor]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
