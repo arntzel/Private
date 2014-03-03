@@ -444,7 +444,7 @@
 		769ABB3717DF52090033E677 /* EventDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAF317DF52090033E677 /* EventDetailNavigationBar.xib */; };
 		769ABB3817DF52090033E677 /* EventDetailPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAF517DF52090033E677 /* EventDetailPhotoView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB3917DF52090033E677 /* EventDetailPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAF617DF52090033E677 /* EventDetailPhotoView.xib */; };
-		769ABB3A17DF52090033E677 /* EventDetailPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAF817DF52090033E677 /* EventDetailPlaceView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		769ABB3A17DF52090033E677 /* EventDetailPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAF817DF52090033E677 /* EventDetailPlaceView.m */; };
 		769ABB3B17DF52090033E677 /* EventDetailPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAF917DF52090033E677 /* EventDetailPlaceView.xib */; };
 		769ABB3C17DF52090033E677 /* EventDetailTimeLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABAFB17DF52090033E677 /* EventDetailTimeLabelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		769ABB3D17DF52090033E677 /* EventDetailTimeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABAFC17DF52090033E677 /* EventDetailTimeLabelView.xib */; };
