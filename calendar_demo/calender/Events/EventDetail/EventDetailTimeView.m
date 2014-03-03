@@ -351,7 +351,7 @@
 {
     LOG_D(@"onVoteTimeConform, %d", checked);
 
-    int status = checked ? 1 : -1;
+    int status = checked ? 1 : 0;
  
     EventTimeVote * vote = [self getMyVote:eventTime];
     if(vote != nil)

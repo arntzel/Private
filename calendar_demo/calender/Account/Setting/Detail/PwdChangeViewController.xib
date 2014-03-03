@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="9ug-b1-WUz">
-                    <rect key="frame" x="0.0" y="75" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="70" width="320" height="524"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view tag="1" contentMode="scaleToFill" id="N5i-Rx-pwz" userLabel="oldPwdView" customClass="UIControl">
