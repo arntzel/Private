@@ -20,11 +20,13 @@
 
 -(void) onAttendeeLabelClicked:(ProposeStart *) time;
 
+-(void) onRemovePropseStart:(ProposeStart *) time;
+
 @end
 
 
 
-@interface EventDetailTimeViewItem : UIView
+@interface EventDetailTimeViewItem : UIView <UIGestureRecognizerDelegate>
 
 @property IBOutlet UILabel * labelDate;
 @property IBOutlet UILabel * labelTime;

@@ -21,6 +21,7 @@
 #import "LogUtil.h"
 #import "Model.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
 @interface EventDetailTimeView() <EventDetailTimeViewItemDelegate, UIAlertViewDelegate>
 {
@@ -229,7 +230,10 @@
     }];
 }
 
-
+-(void) onRemovePropseStart:(ProposeStart *) time
+{
+    [self onVoteTimeDelete:time];
+}
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
@@ -312,14 +316,21 @@
     [self onVoteTimeConform:time andChecked:(myVoteStatus != 1)];
 }
 
+
+-(NSInteger) getConfilictEventCount:(ProposeStart *) eventtime
+{
+    NSDate * start = eventtime.start;
+    NSDate * end = [eventtime getEndTime];
+    int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
+    if (count > 0) {
+        //need to fix
+        count--;
+    }
+    return count;
+}
+
 -(void) onConformBtnClicked:(ProposeStart *) time
 {
-//    if(time. == 1) {
-//        [self finalizeEvent:time];
-//    } else {
-//        
-//    }
-    
     if(_event.confirmed) {
         [self unfinalizeEvent:time];
     } else {

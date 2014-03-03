@@ -15,10 +15,14 @@
 #import "OHASBasicHTMLParser.h"
 #import "UIView+FrameResize.h"
 
+static CGFloat const getstureDistance = 160;
+
 @implementation EventDetailTimeViewItem
 {
     Event * eventInfo;
     ProposeStart * propseStart;
+    
+    CGFloat dragStart;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -44,8 +48,91 @@
 
     [self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
     self.buttonConform.hidden = YES;
+    
+    self.clipsToBounds = YES;
 }
 
+- (void)gestureHappened:(UIPanGestureRecognizer *)sender
+{
+	CGPoint translatedPoint = [sender translationInView:self];
+	switch (sender.state)
+	{
+		case UIGestureRecognizerStatePossible:
+			
+			break;
+		case UIGestureRecognizerStateBegan:
+			dragStart = sender.view.center.x;
+			break;
+		case UIGestureRecognizerStateChanged:
+            if (translatedPoint.x >= 0) {
+                self.center = CGPointMake(dragStart, self.center.y);
+                break;
+            }
+            else
+            {
+                self.center = CGPointMake(dragStart + translatedPoint.x, self.center.y);
+				if (-translatedPoint.x <= getstureDistance)
+				{
+                    //[self setToFinalizeViewMode];
+				}
+				else
+				{
+                    //[self setToRemoveViewMode];
+				}
+			}
+			break;
+		case UIGestureRecognizerStateEnded:
+		case UIGestureRecognizerStateCancelled:
+			if (translatedPoint.x < 0) {
+                if (translatedPoint.x >= 0) {
+                    self.center = CGPointMake(dragStart, self.center.y);
+                }
+                else
+                {
+                    if (-translatedPoint.x <= getstureDistance)
+                    {
+                        [self doResetPostionAnimation];
+                    }
+                    else
+                    {
+                        [self doDismissAnimation];
+                    }
+                }
+            }
+			break;
+		case UIGestureRecognizerStateFailed:
+			
+			break;
+	}
+}
+
+
+
+
+- (void)doResetPostionAnimation
+{
+    CGPoint resetCenterPoint = CGPointMake(dragStart, self.center.y);
+    [self animationToCenterPoint:resetCenterPoint];
+}
+
+- (void)doDismissAnimation
+{
+    CGPoint dismissCenterPoint = CGPointMake(dragStart - 320, self.center.y);
+    [self animationToCenterPoint:dismissCenterPoint];
+    [self.delegate onRemovePropseStart:propseStart];
+}
+
+- (void)animationToCenterPoint:(CGPoint)centerPoint
+{
+    //[self setUserInteractionEnabled:NO];
+	[UIView animateWithDuration:0.25 delay:0
+						options:UIViewAnimationOptionCurveLinear
+					 animations:^{
+                         self.center = centerPoint;
+					 } completion:^(BOOL finished) {
+                         //[self setUserInteractionEnabled:YES];
+					 }];
+}
 
 
 -(IBAction) buttonVoteClicked:(id)sender
@@ -91,6 +178,18 @@
     eventInfo = event;
     propseStart = time;
     
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    if(!event.confirmed && event.creator.id == me.id) {
+        
+        UIPanGestureRecognizer * panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHappened:)];
+        panGesture.delegate = self;
+        [self addGestureRecognizer:panGesture];
+    }
+    
+    
+   
+    
     if(time.is_all_day) {
         NSString * label = [Utils getProposeStatLabel2:propseStart];
         self.labelTime.text = label;
@@ -124,7 +223,6 @@
     
     self.labelAtdCount.text = [NSString stringWithFormat:@"%d", count];
     
-    User * me = [[UserModel getInstance] getLoginUser];
     
     if(eventInfo.creator.id != me.id) {
         
