@@ -76,18 +76,6 @@
     }
 }
 
-- (EventDetailTimeLabelView * ) createTimeLabelView
-{
-    EventDetailTimeLabelView * timeLabelView = [EventDetailTimeLabelView creatView];
-    
-    CGRect frame = timeLabelView.frame;
-    frame.origin.x = 0;
-    timeLabelView.frame = frame;
-    
-    return timeLabelView;
-}
-
-
 
 - (void)layOutSubViews
 {
@@ -148,6 +136,8 @@
         [item refreshView:_event andTime:eventTime];
         [self addSubview:item];
 
+        CGRect frame = item.frame;
+        
         int confilctCount = [self getConfilictEventCount:finalTime];
         //exclude the current event
         if(_event.confirmed && confilctCount>0) {

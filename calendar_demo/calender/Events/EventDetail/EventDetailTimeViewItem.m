@@ -46,12 +46,7 @@ static CGFloat const getstureDistance = 160;
     //self.finalizedLabel.textColor = color;
     [self.layer addSublayer:bottomBorder];
 
-    [self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
-    [self setBackgroundColor: [UIColor redColor]];
-    
-    CGRect frame = self.frame;
-    frame.size.height = 51;
-    self.frame = frame;
+    //[self setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.2]];
     
     self.buttonConform.hidden = YES;
     
@@ -193,8 +188,6 @@ static CGFloat const getstureDistance = 160;
         [self addGestureRecognizer:panGesture];
     }
     
-    
-   
     
     if(time.is_all_day) {
         NSString * label = [Utils getProposeStatLabel2:propseStart];
