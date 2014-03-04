@@ -7,14 +7,13 @@
 
 @interface BirthdayEventView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *labTime;
+@property (weak, nonatomic) IBOutlet UIView *separator;
 
 @property IBOutlet UILabel * labTitle;
 @property IBOutlet UIImageView * imgUser;
 @property IBOutlet UIImageView * imgEventType;
-/*
- Update the date in the View
- */
--(void) refreshView:(FeedEventEntity *) event;
+
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay;
 
 /*
  Create a EventView object with default data

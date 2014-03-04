@@ -411,9 +411,9 @@
             } else {
                 view = (BirthdayEventView*)[cell viewWithTag:2];
             }
-            [view refreshView:event];
+            [view refreshView:event lastForThisDay:lastForThisDay];
             
-            //[cell setBackgroundColor:[UIColor clearColor]];
+            [cell setBackgroundColor:[UIColor clearColor]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
@@ -444,7 +444,7 @@
         FeedEventEntity * event = [events objectAtIndex:row];
 
         if ([event isBirthdayEvent] ) {
-            return BirthdayEventView_Height;
+            return 87;//BirthdayEventView_Height;
         }
         else {
             //NSString *eventTitle = event.title;

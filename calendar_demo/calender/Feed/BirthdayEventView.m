@@ -19,8 +19,9 @@
 }
 
 
--(void) refreshView:(FeedEventEntity *) event
+-(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay
 {
+    self.separator.hidden = lastForThisDay;
     self.labTitle.text = event.title;
     self.labTime.text = @"Exactly at";
 
