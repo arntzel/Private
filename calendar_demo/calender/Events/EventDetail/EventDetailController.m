@@ -515,8 +515,14 @@
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:type];
     }
     
-    //[self updateUIByEvent];
-    [self.navigationController popViewControllerAnimated:YES];
+    if(type == EventChangeType_Finalize || type == EventChangeType_Unfinalize) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } else {
+        
+        [self updateUIByEvent];
+    }
 }
 
 #pragma mark -
