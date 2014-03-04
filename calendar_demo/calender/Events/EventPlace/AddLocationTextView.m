@@ -40,7 +40,7 @@
 
 - (void)dismiss
 {
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
     [self setHidden:YES];
 }
 

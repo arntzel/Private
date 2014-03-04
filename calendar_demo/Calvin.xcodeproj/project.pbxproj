@@ -188,6 +188,7 @@
 		3DF1568C1879969F0070A650 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF156861879969F0070A650 /* libTestFlight.a */; };
 		3DF1568D1879969F0070A650 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156871879969F0070A650 /* README.md */; };
 		3DF1568E1879969F0070A650 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156881879969F0070A650 /* release_notes.md */; };
+		3DFF827518C557B6002499E6 /* icon_confirmed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -887,6 +888,7 @@
 		3DFB114418337F7200084EF2 /* OHASMarkupParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASMarkupParserBase.h; sourceTree = "<group>"; };
 		3DFB114518337F7200084EF2 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
 		3DFB114618337F7200084EF2 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
+		3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_confirmed_button@2x.png"; sourceTree = "<group>"; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2218,6 +2220,7 @@
 		769AB94D17DF51340033E677 /* event_detail_time */ = {
 			isa = PBXGroup;
 			children = (
+				3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */,
 				3D4F1E1E18C3F63100899CFF /* icon_conformbtn_disable@2x.png */,
 				3D4F1E1F18C3F63100899CFF /* icon_conformbtn@2x.png */,
 				3D4F1E0D18C3652200899CFF /* icon_attendee@2x.png */,
@@ -3386,6 +3389,7 @@
 				769CB5711886CD740082400D /* add_event_location_v2.png in Resources */,
 				769AB9C017DF51340033E677 /* event_detail_invitee_time_tick_enable.png in Resources */,
 				23DFECD3184C6ED200CC7D3D /* list_check_mark.png in Resources */,
+				3DFF827518C557B6002499E6 /* icon_confirmed_button@2x.png in Resources */,
 				769AB9C117DF51340033E677 /* event_detail_time_cross.png in Resources */,
 				9345ABD018BA92CA005ABE9C /* PedingEventViewControllerNew.xib in Resources */,
 				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,

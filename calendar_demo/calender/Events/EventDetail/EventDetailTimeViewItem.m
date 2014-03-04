@@ -181,7 +181,7 @@ static CGFloat const getstureDistance = 160;
     
     User * me = [[UserModel getInstance] getLoginUser];
     
-    if(!event.confirmed && event.creator.id == me.id) {
+    if(!event.confirmed && (event.creator.id == me.id)) {
         
         UIPanGestureRecognizer * panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHappened:)];
         panGesture.delegate = self;
@@ -271,11 +271,16 @@ static CGFloat const getstureDistance = 160;
             
             
             if(time.finalized) {
+                
                 self.buttonConform.enabled = YES;
-                [self.buttonConform setBackgroundImage:[UIImage imageNamed:@"icon_conformbtn"] forState:UIControlStateNormal];
+                [self.buttonConform setBackgroundImage:[UIImage imageNamed:@"icon_confirmed_button"] forState:UIControlStateNormal];
+                [self.buttonConform setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
             } else {
+                
                 self.buttonConform.enabled = NO;
                 [self.buttonConform setBackgroundImage:[UIImage imageNamed:@"icon_conformbtn_disable"] forState:UIControlStateNormal];
+                [self.buttonConform setTitleColor:[UIColor colorWithRed:159/255.0f green:159/255.0f blue:159/255.0f alpha:1] forState:UIControlStateNormal];
             }
             
         } else {

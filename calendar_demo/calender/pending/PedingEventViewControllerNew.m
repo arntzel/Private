@@ -28,8 +28,6 @@
     
     UITableView * table1;
     
-    CustomerIndicatorView * dataLoadingView;
-    
     NSMutableArray * rsvpEvents;
     NSMutableArray * myEvents;
 }
@@ -73,16 +71,9 @@
     
     [self.view addSubview:table1];
     
-    dataLoadingView = [[CustomerIndicatorView alloc] init];
-    frame = dataLoadingView.frame;
-    frame.origin.x = 320 + 40;
-    frame.origin.y = 55;
-    dataLoadingView.frame = frame;
-    
-    [self.view addSubview:dataLoadingView];
-    
     [[CoreDataModel getInstance] addDelegate:self];
     
+    [self loadData];
 }
 
 -(void) viewDidUnload
@@ -98,20 +89,55 @@
     if (self.navigation) {
         [self.navigation.calPendingSegment setSelectedSegmentIndex:1];
     }
-    
-    [self loadData];
 }
 
 -(void) onCoreDataModelStarted
 {
-   [dataLoadingView startAnim];
+    
 }
 
 -(void) onCoreDataModelChanged
 {
     [self loadData];
+}
+
+-(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type
+{
+    [self loadData];
     
-    [dataLoadingView stopAnim];
+    if(type == EventChangeType_Unfinalize) {
+        
+        int section = 0;
+        int row = 0;
+        
+        if([event isMyCreate]) {
+            section = 1;
+            
+            for(int i=0;i<myEvents.count;i++) {
+                FeedEventEntity * evt = [myEvents objectAtIndex:i];
+                if([evt.id intValue] == [event.id intValue]) {
+                    row = i;
+                    break;
+                }
+            }
+            
+        } else {
+            
+            section = 0;
+            
+            for(int i=0;i<rsvpEvents.count;i++) {
+                FeedEventEntity * evt = [rsvpEvents objectAtIndex:i];
+                if([evt.id intValue] == [event.id intValue]) {
+                    row = i;
+                    break;
+                }
+            }
+        }
+        
+        LOG_D(@"PendingTableView onEventChanged, Scroll to %d:%d", section, row);
+        NSIndexPath * path = [NSIndexPath  indexPathForRow:0 inSection:section];
+        [table1 scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 -(void) loadData

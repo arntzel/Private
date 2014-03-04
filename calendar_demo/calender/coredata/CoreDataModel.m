@@ -103,6 +103,13 @@ static CoreDataModel * instance;
     }
 }
 
+-(void) notifyEventChange:(FeedEventEntity *) entity andChangeTyp:(EventChangeType) type
+{
+    [cache clearDayEventTypeWrap];
+    for(id<CoreDataModelDelegate>  delegate in delegates) {
+        [delegate onEventChanged:entity andTpe:type];
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(FeedEventEntity*) getFeedEventEntity:(int) id

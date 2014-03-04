@@ -503,7 +503,7 @@
 }
 
 
--(void) onEventChanged:(Event *) newEvent;
+-(void) onEventChanged:(Event *) newEvent andChangeType:(EventChangeType) type
 {
     self.event = newEvent;
     
@@ -512,10 +512,11 @@
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
         [[CoreDataModel getInstance] saveData];
-        [[CoreDataModel getInstance] notifyModelChange];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:type];
     }
     
-    [self updateUIByEvent];
+    //[self updateUIByEvent];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

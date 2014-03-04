@@ -10,9 +10,20 @@
 
 #import "DataCache.h"
 
+typedef enum
+{
+    EventChangeType_Add,
+    EventChangeType_Delete,
+    EventChangeType_Update,
+    EventChangeType_Finalize,
+    EventChangeType_Unfinalize
+    
+} EventChangeType;
+
 @protocol CoreDataModelDelegate <NSObject>
     -(void) onCoreDataModelStarted;
     -(void) onCoreDataModelChanged;
+    -(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type;
 @end
 
 @protocol PopDelegate <NSObject>
@@ -32,6 +43,8 @@
 -(void) removeDelegate:(id<CoreDataModelDelegate>) delegate;
 
 -(void) notifyModelChange;
+
+-(void) notifyEventChange:(FeedEventEntity *) entity andChangeTyp:(EventChangeType) type;
 
 
 -(DataCache *) getCache;

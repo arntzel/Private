@@ -12,7 +12,7 @@
 
 #import "Utils.h"
 
-@interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate>
+@interface MainViewController () <BaseMenuViewControllerDelegate, MenuNavigationDelegate, CoreDataModelDelegate>
 @end
 
 @implementation MainViewController {
@@ -87,6 +87,12 @@
 {
     [super viewDidLoad];
     LOG_D(@"MainViewController viewDidLoad");
+    [[CoreDataModel getInstance] addDelegate:self];
+}
+
+-(void) viewDidUnload
+{
+    [[CoreDataModel getInstance] removeDelegate:self];
 }
 
 - (void)showLeftController:(BOOL)animated {
@@ -239,4 +245,45 @@
     //[self refreshViews];
 }
 
+#pragma mark -
+#pragma mark CoreDataModelDelegate
+-(void) onCoreDataModelStarted
+{
+    //Do nothing
+}
+
+-(void) onCoreDataModelChanged
+{
+    //Do nothing
+
+}
+
+-(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type
+{
+    LOG_D(@"onEventChanged:EventChangeType=%d, eventid=%d", type, [event.id intValue]);
+    
+    if(type == EventChangeType_Finalize) {
+        //To show feedView
+        [UIView animateWithDuration:.1 animations:^{
+            [self setRootViewController:feedViewCtr];
+        } completion:^(BOOL finished) {
+            [feedViewCtr.navigation.calPendingSegment setSelectedSegmentIndex:0];
+            [self showRootController:YES];
+        }];
+        
+    } else if(type == EventChangeType_Unfinalize){
+        
+        //To show pendingView
+        [UIView animateWithDuration:.1 animations:^{
+            [self setRootViewController:pendingEventViewCtr];
+        } completion:^(BOOL finished) {
+            [pendingEventViewCtr.navigation.calPendingSegment setSelectedSegmentIndex:1];
+            [self showRootController:YES];
+        }];
+    }
+}
 @end
+
+
+
+

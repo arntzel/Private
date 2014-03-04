@@ -181,7 +181,7 @@
         [self showIndicatorView:NO];
         
         if(error == 0) {
-            [self.delegate onEventChanged:newEvent];
+            [self.delegate onEventChanged:newEvent andChangeType:EventChangeType_Unfinalize];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Server or network error!"];
         }
@@ -200,7 +200,7 @@
         [self showIndicatorView:NO];
 
         if(error == 0) {
-            [self.delegate onEventChanged:newEvent];
+            [self.delegate onEventChanged:newEvent andChangeType:EventChangeType_Finalize];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Server or network error!"];
         }
@@ -235,7 +235,7 @@
             
             _event.propose_starts = array;
             
-            [self.delegate onEventChanged:_event];
+            [self.delegate onEventChanged:_event andChangeType:EventChangeType_Update];
             
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Delete failed, please try again!"];
@@ -409,7 +409,7 @@
         
         [self showIndicatorView:NO];
         if(error == 0) {
-            [self.delegate onEventChanged:event];
+            [self.delegate onEventChanged:event andChangeType:EventChangeType_Update];
         } else {
             
         }

@@ -565,4 +565,36 @@
         [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
     }
 }
+
+-(void) scroll2Event:(FeedEventEntity *) event animated:(BOOL) animated
+{
+    NSDate * date = [event.start cc_dateByMovingToBeginningOfDay];
+    
+    if([date compare:startDate] >=0 && [date compare:endDate] < 0) {
+        
+        NSTimeInterval seconds = [date timeIntervalSinceDate:startDate];
+        int section = seconds / DAY;
+        
+        NSString *sectionName = [Utils formateDay:date];
+        NSArray * events = [self getEventsOfDay:sectionName];
+        
+        int row = 0;
+        for(int i=0;i<events.count;i++) {
+            
+            FeedEventEntity * event2 = [events objectAtIndex:i];
+            
+            if( [event.id intValue] == [event2.id intValue])
+            {
+                row = i;
+                break;
+            }
+        }
+        
+        NSIndexPath * path = [NSIndexPath  indexPathForRow:row inSection:section];
+        [self scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:animated];
+        
+    } else {
+        LOG_D(@"Can't to scroll ");
+    }
+}
 @end
