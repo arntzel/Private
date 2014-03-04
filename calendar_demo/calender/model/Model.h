@@ -167,6 +167,10 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 
 -(void) deleteProposeStart:(int) proposeStatID andCallback:(void (^)(NSInteger error))callback;
 
+
+-(void) unfinalizeProposeStart:(int) eventID  andCallback:(void (^)(NSInteger error, Event * event))callback;
+
+
 -(void) finalizeProposeStart:(int) eventID ProposeStart:(ProposeStart *) proposeStart andCallback:(void (^)(NSInteger error, Event * event))callback;
 
 

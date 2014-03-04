@@ -85,7 +85,7 @@
     LOG_D(@"synchronizedFromServer begin :%@", last_modify_num);
     NSDate * begin = [NSDate date];
     
-    downloadingServerEvents = true;
+    downloadingServerEvents = YES;
     
     [[Model getInstance] getUpdatedEvents:last_modify_num andCallback:^(NSInteger error, NSInteger totalCount, NSArray *events) {
         
@@ -97,7 +97,7 @@
             if (completion) {
                 completion(NO,totalCount);
             }
-            downloadingServerEvents = false;
+            downloadingServerEvents = NO;
             return;
         }
         
@@ -108,7 +108,7 @@
                 completion(YES,totalCount);
             }
             
-            downloadingServerEvents = false;
+            downloadingServerEvents = NO;
             return;
         }
         
@@ -127,7 +127,7 @@
         NSLog(@"========after download=========");
         [model notifyModelChange];
         
-         downloadingServerEvents = false;
+         downloadingServerEvents = NO;
         
         if (events.count < totalCount) {
             

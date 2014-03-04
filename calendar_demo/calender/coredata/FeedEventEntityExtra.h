@@ -17,6 +17,8 @@
 
 -(BOOL) isHistory;
 
+-(BOOL) isMyCreate;
+
 -(void) convertFromEvent:(Event*) event;
 -(void) convertFromCalendarEvent:(Event*) event;
 

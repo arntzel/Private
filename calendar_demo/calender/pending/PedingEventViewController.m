@@ -115,6 +115,11 @@
     [self loadData];
 }
 
+-(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type
+{
+    [self loadData];
+}
+
 -(void) loadData
 {
     NSArray *events = [[CoreDataModel getInstance] getPendingFeedEventEntitys];

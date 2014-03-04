@@ -103,6 +103,13 @@ static CoreDataModel * instance;
     }
 }
 
+-(void) notifyEventChange:(FeedEventEntity *) entity andChangeTyp:(EventChangeType) type
+{
+    [cache clearDayEventTypeWrap];
+    for(id<CoreDataModelDelegate>  delegate in delegates) {
+        [delegate onEventChanged:entity andTpe:type];
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(FeedEventEntity*) getFeedEventEntity:(int) id
@@ -427,8 +434,15 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"( (confirmed = true) AND ((start >= %@) AND (start <= %@))  OR ((end >= %@) AND (end <= %@)) ) AND (eventType & %d)>0", start,  end, start,  end, FILTER_IMCOMPLETE];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@)) AND (eventType==0))", start,  end, start,  end];
     [fetchRequest setPredicate:predicate];
+    
+//    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+//
+//    for(FeedEventEntity * entity in results) {
+//        LOG_D(@"Entity:%@", entity.title);
+//    }
+    
     return [managedObjectContext countForFetchRequest:fetchRequest error:nil];
 }
 

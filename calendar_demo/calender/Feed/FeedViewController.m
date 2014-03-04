@@ -390,6 +390,21 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
 }
 
+-(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type
+{
+    LOG_D(@"onEventChanged:EventChangeType=%d, eventid=%d", type, [event.id intValue]);
+    
+    if(type == EventChangeType_Finalize) {
+        
+        [tableView reloadFeedEventEntitys:event.start];
+        [tableView scroll2Event:event animated:YES];
+        [self.calendarView setNeedsDisplay];
+        
+    }  else {
+        [self onCoreDataModelChanged];
+    }
+}
+
 -(void)refreshWithDate:(NSDate*)date {
     if (date==nil) {
         date = [Utils getCurrentDate];

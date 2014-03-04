@@ -14,13 +14,16 @@
 #import "EventDetailHeaderListView.h"
 
 #import "EventDetailTimeVoteView.h"
+#import "EventDetailTimeViewItem.h"
 
 #import "Utils.h"
+#import "ViewUtils.h"
 #import "LogUtil.h"
 #import "Model.h"
 #import "UserModel.h"
+#import "CoreDataModel.h"
 
-@interface EventDetailTimeView() <EventDetailTimeVoteViewDelegate, UIAlertViewDelegate>
+@interface EventDetailTimeView() <EventDetailTimeViewItemDelegate, UIAlertViewDelegate>
 {
 
 
@@ -52,13 +55,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [_event release];
-    [_indicatorView release];
-    [_finalizeTime release];
-    [super dealloc];
-}
 
 -(void) showIndicatorView:(BOOL) show
 {
@@ -80,18 +76,6 @@
     }
 }
 
-- (EventDetailTimeLabelView * ) createTimeLabelView
-{
-    EventDetailTimeLabelView * timeLabelView = [EventDetailTimeLabelView creatView];
-    
-    CGRect frame = timeLabelView.frame;
-    frame.origin.x = 0;
-    timeLabelView.frame = frame;
-    
-    return timeLabelView;
-}
-
-
 
 - (void)layOutSubViews
 {
@@ -105,11 +89,11 @@
         frame = subView.frame;
         frame.origin = CGPointMake(0, offsetY);
         subView.frame = frame;
-        offsetY += frame.size.height;
+        offsetY += (frame.size.height + 8);
     }
     
     frame = self.frame;
-    frame.size.height = offsetY + 20;
+    frame.size.height = offsetY + 12;
     self.frame = frame;
 
     [self.delegate onEventDetailTimeViewFrameChanged];
@@ -118,12 +102,10 @@
 -(void) updateView:(BOOL) isCreator andEvent:(Event *) event
 {
     _isCreator = isCreator;
-
-    [event retain];
-    [_event release];
     _event = event;
 
     [self updateView];
+    
 }
 
 -(void) updateView
@@ -132,10 +114,9 @@
         [subView removeFromSuperview];
     }
     
-    //NSString * dayTitle = nil;
-
+    
     NSArray * times = _event.propose_starts;
-
+    
     ProposeStart * finalTime = [_event getFinalEventTime];
     for(ProposeStart * eventTime in times) {
 
@@ -143,36 +124,42 @@
             if([eventTime isEqual:finalTime]) {
                 eventTime.finalized = 1;
             } else {
-                eventTime.finalized = 2;
+                eventTime.finalized = 0;
             }
         } else {
             eventTime.finalized = 0;
         }
 
-
-        //NSString * day = [Utils formateDay2:eventTime.start];
         
-//        if(![day isEqualToString:dayTitle]) {
-//            EventDetailTimeLabelView * view = [self createTimeLabelView];
-//            [self addSubview:view];
-//            dayTitle = day;
-//            view.title.text = dayTitle;
-//        }
-        
-        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
-        [self addSubview:voteView];
-        voteView.delegate = self;
+        EventDetailTimeViewItem * item = (EventDetailTimeViewItem *)[ViewUtils createView:@"EventDetailTimeViewItem"];
+        item.delegate = self;
+        [item refreshView:_event andTime:eventTime];
+        [self addSubview:item];
 
-        [voteView updateView:_isCreator andEvent:_event andEventTimeVote:eventTime];
-        [voteView release];
+        
+        int confilctCount = [self getConfilictEventCount:eventTime];
+        //exclude the current event
+        if(_event.confirmed && confilctCount>0) {
+            confilctCount --;
+        }
+        
+        if(confilctCount > 0)
+        {
+            item.labelTime.textColor = [UIColor redColor];
+        }
+
+        
+        
+//        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
+//        [self addSubview:voteView];
+//        voteView.delegate = self;
+//
+//        [voteView updateView:_isCreator andEvent:_event andEventTimeVote:eventTime];
     }
     
     
     [self layOutSubViews];
 }
-
-
-
 
 - (void)updateUI
 {
@@ -181,42 +168,29 @@
 }
 
 
-#pragma mark -
-#pragma mark EventDetailTimeVoteViewDelegate
--(void) onVoteListClick:(ProposeStart *) eventTime
-{
-    LOG_D(@"onVoteListClick");
-    [self.delegate onVoteListClick:eventTime];
-}
 
--(void) onVoteTimeClick:(ProposeStart *) eventTime
+-(void) unfinalizeEvent:(ProposeStart *) eventTime
 {
-    LOG_D(@"onVoteTimeClick");
-    [self.delegate onVoteTimeClick:eventTime];
-}
-
--(void) onVoteTimeFinalize:(ProposeStart *) eventTime
-{
+    LOG_D(@"unfinalizeEvent");
     
-    if(_finalizeTime != nil) {
-        [_finalizeTime release];
-    }
+    int eventID = _event.id;
+    [self showIndicatorView:YES];
     
-    _finalizeTime = [eventTime retain];
-    
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to finalize this event?"
-                                                  message:@"Finalizing this event will add it to all invitee's calendars"
-                                                 delegate:self
-                                        cancelButtonTitle:@"Cancel"
-                                        otherButtonTitles:@"Finalize",nil];
-    
-    [alert show];
-    [alert release];
+    [[Model getInstance] unfinalizeProposeStart:eventID andCallback:^(NSInteger error, Event * newEvent) {
+        
+        [self showIndicatorView:NO];
+        
+        if(error == 0) {
+            [self.delegate onEventChanged:newEvent andChangeType:EventChangeType_Unfinalize];
+        } else {
+            [Utils showUIAlertView:@"Error" andMessage:@"Server or network error!"];
+        }
+    }];
 }
 
 -(void) finalizeEvent:(ProposeStart *) eventTime
 {
-    LOG_D(@"onVoteTimeFinalize");
+    LOG_D(@"finalizeEvent");
 
     int eventID = _event.id;
 
@@ -226,21 +200,22 @@
         [self showIndicatorView:NO];
 
         if(error == 0) {
-            [self.delegate onEventChanged:newEvent];
+            [self.delegate onEventChanged:newEvent andChangeType:EventChangeType_Finalize];
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Server or network error!"];
         }
     }];
 }
 
-
+-(void) onRemovePropseStart:(ProposeStart *) time
+{
+    [self onVoteTimeDelete:time];
+}
 
 -(void) onVoteTimeDelete:(ProposeStart *) eventTime
 {
     LOG_D(@"onVoteTimeDelete");
 
-    [eventTime retain];
-    
     int pid = eventTime.id;
     
     [self showIndicatorView:YES];
@@ -259,16 +234,13 @@
             }
             
             _event.propose_starts = array;
-            [array release];
             
-            [self.delegate onEventChanged:_event];
+            [self.delegate onEventChanged:_event andChangeType:EventChangeType_Update];
             
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Delete failed, please try again!"];
             [self updateView];
         }
-        
-        [eventTime release];
     }];
 }
 
@@ -276,7 +248,6 @@
 {
     
     [self showIndicatorView:YES];
-    [vote retain];
     [[Model getInstance] updateVote:vote  andproposeStartID:proposeStartID andCallback:^(NSInteger error) {
         [self showIndicatorView:NO];
         if (error == 0) {
@@ -287,8 +258,6 @@
             vote.status = oldStatus;
             [Utils showUIAlertView:@"Error" andMessage:@"Vote failed, please try again!"];
         }
-
-        [vote release];
     }];
 }
 
@@ -307,11 +276,82 @@
     return nil;
 }
 
+
+-(void) onVoteBtnClicked:(ProposeStart *) time
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    int myVoteStatus = 0;
+    for(EventTimeVote * vote in time.votes)
+    {
+        if([vote.email isEqualToString:me.email]) {
+            myVoteStatus = vote.status;
+            break;
+        }
+    }
+    
+    [self onVoteTimeConform:time andChecked:(myVoteStatus != 1)];
+}
+
+
+-(NSInteger) getConfilictEventCount:(ProposeStart *) eventtime
+{
+    NSDate * start = eventtime.start;
+    NSDate * end = [eventtime getEndTime];
+    int count = [[CoreDataModel getInstance] getFeedEventCountByStart:start andEnd:end];
+   
+    return count;
+}
+
+-(void) onConformBtnClicked:(ProposeStart *) time
+{
+    _finalizeTime = time;
+    
+    if(_event.confirmed) {
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to unconfirm this event?"
+                                                        message:@"Confirming this event will add it to all invitee's calendars"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Unconfirm",nil];
+        alert.tag = 0;
+        [alert show];
+
+        
+        
+    } else {
+        
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to confirm this event?"
+                                                        message:@"Confirming this event will add it to all invitee's calendars"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Confirm",nil];
+        alert.tag = 1;
+        [alert show];
+    }
+}
+
+-(void) onTimeLabelClicked:(ProposeStart *) time
+{
+    if(self.delegate) {
+        [self.delegate onVoteTimeClick:time];
+    }
+}
+
+-(void) onAttendeeLabelClicked:(ProposeStart *) time
+{
+    if(self.delegate) {
+        [self.delegate onVoteListClick:time];
+    }
+}
+
+
 -(void) onVoteTimeConform:(ProposeStart *) eventTime andChecked:(BOOL) checked
 {
     LOG_D(@"onVoteTimeConform, %d", checked);
 
-    int status = checked ? 1 : -1;
+    int status = checked ? 1 : 0;
  
     EventTimeVote * vote = [self getMyVote:eventTime];
     if(vote != nil)
@@ -324,9 +364,6 @@
         
         return;
     }
-    
-    [eventTime retain];
-    
     
     
     [self showIndicatorView:YES];
@@ -362,9 +399,6 @@
             [self showIndicatorView:NO];
             [Utils showUIAlertView:@"Error" andMessage:@"Vote failed, please try again!"];
         }
-        
-        [eventTime release];
-        
     }];
 }
 
@@ -375,7 +409,7 @@
         
         [self showIndicatorView:NO];
         if(error == 0) {
-            [self.delegate onEventChanged:event];
+            [self.delegate onEventChanged:event andChangeType:EventChangeType_Update];
         } else {
             
         }
@@ -387,9 +421,17 @@
     LOG_D(@"alertView, buttonIndex=%d", buttonIndex);
     
     if(buttonIndex == 1) {
-        [self finalizeEvent:_finalizeTime];
+        
+        if ( alertView.tag ==0 ) //unfinalize
+        {
+            [self unfinalizeEvent:_finalizeTime];
+            
+        } else {
+            
+            [self finalizeEvent:_finalizeTime];
+        }
+        
     } else {
-        [_finalizeTime release];
         _finalizeTime = nil;
     }
 }

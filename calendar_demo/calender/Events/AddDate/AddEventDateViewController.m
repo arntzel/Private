@@ -68,7 +68,7 @@
     NavgationBar *navBar = [[NavgationBar alloc] init];
     [self.view addSubview:navBar];
     [navBar setTitle:@"Add Date"];
-    [navBar setLeftBtnText:@"Cancel"];
+    [navBar setLeftBtnText:@""];
     [navBar setRightBtnText:@"Add"];
     navBar.delegate = self;
 

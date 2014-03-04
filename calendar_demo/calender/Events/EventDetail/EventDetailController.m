@@ -273,11 +273,11 @@
     if (!isCreator) {
         photoView.subTitle.text = [NSString stringWithFormat:@"Invited by %@", event.creator.getReadableUsername];
     } else {
-        if (!event.start) {
-            photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet finalized"];
+        if (!event.confirmed) {
+            photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet confirmed"];
         } else {
             [photoView hideFinalizeImage:NO];
-            photoView.subTitle.text = [NSString stringWithFormat:@"Finalized"];
+            photoView.subTitle.text = [NSString stringWithFormat:@"Confirmed"];
         }
     }
     
@@ -503,20 +503,20 @@
 }
 
 
--(void) onEventChanged:(Event *) newEvent;
+-(void) onEventChanged:(Event *) newEvent andChangeType:(EventChangeType) type
 {
     self.event = newEvent;
-    [self updateUIByEvent];
     
     FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
     
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
         [[CoreDataModel getInstance] saveData];
-        [[CoreDataModel getInstance] notifyModelChange];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:type];
     }
     
-    //[[[Model getInstance] getEventModel] synchronizedFromServer];
+    //[self updateUIByEvent];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

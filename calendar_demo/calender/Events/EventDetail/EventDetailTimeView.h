@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "CoreDataModel.h"
 
 @protocol EventDetailTimeViewDelegate <NSObject>
 
 -(void) onEventDetailTimeViewFrameChanged;
 
--(void) onEventChanged:(Event *) event;
+-(void) onEventChanged:(Event *) event andChangeType:(EventChangeType) type;
 
 -(void) onVoteListClick:(ProposeStart *) eventTime;
 

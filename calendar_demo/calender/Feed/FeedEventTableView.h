@@ -26,6 +26,9 @@
 
 -(void) scroll2Date:(NSString *) day animated:(BOOL) animated;
 
+-(void) scroll2Event:(FeedEventEntity *) event animated:(BOOL) animated;
+
+
 -(NSDate *) getFirstVisibleDay;
 
 @end

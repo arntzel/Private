@@ -48,11 +48,13 @@
     
 
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:CAL_DEFAULT_LOCATION_LAT longitude:CAL_DEFAULT_LOCATION_LNG zoom:12];
-    self.gmsMapView = [[GMSMapView mapWithFrame:CGRectMake(5, 27, 145, 40) camera:camera] retain];
+    self.gmsMapView = [GMSMapView mapWithFrame:CGRectMake(5, 27, 145, 40) camera:camera];
     _gmsMapView.settings.compassButton = NO;
     _gmsMapView.camera = camera;
     _gmsMapView.userInteractionEnabled = NO;
     [self.contentView addSubview:_gmsMapView];
+    
+    
 
     [_gmsMapView.layer setShadowColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.20f].CGColor];
     [_gmsMapView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
@@ -80,12 +82,10 @@
     [glassView.layer setShadowOffset:CGSizeMake(0, 1.0f)];
     [glassView.layer setShadowRadius:1.0f];
     [maskView addSubview:glassView];
-    [glassView release];
     
     if (canChangeLocation) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27, 18, 94, 30)];
         [maskView addSubview:label];
-        [label release];
         [label setText:@"Pick a location"];
         [label setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:13]];
         [label setTextColor:[UIColor blackColor]];
@@ -93,7 +93,6 @@
         
         UIImageView *arrawView = [[UIImageView alloc] initWithFrame:CGRectMake(132, 26, 10, 14)];
         [maskView addSubview:arrawView];
-        [arrawView release];
         arrawView.image = [UIImage imageNamed:@"notch.png"];
     }
 }
@@ -114,6 +113,8 @@
 
 -(void) setLocation:(Location *) location
 {
+    return;
+    
     if (location == nil ) {
         isLocation = NO;
     }
@@ -141,7 +142,7 @@
     
     if (isLocation) {
         // 在map中间做一个标记
-        self.marker = [[[GMSMarker alloc] init] autorelease];
+        self.marker = [[GMSMarker alloc] init];
         _marker.position = CLLocationCoordinate2DMake(location.lat, location.lng);
         _marker.map = _gmsMapView;
     }
@@ -154,8 +155,5 @@
     self.gmsMapView = nil;
     self.locationNameLabel = nil;
     self.marker = nil;
-    
-    [_contentView release];
-    [super dealloc];
 }
 @end

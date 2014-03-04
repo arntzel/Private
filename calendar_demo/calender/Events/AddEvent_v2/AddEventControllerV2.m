@@ -134,7 +134,7 @@
 
 - (void)touchedInView:(UITapGestureRecognizer*) tap
 {
-    [txtFieldTitle resignFirstResponder];
+    //[txtFieldTitle resignFirstResponder];
     for (CEventTimePicker *timePicker in self.timePickerArray) {
         [timePicker loseFocus];
     }
@@ -188,7 +188,7 @@
     [txtFieldTitle setTextAlignment:NSTextAlignmentCenter];
     [txtFieldTitle setEnabled:YES];
     [txtFieldTitle setUserInteractionEnabled:YES];
-    txtFieldTitle.delegate = self;
+    //txtFieldTitle.delegate = self;
     [txtFieldTitle addTarget:self action:@selector(txtDidEnd) forControlEvents:UIControlEventEditingDidEndOnExit];
     txtFieldTitle.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     [uploadImageView addSubview:txtFieldTitle];
@@ -229,7 +229,7 @@
 
 - (void)txtDidEnd
 {
-    [txtFieldTitle resignFirstResponder];
+    //[txtFieldTitle resignFirstResponder];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
@@ -247,7 +247,7 @@
 
 - (void)didTapdView:(UIView *)view
 {
-    [txtFieldTitle resignFirstResponder];
+    //[txtFieldTitle resignFirstResponder];
     
     if (view == opentionEntry)
     {
