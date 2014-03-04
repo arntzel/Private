@@ -273,11 +273,11 @@
     if (!isCreator) {
         photoView.subTitle.text = [NSString stringWithFormat:@"Invited by %@", event.creator.getReadableUsername];
     } else {
-        if (!event.start) {
-            photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet finalized"];
+        if (!event.confirmed) {
+            photoView.subTitle.text = [NSString stringWithFormat:@"Time and date not yet confirmed"];
         } else {
             [photoView hideFinalizeImage:NO];
-            photoView.subTitle.text = [NSString stringWithFormat:@"Finalized"];
+            photoView.subTitle.text = [NSString stringWithFormat:@"Confirmed"];
         }
     }
     

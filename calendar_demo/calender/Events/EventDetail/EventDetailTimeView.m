@@ -309,11 +309,11 @@
     
     if(_event.confirmed) {
         
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to unfinalize this event?"
-                                                        message:@"Finalizing this event will add it to all invitee's calendars"
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to unconfirm this event?"
+                                                        message:@"Confirming this event will add it to all invitee's calendars"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Unfinalize",nil];
+                                              otherButtonTitles:@"Unconfirm",nil];
         alert.tag = 0;
         [alert show];
 
@@ -322,11 +322,11 @@
     } else {
         
         
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to finalize this event?"
-                                                        message:@"Finalizing this event will add it to all invitee's calendars"
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to confirm this event?"
+                                                        message:@"Confirming this event will add it to all invitee's calendars"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Finalize",nil];
+                                              otherButtonTitles:@"Confirm",nil];
         alert.tag = 1;
         [alert show];
     }
