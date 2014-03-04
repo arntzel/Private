@@ -91,7 +91,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZBk-59-4mH">
-                            <rect key="frame" x="18" y="7" width="10" height="21"/>
+                            <rect key="frame" x="19" y="7" width="10" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,6 +116,7 @@
         </view>
     </objects>
     <resources>
+        <image name="event_detail_header_list_arraw.png" width="20" height="28"/>
         <image name="event_detail_header_list_arraw.png" width="20" height="28"/>
         <image name="icon_attendee.png" width="11" height="11"/>
         <image name="icon_conformbtn.png" width="80" height="29"/>
