@@ -179,16 +179,16 @@ static inline NSString *stringFromWeekday(int weekday)
         CGFloat dotLength = 5;
         CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
         
-        CGFloat OffsetY = 8.0f;
+        CGFloat OffsetY = 3.0f;
         if (n == 1 || self.selected) {
             OffsetY = 3.0f;
+        } else {
+            CGPoint position;
+            position.x = OffsetX;
+            position.y = OffsetY;
+            
+            [self drawColordot:ctx andPosition:position andColor:0xFFA9A9A9];
         }
-        
-        CGPoint position;
-        position.x = OffsetX;
-        position.y = OffsetY;
-        
-        [self drawColordot:ctx andPosition:position andColor:0xFFA9A9A9];
     }
     
     //BOOL calvin = eventType & 0x00000001;
