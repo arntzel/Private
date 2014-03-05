@@ -23,7 +23,7 @@
 {
     self.separator.hidden = lastForThisDay;
     self.labTitle.text = event.title;
-    self.labTime.text = @"Exactly at";
+    self.labTime.text = @"All Day";
 
     NSString * headerUrl = event.thumbnail_url;
 

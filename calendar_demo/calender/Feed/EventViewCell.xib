@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,46 +19,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-5n-QKE">
-                        <rect key="frame" x="9" y="12" width="33" height="33"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="invitee_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kdl-eZ-0oZ">
-                        <rect key="frame" x="63" y="57" width="12" height="12"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Quick brown fox jumped over the lazy dog" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="dZO-cn-5y0">
-                        <rect key="frame" x="63" y="17" width="245" height="38"/>
+                        <rect key="frame" x="63" y="1" width="245" height="33"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="After 7:30pm, 3hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="337-Vg-aDp">
-                        <rect key="frame" x="63" y="0.0" width="220" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00am" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="337-Vg-aDp">
+                        <rect key="frame" x="0.0" y="1" width="62" height="33"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciG-P7-kPT">
-                        <rect key="frame" x="300" y="46" width="8" height="8"/>
+                        <rect key="frame" x="300" y="14" width="8" height="8"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Mark, Steve, Sab " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwh-Jz-PHa">
-                        <rect key="frame" x="83" y="51" width="100" height="28"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwZ-Ra-uje" userLabel="View - inviteesPanel">
+                        <rect key="frame" x="63" y="44" width="185" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <subviews>
+                            <imageView hidden="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-5n-QKE">
+                                <rect key="frame" x="0.0" y="3" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-9v-OXV">
+                                <rect key="frame" x="80" y="3" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" tag="1003" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="idV-It-kcR">
+                                <rect key="frame" x="120" y="3" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-Ak-Iea">
+                                <rect key="frame" x="40" y="3" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="location_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="q5w-AC-WFY">
-                        <rect key="frame" x="187" y="56" width="8" height="13"/>
+                        <rect key="frame" x="63" y="30" width="8" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Lancada(14th &amp; church)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tV-w9-eG7">
-                        <rect key="frame" x="203" y="54" width="104" height="17"/>
+                        <rect key="frame" x="79" y="28" width="195" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
@@ -69,11 +82,10 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="iconAttendee" destination="Kdl-eZ-0oZ" id="dH2-gI-p1H"/>
                 <outlet property="iconLocation" destination="q5w-AC-WFY" id="bv7-K4-1ec"/>
                 <outlet property="imgEventType" destination="ciG-P7-kPT" id="ft8-lh-OpP"/>
                 <outlet property="imgUser" destination="gWj-5n-QKE" id="XAk-EQ-IAS"/>
-                <outlet property="labAttendees" destination="cwh-Jz-PHa" id="Of3-Sq-v1V"/>
+                <outlet property="inviteesPanel" destination="zwZ-Ra-uje" id="1jm-3b-AD0"/>
                 <outlet property="labLocation" destination="7tV-w9-eG7" id="ORP-Et-C6F"/>
                 <outlet property="labTimeStr" destination="337-Vg-aDp" id="qRo-z9-OsU"/>
                 <outlet property="labTitle" destination="dZO-cn-5y0" id="6UC-dK-v5w"/>
@@ -83,7 +95,6 @@
     </objects>
     <resources>
         <image name="default_person.png" width="33" height="33"/>
-        <image name="invitee_icon.png" width="12" height="12"/>
         <image name="location_icon.png" width="9" height="13"/>
     </resources>
 </document>

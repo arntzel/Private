@@ -18,6 +18,11 @@
 #import "ContactEntity.h"
 #import "UIColor+Hex.h"
 
+#import "EventAttendeeEntity.h"
+
+#define TAG_INV_START 1000
+#define TAG_INV_END   1003
+
 
 @implementation EventViewCell
 
@@ -58,11 +63,6 @@
     self.imgEventType.layer.cornerRadius = self.imgEventType.frame.size.width/2;
     self.imgEventType.layer.masksToBounds = YES;
     
-    UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
-    //    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
-    //    [view.labTitle setTextColor:kalTitleColor];
-    [self.labTimeStr setTextColor:kalStandardColor];
-    
     NSString *time, *timeType, *duration;
     if([event.is_all_day boolValue]) {
         
@@ -73,30 +73,30 @@
         self.labTimeStr.text = time;
     } else {
         
-        NSString * startType = event.start_type;
-        
-        if([START_TYPEEXACTLYAT isEqualToString:startType]) {
-            
-            //self.labTimeType.hidden = YES;
-            timeType = @"Exactly at";
-            
-        } else if([START_TYPEAFTER isEqualToString:startType]) {
-            
-            //self.labTimeType.hidden = NO;
-            timeType = @"After";
-            
-        } else {
-            
-            //self.labTimeType.hidden = NO;
-            timeType = @"Around";
-        }
+//        NSString * startType = event.start_type;
+//        if([START_TYPEEXACTLYAT isEqualToString:startType]) {
+//            //self.labTimeType.hidden = YES;
+//            timeType = @"Exactly at";
+//            
+//        } else if([START_TYPEAFTER isEqualToString:startType]) {
+//            //self.labTimeType.hidden = NO;
+//            timeType = @"After";
+//            
+//        } else {
+//            //self.labTimeType.hidden = NO;
+//            timeType = @"Around";
+//        }
         
         //self.labTime.text = [Utils formateTimeAMPM:[event getLocalStart]];
         
         time =[Utils formateTimeAMPM:event.start];
         duration = event.duration;
-        BOOL isExactlyType = [event.start_type isEqualToString:START_TYPEEXACTLYAT] ? YES: NO;
         //self.labEventDuration.text = [NSString stringWithFormat:@",%@", event.duration];
+
+        self.labTimeStr.text = [NSString stringWithFormat:@"%@", time];
+/*
+ BOOL isExactlyType = [event.start_type isEqualToString:START_TYPEEXACTLYAT] ? YES: NO;
+ 
         if (isExactlyType) {
             NSString *endTime = [Utils formateTimeAMPM:event.end];
             self.labTimeStr.text = [NSString stringWithFormat:@"%@ %@ to %@", timeType, time, endTime];
@@ -115,22 +115,54 @@
                 }
             }
         }
+*/
     }
     
-    NSString * headerUrl = event.creator.avatar_url;
-    
-    //Birthday
-    if( [event isBirthdayEvent] ) {
-        self.labTimeStr.text = @"Exactly At";
-        headerUrl = event.thumbnail_url;
-    }
-    
-    if(headerUrl == nil) {
+    /*
+     NSString * headerUrl = event.creator.avatar_url;
+     
+    if (headerUrl == nil) {
         self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
     } else {
         [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
                      placeholderImage:[UIImage imageNamed:@"default_person.png"]];
+    }*/
+    
+    
+    NSMutableArray *userArray = [NSMutableArray array];
+    for (EventAttendeeEntity *attend in event.attendees)
+    {
+        [userArray addObject:attend];
     }
+    
+    for (int i=TAG_INV_START; i < TAG_INV_END; i++) {
+        UIImageView *v = (UIImageView*)[self.inviteesPanel viewWithTag:i];
+        if (v) {
+            v.hidden = YES;
+     
+            int attendeeIndex = i - TAG_INV_START;
+            
+            if (attendeeIndex < [userArray count])
+            {
+                EventAttendeeEntity *attend = userArray[attendeeIndex];
+                
+                NSString  *headerUrl = attend.avatar_url;
+                
+                v.hidden = NO;
+                
+                if (headerUrl == nil) {
+                    self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
+                }
+                else {
+                    [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
+                                 placeholderImage:[UIImage imageNamed:@"default_person.png"]];
+                    
+                    
+                }
+            }
+        }
+    }
+    
     
     //NSString * imgName = [NSString stringWithFormat:@"colordot%d.png", event.eventType+1];
     int color = [self getEventTypeColor:[event.eventType intValue]];
@@ -145,9 +177,20 @@
     self.labLocation.text = [self getLocationText:event];
     
     if ([self.labLocation.text isEqual: @"No Location"]) {
+        
+        CGRect frame = self.inviteesPanel.frame;
+        frame.origin.y = 30;
+        self.inviteesPanel.frame = frame;
+        
         [self.labLocation setHidden:YES];
         [self.iconLocation setHidden:YES];
+        
     } else {
+        
+        CGRect frame = self.inviteesPanel.frame;
+        frame.origin.y = 44;
+        self.inviteesPanel.frame = frame;
+        
         [self.labLocation setHidden:NO];
         [self.iconLocation setHidden:NO];
     }

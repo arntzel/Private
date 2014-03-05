@@ -22,7 +22,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="event_header_add.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vyh-6l-VuQ">
-                        <rect key="frame" x="68" y="9" width="14" height="14"/>
+                        <rect key="frame" x="63" y="9" width="14" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
