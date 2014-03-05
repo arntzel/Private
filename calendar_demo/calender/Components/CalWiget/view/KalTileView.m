@@ -181,7 +181,7 @@ static inline NSString *stringFromWeekday(int weekday)
         
         CGFloat OffsetY = 8.0f;
         if (n == 1 || self.selected) {
-            OffsetY = 5.0f;
+            OffsetY = 3.0f;
         }
         
         CGPoint position;
