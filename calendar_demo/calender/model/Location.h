@@ -20,4 +20,6 @@
  */
 +(Location *) parseLocation:(NSDictionary *) json;
 
+-(BOOL) isValid;
+
 @end

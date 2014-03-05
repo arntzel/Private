@@ -48,6 +48,8 @@
 @property (nonatomic, retain) NSString * userstatus;
 @property (nonatomic, retain) CreatorEntity *creator;
 @property (nonatomic, retain) LocationEntity *location;
+
+//EventAtendeeEntity's NSSet
 @property (nonatomic, retain) NSSet *attendees;
 @end
 

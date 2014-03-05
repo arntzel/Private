@@ -113,9 +113,7 @@
 
 -(void) setLocation:(Location *) location
 {
-    return;
-    
-    if (location == nil ) {
+    if (location == nil || ![location isValid]) {
         isLocation = NO;
     }
     else

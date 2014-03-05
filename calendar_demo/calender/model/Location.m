@@ -63,4 +63,9 @@
 
     return dic;
 }
+
+-(BOOL) isValid
+{
+    return self.lat != 0 && self.lng != 0;
+}
 @end
