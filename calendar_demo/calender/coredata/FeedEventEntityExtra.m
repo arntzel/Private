@@ -9,6 +9,7 @@
 
 #import "CreatorEntityExtra.h"
 #import "LocationEntityExtra.h"
+#import "EventAttendeeEntityExtra.h"
 
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
@@ -270,5 +271,23 @@
     
     self.modified_num = [NSString stringWithFormat:@"%@", [json objectForKey:@"modified_num"]];
     self.ext_event_id = [NSString stringWithFormat:@"%@", [json objectForKey:@"ext_event_id"]];
+    
+    
+    NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
+    
+    if(attendees == nil || attendees.count == 0) {
+        
+        [self removeAttendees:self.attendees];
+        
+    } else {
+      
+        for(NSDictionary * atendee in attendees) {
+            EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
+            [self addAttendeesObject:atd];
+        }
+    }
 }
 @end
+
+
+

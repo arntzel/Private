@@ -153,6 +153,8 @@
     
     [self addSubview:self.desciptionView];
     
+    self.desciptionView.hidden = YES;
+    
     [self.desciptionView release];
 }
 

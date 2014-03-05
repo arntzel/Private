@@ -2,18 +2,24 @@
 //  FeedEventEntity.m
 //  Calvin
 //
-//  Created by fangxiang on 14-2-23.
+//  Created by fangxiang on 14-3-5.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import "FeedEventEntity.h"
 #import "CreatorEntity.h"
+#import "EventAttendeeEntity.h"
 #import "LocationEntity.h"
 
 
 @implementation FeedEventEntity
 
+@dynamic all_responded;
+@dynamic allow_attendee_invite;
+@dynamic allow_new_dt;
+@dynamic allow_new_location;
 @dynamic archived;
+@dynamic attendee_num;
 @dynamic belongToiCal;
 @dynamic confirmed;
 @dynamic created_on;
@@ -34,19 +40,15 @@
 @dynamic last_modified;
 @dynamic locationName;
 @dynamic max_proposed_end_time;
+@dynamic modified_num;
 @dynamic start;
 @dynamic start_type;
 @dynamic thumbnail_url;
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
-@dynamic all_responded;
-@dynamic allow_attendee_invite;
-@dynamic allow_new_dt;
-@dynamic allow_new_location;
-@dynamic attendee_num;
-@dynamic modified_num;
 @dynamic creator;
 @dynamic location;
+@dynamic attendees;
 
 @end

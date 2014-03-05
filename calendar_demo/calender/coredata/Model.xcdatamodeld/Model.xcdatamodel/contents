@@ -18,6 +18,18 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="EventAttendeeEntity" representedClassName="EventAttendeeEntity" syncable="YES">
+        <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="invite_key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_owner" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="EventTimeVoteEntity" representedClassName="EventTimeVoteEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -57,6 +69,7 @@
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userstatus" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attendees" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventAttendeeEntity" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CreatorEntity" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LocationEntity" syncable="YES"/>
     </entity>
@@ -101,6 +114,7 @@
     </entity>
     <elements>
         <element name="ContactEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CreatorEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="EventTimeVoteEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="FeedEventEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="LocationEntity" positionX="0" positionY="0" width="0" height="0"/>
@@ -108,6 +122,6 @@
         <element name="ProposeStartEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="CreatorEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EventAttendeeEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

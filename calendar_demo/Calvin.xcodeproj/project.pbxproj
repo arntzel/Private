@@ -172,7 +172,6 @@
 		3DA84B6C18BA194900651379 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B6B18BA194900651379 /* UserEntity.m */; };
 		3DA84B6F18BA194900651379 /* ProposeStartEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B6E18BA194900651379 /* ProposeStartEntity.m */; };
 		3DA84B7218BA194900651379 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B7118BA194900651379 /* Setting.m */; };
-		3DA84B7518BA1CAD00651379 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B7418BA1CAD00651379 /* FeedEventEntity.m */; };
 		3DA84B7818BA1DF700651379 /* CreatorEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B7718BA1DF700651379 /* CreatorEntityExtra.m */; };
 		3DA84B7B18BA1EF000651379 /* LocationEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA84B7A18BA1EF000651379 /* LocationEntityExtra.m */; };
 		3DB1373C18828151005CAEA7 /* invitee_people_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DB1373B18828151005CAEA7 /* invitee_people_header@2x.png */; };
@@ -191,6 +190,9 @@
 		3DFF827518C557B6002499E6 /* icon_confirmed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */; };
 		3DFF827918C615E5002499E6 /* AddEventDateViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF827718C615E5002499E6 /* AddEventDateViewControllerV2.m */; };
 		3DFF827A18C615E5002499E6 /* AddEventDateViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF827818C615E5002499E6 /* AddEventDateViewControllerV2.xib */; };
+		3DFF828318C76C51002499E6 /* EventAttendeeEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828218C76C51002499E6 /* EventAttendeeEntityExtra.m */; };
+		3DFF828618C76DCD002499E6 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828518C76DCD002499E6 /* FeedEventEntity.m */; };
+		3DFF828918C76DCE002499E6 /* EventAttendeeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828818C76DCE002499E6 /* EventAttendeeEntity.m */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -857,8 +859,6 @@
 		3DA84B6E18BA194900651379 /* ProposeStartEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposeStartEntity.m; path = calender/coredata/ProposeStartEntity.m; sourceTree = SOURCE_ROOT; };
 		3DA84B7018BA194900651379 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = calender/coredata/Setting.h; sourceTree = SOURCE_ROOT; };
 		3DA84B7118BA194900651379 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = calender/coredata/Setting.m; sourceTree = SOURCE_ROOT; };
-		3DA84B7318BA1CAD00651379 /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedEventEntity.h; path = calender/coredata/FeedEventEntity.h; sourceTree = SOURCE_ROOT; };
-		3DA84B7418BA1CAD00651379 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
 		3DA84B7618BA1DF700651379 /* CreatorEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreatorEntityExtra.h; path = calender/coredata/CreatorEntityExtra.h; sourceTree = SOURCE_ROOT; };
 		3DA84B7718BA1DF700651379 /* CreatorEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreatorEntityExtra.m; path = calender/coredata/CreatorEntityExtra.m; sourceTree = SOURCE_ROOT; };
 		3DA84B7918BA1EF000651379 /* LocationEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationEntityExtra.h; path = calender/coredata/LocationEntityExtra.h; sourceTree = SOURCE_ROOT; };
@@ -895,6 +895,12 @@
 		3DFF827618C615E5002499E6 /* AddEventDateViewControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventDateViewControllerV2.h; sourceTree = "<group>"; };
 		3DFF827718C615E5002499E6 /* AddEventDateViewControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventDateViewControllerV2.m; sourceTree = "<group>"; };
 		3DFF827818C615E5002499E6 /* AddEventDateViewControllerV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventDateViewControllerV2.xib; sourceTree = "<group>"; };
+		3DFF828118C76C51002499E6 /* EventAttendeeEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventAttendeeEntityExtra.h; path = calender/coredata/EventAttendeeEntityExtra.h; sourceTree = SOURCE_ROOT; };
+		3DFF828218C76C51002499E6 /* EventAttendeeEntityExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventAttendeeEntityExtra.m; path = calender/coredata/EventAttendeeEntityExtra.m; sourceTree = SOURCE_ROOT; };
+		3DFF828418C76DCD002499E6 /* FeedEventEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedEventEntity.h; path = calender/coredata/FeedEventEntity.h; sourceTree = SOURCE_ROOT; };
+		3DFF828518C76DCD002499E6 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
+		3DFF828718C76DCE002499E6 /* EventAttendeeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventAttendeeEntity.h; path = calender/coredata/EventAttendeeEntity.h; sourceTree = SOURCE_ROOT; };
+		3DFF828818C76DCE002499E6 /* EventAttendeeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventAttendeeEntity.m; path = calender/coredata/EventAttendeeEntity.m; sourceTree = SOURCE_ROOT; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2399,12 +2405,16 @@
 				3DA84B7718BA1DF700651379 /* CreatorEntityExtra.m */,
 				769ABA0217DF514C0033E677 /* DataCache.h */,
 				769ABA0317DF514C0033E677 /* DataCache.m */,
+				3DFF828718C76DCE002499E6 /* EventAttendeeEntity.h */,
+				3DFF828818C76DCE002499E6 /* EventAttendeeEntity.m */,
+				3DFF828118C76C51002499E6 /* EventAttendeeEntityExtra.h */,
+				3DFF828218C76C51002499E6 /* EventAttendeeEntityExtra.m */,
 				3DA84B5E18BA194800651379 /* EventTimeVoteEntity.h */,
 				3DA84B5F18BA194800651379 /* EventTimeVoteEntity.m */,
 				3DF11F551882DFA700F16140 /* EventTimeVoteEntityExtra.h */,
 				3DF11F561882DFA700F16140 /* EventTimeVoteEntityExtra.m */,
-				3DA84B7318BA1CAD00651379 /* FeedEventEntity.h */,
-				3DA84B7418BA1CAD00651379 /* FeedEventEntity.m */,
+				3DFF828418C76DCD002499E6 /* FeedEventEntity.h */,
+				3DFF828518C76DCD002499E6 /* FeedEventEntity.m */,
 				769ABA0C17DF514C0033E677 /* FeedEventEntityExtra.h */,
 				769ABA0D17DF514C0033E677 /* FeedEventEntityExtra.m */,
 				3DA84B5818BA194800651379 /* LocationEntity.h */,
@@ -3696,6 +3706,7 @@
 				76C5129F1888195B00E5A31F /* CStartTimeTitle.m in Sources */,
 				769ABA9917DF51EC0033E677 /* navigationMenuCell.m in Sources */,
 				769ABA9B17DF51EC0033E677 /* navigationMenuCellBg.m in Sources */,
+				3DFF828918C76DCE002499E6 /* EventAttendeeEntity.m in Sources */,
 				76C512991888195B00E5A31F /* CEventTimeTitle.m in Sources */,
 				769ABA9C17DF51EC0033E677 /* navigationMenuDataSource.m in Sources */,
 				769ABA9D17DF51EC0033E677 /* navigationNotifyCell.m in Sources */,
@@ -3771,7 +3782,6 @@
 				3D873C4F18C0C92400716F59 /* LoadingEventViewController.m in Sources */,
 				767822A5187971A000CEF40E /* AddEventSettingView.m in Sources */,
 				769ABB4D17DF53A50033E677 /* AppDelegate.m in Sources */,
-				3DA84B7518BA1CAD00651379 /* FeedEventEntity.m in Sources */,
 				768404BC180104B100C69240 /* DetailDeclinedCell.m in Sources */,
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				76C5129C1888195B00E5A31F /* CPickerCell.m in Sources */,
@@ -3806,6 +3816,7 @@
 				769ABC9217DF542A0033E677 /* UserModel.m in Sources */,
 				769ABC9317DF542A0033E677 /* UserProfile.m in Sources */,
 				23B8C76C184A12A7002B7021 /* UIColor+Hex.m in Sources */,
+				3DFF828318C76C51002499E6 /* EventAttendeeEntityExtra.m in Sources */,
 				769ABC9417DF542A0033E677 /* UserSetting.m in Sources */,
 				7662F74517F075F400B64E40 /* LoginMainTitileView.m in Sources */,
 				3DA84B6318BA194800651379 /* CreatorEntity.m in Sources */,
@@ -3897,6 +3908,7 @@
 				769ABD4D17DF579E0033E677 /* EventDetailController.m in Sources */,
 				769ABD4A17DF54950033E677 /* PullRefreshTableView.m in Sources */,
 				769ABD5317DF5D440033E677 /* main.m in Sources */,
+				3DFF828618C76DCD002499E6 /* FeedEventEntity.m in Sources */,
 				769CB5831886CDC10082400D /* AELocalEntry.m in Sources */,
 				7661E17517E201D700C788D0 /* GPlaceAutoCompleteSource.m in Sources */,
 				9457DF5517E5EF1900C294F7 /* EventTimeVote.m in Sources */,
