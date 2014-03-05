@@ -121,11 +121,11 @@
 
     } else {
         
-        [self.datePricker setDate:selectedEndTime animated:YES];
-        
         if(selectedEndTime == nil) {
             selectedEndTime = [NSDate dateWithTimeInterval:3600 sinceDate:selectedStartTime];
         }
+        
+        [self.datePricker setDate:selectedEndTime animated:YES];
         
         NSTimeInterval interval = [selectedEndTime timeIntervalSinceDate:startDate];
         int row = 365 + interval/(24*3600);
