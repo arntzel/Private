@@ -174,49 +174,66 @@ static inline NSString *stringFromWeekday(int weekday)
     
     //draw event color dot
     int eventType = [self.datasource getEventType:self.date];
-
-    BOOL calvin = eventType & 0x00000001;
-    BOOL google = eventType & 0x00000002;
-    BOOL fackbook = eventType & 0x00000008;
+    if(eventType != 0)
+    {
+        CGFloat dotLength = 5;
+        CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
+        
+        CGFloat OffsetY = 8.0f;
+        if (n == 1 || self.selected) {
+            OffsetY = 5.0f;
+        }
+        
+        CGPoint position;
+        position.x = OffsetX;
+        position.y = OffsetY;
+        
+        [self drawColordot:ctx andPosition:position andColor:0xFFA9A9A9];
+    }
+    
+    //BOOL calvin = eventType & 0x00000001;
+    //BOOL google = eventType & 0x00000002;
+    //BOOL fackbook = eventType & 0x00000008;
     //BOOL birthday = eventType & 0x00000010;
     
-    int count = 0;
-    if(google) count++;
-    if(fackbook) count++;
-    if(calvin) count++;
+    //int count = 0;
+    //if(google) count++;
+    //if(fackbook) count++;
+    //if(calvin) count++;
     
-    if (count == 0) {
-        return;
-    }
+//    if (count == 0) {
+//        return;
+//    }
     
-    CGFloat dotLength = 10 * count - 5;
-    CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
+//    CGFloat dotLength = 10  - 5;
+//    CGFloat OffsetX = (kTileSize.width - dotLength) * 0.5f - 1;
+//    
+//    CGFloat OffsetY = 8.0f;
+//    if (n == 1 || self.selected) {
+//        OffsetY = 5.0f;
+//    }
+//    
+//    CGPoint position;
+//    position.x = OffsetX;
+//    position.y = OffsetY;
     
-    CGFloat OffsetY = 8.0f;
-    if (n == 1 || self.selected) {
-        OffsetY = 5.0f;
-    }
-    
-    CGPoint position;
-    position.x = OffsetX;
-    position.y = OffsetY;
     
     
-    if(google) {
-        [self drawColordot:ctx andPosition:position andColor:0xFFD5AD3E];
-        position.x += 10.0f;
-    }
-
-    if(fackbook) {
-        [self drawColordot:ctx andPosition:position andColor:0xFF477DBD];
-        position.x += 10.0f;
-    }
+//    if(google) {
+//        [self drawColordot:ctx andPosition:position andColor:0xFFD5AD3E];
+//        position.x += 10.0f;
+//    }
+//
+//    if(fackbook) {
+//        [self drawColordot:ctx andPosition:position andColor:0xFF477DBD];
+//        position.x += 10.0f;
+//    }
+//    
+//    if(calvin) {
+//        [self drawColordot:ctx andPosition:position andColor:0xFFF44258];
+//        position.x += 10.0f;
+//    }
     
-    if(calvin) {
-        [self drawColordot:ctx andPosition:position andColor:0xFFF44258];
-        position.x += 10.0f;
-    }
-     
 }
 
 -(void) drawColordot:(CGContextRef)ctx andPosition:(CGPoint) position andColor:(int) color
