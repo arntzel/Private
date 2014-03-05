@@ -22,6 +22,7 @@
 #import "UserModel.h"
 #import "EventTime.h"
 #import "AddEventDateViewController.h"
+#import "AddEventDateViewControllerV2.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
 #import "EventLocationViewController.h"
@@ -44,6 +45,7 @@
 
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
+
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate,
                                     UIActionSheetDelegate,
@@ -569,18 +571,23 @@
 //    tempEventDate.start_type = START_TYPEEXACTLYAT;
 //    [tempEventDate convertMinToQuarterMode];
     
-    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
+//    AddEventDateViewController *addDate = [[AddEventDateViewController alloc] initWithEventDate:tempEventDate];
+//    addDate.delegate = self;
+//    
+//    if (self.navigationController) {
+//        [self.navigationController pushViewController:addDate animated:YES];
+//    }
+//    else {
+//        [self presentViewController:addDate animated:YES completion:^{
+//        }];
+//    }
+//    
+//    [tempEventDate release];
+    
+    AddEventDateViewControllerV2 * addDate = [[AddEventDateViewControllerV2 alloc] init];
     addDate.delegate = self;
-    
-    if (self.navigationController) {
-        [self.navigationController pushViewController:addDate animated:YES];
-    }
-    else {
-        [self presentViewController:addDate animated:YES completion:^{
-        }];
-    }
-    
-    [tempEventDate release];
+    [self.navigationController pushViewController:addDate animated:YES];
+    [addDate release];
 }
 
 -(void) onVoteListClick:(ProposeStart *) eventTime

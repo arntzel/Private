@@ -9,6 +9,11 @@
     self.frame = frame;
 }
 
+- (NSInteger) getTop
+{
+    return self.frame.origin.y;
+}
+
 - (NSInteger)getMaxY
 {
     return self.frame.origin.y + self.frame.size.height;

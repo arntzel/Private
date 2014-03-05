@@ -189,6 +189,8 @@
 		3DF1568D1879969F0070A650 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156871879969F0070A650 /* README.md */; };
 		3DF1568E1879969F0070A650 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DF156881879969F0070A650 /* release_notes.md */; };
 		3DFF827518C557B6002499E6 /* icon_confirmed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */; };
+		3DFF827918C615E5002499E6 /* AddEventDateViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF827718C615E5002499E6 /* AddEventDateViewControllerV2.m */; };
+		3DFF827A18C615E5002499E6 /* AddEventDateViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF827818C615E5002499E6 /* AddEventDateViewControllerV2.xib */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -890,6 +892,9 @@
 		3DFB114518337F7200084EF2 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
 		3DFB114618337F7200084EF2 /* OHParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHParagraphStyle.h; sourceTree = "<group>"; };
 		3DFF827418C557B6002499E6 /* icon_confirmed_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_confirmed_button@2x.png"; sourceTree = "<group>"; };
+		3DFF827618C615E5002499E6 /* AddEventDateViewControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventDateViewControllerV2.h; sourceTree = "<group>"; };
+		3DFF827718C615E5002499E6 /* AddEventDateViewControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventDateViewControllerV2.m; sourceTree = "<group>"; };
+		3DFF827818C615E5002499E6 /* AddEventDateViewControllerV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventDateViewControllerV2.xib; sourceTree = "<group>"; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2536,6 +2541,9 @@
 				769ABAAB17DF52090033E677 /* AddDateTypeView.xib */,
 				769ABAAC17DF52090033E677 /* AddEventDateViewController.h */,
 				769ABAAD17DF52090033E677 /* AddEventDateViewController.m */,
+				3DFF827618C615E5002499E6 /* AddEventDateViewControllerV2.h */,
+				3DFF827718C615E5002499E6 /* AddEventDateViewControllerV2.m */,
+				3DFF827818C615E5002499E6 /* AddEventDateViewControllerV2.xib */,
 				769ABAAE17DF52090033E677 /* CustomPickerCell.h */,
 				769ABAAF17DF52090033E677 /* CustomPickerCell.m */,
 				769ABAB017DF52090033E677 /* CustomPickerCell.xib */,
@@ -3365,6 +3373,7 @@
 				769AB9B617DF51340033E677 /* header7.jpg in Resources */,
 				23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */,
 				7662F75317F0761900B64E40 /* login_main_login_line.png in Resources */,
+				3DFF827A18C615E5002499E6 /* AddEventDateViewControllerV2.xib in Resources */,
 				769CB5701886CD740082400D /* add_event_invitees_v2.png in Resources */,
 				769AB9B717DF51340033E677 /* header8.jpg in Resources */,
 				34B1F1C217F8FCE200AA5C97 /* settings_main_middle_row.png in Resources */,
@@ -3662,6 +3671,7 @@
 				769AB91E17DF51160033E677 /* PendingEventCell.m in Sources */,
 				769AB92117DF51160033E677 /* PendingEventViewCell.m in Sources */,
 				769AB92317DF51160033E677 /* PendingEventViewCell2.m in Sources */,
+				3DFF827918C615E5002499E6 /* AddEventDateViewControllerV2.m in Sources */,
 				76C5128C1888195B00E5A31F /* CEndTimeTitle.m in Sources */,
 				235047CA18754E50001DB8EF /* FeedEventTableViewCell.m in Sources */,
 				3DF11F541882DD4B00F16140 /* ProposeStartEntityExtra.m in Sources */,

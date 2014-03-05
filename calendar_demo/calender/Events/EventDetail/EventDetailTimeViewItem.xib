@@ -117,7 +117,6 @@
     </objects>
     <resources>
         <image name="event_detail_header_list_arraw.png" width="20" height="28"/>
-        <image name="event_detail_header_list_arraw.png" width="20" height="28"/>
         <image name="icon_attendee.png" width="11" height="11"/>
         <image name="icon_conformbtn.png" width="80" height="29"/>
         <image name="icon_vote_yes.png" width="35" height="35"/>

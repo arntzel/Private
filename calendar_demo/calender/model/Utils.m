@@ -148,6 +148,17 @@ static NSTimeZone * userTimeZone;
     return [dateFormatter stringFromDate:time];
 }
 
++(NSString *) formateDay4:(NSDate *) time
+{
+    //cccc
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"EEE MMM d"];
+    
+    
+    return [dateFormatter stringFromDate:time];
+}
+
 +(NSString *) formateDay3:(NSDate *) time
 {
     //cccc

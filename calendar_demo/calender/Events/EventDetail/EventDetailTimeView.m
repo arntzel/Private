@@ -310,7 +310,7 @@
     if(_event.confirmed) {
         
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to unconfirm this event?"
-                                                        message:@"Confirming this event will add it to all invitee's calendars"
+                                                        message:@"Unconfirming this event will remove it from all invitee's calendars"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Unconfirm",nil];
