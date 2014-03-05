@@ -290,7 +290,7 @@
                             <rect key="frame" x="269" y="16" width="9" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term of Use" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gcy-f1-ytU">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gcy-f1-ytU">
                             <rect key="frame" x="21" y="12" width="93" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -423,13 +423,28 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
         <image name="settings_main_bottom_row.png" width="306" height="46"/>
+        <image name="settings_main_bottom_row.png" width="306" height="46"/>
+        <image name="settings_main_bottom_row.png" width="306" height="46"/>
+        <image name="settings_main_bottom_row.png" width="306" height="46"/>
+        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
         <image name="settings_main_middle_row.png" width="306" height="49"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_top_row.png" width="304" height="52"/>
+        <image name="settings_main_top_row.png" width="304" height="52"/>
         <image name="settings_main_top_row.png" width="304" height="52"/>
         <image name="settings_main_userinfo_bg.png" width="307" height="102"/>
     </resources>
