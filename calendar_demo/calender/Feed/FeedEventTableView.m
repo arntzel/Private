@@ -446,7 +446,7 @@
     
     if(events == nil || events.count == 0) {
         
-        [self.feedEventdelegate onAddNewEvent];
+        [self.feedEventdelegate onAddNewEvent:sectionDate];
         
     } else {
         

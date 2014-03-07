@@ -21,6 +21,8 @@
 #import "BLRView.h"
 #import "iCalEventShowSettingsViewController.h"
 
+#import "AddEventControllerV2.h"
+
 /*
  FeedViewController show the event list and a calender wiget
  */
@@ -487,9 +489,21 @@
     [self.calendarView.kalView swith2Date:firstDay];
 }
 
--(void) onAddNewEvent
+-(void) onAddNewEvent:(NSDate *) date
 {
-    [self btnAddEvent:nil];
+    AddEventControllerV2 *addEvent = [[AddEventControllerV2 alloc] init];
+    addEvent.date2Create = date;
+    
+    addEvent.popDelegate = self;
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.3];
+    [animation setType: kCATransitionMoveIn];
+    [animation setSubtype: kCATransitionFromTop];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    
+    [[RootNavContrller defaultInstance] pushViewController:addEvent animated:NO];
+    [[RootNavContrller defaultInstance].view.layer  addAnimation:animation forKey:nil];
 }
 
 -(void) onUserAccountChanged

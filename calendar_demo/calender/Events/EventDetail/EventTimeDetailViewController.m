@@ -31,21 +31,14 @@
 #import "ViewUtils.h"
 #import "DeviceInfo.h"
 
+#import "NSDateAdditions.h"
+#import "UIView+FrameResize.h"
 
-
-@interface EventTimeDetailViewController ()<KalViewDelegate,
-                                           KalTileViewDataSource,
-                                           KalTileViewDataSource,
-                                           EventDateNavigationBarDelegate,
+@interface EventTimeDetailViewController ()<EventDateNavigationBarDelegate,
                                            UITableViewDataSource,
                                            UITableViewDelegate>
 {
-    KalLogic *logic;
-    KalView * kalView;
-    UIView * calendarView;
-    
     UITableView * feedTableView;
-    
     NSArray * dayEvents;
 }
 
@@ -77,37 +70,28 @@
     [self.view addSubview:navBar];
     
     
-    
-    logic = [[KalLogic alloc] initForDate:[NSDate date]];
-    
     //TODO:: Xiang convertLocalDate is need?
     //NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
-    NSDate * localeDate = self.eventTime.start;
-    KalDate * date = [KalDate dateFromNSDate:localeDate];
-    kalView = [[KalView alloc] initWithFrame:self.view.bounds delegate:nil logic:logic selectedDate:date hideActionBar:YES];
-    [kalView swapToMonthMode];
-  
-    [kalView setKalTileViewDataSource:self];
-    kalView.userInteractionEnabled = NO;
-
+    NSDate * localeDate = [self.eventTime.start cc_dateByMovingToBeginningOfDay];
     
-    [kalView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
     
-    calendarView = [[UIView alloc] initWithFrame:kalView.frame];
-    [calendarView addSubview:kalView];
-    
-    [self.view addSubview:calendarView];
-    
-    feedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 0) style:UITableViewStylePlain];
+    CGRect frame = self.view.frame;
+    frame.origin.y = [navBar getMaxY];
+    frame.size.height -= frame.origin.y;
+    feedTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     feedTableView.allowsSelection = NO;
     feedTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     feedTableView.backgroundColor = [UIColor whiteColor];
     feedTableView.dataSource = self;
     feedTableView.delegate = self;
     
+    UIView *bgview = [[UIView alloc] initWithFrame: feedTableView.frame];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    feedTableView.backgroundView = bgview;
+
+    
     [self.view addSubview:feedTableView];
 
-    [self ajustViewFrame];
     
     [self loadEvents:localeDate];
 }
@@ -129,24 +113,6 @@
 }
 
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"frame"] && (object == kalView)) {
-        [self ajustViewFrame];
-    }
-}
-
-- (void)ajustViewFrame
-{
-    CGRect frame = kalView.frame;
-    frame.origin.y = self.view.bounds.size.height - frame.size.height;
-    calendarView.frame = frame;
-    
-    int top = 64;
-    int bottom = calendarView.frame.origin.y;
-
-    feedTableView.frame = CGRectMake(0, top, 320, bottom-top);
-}
 
 #pragma mark -
 #pragma mark KalTileViewDataSource
