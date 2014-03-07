@@ -77,7 +77,8 @@
 //Begin SNS login
 -(void) signinFacebook:(NSString *) accessToken andCallback:(void (^)(NSInteger error, User * user))callback;
 
--(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback;
+
+-(void) signinGooglePlus:(NSString *)accessToken andRefeshToken:(NSString *) refreshToken andCallback:(void (^)(NSInteger, User *))callback;
 
 
 -(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback;
