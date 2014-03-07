@@ -698,6 +698,24 @@ static CoreDataModel * instance;
     return results;
 }
 
+
+-(NSArray *) getContactEntitysByIDs:(NSString *) ids
+{
+    if (!managedObjectContext)
+    {
+        return nil;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id in (%@)", ids];
+    [fetchRequest setPredicate:predicate];
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    return results;
+}
+
 -(NSArray *) getAllContactEntity
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

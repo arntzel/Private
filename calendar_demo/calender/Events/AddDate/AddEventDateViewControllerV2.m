@@ -70,8 +70,11 @@
         
     startDate = [NSDate date];
     
-    selectedStartTime = startDate;
-    //selectedEndTime = [NSDate dateWithTimeInterval:3600 sinceDate:selectedStartTime];
+    if(self.proposeStart == nil) {
+        selectedStartTime = startDate;
+    } else {
+        selectedStartTime = self.proposeStart.start;
+    }
     
     [self.datePricker setDate:selectedStartTime];
     

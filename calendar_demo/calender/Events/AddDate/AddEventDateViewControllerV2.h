@@ -10,6 +10,8 @@
 #import "FeedEventTableView.h"
 #import "AddEventDateViewController.h"
 
+#import "ProposeStart.h"
+
 @interface AddEventDateViewControllerV2 : BaseUIViewController
 
 
@@ -34,6 +36,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+@property(strong) ProposeStart * proposeStart;
 
 @property(strong) FeedEventTableView * tableView;
 

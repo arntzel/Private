@@ -585,6 +585,17 @@
 //    [tempEventDate release];
     
     AddEventDateViewControllerV2 * addDate = [[AddEventDateViewControllerV2 alloc] init];
+    
+    if(self.date2Create) {
+        
+        ProposeStart * proposeStart = [[ProposeStart alloc] init];
+        proposeStart.start = self.date2Create;
+        proposeStart.duration_hours = 1;
+        proposeStart.start_type = START_TYPEEXACTLYAT;
+        addDate.proposeStart = proposeStart;
+        [proposeStart release];
+    }
+    
     addDate.delegate = self;
     [self.navigationController pushViewController:addDate animated:YES];
     [addDate release];

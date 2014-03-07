@@ -5,6 +5,7 @@
 
 #import "UserModel.h"
 #import "CoreDataModel.h"
+#import "UserSetting.h"
 
 #import "ViewUtils.h"
 #import "Utils.h"
@@ -26,6 +27,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     NSMutableArray * selectedUsers;
     NSMutableArray * calvinSearchedUsers;
+    
+    NSMutableArray * recentUsers;
+    
     int offset;
     
     //NSOperationQueue * queue;
@@ -39,19 +43,10 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [selectedUsers release];
-    [calvinSearchedUsers release];
-    
-    
     self.tableView = nil;
     self.indicatorView = nil;
     
     searchBar.delegate = nil;
-    [searchBar release];
-    [line release];
-    [searchView release];
-    
-    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -66,7 +61,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
-    [navBar release];
     
     
     CGRect searchViewFrame;
@@ -137,9 +131,18 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     for(Contact * contact in selectedUsers)
     {
-        AddEventInvitePeople * people = [[[AddEventInvitePeople alloc] init] autorelease];
+        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
         people.user = contact;
         [self addOjbToTokenFieldName:[contact getReadableUsername] Obj:people isValid:YES];
+    }
+    
+    
+    NSString * recentIDS = [[UserSetting getInstance] getStringValue:@"SETTING_RECENT_CONTACT_IDS"];
+    if (recentIDS != nil) {
+        NSArray * contacts = [[CoreDataModel getInstance] getContactEntitysByIDs:recentIDS];
+        recentUsers = [[NSMutableArray alloc] initWithArray:contacts];
+    } else {
+        recentUsers = [[NSMutableArray alloc] init];
     }
     
     [self refreshTableView];
@@ -197,8 +200,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)addLastManuInputContact
 {
     for (Contact* selectedUser in selectedUsers) {
-        AddEventInvitePeople *people = [[[AddEventInvitePeople alloc] init] autorelease];;
-        people.user = [[[Contact alloc] init] autorelease];
+        AddEventInvitePeople *people = [[AddEventInvitePeople alloc] init];;
+        people.user = [[Contact alloc] init];
         people.user.email = [selectedUser.email copy];
         people.user.phone = [selectedUser.phone copy];
         NSString *text = [people.user getReadableUsername];
@@ -463,8 +466,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     AddEventInvitePeople *people = nil;
     
     if (!obj) {
-        people = [[[AddEventInvitePeople alloc] init] autorelease];;
-        people.user = [[[Contact alloc] init] autorelease];
+        people = [[AddEventInvitePeople alloc] init];;
+        people.user = [[Contact alloc] init];
         
         if([Utils isValidatePhoneNumber:string]) {
             people.user.phone = string;

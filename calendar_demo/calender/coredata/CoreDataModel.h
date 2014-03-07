@@ -74,6 +74,9 @@ typedef enum
 -(NSArray *) getContactEntitysWithID:(int) contactid;
 
 
+-(NSArray *) getContactEntitysByIDs:(NSString *) ids;
+
+
 /**
  *  get the event from Calendar App.
  *

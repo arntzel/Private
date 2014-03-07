@@ -232,7 +232,7 @@
 		76591A8617FFB09A00DE3AB2 /* AddLocationTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8117FFB09A00DE3AB2 /* AddLocationTextView.xib */; };
 		76591A8717FFB09A00DE3AB2 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A8317FFB09A00DE3AB2 /* AddLocationViewController.m */; };
 		76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A8417FFB09A00DE3AB2 /* AddLocationViewController.xib */; };
-		76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9117FFB12900DE3AB2 /* AddEventInviteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9117FFB12900DE3AB2 /* AddEventInviteViewController.m */; };
 		76591A9817FFB12900DE3AB2 /* AddEventInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9217FFB12900DE3AB2 /* AddEventInviteViewController.xib */; };
 		76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76591A9A17FFB23200DE3AB2 /* EventLocationViewController.m */; };
 		76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76591A9B17FFB23200DE3AB2 /* EventLocationViewController.xib */; };

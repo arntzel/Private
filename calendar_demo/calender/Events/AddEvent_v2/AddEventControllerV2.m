@@ -663,6 +663,7 @@
             
             EventDetailController * detailCtl = [[EventDetailController alloc] init];
             detailCtl.popDelegate = self.popDelegate;
+            detailCtl.date2Create = self.date2Create;
             detailCtl.eventID = newEvent.id;
             detailCtl.event = newEvent;
             
