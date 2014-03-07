@@ -454,13 +454,17 @@
         
         FeedEventEntity * event = [events objectAtIndex:row];
 
-        //if([event.eventType intValue]== 0) {
+        //Do't show ical event in detail view
+        if([event.eventType intValue]== 5) {
+            return;
             
-            EventDetailController * detailCtl = [[EventDetailController alloc] init];
-            detailCtl.popDelegate = self.popDelegate;
-            detailCtl.eventID = [event.id intValue];
-            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
-        //}
+        }
+        
+        
+        EventDetailController * detailCtl = [[EventDetailController alloc] init];
+        detailCtl.popDelegate = self.popDelegate;
+        detailCtl.eventID = [event.id intValue];
+        [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
     }
 }
 

@@ -267,8 +267,8 @@ static CoreDataModel * instance;
     
     NSPredicate *predicate;
     
-    int type = 0x00000001 << eventType;
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
+    //int type = 0x00000001 << eventType;
+    predicate = [NSPredicate predicateWithFormat:@"(eventType = %d) && (ext_event_id=%@)", eventType, ext_event_id];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if ([results count] > 0)

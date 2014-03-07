@@ -301,7 +301,7 @@
                 [model saveData];
                 
                 //[model getFeedEventWithEventType:5];
-                //[model notifyModelChange];
+                [model notifyModelChange];
             }
             
             if (completion) {
