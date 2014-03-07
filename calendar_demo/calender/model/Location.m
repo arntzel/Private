@@ -67,6 +67,6 @@
 
 -(BOOL) isValid
 {
-    return self.lat != 0 && self.lng != 0;
+    return (self.lat != 0 && self.lng != 0) || (self.location != nil && self.location.length > 0);
 }
 @end
