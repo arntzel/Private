@@ -21,16 +21,18 @@
     EventAttendeeEntity * entity = [[CoreDataModel getInstance] createEntity:@"EventAttendeeEntity"];
     
     entity.id         = [json objectForKey:@"id"];
-    entity.first_name = [json objectForKey:@"first_name"];
-    entity.last_name  = [json objectForKey:@"last_name"];
-    entity.email      = [json objectForKey:@"email"];
-    entity.fullname   = [Utils chekcNullClass:[json objectForKey:@"fullname"]];
     entity.is_owner   = [json objectForKey:@"is_owner"];
     entity.status     = [json objectForKey:@"status"];
     entity.invite_key = [Utils chekcNullClass:[json objectForKey:@"invite_key"]];
-    entity.avatar_url = [Utils chekcNullClass:[json objectForKey:@"avatar_url"]];
     entity.created    = [Utils parseNSDate:[json objectForKey:@"created"]];
-
+    
+    NSDictionary * jsonContact = [json objectForKey:@"contact"];
+    entity.first_name = [jsonContact objectForKey:@"first_name"];
+    entity.last_name  = [jsonContact objectForKey:@"last_name"];
+    entity.email      = [jsonContact objectForKey:@"email"];
+    entity.fullname   = [Utils chekcNullClass:[jsonContact objectForKey:@"fullname"]];
+    entity.avatar_url = [Utils chekcNullClass:[jsonContact objectForKey:@"avatar_url"]];
+   
     return entity;
 }
 
