@@ -18,6 +18,8 @@
         return nil;
     }
     
+    //LOG_D(@"createEventAttendeeEntity:%@", json);
+    
     EventAttendeeEntity * entity = [[CoreDataModel getInstance] createEntity:@"EventAttendeeEntity"];
     
     entity.id         = [json objectForKey:@"id"];
@@ -27,9 +29,9 @@
     entity.created    = [Utils parseNSDate:[json objectForKey:@"created"]];
     
     NSDictionary * jsonContact = [json objectForKey:@"contact"];
-    entity.first_name = [jsonContact objectForKey:@"first_name"];
-    entity.last_name  = [jsonContact objectForKey:@"last_name"];
-    entity.email      = [jsonContact objectForKey:@"email"];
+    entity.first_name = [Utils chekcNullClass:[jsonContact objectForKey:@"first_name"]];
+    entity.last_name  = [Utils chekcNullClass:[jsonContact objectForKey:@"last_name"]];
+    entity.email      = [Utils chekcNullClass:[jsonContact objectForKey:@"email"]];
     entity.fullname   = [Utils chekcNullClass:[jsonContact objectForKey:@"fullname"]];
     entity.avatar_url = [Utils chekcNullClass:[jsonContact objectForKey:@"avatar_url"]];
    
