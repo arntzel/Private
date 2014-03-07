@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 
 #import "EventAttendeeEntity.h"
+#import "EventAttendee.h"
 
 @interface EventAttendeeEntity (EventAttendeeEntityExtra)
 
 
 +(EventAttendeeEntity *) createEventAttendeeEntity:(NSDictionary *) json;
+
+
++(EventAttendeeEntity *) createEventAttendeeEntityByEventAttendee:(EventAttendee *) eventAtd;
 
 @end

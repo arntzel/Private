@@ -18,8 +18,6 @@
         return nil;
     }
     
-    //LOG_D(@"createEventAttendeeEntity:%@", json);
-    
     EventAttendeeEntity * entity = [[CoreDataModel getInstance] createEntity:@"EventAttendeeEntity"];
     
     entity.id         = [json objectForKey:@"id"];
@@ -35,6 +33,27 @@
     entity.fullname   = [Utils chekcNullClass:[jsonContact objectForKey:@"fullname"]];
     entity.avatar_url = [Utils chekcNullClass:[jsonContact objectForKey:@"avatar_url"]];
    
+    return entity;
+}
+
++(EventAttendeeEntity *) createEventAttendeeEntityByEventAttendee:(EventAttendee *) eventAtd
+{
+    EventAttendeeEntity * entity = [[CoreDataModel getInstance] createEntity:@"EventAttendeeEntity"];
+    
+    entity.id         = @(eventAtd.id);
+    entity.is_owner   = @(eventAtd.is_owner);
+    entity.status     = @(eventAtd.status);
+    entity.invite_key = eventAtd.invite_key;
+    entity.created    = eventAtd.modified;
+    
+    Contact * contact = eventAtd.contact;
+    
+    entity.first_name = contact.first_name;
+    entity.last_name  = contact.last_name;
+    entity.email      = contact.email;
+    entity.fullname   = contact.fullname;
+    entity.avatar_url = contact.avatar_url;
+    
     return entity;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "Location.h"
+#import "Utils.h"
 
 @implementation Location
 
@@ -27,8 +28,8 @@
     Location * location = [[Location alloc] init];
 
     location.id = [[json objectForKey:@"id"] intValue];
-    location.location = [json objectForKey:@"location"];
-    location.photo = [json objectForKey:@"photo"];
+    location.location = [Utils chekcNullClass:[json objectForKey:@"location"]];
+    location.photo =  [Utils chekcNullClass:[json objectForKey:@"photo"]];
 
     id obj = [json objectForKey:@"lat"];
     if(![obj isKindOfClass: [NSNull class]]) {

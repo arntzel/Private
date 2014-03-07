@@ -153,6 +153,14 @@
     } else {
         self.location = nil;
     }
+    
+    
+    [self removeAttendees:self.attendees];
+    for(EventAttendee * evtAtd in event.attendees)
+    {
+        EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntityByEventAttendee:evtAtd];
+        [self addAttendeesObject:atd];
+    }
 }
 
 -(void) convertFromCalendarEvent:(Event*) event

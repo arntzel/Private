@@ -1121,8 +1121,14 @@
 - (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 {
     self.event = newEvent;
-    
     [invitePlaceContentView updateInvitee:[newEvent getAllContact]];
+    
+    FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
+    if(entity != nil) {
+        [entity convertFromEvent:newEvent];
+        [[CoreDataModel getInstance] saveData];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
+    }
 }
 
 @end
