@@ -288,14 +288,24 @@
     
     NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     
-    for(EventAttendeeEntity * atd in self.attendees) {
-        [self removeAttendeesObject:atd];
+    if(self.attendees != nil) {
+        NSArray * array = [self.attendees allObjects];
+        
+        for(int i=0;i<array.count;i++) {
+            EventAttendeeEntity * atd = [array objectAtIndex:i];
+            [self removeAttendeesObject:atd];
+        }
     }
     
-    for(NSDictionary * atendee in attendees) {
-        EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
-        [self addAttendeesObject:atd];
+    
+    if(attendees != nil) {
+        for(NSDictionary * atendee in attendees) {
+            EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
+            [self addAttendeesObject:atd];
+        }
     }
+    
+   
     
 //    if(attendees == nil || attendees.count == 0) {
 //        
