@@ -149,15 +149,17 @@
                 NSString  *headerUrl = attend.avatar_url;
                 
                 v.hidden = NO;
+                v.layer.cornerRadius = self.imgUser.frame.size.width/2;
+                v.layer.masksToBounds = YES;
+                v.layer.borderWidth = 1.0;
+                v.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
                 
                 if (headerUrl == nil) {
-                    self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
+                    v.image = [UIImage imageNamed:@"default_person.png"];
                 }
-                else {
-                    [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
-                                 placeholderImage:[UIImage imageNamed:@"default_person.png"]];
-                    
-                    
+                else
+                {
+                    [v setImageWithURL:[NSURL URLWithString:headerUrl] placeholderImage:[UIImage imageNamed:@"default_person.png"]];
                 }
             }
         }
