@@ -70,8 +70,15 @@
 //        assert(NO);
 //    }
     
-    self.actionText.text = @"Propose time";
-    self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+    
+    if (event.max_proposed_end_time == nil ) {
+        self.actionText.text = @"Propose time";
+        self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
+    }
+    else {
+        self.actionText.text = @"Confirm time";
+        self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+    }
     
     //CreatorEntity * user = event.creator;
     NSString * headerUrl = event.creator.avatar_url;
