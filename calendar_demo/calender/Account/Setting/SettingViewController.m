@@ -30,7 +30,10 @@
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import "SettingsModel.h"
 #import "LocationChangedViewController.h"
-@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate>
+
+#import "Utils.h"
+
+@interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scroller;
 @property (nonatomic, strong) SettingsContentView *t_settingsContentView;
@@ -105,6 +108,21 @@
     [self.scroller addSubview:self.t_settingsContentView];
     [self.view addSubview:self.scroller];
     
+    self.scroller.delegate = self;
+    
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emailPaswrodViewTap:)];
+    [self.t_settingsContentView.emailPasswordView addGestureRecognizer:tapGesture];
+    
+}
+
+-(void) emailPaswrodViewTap:(id) sender
+{
+    LOG_D(@"emailPaswrodViewTap");
+    
+    PwdChangeViewController * viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
+    
+    [(PwdChangeViewController *)viewCtr setHas_usable_password:self.loginUser.has_usable_password];
+    [self.navigationController pushViewController:viewCtr animated:YES];
 }
 
 - (void)fbviewChangeWithConnectStatus:(BOOL)isConnect
@@ -174,6 +192,17 @@
     {
         [self googleviewChangeWithConnectStatus:NO];
     }
+    
+    
+    if(self.loginUser.locationDic != nil) {
+        NSString * postal_code = [Utils chekcNullClass:[self.loginUser.locationDic objectForKey:@"postal_code"]];
+        
+        if(postal_code == nil) {
+            self.t_settingsContentView.zipCodeTextField.text = @"";
+        } else {
+            self.t_settingsContentView.zipCodeTextField.text = postal_code;
+        }
+    }
 }
 
 #pragma mark - User Interaction Helper
@@ -194,8 +223,7 @@
 
 - (void)dismissKeyBoard:(id)sender
 {
-    [self.t_settingsContentView.firstNameField resignFirstResponder];
-    [self.t_settingsContentView.lastNameField resignFirstResponder];
+     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 -(IBAction) logout:(id)sender
@@ -802,5 +830,11 @@
     }
  
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self dismissKeyBoard:nil];
 }
 @end

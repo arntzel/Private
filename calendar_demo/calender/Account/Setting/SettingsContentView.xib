@@ -18,6 +18,7 @@
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3x-M8-fTO">
                             <rect key="frame" x="16" y="0.0" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Log Out" backgroundImage="settings_main_one_row.png">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,6 +31,7 @@
                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PeI-HG-fcw">
                             <rect key="frame" x="16" y="54" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Send Feedback" backgroundImage="settings_main_one_row.png">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,6 +44,7 @@
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mbn-kz-94Z">
                             <rect key="frame" x="16" y="107" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Delete Account" backgroundImage="settings_main_one_row.png">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,18 +163,21 @@
                     <rect key="frame" x="0.0" y="235" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EEX-a3-uXy" userLabel="pwdTitleLabel">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EEX-a3-uXy" userLabel="zipTitleLabel">
                             <rect key="frame" x="24" y="7" width="84" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10003" textAlignment="right" minimumFontSize="17" id="W97-NZ-623" userLabel="zipcodeTextField">
+                        <textField opaque="NO" clipsSubviews="YES" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10003" textAlignment="right" minimumFontSize="17" id="sVr-dG-YHp" userLabel="firstNameField">
                             <rect key="frame" x="102" y="7" width="198" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="J7r-ln-viN"/>
+                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" id="fGI-9Z-2om">
                             <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -219,7 +225,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lcd-aY-AVp">
-                            <rect key="frame" x="24" y="0.0" width="70" height="21"/>
+                            <rect key="frame" x="24" y="2" width="70" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -413,6 +419,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="emailLabel" destination="kn8-tI-uR8" id="KS1-a6-L2L"/>
+                <outlet property="emailPasswordView" destination="cAl-oJ-l21" id="8mD-7B-uyX"/>
                 <outlet property="fbConnectBtn" destination="W4M-rV-WHS" id="sSs-j6-unC"/>
                 <outlet property="fbLabel" destination="Qqk-oA-bnf" id="5ZC-kM-37k"/>
                 <outlet property="fbTapGesture" destination="jCe-Nu-ye7" id="2y1-6S-P12"/>
@@ -424,6 +431,7 @@
                 <outlet property="googleView" destination="Q40-RU-kK4" id="P9d-4v-eMV"/>
                 <outlet property="headPortaitBtn" destination="9ww-T9-j3y" id="ViW-oH-pqB"/>
                 <outlet property="lastNameField" destination="l4X-pD-Jcg" id="z1C-2C-Wqd"/>
+                <outlet property="zipCodeTextField" destination="sVr-dG-YHp" id="wHc-Af-yGY"/>
             </connections>
         </view>
         <tapGestureRecognizer id="jCe-Nu-ye7">
@@ -441,17 +449,10 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
     </resources>
 </document>

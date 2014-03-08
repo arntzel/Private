@@ -28,9 +28,13 @@
 @interface SettingsContentView : UIControl  
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+
+@property (weak, nonatomic) IBOutlet UIView * emailPasswordView;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *headPortaitBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headPortraitImgView;
+
+@property (weak,nonatomic) IBOutlet UITextField * zipCodeTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *fbConnectBtn;
 @property (weak, nonatomic) IBOutlet UIButton *googleConnectBtn;

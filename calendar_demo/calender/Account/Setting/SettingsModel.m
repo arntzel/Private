@@ -233,7 +233,7 @@
         
         int status = httpResp.statusCode;
         
-        if(status == 202)
+        if(status == 200)
         {
             if (data)
             {
