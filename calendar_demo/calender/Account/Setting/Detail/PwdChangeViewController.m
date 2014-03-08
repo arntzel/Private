@@ -76,6 +76,14 @@
     [self.navigation.rightBtn addTarget:self action:@selector(rightNavBtnBeClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.oldPwdField becomeFirstResponder];
+    
+    CGRect frame = self.setPwdView.frame;
+    frame.origin.x = 0;
+    frame.origin.y = frame.size.height/2;
+    frame.size.height = 1;
+    UIView * view = [[UIView alloc] initWithFrame:frame];
+    view.backgroundColor = [UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1];
+    [self.setPwdView addSubview:view];
 }
 
 #pragma mark - User Interaction

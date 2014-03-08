@@ -120,8 +120,7 @@
     LOG_D(@"emailPaswrodViewTap");
     
     PwdChangeViewController * viewCtr = [[PwdChangeViewController alloc] initWithNibName:@"PwdChangeViewController" bundle:[NSBundle mainBundle]];
-    
-    [(PwdChangeViewController *)viewCtr setHas_usable_password:self.loginUser.has_usable_password];
+    [viewCtr setHas_usable_password:self.loginUser.has_usable_password];
     [self.navigationController pushViewController:viewCtr animated:YES];
 }
 

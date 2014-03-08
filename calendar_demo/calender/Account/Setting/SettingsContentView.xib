@@ -220,39 +220,34 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.26000000000000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lcd-aY-AVp">
+                    <rect key="frame" x="24" y="490" width="70" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" id="Sie-E2-HVf">
-                    <rect key="frame" x="0.0" y="480" width="320" height="180"/>
+                    <rect key="frame" x="0.0" y="520" width="320" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lcd-aY-AVp">
-                            <rect key="frame" x="24" y="2" width="70" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" id="ZML-Ec-PMs">
-                            <rect key="frame" x="0.0" y="29" width="320" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.84705882349999995" green="0.86666666670000003" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
                         <view contentMode="scaleToFill" id="bVp-yh-R7h">
-                            <rect key="frame" x="0.0" y="79" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="49" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.84705882349999995" green="0.86666666670000003" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" id="eZa-SW-XZI">
-                            <rect key="frame" x="0.0" y="129" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.84705882349999995" green="0.86666666670000003" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" id="MUv-n2-QNI">
-                            <rect key="frame" x="0.0" y="179" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="149" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.84705882349999995" green="0.86666666670000003" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view tag="6" contentMode="scaleToFill" id="8wj-7h-lYC" userLabel="termView" customClass="UIControl">
-                            <rect key="frame" x="15" y="30" width="289" height="45"/>
+                            <rect key="frame" x="15" y="0.0" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_main_arrow.png" id="JBp-6w-OA2">
@@ -273,7 +268,7 @@
                             </connections>
                         </view>
                         <view tag="7" contentMode="scaleToFill" id="iwx-js-kXJ" userLabel="policyView" customClass="UIControl">
-                            <rect key="frame" x="15" y="80" width="289" height="45"/>
+                            <rect key="frame" x="15" y="50" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_main_arrow.png" id="D7d-4H-7sd">
@@ -294,7 +289,7 @@
                             </connections>
                         </view>
                         <view tag="8" contentMode="scaleToFill" id="v3B-6y-XFM" userLabel="aboutUsView" customClass="UIControl">
-                            <rect key="frame" x="15" y="130" width="289" height="45"/>
+                            <rect key="frame" x="15" y="100" width="289" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_main_arrow.png" id="bfq-DT-jex">
@@ -449,10 +444,17 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
     </resources>
 </document>
