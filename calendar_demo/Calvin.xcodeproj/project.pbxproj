@@ -181,6 +181,7 @@
 		3DBD82C8188778B90007EF36 /* shadow_ovlerlay_asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD82C7188778B90007EF36 /* shadow_ovlerlay_asset.png */; };
 		3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29286186BC204009759C2 /* libMobClickLibrary.a */; };
 		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
+		3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2F63718CB03AB00E87D56 /* back_button@2x.png */; };
 		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
 		3DF11F541882DD4B00F16140 /* ProposeStartEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F531882DD4B00F16140 /* ProposeStartEntityExtra.m */; };
 		3DF11F571882DFA700F16140 /* EventTimeVoteEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F561882DFA700F16140 /* EventTimeVoteEntityExtra.m */; };
@@ -872,6 +873,7 @@
 		3DC29286186BC204009759C2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		3DC29288186BC204009759C2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		3DC2F63718CB03AB00E87D56 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
 		3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventViewNoEventCell.xib; path = calender/pending/PendingEventViewNoEventCell.xib; sourceTree = SOURCE_ROOT; };
 		3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
 		3DF11F521882DD4B00F16140 /* ProposeStartEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStartEntityExtra.h; path = calender/coredata/ProposeStartEntityExtra.h; sourceTree = SOURCE_ROOT; };
@@ -2376,6 +2378,7 @@
 		769AB99517DF51340033E677 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				3DC2F63718CB03AB00E87D56 /* back_button@2x.png */,
 				2324429D18546BC5008930EA /* add_icon.png */,
 				2324429E18546BC5008930EA /* add_icon@2x.png */,
 				2324429F18546BC5008930EA /* Calvin_logo.png */,
@@ -2703,32 +2706,32 @@
 				769ABB8517DF54290033E677 /* EventView.h */,
 				769ABB8617DF54290033E677 /* EventView.m */,
 				769ABB8717DF54290033E677 /* EventView.xib */,
+				93E398C818C4157D00B75150 /* EventViewCell.h */,
+				93E398C918C4157D00B75150 /* EventViewCell.m */,
+				93E398CD18C415AB00B75150 /* EventViewCell.xib */,
+				93A8E275189C293400A3753F /* FeedEventHeader.xib */,
 				769ABB8817DF54290033E677 /* FeedEventTableView.h */,
 				769ABB8917DF54290033E677 /* FeedEventTableView.m */,
+				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
+				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
 				938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */,
 				769ABB8A17DF54290033E677 /* FeedViewController.h */,
 				769ABB8B17DF54290033E677 /* FeedViewController.m */,
+				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
+				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
+				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
+				34262E151869C1A300288EA9 /* iCalEventShowSettingsViewController.h */,
+				34262E161869C1A300288EA9 /* iCalEventShowSettingsViewController.m */,
+				34262E171869C1A300288EA9 /* iCalEventShowSettingsViewController.xib */,
 				769ABB8C17DF54290033E677 /* LoadingProgressView.h */,
 				769ABB8D17DF54290033E677 /* LoadingProgressView.m */,
 				769ABB8E17DF54290033E677 /* LoadingProgressView.xib */,
 				769ABB8F17DF54290033E677 /* Navigation.h */,
 				769ABB9017DF54290033E677 /* Navigation.m */,
 				769ABB9117DF54290033E677 /* Navigation.xib */,
-				34262E151869C1A300288EA9 /* iCalEventShowSettingsViewController.h */,
-				34262E161869C1A300288EA9 /* iCalEventShowSettingsViewController.m */,
-				34262E171869C1A300288EA9 /* iCalEventShowSettingsViewController.xib */,
-				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
-				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
-				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
-				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
-				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
 				938B2834189806520074C424 /* NoEventsCell.h */,
 				938B2835189806520074C424 /* NoEventsCell.m */,
 				938B2837189806650074C424 /* NoEventsCell.xib */,
-				93A8E275189C293400A3753F /* FeedEventHeader.xib */,
-				93E398C818C4157D00B75150 /* EventViewCell.h */,
-				93E398C918C4157D00B75150 /* EventViewCell.m */,
-				93E398CD18C415AB00B75150 /* EventViewCell.xib */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -3580,6 +3583,7 @@
 				769CB5721886CD740082400D /* add_event_time_v2.png in Resources */,
 				769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */,
 				765B24FE1802965D00B01A0A /* tokenHighlighted@2x.png in Resources */,
+				3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */,
 				7662F75917F0761900B64E40 /* login_mainaccess_signin.png in Resources */,
 				76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */,
 				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
@@ -4099,8 +4103,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIANG FANG (YKPS44J75T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIANG FANG (YKPS44J75T)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -4120,8 +4124,8 @@
 					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "04748347-B8E9-4DE6-B204-5CD200A53A5F";
-				"PROVISIONING_PROFILE[sdk=*]" = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "BB7A5F88-03B0-4B50-9F48-349ECA185A36";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4132,8 +4136,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -4153,7 +4157,7 @@
 					"/Personal/workspace/calvinapp-ios/calendar_demo/calender/Third-Party-Libraries/OHAttributedLabel",
 				);
 				PRODUCT_NAME = Calvin;
-				PROVISIONING_PROFILE = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AF3865AB-7766-4CCA-AF92-6C6CC3EADCAF";
 				WRAPPER_EXTENSION = app;
 			};

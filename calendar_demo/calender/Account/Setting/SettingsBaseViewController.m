@@ -34,6 +34,10 @@
     [self.navigation.rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.navigation.leftBtn addTarget:self action:@selector(leftNavBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.navigation];
+    
+   
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+
 }
 
 - (void)didReceiveMemoryWarning

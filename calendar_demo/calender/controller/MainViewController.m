@@ -22,7 +22,7 @@
 //    PedingEventViewController * pendingEventViewCtr;
     PedingEventViewControllerNew * pendingEventViewCtr;
     
-    SettingViewController * settingViewCtr;
+    //SettingViewController * settingViewCtr;
     
     menuNavigation * menuNavigationController;
     int currentIndex;
@@ -47,7 +47,7 @@
     pendingEventViewCtr = [[PedingEventViewControllerNew alloc] initWithNibName:@"PedingEventViewControllerNew" bundle:nil];
     pendingEventViewCtr.popDelegate = self;
     
-    settingViewCtr = [[SettingViewController alloc] init];
+    
     
     self = [super initWithRootViewController:feedViewCtr];
     
@@ -55,12 +55,7 @@
     
     feedViewCtr.delegate = self;
     pendingEventViewCtr.delegate = self;
-    settingViewCtr.delegate = self;
-    settingViewCtr.updataLeftNavBlock = ^{
-     
-        [leftController.tableView reloadData];
-    };
-
+    
     menuNavigationController = leftController;
     
     currentIndex = 0;
@@ -120,12 +115,6 @@
             }
         }];
     }
-    if (settingViewCtr.nameChanged)
-    {
-        [settingViewCtr updataUserProfile:nil];
-        settingViewCtr.nameChanged = NO;
-    }
-    [settingViewCtr dismissKeyBoard:nil];
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -169,7 +158,8 @@
         }
 
         case 2: {
-            [self setRootController:settingViewCtr animated:YES];
+            
+            
             break;
         }
 
@@ -181,17 +171,7 @@
 
 -(void)onSettingButtonTyped
 {
-    if (self.rootViewController == settingViewCtr)
-        return;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.3];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
-    
-    [self setRootViewController:settingViewCtr];
-    [UIView commitAnimations];
+   
 }
 
 -(void)onLogoButtonTyped

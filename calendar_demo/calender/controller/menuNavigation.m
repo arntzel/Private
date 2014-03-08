@@ -22,6 +22,9 @@
 #import "EventDetailController.h"
 #import "BLRView.h"
 
+#import "SettingViewController.h"
+
+
 #define BANNER_HEIGHT 65 //55
 
 #define BANNER_LEFT_MARGIN 20
@@ -358,16 +361,19 @@
 //        [self.delegate onSettingButtonTyped];
 //    });
     
-    self.view.alpha = 1;
-    [UIView animateWithDuration:.2 animations:^{
-        
-        self.view.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-        self.view.alpha = 1;
-        [self.delegate onSettingButtonTyped];
-    }];
+//    self.view.alpha = 1;
+//    [UIView animateWithDuration:.2 animations:^{
+//        
+//        self.view.alpha = 0;
+//        
+//    } completion:^(BOOL finished) {
+//        [self.view removeFromSuperview];
+//        self.view.alpha = 1;
+//        [self.delegate onSettingButtonTyped];
+//    }];
+    
+    SettingViewController * settingViewCtr = [[SettingViewController alloc] init];
+    [[RootNavContrller defaultInstance] pushViewController:settingViewCtr animated:YES];
 }
 
 //-(void)onLogoButtonTyped

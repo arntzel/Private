@@ -69,13 +69,17 @@
 #pragma mark - Layout Helper
 - (void)setupViews
 {
-    [self.navigation setUpMainNavigationButtons:ACCOUNT_SETTING];
-    //self.navigation.rightBtn.hidden = YES;
-    self.navigation.titleLable.text = @"Accounts & Settings";
-    self.navigation.titleLable.hidden = YES;
-    [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigation.rightBtn addTarget:self action:@selector(btnCalendar:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigation.backgroundColor = [UIColor clearColor];
     
+    [self.navigation setUpMainNavigationButtons:ACCOUNT_SETTING];
+    self.navigation.titleLable.text = @"Settings";
+    self.navigation.titleLable.hidden = NO;
+    self.navigation.titleLable.textColor = [UIColor colorWithRed:61/255.0f green:173/255.0f blue:145/255.0f alpha:1];
+    
+    
+    self.navigation.rightBtn.hidden = YES;
+    [self.navigation.leftBtn setTitle:@"" forState:UIControlStateNormal];
+    [self.navigation.leftBtn setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
     
     float scrollerY = CGRectGetMaxY(self.navigation.frame);
     self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
