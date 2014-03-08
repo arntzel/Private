@@ -71,12 +71,12 @@
     
     //[feedViewCtr onCoreDataModelStarted];
 
-    //[[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
+    [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
         
         //[feedViewCtr onCoreDataModelChanged];
         //[pendingEventViewCtr onCoreDataModelChanged];
         
-    //}];
+    }];
     
     [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     

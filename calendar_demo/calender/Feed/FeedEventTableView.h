@@ -39,7 +39,7 @@
 
 -(void) onDisplayFirstDayChanged:(NSDate *) firstDay;
 
--(void) onAddNewEvent;
+-(void) onAddNewEvent:(NSDate *) date;
 
 @end
 

@@ -11,6 +11,8 @@
 #import "LocationEntityExtra.h"
 #import "EventAttendeeEntityExtra.h"
 
+
+
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
 
@@ -165,7 +167,7 @@
 
 -(void) convertFromCalendarEvent:(Event*) event
 {
-    /*
+    
     self.id = [NSNumber numberWithInt:event.id];
     
     self.archived =  [NSNumber numberWithBool:event.archived];
@@ -179,8 +181,7 @@
     self.duration_hours = [NSNumber numberWithInt:event.duration_hours];
     self.duration_minutes = [NSNumber numberWithInt:event.duration_minutes];
     
-    int eventType = 0x00000001 << event.eventType;
-    self.eventType = [NSNumber numberWithInt:eventType];
+    self.eventType = @(event.eventType);
     self.is_all_day =  [NSNumber numberWithBool:event.is_all_day];
     
     self.start = event.start;
@@ -191,14 +192,18 @@
     //self.userstatus = event.userstatus;
     self.locationName = event.location.location;
     
+    CreatorEntity * creator = [[CoreDataModel getInstance] createEntity:@"CreatorEntity"];
+    creator.id = @(event.creator.id);
+    creator.email = event.creator.email;
+    
+    self.creator = creator;
     
     self.creatorID = [NSNumber numberWithInt:event.creator.id];
     self.creatoremail = event.creator.email;
     
  
     for(EventAttendee * atd in event.attendees) {
-        UserEntity * entity = [[CoreDataModel getInstance] createEntity:@"UserEntity"];
-        [entity convertFromUser:atd];
+        EventAttendeeEntity * entity = [EventAttendeeEntity createEventAttendeeEntityByEventAttendee:atd];
         [self addAttendeesObject:entity];
     }
     self.ext_event_id = event.ext_event_id;
@@ -207,7 +212,7 @@
     self.last_modified = event.last_modified;
     
     //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");
-     */
+     
 }
 
 
@@ -283,17 +288,36 @@
     
     NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     
-    if(attendees == nil || attendees.count == 0) {
+    if(self.attendees != nil) {
+        NSArray * array = [self.attendees allObjects];
         
-        [self removeAttendees:self.attendees];
-        
-    } else {
-      
+        for(int i=0;i<array.count;i++) {
+            EventAttendeeEntity * atd = [array objectAtIndex:i];
+            [self removeAttendeesObject:atd];
+        }
+    }
+    
+    
+    if(attendees != nil) {
         for(NSDictionary * atendee in attendees) {
             EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
             [self addAttendeesObject:atd];
         }
     }
+    
+   
+    
+//    if(attendees == nil || attendees.count == 0) {
+//        
+//        [self removeAttendees:self.attendees];
+//        
+//    } else {
+//      
+//        for(NSDictionary * atendee in attendees) {
+//            EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
+//            [self addAttendeesObject:atd];
+//        }
+//    }
 }
 @end
 
