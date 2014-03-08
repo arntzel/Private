@@ -117,11 +117,22 @@
         CoreDataModel * model = [CoreDataModel getInstance];
         NSLog(@"========before download=========");
         for (FeedEventEntity * entity in events) {
-            if([entity.modified_num compare:maxlastupdatetime] > 0) {
+//            if([entity.modified_num compare:maxlastupdatetime] > 0) {
+//                maxlastupdatetime = entity.modified_num;
+//            }
+            
+            LOG_D("modified_num:%@", entity.modified_num);
+            
+            double flat1 = [entity.modified_num doubleValue];
+            double flat2 = [maxlastupdatetime doubleValue];
+            
+            if(flat1 > flat2) {
                 maxlastupdatetime = entity.modified_num;
             }
         }
 
+        LOG_D("maxlastupdatetime:%@", maxlastupdatetime);
+        
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
         NSLog(@"========after download=========");
