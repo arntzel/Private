@@ -633,14 +633,8 @@
     controller.eventTime = eventTime;
     controller.titleBgImage = [photoView getImage];
     
-    if (self.navigationController) {
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-    else {
-        [self presentViewController:controller animated:YES completion:^{
-        }];
-    }
-
+    
+    [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
 

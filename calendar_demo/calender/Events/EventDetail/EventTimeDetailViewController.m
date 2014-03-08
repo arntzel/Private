@@ -33,13 +33,15 @@
 
 #import "NSDateAdditions.h"
 #import "UIView+FrameResize.h"
+#import "EventViewCell.h"
+#import "FeedEventTableViewCell.h"
 
 @interface EventTimeDetailViewController ()<EventDateNavigationBarDelegate,
                                            UITableViewDataSource,
                                            UITableViewDelegate>
 {
     UITableView * feedTableView;
-    NSArray * dayEvents;
+    NSArray * events;
 }
 
 @end
@@ -59,6 +61,7 @@
 {
     [super viewDidLoad];
 	
+    
     NSString * time =  [Utils getProposeStatLabel:self.eventTime];
     NSString * day = [Utils formateDay2:self.eventTime.start];
     
@@ -70,18 +73,17 @@
     [self.view addSubview:navBar];
     
     
-    //TODO:: Xiang convertLocalDate is need?
-    //NSDate * localeDate = [Utils convertLocalDate:self.eventTime.start];
-    NSDate * localeDate = [self.eventTime.start cc_dateByMovingToBeginningOfDay];
-    
-    
     CGRect frame = self.view.frame;
     frame.origin.y = [navBar getMaxY];
     frame.size.height -= frame.origin.y;
     feedTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    
+    [feedTableView registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
+    [feedTableView registerNib:[UINib nibWithNibName:@"EventViewCell" bundle:nil] forCellReuseIdentifier:@"EventViewCell"];
+    
+    
     feedTableView.allowsSelection = NO;
     feedTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    feedTableView.backgroundColor = [UIColor whiteColor];
     feedTableView.dataSource = self;
     feedTableView.delegate = self;
     
@@ -93,17 +95,17 @@
     [self.view addSubview:feedTableView];
 
     
-    [self loadEvents:localeDate];
+    [self loadEvents];
 }
 
 
--(void) loadEvents: (NSDate*) date
+-(void) loadEvents
 {
-    NSString * day = [Utils formateDay:date];
-    
     CoreDataModel * model = [CoreDataModel getInstance];
-    int filetVal = FILTER_BIRTHDAY | FILTER_FB | FILTER_IMCOMPLETE | FILTER_GOOGLE|FILTER_IOS;
-    dayEvents =[model getFeedEvents:day evenTypeFilter:filetVal];
+    NSDate * startDate = [self.eventTime.start cc_dateByMovingToBeginningOfDay];
+    NSDate * endDate = [[self.eventTime getEndTime] cc_dateByMovingToEndOfDay];
+    events = [model getDayFeedEventEntitys:startDate andEndDate:endDate];
+ 
     [feedTableView reloadData];
 }
 
@@ -112,82 +114,114 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
-#pragma mark -
-#pragma mark KalTileViewDataSource
--(int) getEventType:(KalDate *) date
-{
-    NSString * day = [Utils formateDay:[date NSDate]];
-    int type =[[CoreDataModel getInstance] getDayFeedEventType:day];
-    //type = type & tableView.eventTypeFilters;
-    return type;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark tableViewDelegate
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(dayEvents == nil || dayEvents.count == 0) {
+    if(events == nil || events.count == 0) {
         return 1;
     }
     
-    return dayEvents.count;
+    return events.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(dayEvents == nil || dayEvents.count == 0) {
+    if(events == nil || events.count == 0) {
         UITableViewCell * cell = (UITableViewCell*)[ViewUtils createView:@"NoEventsCell"];
         return cell;
     }
     
-    FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
+    UITableViewCell * tableCell;
     
-    if( ![event isBirthdayEvent] ) {
-        EventView * view = [EventView createEventView];
+    BOOL last = (indexPath.row == events.count-1);
+    FeedEventEntity * event = [events objectAtIndex:indexPath.row];
+    
+    if( ![event isBirthdayEvent])
+    {
+        //            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
+        //            EventView * view;
+        //            if(cell == nil) {
+        //                view = [EventView createEventView];
+        //                view.tag = 1;
+        //                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
+        //                [cell addSubview:view];
+        //            } else {
+        //                view = (EventView*)[cell viewWithTag:1];
+        //            }
+        //
+        //            [view refreshView:event lastForThisDay:lastForThisDay];
         
-        [view refreshView:event lastForThisDay:NO];
+        EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
         
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-        [cell addSubview:view];
-        return cell;
+        [cell refreshView:event lastForThisDay:last];
         
-    } else {
-        BirthdayEventView * view = [BirthdayEventView createEventView];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [view refreshView:event lastForThisDay:NO];
-        
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
-        [cell addSubview:view];
-        return cell;
+        tableCell = cell;
     }
-}
+    else
+    {
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"birthdayEventView"];
+        BirthdayEventView * view;
+        if(cell == nil) {
+            view = [BirthdayEventView createEventView];
+            view.tag = 2;
+            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
+            [cell addSubview:view];
+        } else {
+            view = (BirthdayEventView*)[cell viewWithTag:2];
+        }
+        
+        
+        [view refreshView:event lastForThisDay:last];
+        
+        [cell setBackgroundColor:[UIColor clearColor]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        tableCell = cell;
+    }
 
+    if(last) {
+    
+        CGRect frame = tableCell.frame;
+        frame.origin.y = frame.size.height -1;
+        frame.size.height = 1;
+        
+        UIView * line = [[UIView alloc] initWithFrame:frame];
+        line.backgroundColor = [UIColor grayColor];
+        [tableCell addSubview:line];
+        
+    }
+    
+    return  tableCell;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(dayEvents == nil || dayEvents.count == 0) {
-        return 55;
-    }
     
-    FeedEventEntity * event = [dayEvents objectAtIndex:indexPath.row];
+    int row = indexPath.row;
     
-    if([event isBirthdayEvent] ) {
-        return BirthdayEventView_Height;
-    } else {
-        return PlanView_HEIGHT;
+    FeedEventEntity * event = [events objectAtIndex:row];
+    
+    if ([event isBirthdayEvent] ) {
+        return 87;//BirthdayEventView_Height;
     }
+    else {
+        //NSString *eventTitle = event.title;
+#if 0
+        CGSize maxSize = CGSizeMake(270.0, 1000.0f);
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+        CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+        return fontSize.height + 85;
+#endif
+        return 87;//76;//87;
+    }
+
 }
+
 
 @end
