@@ -287,15 +287,16 @@
 {
     CGRect viewFrame = self.frame;
     viewFrame.size.width = 320;
-    if ([self haveDescription]) {
-        [self updateDescriptionFrame];
-        viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8;
-    }
-    else
-    {
-        viewFrame.size.height =  self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height + 8;
-    }
+//    if ([self haveDescription]) {
+//        [self updateDescriptionFrame];
+//        viewFrame.size.height =  self.desciptionView.frame.origin.y + self.desciptionView.frame.size.height + 8;
+//    }
+//    else
+//    {
+//        viewFrame.size.height =  self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height + 8;
+//    }
 
+    viewFrame.size.height =  self.inviteeView.frame.origin.y + self.inviteeView.frame.size.height + 8;
     self.frame = viewFrame;
 }
 
