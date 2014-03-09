@@ -444,17 +444,10 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_arrow.png" width="9" height="14"/>
-        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
-        <image name="settings_main_one_row.png" width="307" height="53"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
     </resources>
 </document>
