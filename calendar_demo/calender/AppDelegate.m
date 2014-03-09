@@ -23,6 +23,8 @@
 #import "MobClick.h"
 #import "TestFlight.h"
 
+#import "EventDetailController.h"
+
 #define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
 @implementation AppDelegate
@@ -50,6 +52,8 @@
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     }
 
+    
+    
     // start of your application:didFinishLaunchingWithOptions // ...
     [TestFlight takeOff:@"1ad5c564-019b-459f-b3a3-89d675d59e6f"];
     // The rest of your application:didFinishLaunchingWithOptions method// ...
@@ -67,7 +71,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
 
     
-    LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    LOG_D(@"xxxxxxxxxxxxxxxxxxxxxxxxxxxx,launchOptions=%@", launchOptions);
     
     application.applicationIconBadgeNumber = 0;
 
@@ -105,6 +109,7 @@
         [msgModel setUnReadMsgCount:count];
     }
 
+    
     return YES;
 }
 
@@ -164,7 +169,23 @@
     [[[Model getInstance] getMessageModel] setUnReadMsgCount:badge];
     //[[[Model getInstance] getMessageModel] refreshModel:nil];
     
-     [self synchronizedEventFromServer];
+    [self synchronizedEventFromServer];
+    
+    //Open event detail view
+    if (userInfo != nil) {
+        if( [Utils chekcNullClass:[userInfo objectForKey:@"event_id"]] != nil) {
+            int event_id = [[userInfo objectForKey:@"event_id"] intValue];
+           
+            double delayInSeconds = 0.5;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                RootNavContrller *navController = [RootNavContrller defaultInstance];
+                EventDetailController * detailView = [[EventDetailController alloc] init];
+                detailView.eventID = event_id;
+                [navController pushViewController:detailView animated:NO];
+            });
+        }
+    }
 }
 
 
@@ -197,20 +218,20 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     
-    User * loginUser = [[UserModel getInstance] getLoginUser];
-    if (loginUser != nil) {
-    
-            RootNavContrller *navController = (RootNavContrller *)self.window.rootViewController;
-            for (int i=0; i < [[navController childViewControllers] count]; i++) {
-            UIViewController *c = [[navController childViewControllers] objectAtIndex:i];
-            
-            if ([c isKindOfClass:[MainViewController class]]) {
-               
-                MainViewController *mvc = (MainViewController*)c;
-                [mvc refreshViews];
-            }
-        }
-    }
+//    User * loginUser = [[UserModel getInstance] getLoginUser];
+//    if (loginUser != nil) {
+//    
+//            RootNavContrller *navController = (RootNavContrller *)self.window.rootViewController;
+//            for (int i=0; i < [[navController childViewControllers] count]; i++) {
+//            UIViewController *c = [[navController childViewControllers] objectAtIndex:i];
+//            
+//            if ([c isKindOfClass:[MainViewController class]]) {
+//               
+//                MainViewController *mvc = (MainViewController*)c;
+//                [mvc refreshViews];
+//            }
+//        }
+//    }
 }
 
 
@@ -243,7 +264,6 @@
                                          selector:@selector(synchronizedFromServer)
                                          userInfo:nil
                                           repeats:YES];
-
 }
 
 -(void) synchronizedFromServer
