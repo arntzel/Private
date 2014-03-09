@@ -174,6 +174,7 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) finalizeProposeStart:(int) eventID ProposeStart:(ProposeStart *) proposeStart andCallback:(void (^)(NSInteger error, Event * event))callback;
 
 
+-(void) updateEventTitle:(int) eventID Title:(NSString *) title andCallback:(void (^)(NSInteger error))callback;
 
 -(void) updateLocation:(int) eventID Location:(Location *) location andCallback:(void (^)(NSInteger error))callback;
 

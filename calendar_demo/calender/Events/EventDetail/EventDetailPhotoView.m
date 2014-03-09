@@ -66,6 +66,8 @@
 #pragma mark Add Photo
 -(void) singleTapPhotoView:(id)sender
 {
+    LOG_D(@"singleTapPhotoView");
+    
     UIActionSheet * actionSheet = [[UIActionSheet alloc]
                                    initWithTitle:nil
                                    delegate:self

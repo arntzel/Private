@@ -46,6 +46,7 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 
+#import "Model.h"
 
 @interface EventDetailController ()<EventDetailNavigationBarDelegate,
                                     UIActionSheetDelegate,
@@ -229,7 +230,6 @@
     
     int height = self.view.frame.size.height - navBar.frame.size.height;
     scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, navBar.frame.size.height, 320, height)];
-    [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBounces:NO];
     [scrollView setClipsToBounds:YES];
@@ -401,6 +401,34 @@
     [self.view addSubview:navBar];
 }
 
+-(void) tapOnTitle:(id)sender
+{
+    LOG_D(@"tapOnNavigationBar");
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change event title"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Save", nil];
+    alertView.tag = 3;
+    
+    CGRect frame = alertView.frame;
+    frame.size.height = 400;
+    alertView.frame = frame;
+    
+    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alertView show];
+    
+    UITextField * alertTextField = [alertView textFieldAtIndex:0];
+    
+    
+    [alertTextField setPlaceholder:@"Please input a event title"];
+    alertTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    //[alertTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    alertTextField.text = self.event.title;
+}
+
+
 - (void)leftBtnPress:(id)sender
 {
     if (self.popDelegate) {
@@ -455,6 +483,12 @@
     photoView.controller = self;
     [photoView setDefaultImage];
     [photoView setNavgation:navBar];
+    
+    photoView.titleLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnTitle:)];
+    [photoView.titleLabel addGestureRecognizer:gesture];
+    [gesture release];
 }
 
 //垂直方向线性布局
@@ -504,6 +538,19 @@
     [self layOutSubViews];
 }
 
+-(void) onEventTileChange:(NSString *) newTitle
+{
+    event.title = newTitle;
+    photoView.titleLabel.text = newTitle;
+    
+    FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:event.id];
+    
+    if(entity != nil) {
+        entity.title = newTitle;
+        [[CoreDataModel getInstance] saveData];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
+    }
+}
 
 -(void) onEventChanged:(Event *) newEvent andChangeType:(EventChangeType) type
 {
@@ -1103,6 +1150,42 @@
 #pragma mark UIAlertViewDeletegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if(alertView.tag == 3) {
+        
+        if(buttonIndex == 1) {
+            
+            UITextField * alertTextField = [alertView textFieldAtIndex:0];
+            
+            NSString * newTitle = alertTextField.text;
+            if(newTitle == nil || newTitle.length == 0) {
+                return;
+            }
+            
+            if( [newTitle isEqualToString:event.title]) {
+                return;
+            }
+            
+            int eventID = event.id;
+            
+            [self showIndicatorView];
+            [[Model getInstance] updateEventTitle:eventID Title:newTitle andCallback:^(NSInteger error) {
+            
+                [self hideIndicatorView];
+                
+                if(error == 0) {
+                    
+                    [self onEventTileChange:newTitle];
+                    
+                } else {
+                    [Utils showUIAlertView:@"Error" andMessage:@"Update event title failed, please retry again!"];
+                }
+                
+            }];
+        }
+        
+        return;
+    }
+    
     
     if(alertView.tag == 2) {
         

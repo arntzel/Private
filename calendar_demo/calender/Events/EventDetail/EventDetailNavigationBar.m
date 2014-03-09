@@ -18,6 +18,25 @@
     [super dealloc];
 }
 
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
+{
+    
+    CGPoint point2 = [self convertPoint:point toView:self.rightbtn];
+    if ([self.rightbtn pointInside:point2 withEvent:event])
+    {
+        return self.rightbtn;
+    }
+    
+    point2 = [self convertPoint:point toView:self.leftBtn];
+    if ([self.leftBtn pointInside:point2 withEvent:event])
+    {
+        return self.leftBtn;
+    }
+    
+    return nil;
+}
+
 - (IBAction)leftBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(leftBtnPress:)]) {
         [self.delegate leftBtnPress:sender];

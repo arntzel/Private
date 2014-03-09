@@ -1518,6 +1518,44 @@ static Model * instance;
 }
 
 
+-(void) updateEventTitle:(int) eventID Title:(NSString *) title andCallback:(void (^)(NSInteger error))callback
+{
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
+    
+    LOG_D(@"updateEventTitle url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"PUT"];
+    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:title forKey:@"title"];
+    
+    NSString * postContent = [Utils dictionary2String:dict];
+    NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    LOG_D(@"updateEventTitle: %@", postContent);
+    
+    [request setHTTPBody:postData];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200) {
+            
+            callback(ERROCODE_OK);
+            
+        } else {
+            
+            NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            LOG_D(@"updateEventTitle error=%@, resp:%@", error, aStr);
+            
+            callback(ERROCODE_NETWORK);
+        }
+    }];
+}
+
 -(void) updateLocation:(int) eventID Location:(Location *) location andCallback:(void (^)(NSInteger error))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/event/%d", HOST, eventID];
