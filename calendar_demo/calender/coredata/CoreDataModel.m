@@ -705,11 +705,13 @@ static CoreDataModel * instance;
     {
         return nil;
     }
-    
+        
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id in (%@)", ids];
+    
+    NSString * strPredication = [NSString stringWithFormat:@"SELF.id IN {%@}", ids];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:strPredication];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
@@ -747,9 +749,11 @@ static CoreDataModel * instance;
         [fetchRequest setPredicate:predicate];
     }
     
-    NSSortDescriptor * sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"lastest_timestamp" ascending:NO];
+    //NSSortDescriptor * sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"lastest_timestamp" ascending:NO];
     NSSortDescriptor * sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"fullname" ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2, nil]];
+    NSSortDescriptor * sortDescriptor3 = [[NSSortDescriptor alloc] initWithKey:@"email" ascending:YES];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor2, sortDescriptor3, nil]];
     
     [fetchRequest setFetchOffset:offset];
     [fetchRequest setFetchLimit:50];

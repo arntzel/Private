@@ -14,6 +14,8 @@
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
 
+#define MAX_SAVE_RECENT_CONTACTS  10
+
 static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 
 @interface AddEventInviteViewController ()<UITableViewDelegate,
@@ -113,18 +115,18 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 											   object:nil];
     offset = 0;
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
-            
-            LOG_D(@"getInvitePeopleData");
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                 [self refreshTableView];
-                
-            });
-        }];
-    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
+//            
+//            LOG_D(@"getInvitePeopleData");
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                 [self refreshTableView];
+//                
+//            });
+//        }];
+//    });
     
     [self handleTokenFieldFrameDidChange:nil];
     
@@ -136,13 +138,14 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
         [self addOjbToTokenFieldName:[contact getReadableUsername] Obj:people isValid:YES];
     }
     
+    recentUsers = [[NSMutableArray alloc] init];
     
     NSString * recentIDS = [[UserSetting getInstance] getStringValue:@"SETTING_RECENT_CONTACT_IDS"];
     if (recentIDS != nil) {
         NSArray * contacts = [[CoreDataModel getInstance] getContactEntitysByIDs:recentIDS];
-        recentUsers = [[NSMutableArray alloc] initWithArray:contacts];
-    } else {
-        recentUsers = [[NSMutableArray alloc] init];
+        for(ContactEntity * contact in contacts) {
+            [recentUsers addObject:[contact getContact]];
+        }
     }
     
     [self refreshTableView];
@@ -235,6 +238,38 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     [calvinSearchedUsers removeAllObjects];
     
+    
+    NSMutableArray * searchedRecentUser = [[NSMutableArray alloc] init];
+    
+    
+    if(searchText == nil || searchText.length == 0) {
+        
+        [searchedRecentUser addObjectsFromArray:recentUsers];
+        
+    } else {
+        
+        for(Contact * contact in recentUsers)
+        {
+            if( [self match:searchText andString:contact.fullname]) {
+                [searchedRecentUser addObject:contact];
+            } else if( [self match:searchText andString:contact.email]) {
+                [searchedRecentUser addObject:contact];
+            } else if( [self match:searchText andString:contact.first_name]) {
+                [searchedRecentUser addObject:contact];
+            } else if( [self match:searchText andString:contact.last_name]) {
+                [searchedRecentUser addObject:contact];
+            }
+        }
+    }
+    
+    
+    for(Contact * contact in searchedRecentUser)
+    {
+        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+        people.user = contact;
+        [calvinSearchedUsers addObject:people];
+    }
+    
     User * me = [[UserModel getInstance] getLoginUser];
     for(ContactEntity * contactEntity in contacts) {
         
@@ -242,12 +277,25 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             continue;
         }
         
-        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
-        people.user = [contactEntity getContact];
-        [calvinSearchedUsers addObject:people];
+        Contact * contact = [contactEntity getContact];
+        if( ![self isContact:contact inArray:searchedRecentUser]) {
+            AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+            people.user = contact;
+            [calvinSearchedUsers addObject:people];
+        } else {
+            LOG_D(@"contact in searchedRecentUser:%@", contact.email);
+        }
     }
 }
 
+-(BOOL) match:(NSString *) searchText andString:(NSString *) text
+{
+   
+    if(text == nil) return NO;
+    
+    NSRange range = [text rangeOfString: searchText options:NSCaseInsensitiveSearch];
+    return range.length > 0;
+}
 
 - (void)viewDidUnload {
     [self setTableView:nil];
@@ -352,22 +400,61 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     NSArray * selectUsers = [self getSelectedUsers];
     
     
-    NSDate * now = [NSDate date];
-    float interval = [now timeIntervalSince1970];
+    NSMutableString * ids = [[NSMutableString alloc] init];
     
-    for(Contact * contact in selectUsers)
+    int count=0;
+    for(int i=0;i<selectUsers.count && i<MAX_SAVE_RECENT_CONTACTS;i++)
     {
-        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
-        if(entity != nil) {
-            entity.lastest_timestamp = @(interval);
+        Contact * contact = [selectUsers objectAtIndex:i];
+        if(count == 0) {
+            [ids appendFormat:@" %d", contact.id];
+        } else {
+            [ids appendFormat:@", %d", contact.id];
+        }
+        count++;
+    }
+    
+    for(Contact * contact in recentUsers) {
+        
+        if(count<MAX_SAVE_RECENT_CONTACTS) {
+            
+            if(![self isContact:contact inArray:selectUsers]) {
+                
+                if(count == 0) {
+                    [ids appendFormat:@" %d", contact.id];
+                } else {
+                    [ids appendFormat:@", %d", contact.id];
+                }
+                count++;
+            }
+            
+        } else {
+            break;
         }
     }
     
-    [[CoreDataModel getInstance] saveData];
+    
+    [[UserSetting getInstance] saveKey:@"SETTING_RECENT_CONTACT_IDS" andStringValue:ids];
     
     
     [self.delegate setInVitePeopleArray:selectUsers];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL) isContact:(Contact *) contact inArray:(NSArray *) users
+{
+    for(Contact * cont in users) {
+        if([contact.email isEqualToString:cont.email]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(void) saveRecentContacts
+{
+    
 }
 
 - (NSArray *)getSelectedUsers
