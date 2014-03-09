@@ -114,10 +114,15 @@ typedef enum
     [self.tableView reloadData];
 }
 
+-(void)dealloc
+{
+    navBar.delegate = nil;
+    navBar = nil;
+}
+
+
 - (void)viewDidUnload {
     [self setTableView:nil];
-    navBar.delegate = nil;
-
     [super viewDidUnload];
 }
 
