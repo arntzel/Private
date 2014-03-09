@@ -22,6 +22,7 @@
 @synthesize delegate;
 
 - (IBAction)leftBtnClick:(id)sender {
+    
     if ([self.delegate respondsToSelector:@selector(leftBtnPress:)]) {
         [self.delegate leftBtnPress:sender];
     }
