@@ -28,6 +28,7 @@
 #import "RootNavContrller.h"
 
 #import "EventDetailController.h"
+#import "AddEventDateViewControllerV2.h"
 
 @interface AddEventControllerV2 ()<AddEventAddTitleBarDelegate,
                                     UIScrollViewDelegate,
@@ -663,11 +664,29 @@
             
             EventDetailController * detailCtl = [[EventDetailController alloc] init];
             detailCtl.popDelegate = self.popDelegate;
-            detailCtl.date2Create = self.date2Create;
             detailCtl.eventID = newEvent.id;
             detailCtl.event = newEvent;
             
-            [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+            if(self.date2Create == nil) {
+                
+                [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:YES];
+                
+            } else {
+                
+                [[RootNavContrller defaultInstance] pushViewController:detailCtl animated:NO];
+                
+                AddEventDateViewControllerV2 * addDate = [[AddEventDateViewControllerV2 alloc] init];
+                
+                ProposeStart * proposeStart = [[ProposeStart alloc] init];
+                proposeStart.start = self.date2Create;
+                proposeStart.duration_hours = 1;
+                proposeStart.start_type = START_TYPEEXACTLYAT;
+                addDate.proposeStart = proposeStart;
+                
+                
+                addDate.delegate = detailCtl;
+                [[RootNavContrller defaultInstance] pushViewController:addDate animated:YES];
+            }
             
         } else {
             

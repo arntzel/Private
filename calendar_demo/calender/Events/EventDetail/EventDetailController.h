@@ -18,7 +18,5 @@
 @property(nonatomic, retain) Event *event;
 
 
-//For add new Event time
-@property(strong) NSDate * date2Create;
 
 @end

@@ -187,7 +187,6 @@
     }];
 }
 
-
 -(void) refreshView {
     
     //if a date is in the past, it should automatically be removed if it's in the pending section
@@ -632,18 +631,7 @@
 //    [tempEventDate release];
     
     AddEventDateViewControllerV2 * addDate = [[AddEventDateViewControllerV2 alloc] init];
-    
-    if(self.date2Create) {
-        
-        ProposeStart * proposeStart = [[ProposeStart alloc] init];
-        proposeStart.start = self.date2Create;
-        proposeStart.duration_hours = 1;
-        proposeStart.start_type = START_TYPEEXACTLYAT;
-        addDate.proposeStart = proposeStart;
-        [proposeStart release];
-    } else {
-        addDate.proposeStart = tempEventDate;
-    }
+    addDate.proposeStart = tempEventDate;
     
     [tempEventDate release];
     
