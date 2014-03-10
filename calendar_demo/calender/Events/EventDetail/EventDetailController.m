@@ -181,6 +181,15 @@
             self.event = evt;
             [self refreshView];
             
+            FeedEventEntity * feedEventEntity = [[CoreDataModel getInstance] getFeedEventEntity:event.id];
+            
+            if(feedEventEntity != nil && ![feedEventEntity.modified_num isEqualToString:self.event.modified_num]) {
+                LOG_D(@"Event updated:%d, %@", self.event.id, self.event.title);
+                [feedEventEntity convertFromEvent:self.event];
+                [[CoreDataModel getInstance] saveData];
+                [[CoreDataModel getInstance] notifyEventChange:feedEventEntity andChangeTyp:EventChangeType_Update];
+            }
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Network or server error"];
         }
