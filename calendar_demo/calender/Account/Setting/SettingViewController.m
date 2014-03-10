@@ -473,12 +473,60 @@
 - (void)connectFacebook
 {
     //loginType
+    [[FBSession activeSession] closeAndClearTokenInformation];
+    // Create a new, logged out session.
+    NSArray *permissions = [NSArray arrayWithObjects:
+                            @"email",
+                            @"user_likes",
+                            @"publish_actions",
+                            @"publish_stream",
+                            nil];
+    FBSession *session = [[FBSession alloc] initWithPermissions:permissions];
+    [FBSession setActiveSession:session];
+    
+    NSString *fbAppUrl = @"fbauth2://authorize";
+    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:fbAppUrl]])
+    {
+        
+        [[FBSession activeSession] openWithCompletionHandler:^(FBSession *session,
+                                                               FBSessionState status,
+                                                               NSError *error)
+         {
+             if(status == FBSessionStateOpen) {
+                 [self loginResult:session statue:status Error:error];
+             }
+         }];
+    }
+    else
+    {
+        self.snsLogin = [[ShareLoginFacebook alloc]init];
+        self.snsLogin.delegate = self;
+        [self.snsLogin shareLogin];
+    }
+}
 
-    self.snsLogin = [[ShareLoginFacebook alloc]init];
-    self.snsLogin.delegate = self;
-    [self.snsLogin shareLogin];
-   
 
+- (void)loginResult:(FBSession *)session statue:(FBSessionState) status Error:(NSError *)error
+{
+    LOG_D(@"facebook loginResult:%d, error=%d, accesstoke=%@", status, error.code, session.accessToken);
+    
+    if(error.code == 0) {
+        
+        LoginAccountStore *accountStore = [LoginAccountStore defaultAccountStore];
+        [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error)
+         {
+             if (!error)
+             {
+                 accountStore.facebookAccessToken = session.accessToken;
+                 accountStore.facebookExpireDate = session.expirationDate;
+                 accountStore.facebookEmail = [user objectForKey:@"email"];
+                 [self shareDidLogin:nil];
+             }
+         }];
+        
+    } else {
+        [Utils showUIAlertView:@"Error" andMessage:@"Connect with facebook account failed"];
+    }
 }
 
 - (void)disconnect:(ConnectType) type
