@@ -2,14 +2,14 @@
 //  FeedEventEntity.h
 //  Calvin
 //
-//  Created by fangxiang on 14-3-5.
+//  Created by fangxiang on 14-3-10.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CreatorEntity, EventAttendeeEntity, LocationEntity;
+@class CreatorEntity, EventAttendeeEntity, LocationEntity, ProposeStartEntity;
 
 @interface FeedEventEntity : NSManagedObject
 
@@ -46,11 +46,11 @@
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * userstatus;
+@property (nonatomic, retain) NSNumber * vote;
+@property (nonatomic, retain) NSSet *attendees;
 @property (nonatomic, retain) CreatorEntity *creator;
 @property (nonatomic, retain) LocationEntity *location;
-
-//EventAtendeeEntity's NSSet
-@property (nonatomic, retain) NSSet *attendees;
+@property (nonatomic, retain) NSSet *propose_starts;
 @end
 
 @interface FeedEventEntity (CoreDataGeneratedAccessors)
@@ -59,5 +59,10 @@
 - (void)removeAttendeesObject:(EventAttendeeEntity *)value;
 - (void)addAttendees:(NSSet *)values;
 - (void)removeAttendees:(NSSet *)values;
+
+- (void)addPropose_startsObject:(ProposeStartEntity *)value;
+- (void)removePropose_startsObject:(ProposeStartEntity *)value;
+- (void)addPropose_starts:(NSSet *)values;
+- (void)removePropose_starts:(NSSet *)values;
 
 @end

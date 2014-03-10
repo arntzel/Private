@@ -69,9 +69,11 @@
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userstatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vote" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="attendees" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventAttendeeEntity" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CreatorEntity" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LocationEntity" syncable="YES"/>
+        <relationship name="propose_starts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProposeStartEntity" syncable="YES"/>
     </entity>
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -115,6 +117,7 @@
     <elements>
         <element name="ContactEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="CreatorEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EventAttendeeEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="EventTimeVoteEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="FeedEventEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="LocationEntity" positionX="0" positionY="0" width="0" height="0"/>
@@ -122,6 +125,5 @@
         <element name="ProposeStartEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="EventAttendeeEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

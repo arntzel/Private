@@ -14,4 +14,6 @@
 
 -(void) convertFromProposeStart:(ProposeStart *) ps;
 
++(ProposeStartEntity *) createEntity:(NSDictionary *)json;
+
 @end

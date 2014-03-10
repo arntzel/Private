@@ -10,7 +10,7 @@
 #import "CreatorEntityExtra.h"
 #import "LocationEntityExtra.h"
 #import "EventAttendeeEntityExtra.h"
-
+#import "ProposeStartEntityExtra.h"
 
 
 @implementation FeedEventEntity (FeedEventEntityExtra)
@@ -286,7 +286,6 @@
     self.ext_event_id = [NSString stringWithFormat:@"%@", [json objectForKey:@"ext_event_id"]];
     
     
-    NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     
     if(self.attendees != nil) {
         NSArray * array = [self.attendees allObjects];
@@ -297,7 +296,7 @@
         }
     }
     
-    
+    NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     if(attendees != nil) {
         for(NSDictionary * atendee in attendees) {
             EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
@@ -307,17 +306,22 @@
     
    
     
-//    if(attendees == nil || attendees.count == 0) {
-//        
-//        [self removeAttendees:self.attendees];
-//        
-//    } else {
-//      
-//        for(NSDictionary * atendee in attendees) {
-//            EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntity:atendee];
-//            [self addAttendeesObject:atd];
-//        }
-//    }
+    if(self.propose_starts != nil) {
+        NSArray * array = [self.propose_starts allObjects];
+        
+        for(int i=0;i<array.count;i++) {
+            ProposeStartEntity * ps = [array objectAtIndex:i];
+            [self removePropose_startsObject:ps];
+        }
+    }
+    
+    NSArray * propose_starts = [Utils chekcNullClass:[json objectForKey:@"propose_starts"]];
+    if(propose_starts != nil) {
+        for(NSDictionary * psJson in propose_starts) {
+            ProposeStartEntity * ps = [ProposeStartEntity createEntity:psJson];
+            [self addPropose_startsObject:ps];
+        }
+    }
 }
 @end
 

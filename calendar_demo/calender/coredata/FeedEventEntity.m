@@ -2,7 +2,7 @@
 //  FeedEventEntity.m
 //  Calvin
 //
-//  Created by fangxiang on 14-3-5.
+//  Created by fangxiang on 14-3-10.
 //  Copyright (c) 2014年 Pencil Me, Inc. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "CreatorEntity.h"
 #import "EventAttendeeEntity.h"
 #import "LocationEntity.h"
+#import "ProposeStartEntity.h"
 
 
 @implementation FeedEventEntity
@@ -47,8 +48,10 @@
 @dynamic timezone;
 @dynamic title;
 @dynamic userstatus;
+@dynamic vote;
+@dynamic attendees;
 @dynamic creator;
 @dynamic location;
-@dynamic attendees;
+@dynamic propose_starts;
 
 @end

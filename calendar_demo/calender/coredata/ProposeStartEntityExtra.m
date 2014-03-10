@@ -31,7 +31,17 @@
         [entity convert2Entity:vote];
         [self addVotesObject:entity];
     }
-    
+}
+
+
++(ProposeStartEntity *) createEntity:(NSDictionary *)json
+{
+    ProposeStart * ps = [ProposeStart parse:json];
+    ProposeStartEntity * entity = [[CoreDataModel getInstance] createEntity:@"ProposeStartEntity"];
+    [entity convertFromProposeStart:ps];
+    return entity;
 }
 
 @end
+
+
