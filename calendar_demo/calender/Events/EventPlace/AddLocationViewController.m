@@ -29,6 +29,8 @@
     
     //Location objects list
     NSMutableArray * locations;
+    
+    UIActivityIndicatorView * indicatiorView;
 }
 
 @end
@@ -74,6 +76,11 @@
     searchView.backgroundColor = [UIColor colorWithRed:249/255.0f green:251/255.0f blue:245/255.0f alpha:1.0f];
     [self.view addSubview:searchView];
     
+    
+    indicatiorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicatiorView.hidesWhenStopped = YES;
+    indicatiorView.center = CGPointMake(300, 30);
+    [searchView addSubview:indicatiorView];
     
     UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"location"]];
     CGRect headerFrame = imgView.frame;
@@ -221,6 +228,8 @@
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField;
 {
+    [indicatiorView stopAnimating];
+    
     customLocation = nil;
     [self.txtSearchTabView reloadData];
     return YES;
@@ -235,6 +244,10 @@
     if(![textStr isEqualToString:@""])
     {
         NSLog(@"startRequestWithTxtSearchQuery:%@", textStr);
+        
+        [indicatiorView startAnimating];
+        
+        textStr = [textStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
     }
     
@@ -252,7 +265,7 @@
 - (void)upDateWithArray:(NSArray *)array GPlaceApi:(GPlaceApi *)api
 {
     NSLog(@"upDateWithArray:%d", array.count);
-    
+     [indicatiorView stopAnimating];
     [locations removeAllObjects];
     [locations addObjectsFromArray:array];
     [self.txtSearchTabView reloadData];
