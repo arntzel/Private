@@ -18,6 +18,13 @@
     }
 }
 
+-(BOOL) isPast
+{
+    NSDate * date = [NSDate date];
+    NSDate * endTime = [self getEndTime];
+    return [date compare:endTime] > 0;
+}
+
 -(int) getDurationMins
 {
    

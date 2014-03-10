@@ -681,6 +681,7 @@
                 proposeStart.start = self.date2Create;
                 proposeStart.duration_hours = 1;
                 proposeStart.start_type = START_TYPEEXACTLYAT;
+                [proposeStart convertMinToQuarterMode];
                 addDate.proposeStart = proposeStart;
                 
                 

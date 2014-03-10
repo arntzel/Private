@@ -120,6 +120,10 @@
     ProposeStart * finalTime = [_event getFinalEventTime];
     for(ProposeStart * eventTime in times) {
 
+        if( [eventTime isPast] ) {
+            continue;
+        }
+        
         if(_event.confirmed) {
             if([eventTime isEqual:finalTime]) {
                 eventTime.finalized = 1;

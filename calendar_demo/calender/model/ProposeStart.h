@@ -48,6 +48,9 @@
 
 -(NSDate *) getEndTime;
 
+-(BOOL) isPast;
+
+
 -(NSString *) getVoteTimeLabel;
 
 -(NSDictionary*) convent2Dic;
