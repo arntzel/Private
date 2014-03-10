@@ -16,6 +16,9 @@
     BOOL isCreator;
     BOOL canChangePlace;
     BOOL showAllDescitpion;
+    
+    
+    Location * mLocation;
 }
 
 @property(retain, nonatomic) UILabel * desciptionView;
@@ -40,6 +43,12 @@
     self.inviteeView = nil;
     self.placeView = nil;
     self.desciptionView = nil;
+    
+    if(mLocation) {
+        [mLocation release];
+        mLocation = nil;
+    }
+    
     [super dealloc];
 }
 
@@ -162,6 +171,12 @@
 {
     LOG_D(@"singleTapLocation");
     
+    if(mLocation == nil || ![mLocation isValid]) {
+        [self.delegate changeLocation];
+        return;
+    }
+    
+    
     actionSheetButtonTitles = [[NSMutableArray alloc] init];
     if(isCreator || canChangePlace) {
         [actionSheetButtonTitles addObject:@"Change Location"];
@@ -269,6 +284,12 @@
 
 - (void) setLocation:(Location*) location
 {
+    if(mLocation) {
+        [mLocation release];
+    }
+    
+    mLocation = [location retain];
+    
     [self.placeView setLocation:location];
 }
 
