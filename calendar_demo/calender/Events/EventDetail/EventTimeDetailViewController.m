@@ -203,6 +203,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    if(events == nil || events.count == 0) {
+        return 87;
+    }
+    
     int row = indexPath.row;
     
     FeedEventEntity * event = [events objectAtIndex:row];
