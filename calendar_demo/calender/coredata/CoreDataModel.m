@@ -166,6 +166,7 @@ static CoreDataModel * instance;
     return results;
 }
 
+/*
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) date andPreLimit:(int) limit andOffset:(int)offset andEventTypeFilter:(int) eventTypeFilter
 {
     NSLog(@"NSFetchRequest: getDayFeedEventEntitys:andPreLimit:%@", date);    
@@ -210,7 +211,7 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
 }
-
+*/
 
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) begin andEndDate:(NSDate *) end
 {
@@ -395,8 +396,8 @@ static CoreDataModel * instance;
 }
 
 
--(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
-{
+//-(NSArray*) getFeedEvents:(NSString *) day  evenTypeFilter:(int) filter;
+//{
 //    NSLog(@"getFeedEvents,day=%@, filter=%d", day, filter);
 //    
 //    DayFeedEventEntitysWrap * wrap = [cache getDayFeedEventEntitysWrap:day];
@@ -420,11 +421,11 @@ static CoreDataModel * instance;
 //    [wrap resetSortedEvents];
 //    
 //    return wrap.sortedEvents;
-    
-     NSDate * date = [Utils parseNSStringDay:day];
-     NSArray * entitys = [self getFeedEventEntitys:date];
-     return entitys;
-}
+//    
+//     NSDate * date = [Utils parseNSStringDay:day];
+//     NSArray * entitys = [self getFeedEventEntitys:date];
+//     return entitys;
+//}
 
 
 -(int) getFeedEventCountByStart:(NSDate *) start andEnd:(NSDate *) end;
