@@ -322,6 +322,18 @@
             [self addPropose_startsObject:ps];
         }
     }
+    
+    User * me = [[UserModel getInstance] getLoginUser];
+    if([self.eventType integerValue] != 0) {
+        self.vote = @(1);
+    } else {
+    
+        if([self.creator.email isEqualToString:me.email]) {
+            self.vote = @(1);
+        } else {
+            
+        }
+    }
 }
 @end
 
