@@ -131,6 +131,7 @@
 -(void)onSignupWithEmailTapped
 {
     CreateNewAccountViewController *signUp = [[CreateNewAccountViewController alloc]init];
+    [signUp setDelegate:delegate];
     [self.navigationController pushViewController:signUp animated:YES];
 }
 

@@ -30,7 +30,9 @@
     OnboardingContentView *view3;
     LogoBannerView *view4;
     
-    id<LoginViewControllerDelegate> delegete;
+    UIViewController<LoginViewControllerDelegate> *delegete;
+    
+    BOOL showLastPageOnly;
 }
 
 @end
@@ -46,9 +48,10 @@
     return self;
 }
 
--(void)setDelegate:(id<LoginViewControllerDelegate>) theDelegate
+-(void)setDelegate:(UIViewController<LoginViewControllerDelegate> *) theDelegate showLastOnly:(BOOL)flag
 {
     delegete = theDelegate;
+    showLastPageOnly = flag;
 }
 
 - (void)viewDidLoad
@@ -69,6 +72,10 @@
     pageControl.currentPage=currentPage;
     //[pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:pageControl];
+    
+    if (showLastPageOnly) {
+        pageControl.hidden = YES;
+    }
     
     leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
@@ -93,17 +100,27 @@
     [rightBtn addTarget:self action:@selector(onNextButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:rightBtn];
     
-    scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0,70 ,self.view.frame.size.width, self.view.bounds.size.height - 70)];
-    scrollview.showsVerticalScrollIndicator = NO;
-    scrollview.showsHorizontalScrollIndicator = NO;
-    scrollview.pagingEnabled = YES;
-    scrollview.contentSize=CGSizeMake(scrollview.frame.size.width*SCROLL_PAGES, scrollview.frame.size.height);
-    scrollview.scrollsToTop = NO;
-    scrollview.delegate=self;
-    scrollview.bounces= NO;
-    scrollview.directionalLockEnabled = YES;
-    [self initScrollContentViews];
-    [self.view addSubview:scrollview];
+    if (!showLastPageOnly) {
+        scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0,70 ,self.view.frame.size.width, self.view.bounds.size.height - 70)];
+        scrollview.showsVerticalScrollIndicator = NO;
+        scrollview.showsHorizontalScrollIndicator = NO;
+        scrollview.pagingEnabled = YES;
+        scrollview.contentSize=CGSizeMake(scrollview.frame.size.width*SCROLL_PAGES, scrollview.frame.size.height);
+        
+        scrollview.scrollsToTop = NO;
+        scrollview.delegate=self;
+        scrollview.bounces= NO;
+        scrollview.directionalLockEnabled = YES;
+        [self initScrollContentViews];
+        [self.view addSubview:scrollview];
+    } else {
+        view4 = [LogoBannerView createWithDelegate:self];
+        [view4 setFrame:CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
+        [self.view addSubview:view4];
+        [rightBtn setHidden:YES];
+        [leftBtn setHidden:NO];
+    }
+    
 }
 
 -(void)initScrollContentViews
@@ -131,27 +148,29 @@
     
     view4 = [LogoBannerView createWithDelegate:self];
     [view4 setFrame:CGRectMake(960, 0, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
+    
     [scrollview addSubview:view1];
     [scrollview addSubview:view2];
     [scrollview addSubview:view3];
     [scrollview addSubview:view4];
-    
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView1
 {
-    CGPoint offset=scrollView1.contentOffset;
-    CGRect bounds=scrollView1.frame;
-    currentPage = offset.x/bounds.size.width;
-    [pageControl setCurrentPage:currentPage];
-    if (currentPage == (SCROLL_PAGES - 1)) {
-        [leftBtn setHidden:NO];
-        [rightBtn setHidden:YES];
-        [pageControl setHidden:YES];
-    } else {
-        [leftBtn setHidden:YES];
-        [rightBtn setHidden:NO];
-        [pageControl setHidden:NO];
+    if (!showLastPageOnly) {
+        CGPoint offset=scrollView1.contentOffset;
+        CGRect bounds=scrollView1.frame;
+        currentPage = offset.x/bounds.size.width;
+        [pageControl setCurrentPage:currentPage];
+        if (currentPage == (SCROLL_PAGES - 1)) {
+            [leftBtn setHidden:NO];
+            [rightBtn setHidden:YES];
+            [pageControl setHidden:YES];
+        } else {
+            [leftBtn setHidden:YES];
+            [rightBtn setHidden:NO];
+            [pageControl setHidden:NO];
+        }
     }
 }
 
@@ -177,14 +196,19 @@
 }
 
 -(void)onBackButtonTapped {
-    currentPage = SCROLL_PAGES - 2;
-    CGSize viewsize=scrollview.frame.size;
-    CGRect rect=CGRectMake(currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
-    [scrollview scrollRectToVisible:rect animated:YES];
-    [pageControl setCurrentPage:currentPage];
-    [leftBtn setHidden:YES];
-    [rightBtn setHidden:NO];
-    [pageControl setHidden:NO];
+    if (!showLastPageOnly) {
+        currentPage = SCROLL_PAGES - 2;
+        CGSize viewsize=scrollview.frame.size;
+        CGRect rect=CGRectMake(currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
+        [scrollview scrollRectToVisible:rect animated:YES];
+        [pageControl setCurrentPage:currentPage];
+        [leftBtn setHidden:YES];
+        [rightBtn setHidden:NO];
+        [pageControl setHidden:NO];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     
 }
 

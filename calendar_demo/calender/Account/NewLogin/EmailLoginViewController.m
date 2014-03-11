@@ -117,7 +117,7 @@
     loginBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, textFieldView.frame.origin.y + 120, self.view.bounds.size.width, 45)];
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#18a48b" withAlpha:0.9];
     [loginBtn setBackgroundColor:loginBtnBgColor];
-    [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
+    [loginBtn setTitle:@"Log In" forState:UIControlStateNormal];
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:22.0];
     [[loginBtn titleLabel]setFont:btnFont];
     [[loginBtn titleLabel] setTextColor:[UIColor whiteColor]];

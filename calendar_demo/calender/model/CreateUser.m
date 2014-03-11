@@ -11,6 +11,7 @@
     [dic setObject:self.username forKey:@"username"];
     [dic setObject:self.email forKey:@"email"];
     [dic setObject:self.password forKey:@"password"];
+    [dic setObject:self.zip_code forKey:@"zipcode"];
     
     
     NSString * timezone = [[NSTimeZone systemTimeZone] name];

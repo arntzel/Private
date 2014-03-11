@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NewAccountView.h"
+#import "LoginViewController.h"
 
 @interface CreateNewAccountViewController : UIViewController<NewAccountViewDelegate>
-
+-(void)setDelegate:(id<LoginViewControllerDelegate>) theDelegate;
 @end

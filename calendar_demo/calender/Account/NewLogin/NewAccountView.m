@@ -11,10 +11,11 @@
 #import "UIColor+Hex.h"
 #import "SettingsModel.h"
 
+#define KEYBOARD_OFFSET 100;
+
 @implementation NewAccountView
 {
     UITapGestureRecognizer *tapGesture;
-    NSString * imageUrl;
     SettingsModel * settingModel;
 }
 
@@ -82,6 +83,7 @@
     [lay setBorderWidth:1];
     [lay setBorderColor:[UIColor lightGrayColor].CGColor];
     
+    self.email.delegate = self;
     [self.email setBorderStyle:UITextBorderStyleNone];
     [self.email setBackgroundColor:[UIColor clearColor]];
     self.email.placeholder = @"Email Address";
@@ -90,16 +92,20 @@
     self.email.returnKeyType = UIReturnKeyNext;
     [self.email setFont:font];
     
+    self.password.delegate = self;
     [self.password setBorderStyle:UITextBorderStyleNone];
     [self.password setBackgroundColor:[UIColor clearColor]];
+    self.password.secureTextEntry = YES;
     self.password.placeholder = @"Password";
     self.password.autocorrectionType = UITextAutocorrectionTypeNo;
     self.password.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.password.returnKeyType = UIReturnKeyNext;
     [self.password setFont:font];
     
+    self.confirmPassword.delegate = self;
     [self.confirmPassword setBorderStyle:UITextBorderStyleNone];
     [self.confirmPassword setBackgroundColor:[UIColor clearColor]];
+    self.confirmPassword.secureTextEntry = YES;
     self.confirmPassword.placeholder = @"Confirm Password";
     self.confirmPassword.autocorrectionType = UITextAutocorrectionTypeNo;
     self.confirmPassword.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -175,8 +181,8 @@
 
 -(void) uploadImage:(UIImage *) img
 {
-    if(imageUrl != nil) {
-        imageUrl = nil;
+    if(self.imageUrl != nil) {
+        self.imageUrl = nil;
     }
     
     self.avatar.alpha = 0.3;
@@ -205,10 +211,31 @@
     self.avatar.alpha = 1;
     
     if(error == 0) {
-        imageUrl = url;
+        self.imageUrl = url;
     } else {
         self.avatar.image = nil;
     }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //CGRect frame = textField.frame;
+    //int offset = frame.origin.y + 32 - (self.frame.size.height - 216.0);//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    int offset = -KEYBOARD_OFFSET;
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    int offset = KEYBOARD_OFFSET;
+    self.frame =CGRectMake(0, offset, self.frame.size.width, self.frame.size.height);
 }
 
 @end

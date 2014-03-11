@@ -19,6 +19,6 @@
 
 @interface OnboardingViewController : UIViewController <OnBoardingViewControllerDelegate>
 
--(void)setDelegate:(id<LoginViewControllerDelegate>) theDelegate;
+-(void)setDelegate:(UIViewController<LoginViewControllerDelegate> *) theDelegate showLastOnly:(BOOL)flag;
 
 @end
