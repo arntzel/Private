@@ -35,7 +35,7 @@
     UIImageView *bgView;
     UIImageView *logoView;
     UIImageView *bannerView;
-    UILabel *textLabel;
+    //UILabel *textLabel;
     UIButton *fbLoginBtn;
     UIButton *gLoginBtn;
     UIButton *emailLoginBtn;
@@ -75,11 +75,13 @@
     [bgView setFrame:CGRectMake(0, -5, self.view.bounds.size.width, self.view.bounds.size.height +6)];
     [self.view addSubview:bgView];
     
-    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 70)];
+    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     
-    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 20, 80, 44)];
+    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -104,25 +106,25 @@
     logoView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"calvin_icon_large.png"]];
     
     int logoX = self.view.bounds.size.width/2 - LOGO_WIDTH/2;
-    [logoView setFrame:CGRectMake(logoX, 80, LOGO_WIDTH, LOGO_HEIGHT)];
+    [logoView setFrame:CGRectMake(logoX, 100, LOGO_WIDTH, LOGO_HEIGHT)];
     [self.view addSubview:logoView];
     
     bannerView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"calvin_logo_large.png"]];
     
     int bannerX = self.view.bounds.size.width/2 - BANNER_WIDTH/2;
-    [bannerView setFrame:CGRectMake(bannerX, 80 + LOGO_HEIGHT + 20, BANNER_WIDTH, BANNER_HEIGHT)];
+    [bannerView setFrame:CGRectMake(bannerX, 100 + LOGO_HEIGHT + 20, BANNER_WIDTH, BANNER_HEIGHT)];
     [self.view addSubview:bannerView];
     
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:22.0];
-    
-    textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-    [textLabel setFont:font];
-    [textLabel setTextColor:[UIColor generateUIColorByHexString:@"1f1e1e"]];
-    [textLabel setText:@"More Plans,Less Planning."];
-    [textLabel sizeToFit];
-    [textLabel setTextAlignment:NSTextAlignmentCenter];
-    [textLabel setCenter:CGPointMake(self.view.center.x, bannerView.frame.origin.y + BANNER_HEIGHT + 30)];
-    [self.view addSubview:textLabel];
+//    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:22.0];
+//    
+//    textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+//    [textLabel setFont:font];
+//    [textLabel setTextColor:[UIColor generateUIColorByHexString:@"1f1e1e"]];
+//    [textLabel setText:@"More Plans,Less Planning."];
+//    [textLabel sizeToFit];
+//    [textLabel setTextAlignment:NSTextAlignmentCenter];
+//    [textLabel setCenter:CGPointMake(self.view.center.x, bannerView.frame.origin.y + BANNER_HEIGHT + 30)];
+//    [self.view addSubview:textLabel];
     
     
     
@@ -134,7 +136,7 @@
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
     [[gLoginBtn titleLabel]setFont:btnFont];
     [[gLoginBtn titleLabel] setTextColor:[UIColor whiteColor]];
-    [gLoginBtn setCenter:CGPointMake(self.view.center.x, textLabel.frame.origin.y + 90)];
+    [gLoginBtn setCenter:CGPointMake(self.view.center.x, bannerView.frame.origin.y + 150)];
     CALayer *gLayer = [self getButtonSepLayer];
     [gLoginBtn.layer addSublayer:gLayer];
     [gLoginBtn setImage:[UIImage imageNamed:@"google_plus_icon.png"] forState:UIControlStateNormal];
