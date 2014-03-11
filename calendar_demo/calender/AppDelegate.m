@@ -6,6 +6,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "googleAPIKey.h"
 #import "LoginMainViewController.h"
+#import "LandingViewController.h"
 #import "MainViewController.h"
 
 #import <GooglePlus/GooglePlus.h>
@@ -48,7 +49,9 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstLaunch"];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"showGuide"];
     } else {
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"showGuide"];
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"firstLaunch"];
     }
 
@@ -92,7 +95,8 @@
 
     }
     else {
-        rootController = [[LoginMainViewController alloc] init];
+        rootController = [[LandingViewController alloc] init];
+        //rootController = [[LoginMainViewController alloc]init];
     }
 
     RootNavContrller *navController = [RootNavContrller defaultInstance];

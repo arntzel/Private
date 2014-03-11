@@ -30,7 +30,7 @@
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import "SettingsModel.h"
 #import "LocationChangedViewController.h"
-
+#import "LandingViewController.h"
 #import "Utils.h"
 
 @interface SettingViewController ()<MFMailComposeViewControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UploadImageDelegate,GPPSignInDelegate,ShareLoginDelegate, UIScrollViewDelegate>
@@ -239,8 +239,9 @@
         
     [navController popToRootViewControllerAnimated:NO];
 
-    LoginMainViewController* loginController = [[LoginMainViewController alloc] init];
-    [navController pushViewController:loginController animated:NO];
+    //LoginMainViewController* loginController = [[LoginMainViewController alloc] init];
+    LandingViewController *landing =[[LandingViewController alloc]init];
+    [navController pushViewController:landing animated:NO];
 }
 
 - (void)deleteAccount
