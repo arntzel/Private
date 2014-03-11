@@ -11,7 +11,7 @@
 #import "LocationEntityExtra.h"
 #import "EventAttendeeEntityExtra.h"
 #import "ProposeStartEntityExtra.h"
-
+#import "EventTimeVoteEntity.h"
 
 @implementation FeedEventEntity (FeedEventEntityExtra)
 
@@ -163,6 +163,27 @@
         EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntityByEventAttendee:evtAtd];
         [self addAttendeesObject:atd];
     }
+    
+    if(self.propose_starts != nil) {
+        NSArray * array = [self.propose_starts allObjects];
+        
+        for(int i=0;i<array.count;i++) {
+            ProposeStartEntity * ps = [array objectAtIndex:i];
+            [self removePropose_startsObject:ps];
+        }
+    }
+    
+    NSArray * propose_starts = event.propose_starts;
+    if(propose_starts != nil) {
+        for(ProposeStart * ps in propose_starts) {
+            ProposeStartEntity * psEntity = [[CoreDataModel getInstance] createEntity:@"ProposeStartEntity"];
+            [psEntity convertFromProposeStart:ps];
+            [self addPropose_startsObject:psEntity];
+        }
+    }
+    
+    
+    [self resetVote];
 }
 
 -(void) convertFromCalendarEvent:(Event*) event
@@ -211,6 +232,8 @@
     self.hasDeleted = @(event.hasDeleted);
     self.last_modified = event.last_modified;
     
+    self.vote = @(0);
+    self.attendee_num = @(1);
     //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");
      
 }
@@ -278,7 +301,6 @@
     self.allow_attendee_invite = [json objectForKey:@"allow_attendee_invite"];
     self.allow_new_dt          = [json objectForKey:@"allow_new_dt"];
     self.allow_new_location    = [json objectForKey:@"allow_new_location"];
-    self.attendee_num          = [json objectForKey:@"attendee_num"];
     
     self.eventType = [json objectForKey:@"event_type"];
     
@@ -304,6 +326,8 @@
         }
     }
     
+    self.attendee_num = @(self.attendees.count);
+    
    
     
     if(self.propose_starts != nil) {
@@ -323,15 +347,44 @@
         }
     }
     
-    User * me = [[UserModel getInstance] getLoginUser];
-    if([self.eventType integerValue] != 0) {
-        self.vote = @(1);
-    } else {
+    [self resetVote];
+}
+
+-(void) resetVote
+{
+    if( [self.eventType intValue] !=0 ) {
+        self.vote = @(0);
+        return;
+    }
     
-        if([self.creator.email isEqualToString:me.email]) {
-            self.vote = @(1);
-        } else {
-            
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    if([self.creator.email isEqualToString:me.email]) {
+        
+        self.vote = @(0);
+        
+    } else {
+        
+        ProposeStartEntity * finalizeTime = nil;
+        for(ProposeStartEntity * psEntity in self.propose_starts) {
+            if([psEntity.finalized boolValue]) {
+                finalizeTime = psEntity;
+                break;
+            }
+        }
+        
+        self.vote = @(1); //表示未投票
+        
+        if(finalizeTime != nil) {
+            for(EventTimeVoteEntity * voteEntity in finalizeTime.votes) {
+                if([me.email isEqualToString:voteEntity.email]) {
+                    
+                    if([voteEntity.status intValue] == 1) {
+                        self.vote = @(0);
+                    }
+                    break;
+                }
+            }
         }
     }
 }

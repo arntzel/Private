@@ -153,7 +153,7 @@ static CoreDataModel * instance;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"confirmed=false OR vote=0"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"confirmed=false OR vote=1"];
     [fetchRequest setPredicate:predicate];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_on" ascending:NO];
@@ -219,7 +219,7 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (vote=1) AND (start >= %@) AND (start<%@)", begin, end];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(confirmed = true) AND (vote=0) AND (start >= %@) AND (start<%@)", begin, end];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
 
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
