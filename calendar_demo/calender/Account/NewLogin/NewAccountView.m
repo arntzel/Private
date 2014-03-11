@@ -9,8 +9,16 @@
 #import "NewAccountView.h"
 #import "ViewUtils.h"
 #import "UIColor+Hex.h"
+#import "SettingsModel.h"
 
 @implementation NewAccountView
+{
+    UITapGestureRecognizer *tapGesture;
+    NSString * imageUrl;
+    SettingsModel * settingModel;
+}
+
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,11 +40,17 @@
 
 -(void) awakeFromNib
 {
+    settingModel = [[SettingsModel alloc] init];
     UIColor *textBgColor = [UIColor colorWithRed:232.0/255.0 green:243.0/255.0 blue:237.0/255.0 alpha:1.0];
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.profileView setBackgroundColor:textBgColor];
     [self.infoView setBackgroundColor:textBgColor];
+    
+    [self.avatar setUserInteractionEnabled:YES];
+    [self.avatar setClipsToBounds:YES];
+    tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addPhotoTap)];
+    [self.avatar addGestureRecognizer:tapGesture];
     
     [self.firstName setBorderStyle:UITextBorderStyleNone];
     [self.firstName setBackgroundColor:[UIColor clearColor]];
@@ -109,9 +123,92 @@
     return YES;
 }
 
-+(NewAccountView *) create
++(NewAccountView *) createWithDelegate:(UIViewController<NewAccountViewDelegate> *) theDelegate;
 {
-    return (NewAccountView *)[ViewUtils createView:@"NewAccountView"];
+    NewAccountView *view =(NewAccountView *)[ViewUtils createView:@"NewAccountView"];
+    view.delegate = theDelegate;
+    return view;
+}
+
+#pragma mark Add Photo
+- (void)addPhotoTap
+{
+    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Picker Photo From Album" otherButtonTitles:@"Picker Photo From Camera", nil];
+    [menu showInView:self];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self getImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    else if(buttonIndex == 1)
+    {
+        [self getImageFrom:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
+- (void)getImageFrom:(UIImagePickerControllerSourceType)type
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = type;
+    ipc.delegate = self;
+    [self.delegate presentViewController:ipc animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    
+    CGSize targetSize = self.avatar.frame.size;
+    targetSize.height = 300;
+    targetSize.width = 300;
+    
+    UIImage * newImage = [ViewUtils imageByScalingAndCroppingForSize:targetSize andUIImage:image];
+    
+    self.avatar.image = newImage;
+    self.avatar.alpha = 0.5;
+    [self uploadImage:newImage];
+    
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+-(void) uploadImage:(UIImage *) img
+{
+    if(imageUrl != nil) {
+        imageUrl = nil;
+    }
+    
+    self.avatar.alpha = 0.3;
+    
+    [settingModel updateAvatar:img andCallback:^(NSInteger error, NSString *url) {
+        [self onUploadCompleted:error andUrl:url];
+    }];
+}
+
+//-(void) onUploadStart
+//{
+//
+//}
+//
+//-(void) onUploadProgress: (long long) progress andSize: (long long) Size
+//{
+//    float prg = (float)progress / (float)Size;
+//    self.imageViewAddPhoto.alpha = 0.3 + prg*0.7;
+//    LOG_D(@"onUploadProgress: progress=%f", prg);
+//}
+
+-(void) onUploadCompleted: (int) error andUrl:(NSString *) url
+{
+    LOG_D(@"onUploadCompleted: url=%@", url);
+    
+    self.avatar.alpha = 1;
+    
+    if(error == 0) {
+        imageUrl = url;
+    } else {
+        self.avatar.image = nil;
+    }
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewAccountView.h"
 
-@interface CreateNewAccountViewController : UIViewController
+@interface CreateNewAccountViewController : UIViewController<NewAccountViewDelegate>
 
 @end

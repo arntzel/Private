@@ -69,7 +69,7 @@
     [navView addSubview:labelTitle];
     [self.view addSubview:navView];
     
-    detailView = [NewAccountView create];
+    detailView = [NewAccountView createWithDelegate:self];
     detailView.frame = CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 70);
     [self.view addSubview:detailView];
     
