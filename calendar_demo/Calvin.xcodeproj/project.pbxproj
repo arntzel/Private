@@ -8,6 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		00171F49189AA2D600CB9CAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00171F48189AA2D600CB9CAA /* Images.xcassets */; };
+		230DCD1A18CE9CE6000FC141 /* CreateNewAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD0618CE9CE6000FC141 /* CreateNewAccountViewController.m */; };
+		230DCD1B18CE9CE6000FC141 /* EmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD0818CE9CE6000FC141 /* EmailLoginViewController.m */; };
+		230DCD1C18CE9CE6000FC141 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD0A18CE9CE6000FC141 /* LandingViewController.m */; };
+		230DCD1D18CE9CE6000FC141 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD0C18CE9CE6000FC141 /* LoginViewController.m */; };
+		230DCD1E18CE9CE6000FC141 /* LogoBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD0E18CE9CE6000FC141 /* LogoBannerView.m */; };
+		230DCD1F18CE9CE6000FC141 /* LogoBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD0F18CE9CE6000FC141 /* LogoBannerView.xib */; };
+		230DCD2018CE9CE6000FC141 /* NewAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD1118CE9CE6000FC141 /* NewAccountView.m */; };
+		230DCD2118CE9CE6000FC141 /* NewAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD1218CE9CE6000FC141 /* NewAccountView.xib */; };
+		230DCD2218CE9CE6000FC141 /* OnboardingContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD1418CE9CE6000FC141 /* OnboardingContentView.m */; };
+		230DCD2318CE9CE6000FC141 /* OnboardingContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD1518CE9CE6000FC141 /* OnboardingContentView.xib */; };
+		230DCD2418CE9CE6000FC141 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD1718CE9CE6000FC141 /* OnboardingViewController.m */; };
+		230DCD2518CE9CE6000FC141 /* OtherSignupOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230DCD1918CE9CE6000FC141 /* OtherSignupOptionViewController.m */; };
+		230DCD3418CE9F4B000FC141 /* calendar_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2618CE9F4B000FC141 /* calendar_screen.png */; };
+		230DCD3518CE9F4B000FC141 /* calendar_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2718CE9F4B000FC141 /* calendar_screen@2x.png */; };
+		230DCD3618CE9F4B000FC141 /* calvin_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2818CE9F4B000FC141 /* calvin_icon_large.png */; };
+		230DCD3718CE9F4B000FC141 /* calvin_icon_large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2918CE9F4B000FC141 /* calvin_icon_large@2x.png */; };
+		230DCD3818CE9F4B000FC141 /* calvin_logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2A18CE9F4B000FC141 /* calvin_logo_large.png */; };
+		230DCD3918CE9F4B000FC141 /* calvin_logo_large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2B18CE9F4B000FC141 /* calvin_logo_large@2x.png */; };
+		230DCD3A18CE9F4B000FC141 /* email_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2C18CE9F4B000FC141 /* email_icon.png */; };
+		230DCD3B18CE9F4B000FC141 /* email_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2D18CE9F4B000FC141 /* email_icon@2x.png */; };
+		230DCD3C18CE9F4B000FC141 /* facebook_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2E18CE9F4B000FC141 /* facebook_icon.png */; };
+		230DCD3D18CE9F4B000FC141 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD2F18CE9F4B000FC141 /* facebook_icon@2x.png */; };
+		230DCD3E18CE9F4B000FC141 /* google_plus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD3018CE9F4B000FC141 /* google_plus_icon.png */; };
+		230DCD3F18CE9F4B000FC141 /* google_plus_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD3118CE9F4B000FC141 /* google_plus_icon@2x.png */; };
+		230DCD4018CE9F4B000FC141 /* pending_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD3218CE9F4B000FC141 /* pending_screen.png */; };
+		230DCD4118CE9F4B000FC141 /* pending_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD3318CE9F4B000FC141 /* pending_screen@2x.png */; };
+		230DCD4418CF067B000FC141 /* profile_photo_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD4218CF067B000FC141 /* profile_photo_icon.png */; };
+		230DCD4518CF067B000FC141 /* profile_photo_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD4318CF067B000FC141 /* profile_photo_icon@2x.png */; };
 		231319781867257C00F076C7 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319761867257C00F076C7 /* circle.png */; };
 		231319791867257C00F076C7 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319771867257C00F076C7 /* circle@2x.png */; };
 		2313197C1867271A00F076C7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197A1867271A00F076C7 /* people.png */; };
@@ -642,6 +670,43 @@
 		00171F44189A9F5300CB9CAA /* Spotlight_Calvin_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_Calvin_Icon.png; sourceTree = "<group>"; };
 		00171F45189A9F5300CB9CAA /* Spotlight_Calvin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spotlight_Calvin_Icon@2x.png"; sourceTree = "<group>"; };
 		00171F48189AA2D600CB9CAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Calvin/Images.xcassets; sourceTree = "<group>"; };
+		230DCD0518CE9CE6000FC141 /* CreateNewAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAccountViewController.h; sourceTree = "<group>"; };
+		230DCD0618CE9CE6000FC141 /* CreateNewAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewAccountViewController.m; sourceTree = "<group>"; };
+		230DCD0718CE9CE6000FC141 /* EmailLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLoginViewController.h; sourceTree = "<group>"; };
+		230DCD0818CE9CE6000FC141 /* EmailLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLoginViewController.m; sourceTree = "<group>"; };
+		230DCD0918CE9CE6000FC141 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
+		230DCD0A18CE9CE6000FC141 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		230DCD0B18CE9CE6000FC141 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		230DCD0C18CE9CE6000FC141 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		230DCD0D18CE9CE6000FC141 /* LogoBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoBannerView.h; sourceTree = "<group>"; };
+		230DCD0E18CE9CE6000FC141 /* LogoBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoBannerView.m; sourceTree = "<group>"; };
+		230DCD0F18CE9CE6000FC141 /* LogoBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoBannerView.xib; sourceTree = "<group>"; };
+		230DCD1018CE9CE6000FC141 /* NewAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAccountView.h; sourceTree = "<group>"; };
+		230DCD1118CE9CE6000FC141 /* NewAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAccountView.m; sourceTree = "<group>"; };
+		230DCD1218CE9CE6000FC141 /* NewAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAccountView.xib; sourceTree = "<group>"; };
+		230DCD1318CE9CE6000FC141 /* OnboardingContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentView.h; sourceTree = "<group>"; };
+		230DCD1418CE9CE6000FC141 /* OnboardingContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentView.m; sourceTree = "<group>"; };
+		230DCD1518CE9CE6000FC141 /* OnboardingContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingContentView.xib; sourceTree = "<group>"; };
+		230DCD1618CE9CE6000FC141 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		230DCD1718CE9CE6000FC141 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
+		230DCD1818CE9CE6000FC141 /* OtherSignupOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherSignupOptionViewController.h; sourceTree = "<group>"; };
+		230DCD1918CE9CE6000FC141 /* OtherSignupOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherSignupOptionViewController.m; sourceTree = "<group>"; };
+		230DCD2618CE9F4B000FC141 /* calendar_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_screen.png; sourceTree = "<group>"; };
+		230DCD2718CE9F4B000FC141 /* calendar_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_screen@2x.png"; sourceTree = "<group>"; };
+		230DCD2818CE9F4B000FC141 /* calvin_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calvin_icon_large.png; sourceTree = "<group>"; };
+		230DCD2918CE9F4B000FC141 /* calvin_icon_large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calvin_icon_large@2x.png"; sourceTree = "<group>"; };
+		230DCD2A18CE9F4B000FC141 /* calvin_logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calvin_logo_large.png; sourceTree = "<group>"; };
+		230DCD2B18CE9F4B000FC141 /* calvin_logo_large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calvin_logo_large@2x.png"; sourceTree = "<group>"; };
+		230DCD2C18CE9F4B000FC141 /* email_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_icon.png; sourceTree = "<group>"; };
+		230DCD2D18CE9F4B000FC141 /* email_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_icon@2x.png"; sourceTree = "<group>"; };
+		230DCD2E18CE9F4B000FC141 /* facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_icon.png; sourceTree = "<group>"; };
+		230DCD2F18CE9F4B000FC141 /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
+		230DCD3018CE9F4B000FC141 /* google_plus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google_plus_icon.png; sourceTree = "<group>"; };
+		230DCD3118CE9F4B000FC141 /* google_plus_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "google_plus_icon@2x.png"; sourceTree = "<group>"; };
+		230DCD3218CE9F4B000FC141 /* pending_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pending_screen.png; sourceTree = "<group>"; };
+		230DCD3318CE9F4B000FC141 /* pending_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pending_screen@2x.png"; sourceTree = "<group>"; };
+		230DCD4218CF067B000FC141 /* profile_photo_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_photo_icon.png; sourceTree = "<group>"; };
+		230DCD4318CF067B000FC141 /* profile_photo_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_photo_icon@2x.png"; sourceTree = "<group>"; };
 		231319761867257C00F076C7 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		231319771867257C00F076C7 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
 		2313197A1867271A00F076C7 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
@@ -1605,6 +1670,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		230DCD0418CE9CE6000FC141 /* NewLogin */ = {
+			isa = PBXGroup;
+			children = (
+				230DCD0518CE9CE6000FC141 /* CreateNewAccountViewController.h */,
+				230DCD0618CE9CE6000FC141 /* CreateNewAccountViewController.m */,
+				230DCD0718CE9CE6000FC141 /* EmailLoginViewController.h */,
+				230DCD0818CE9CE6000FC141 /* EmailLoginViewController.m */,
+				230DCD0918CE9CE6000FC141 /* LandingViewController.h */,
+				230DCD0A18CE9CE6000FC141 /* LandingViewController.m */,
+				230DCD0B18CE9CE6000FC141 /* LoginViewController.h */,
+				230DCD0C18CE9CE6000FC141 /* LoginViewController.m */,
+				230DCD0D18CE9CE6000FC141 /* LogoBannerView.h */,
+				230DCD0E18CE9CE6000FC141 /* LogoBannerView.m */,
+				230DCD0F18CE9CE6000FC141 /* LogoBannerView.xib */,
+				230DCD1018CE9CE6000FC141 /* NewAccountView.h */,
+				230DCD1118CE9CE6000FC141 /* NewAccountView.m */,
+				230DCD1218CE9CE6000FC141 /* NewAccountView.xib */,
+				230DCD1318CE9CE6000FC141 /* OnboardingContentView.h */,
+				230DCD1418CE9CE6000FC141 /* OnboardingContentView.m */,
+				230DCD1518CE9CE6000FC141 /* OnboardingContentView.xib */,
+				230DCD1618CE9CE6000FC141 /* OnboardingViewController.h */,
+				230DCD1718CE9CE6000FC141 /* OnboardingViewController.m */,
+				230DCD1818CE9CE6000FC141 /* OtherSignupOptionViewController.h */,
+				230DCD1918CE9CE6000FC141 /* OtherSignupOptionViewController.m */,
+			);
+			path = NewLogin;
+			sourceTree = "<group>";
+		};
 		234585021853687300086FB3 /* BlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2360,6 +2453,22 @@
 		769AB99217DF51340033E677 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				230DCD4218CF067B000FC141 /* profile_photo_icon.png */,
+				230DCD4318CF067B000FC141 /* profile_photo_icon@2x.png */,
+				230DCD2618CE9F4B000FC141 /* calendar_screen.png */,
+				230DCD2718CE9F4B000FC141 /* calendar_screen@2x.png */,
+				230DCD2818CE9F4B000FC141 /* calvin_icon_large.png */,
+				230DCD2918CE9F4B000FC141 /* calvin_icon_large@2x.png */,
+				230DCD2A18CE9F4B000FC141 /* calvin_logo_large.png */,
+				230DCD2B18CE9F4B000FC141 /* calvin_logo_large@2x.png */,
+				230DCD2C18CE9F4B000FC141 /* email_icon.png */,
+				230DCD2D18CE9F4B000FC141 /* email_icon@2x.png */,
+				230DCD2E18CE9F4B000FC141 /* facebook_icon.png */,
+				230DCD2F18CE9F4B000FC141 /* facebook_icon@2x.png */,
+				230DCD3018CE9F4B000FC141 /* google_plus_icon.png */,
+				230DCD3118CE9F4B000FC141 /* google_plus_icon@2x.png */,
+				230DCD3218CE9F4B000FC141 /* pending_screen.png */,
+				230DCD3318CE9F4B000FC141 /* pending_screen@2x.png */,
 				7662F74817F0761900B64E40 /* login_main_login_facebook.png */,
 				7662F74917F0761900B64E40 /* login_main_login_google.png */,
 				7662F74A17F0761900B64E40 /* login_main_login_line.png */,
@@ -2447,6 +2556,7 @@
 		769ABA2717DF51CE0033E677 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				230DCD0418CE9CE6000FC141 /* NewLogin */,
 				7662F75A17F07F2B00B64E40 /* Setting */,
 				7662F75E17F07F2B00B64E40 /* ThirdPartPlatform */,
 				769ABA2817DF51CE0033E677 /* Login */,
@@ -3330,6 +3440,7 @@
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
+				230DCD3918CE9F4B000FC141 /* calvin_logo_large@2x.png in Resources */,
 				769AB92017DF51160033E677 /* PendingEventHeader.xib in Resources */,
 				769AB92217DF51160033E677 /* PendingEventViewCell.xib in Resources */,
 				769AB92417DF51160033E677 /* PendingEventViewCell2.xib in Resources */,
@@ -3359,6 +3470,7 @@
 				769AB9A817DF51340033E677 /* event_detail_random_header2.png in Resources */,
 				7662F75717F0761900B64E40 /* login_main_singnup_profile_bg.png in Resources */,
 				93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */,
+				230DCD4018CE9F4B000FC141 /* pending_screen.png in Resources */,
 				34B1F1AE17F8FCE200AA5C97 /* settings_detail_empty_circle.png in Resources */,
 				769AB9A917DF51340033E677 /* event_detail_random_header3.png in Resources */,
 				769AB9AA17DF51340033E677 /* event_detail_random_header4.png in Resources */,
@@ -3366,6 +3478,7 @@
 				769AB9AB17DF51340033E677 /* event_detail_random_header5.png in Resources */,
 				769AB9AC17DF51340033E677 /* event_detail_random_header6.png in Resources */,
 				769AB9AD17DF51340033E677 /* event_detail_random_header7.png in Resources */,
+				230DCD3418CE9F4B000FC141 /* calendar_screen.png in Resources */,
 				769AB9AE17DF51340033E677 /* event_detail_random_header8.png in Resources */,
 				765B24FD1802965D00B01A0A /* tokenHighlighted.png in Resources */,
 				769AB9AF17DF51340033E677 /* header1.jpg in Resources */,
@@ -3378,6 +3491,8 @@
 				34B1F1B117F8FCE200AA5C97 /* settings_detail_full_circle@2x.png in Resources */,
 				767822A0187971A000CEF40E /* AddEventInviteView.xib in Resources */,
 				34B1F1BD17F8FCE200AA5C97 /* settings_main_facebook_icon@2x.png in Resources */,
+				230DCD4418CF067B000FC141 /* profile_photo_icon.png in Resources */,
+				230DCD3F18CE9F4B000FC141 /* google_plus_icon@2x.png in Resources */,
 				769AB9B217DF51340033E677 /* header3.jpg in Resources */,
 				769AB9B317DF51340033E677 /* header4.jpg in Resources */,
 				769AB9B417DF51340033E677 /* header5.jpg in Resources */,
@@ -3400,6 +3515,7 @@
 				769AB9BA17DF51340033E677 /* event_detail_header_list_arraw.png in Resources */,
 				769AB9BB17DF51340033E677 /* event_detail_header_tick.png in Resources */,
 				76C5128D1888195B00E5A31F /* CEndTimeTitle.xib in Resources */,
+				230DCD2118CE9CE6000FC141 /* NewAccountView.xib in Resources */,
 				34B1F1C417F8FCE200AA5C97 /* settings_main_one_row.png in Resources */,
 				76C5129A1888195B00E5A31F /* CEventTimeTitle.xib in Resources */,
 				7662F75817F0761900B64E40 /* login_mainaccess_new.png in Resources */,
@@ -3431,9 +3547,11 @@
 				769AB9D317DF51340033E677 /* arrow_right.png in Resources */,
 				769AB9D417DF51340033E677 /* arrow_right@2x.png in Resources */,
 				769AB9D517DF51340033E677 /* attendees.png in Resources */,
+				230DCD3618CE9F4B000FC141 /* calvin_icon_large.png in Resources */,
 				7662F74017F075F400B64E40 /* LoginMainAccessView.xib in Resources */,
 				93E398CE18C415AB00B75150 /* EventViewCell.xib in Resources */,
 				3DB1373E18828763005CAEA7 /* invitee_people_bg.png in Resources */,
+				230DCD4118CE9F4B000FC141 /* pending_screen@2x.png in Resources */,
 				7662F76A17F07F2B00B64E40 /* SettingViewController.xib in Resources */,
 				34B1F1C117F8FCE200AA5C97 /* settings_main_head_portait_default@2x.png in Resources */,
 				769CB5821886CDC10082400D /* AEInviteesEntry.xib in Resources */,
@@ -3485,6 +3603,7 @@
 				769AB9EB17DF51340033E677 /* dot.png in Resources */,
 				34B1F1C517F8FCE200AA5C97 /* settings_main_one_row@2x.png in Resources */,
 				23B870FF1868684300F7F62F /* anchal@2x.png in Resources */,
+				230DCD3818CE9F4B000FC141 /* calvin_logo_large.png in Resources */,
 				769AB9EC17DF51340033E677 /* email@2x.png in Resources */,
 				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
 				769AB9EE17DF51340033E677 /* google@2x.png in Resources */,
@@ -3494,6 +3613,7 @@
 				769AB9F217DF51340033E677 /* login_background@2x.png in Resources */,
 				769AB9F317DF51340033E677 /* leftMenu-corner-right.png in Resources */,
 				232442A818546BC5008930EA /* settings_icon@2x.png in Resources */,
+				230DCD2318CE9CE6000FC141 /* OnboardingContentView.xib in Resources */,
 				769AB9F417DF51340033E677 /* leftMenu-corner-right@2x.png in Resources */,
 				34B1F1AD17F8FCE200AA5C97 /* settings_detail_cancel_btn@2x.png in Resources */,
 				34B1F1C617F8FCE200AA5C97 /* settings_main_top.png in Resources */,
@@ -3513,6 +3633,7 @@
 				769AB9FC17DF51340033E677 /* manuNavCal.png in Resources */,
 				769AB9FD17DF51340033E677 /* manuNavQuestion.png in Resources */,
 				769AB9FE17DF51340033E677 /* manuNavSetting.png in Resources */,
+				230DCD3C18CE9F4B000FC141 /* facebook_icon.png in Resources */,
 				769ABA9A17DF51EC0033E677 /* navigationMenuCell.xib in Resources */,
 				34B1F1BE17F8FCE200AA5C97 /* settings_main_gmail_icon.png in Resources */,
 				769ABA9E17DF51EC0033E677 /* navigationNotifyCell.xib in Resources */,
@@ -3529,7 +3650,9 @@
 				767822A8187971A000CEF40E /* AddEventTimeButton.xib in Resources */,
 				23569359184797050003AD8E /* menu_icon.png in Resources */,
 				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
+				230DCD4518CF067B000FC141 /* profile_photo_icon@2x.png in Resources */,
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
+				230DCD3E18CE9F4B000FC141 /* google_plus_icon.png in Resources */,
 				232F1A3B186B22DE00238CA5 /* red_error.png in Resources */,
 				34B1F1B517F8FCE200AA5C97 /* settings_main_arrow@2x.png in Resources */,
 				23A9C2031853025E009FECF9 /* LocationChangedViewController.xib in Resources */,
@@ -3560,6 +3683,7 @@
 				34B1F1C817F8FCE200AA5C97 /* settings_main_top_row.png in Resources */,
 				235693561847968A0003AD8E /* add_event_icon@2x.png in Resources */,
 				769ABB6E17DF54000033E677 /* addEventBtnBg.png in Resources */,
+				230DCD3718CE9F4B000FC141 /* calvin_icon_large@2x.png in Resources */,
 				769ABB6F17DF54000033E677 /* addEventSettingIcon.png in Resources */,
 				765B24FF1802965D00B01A0A /* tokenNormal.png in Resources */,
 				769ABB7017DF54000033E677 /* addLocationIcon.png in Resources */,
@@ -3579,9 +3703,11 @@
 				769ABB7917DF54000033E677 /* invitePeopleIcon.png in Resources */,
 				23A15CD61855BF9700B12865 /* notification_btn@2x.png in Resources */,
 				769ABB7A17DF54000033E677 /* map_my_location.png in Resources */,
+				230DCD3A18CE9F4B000FC141 /* email_icon.png in Resources */,
 				769ABB7B17DF54000033E677 /* navBar_bg.png in Resources */,
 				769CB5721886CD740082400D /* add_event_time_v2.png in Resources */,
 				769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */,
+				230DCD3B18CE9F4B000FC141 /* email_icon@2x.png in Resources */,
 				765B24FE1802965D00B01A0A /* tokenHighlighted@2x.png in Resources */,
 				3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */,
 				7662F75917F0761900B64E40 /* login_mainaccess_signin.png in Resources */,
@@ -3593,6 +3719,7 @@
 				769CB5691886CD1A0082400D /* AddEventControllerV2.xib in Resources */,
 				769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */,
 				769ABC7E17DF542A0033E677 /* EventView.xib in Resources */,
+				230DCD3518CE9F4B000FC141 /* calendar_screen@2x.png in Resources */,
 				769ABC8217DF542A0033E677 /* LoadingProgressView.xib in Resources */,
 				23DFECD8184C85E700CC7D3D /* feed_background_image@2x.png in Resources */,
 				34B1F1BC17F8FCE200AA5C97 /* settings_main_facebook_icon.png in Resources */,
@@ -3609,6 +3736,7 @@
 				769ABCA517DF542A0033E677 /* 19-check.png in Resources */,
 				93537E95189DC23400808E55 /* default_person@2x.png in Resources */,
 				34B1F1BA17F8FCE200AA5C97 /* settings_main_connect_btn.png in Resources */,
+				230DCD1F18CE9CE6000FC141 /* LogoBannerView.xib in Resources */,
 				769CB56F1886CD740082400D /* add_event_arraw_v2.png in Resources */,
 				769ABCA617DF542A0033E677 /* pop.wav in Resources */,
 				769ABCF017DF542A0033E677 /* gps.db in Resources */,
@@ -3639,6 +3767,7 @@
 				232F1A3A186B22DE00238CA5 /* green_error.png in Resources */,
 				34B1F1BB17F8FCE200AA5C97 /* settings_main_connect_btn@2x.png in Resources */,
 				34262E191869C1A300288EA9 /* iCalEventShowSettingsCell.xib in Resources */,
+				230DCD3D18CE9F4B000FC141 /* facebook_icon@2x.png in Resources */,
 				7662F75417F0761900B64E40 /* login_main_sign_bg.png in Resources */,
 				9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */,
 			);
@@ -3705,6 +3834,7 @@
 				769ABA8D17DF51EC0033E677 /* DDMenuController.m in Sources */,
 				769ABA8E17DF51EC0033E677 /* MainViewController.m in Sources */,
 				3D1EAC6C188B6C500002F627 /* UploadUIImageView.m in Sources */,
+				230DCD1A18CE9CE6000FC141 /* CreateNewAccountViewController.m in Sources */,
 				769ABA8F17DF51EC0033E677 /* menuNavigation.m in Sources */,
 				767822A7187971A000CEF40E /* AddEventTimeButton.m in Sources */,
 				76C5129F1888195B00E5A31F /* CStartTimeTitle.m in Sources */,
@@ -3719,6 +3849,7 @@
 				34B1F1A817F8FCE200AA5C97 /* NotificaitonViewController.m in Sources */,
 				769ABAA117DF51EC0033E677 /* navigationNotifySectionHeader.m in Sources */,
 				769ABAA317DF51EC0033E677 /* RootNavContrller.m in Sources */,
+				230DCD1E18CE9CE6000FC141 /* LogoBannerView.m in Sources */,
 				769ABB0B17DF52090033E677 /* AddDateTypeView.m in Sources */,
 				769ABB0D17DF52090033E677 /* AddEventDateViewController.m in Sources */,
 				2345850D1853688100086FB3 /* BLRView.m in Sources */,
@@ -3749,6 +3880,7 @@
 				769ABB2817DF52090033E677 /* EventDetailCommentTextView.m in Sources */,
 				769ABB2A17DF52090033E677 /* EventDetailCommentView.m in Sources */,
 				765DF0BA17F083A8007259DF /* LoginStatusCheck.m in Sources */,
+				230DCD2518CE9CE6000FC141 /* OtherSignupOptionViewController.m in Sources */,
 				76CF7FC618058F6000018B95 /* DetailVoteViewController.m in Sources */,
 				76591A8717FFB09A00DE3AB2 /* AddLocationViewController.m in Sources */,
 				34262E181869C1A300288EA9 /* iCalEventShowSettingsCell.m in Sources */,
@@ -3796,8 +3928,10 @@
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
 				34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */,
 				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,
+				230DCD1C18CE9CE6000FC141 /* LandingViewController.m in Sources */,
 				769ABC7F17DF542A0033E677 /* FeedEventTableView.m in Sources */,
 				769ABC8017DF542A0033E677 /* FeedViewController.m in Sources */,
+				230DCD2418CE9CE6000FC141 /* OnboardingViewController.m in Sources */,
 				769ABC8117DF542A0033E677 /* LoadingProgressView.m in Sources */,
 				769ABC8317DF542A0033E677 /* Navigation.m in Sources */,
 				769ABC8617DF542A0033E677 /* Buddy.m in Sources */,
@@ -3839,7 +3973,9 @@
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
 				7662F76917F07F2B00B64E40 /* SettingViewController.m in Sources */,
 				768DAC96180989EE000A3CB6 /* ExtendTextField.m in Sources */,
+				230DCD1B18CE9CE6000FC141 /* EmailLoginViewController.m in Sources */,
 				769ABC9B17DF542A0033E677 /* ASIHTTPRequest.m in Sources */,
+				230DCD2218CE9CE6000FC141 /* OnboardingContentView.m in Sources */,
 				769ABC9C17DF542A0033E677 /* ASIInputStream.m in Sources */,
 				768404B71800FD5200C69240 /* DetailInviteesController.m in Sources */,
 				768404C8180115B200C69240 /* JSTokenButton.m in Sources */,
@@ -3866,6 +4002,8 @@
 				769ABCAA17DF542A0033E677 /* DKLiveBlurView.m in Sources */,
 				769ABCF117DF542A0033E677 /* Reachability.m in Sources */,
 				3DA84B7B18BA1EF000651379 /* LocationEntityExtra.m in Sources */,
+				230DCD1D18CE9CE6000FC141 /* LoginViewController.m in Sources */,
+				230DCD2018CE9CE6000FC141 /* NewAccountView.m in Sources */,
 				769ABCF317DF542A0033E677 /* CSqlite.m in Sources */,
 				769ABCF517DF542A0033E677 /* sqlite3.c in Sources */,
 				7653856B188A55C800308658 /* AddEventInviteePlaceView.m in Sources */,
