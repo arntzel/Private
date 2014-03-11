@@ -113,7 +113,7 @@ static UserModel * instance;
     [self doLogin:request andCallback:callback];
 }
 
--(void) signinGooglePlus:(NSString *)accessToken andCallback:(void (^)(NSInteger, User *))callback
+-(void) signinGooglePlus:(NSString *)accessToken andRefeshToken:(NSString *) refreshToken andCallback:(void (^)(NSInteger, User *))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/google/connect/", HOST];
     
@@ -125,7 +125,7 @@ static UserModel * instance;
     LOG_D(@"url=%@", url);
     
     NSString * timezone = [NSTimeZone systemTimeZone].name;
-    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&timezone=%@", accessToken, timezone];
+    NSMutableString * postContent = [NSMutableString stringWithFormat:@"access_token=%@&refresh_token=%@&timezone=%@", accessToken, refreshToken, timezone];
     
     if(self.device_token != nil) {
         [postContent appendString:[NSString stringWithFormat:@"&device_token=%@", self.device_token]];
