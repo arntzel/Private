@@ -59,19 +59,21 @@
     [bgView setFrame:CGRectMake(0, -5, self.view.bounds.size.width, self.view.bounds.size.height +6)];
     [self.view addSubview:bgView];
     
-    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 70)];
+    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     [self.view addSubview:navView];
     
     currentPage = 0;
-    pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(110, 30, 100, 30)];
+    pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(110, 25, 80, 30)];
     pageControl.numberOfPages=SCROLL_PAGES;
     pageControl.currentPage=currentPage;
     //[pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:pageControl];
     
-    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 20, 80, 44)];
+    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -80,8 +82,10 @@
     [leftBtn setHidden:YES];
     [navView addSubview:leftBtn];
     
-    rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 80, 44)];
+    rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(250, 20, 80, 44)];
     [rightBtn setTitle:@"Next" forState:UIControlStateNormal];
+    [rightBtn setImage:[UIImage imageNamed:@"skip_icon.png"] forState:UIControlStateNormal];
+    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, 50, 0, 0)];
     [rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -52,11 +52,13 @@
     [bgView setFrame:CGRectMake(0, -5, self.view.bounds.size.width, self.view.bounds.size.height +6)];
     [self.view addSubview:bgView];
     
-    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 70)];
+    navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     
-    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 20, 80, 44)];
+    leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -100,7 +102,7 @@
     password.returnKeyType = UIReturnKeyDone;
     [password setFont:font];
     
-    textFieldView = [[UIView alloc]initWithFrame:CGRectMake(0, navView.frame.origin.y + 120, self.view.bounds.size.width, 120)];
+    textFieldView = [[UIView alloc]initWithFrame:CGRectMake(0, navView.frame.origin.y + 100, self.view.bounds.size.width, 120)];
     [textFieldView setBackgroundColor:textBgColor];
     [textFieldView addSubview:username];
     [textFieldView addSubview:password];
