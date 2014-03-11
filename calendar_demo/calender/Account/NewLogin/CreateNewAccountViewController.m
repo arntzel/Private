@@ -18,6 +18,8 @@
     UILabel *labelTitle;
     NewAccountView *detailView;
     
+    UIButton *signUpBtn;
+    
 }
 @end
 
@@ -70,6 +72,26 @@
     detailView = [NewAccountView create];
     detailView.frame = CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 70);
     [self.view addSubview:detailView];
+    
+    UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#18a48b" withAlpha:0.9];
+    CGRect btnFrame = CGRectZero;
+    CGFloat y = self.view.bounds.size.height;
+    btnFrame.origin.x = 0;
+    btnFrame.origin.y = y - 55;
+    btnFrame.size.height = 55;
+    btnFrame.size.width = 320;
+    signUpBtn = [[UIButton alloc]initWithFrame:btnFrame];
+    [signUpBtn setBackgroundColor:loginBtnBgColor];
+    [signUpBtn setTitle:@"Create Account" forState:UIControlStateNormal];
+    UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:22.0];
+    [[signUpBtn titleLabel]setFont:btnFont];
+    [[signUpBtn titleLabel] setTextColor:[UIColor whiteColor]];
+    [signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signUpBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [signUpBtn addTarget:self action:@selector(onSignupBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self.view addSubview:signUpBtn];
 }
 
 -(void)onBackButtonTapped
@@ -81,6 +103,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)onSignupBtnTapped
+{
+    
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewAccountView : UIView
+@interface NewAccountView : UIView <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UIView *profileView;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
@@ -19,7 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
-@property (strong, nonatomic) IBOutlet UIButton *signUpBtn;
 
 
 +(NewAccountView *) create;
