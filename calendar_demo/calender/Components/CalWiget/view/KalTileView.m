@@ -50,7 +50,7 @@ static inline NSString *stringFromWeekday(int weekday)
         //UIColor *bgColor = [UIColor generateUIColorByHexString:@"#18a48b"];
         //bgColor get
         CGContextSetRGBFillColor(ctx, 24.0/255.0f, 164.0/255.0f, 139.0/255.0f, 1);
-        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 32, 32));
+        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 34, 34));
 //        CGContextSetRGBFillColor(ctx, 90.0/255.0f, 90.0/255.0f, 90.0/255.0f, 1);
 //        CGContextSetLineWidth(ctx, 0.0f);
 //        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
@@ -64,7 +64,7 @@ static inline NSString *stringFromWeekday(int weekday)
     {
         textColor = [UIColor whiteColor];
         CGContextSetRGBFillColor(ctx, 190.0/255.0f, 190.0/255.0f, 190.0/255.0f, 1);
-        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 32, 32));
+        CGContextFillEllipseInRect(ctx, CGRectMake(6, 9, 34, 34));
 //        CGContextSetLineWidth(ctx, 0.0f);
 //        CGContextAddRect(ctx, CGRectMake(0, 0, kTileSize.width, kTileSize.height));
 //        CGContextFillPath(ctx);
@@ -121,10 +121,10 @@ static inline NSString *stringFromWeekday(int weekday)
   CGSize textSize = [dayText sizeWithFont:font];
   CGFloat textX, textY;
     
-  textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
+  textX = roundf(0.5f * (kTileSize.width - textSize.width)) ;
 //  textY = roundf(0.5f * (kTileSize.height - textSize.height)) + 2;
     if (n == 1) {
-        textY = 14.0f;
+        textY = 16.0f;
     }
     else
     {
@@ -142,14 +142,14 @@ static inline NSString *stringFromWeekday(int weekday)
     }
     else {
         //sunday?
-        if(self.date != nil) {
-            NSDate *dt = [self.date NSDate];
-            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
-            //NSLog(@"%@", stringFromWeekday([components weekday]));
-            if ([components weekday] == 1) {
-                drawMonth = YES; //sunday
-            }
-        }
+//        if(self.date != nil) {
+//            NSDate *dt = [self.date NSDate];
+//            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:dt];
+//            //NSLog(@"%@", stringFromWeekday([components weekday]));
+//            if ([components weekday] == 1) {
+//                drawMonth = YES; //sunday
+//            }
+//        }
     }
     
     if (drawMonth && date) {
@@ -163,8 +163,8 @@ static inline NSString *stringFromWeekday(int weekday)
         const char *cMonthName = [monthName cStringUsingEncoding:NSUTF8StringEncoding];
         textSize = [monthName sizeWithFont:monthFont];
         
-        textX = roundf(0.5f * (kTileSize.width - textSize.width)) - 1;
-        textY = 34;
+        textX = roundf(0.5f * (kTileSize.width - textSize.width)) + 1;
+        textY = 30;
         
         [textColor setFill];
         CGContextShowTextAtPoint(ctx, textX, textY, cMonthName, [monthName length]);
@@ -185,9 +185,11 @@ static inline NSString *stringFromWeekday(int weekday)
         } else {
             CGPoint position;
             position.x = OffsetX;
-            position.y = OffsetY;
+            position.y = OffsetY + 5;
+            if (![self isToday]) {
+                [self drawColordot:ctx andPosition:position andColor:0xFFA9A9A9];
+            }
             
-            [self drawColordot:ctx andPosition:position andColor:0xFFA9A9A9];
         }
     }
     
