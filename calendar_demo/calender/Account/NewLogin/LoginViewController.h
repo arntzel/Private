@@ -7,6 +7,7 @@
 //
 
 #import "BaseUIViewController.h"
+#import "CreateUser.h"
 
 @interface LoginViewController : BaseUIViewController
 
@@ -23,7 +24,7 @@
 -(void)doLoginWithEmail:(NSString *)email password:(NSString *)password;
 -(void)doSignupFacebook;
 -(void)doSignupGoogle;
--(void)doSignupWithUser;
+-(void)doSignupWithUser:(CreateUser *)user;
 -(void)doFogotPassword;
 
 @end

@@ -25,7 +25,7 @@
 //
 -(void) awakeFromNib {
     LOG_D(@"awakeFromNib");
-    self.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
+    //self.backgroundColor = [UIColor generateUIColorByHexString:@"#18a48b"];
 }
 
 -(void)setUpMainNavigationButtons:(ViewMode)mode

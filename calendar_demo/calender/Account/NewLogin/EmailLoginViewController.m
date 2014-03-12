@@ -81,7 +81,7 @@
     [navView addSubview:labelTitle];
     [self.view addSubview:navView];
     
-    UIColor *textBgColor = [UIColor colorWithRed:232.0/255.0 green:243.0/255.0 blue:237.0/255.0 alpha:1.0];
+   UIColor *textBgColor = [UIColor colorWithRed:223.0/255.0 green:237.0/255.0 blue:232.0/255.0 alpha:1.0];
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     username = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width - 20, 60)];
     [username setBorderStyle:UITextBorderStyleNone];
@@ -89,7 +89,9 @@
     username.placeholder = @"Email Address";
     username.autocorrectionType = UITextAutocorrectionTypeNo;
     username.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    username.returnKeyType = UIReturnKeyNext;
+    username.returnKeyType = UIReturnKeyDefault;
+    [username becomeFirstResponder];
+    username.keyboardType = UIKeyboardTypeEmailAddress;
     [username setFont:font];
     
     password = [[UITextField alloc]initWithFrame:CGRectMake(10, username.frame.origin.y + 61, self.view.bounds.size.width - 20, 60)];
@@ -117,7 +119,7 @@
     loginBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, textFieldView.frame.origin.y + 120, self.view.bounds.size.width, 45)];
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#18a48b" withAlpha:0.9];
     [loginBtn setBackgroundColor:loginBtnBgColor];
-    [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
+    [loginBtn setTitle:@"Log In" forState:UIControlStateNormal];
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:22.0];
     [[loginBtn titleLabel]setFont:btnFont];
     [[loginBtn titleLabel] setTextColor:[UIColor whiteColor]];

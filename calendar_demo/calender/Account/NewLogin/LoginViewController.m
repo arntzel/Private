@@ -96,7 +96,7 @@
     labelTitle.lineBreakMode = NSLineBreakByWordWrapping;
     labelTitle.numberOfLines = 0;
     
-    labelTitle.text = @"Login";
+    labelTitle.text = @"Log In";
     [labelTitle setTextAlignment:NSTextAlignmentCenter];
     [labelTitle setTextColor:[UIColor whiteColor]];
     //[labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
@@ -259,6 +259,7 @@
 {
     if (createUser.email == nil || createUser.password == nil) {
         [self showAlert:@"Email and Password can't be empty !!"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGINSUCCESS" object:nil];
         return;
     }
     
@@ -293,6 +294,7 @@
                                                 otherButtonTitles:nil];
             [alert show];
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGINSUCCESS" object:nil];
     }];
 }
 

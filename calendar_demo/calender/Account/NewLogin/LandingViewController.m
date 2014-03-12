@@ -75,7 +75,7 @@
     loginBtn.frame = CGRectMake(0, 0, 304, 45);
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#d2ece8" withAlpha:0.9];
     [loginBtn setBackgroundColor:loginBtnBgColor];
-    [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
+    [loginBtn setTitle:@"Log In" forState:UIControlStateNormal];
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:25.0];
     [[loginBtn titleLabel]setFont:btnFont];
     [[loginBtn titleLabel] setTextColor:[UIColor blackColor]];
@@ -125,19 +125,20 @@
         loginViewController = [[LoginViewController alloc]init];
     }
     
-    OnboardingViewController *onboardingViewController = [[OnboardingViewController alloc]init];
-    [onboardingViewController setDelegate:loginViewController];
-    [self.navigationController pushViewController:onboardingViewController animated:YES];
+//    OnboardingViewController *onboardingViewController = [[OnboardingViewController alloc]init];
+//    [onboardingViewController setDelegate:loginViewController];
+//    [self.navigationController pushViewController:onboardingViewController animated:YES];
     
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showGuide"] == YES) {
-//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showGuide"];
-//        OnboardingViewController *onboardingViewController = [[OnboardingViewController alloc]init];
-//        [onboardingViewController setDelegate:loginViewController];
-//        [self.navigationController pushViewController:onboardingViewController animated:YES];
-//    } else {
-//        CreateNewAccountViewController *create = [[CreateNewAccountViewController alloc]init];
-//        [self.navigationController pushViewController:create animated:YES];
-//    }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showGuide"] == YES) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showGuide"];
+        OnboardingViewController *onboardingViewController = [[OnboardingViewController alloc]init];
+        [onboardingViewController setDelegate:loginViewController showLastOnly:NO];
+        [self.navigationController pushViewController:onboardingViewController animated:YES];
+    } else {
+        OnboardingViewController *onboardingViewController = [[OnboardingViewController alloc]init];
+        [onboardingViewController setDelegate:loginViewController showLastOnly:YES];
+        [self.navigationController pushViewController:onboardingViewController animated:YES];
+    }
     
 }
 

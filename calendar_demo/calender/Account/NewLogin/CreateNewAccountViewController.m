@@ -9,6 +9,7 @@
 #import "CreateNewAccountViewController.h"
 #import "UIColor+Hex.h"
 #import "NewAccountView.h"
+#import "Utils.h"
 
 @interface CreateNewAccountViewController ()
 {
@@ -20,6 +21,8 @@
     
     UIButton *signUpBtn;
     
+    id<LoginViewControllerDelegate>delegate;
+    UIActivityIndicatorView *loadingView;
 }
 @end
 
@@ -32,6 +35,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)setDelegate:(id<LoginViewControllerDelegate>) theDelegate
+{
+    delegate = theDelegate;
 }
 
 - (void)viewDidLoad
@@ -72,7 +80,7 @@
     [self.view addSubview:navView];
     
     detailView = [NewAccountView createWithDelegate:self];
-    detailView.frame = CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 70);
+    detailView.frame = CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height - 60);
     [self.view addSubview:detailView];
     
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#18a48b" withAlpha:0.9];
@@ -94,6 +102,13 @@
     
     
     [self.view addSubview:signUpBtn];
+    
+    loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingView.center = self.view.center;
+    loadingView.hidesWhenStopped = YES;
+    [self.view addSubview:loadingView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onLoginSuccess:) name:@"LOGINSUCCESS" object:nil];
 }
 
 -(void)onBackButtonTapped
@@ -109,7 +124,54 @@
 
 -(void)onSignupBtnTapped
 {
+    NSString *firstName = detailView.firstName.text;
+    NSString *lastName = detailView.lastName.text;
+    NSString *zipCode = detailView.zipCode.text;
     
+    NSString *email = detailView.email.text;
+    NSString *pw = detailView.password.text;
+    NSString *confirmPw = detailView.confirmPassword.text;
+    
+    if( ![Utils isValidateEmail:email]) {
+        [Utils showUIAlertView:@"" andMessage:@"Email is invalided!"];
+        return;
+    }
+    
+    if( pw == nil || [pw length] ==0) {
+        [Utils showUIAlertView:@"" andMessage:@"Password is empty!"];
+        return;
+    }
+    
+    if( confirmPw == nil || [confirmPw length] ==0) {
+        [Utils showUIAlertView:@"" andMessage:@"Password is empty!"];
+        return;
+    }
+    
+    if (![confirmPw isEqualToString:pw]) {
+        [Utils showUIAlertView:@"" andMessage:@"Please correct the confirmed password!"];
+        return;
+    }
+    
+    if ([delegate respondsToSelector:@selector(doSignupWithUser:)]) {
+        
+        CreateUser * createUser = [[CreateUser alloc] init];
+        createUser.first_name = firstName;
+        createUser.last_name = lastName;
+        createUser.avatar_url = detailView.imageUrl;
+        createUser.email = email;
+        createUser.username = createUser.email;
+        createUser.password = pw;
+        createUser.zip_code = zipCode;
+        [loadingView startAnimating];
+        [signUpBtn setEnabled:NO];
+        [delegate doSignupWithUser:createUser];
+    }
+}
+
+-(void)onLoginSuccess:(NSNotification *)notification
+{
+    [loadingView stopAnimating];
+    [signUpBtn setEnabled:YES];
 }
 
 @end

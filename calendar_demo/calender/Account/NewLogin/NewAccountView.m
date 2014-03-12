@@ -11,10 +11,11 @@
 #import "UIColor+Hex.h"
 #import "SettingsModel.h"
 
+#define KEYBOARD_OFFSET 60;
+
 @implementation NewAccountView
 {
     UITapGestureRecognizer *tapGesture;
-    NSString * imageUrl;
     SettingsModel * settingModel;
 }
 
@@ -41,7 +42,7 @@
 -(void) awakeFromNib
 {
     settingModel = [[SettingsModel alloc] init];
-    UIColor *textBgColor = [UIColor colorWithRed:232.0/255.0 green:243.0/255.0 blue:237.0/255.0 alpha:1.0];
+    UIColor *textBgColor = [UIColor colorWithRed:223.0/255.0 green:237.0/255.0 blue:232.0/255.0 alpha:1.0];
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.profileView setBackgroundColor:textBgColor];
@@ -52,13 +53,22 @@
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addPhotoTap)];
     [self.avatar addGestureRecognizer:tapGesture];
     
+    CGRect avatarLeftSepFrame = CGRectMake(self.avatar.frame.origin.x + self.avatar.frame.size.height + 20, 0, 1, 120);
+    CALayer *avatarLeftSep = [self createNewSepWithFrame:avatarLeftSepFrame];
+    [self.profileView.layer addSublayer:avatarLeftSep];
+    
+    
     [self.firstName setBorderStyle:UITextBorderStyleNone];
     [self.firstName setBackgroundColor:[UIColor clearColor]];
     self.firstName.placeholder = @"First Name";
     self.firstName.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.firstName.returnKeyType = UIReturnKeyNext;
+    self.firstName.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.firstName setFont:font];
+    CGRect firstNameBottomSepFrame = CGRectMake(avatarLeftSepFrame.origin.x, 60, self.bounds.size.width - avatarLeftSepFrame.origin.x, 1);
+    CALayer *firstNameBottomSep = [self createNewSepWithFrame:firstNameBottomSepFrame];
+    [self.profileView.layer addSublayer:firstNameBottomSep];
     
     [self.lastName setBorderStyle:UITextBorderStyleNone];
     [self.lastName setBackgroundColor:[UIColor clearColor]];
@@ -66,6 +76,7 @@
     self.lastName.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.lastName.returnKeyType = UIReturnKeyNext;
+    self.lastName.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.lastName setFont:font];
     
     [self.zipCode setBorderStyle:UITextBorderStyleNone];
@@ -74,7 +85,16 @@
     self.zipCode.autocorrectionType = UITextAutocorrectionTypeNo;
     self.zipCode.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.zipCode.returnKeyType = UIReturnKeyNext;
+    self.zipCode.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     [self.zipCode setFont:font];
+    
+    CGRect zipCodeTopSepFrame = CGRectMake(0, 120, self.bounds.size.width, 1);
+    CALayer *zipCodeTopSep = [self createNewSepWithFrame:zipCodeTopSepFrame];
+    [self.profileView.layer addSublayer:zipCodeTopSep];
+    
+    CGRect zipCodeBottomSepFrame = CGRectMake(0, self.profileView.frame.origin.y + self.profileView.frame.size.height, self.bounds.size.width, 1);
+    CALayer *zipCodeBottomSep = [self createNewSepWithFrame:zipCodeBottomSepFrame];
+    [self.profileView.layer addSublayer:zipCodeBottomSep];
     
     CALayer *lay  = self.avatar.layer;
     [lay setMasksToBounds:YES];
@@ -82,29 +102,44 @@
     [lay setBorderWidth:1];
     [lay setBorderColor:[UIColor lightGrayColor].CGColor];
     
+    self.email.delegate = self;
     [self.email setBorderStyle:UITextBorderStyleNone];
     [self.email setBackgroundColor:[UIColor clearColor]];
     self.email.placeholder = @"Email Address";
     self.email.autocorrectionType = UITextAutocorrectionTypeNo;
     self.email.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.email.returnKeyType = UIReturnKeyNext;
+    self.email.keyboardType = UIKeyboardTypeEmailAddress;
     [self.email setFont:font];
+    CGRect emailBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + 55, self.bounds.size.width, 1);
+    CALayer *emailBottomSep = [self createNewSepWithFrame:emailBottomSepFrame];
+    [self.infoView.layer addSublayer:emailBottomSep];
     
+    self.password.delegate = self;
     [self.password setBorderStyle:UITextBorderStyleNone];
     [self.password setBackgroundColor:[UIColor clearColor]];
+    self.password.secureTextEntry = YES;
     self.password.placeholder = @"Password";
     self.password.autocorrectionType = UITextAutocorrectionTypeNo;
     self.password.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.password.returnKeyType = UIReturnKeyNext;
     [self.password setFont:font];
+    CGRect pwBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + 110, self.bounds.size.width, 1);
+    CALayer *pwBottomSep = [self createNewSepWithFrame:pwBottomSepFrame];
+    [self.infoView.layer addSublayer:pwBottomSep];
     
+    self.confirmPassword.delegate = self;
     [self.confirmPassword setBorderStyle:UITextBorderStyleNone];
     [self.confirmPassword setBackgroundColor:[UIColor clearColor]];
+    self.confirmPassword.secureTextEntry = YES;
     self.confirmPassword.placeholder = @"Confirm Password";
     self.confirmPassword.autocorrectionType = UITextAutocorrectionTypeNo;
     self.confirmPassword.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.confirmPassword.returnKeyType = UIReturnKeyNext;
     [self.confirmPassword setFont:font];
+    CGRect cpwBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + self.infoView.bounds.size.height, self.bounds.size.width, 1);
+    CALayer *cpwBottomSep = [self createNewSepWithFrame:cpwBottomSepFrame];
+    [self.infoView.layer addSublayer:cpwBottomSep];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -175,8 +210,8 @@
 
 -(void) uploadImage:(UIImage *) img
 {
-    if(imageUrl != nil) {
-        imageUrl = nil;
+    if(self.imageUrl != nil) {
+        self.imageUrl = nil;
     }
     
     self.avatar.alpha = 0.3;
@@ -205,10 +240,44 @@
     self.avatar.alpha = 1;
     
     if(error == 0) {
-        imageUrl = url;
+        self.imageUrl = url;
     } else {
         self.avatar.image = nil;
     }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //CGRect frame = textField.frame;
+    //int offset = frame.origin.y + 32 - (self.frame.size.height - 216.0);//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    int offset = -KEYBOARD_OFFSET;
+    self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSTimeInterval animationDuration = 0.90f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    int offset = KEYBOARD_OFFSET;
+    self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+-(CALayer *)createNewSepWithFrame:(CGRect) frame
+{
+    CALayer *sepLayer = [CALayer layer];
+    [sepLayer setFrame:frame];
+    [sepLayer setBackgroundColor:[UIColor colorWithRed:207.0/255.0 green:217.0/255.0 blue:211.0/255.0 alpha:1.0].CGColor];
+    return sepLayer;
 }
 
 @end
