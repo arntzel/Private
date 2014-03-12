@@ -86,7 +86,7 @@
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [leftBtn setHidden:YES];
+    //[leftBtn setHidden:YES];
     [navView addSubview:leftBtn];
     
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(250, 20, 80, 44)];
@@ -167,9 +167,14 @@
             [rightBtn setHidden:YES];
             [pageControl setHidden:YES];
         } else {
-            [leftBtn setHidden:YES];
-            [rightBtn setHidden:NO];
-            [pageControl setHidden:NO];
+            if (currentPage == 0) {
+                [leftBtn setHidden:NO];
+                [rightBtn setHidden:NO];
+            } else {
+                [leftBtn setHidden:YES];
+                [rightBtn setHidden:NO];
+                [pageControl setHidden:NO];
+            }
         }
     }
 }
@@ -197,14 +202,18 @@
 
 -(void)onBackButtonTapped {
     if (!showLastPageOnly) {
-        currentPage = SCROLL_PAGES - 2;
-        CGSize viewsize=scrollview.frame.size;
-        CGRect rect=CGRectMake(currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
-        [scrollview scrollRectToVisible:rect animated:YES];
-        [pageControl setCurrentPage:currentPage];
-        [leftBtn setHidden:YES];
-        [rightBtn setHidden:NO];
-        [pageControl setHidden:NO];
+        if (currentPage == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            currentPage = SCROLL_PAGES - 2;
+            CGSize viewsize=scrollview.frame.size;
+            CGRect rect=CGRectMake(currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
+            [scrollview scrollRectToVisible:rect animated:YES];
+            [pageControl setCurrentPage:currentPage];
+            [leftBtn setHidden:YES];
+            [rightBtn setHidden:NO];
+            [pageControl setHidden:NO];
+        }
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
