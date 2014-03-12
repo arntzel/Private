@@ -84,16 +84,24 @@
     fbLoginBtn.frame = CGRectMake(0, 0, 304, 45);
     UIColor *fbBtnBgColor = [UIColor generateUIColorByHexString:@"#3a5897" withAlpha:0.9];
     [fbLoginBtn setBackgroundColor:fbBtnBgColor];
-    [fbLoginBtn setTitle:@"Sign up with Facebook" forState:UIControlStateNormal];
+    [fbLoginBtn setTitle:@"Sign up with" forState:UIControlStateNormal];
     [[fbLoginBtn titleLabel]setFont:btnFont];
     [[fbLoginBtn titleLabel] setTextColor:[UIColor whiteColor]];
     [fbLoginBtn setCenter:CGPointMake(self.view.center.x, navView.frame.origin.y + 120)];
     CALayer *fbLayer = [self getButtonSepLayer];
     [fbLoginBtn.layer addSublayer:fbLayer];
     [fbLoginBtn setImage:[UIImage imageNamed:@"facebook_icon.png"] forState:UIControlStateNormal];
-    [fbLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -70, 0, 0)];
+    [fbLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
+    [fbLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -98, 0, 0)];
     [fbLoginBtn addTarget:self action:@selector(onLoginFBTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fbLoginBtn];
+    
+    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(fbLoginBtn.frame.origin.x + 174, fbLoginBtn.frame.origin.y + 10, 100, 23)];
+    UIFont *btnFont2 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
+    [gLabel setText:@"Facebook"];
+    [gLabel setTextColor:[UIColor whiteColor]];
+    [gLabel setFont:btnFont2];
+    [self.view addSubview:gLabel];
     
     emailLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     emailLoginBtn.frame = CGRectMake(0, 0, 304, 45);
@@ -108,7 +116,7 @@
     CALayer *emailLayer = [self getButtonSepLayer];
     [emailLoginBtn.layer addSublayer:emailLayer];
     [emailLoginBtn setImage:[UIImage imageNamed:@"email_icon.png"] forState:UIControlStateNormal];
-    [emailLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -110, 0, 0)];
+    [emailLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -100, 0, 0)];
     [emailLoginBtn addTarget:self action:@selector(onSignupWithEmailTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:emailLoginBtn];
     

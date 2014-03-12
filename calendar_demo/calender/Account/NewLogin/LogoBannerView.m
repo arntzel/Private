@@ -31,7 +31,7 @@
     self.gLoginBtn.frame = CGRectMake(0, 0, 304, 45);
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#df4a32"];
     [self.gLoginBtn setBackgroundColor:loginBtnBgColor];
-    [self.gLoginBtn setTitle:@"Sign up with Google" forState:UIControlStateNormal];
+    [self.gLoginBtn setTitle:@"Sign up with" forState:UIControlStateNormal];
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
     [[self.gLoginBtn titleLabel]setFont:btnFont];
     [[self.gLoginBtn titleLabel] setTextColor:[UIColor whiteColor]];
@@ -39,9 +39,17 @@
     CALayer *gLayer = [self getButtonSepLayer];
     [self.gLoginBtn.layer addSublayer:gLayer];
     [self.gLoginBtn setImage:[UIImage imageNamed:@"google_plus_icon.png"] forState:UIControlStateNormal];
-    [self.gLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 0)];
+    [self.gLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
+    [self.gLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -100, 0, 0)];
     [self.gLoginBtn addTarget:self action:@selector(doSignupGoogle) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.gLoginBtn];
+    
+    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.gLoginBtn.frame.origin.x + 180, self.gLoginBtn.frame.origin.y + 10, 80, 23)];
+    UIFont *btnFont2 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
+    [gLabel setText:@"Google"];
+    [gLabel setTextColor:[UIColor whiteColor]];
+    [gLabel setFont:btnFont2];
+    [self addSubview:gLabel];
     
     self.otherOptionsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.otherOptionsBtn.frame = CGRectMake(10, 435, 300, 40);

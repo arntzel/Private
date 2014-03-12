@@ -132,7 +132,7 @@
     gLoginBtn.frame = CGRectMake(0, 0, 304, 45);
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#df4a32"];
     [gLoginBtn setBackgroundColor:loginBtnBgColor];
-    [gLoginBtn setTitle:@"Log in with Google" forState:UIControlStateNormal];
+    [gLoginBtn setTitle:@"Log in with" forState:UIControlStateNormal];
     UIFont *btnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
     [[gLoginBtn titleLabel]setFont:btnFont];
     [[gLoginBtn titleLabel] setTextColor:[UIColor whiteColor]];
@@ -140,24 +140,40 @@
     CALayer *gLayer = [self getButtonSepLayer];
     [gLoginBtn.layer addSublayer:gLayer];
     [gLoginBtn setImage:[UIImage imageNamed:@"google_plus_icon.png"] forState:UIControlStateNormal];
-    [gLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -90, 0, 0)];
+    [gLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -160, 0, 0)];
+    [gLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -100, 0, 0)];
     [gLoginBtn addTarget:self action:@selector(doLoginGoogle) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:gLoginBtn];
+    
+    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(gLoginBtn.frame.origin.x + 170, gLoginBtn.frame.origin.y + 10, 80, 23)];
+    UIFont *btnFont2 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
+    [gLabel setText:@"Google"];
+    [gLabel setTextColor:[UIColor whiteColor]];
+    [gLabel setFont:btnFont2];
+    [self.view addSubview:gLabel];
     
     fbLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     fbLoginBtn.frame = CGRectMake(0, 0, 304, 45);
     UIColor *fbBtnBgColor = [UIColor generateUIColorByHexString:@"#3a5897" withAlpha:0.9];
     [fbLoginBtn setBackgroundColor:fbBtnBgColor];
-    [fbLoginBtn setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+    [fbLoginBtn setTitle:@"Log in with" forState:UIControlStateNormal];
     [[fbLoginBtn titleLabel]setFont:btnFont];
     [[fbLoginBtn titleLabel] setTextColor:[UIColor whiteColor]];
     [fbLoginBtn setCenter:CGPointMake(self.view.center.x, gLoginBtn.frame.origin.y + 75)];
     CALayer *fbLayer = [self getButtonSepLayer];
     [fbLoginBtn.layer addSublayer:fbLayer];
     [fbLoginBtn setImage:[UIImage imageNamed:@"facebook_icon.png"] forState:UIControlStateNormal];
-    [fbLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -70, 0, 0)];
+    [fbLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -160, 0, 0)];
+    [fbLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -100, 0, 0)];
     [fbLoginBtn addTarget:self action:@selector(doLoginFacebook) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fbLoginBtn];
+    
+    UILabel *fbLabel = [[UILabel alloc]initWithFrame:CGRectMake(fbLoginBtn.frame.origin.x + 165, fbLoginBtn.frame.origin.y + 10, 100, 23)];
+    UIFont *btnFont3 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
+    [fbLabel setText:@"Facebook"];
+    [fbLabel setTextColor:[UIColor whiteColor]];
+    [fbLabel setFont:btnFont3];
+    [self.view addSubview:fbLabel];
     
     emailLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     emailLoginBtn.frame = CGRectMake(0, 0, 304, 45);
