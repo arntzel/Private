@@ -59,6 +59,7 @@
     self.firstName.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.firstName.returnKeyType = UIReturnKeyNext;
+    self.firstName.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.firstName setFont:font];
     
     [self.lastName setBorderStyle:UITextBorderStyleNone];
@@ -67,6 +68,7 @@
     self.lastName.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.lastName.returnKeyType = UIReturnKeyNext;
+    self.lastName.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.lastName setFont:font];
     
     [self.zipCode setBorderStyle:UITextBorderStyleNone];
@@ -75,6 +77,7 @@
     self.zipCode.autocorrectionType = UITextAutocorrectionTypeNo;
     self.zipCode.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.zipCode.returnKeyType = UIReturnKeyNext;
+    self.zipCode.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     [self.zipCode setFont:font];
     
     CALayer *lay  = self.avatar.layer;
@@ -90,6 +93,7 @@
     self.email.autocorrectionType = UITextAutocorrectionTypeNo;
     self.email.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.email.returnKeyType = UIReturnKeyNext;
+    self.email.keyboardType = UIKeyboardTypeEmailAddress;
     [self.email setFont:font];
     
     self.password.delegate = self;
@@ -226,7 +230,6 @@
     [UIView setAnimationDuration:animationDuration];
     
     int offset = -KEYBOARD_OFFSET;
-    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
     self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
     
     [UIView commitAnimations];
@@ -234,8 +237,14 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    NSTimeInterval animationDuration = 0.90f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
     int offset = KEYBOARD_OFFSET;
-    self.frame =CGRectMake(0, offset, self.frame.size.width, self.frame.size.height);
+    self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
+    
+    [UIView commitAnimations];
 }
 
 @end

@@ -89,7 +89,9 @@
     username.placeholder = @"Email Address";
     username.autocorrectionType = UITextAutocorrectionTypeNo;
     username.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    username.returnKeyType = UIReturnKeyNext;
+    username.returnKeyType = UIReturnKeyDefault;
+    [username becomeFirstResponder];
+    username.keyboardType = UIKeyboardTypeEmailAddress;
     [username setFont:font];
     
     password = [[UITextField alloc]initWithFrame:CGRectMake(10, username.frame.origin.y + 61, self.view.bounds.size.width - 20, 60)];
