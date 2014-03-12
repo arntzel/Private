@@ -31,14 +31,15 @@
 -(void)setUpMainNavigationButtons:(ViewMode)mode
 {
     UIEdgeInsets insets = UIEdgeInsetsMake(10, 0, 10, 0);
-    UIImage *bgImage = [UIImage imageNamed:@"notification_btn.png"];
+//    UIImage *bgImage = [UIImage imageNamed:@"notification_btn.png"];
+    UIImage *bgImage = [UIImage imageNamed:@"notification_grn.png"];
     //bgImage = [bgImage resizableImageWithCapInsets:insets];
     [self.leftBtn setImage:bgImage forState:UIControlStateNormal];
     [self.leftBtn setImageEdgeInsets:insets];
     
     if (mode == FEED_PENDING) {
         UIEdgeInsets insets2 = UIEdgeInsetsMake(0, 10, 10, 10);
-        UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon.png"];
+        UIImage *rightBgImage = [UIImage imageNamed:@"add_event_icon_grn.png"];//add_event_icon.png"];
         rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
         [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];
     } else if (mode == ACCOUNT_SETTING) {
