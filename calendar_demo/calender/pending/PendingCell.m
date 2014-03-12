@@ -71,13 +71,25 @@
 //    }
     
     
-    if (event.max_proposed_end_time == nil ) {
-        self.actionText.text = @"Propose time";
-        self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
+    if (pendingCellTypeMine == ct) {
+        if (event.max_proposed_end_time == nil ) {
+            self.actionText.text = @"Propose time";
+            self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
+        }
+        else {
+            self.actionText.text = @"Confirm time";
+            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+        }
     }
-    else {
-        self.actionText.text = @"Confirm time";
-        self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+    if (pendingCellTypeNotMine == ct) {
+        if (event.max_proposed_end_time == nil ) {
+            self.actionText.text = @"Propose time";
+            self.actionImage.image = [UIImage imageNamed:@"add_time_lg.png"];
+        }
+        else {
+            self.actionText.text = @"Vote";
+            self.actionImage.image = [UIImage imageNamed:@"confirm_time_lg.png"];
+        }
     }
     
     //CreatorEntity * user = event.creator;
