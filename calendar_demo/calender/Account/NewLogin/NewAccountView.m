@@ -42,7 +42,7 @@
 -(void) awakeFromNib
 {
     settingModel = [[SettingsModel alloc] init];
-    UIColor *textBgColor = [UIColor colorWithRed:232.0/255.0 green:243.0/255.0 blue:237.0/255.0 alpha:1.0];
+    UIColor *textBgColor = [UIColor colorWithRed:223.0/255.0 green:237.0/255.0 blue:232.0/255.0 alpha:1.0];
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.profileView setBackgroundColor:textBgColor];

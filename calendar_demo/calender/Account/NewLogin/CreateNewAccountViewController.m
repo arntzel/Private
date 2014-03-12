@@ -80,7 +80,7 @@
     [self.view addSubview:navView];
     
     detailView = [NewAccountView createWithDelegate:self];
-    detailView.frame = CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 70);
+    detailView.frame = CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height - 60);
     [self.view addSubview:detailView];
     
     UIColor *loginBtnBgColor = [UIColor generateUIColorByHexString:@"#18a48b" withAlpha:0.9];
