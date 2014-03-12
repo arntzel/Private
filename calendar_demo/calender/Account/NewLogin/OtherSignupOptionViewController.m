@@ -96,8 +96,8 @@
     [fbLoginBtn addTarget:self action:@selector(onLoginFBTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fbLoginBtn];
     
-    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(fbLoginBtn.frame.origin.x + 173, fbLoginBtn.frame.origin.y + 10, 100, 23)];
-    gLabel.textAlignment = NSTextAlignmentLeft;
+    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(fbLoginBtn.frame.origin.x + 170, fbLoginBtn.frame.origin.y + 10, 100, 23)];
+    //gLabel.textAlignment = NSTextAlignmentLeft;
     UIFont *btnFont2 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
     [gLabel setText:@"Facebook"];
     [gLabel setTextColor:[UIColor whiteColor]];
