@@ -292,8 +292,7 @@ static CoreDataModel * instance;
     
     NSPredicate *predicate;
     
-    int type = 0x00000001 << 5;
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType=5) && ext_event_id=%@", ext_event_id];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if ([results count] > 0)
@@ -315,9 +314,8 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    int type = 0x00000001 << eventType;
     //predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && id=%@", type, @(id)];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType=%d) && id=%@", eventType, @(id)];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setFetchLimit:limit];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -341,9 +339,9 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    int type = 0x00000001 << eventType;
+    //int type = 0x00000001 << eventType;
     //predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && ext_event_id=%@", type, ext_event_id];
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && hasModified=%@ && id!=0", type, @(hasModified)];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType=%d) && hasModified=%@ && id!=0", eventType, @(hasModified)];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if ([results count] > 0)
@@ -365,8 +363,7 @@ static CoreDataModel * instance;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate;
-    int type = 0x00000001 << 5;
-    predicate = [NSPredicate predicateWithFormat:@"(eventType & %d)>0 && hasDeleted=%@", type, @(YES)];
+    predicate = [NSPredicate predicateWithFormat:@"(eventType=5) && hasDeleted=%@", @(YES)];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
@@ -385,7 +382,7 @@ static CoreDataModel * instance;
     
     NSPredicate *predicate;
     
-    predicate = [NSPredicate predicateWithFormat:@"eventType==5"];
+    predicate = [NSPredicate predicateWithFormat:@"eventType=5"];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;

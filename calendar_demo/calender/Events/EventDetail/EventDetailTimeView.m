@@ -257,6 +257,7 @@
         if (error == 0) {
             
             [self updateView];
+            [self.delegate onEventChanged:_event andChangeType:EventChangeType_Update];
             
         } else {
             vote.status = oldStatus;

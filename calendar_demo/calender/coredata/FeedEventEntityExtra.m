@@ -353,7 +353,7 @@
 -(void) resetVote
 {
     if( [self.eventType intValue] !=0 ) {
-        self.vote = @(0);
+        self.vote = @(0); //非CalvinEvent , 都投票
         return;
     }
     
@@ -361,7 +361,7 @@
     
     if([self.creator.email isEqualToString:me.email]) {
         
-        self.vote = @(0);
+        self.vote = @(0); //创建者都是投票的
         
     } else {
         
@@ -380,7 +380,7 @@
                 if([me.email isEqualToString:voteEntity.email]) {
                     
                     if([voteEntity.status intValue] == 1) {
-                        self.vote = @(0);
+                        self.vote = @(0); //已投票
                     }
                     break;
                 }

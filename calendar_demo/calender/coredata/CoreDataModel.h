@@ -53,7 +53,7 @@ typedef enum
 -(NSArray *) getPendingFeedEventEntitys;
 
 
-//GMT date: 获取从一段时间内的所有event
+//GMT date: 获取从一段时间内的所有的Confirmed 的event, 出现在Feed页面
 -(NSArray *) getDayFeedEventEntitys:(NSDate *) begin andEndDate:(NSDate *) end;
 
 
