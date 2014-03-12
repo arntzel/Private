@@ -120,8 +120,8 @@
     [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [textField setTextColor: [UIColor colorWithRed:45/255.0f green:172/255.0f blue:149/255.0f alpha:1.0f]];
     [textField setFont:[UIFont fontWithName:@"Helvetica Neue" size:13.0]];
-    textField.returnKeyType = UIReturnKeySearch;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.clearButtonMode = UITextFieldViewModeNever;
     textField.placeholder = @"Search location...";
     [searchView addSubview:textField];
     
@@ -208,23 +208,44 @@
         }
         
         customLocation.location = text;
+        
+        
+        [indicatiorView startAnimating];
+        
+        NSString * textStr = [text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
+        
     }
     
     [self.txtSearchTabView reloadData];
     
-//    
-//    if([string isEqualToString:@" "])
-//    {
-//        NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//        if(![textStr isEqualToString:@""])
-//        {
-//             NSLog(@"startAutoComplitionWithTxtSearchQuery:%@", textStr);
-//            [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
-//        }
-//    }
-    
 	return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    LOG_D(@"textFieldDidEndEditing");
+}
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    LOG_D(@"textFieldShouldBeginEditing");
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    LOG_D(@"textFieldDidBeginEditing");
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    LOG_D(@"textFieldShouldEndEditing");
+    return YES;
+}
+
+
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField;
 {
@@ -240,19 +261,19 @@
     NSLog(@"textFieldShouldReturn");
 
     
-    NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if(![textStr isEqualToString:@""])
-    {
-        NSLog(@"startRequestWithTxtSearchQuery:%@", textStr);
-        
-        [indicatiorView startAnimating];
-        
-        textStr = [textStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
-    }
+//    NSString *textStr = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    if(![textStr isEqualToString:@""])
+//    {
+//        NSLog(@"startRequestWithTxtSearchQuery:%@", textStr);
+//        
+//        [indicatiorView startAnimating];
+//        
+//        textStr = [textStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        [GPTxtSearchApi startRequestWithTxtSearchQuery:textStr];
+//    }
     
     [textField resignFirstResponder];
-    [self.txtSearchTabView reloadData];
+    //[self.txtSearchTabView reloadData];
 	return YES;
 }
 
