@@ -131,7 +131,8 @@
     self.t_settingsContentView.fbConnectBtn.hidden = isConnect;
     if (isConnect)
     {
-        self.t_settingsContentView.fbLabel.text = self.loginUser.facebookEmail;
+        //self.t_settingsContentView.fbLabel.text = self.loginUser.facebookEmail;
+        self.t_settingsContentView.fbLabel.text = @"Success";
     }
 }
 - (void)googleviewChangeWithConnectStatus:(BOOL)isConnect
@@ -141,7 +142,8 @@
     self.t_settingsContentView.googleConnectBtn.hidden = isConnect;
     if (isConnect)
     {
-        self.t_settingsContentView.googleLabel.text = self.loginUser.googleEmail;
+        //self.t_settingsContentView.googleLabel.text = self.loginUser.googleEmail;
+        self.t_settingsContentView.googleLabel.text = @"Success";
     }
 }
 #pragma mark - Data Helper

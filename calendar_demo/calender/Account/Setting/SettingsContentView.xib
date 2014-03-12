@@ -353,8 +353,8 @@
                                         <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="kru-zk-MuQ"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qqk-oA-bnf" userLabel="fbLabel">
-                                    <rect key="frame" x="130" y="6" width="160" height="34"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qqk-oA-bnf" userLabel="fbLabel">
+                                    <rect key="frame" x="130" y="6" width="140" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <nil key="highlightedColor"/>
@@ -393,8 +393,8 @@
                                         <action selector="viewClicked:" destination="1" eventType="touchUpInside" id="5J6-eD-DWQ"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Evd-lr-JAo" userLabel="googleLabel">
-                                    <rect key="frame" x="130" y="6" width="160" height="34"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Evd-lr-JAo" userLabel="googleLabel">
+                                    <rect key="frame" x="130" y="6" width="140" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <nil key="highlightedColor"/>
@@ -444,10 +444,17 @@
     </objects>
     <resources>
         <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_arrow.png" width="9" height="14"/>
+        <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_connect_btn.png" width="82" height="26"/>
         <image name="settings_main_facebook_icon.png" width="25" height="25"/>
         <image name="settings_main_gmail_icon.png" width="25" height="24"/>
         <image name="settings_main_head_portait_default.png" width="79" height="79"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
+        <image name="settings_main_one_row.png" width="307" height="53"/>
         <image name="settings_main_one_row.png" width="307" height="53"/>
     </resources>
 </document>
