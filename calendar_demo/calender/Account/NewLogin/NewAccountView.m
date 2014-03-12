@@ -11,7 +11,7 @@
 #import "UIColor+Hex.h"
 #import "SettingsModel.h"
 
-#define KEYBOARD_OFFSET 100;
+#define KEYBOARD_OFFSET 60;
 
 @implementation NewAccountView
 {
@@ -53,6 +53,11 @@
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addPhotoTap)];
     [self.avatar addGestureRecognizer:tapGesture];
     
+    CGRect avatarLeftSepFrame = CGRectMake(self.avatar.frame.origin.x + self.avatar.frame.size.height + 20, 0, 1, 120);
+    CALayer *avatarLeftSep = [self createNewSepWithFrame:avatarLeftSepFrame];
+    [self.profileView.layer addSublayer:avatarLeftSep];
+    
+    
     [self.firstName setBorderStyle:UITextBorderStyleNone];
     [self.firstName setBackgroundColor:[UIColor clearColor]];
     self.firstName.placeholder = @"First Name";
@@ -61,6 +66,9 @@
     self.firstName.returnKeyType = UIReturnKeyNext;
     self.firstName.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.firstName setFont:font];
+    CGRect firstNameBottomSepFrame = CGRectMake(avatarLeftSepFrame.origin.x, 60, self.bounds.size.width - avatarLeftSepFrame.origin.x, 1);
+    CALayer *firstNameBottomSep = [self createNewSepWithFrame:firstNameBottomSepFrame];
+    [self.profileView.layer addSublayer:firstNameBottomSep];
     
     [self.lastName setBorderStyle:UITextBorderStyleNone];
     [self.lastName setBackgroundColor:[UIColor clearColor]];
@@ -80,6 +88,14 @@
     self.zipCode.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     [self.zipCode setFont:font];
     
+    CGRect zipCodeTopSepFrame = CGRectMake(0, 120, self.bounds.size.width, 1);
+    CALayer *zipCodeTopSep = [self createNewSepWithFrame:zipCodeTopSepFrame];
+    [self.profileView.layer addSublayer:zipCodeTopSep];
+    
+    CGRect zipCodeBottomSepFrame = CGRectMake(0, self.profileView.frame.origin.y + self.profileView.frame.size.height, self.bounds.size.width, 1);
+    CALayer *zipCodeBottomSep = [self createNewSepWithFrame:zipCodeBottomSepFrame];
+    [self.profileView.layer addSublayer:zipCodeBottomSep];
+    
     CALayer *lay  = self.avatar.layer;
     [lay setMasksToBounds:YES];
     [lay setCornerRadius:35.0];
@@ -95,6 +111,9 @@
     self.email.returnKeyType = UIReturnKeyNext;
     self.email.keyboardType = UIKeyboardTypeEmailAddress;
     [self.email setFont:font];
+    CGRect emailBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + 55, self.bounds.size.width, 1);
+    CALayer *emailBottomSep = [self createNewSepWithFrame:emailBottomSepFrame];
+    [self.infoView.layer addSublayer:emailBottomSep];
     
     self.password.delegate = self;
     [self.password setBorderStyle:UITextBorderStyleNone];
@@ -105,6 +124,9 @@
     self.password.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.password.returnKeyType = UIReturnKeyNext;
     [self.password setFont:font];
+    CGRect pwBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + 110, self.bounds.size.width, 1);
+    CALayer *pwBottomSep = [self createNewSepWithFrame:pwBottomSepFrame];
+    [self.infoView.layer addSublayer:pwBottomSep];
     
     self.confirmPassword.delegate = self;
     [self.confirmPassword setBorderStyle:UITextBorderStyleNone];
@@ -115,6 +137,9 @@
     self.confirmPassword.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.confirmPassword.returnKeyType = UIReturnKeyNext;
     [self.confirmPassword setFont:font];
+    CGRect cpwBottomSepFrame = CGRectMake(0, self.infoView.bounds.origin.y + self.infoView.bounds.size.height, self.bounds.size.width, 1);
+    CALayer *cpwBottomSep = [self createNewSepWithFrame:cpwBottomSepFrame];
+    [self.infoView.layer addSublayer:cpwBottomSep];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -245,6 +270,14 @@
     self.frame = CGRectMake(0.0f, offset, self.frame.size.width, self.frame.size.height);
     
     [UIView commitAnimations];
+}
+
+-(CALayer *)createNewSepWithFrame:(CGRect) frame
+{
+    CALayer *sepLayer = [CALayer layer];
+    [sepLayer setFrame:frame];
+    [sepLayer setBackgroundColor:[UIColor colorWithRed:207.0/255.0 green:217.0/255.0 blue:211.0/255.0 alpha:1.0].CGColor];
+    return sepLayer;
 }
 
 @end
