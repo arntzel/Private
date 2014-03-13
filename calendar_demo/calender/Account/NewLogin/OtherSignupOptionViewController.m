@@ -93,12 +93,15 @@
     [fbLoginBtn.layer addSublayer:fbLayer];
     [fbLoginBtn setImage:[UIImage imageNamed:@"facebook_icon.png"] forState:UIControlStateNormal];
     [fbLoginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
-    [fbLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -100, 0, 0)];
+    [fbLoginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -95, 0, 0)];
     [fbLoginBtn addTarget:self action:@selector(onLoginFBTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fbLoginBtn];
     
-    UILabel *gLabel = [[UILabel alloc]initWithFrame:CGRectMake(fbLoginBtn.frame.origin.x + 170, fbLoginBtn.frame.origin.y + 10, 100, 23)];
-    //gLabel.textAlignment = NSTextAlignmentLeft;
+    CGRect lFrame = fbLoginBtn.frame;
+    lFrame.origin.x = fbLoginBtn.frame.origin.x - 30;
+    lFrame.origin.y = fbLoginBtn.frame.origin.y - 1;
+    UILabel *gLabel = [[UILabel alloc]initWithFrame:lFrame];
+    gLabel.textAlignment = NSTextAlignmentRight;
     UIFont *btnFont2 = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0];
     [gLabel setText:@"Facebook"];
     [gLabel setTextColor:[UIColor whiteColor]];
