@@ -91,7 +91,7 @@
     
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(250, 20, 80, 44)];
     [rightBtn setTitle:@"Next" forState:UIControlStateNormal];
-    [rightBtn setImage:[UIImage imageNamed:@"skip_icon.png"] forState:UIControlStateNormal];
+    [rightBtn setImage:[UIImage imageNamed:@"next_icon.png"] forState:UIControlStateNormal];
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, 50, 0, 0)];
     [rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];

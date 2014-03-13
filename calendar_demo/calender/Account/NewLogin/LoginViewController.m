@@ -647,9 +647,9 @@
 -(void)switchInBusyMode
 {
     [loadingView startAnimating];
-    [gLoginBtn setEnabled:NO];
-    [emailLoginBtn setEnabled:NO];
-    [fbLoginBtn setEnabled:NO];
+    //[gLoginBtn setEnabled:NO];
+    //[emailLoginBtn setEnabled:NO];
+    //[fbLoginBtn setEnabled:NO];
 }
 
 #pragma mark -
@@ -699,9 +699,9 @@
 {
     //[self.view setUserInteractionEnabled:YES];
     [loadingView stopAnimating];
-    [gLoginBtn setEnabled:YES];
-    [emailLoginBtn setEnabled:YES];
-    [fbLoginBtn setEnabled:YES];
+    //[gLoginBtn setEnabled:YES];
+    //[emailLoginBtn setEnabled:YES];
+    //[fbLoginBtn setEnabled:YES];
 }
 
 @end
