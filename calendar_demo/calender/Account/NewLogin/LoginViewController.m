@@ -678,13 +678,16 @@
             }
         }];
         
-    } else {
+    } else if(error.code != -1) {
+        
         [self showAlert:@"Google+ auth failed, please retry again!"];
         [self onLoginSuccess:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGINSUCCESS" object:nil];
+        
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGINSUCCESS" object:nil];
+
     }
-    
-    
 }
 
 - (void)didDisconnectWithError:(NSError *)error
