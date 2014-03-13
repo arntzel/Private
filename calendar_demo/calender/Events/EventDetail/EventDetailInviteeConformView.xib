@@ -162,9 +162,9 @@
     <resources>
         <image name="event_detail_invitee_time_cross_disable.png" width="32" height="30"/>
         <image name="event_detail_invitee_time_tick_disable.png" width="36" height="26"/>
-        <image name="green_error.png" width="77" height="76"/>
+        <image name="green_error.png" width="84" height="84"/>
         <image name="green_right.png" width="18" height="13"/>
         <image name="notch.png" width="7" height="10"/>
-        <image name="red_error.png" width="77" height="76"/>
+        <image name="red_error.png" width="84" height="84"/>
     </resources>
 </document>

@@ -249,7 +249,7 @@ static const int kStateKey;
             if ( otherView ) {
                 ((UITextField*)view).returnKeyType = UIReturnKeyNext;
             } else {
-                ((UITextField*)view).returnKeyType = UIReturnKeyDone;
+                ((UITextField*)view).returnKeyType = UIReturnKeySend;
             }
         }
     }
