@@ -106,7 +106,8 @@
     tableView.feedEventdelegate = self;
     
     UIView *bgview = [[UIView alloc] initWithFrame: tableView.frame];
-    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+//    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
     tableView.backgroundView = bgview;
     
     [self.view addSubview:tableView];

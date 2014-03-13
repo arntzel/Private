@@ -646,6 +646,8 @@
 		93A8E274189C251D00A3753F /* clock-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E273189C251D00A3753F /* clock-header@2x.png */; };
 		93A8E276189C293400A3753F /* FeedEventHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E275189C293400A3753F /* FeedEventHeader.xib */; };
 		93A8E278189C2B8000A3753F /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A8E277189C2B8000A3753F /* clock@2x.png */; };
+		93D7C02018D2771E002A2571 /* CalendarFeed_Body@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D7C01F18D2771E002A2571 /* CalendarFeed_Body@2x.png */; };
+		93D7C02218D27852002A2571 /* CalendarFeed_FirstCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D7C02118D27852002A2571 /* CalendarFeed_FirstCell@2x.png */; };
 		93E398CA18C4157D00B75150 /* EventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E398C918C4157D00B75150 /* EventViewCell.m */; };
 		93E398CE18C415AB00B75150 /* EventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93E398CD18C415AB00B75150 /* EventViewCell.xib */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
@@ -1605,6 +1607,8 @@
 		93A8E273189C251D00A3753F /* clock-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-header@2x.png"; sourceTree = "<group>"; };
 		93A8E275189C293400A3753F /* FeedEventHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedEventHeader.xib; sourceTree = "<group>"; };
 		93A8E277189C2B8000A3753F /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
+		93D7C01F18D2771E002A2571 /* CalendarFeed_Body@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarFeed_Body@2x.png"; sourceTree = "<group>"; };
+		93D7C02118D27852002A2571 /* CalendarFeed_FirstCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarFeed_FirstCell@2x.png"; sourceTree = "<group>"; };
 		93E398C818C4157D00B75150 /* EventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewCell.h; sourceTree = "<group>"; };
 		93E398C918C4157D00B75150 /* EventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewCell.m; sourceTree = "<group>"; };
 		93E398CD18C415AB00B75150 /* EventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventViewCell.xib; sourceTree = "<group>"; };
@@ -2386,6 +2390,8 @@
 		769AB96817DF51340033E677 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				93D7C01F18D2771E002A2571 /* CalendarFeed_Body@2x.png */,
+				93D7C02118D27852002A2571 /* CalendarFeed_FirstCell@2x.png */,
 				937B6E5118D1273900E6C2AF /* add_event_icon_grn@2x.png */,
 				937B6E4F18D1271200E6C2AF /* notification_grn@2x.png */,
 				937B6E4D18D1263C00E6C2AF /* notification_red@2x.png */,
@@ -3558,6 +3564,7 @@
 				9345ABD018BA92CA005ABE9C /* PedingEventViewControllerNew.xib in Resources */,
 				2356935A184797050003AD8E /* menu_icon@2x.png in Resources */,
 				769AB9C217DF51340033E677 /* event_detail_time_tick.png in Resources */,
+				93D7C02218D27852002A2571 /* CalendarFeed_FirstCell@2x.png in Resources */,
 				768404BD180104B100C69240 /* DetailDeclinedCell.xib in Resources */,
 				232442A418546BC5008930EA /* add_icon@2x.png in Resources */,
 				769AB9C317DF51340033E677 /* event_detail_time_titleicon.png in Resources */,
@@ -3679,6 +3686,7 @@
 				23569359184797050003AD8E /* menu_icon.png in Resources */,
 				768404C2180107F700C69240 /* DetailRespondedCell.xib in Resources */,
 				230DCD4518CF067B000FC141 /* profile_photo_icon@2x.png in Resources */,
+				93D7C02018D2771E002A2571 /* CalendarFeed_Body@2x.png in Resources */,
 				34B1F1B217F8FCE200AA5C97 /* settings_detail_noti_back.png in Resources */,
 				230DCD3E18CE9F4B000FC141 /* google_plus_icon.png in Resources */,
 				232F1A3B186B22DE00238CA5 /* red_error.png in Resources */,
