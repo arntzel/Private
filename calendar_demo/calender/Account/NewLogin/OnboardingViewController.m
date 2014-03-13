@@ -78,11 +78,12 @@
     }
     
     leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
+    UIFont *navBtnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
     [leftBtn setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [leftBtn.titleLabel setFont:navBtnFont];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -94,7 +95,7 @@
     [rightBtn setImage:[UIImage imageNamed:@"next_icon.png"] forState:UIControlStateNormal];
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, 50, 0, 0)];
     [rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [rightBtn.titleLabel setFont:navBtnFont];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [rightBtn addTarget:self action:@selector(onNextButtonTapped) forControlEvents:UIControlEventTouchUpInside];

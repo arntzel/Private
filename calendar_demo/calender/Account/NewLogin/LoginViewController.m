@@ -79,11 +79,12 @@
     [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
     
     leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
+    UIFont *navBtnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
     [leftBtn setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [leftBtn.titleLabel setFont:navBtnFont];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
