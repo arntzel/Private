@@ -25,4 +25,6 @@ typedef enum
 
 @property(nonatomic,assign) AddInviteeType type;
 
+@property int from;
+
 @end

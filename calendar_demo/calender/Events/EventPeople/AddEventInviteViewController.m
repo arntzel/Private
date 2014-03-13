@@ -436,9 +436,13 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     [[UserSetting getInstance] saveKey:@"SETTING_RECENT_CONTACT_IDS" andStringValue:ids];
     
-    
-    [self.delegate setInVitePeopleArray:selectUsers];
-    [self.navigationController popViewControllerAnimated:YES];
+    if(selectUsers.count == 0) {
+         [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated: self.from == 1];
+        [self.delegate setInVitePeopleArray:selectUsers];
+
+    }
 }
 
 -(BOOL) isContact:(Contact *) contact inArray:(NSArray *) users

@@ -325,6 +325,10 @@ typedef enum
 {
     if ([inviteArray count] > 0) {
         
+        [self.delegate setInVitePeopleArray:inviteArray];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        /*
         NSMutableArray * invitees = [[NSMutableArray alloc] init];
         for(Contact * contact in inviteArray) {
             
@@ -374,6 +378,7 @@ typedef enum
                 [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
             }
         }];
+         */
     }
 }
 

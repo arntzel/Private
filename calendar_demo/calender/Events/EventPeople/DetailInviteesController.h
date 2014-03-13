@@ -7,6 +7,8 @@
 
 - (void)addNewPeopleArray:(NSArray *)inviteArray andNewEvent:(Event *) newEvent;
 
+- (void)setInVitePeopleArray:(NSArray *)inviteArray;
+
 @end
 
 @interface DetailInviteesController : BaseUIViewController
@@ -17,6 +19,7 @@
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (retain, nonatomic) UIImage *titleBgImage;
 
+@property int from;
 
 @property (nonatomic, retain) Event * event;
 

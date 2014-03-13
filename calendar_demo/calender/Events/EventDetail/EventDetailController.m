@@ -30,6 +30,8 @@
 #import "AddLocationViewController.h"
 #import "DetailInviteesController.h"
 #import "DetailVoteViewController.h"
+#import "AddEventInviteViewController.h"
+
 #import "CoreDataModel.h"
 
 #import "ShareLoginFacebook.h"
@@ -62,7 +64,8 @@
                                     DetailInviteesControllerDelegate,
                                     ShareLoginDelegate,
                                     MFMailComposeViewControllerDelegate,
-                                    SharePhotoDelegate>
+                                    SharePhotoDelegate,
+                                    AddEventInviteViewControllerDelegate>
 {
     EventDetailNavigationBar *navBar;
     
@@ -1061,13 +1064,98 @@
 {
     LOG_D(@"onInviteeViewClicked");
     
-    DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
-    inviteesController.event = self.event;
-    inviteesController.titleBgImage = [photoView getImage];
-    inviteesController.delegate = self;
     
-    [self.navigationController pushViewController:inviteesController animated:YES];
-    [inviteesController release];
+    if( [self getInviteesCount] > 0) {
+        DetailInviteesController * inviteesController = [[DetailInviteesController alloc] initWithNibName:@"DetailInviteesController" bundle:nil];
+        inviteesController.event = self.event;
+        inviteesController.titleBgImage = [photoView getImage];
+        inviteesController.delegate = self;
+        
+        [self.navigationController pushViewController:inviteesController animated:YES];
+        [inviteesController release];
+        
+    } else {
+        
+        AddEventInviteViewController *controller = [[AddEventInviteViewController alloc] initWithNibName:@"AddEventInviteViewController" bundle:nil];
+        controller.delegate = self;
+        controller.from = 1;
+        
+        NSMutableArray *userArray = [NSMutableArray array];
+        for (EventAttendee *attend in self.event.attendees)
+        {
+            [userArray addObject:attend.contact];
+        }
+        
+        [controller setType:AddInviteeTypeRest];
+        //[controller setSelectedUser:userArray];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
+-(int) getInviteesCount
+{
+    User * me = [[UserModel getInstance] getLoginUser];
+    
+    int count = 0;
+    for(EventAttendee * atd in event.attendees) {
+        
+        if(![me.email isEqualToString:atd.contact.email]) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
+#pragma mark -
+#pragma mark AddEventInviteViewControllerDelegate
+- (void)setInVitePeopleArray:(NSArray *)inviteArray
+{
+    
+    if ([inviteArray count] > 0) {
+        
+        NSMutableArray * invitees = [[NSMutableArray alloc] init];
+        for(Contact * contact in inviteArray) {
+            
+            if([self.event.creator.email isEqualToString:contact.email]) {
+                continue;
+            }
+            
+            bool isInInviteeList = NO;
+            for(EventAttendee * atd in self.event.attendees)
+            {
+                if( [atd.contact.email isEqualToString:contact.email]) {
+                    isInInviteeList = YES;
+                    break;
+                }
+            }
+            
+            if(!isInInviteeList) {
+                Invitee * invitee = [[Invitee alloc] init];
+                invitee.email = contact.email;
+                [invitees addObject:invitee];
+            }
+        }
+        
+        if(invitees.count == 0) return;
+        
+        [self showIndicatorView];
+        [[Model getInstance] inviteContacts:event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
+         
+            [self hideIndicatorView];
+            
+            if(error == 0) {
+                
+                [self addNewPeopleArray:invitees andNewEvent:newEvent];
+                
+            } else {
+                [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];
+            }
+        }];
+    }
+
 }
 
 #pragma mark -
