@@ -127,23 +127,28 @@
 - (void)fbviewChangeWithConnectStatus:(BOOL)isConnect
 {
     self.t_settingsContentView.fbTapGesture.enabled = isConnect;
-    self.t_settingsContentView.fbLabel.hidden = !isConnect;
-    self.t_settingsContentView.fbConnectBtn.hidden = isConnect;
+    self.t_settingsContentView.fbLabel.hidden = YES;
+    self.t_settingsContentView.fbConnectBtn.hidden = NO;
     if (isConnect)
     {
         //self.t_settingsContentView.fbLabel.text = self.loginUser.facebookEmail;
-        self.t_settingsContentView.fbLabel.text = @"Success";
+        [self.t_settingsContentView.fbConnectBtn setTitle:@"Disconnect" forState:UIControlStateNormal];
+    } else {
+        [self.t_settingsContentView.fbConnectBtn setTitle:@"Connect" forState:UIControlStateNormal];
     }
 }
 - (void)googleviewChangeWithConnectStatus:(BOOL)isConnect
 {
     self.t_settingsContentView.googleTapGesture.enabled = isConnect;
-    self.t_settingsContentView.googleLabel.hidden = !isConnect;
-    self.t_settingsContentView.googleConnectBtn.hidden = isConnect;
+    self.t_settingsContentView.googleLabel.hidden = YES;
+    self.t_settingsContentView.googleConnectBtn.hidden = NO;
+    
     if (isConnect)
     {
-        //self.t_settingsContentView.googleLabel.text = self.loginUser.googleEmail;
-        self.t_settingsContentView.googleLabel.text = @"Success";
+        //self.t_settingsContentView.fbLabel.text = self.loginUser.facebookEmail;
+        [self.t_settingsContentView.googleConnectBtn setTitle:@"Disconnect" forState:UIControlStateNormal];
+    } else {
+        [self.t_settingsContentView.googleConnectBtn setTitle:@"Connect" forState:UIControlStateNormal];
     }
 }
 #pragma mark - Data Helper
@@ -177,23 +182,11 @@
         }
     }];
     
-    if (self.loginUser.facebookEmail)
-    {
-        [self fbviewChangeWithConnectStatus:YES];
-    }
-    else
-    {
-        [self fbviewChangeWithConnectStatus:NO];
-    }
-    if (self.loginUser.googleEmail)
-    {
-        [self googleviewChangeWithConnectStatus:YES];
-    }
-    else
-    {
-        [self googleviewChangeWithConnectStatus:NO];
-    }
     
+    [self fbviewChangeWithConnectStatus:(self.loginUser.facebookEmail != nil)];
+    
+    [self googleviewChangeWithConnectStatus:(self.loginUser.googleEmail != nil)];
+     
     
     if(self.loginUser.locationDic != nil) {
         NSString * postal_code = [Utils chekcNullClass:[self.loginUser.locationDic objectForKey:@"postal_code"]];
@@ -437,6 +430,16 @@
 
 - (void)connectGoogle
 {
+    if(self.loginUser.googleEmail) {
+        NSString *destructiveButtonTitle = @"Unlink Google";
+        UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+        
+        sheet.tag = googleViewTag;
+        [sheet showInView:self.view];
+        return;
+    }
+
+    
     [self configGPPSignIn];
     [[GPPSignIn sharedInstance] signOut];
     [[GPPSignIn sharedInstance] authenticate];
@@ -473,8 +476,19 @@
                      nil];
     signIn.delegate = self;
 }
+
+
 - (void)connectFacebook
 {
+    if(self.loginUser.facebookEmail) {
+        NSString *destructiveButtonTitle = @"Unlink Facebook";
+        UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:destructiveButtonTitle otherButtonTitles:nil];
+        
+        sheet.tag = fbViewTag;
+        [sheet showInView:self.view];
+        return;
+    }
+    
     //loginType
     [[FBSession activeSession] closeAndClearTokenInformation];
     // Create a new, logged out session.
@@ -553,17 +567,18 @@
             }
             else
             {
+                self.loginUser.googleEmail = nil;
+                
                 if (message)
                 {
                     msg = message;
                 }
                 else
                 {
-                    msg = @"Disconnect Google Succeeded";
+                    msg = @"Success";
                     [self googleviewChangeWithConnectStatus:NO];
                 }
                 
-                self.loginUser.googleEmail = nil;
                 [[[Model getInstance] getEventModel] notifyUserAccountChanged];
         
             }
@@ -577,18 +592,19 @@
             }
             else
             {
+                self.loginUser.facebookEmail = nil;
+                
                 if (message)
                 {
                     msg = message;
                 }
                 else
                 {
-                    msg = @"Disconnect Facebook Succeeded";
+                    msg = @"Success";
                     [self fbviewChangeWithConnectStatus:NO];
                     
                 }
                 
-                self.loginUser.googleEmail = nil;
                 [[[Model getInstance] getEventModel] notifyUserAccountChanged];
                 self.snsLogin = [[ShareLoginFacebook alloc]init];
                 [self.snsLogin shareLoginOut];
@@ -798,7 +814,7 @@
                 }
                 else
                 {
-                    msg = @"Connect Google Succeeded";
+                    msg = @"Success";
                     self.loginUser.googleEmail = auth.userEmail;
                     [self googleviewChangeWithConnectStatus:YES];
                 }
@@ -845,7 +861,7 @@
             }
             else
             {
-                msg = @"Connect Facebook Succeeded";
+                msg = @"Success";
                 self.loginUser.facebookEmail = store.facebookEmail;
                 [self fbviewChangeWithConnectStatus:YES];
             }
