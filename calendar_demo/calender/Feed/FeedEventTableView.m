@@ -349,49 +349,13 @@
         
         FeedEventEntity * event = [events objectAtIndex:row];
     
-        if( ![event isBirthdayEvent])
-        {
-//            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
-//            EventView * view;
-//            if(cell == nil) {
-//                view = [EventView createEventView];
-//                view.tag = 1;
-//                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-//                [cell addSubview:view];
-//            } else {
-//                view = (EventView*)[cell viewWithTag:1];
-//            }
-//            
-//            [view refreshView:event lastForThisDay:lastForThisDay];
-            
-            EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
-            
-            [cell refreshView:event lastForThisDay:lastForThisDay];
-            
-            //[cell setBackgroundColor:[UIColor clearColor]];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-        }
-        else
-        {
-            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"birthdayEventView"];
-            BirthdayEventView * view;
-            if(cell == nil) {
-                view = [BirthdayEventView createEventView];
-                view.tag = 2;
-                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
-                [cell addSubview:view];
-            } else {
-                view = (BirthdayEventView*)[cell viewWithTag:2];
-            }
-            [view refreshView:event lastForThisDay:lastForThisDay];
-            
-            [cell setBackgroundColor:[UIColor clearColor]];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-        }
+        EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
+        
+        [cell refreshView:event lastForThisDay:lastForThisDay];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
     }
 }
 
@@ -411,25 +375,10 @@
     
     if(events == nil || events.count == 0) {
         return NO_EVENTS_HEADER_CELL; //No event cell
-    } else {
+    }
+    else {
         
-        int row = indexPath.row;
-        
-        FeedEventEntity * event = [events objectAtIndex:row];
-
-        if ([event isBirthdayEvent] ) {
-            return 87;//BirthdayEventView_Height;
-        }
-        else {
-            //NSString *eventTitle = event.title;
-#if 0
-            CGSize maxSize = CGSizeMake(270.0, 1000.0f);
-            UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-            CGSize fontSize = [event.title sizeWithFont:font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
-            return fontSize.height + 85;
-#endif
             return 87;//76;//87;
-        }
 
     }
 }
