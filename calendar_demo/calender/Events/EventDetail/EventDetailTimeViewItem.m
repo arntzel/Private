@@ -247,11 +247,20 @@ static CGFloat const getstureDistance = 160;
             [self.buttonVote setImage:[UIImage imageNamed:@"icon_vote_no"] forState:UIControlStateNormal];
         }
         
-        NSDate * now = [NSDate date];
-        if( [now compare:propseStart.start] > 0) {
-            self.buttonVote.enabled = NO;
+        
+        if(event.confirmed) {
+            self.buttonConform.enabled = (time.finalized == 1);
         } else {
-            self.buttonVote.enabled = YES;
+            self.buttonVote.enabled = ![time isPast];
+        }
+        
+        
+        if(time.finalized == 1) {
+            CGRect frame = self.labelConfirmed.frame;
+            frame.origin.x = self.arrowTime.frame.origin.x;
+            self.arrowTime.hidden = YES;
+            self.labelConfirmed.hidden = NO;
+            self.labelConfirmed.frame = frame;
         }
         
     } else {
