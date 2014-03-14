@@ -157,7 +157,7 @@
     }
     
     
-    [self removeAttendees:self.attendees];
+    [self removeAllAttendee];
     for(EventAttendee * evtAtd in event.attendees)
     {
         EventAttendeeEntity * atd = [EventAttendeeEntity createEventAttendeeEntityByEventAttendee:evtAtd];
@@ -223,6 +223,8 @@
     self.creatoremail = event.creator.email;
     
  
+    [self removeAllAttendee];
+    
     for(EventAttendee * atd in event.attendees) {
         EventAttendeeEntity * entity = [EventAttendeeEntity createEventAttendeeEntityByEventAttendee:atd];
         [self addAttendeesObject:entity];
@@ -308,15 +310,7 @@
     self.ext_event_id = [NSString stringWithFormat:@"%@", [json objectForKey:@"ext_event_id"]];
     
     
-    
-    if(self.attendees != nil) {
-        NSArray * array = [self.attendees allObjects];
-        
-        for(int i=0;i<array.count;i++) {
-            EventAttendeeEntity * atd = [array objectAtIndex:i];
-            [self removeAttendeesObject:atd];
-        }
-    }
+    [self removeAllAttendee];
     
     NSArray * attendees = [Utils chekcNullClass:[json objectForKey:@"attendees"]];
     if(attendees != nil) {
@@ -348,6 +342,18 @@
     }
     
     [self resetVote];
+}
+
+-(void) removeAllAttendee
+{
+    if(self.attendees != nil) {
+        NSArray * array = [self.attendees allObjects];
+        
+        for(int i=0;i<array.count;i++) {
+            EventAttendeeEntity * atd = [array objectAtIndex:i];
+            [self removeAttendeesObject:atd];
+        }
+    }
 }
 
 -(void) resetVote
