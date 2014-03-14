@@ -66,7 +66,8 @@
     [table1 registerNib:[UINib nibWithNibName:@"PendingCell" bundle:nil] forCellReuseIdentifier:@"PendingCell"];
     
     UIView *bgview = [[UIView alloc] initWithFrame: table1.frame];
-    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    //    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
     table1.backgroundView = bgview;
     
     [self.view addSubview:table1];
