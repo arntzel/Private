@@ -30,6 +30,7 @@
 
 @property IBOutlet UILabel * labelDate;
 @property IBOutlet UILabel * labelTime;
+@property IBOutlet UILabel * labelConfirmed;
 
 @property IBOutlet UILabel * labelAtdCount;
 

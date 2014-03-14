@@ -118,11 +118,9 @@
     NSArray * times = _event.propose_starts;
     
     ProposeStart * finalTime = [_event getFinalEventTime];
+    
+    
     for(ProposeStart * eventTime in times) {
-
-        if( [eventTime isPast] ) {
-            continue;
-        }
         
         if(_event.confirmed) {
             if([eventTime isEqual:finalTime]) {
@@ -134,12 +132,19 @@
             eventTime.finalized = 0;
         }
 
+        BOOL pastTime = [eventTime isPast];
+        if( pastTime && (eventTime.finalized != 1)) {
+            continue;
+        }
         
         EventDetailTimeViewItem * item = (EventDetailTimeViewItem *)[ViewUtils createView:@"EventDetailTimeViewItem"];
         item.delegate = self;
         [item refreshView:_event andTime:eventTime];
         [self addSubview:item];
 
+        if(pastTime) {
+            item.buttonConform.enabled = NO;
+        }
         
         int confilctCount = [self getConfilictEventCount:eventTime];
         //exclude the current event
@@ -153,12 +158,23 @@
         }
 
         
+        if(_event.confirmed) {
+            
+            if(eventTime.finalized != 1) {
+                item.userInteractionEnabled = NO;
+                item.alpha = 0.5;
+            }
+            
+        } else {
+            
+            if(!_isCreator) {
+                if (pastTime && (eventTime.finalized != 1)) {
+                    item.userInteractionEnabled = NO;
+                    item.alpha = 0.5;
+                }
+            }
+        }
         
-//        EventDetailTimeVoteView * voteView = [[EventDetailTimeVoteView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
-//        [self addSubview:voteView];
-//        voteView.delegate = self;
-//
-//        [voteView updateView:_isCreator andEvent:_event andEventTimeVote:eventTime];
     }
     
     

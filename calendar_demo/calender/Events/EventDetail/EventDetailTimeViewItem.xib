@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -42,9 +42,16 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_detail_header_list_arraw.png" id="YCu-Du-epH">
-                    <rect key="frame" x="157" y="32" width="5" height="8"/>
+                    <rect key="frame" x="143" y="32" width="5" height="8"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lfz-JQ-ssa">
+                    <rect key="frame" x="141" y="27" width="60" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.1764705882" green="0.67450980390000004" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="59c-lI-EHx">
                     <rect key="frame" x="268" y="6" width="35" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -110,6 +117,7 @@
                 <outlet property="buttonConform" destination="L0Q-9n-VI9" id="a37-dh-09s"/>
                 <outlet property="buttonVote" destination="59c-lI-EHx" id="gq4-Xz-1I2"/>
                 <outlet property="labelAtdCount" destination="ZBk-59-4mH" id="qdO-Xr-xeV"/>
+                <outlet property="labelConfirmed" destination="Lfz-JQ-ssa" id="Z6I-Ru-cKS"/>
                 <outlet property="labelDate" destination="izk-xt-XrM" id="tXB-WM-e8W"/>
                 <outlet property="labelTime" destination="NNH-BK-z9J" id="jIz-pH-MqK"/>
             </connections>
