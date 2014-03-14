@@ -82,7 +82,7 @@
         
         self.labTimeStr.text = @"All Day";
         
-        NSString * headerUrl = event.creator.avatar_url;
+        NSString * headerUrl = event.thumbnail_url;
         
         [userArray addObject:headerUrl];
     }
