@@ -117,22 +117,27 @@
         }
 */
     }
-    
-    /*
-     NSString * headerUrl = event.creator.avatar_url;
-     
-    if (headerUrl == nil) {
-        self.imgUser.image = [UIImage imageNamed:@"default_person.png"];
-    } else {
-        [self.imgUser setImageWithURL:[NSURL URLWithString:headerUrl]
-                     placeholderImage:[UIImage imageNamed:@"default_person.png"]];
-    }*/
-    
-    
+
     NSMutableArray *userArray = [NSMutableArray array];
-    for (EventAttendeeEntity *attend in event.attendees)
+    
+    if( [event isBirthdayEvent]) {
+        
+        self.labTimeStr.text = @"All Day";
+        
+        NSString * headerUrl = event.creator.avatar_url;
+        
+        [userArray addObject:headerUrl];
+    }
+    else
     {
-        [userArray addObject:attend];
+        for (EventAttendeeEntity *attend in event.attendees)
+        {
+            NSString *avatar_ur = attend.avatar_url;
+            if (avatar_ur == nil) {
+                avatar_ur = @"";
+            }
+            [userArray addObject:avatar_ur];
+        }
     }
     
     for (int i=TAG_INV_START; i < TAG_INV_END; i++) {
@@ -144,9 +149,9 @@
             
             if (attendeeIndex < [userArray count])
             {
-                EventAttendeeEntity *attend = userArray[attendeeIndex];
+                NSString *avatar_url = userArray[attendeeIndex];
                 
-                NSString  *headerUrl = attend.avatar_url;
+                NSString  *headerUrl = avatar_url;
                 
                 v.hidden = NO;
                 v.layer.cornerRadius = self.imgUser.frame.size.width/2;
@@ -154,7 +159,7 @@
                 v.layer.borderWidth = 1.0;
                 v.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
                 
-                if (headerUrl == nil) {
+                if ([headerUrl length] < 1) {
                     v.image = [UIImage imageNamed:@"default_person.png"];
                 }
                 else
