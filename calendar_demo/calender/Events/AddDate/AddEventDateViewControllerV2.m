@@ -156,7 +156,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleBlackTranslucent;
+    return UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning
