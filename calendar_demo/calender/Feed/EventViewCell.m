@@ -92,6 +92,10 @@
         //NSLog(@"event.attendees=%@", event.attendees);
         for (EventAttendeeEntity *attend in event.attendees)
         {
+            if ([attend.is_owner intValue] > 0) {
+                continue;
+            }
+            
             NSString *avatar_ur = attend.avatar_url;
             if (avatar_ur == nil) {
                 avatar_ur = @"";
