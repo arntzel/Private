@@ -73,7 +73,7 @@
         return;
     }
     
-    NSLog(@"synchronizedFromServer begin");
+    LOG_D(@"synchronizedFromServer begin");
     
     NSString * last_modify_num = [[UserSetting getInstance] getStringValue:KEY_LASTUPDATETIME];
     if (last_modify_num == nil) {
@@ -121,7 +121,7 @@
 //                maxlastupdatetime = entity.modified_num;
 //            }
             
-            LOG_D("modified_num:%@", entity.modified_num);
+            //LOG_D("modified_num:%@", entity.modified_num);
             
             double flat1 = [entity.modified_num doubleValue];
             double flat2 = [maxlastupdatetime doubleValue];
@@ -135,7 +135,7 @@
         
         [[UserSetting getInstance] saveKey:KEY_LASTUPDATETIME andStringValue:maxlastupdatetime];
         
-        NSLog(@"========after download=========");
+        LOG_D(@"========after download=========");
         [model notifyModelChange];
         
          downloadingServerEvents = NO;

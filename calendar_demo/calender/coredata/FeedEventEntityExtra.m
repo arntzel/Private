@@ -164,14 +164,16 @@
         [self addAttendeesObject:atd];
     }
     
-    if(self.propose_starts != nil) {
-        NSArray * array = [self.propose_starts allObjects];
-        
-        for(int i=0;i<array.count;i++) {
-            ProposeStartEntity * ps = [array objectAtIndex:i];
-            [self removePropose_startsObject:ps];
-        }
-    }
+//    if(self.propose_starts != nil) {
+//        NSArray * array = [self.propose_starts allObjects];
+//        
+//        for(int i=0;i<array.count;i++) {
+//            ProposeStartEntity * ps = [array objectAtIndex:i];
+//            [self removePropose_startsObject:ps];
+//        }
+//    }
+    
+    [self removePropose_starts:self.propose_starts];
     
     NSArray * propose_starts = event.propose_starts;
     if(propose_starts != nil) {
@@ -324,14 +326,16 @@
     
    
     
-    if(self.propose_starts != nil) {
-        NSArray * array = [self.propose_starts allObjects];
-        
-        for(int i=0;i<array.count;i++) {
-            ProposeStartEntity * ps = [array objectAtIndex:i];
-            [self removePropose_startsObject:ps];
-        }
-    }
+//    if(self.propose_starts != nil) {
+//        NSArray * array = [self.propose_starts allObjects];
+//        
+//        for(int i=0;i<array.count;i++) {
+//            ProposeStartEntity * ps = [array objectAtIndex:i];
+//            [self removePropose_startsObject:ps];
+//        }
+//    }
+    
+    [self removePropose_starts:self.propose_starts];
     
     NSArray * propose_starts = [Utils chekcNullClass:[json objectForKey:@"propose_starts"]];
     if(propose_starts != nil) {
@@ -346,14 +350,16 @@
 
 -(void) removeAllAttendee
 {
-    if(self.attendees != nil) {
-        NSArray * array = [self.attendees allObjects];
-        
-        for(int i=0;i<array.count;i++) {
-            EventAttendeeEntity * atd = [array objectAtIndex:i];
-            [self removeAttendeesObject:atd];
-        }
-    }
+//    if(self.attendees != nil) {
+//        NSArray * array = [self.attendees allObjects];
+//        
+//        for(int i=0;i<array.count;i++) {
+//            EventAttendeeEntity * atd = [array objectAtIndex:i];
+//            [self removeAttendeesObject:atd];
+//        }
+//    }
+    
+    [self removeAttendees:self.attendees];
 }
 
 -(void) resetVote
