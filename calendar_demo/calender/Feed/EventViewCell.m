@@ -141,18 +141,24 @@
     self.labAttendees.text = [self getAttendeesText:event];
     self.labLocation.text = [self getLocationText:event];
     
-    if ([self.labLocation.text isEqual: @"No Location"]) {
+    BOOL weHaveLocation = YES;
+    if ([self.labLocation.text length] < 1) {
+        weHaveLocation = NO;
+    }
+
+    CGRect frame = self.inviteesPanel.frame;
+    
+    if (weHaveLocation == NO) {
         
-        CGRect frame = self.inviteesPanel.frame;
         frame.origin.y = 30;
         self.inviteesPanel.frame = frame;
         
         [self.labLocation setHidden:YES];
         [self.iconLocation setHidden:YES];
         
-    } else {
+    }
+    else {
         
-        CGRect frame = self.inviteesPanel.frame;
         frame.origin.y = 44;
         self.inviteesPanel.frame = frame;
         
@@ -192,10 +198,11 @@
 {
     NSString * location = event.locationName;
     
-    if(location!= nil && location.length > 0) {
-        return  location;
-    } else {
-        return @"No Location";
+    if (location != nil && location.length > 0) {
+        return location;
+    }
+    else {
+        return @"";
     }
 }
 

@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwZ-Ra-uje" userLabel="View - inviteesPanel">
-                        <rect key="frame" x="63" y="44" width="185" height="40"/>
+                        <rect key="frame" x="63" y="30" width="185" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView hidden="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-5n-QKE">
