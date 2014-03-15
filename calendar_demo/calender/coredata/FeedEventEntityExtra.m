@@ -261,6 +261,10 @@
     
     self.creator   = [CreatorEntity createCreatorEntity:[json objectForKey:@"creator"]];
     self.location  = [LocationEntity createLocationEntity:[json objectForKey:@"location"]];
+    if(self.location) {
+        self.locationName = self.location.location;
+    }
+    
     
     self.descript = [Utils chekcNullClass:[json objectForKey:@"description"]];
     
