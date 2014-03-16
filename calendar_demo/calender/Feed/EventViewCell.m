@@ -19,6 +19,7 @@
 #import "UIColor+Hex.h"
 
 #import "EventAttendeeEntity.h"
+#import "UserModel.h"
 
 #define TAG_INV_START 1000
 #define TAG_INV_END   1003
@@ -92,7 +93,9 @@
         //NSLog(@"event.attendees=%@", event.attendees);
         for (EventAttendeeEntity *attend in event.attendees)
         {
-            if ([attend.is_owner intValue] > 0) {
+            User *u = [[UserModel getInstance] getLoginUser];
+            if ([u.email isEqualToString:attend.email]) {
+                NSLog(@"--------> %@    %@", attend.id, attend.email);
                 continue;
             }
             
