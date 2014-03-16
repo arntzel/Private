@@ -321,9 +321,11 @@
     NSString *sectionName = [Utils formateDay:sectionDate];
    
     NSArray * events = [self getEventsOfDay:sectionName];
-    if(events == nil || events.count == 0) {
+    if (events == nil || events.count == 0) {
+        
         return 1; //No event cell
-    } else {
+    }
+    else {
         return  events.count;
     }
 }
@@ -336,7 +338,7 @@
 
     NSArray * events = [self getEventsOfDay:sectionName];
     
-    if(events == nil || events.count == 0) {
+    if (events == nil || events.count == 0) {
         
         NoEventsCell *c = (NoEventsCell*)[tableView dequeueReusableCellWithIdentifier:@"NoEventsCell"];
         return c;
@@ -373,13 +375,18 @@
     
     NSArray * events = [self getEventsOfDay:sectionName];
     
-    if(events == nil || events.count == 0) {
+    if (events == nil || events.count == 0) {
+        
+        if ([sectionDate timeIntervalSinceNow] < 0.0) {
+            // Date has passed, nothing
+            return 0;
+        }
+        
         return NO_EVENTS_HEADER_CELL; //No event cell
     }
     else {
-        
-            return 87;//76;//87;
-
+      
+        return 87;//76;//87;
     }
 }
 

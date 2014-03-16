@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view alpha="0.10000000000000001" contentMode="scaleToFill" id="0zJ-X8-V3a" userLabel="separator">
-                        <rect key="frame" x="49" y="86" width="270" height="1"/>
+                        <rect key="frame" x="49" y="85" width="270" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
