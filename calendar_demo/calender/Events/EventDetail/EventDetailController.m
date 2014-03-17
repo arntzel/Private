@@ -40,6 +40,7 @@
 #import "SettingsModel.h"
 #import "UserModel.h"
 #import "CoreDataModel.h"
+#import "LocationEntity.h"
 #import "FeedEventEntityExtra.h"
 
 #import "ATMHud.h"
@@ -1171,6 +1172,26 @@
         if(error == 0) {
             [invitePlaceContentView setLocation:location];
             self.event.location = location;
+            
+            FeedEventEntity * feedEvt = [[CoreDataModel getInstance] getFeedEventEntity:self.eventID];
+            
+            if(feedEvt != nil) {
+                
+                if(feedEvt.location == nil) {
+                    feedEvt.location = [[CoreDataModel getInstance] createEntity:@"LocationEntity"];
+                }
+                
+                feedEvt.location.id = @(location.id);
+                feedEvt.location.lat = @(location.lat);
+                feedEvt.location.lng = @(location.lng);
+                feedEvt.location.location = location.location;
+                feedEvt.location.photo = location.photo;
+                feedEvt.locationName = location.location;
+                
+                [[CoreDataModel getInstance] saveData];
+                [[CoreDataModel getInstance] notifyEventChange:feedEvt andChangeTyp:EventChangeType_Update];
+            }
+            
         } else {
             [Utils showUIAlertView:@"Error" andMessage:@"Update Location Error!"];
         }
