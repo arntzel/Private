@@ -72,12 +72,18 @@
                 for (EventTimeVote * vote in ps.votes) {
                     if([me.email caseInsensitiveCompare:vote.email] == NSOrderedSame && vote.status == 1) {
                         accepted = YES;
+                        break;
                     }
                 }
             }
         }
         
-        self.confirmed = @(accepted);
+        
+        if(accepted) {
+            self.vote = @(0);
+        } else {
+            self.vote = @(1);
+        }
     }
     
     NSDate * maxStartTime = nil;
