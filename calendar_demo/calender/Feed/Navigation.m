@@ -43,9 +43,10 @@
         rightBgImage = [rightBgImage resizableImageWithCapInsets:insets2];
         [self.rightBtn setImage:rightBgImage forState:UIControlStateNormal];
     } else if (mode == ACCOUNT_SETTING) {
-        CGRect btnFrame = CGRectMake(230, 32, 80, 20);
+        CGRect btnFrame = CGRectMake(250, 32, 80, 20);
         self.rightBtn.frame = btnFrame;
-        [self.rightBtn setTitle:@"Calendars" forState:UIControlStateNormal];
+        [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.rightBtn setTitle:@"Save" forState:UIControlStateNormal];
     }
     
 }

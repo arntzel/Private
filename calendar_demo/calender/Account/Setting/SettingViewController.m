@@ -44,6 +44,9 @@
 @end
 
 @implementation SettingViewController
+{
+    UIActivityIndicatorView * indicatorView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -80,9 +83,12 @@
     self.navigation.titleLable.textColor = [UIColor colorWithRed:61/255.0f green:173/255.0f blue:145/255.0f alpha:1];
     
     
-    self.navigation.rightBtn.hidden = YES;
     [self.navigation.leftBtn setTitle:@"" forState:UIControlStateNormal];
     [self.navigation.leftBtn setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    
+    [self.navigation.rightBtn addTarget:self action:@selector(btnSaveClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     float scrollerY = CGRectGetMaxY(self.navigation.frame);
     self.scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scrollerY, self.view.frame.size.width, self.view.frame.size.height - scrollerY)];
@@ -113,6 +119,32 @@
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emailPaswrodViewTap:)];
     [self.t_settingsContentView.emailPasswordView addGestureRecognizer:tapGesture];
     
+    
+    
+}
+
+-(void) btnSaveClicked:(id) sender
+{
+  
+    NSString * postal_code = [Utils chekcNullClass:[self.loginUser.locationDic objectForKey:@"postal_code"]];
+    NSString * first_name = self.t_settingsContentView.firstNameField.text;
+    NSString * last_name = self.t_settingsContentView.lastNameField.text;
+    
+    if( ![self.loginUser.first_name isEqualToString:first_name] ||
+        ![self.loginUser.last_name isEqualToString:last_name] ||
+       ![postal_code isEqualToString:self.t_settingsContentView.zipCodeTextField.text])
+    {
+        
+        [self updataUserProfile:self.loginUser.avatar_url andCallback:^(NSInteger error) {
+            
+            if(error == 0) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+        
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void) emailPaswrodViewTap:(id) sender
@@ -619,7 +651,12 @@
     }];
 }
 
-- (void)updataUserProfile:(NSString *)avatar_url
+- (void)updataUserProfile:(NSString *)avatar_url;
+{
+    [self updataUserProfile:avatar_url andCallback:nil];
+}
+
+- (void)updataUserProfile:(NSString *)avatar_url andCallback:(void (^)(NSInteger error))callback;
 {
     SettingsModel *model = [[SettingsModel alloc] init];
     User *tmpUser = [[User alloc] init];
@@ -627,8 +664,15 @@
     tmpUser.profileUrl = self.loginUser.profileUrl;
     tmpUser.first_name = self.t_settingsContentView.firstNameField.text;
     tmpUser.last_name = self.t_settingsContentView.lastNameField.text;
-    tmpUser.locationDic = self.locationDic;
+    
     tmpUser.avatar_url =  avatar_url;
+    
+    NSString * postal_code = self.t_settingsContentView.zipCodeTextField.text;
+    NSMutableDictionary * locationDic = [[NSMutableDictionary alloc] initWithDictionary:self.locationDic];
+    [locationDic setValue:postal_code forKey:@"postal_code"];
+    tmpUser.locationDic = locationDic;
+    
+    
     if (!tmpUser.first_name)
     {
         tmpUser.first_name = @"";
@@ -663,6 +707,10 @@
                 self.t_settingsContentView.locationTextField.text = @"";
             }
             
+            if (callback)
+            {
+                callback(-1);
+            }
         }
         else
         {
@@ -685,9 +733,9 @@
                 }
                 
             }
-            if (self.updataLeftNavBlock)
+            if (callback)
             {
-                self.updataLeftNavBlock();
+                callback(0);
             }
         }
     }];
