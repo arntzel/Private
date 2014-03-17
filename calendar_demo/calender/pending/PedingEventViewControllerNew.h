@@ -15,4 +15,7 @@
 
 @property(assign) id<PopDelegate> popDelegate;
 
+
+- (void)loadData;
+
 @end

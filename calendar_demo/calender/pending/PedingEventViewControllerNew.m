@@ -37,6 +37,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        rsvpEvents = [[NSMutableArray alloc] init];
+        myEvents = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -44,9 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    rsvpEvents = [[NSMutableArray alloc] init];
-    myEvents = [[NSMutableArray alloc] init];
+
     
     self.navigation.calPendingSegment.hidden = NO;
     [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
@@ -74,7 +75,11 @@
     
     [[CoreDataModel getInstance] addDelegate:self];
     
-    [self loadData];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.01), dispatch_get_main_queue(),  ^(void) {
+//        [self loadData];
+//    });
+    
+    [table1 reloadData];
 }
 
 -(void) viewDidUnload
@@ -186,12 +191,12 @@
         else {
             
             [rsvpEvents addObject:evt];
-            
-            
         }
     }
     
-    [table1 reloadData];
+    if(table1) {
+        [table1 reloadData];
+    }
 }
 
 -(BOOL) isMyEvent:(FeedEventEntity *) event

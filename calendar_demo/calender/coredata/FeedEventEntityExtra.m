@@ -354,14 +354,16 @@
 
 -(void) removeAllAttendee
 {
-//    if(self.attendees != nil) {
-//        NSArray * array = [self.attendees allObjects];
-//        
-//        for(int i=0;i<array.count;i++) {
-//            EventAttendeeEntity * atd = [array objectAtIndex:i];
-//            [self removeAttendeesObject:atd];
-//        }
-//    }
+    if(self.attendees != nil) {
+        NSArray * array = [self.attendees allObjects];
+        
+        for(int i=0;i<array.count;i++) {
+            EventAttendeeEntity * atd = [array objectAtIndex:i];
+            [[CoreDataModel getInstance] deleteEntity:atd];
+            
+            [self removeAttendeesObject:atd];
+        }
+    }
     
     [self removeAttendees:self.attendees];
 }
