@@ -134,70 +134,32 @@
         return cell;
     }
     
-    UITableViewCell * tableCell;
     
-    BOOL last = (indexPath.row == events.count-1);
     FeedEventEntity * event = [events objectAtIndex:indexPath.row];
     
-    if( ![event isBirthdayEvent])
-    {
-        //            UITableViewCell * cell = [self dequeueReusableCellWithIdentifier:@"eventView"];
-        //            EventView * view;
-        //            if(cell == nil) {
-        //                view = [EventView createEventView];
-        //                view.tag = 1;
-        //                cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"eventView"];
-        //                [cell addSubview:view];
-        //            } else {
-        //                view = (EventView*)[cell viewWithTag:1];
-        //            }
-        //
-        //            [view refreshView:event lastForThisDay:lastForThisDay];
-        
-        EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
-        
-        [cell refreshView:event lastForThisDay:last];
-        
-        [cell setBackgroundColor:[UIColor clearColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        tableCell = cell;
-    }
-    else
-    {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"birthdayEventView"];
-        BirthdayEventView * view;
-        if(cell == nil) {
-            view = [BirthdayEventView createEventView];
-            view.tag = 2;
-            cell = [[FeedEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"birthdayEventView"];
-            [cell addSubview:view];
-        } else {
-            view = (BirthdayEventView*)[cell viewWithTag:2];
-        }
-        
-        
-        [view refreshView:event lastForThisDay:last];
-        
-        [cell setBackgroundColor:[UIColor clearColor]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        tableCell = cell;
-    }
-
-    if(last) {
     
-        CGRect frame = tableCell.frame;
+    int row = indexPath.row;
+    
+    BOOL lastForThisDay = (row == (events.count-1));
+    
+    EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
+    [cell refreshView:event lastForThisDay:lastForThisDay];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    if(lastForThisDay) {
+    
+        CGRect frame = cell.frame;
         frame.origin.y = frame.size.height -1;
         frame.size.height = 1;
         
         UIView * line = [[UIView alloc] initWithFrame:frame];
         line.backgroundColor = [UIColor grayColor];
-        [tableCell addSubview:line];
+        [cell addSubview:line];
         
     }
     
-    return  tableCell;
+    return  cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
