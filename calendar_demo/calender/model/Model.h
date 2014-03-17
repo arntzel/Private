@@ -189,6 +189,8 @@ typedef NS_ENUM(NSInteger, ERROCODE) {
 -(void) getLatestVersion:(void (^)(NSInteger error, NSDictionary * dic))callback;
 
 
+-(void) getDeletedEvents:(void (^)(NSInteger error, NSArray * dic))callback;
+
 
 -(EventModel *) getEventModel;
 

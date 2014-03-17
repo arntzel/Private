@@ -1764,4 +1764,40 @@ static Model * instance;
         }
     }];
 }
+
+-(void) getDeletedEvents:(void (^)(NSInteger error, NSArray * dic))callback
+{
+    ///api/v1/deletedevents/
+    
+    NSString * url = [NSString stringWithFormat:@"%s/api/v1/deletedevents/", HOST];
+    
+    LOG_D(@"getDeletedEvents url=%@", url);
+    
+    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"GET"];
+    
+    [[UserModel getInstance] setAuthHeader:request];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * resp, NSData * data, NSError * error) {
+        NSHTTPURLResponse * httpResp = (NSHTTPURLResponse*) resp;
+        int status = httpResp.statusCode;
+        
+        if(status == 200) {
+            
+            NSError * err;
+            NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+            LOG_D(@"getDeletedEvents resp:%@", json);
+            
+            callback(0, json);
+            
+        } else {
+            
+            if(data != nil) {
+                NSString* aStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                LOG_D(@"getLatestVersion error=%@, resp:%@", error, aStr);
+            }
+            
+            callback(-1, nil);
+        }
+    }];
+}
 @end

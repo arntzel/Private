@@ -25,6 +25,8 @@
 #import "TestFlight.h"
 
 #import "EventDetailController.h"
+#import "CoreDataModel.h"
+
 
 #define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
@@ -236,6 +238,7 @@
 //            }
 //        }
 //    }
+    
 }
 
 
@@ -274,6 +277,33 @@
 {
     //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
     [[[Model getInstance] getEventModel] checkContactUpdate];
+    
+    User * loginUser = [[UserModel getInstance] getLoginUser];
+    if (loginUser != nil) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC), dispatch_get_main_queue(),  ^(void) {
+            
+            [[Model getInstance] getDeletedEvents:^(NSInteger error, NSArray *dic) {
+                
+                if(error == 0)
+                {
+                    for(NSNumber * nsID in dic)
+                    {
+                        int feedEventID =  [nsID intValue];
+                        FeedEventEntity * event = [[CoreDataModel getInstance] getFeedEventEntity:feedEventID];
+                        
+                        if(event != nil) {
+                            LOG_D(@"deleteFeedEventEntity2:%@", event.title);
+                            [[CoreDataModel getInstance] deleteFeedEventEntity2:event];
+                        }
+                    }
+                    
+                    [[CoreDataModel getInstance] saveData];
+                    [[CoreDataModel getInstance] notifyModelChange];
+                }
+                
+            }];
+        });
+    }
 }
 
 -(void) synchronizedEventFromServer
