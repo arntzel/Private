@@ -76,6 +76,8 @@
                     }
                 }
             }
+            
+            ps.finalized = 1;
         }
         
         
