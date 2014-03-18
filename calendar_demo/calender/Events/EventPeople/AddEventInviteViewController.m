@@ -63,10 +63,15 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [super viewDidLoad];
 
     NavgationBar * navBar = [[NavgationBar alloc] init];
+    UIButton * leftBtn = [navBar getLeftBtn];
+    CGRect frame = leftBtn.frame;
+    frame.size.width = 60;
+    leftBtn.frame = frame;
+    
     [navBar setTitle:@""];
-    [navBar setLeftBtnText:@""];
-    [navBar setRightBtnText:@"Done"];
-    [navBar setRightBtnHidden:YES];
+    [navBar setLeftBtnImage:nil];
+    [navBar setLeftBtnText:@"Cancel"];
+    [navBar setRightBtnText:@"Save"];
     
     [self.view addSubview:navBar];
     navBar.delegate = self;
@@ -512,7 +517,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 //        }
 //    }
 }
-- (void)leftNavBtnClick
+
+- (void)rightNavBtnClick
 {
     [self addSearchBarObj];
     NSArray * selectUsers = [self getSelectedUsers];
@@ -563,6 +569,13 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     }
 }
 
+
+- (void)leftNavBtnClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 -(BOOL) isContact:(Contact *) contact inArray:(NSArray *) users
 {
     for(Contact * cont in users) {
@@ -572,11 +585,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     }
     
     return NO;
-}
-
--(void) saveRecentContacts
-{
-    
 }
 
 - (NSArray *)getSelectedUsers
@@ -591,29 +599,7 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     return selectedArray;
 }
 
-- (void)rightNavBtnClick
-{
-    [self addSearchBarObj];
-    NSArray * selectUsers = [self getSelectedUsers];
-    
-    
-    NSDate * now = [NSDate date];
-    float interval = [now timeIntervalSince1970];
-    
-    for(Contact * contact in selectUsers)
-    {
-        ContactEntity * entity = [[CoreDataModel getInstance] getContactEntity:contact.id];
-        if(entity != nil) {
-            entity.lastest_timestamp = @(interval);
-        }
-    }
-    
-    [[CoreDataModel getInstance] saveData];
-    
-    
-    [self.delegate setInVitePeopleArray:selectUsers];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 #pragma mark --
 #pragma mark JSTokenFieldDelegate

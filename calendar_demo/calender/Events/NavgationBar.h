@@ -19,7 +19,10 @@
 
 @property(nonatomic, assign) id<NavgationBarDelegate> delegate;
 
+-(UIButton *) getLeftBtn;
+
 - (void)setTitle:(NSString *)title;
+-(void) setLeftBtnImage:(UIImage *)img;
 - (void)setLeftBtnText:(NSString *)text;
 - (void)setRightBtnText:(NSString *)text;
 
