@@ -158,9 +158,14 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     NSString * recentIDS = [[UserSetting getInstance] getStringValue:@"SETTING_RECENT_CONTACT_IDS"];
     if (recentIDS != nil) {
-        NSArray * contacts = [[CoreDataModel getInstance] getContactEntitysByIDs:recentIDS];
-        for(ContactEntity * contact in contacts) {
-            [recentUsers addObject:[contact getContact]];
+       
+        NSArray * emails = [recentIDS componentsSeparatedByString:@","];
+        for(NSString * email in emails)
+        {
+            ContactEntity * entity = [[CoreDataModel getInstance] getContactEntityWithEmail:email];
+            if(entity != nil) {
+                [recentUsers addObject:[entity getContact]];
+            }
         }
     }
     
@@ -379,8 +384,8 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     [calvinSearchedUsers sortUsingSelector:@selector(comparePerson:)];
     
     //最近的联系人，显示在最前面
-    //for(int i=searchedRecentUser.count-1; i>=0;i--)
-    for(int i=0; i<searchedRecentUser.count;i++)
+    for(int i=searchedRecentUser.count-1; i>=0;i--)
+    //for(int i=0; i<searchedRecentUser.count;i++)
     {
         Contact * contact = [searchedRecentUser objectAtIndex:i];
         AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
@@ -520,9 +525,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     {
         Contact * contact = [selectUsers objectAtIndex:i];
         if(count == 0) {
-            [ids appendFormat:@" '%@'", contact.email];
+            [ids appendFormat:@"%@", contact.email];
         } else {
-            [ids appendFormat:@", '%@'", contact.email];
+            [ids appendFormat:@",%@", contact.email];
         }
         count++;
     }
@@ -534,9 +539,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             if(![self isContact:contact inArray:selectUsers]) {
                 
                 if(count == 0) {
-                    [ids appendFormat:@" '%@'", contact.email];
+                    [ids appendFormat:@"%@", contact.email];
                 } else {
-                    [ids appendFormat:@", '%@'", contact.email];
+                    [ids appendFormat:@",%@", contact.email];
                 }
                 count++;
             }
