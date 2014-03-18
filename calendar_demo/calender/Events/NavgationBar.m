@@ -84,9 +84,20 @@
     return [self initWithFrame:CGRectMake(0, 0, 320, 65)];
 }
 
+
+-(UIButton *) getLeftBtn
+{
+    return leftBtn;
+}
+
 - (void)setTitle:(NSString *)title
 {
     [labelTitle setText:title];
+}
+
+-(void) setLeftBtnImage:(UIImage *)img
+{
+    [leftBtn setImage:img forState:UIControlStateNormal];
 }
 
 - (void)setLeftBtnText:(NSString *)text

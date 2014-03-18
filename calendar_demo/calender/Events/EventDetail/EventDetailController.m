@@ -1136,6 +1136,7 @@
             if(!isInInviteeList) {
                 Invitee * invitee = [[Invitee alloc] init];
                 invitee.email = contact.email;
+                invitee.contact = contact;
                 [invitees addObject:invitee];
             }
         }
@@ -1143,6 +1144,8 @@
         if(invitees.count == 0) return;
         
         [self showIndicatorView];
+        
+        
         [[Model getInstance] inviteContacts:event.id andContact:invitees andCallback:^(NSInteger error, Event *newEvent) {
          
             [self hideIndicatorView];
@@ -1150,6 +1153,17 @@
             if(error == 0) {
                 
                 [self addNewPeopleArray:invitees andNewEvent:newEvent];
+                
+                CoreDataModel * coreDataModel = [CoreDataModel getInstance];
+                for(Invitee * invitee in invitees) {
+                    
+                    ContactEntity * entity = [coreDataModel getContactEntityWithEmail:invitee.email];
+                    if(entity == nil) {
+                        entity = [coreDataModel createEntity:@"ContactEntity"];
+                        [entity convertContact:invitee.contact];
+                        [coreDataModel saveData];
+                    }
+                }
                 
             } else {
                 [Utils showUIAlertView:@"Error" andMessage:@"Invitee people failed, please check the newwork" andDeletegate:nil];

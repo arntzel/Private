@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Contact.h"
 
 @interface Invitee : NSObject
 
 @property(strong) NSString * email;
+
+@property(strong) Contact * contact;
 
 -(NSDictionary*)convent2Dic;
 

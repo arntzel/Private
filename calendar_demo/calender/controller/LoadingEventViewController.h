@@ -15,4 +15,7 @@
 
 @property IBOutlet UIImageView * loadingView;
 
+@property IBOutlet UILabel * label;
+
+
 @end
