@@ -185,7 +185,22 @@
             double delayInSeconds = 0.5;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                RootNavContrller *navController = [RootNavContrller defaultInstance];
+                
+                 RootNavContrller *navController = [RootNavContrller defaultInstance];
+                while (YES) {
+                    //topViewController
+                    UIViewController * top = navController.topViewController;
+                    
+                    if([top isKindOfClass:[EventDetailController class]]) {
+                        
+                        [navController popViewControllerAnimated:NO];
+                        
+                    } else {
+                        break;
+                    }
+                }
+                
+               
                 EventDetailController * detailView = [[EventDetailController alloc] init];
                 detailView.eventID = event_id;
                 [navController pushViewController:detailView animated:NO];

@@ -214,6 +214,11 @@
 		3DC29289186BC204009759C2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29286186BC204009759C2 /* libMobClickLibrary.a */; };
 		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
 		3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2F63718CB03AB00E87D56 /* back_button@2x.png */; };
+		3DC372E918D8131F00DFF9E1 /* loader0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E518D8131F00DFF9E1 /* loader0.png */; };
+		3DC372EA18D8131F00DFF9E1 /* loader75.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E618D8131F00DFF9E1 /* loader75.png */; };
+		3DC372EB18D8131F00DFF9E1 /* loader95.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E718D8131F00DFF9E1 /* loader95.png */; };
+		3DC372EC18D8131F00DFF9E1 /* loader100.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E818D8131F00DFF9E1 /* loader100.png */; };
+		3DC372F018D817C400DFF9E1 /* loading_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372EF18D817C400DFF9E1 /* loading_bg.png */; };
 		3DC501F7182FB04800E05309 /* PendingEventViewNoEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */; };
 		3DF11F541882DD4B00F16140 /* ProposeStartEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F531882DD4B00F16140 /* ProposeStartEntityExtra.m */; };
 		3DF11F571882DFA700F16140 /* EventTimeVoteEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF11F561882DFA700F16140 /* EventTimeVoteEntityExtra.m */; };
@@ -952,6 +957,11 @@
 		3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		3DC29288186BC204009759C2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		3DC2F63718CB03AB00E87D56 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
+		3DC372E518D8131F00DFF9E1 /* loader0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loader0.png; sourceTree = "<group>"; };
+		3DC372E618D8131F00DFF9E1 /* loader75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loader75.png; sourceTree = "<group>"; };
+		3DC372E718D8131F00DFF9E1 /* loader95.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loader95.png; sourceTree = "<group>"; };
+		3DC372E818D8131F00DFF9E1 /* loader100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loader100.png; sourceTree = "<group>"; };
+		3DC372EF18D817C400DFF9E1 /* loading_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_bg.png; sourceTree = "<group>"; };
 		3DC501F6182FB04800E05309 /* PendingEventViewNoEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PendingEventViewNoEventCell.xib; path = calender/pending/PendingEventViewNoEventCell.xib; sourceTree = SOURCE_ROOT; };
 		3DD6068918339D3C007C36A3 /* libOHAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOHAttributedLabel.a; path = "calender/Third-Party-Libraries/OHAttributedLabel/libOHAttributedLabel.a"; sourceTree = "<group>"; };
 		3DF11F521882DD4B00F16140 /* ProposeStartEntityExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposeStartEntityExtra.h; path = calender/coredata/ProposeStartEntityExtra.h; sourceTree = SOURCE_ROOT; };
@@ -2476,6 +2486,11 @@
 		769AB99217DF51340033E677 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3DC372EF18D817C400DFF9E1 /* loading_bg.png */,
+				3DC372E518D8131F00DFF9E1 /* loader0.png */,
+				3DC372E618D8131F00DFF9E1 /* loader75.png */,
+				3DC372E718D8131F00DFF9E1 /* loader95.png */,
+				3DC372E818D8131F00DFF9E1 /* loader100.png */,
 				23B2126E18D1F054000FD17C /* back_icon.png */,
 				23B2126F18D1F054000FD17C /* back_icon@2x.png */,
 				23B2127018D1F054000FD17C /* next_icon.png */,
@@ -3467,6 +3482,7 @@
 				34B1F1C917F8FCE200AA5C97 /* settings_main_top_row@2x.png in Resources */,
 				769AB91C17DF51160033E677 /* EventPendingToolbar.xib in Resources */,
 				23B2127518D1F054000FD17C /* next_icon@2x.png in Resources */,
+				3DC372EC18D8131F00DFF9E1 /* loader100.png in Resources */,
 				769AB91F17DF51160033E677 /* PendingEventCell.xib in Resources */,
 				230DCD3918CE9F4B000FC141 /* calvin_logo_large@2x.png in Resources */,
 				769AB92017DF51160033E677 /* PendingEventHeader.xib in Resources */,
@@ -3493,6 +3509,7 @@
 				76591A9817FFB12900DE3AB2 /* AddEventInviteViewController.xib in Resources */,
 				3DB262381886DBE20056C0B9 /* EventLocationCell.xib in Resources */,
 				769AB9A717DF51340033E677 /* event_detail_random_header1.png in Resources */,
+				3DC372EB18D8131F00DFF9E1 /* loader95.png in Resources */,
 				3D873C5018C0C92400716F59 /* LoadingEventViewController.xib in Resources */,
 				34262E1B1869C1A300288EA9 /* iCalEventShowSettingsViewController.xib in Resources */,
 				769AB9A817DF51340033E677 /* event_detail_random_header2.png in Resources */,
@@ -3598,6 +3615,7 @@
 				769AB9D917DF51340033E677 /* bg_section_header.png in Resources */,
 				769AB9DA17DF51340033E677 /* btn_add@2x.png in Resources */,
 				34B1F1A717F8FCE200AA5C97 /* LegalViewController.xib in Resources */,
+				3DC372EA18D8131F00DFF9E1 /* loader75.png in Resources */,
 				769AB9DB17DF51340033E677 /* btn_login@2x.png in Resources */,
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
 				2313197D1867271A00F076C7 /* people@2x.png in Resources */,
@@ -3620,6 +3638,7 @@
 				9345ABD218BA9D7A005ABE9C /* PendingEventsSectionHeader.xib in Resources */,
 				3D873C5218C0DFC100716F59 /* Calvin_loader.gif in Resources */,
 				7662F74617F075F400B64E40 /* LoginMainTitileView.xib in Resources */,
+				3DC372F018D817C400DFF9E1 /* loading_bg.png in Resources */,
 				76411AF918083AE4001C2125 /* event_detail_invitee_time_tick_black.png in Resources */,
 				769AB9E517DF51340033E677 /* colordot1.png in Resources */,
 				769AB9E617DF51340033E677 /* colordot2.png in Resources */,
@@ -3800,6 +3819,7 @@
 				76C5129D1888195B00E5A31F /* CPickerCell.xib in Resources */,
 				76591A9D17FFB23200DE3AB2 /* EventLocationViewController.xib in Resources */,
 				3D053BDA18C4DBDD00FC9637 /* buble_right@2x.png in Resources */,
+				3DC372E918D8131F00DFF9E1 /* loader0.png in Resources */,
 				232F1A3A186B22DE00238CA5 /* green_error.png in Resources */,
 				34B1F1BB17F8FCE200AA5C97 /* settings_main_connect_btn@2x.png in Resources */,
 				34262E191869C1A300288EA9 /* iCalEventShowSettingsCell.xib in Resources */,

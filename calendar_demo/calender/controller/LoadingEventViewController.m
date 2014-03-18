@@ -37,6 +37,21 @@
 {
     [super viewDidLoad];
     
+    //self.view.backgroundColor =
+    
+    UIImageView * bgView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    bgView.image = [UIImage imageNamed:@"loading_bg.png"];
+    [self.view insertSubview:bgView atIndex:0];
+    
+    self.loadingView.center = self.view.center;
+    
+    self.label.center = self.view.center;
+    CGRect frame = self.label.frame;
+    //frame.origin.y -= 20;
+    self.label.frame = frame;
+    
+    self.progressView.hidden = YES;
+    
     User *me = [[UserModel getInstance] getLoginUser];
     [[CoreDataModel getInstance] initDBContext:me];
  
@@ -133,6 +148,20 @@
         loadedEventCount += events.count;
     
         float progress = (float)loadedEventCount / (float)allEventCount;
+        
+        if(progress >= 0.75) {
+            
+            self.loadingView.image = [UIImage imageNamed:@"loader75"];
+            
+        } else if(progress >=95) {
+            
+            self.loadingView.image = [UIImage imageNamed:@"loader95"];
+            
+        } else if(progress >= 100) {
+            
+            self.loadingView.image = [UIImage imageNamed:@"loader100"];
+        }
+        
         self.progressView.progress = progress;
         
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
