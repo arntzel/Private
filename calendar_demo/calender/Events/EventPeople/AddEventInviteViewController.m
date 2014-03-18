@@ -14,6 +14,9 @@
 #import "JSTokenButton.h"
 #import "JSTokenField.h"
 
+#import <AddressBook/AddressBook.h>
+
+
 #define MAX_SAVE_RECENT_CONTACTS  10
 
 static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
@@ -32,9 +35,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     NSMutableArray * recentUsers;
     
-    int offset;
-    
     //NSOperationQueue * queue;
+    bool  canReadSystemContacts;
+    ABAddressBookRef addressBook;
 }
 
 @end
@@ -49,6 +52,10 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     self.indicatorView = nil;
     
     searchBar.delegate = nil;
+    
+    if(addressBook != nil) {
+        CFRelease(addressBook);
+    }
 }
 
 - (void)viewDidLoad
@@ -113,8 +120,17 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 											 selector:@selector(handleTokenFieldFrameDidChange:)
 												 name:JSTokenFieldFrameDidChangeNotification
 											   object:nil];
-    offset = 0;
     
+    
+    addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+        canReadSystemContacts = granted;
+        if(!granted) {
+            addressBook = nil;
+        }
+    });
+    
+                                             
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        [[UserModel getInstance] insertAddressBookContactsToDBWithOffset:offset CallBack:^(NSInteger error, NSMutableArray *contact, BOOL finish) {
 //            
@@ -150,7 +166,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     
     [self refreshTableView];
 }
-
 
 -(void) setSelectedUser:(NSArray *) _selectedUsers
 {
@@ -227,18 +242,87 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 //    });
 }
 
+
+-(NSArray *) searchFromSystemContacts:(NSString *) keyword
+{
+   
+    
+    addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+ 
+    
+    CFArrayRef cfarray = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)keyword);
+    NSArray *allPeopleArray = (__bridge NSArray *)cfarray;
+    CFRelease(cfarray);
+    
+    NSMutableArray *contactsArray = [NSMutableArray array];
+    
+    for (int i=0; i<[allPeopleArray count]; i++)
+    {
+        ABRecordRef contactInfo = (__bridge ABRecordRef)([allPeopleArray objectAtIndex:i]);
+        
+        NSString *email = @"";
+        ABMultiValueRef emailProperty = ABRecordCopyValue(contactInfo, kABPersonEmailProperty);
+        if (ABMultiValueGetCount(emailProperty) > 0)
+        {
+            email = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(emailProperty, 0)));
+        }
+        CFRelease(emailProperty);
+        
+        if ([email isEqualToString:@""])
+        {
+            continue;
+        }
+
+        
+        NSString *firstName = (NSString *)(CFBridgingRelease(ABRecordCopyValue(contactInfo, kABPersonFirstNameProperty)));
+        if (!firstName)
+        {
+            firstName = @"";
+        }
+        NSString *lastName = ( NSString *)(CFBridgingRelease(ABRecordCopyValue(contactInfo, kABPersonLastNameProperty)));
+        if (!lastName)
+        {
+            lastName = @"";
+        }
+        
+        NSString *phoneNum = @"";
+        ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(contactInfo, kABPersonPhoneProperty);
+        if (ABMultiValueGetCount(phoneNumberProperty) > 0)
+        {
+            phoneNum = (NSString *)(CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneNumberProperty, 0)));
+            
+        }
+        CFRelease(phoneNumberProperty);
+        //LOG_D(@"phone:%@",phoneNum);
+        
+      
+        Contact *info = [[Contact alloc]init];
+        info.first_name = firstName;
+        info.last_name = lastName;
+        info.phone = phoneNum;
+        info.email = email;
+        info.avatar_url = @"";
+        info.calvinUser = NO;
+        [contactsArray addObject:info];
+        
+    }
+    
+    return contactsArray;
+}
+
+
 -(void) searchUser:(NSString *) searchText
 {
     NSArray * contacts;
     if(searchText == nil || searchText.length == 0) {
        contacts = [[CoreDataModel getInstance] queryContactEntity:nil andOffset:0];
     } else {
-        contacts = [[CoreDataModel getInstance] queryContactEntity:searchText andOffset:0];
+       contacts = [[CoreDataModel getInstance] queryContactEntity:searchText andOffset:0];
     }
     
     [calvinSearchedUsers removeAllObjects];
     
-    
+    //最近的联系人，显示在最前面
     NSMutableArray * searchedRecentUser = [[NSMutableArray alloc] init];
     
     
@@ -263,13 +347,6 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     }
     
     
-    for(Contact * contact in searchedRecentUser)
-    {
-        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
-        people.user = contact;
-        [calvinSearchedUsers addObject:people];
-    }
-    
     User * me = [[UserModel getInstance] getLoginUser];
     for(ContactEntity * contactEntity in contacts) {
         
@@ -286,6 +363,42 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             LOG_D(@"contact in searchedRecentUser:%@", contact.email);
         }
     }
+    
+    NSArray * systemContacts = [self searchFromSystemContacts:searchText];
+    for(Contact * contact in systemContacts)
+    {
+        
+        if( ![self isContact:contact inPeopleArray:calvinSearchedUsers] )
+        {
+            AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+            people.user = contact;
+            [calvinSearchedUsers  addObject:people];
+        }
+    }
+        
+    [calvinSearchedUsers sortUsingSelector:@selector(comparePerson:)];
+    
+    //最近的联系人，显示在最前面
+    //for(int i=searchedRecentUser.count-1; i>=0;i--)
+    for(int i=0; i<searchedRecentUser.count;i++)
+    {
+        Contact * contact = [searchedRecentUser objectAtIndex:i];
+        AddEventInvitePeople * people = [[AddEventInvitePeople alloc] init];
+        people.user = contact;
+        [calvinSearchedUsers insertObject:people atIndex:0];
+    }
+}
+
+-(BOOL) isContact:(Contact *) contact inPeopleArray:(NSArray *) array
+{
+    for(AddEventInvitePeople * people in array)
+    {
+        if([people.user.email isEqualToString:contact.email]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 -(BOOL) match:(NSString *) searchText andString:(NSString *) text
@@ -407,9 +520,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
     {
         Contact * contact = [selectUsers objectAtIndex:i];
         if(count == 0) {
-            [ids appendFormat:@" %d", contact.id];
+            [ids appendFormat:@" '%@'", contact.email];
         } else {
-            [ids appendFormat:@", %d", contact.id];
+            [ids appendFormat:@", '%@'", contact.email];
         }
         count++;
     }
@@ -421,9 +534,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
             if(![self isContact:contact inArray:selectUsers]) {
                 
                 if(count == 0) {
-                    [ids appendFormat:@" %d", contact.id];
+                    [ids appendFormat:@" '%@'", contact.email];
                 } else {
-                    [ids appendFormat:@", %d", contact.id];
+                    [ids appendFormat:@", '%@'", contact.email];
                 }
                 count++;
             }
@@ -542,6 +655,9 @@ static NSString *const CellIdentifier = @"AddEventInvitePeopleCell";
 - (void)tokenFieldTextDidChange:(JSTokenField *)tokenField
 {
     LOG_D(@"tokenFieldTextDidChange:%@", tokenField.textField.text);
+    
+    
+    
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self performSelector:@selector(refreshTableView) withObject:self afterDelay:0.5f];

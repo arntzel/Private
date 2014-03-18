@@ -4,6 +4,19 @@
 
 @implementation Contact
 
+-(NSComparisonResult) compare:(Contact *) ct;
+{
+    
+    NSComparisonResult result = [self.first_name compare:ct.first_name options:NSCaseInsensitiveSearch];
+    
+    if(result != NSOrderedSame) {
+        return result;
+    }
+    
+    result = [self.last_name compare:ct.last_name options:NSCaseInsensitiveSearch];
+    return result;
+}
+
 -(NSString *) getReadableUsername
 {
     if(self.first_name.length > 0 || self.last_name.length >0) {

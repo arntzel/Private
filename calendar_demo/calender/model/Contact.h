@@ -26,6 +26,10 @@
 
 @property(strong) NSString * modified_num;
 
+
+-(NSComparisonResult) compare:(Contact *) ct;
+
+
 -(NSString *) getReadableUsername;
 
 -(NSDictionary*)convent2Dic;

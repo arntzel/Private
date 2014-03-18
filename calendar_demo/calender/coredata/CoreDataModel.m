@@ -708,7 +708,7 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSString * strPredication = [NSString stringWithFormat:@"SELF.id IN {%@}", ids];
+    NSString * strPredication = [NSString stringWithFormat:@"SELF.email IN {%@}", ids];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:strPredication];
     [fetchRequest setPredicate:predicate];
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
