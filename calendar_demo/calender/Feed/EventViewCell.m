@@ -40,14 +40,6 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
-
-
--(float)getEventViewHeight
-{
-    float dynamicEventViewHeight = self.iconAttendee.frame.origin.y + self.iconAttendee.frame.size.height+25;
-    return dynamicEventViewHeight;
 }
 
 -(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay
@@ -218,31 +210,48 @@
     return [NSString stringWithFormat:@"%d Invitees", [event.attendee_num intValue]];
 }
 
-/*
-+(EventView *) createEventView
++(eventCellHeightType) cellHeightType:(FeedEventEntity *) event
 {
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"EventView" owner:self options:nil];
-    EventView * view = (EventView*)[nibView objectAtIndex:0];
+    eventCellHeightType heightType = eventCellTitle;
     
-    self.imgUser.layer.cornerRadius = self.imgUser.frame.size.width/2;
-    self.imgUser.layer.masksToBounds = YES;
+    if ([event.is_all_day boolValue]) {
+    }
+    else {
+    }
     
-    // set user avatar's boarder to 1px solid #d1d9d2
-    self.imgUser.layer.borderWidth = 1.0;
-    self.imgUser.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
+    if ( [event isBirthdayEvent])
+    {
+        heightType = eventCellTitleInvitees;
+    }
+    else
+    {
+        //NSLog(@"event.title=%@", event.title);
+        //NSLog(@"event.attendees=%@", event.attendees);
+        for (EventAttendeeEntity *attend in event.attendees)
+        {
+            User *u = [[UserModel getInstance] getLoginUser];
+            if ([u.email isEqualToString:attend.email]) {
+                NSLog(@"--------> %@    %@", attend.id, attend.email);
+                continue;
+            }
+            heightType = eventCellTitleInvitees;
+        }
+    }
     
-    view.imgEventType.layer.cornerRadius = view.imgEventType.frame.size.width/2;
-    view.imgEventType.layer.masksToBounds = YES;
+    NSString * location = event.locationName;
+    if (location != nil && location.length > 0) {
+        //yes location
+        
+        if (heightType == eventCellTitleInvitees) {
+            heightType = eventCellTitleLocationInvitees;
+        }
+        else
+        {
+            heightType = eventCellTitleLocation;            
+        }
+    }
     
-    UIColor *kalStandardColor = [UIColor generateUIColorByHexString:@"#18a48b"];
-    //    UIColor *kalTitleColor = [UIColor generateUIColorByHexString:@"#232525"];
-    //    [view.labTitle setTextColor:kalTitleColor];
-    [view.labTimeStr setTextColor:kalStandardColor];
-    
-    //view.frame = CGRectMake(0, 0, 320, PlanView_HEIGHT);
-    
-    return view;
+    return heightType;
 }
- */
 
 @end

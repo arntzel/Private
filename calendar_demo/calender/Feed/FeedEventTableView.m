@@ -439,8 +439,28 @@
         return NO_EVENTS_HEADER_CELL; //No event cell
     }
     else {
-      
-        return 95;//87;//76;//87;
+        CGFloat height = 95;
+        
+        int row = indexPath.row;
+        FeedEventEntity * event = [events objectAtIndex:row];
+        eventCellHeightType ht = [EventViewCell cellHeightType:event];
+        switch (ht) {
+            case eventCellTitle:
+                height = 100/2;
+                break;
+            case eventCellTitleLocation:
+                height = 106/2;
+                break;
+            case eventCellTitleInvitees:
+                height = 172/2;
+                break;
+            case eventCellTitleLocationInvitees:
+                height = 200/2;
+                break;
+            default:
+                break;
+        }
+        return height;
     }
 }
 
