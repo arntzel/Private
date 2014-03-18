@@ -156,7 +156,7 @@ static CoreDataModel * instance;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"confirmed=false OR vote=1"];
     [fetchRequest setPredicate:predicate];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_on" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"last_modified" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
