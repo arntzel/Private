@@ -45,6 +45,7 @@
 
 @interface FeedEventTableView : UITableView
 
+@property (nonatomic) NSUInteger currentSection;
 @property int eventTypeFilters;
 
 @property(assign) id<FeedEventTableViewDelegate> feedEventdelegate;
