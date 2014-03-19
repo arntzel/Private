@@ -524,7 +524,7 @@
     
     [[[Model getInstance] getEventModel] deleteIcalEvent];
     
-    [[[Model getInstance] getEventModel] uploadContacts];
+    //[[[Model getInstance] getEventModel] uploadContacts];
 }
 
 -(void) checkAppUpdated
