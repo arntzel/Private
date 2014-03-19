@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PendingCell" rowHeight="87" id="iHV-1Z-GmD" customClass="PendingCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PendingCell" rowHeight="81" id="iHV-1Z-GmD" customClass="PendingCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iHV-1Z-GmD" id="uyd-iF-1Xr">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="default_person.png" translatesAutoresizingMaskIntoConstraints="NO" id="rB0-3Q-iCO">
@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Quick brown fox jumped over" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka6-lv-VVh">
-                        <rect key="frame" x="63" y="1" width="224" height="28"/>
+                        <rect key="frame" x="63" y="3" width="224" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -35,13 +35,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.10000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwT-Kp-0ps" userLabel="separator">
-                        <rect key="frame" x="49" y="81" width="270" height="1"/>
+                        <rect key="frame" x="49" y="79" width="270" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.5"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow_right.png" translatesAutoresizingMaskIntoConstraints="NO" id="nvy-ys-Msq">
-                        <rect key="frame" x="299" y="7" width="12" height="21"/>
+                        <rect key="frame" x="299" y="9" width="12" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add_time_lg.png" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-L0-ASJ">

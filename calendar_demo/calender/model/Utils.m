@@ -236,11 +236,12 @@ static NSTimeZone * userTimeZone;
     
     if( [day isEqualToString:today]) {
         return @"Today";
-    } else if( [day isEqualToString:tomorrom]) {
-        return @"Tomorrow";
-    } else if( [day isEqualToString:yestoday]) {
-        return @"Yesterday";
     }
+//    else if( [day isEqualToString:tomorrom]) {
+//        return @"Tomorrow";
+//    } else if( [day isEqualToString:yestoday]) {
+//        return @"Yesterday";
+//    }
     
     NSDate *date = [self parseNSStringDay:day];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -296,7 +296,7 @@
 {
     //return 77;//60;
     
-    return 87;
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

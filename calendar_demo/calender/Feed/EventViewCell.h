@@ -14,6 +14,15 @@
 #define PlanView_HEIGHT 120
 
 
+typedef enum
+{
+    eventCellTitleLocationInvitees,
+    eventCellTitleInvitees,
+    eventCellTitleLocation,
+    eventCellTitle,
+    
+}eventCellHeightType;
+
 @interface EventViewCell : UITableViewCell
 
 
@@ -32,11 +41,9 @@
 @property IBOutlet UILabel *labTimeStr;
 @property (weak, nonatomic) IBOutlet UIView *separator;
 
-/*
- Update the date in the View
- */
+
 -(void) refreshView:(FeedEventEntity *) event lastForThisDay:(BOOL)lastForThisDay;
 
--(float) getEventViewHeight;
++(eventCellHeightType) cellHeightType:(FeedEventEntity *) event;
 
 @end

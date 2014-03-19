@@ -353,11 +353,46 @@
     if(propose_starts != nil) {
         for(NSDictionary * psJson in propose_starts) {
             ProposeStartEntity * ps = [ProposeStartEntity createEntity:psJson];
+            if([self isFinalizeTime:ps]) {
+                ps.finalized = @(1);
+            } else {
+                ps.finalized = @(0);
+            }
+            
             [self addPropose_startsObject:ps];
         }
     }
     
     [self resetVote];
+}
+
+-(BOOL) isFinalizeTime:(ProposeStartEntity *) ps
+{
+    
+    if(![self.confirmed boolValue]) {
+        return NO;
+    }
+    
+    BOOL result = [self.start isEqualToDate:ps.start];
+    
+    if(result == NO) {
+        return NO;
+    }
+    
+    result = [self.start_type isEqualToString:ps.start_type];
+    if(result == NO) {
+        return NO;
+    }
+    
+    result = ([self.is_all_day isEqualToNumber:ps.is_all_day]);
+    
+    if(result == NO) {
+        return NO;
+    }
+    
+    return ([self.duration_minutes isEqualToNumber:ps.duration_minutes]) &&
+           ([self.duration_hours isEqualToNumber:ps.duration_hours]) &&
+           ([self.duration_days isEqualToNumber:ps.duration_days]);
 }
 
 -(void) removeAllAttendee
