@@ -625,7 +625,7 @@
             else
             {
                 self.loginUser.facebookEmail = nil;
-                
+                self.loginUser.facebookToken = nil;
                 if (message)
                 {
                     msg = message;

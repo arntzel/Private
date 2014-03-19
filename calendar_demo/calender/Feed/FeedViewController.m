@@ -32,6 +32,7 @@
                                   FeedEventTableViewDelegate,
                                   FeedViewControllerDelegate,
                                   CoreDataModelDelegate,
+                                  EventModelDelegate,
                                   UIAlertViewDelegate>
 {
     KalLogic *logic;
@@ -207,6 +208,7 @@
     }*/
     
     [[CoreDataModel getInstance] addDelegate:self];
+    [[[Model getInstance] getEventModel] addDelegate:self];
     
     [self refreshWithDate:[Utils getCurrentDate]];
 }
@@ -214,6 +216,8 @@
 -(void) viewDidUnload
 {
     [[CoreDataModel getInstance] removeDelegate:self];
+    [[[Model getInstance] getEventModel] removeDelegate:self];
+    
     [super viewDidUnload];
 }
 
@@ -552,6 +556,17 @@
         }
         
     }];
+}
+
+
+-(void) onEventModelChanged:(BOOL) isSynchronizingData
+{
+    
+}
+
+-(void) onSynchronizeDataError:(int) errorCode
+{
+    
 }
 
 @end
