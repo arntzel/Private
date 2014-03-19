@@ -31,8 +31,8 @@
 
 -(BOOL) isFacebookConnected
 {
-    //return self.facebookEmail != nil;
-    return self.facebookToken != nil;
+    return self.facebookEmail != nil;
+    //return self.facebookToken != nil;
 }
 
 -(BOOL) isGoogleConnected

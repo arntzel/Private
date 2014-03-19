@@ -911,6 +911,7 @@
             {
                 msg = @"Success";
                 self.loginUser.facebookEmail = store.facebookEmail;
+                self.loginUser.facebookToken = store.facebookAccessToken;
                 [self fbviewChangeWithConnectStatus:YES];
             }
            
