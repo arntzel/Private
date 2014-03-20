@@ -294,7 +294,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //return 77;//60;
+    int section = indexPath.section;
+    
+    NSArray * eventList = [self getEventsList:section];
+    
+    if (eventList.count == 0)
+    {
+        return 100/2;
+    }
     
     return 80;
 }
