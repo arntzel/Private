@@ -400,11 +400,15 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
+    NSPredicate * predicate;
+    if(end == nil) {
+        predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@)", begin];
+        
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@) AND (start<%@)", begin, end];
+    }
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@) AND (start<%@)", begin, end];
     [fetchRequest setPredicate:predicate];
-    
-    
     fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:[[entity propertiesByName] objectForKey:@"ext_event_id"], nil];
     
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];

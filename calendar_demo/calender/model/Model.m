@@ -164,7 +164,7 @@ static Model * instance;
             
             NSDate * now = [NSDate date];
             NSDate * startDate = [[now cc_dateByMovingToThePreviousDayCout:1] cc_dateByMovingToBeginningOfDay];
-            NSDate * endDate = [now cc_dateByMovingToTheFollowingDayCout:30];
+            NSDate * endDate = [now cc_dateByMovingToTheFollowingDayCout:360];
             
             // Create the predicate from the event store's instance method
             NSPredicate *predicate = [store predicateForEventsWithStartDate:startDate

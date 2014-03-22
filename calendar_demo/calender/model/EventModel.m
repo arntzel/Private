@@ -284,7 +284,7 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSDate * now = [NSDate date];
                 NSDate * startDate = [[now cc_dateByMovingToThePreviousDayCout:1] cc_dateByMovingToBeginningOfDay];
-                NSDate * endDate = [now cc_dateByMovingToTheFollowingDayCout:30];
+                NSDate * endDate = [now cc_dateByMovingToTheFollowingDayCout:360];
                 
                 NSArray * iCalEventsIDs = [model getAlliCalFeedEventIDs:startDate andEndDate:endDate];
                 iCalEvents = [[NSMutableArray alloc] initWithArray:iCalEventsIDs];
