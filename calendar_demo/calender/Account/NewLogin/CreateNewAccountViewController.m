@@ -51,9 +51,11 @@
     [self.view addSubview:bgView];
     
     navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
-    [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
+    //[navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
+    [navView setBackgroundColor :[UIColor clearColor]];
     
     UIFont *navBtnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    UIColor *navFontColor =[UIColor generateUIColorByHexString:@"#18a48b"];
     leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     [[leftBtn titleLabel] setFont:navBtnFont];
     [leftBtn setTitle:@"Back" forState:UIControlStateNormal];
@@ -61,13 +63,15 @@
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     //[leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
-    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [leftBtn setTitleColor:navFontColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:leftBtn];
     
     labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
     [labelTitle setBackgroundColor:[UIColor clearColor]];
+    
+    labelTitle.textColor = navFontColor;
     
     labelTitle.textAlignment = NSTextAlignmentCenter;
     
@@ -76,7 +80,6 @@
     
     labelTitle.text = @"Create new account";
     [labelTitle setTextAlignment:NSTextAlignmentCenter];
-    [labelTitle setTextColor:[UIColor whiteColor]];
     //[labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
     [navView addSubview:labelTitle];
     [self.view addSubview:navView];
