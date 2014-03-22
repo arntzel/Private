@@ -244,6 +244,7 @@
     self.hasDeleted = @(event.hasDeleted);
     self.last_modified = event.last_modified;
     
+    self.confirmed = @(YES);
     self.vote = @(0);
     self.attendee_num = @(1);
     //NSAssert([self.hasModified boolValue]==NO, @"I have modified...");

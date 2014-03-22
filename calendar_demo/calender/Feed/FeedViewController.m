@@ -393,8 +393,7 @@
     
     //[[[Model getInstance] getEventModel] checkSettingUpdate];
     //[[[Model getInstance] getEventModel] checkContactUpdate];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
+    //[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doUploads) userInfo:nil repeats:NO];
 }
 
 -(void) onEventChanged:(FeedEventEntity *) event andTpe:(EventChangeType) type
@@ -524,9 +523,9 @@
 
 - (void)doUploads
 {
-    LOG_D(@"================start upload events=============");
+    //LOG_D(@"================start upload events=============");
     
-    [[[Model getInstance] getEventModel] deleteIcalEvent];
+    //[[[Model getInstance] getEventModel] deleteIcalEvent];
     
     //[[[Model getInstance] getEventModel] uploadContacts];
 }

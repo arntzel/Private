@@ -87,7 +87,7 @@
         {
             User *u = [[UserModel getInstance] getLoginUser];
             if ([u.email isEqualToString:attend.email]) {
-                NSLog(@"--------> %@    %@", attend.id, attend.email);
+                //NSLog(@"--------> %@    %@", attend.id, attend.email);
                 continue;
             }
             
@@ -231,7 +231,7 @@
         {
             User *u = [[UserModel getInstance] getLoginUser];
             if ([u.email isEqualToString:attend.email]) {
-                NSLog(@"--------> %@    %@", attend.id, attend.email);
+                //NSLog(@"--------> %@    %@", attend.id, attend.email);
                 continue;
             }
             heightType = eventCellTitleInvitees;

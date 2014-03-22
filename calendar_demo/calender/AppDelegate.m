@@ -234,10 +234,18 @@
   
     int count = [msgModel getUnreadMsgCount];
     [[UserSetting getInstance] saveUnreadmessagecount:count];
+    
+    if(self.timer != nil)
+    {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    NSLog(@"applicationWillEnterForeground");
     
 //    User * loginUser = [[UserModel getInstance] getLoginUser];
 //    if (loginUser != nil) {
@@ -281,11 +289,25 @@
     
     //[self synchronizedFromServer];
     [[[Model getInstance] getEventModel] downloadServerEvents:nil];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60
-                                           target:self
-                                         selector:@selector(synchronizedFromServer)
-                                         userInfo:nil
-                                          repeats:YES];
+    
+    if(self.timer != nil) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:60
+                                                      target:self
+                                                    selector:@selector(synchronizedFromServer)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }
+    
+    
+    
+    User * loginUser = [[UserModel getInstance] getLoginUser];
+    if (loginUser != nil) {
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(),  ^(void) {
+            [[[Model getInstance] getEventModel] updateEventsFromLocalDevice];
+        });
+    }
 }
 
 -(void) synchronizedFromServer

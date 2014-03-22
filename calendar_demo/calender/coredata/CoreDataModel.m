@@ -387,6 +387,30 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
 }
+
+
+- (NSArray *)getAlliCalFeedEventIDs:(NSDate *) begin andEndDate:(NSDate *) end
+{
+    if (!managedObjectContext)
+    {
+        return nil ;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@) AND (start<%@)", begin, end];
+    [fetchRequest setPredicate:predicate];
+    
+    
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:[[entity propertiesByName] objectForKey:@"ext_event_id"], nil];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
 -(DataCache *) getCache
 {
     return cache;
