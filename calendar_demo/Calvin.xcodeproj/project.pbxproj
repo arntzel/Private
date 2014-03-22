@@ -94,6 +94,10 @@
 		23DFECDE184C94F200CC7D3D /* invitee_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */; };
 		23DFECDF184C94F200CC7D3D /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDB184C94F200CC7D3D /* location_icon.png */; };
 		23DFECE0184C94F200CC7D3D /* location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DFECDC184C94F200CC7D3D /* location_icon@2x.png */; };
+		23E4B47718DDAEBA00A546E3 /* ellipse_20%@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E4B47518DDAEBA00A546E3 /* ellipse_20%@2x.png */; };
+		23E4B47818DDAEBA00A546E3 /* ellipse_100%@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E4B47618DDAEBA00A546E3 /* ellipse_100%@2x.png */; };
+		23E4B47B18DDB00500A546E3 /* GreenPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E4B47A18DDB00500A546E3 /* GreenPageControl.m */; };
+		23E4B47D18DDBB0100A546E3 /* onboarding_source_final.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E4B47C18DDBB0100A546E3 /* onboarding_source_final.png */; };
 		23FAE7961875CC0100323C1F /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAE7931875CC0100323C1F /* DRNRealTimeBlurView.m */; };
 		23FAE7971875CC0100323C1F /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAE7951875CC0100323C1F /* UIImage+BoxBlur.m */; };
 		34055C731833B13000A2AD8E /* Legal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34055C721833B13000A2AD8E /* Legal.plist */; };
@@ -798,6 +802,11 @@
 		23DFECDA184C94F200CC7D3D /* invitee_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitee_icon@2x.png"; sourceTree = "<group>"; };
 		23DFECDB184C94F200CC7D3D /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
 		23DFECDC184C94F200CC7D3D /* location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_icon@2x.png"; sourceTree = "<group>"; };
+		23E4B47518DDAEBA00A546E3 /* ellipse_20%@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ellipse_20%@2x.png"; sourceTree = "<group>"; };
+		23E4B47618DDAEBA00A546E3 /* ellipse_100%@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ellipse_100%@2x.png"; sourceTree = "<group>"; };
+		23E4B47918DDB00500A546E3 /* GreenPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenPageControl.h; sourceTree = "<group>"; };
+		23E4B47A18DDB00500A546E3 /* GreenPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenPageControl.m; sourceTree = "<group>"; };
+		23E4B47C18DDBB0100A546E3 /* onboarding_source_final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_source_final.png; sourceTree = "<group>"; };
 		23FAE7921875CC0100323C1F /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRNRealTimeBlurView.h; path = BlurView/DRNRealTimeBlurView.h; sourceTree = "<group>"; };
 		23FAE7931875CC0100323C1F /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DRNRealTimeBlurView.m; path = BlurView/DRNRealTimeBlurView.m; sourceTree = "<group>"; };
 		23FAE7941875CC0100323C1F /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BoxBlur.h"; path = "BlurView/UIImage+BoxBlur.h"; sourceTree = "<group>"; };
@@ -1722,6 +1731,8 @@
 				230DCD1718CE9CE6000FC141 /* OnboardingViewController.m */,
 				230DCD1818CE9CE6000FC141 /* OtherSignupOptionViewController.h */,
 				230DCD1918CE9CE6000FC141 /* OtherSignupOptionViewController.m */,
+				23E4B47918DDB00500A546E3 /* GreenPageControl.h */,
+				23E4B47A18DDB00500A546E3 /* GreenPageControl.m */,
 			);
 			path = NewLogin;
 			sourceTree = "<group>";
@@ -2486,6 +2497,9 @@
 		769AB99217DF51340033E677 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				23E4B47C18DDBB0100A546E3 /* onboarding_source_final.png */,
+				23E4B47518DDAEBA00A546E3 /* ellipse_20%@2x.png */,
+				23E4B47618DDAEBA00A546E3 /* ellipse_100%@2x.png */,
 				3DC372EF18D817C400DFF9E1 /* loading_bg.png */,
 				3DC372E518D8131F00DFF9E1 /* loader0.png */,
 				3DC372E618D8131F00DFF9E1 /* loader75.png */,
@@ -3492,6 +3506,7 @@
 				769AB99B17DF51340033E677 /* push.wav in Resources */,
 				769AB9A117DF51340033E677 /* event_detail_comment_conform_line.png in Resources */,
 				769CB5841886CDC10082400D /* AELocalEntry.xib in Resources */,
+				23E4B47D18DDBB0100A546E3 /* onboarding_source_final.png in Resources */,
 				769AB9A217DF51340033E677 /* event_detail_comment_conformed.png in Resources */,
 				3D1EAC5F188ACA230002F627 /* ContactViewCell.xib in Resources */,
 				34B1F1B917F8FCE200AA5C97 /* settings_main_bottom_row@2x.png in Resources */,
@@ -3567,6 +3582,7 @@
 				7662F75817F0761900B64E40 /* login_mainaccess_new.png in Resources */,
 				769AB9BC17DF51340033E677 /* event_detail_invitee_sepline.png in Resources */,
 				769AB9BD17DF51340033E677 /* event_detail_invitee_time_cross_disable.png in Resources */,
+				23E4B47818DDAEBA00A546E3 /* ellipse_100%@2x.png in Resources */,
 				769AB9BE17DF51340033E677 /* event_detail_invitee_time_cross_enable.png in Resources */,
 				76591A8817FFB09A00DE3AB2 /* AddLocationViewController.xib in Resources */,
 				00171F49189AA2D600CB9CAA /* Images.xcassets in Resources */,
@@ -3645,6 +3661,7 @@
 				23A9C2051853025E009FECF9 /* SelectCountryViewController.xib in Resources */,
 				769AB9E717DF51340033E677 /* colordot3.png in Resources */,
 				769AB9E817DF51340033E677 /* colordot4.png in Resources */,
+				23E4B47718DDAEBA00A546E3 /* ellipse_20%@2x.png in Resources */,
 				769AB9E917DF51340033E677 /* colordot5.png in Resources */,
 				769AB9EA17DF51340033E677 /* colordot6.png in Resources */,
 				7662F75117F0761900B64E40 /* login_main_login_facebook.png in Resources */,
@@ -4078,6 +4095,7 @@
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				23E4B47B18DDB00500A546E3 /* GreenPageControl.m in Sources */,
 				769ABD3B17DF54950033E677 /* NSDateAdditions.m in Sources */,
 				76591A7D17FF9DAB00DE3AB2 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				7678229F187971A000CEF40E /* AddEventInviteView.m in Sources */,

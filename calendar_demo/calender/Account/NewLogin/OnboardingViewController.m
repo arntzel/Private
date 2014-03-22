@@ -12,6 +12,7 @@
 #import "LogoBannerView.h"
 #import "OtherSignupOptionViewController.h"
 #import "LoginViewController.h"
+#import "GreenPageControl.h"
 
 #define SCROLL_PAGES  4
 
@@ -63,11 +64,17 @@
     [self.view addSubview:bgView];
     
     navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
-    [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
+    [navView setBackgroundColor :[UIColor clearColor]];
+    
+    UIColor *navFontColor =[UIColor generateUIColorByHexString:@"#18a48b"];
+    UIColor *dotUnselectColor =[UIColor colorWithRed:200.0/255.0 green:226.0/255.0 blue:213.0/255.0 alpha:1.0];
     [self.view addSubview:navView];
     
     currentPage = 0;
-    pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(110, 25, 80, 30)];
+    pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(125, 25, 80, 30)];
+    pageControl.currentPageIndicatorTintColor = navFontColor;
+    pageControl.pageIndicatorTintColor = dotUnselectColor;
+//    pageControl = [[GreenPageControl alloc]initWithFrame:CGRectMake(110, 25, 80, 30) normalImage:[UIImage imageNamed:@"ellipse_100%@2x.png"] highlightedImage:[UIImage imageNamed:@"ellipse_20%@2x.png"] dotsNumber:SCROLL_PAGES sideLength:10 dotsGap:1];
     pageControl.numberOfPages=SCROLL_PAGES;
     pageControl.currentPage=currentPage;
     //[pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
@@ -84,8 +91,8 @@
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [leftBtn.titleLabel setFont:navBtnFont];
-    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [leftBtn setTitleColor:navFontColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     //[leftBtn setHidden:YES];
     [navView addSubview:leftBtn];
@@ -96,8 +103,8 @@
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, 50, 0, 0)];
     [rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [rightBtn.titleLabel setFont:navBtnFont];
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [rightBtn setTitleColor:navFontColor forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [rightBtn addTarget:self action:@selector(onNextButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:rightBtn];
     
@@ -138,6 +145,8 @@
     [view2 setFrame:CGRectMake(320, 0, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
     view2.title.text = @"Collaborate on Event Details";
     view2.subTitle.text = @"Find a time and location that works for everyone";
+    UIImage *view2Img = [UIImage imageNamed:@"onboarding_source_final.png"];
+    [view2.contentImage setImage:view2Img];
     
     view3 = [OnboardingContentView create];
     [view3 setFrame:CGRectMake(640, 0, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
@@ -218,8 +227,6 @@
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning

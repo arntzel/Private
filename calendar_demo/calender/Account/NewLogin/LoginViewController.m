@@ -76,7 +76,8 @@
     [self.view addSubview:bgView];
     
     navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
-    [navView setBackgroundColor:[UIColor generateUIColorByHexString:@"#18a48b"]];
+    [navView setBackgroundColor :[UIColor clearColor]];
+    UIColor *navFontColor =[UIColor generateUIColorByHexString:@"#18a48b"];
     
     leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 20, 80, 44)];
     UIFont *navBtnFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
@@ -85,21 +86,20 @@
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(-2, -5, 0, 0)];
     [leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [leftBtn.titleLabel setFont:navBtnFont];
-    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [leftBtn setTitleColor:navFontColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(onBackButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:leftBtn];
     
     labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
     [labelTitle setBackgroundColor:[UIColor clearColor]];
-    
+    labelTitle.textColor = navFontColor;
     labelTitle.textAlignment = NSTextAlignmentCenter;
     labelTitle.lineBreakMode = NSLineBreakByWordWrapping;
     labelTitle.numberOfLines = 0;
     
     labelTitle.text = @"Log In";
     [labelTitle setTextAlignment:NSTextAlignmentCenter];
-    [labelTitle setTextColor:[UIColor whiteColor]];
     //[labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
     [navView addSubview:labelTitle];
     [self.view addSubview:navView];
