@@ -45,7 +45,10 @@
     } else if (mode == ACCOUNT_SETTING) {
         CGRect btnFrame = CGRectMake(250, 32, 80, 20);
         self.rightBtn.frame = btnFrame;
-        [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        UIColor * greenColor = [UIColor colorWithRed:61/255.0f green:173/255.0f blue:145/255.0f alpha:1];
+        
+        [self.rightBtn setTitleColor:greenColor forState:UIControlStateNormal];
         [self.rightBtn setTitle:@"Save" forState:UIControlStateNormal];
     }
     
