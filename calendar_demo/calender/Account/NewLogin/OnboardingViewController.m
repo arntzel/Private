@@ -136,14 +136,14 @@
     view1 = [OnboardingContentView create];
     [view1 setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
     view1.title.text = @"Skip the Inbox";
-    view1.subTitle.text = @"Schedule Event and make plans directly from your calendar";
+    view1.subTitle.text = @"Schedule events and make plans directly from your calendar";
     UIImage *view1Img = [UIImage imageNamed:@"calendar_screen.png"];
     //[view1 setBackgroundImage:view1Img];
     [view1.contentImage setImage:view1Img];
     
     view2 = [OnboardingContentView create];
     [view2 setFrame:CGRectMake(320, 0, self.view.bounds.size.width, self.view.bounds.size.height - 70)];
-    view2.title.text = @"Collaborate on Event Details";
+    view2.title.text = @"Collaborate on event details";
     view2.subTitle.text = @"Find a time and location that works for everyone";
     UIImage *view2Img = [UIImage imageNamed:@"onboarding_source_final.png"];
     [view2.contentImage setImage:view2Img];
