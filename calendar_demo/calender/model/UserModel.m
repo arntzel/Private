@@ -1,4 +1,3 @@
-
 #import "UserModel.h"
 #import "Utils.h"
 #import "Model.h"
@@ -552,7 +551,9 @@ static UserModel * instance;
 -(void) resetpassword:(NSString *) email andCallback:(void (^)(NSInteger error))callback
 {
     NSString * url = [NSString stringWithFormat:@"%s/api/v1/password/reset/", HOST];
-    NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    // Fixed the request.POST has no data bug!  createHttpRequest JUST save data in request.BODY not in request.POST
+    //NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 
     NSString * postContent = [NSString stringWithFormat:@"email=%@", email];
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
