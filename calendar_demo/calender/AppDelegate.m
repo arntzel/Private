@@ -323,6 +323,8 @@
                 
                 if(error == 0)
                 {
+                    BOOL hasEventDeleted = NO;
+                    
                     for(NSNumber * nsID in dic)
                     {
                         int feedEventID =  [nsID intValue];
@@ -331,13 +333,15 @@
                         if(event != nil) {
                             LOG_D(@"deleteFeedEventEntity2:%@", event.title);
                             [[CoreDataModel getInstance] deleteFeedEventEntity2:event];
+                            hasEventDeleted = YES;
                         }
                     }
                     
-                    [[CoreDataModel getInstance] saveData];
-                    [[CoreDataModel getInstance] notifyModelChange];
+                    if(hasEventDeleted) {
+                        [[CoreDataModel getInstance] saveData];
+                        [[CoreDataModel getInstance] notifyModelChange];
+                    }
                 }
-                
             }];
         });
     }
