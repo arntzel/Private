@@ -9,7 +9,7 @@
 //#define HOST "http://127.0.0.1"
 #define HOST "https://api.calvinapp.com"
 //#define HOST "http://54.235.240.7:3000"
-//#define HOST "http://192.168.4.124:8000"
+//#define HOST "http://192.168.1.11:8000"
 
 @interface UserModel : NSObject
 
