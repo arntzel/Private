@@ -369,14 +369,18 @@
         
         switch (buttonIndex) {
             case 0:
-                [self shareOnFacebook];
+                [self onDeclineTime];
                 break;
                 
             case 1:
-                [self shareViaEmail];
+                [self shareOnFacebook];
                 break;
                 
             case 2:
+                [self shareViaEmail];
+                break;
+                
+            case 3:
                 break;
                 
             default:
@@ -475,7 +479,7 @@
                                            initWithTitle:nil
                                            delegate:self
                                            cancelButtonTitle:@"Cancel"
-                                           destructiveButtonTitle:nil
+                                           destructiveButtonTitle:@"Decline Event"
                                            otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
         moreActionSheet.tag = 4;
         [moreActionSheet showInView:self.view];
