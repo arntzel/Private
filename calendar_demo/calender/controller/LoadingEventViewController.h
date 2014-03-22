@@ -13,6 +13,8 @@
 
 @property IBOutlet UIProgressView * progressView;
 
+@property IBOutlet UIActivityIndicatorView * indicatorView;
+
 @property IBOutlet UIImageView * loadingView;
 
 @property IBOutlet UILabel * label;

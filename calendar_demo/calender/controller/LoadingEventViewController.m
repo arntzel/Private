@@ -44,6 +44,8 @@
     [self.view insertSubview:bgView atIndex:0];
     
     self.loadingView.center = self.view.center;
+    self.indicatorView.center = self.view.center;
+    [self.indicatorView startAnimating];
     
     self.label.center = self.view.center;
     CGRect frame = self.label.frame;
@@ -149,18 +151,46 @@
     
         float progress = (float)loadedEventCount / (float)allEventCount;
         
-        if(progress >= 0.75) {
+        UIImage * image;
+        if(progress >= 100) {
             
-            self.loadingView.image = [UIImage imageNamed:@"loader75"];
+            image = [UIImage imageNamed:@"loader100"];
             
         } else if(progress >=95) {
             
-            self.loadingView.image = [UIImage imageNamed:@"loader95"];
+            image = [UIImage imageNamed:@"loader95"];
             
-        } else if(progress >= 100) {
+        } else if(progress >= 0.75) {
             
-            self.loadingView.image = [UIImage imageNamed:@"loader100"];
+            image = [UIImage imageNamed:@"loader75"];
+            
+        }  else if(progress >= 0.62) {
+            
+            image = [UIImage imageNamed:@"loader62"];
+            
+        } else if(progress >= 0.50) {
+            
+            image = [UIImage imageNamed:@"loader50"];
+            
+        } else if(progress >= 0.37) {
+            
+            image = [UIImage imageNamed:@"loader37"];
+            
+        } else if(progress >= 0.25) {
+            
+            image = [UIImage imageNamed:@"loader25"];
+            
+        } else if(progress >= 0.12) {
+            
+            image = [UIImage imageNamed:@"loader12"];
+            
+        } else {
+            
+            image = [UIImage imageNamed:@"loader0"];
+            
         }
+        
+        self.loadingView.image = image;
         
         self.progressView.progress = progress;
         
