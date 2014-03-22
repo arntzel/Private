@@ -554,6 +554,7 @@ static UserModel * instance;
     // Fixed the request.POST has no data bug!  createHttpRequest JUST save data in request.BODY not in request.POST
     //NSMutableURLRequest *request = [Utils createHttpRequest:url andMethod:@"POST"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"POST"];
 
     NSString * postContent = [NSString stringWithFormat:@"email=%@", email];
     NSData * postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
