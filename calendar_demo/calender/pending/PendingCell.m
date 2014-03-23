@@ -101,11 +101,6 @@
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width/2;
     self.avatar.layer.masksToBounds = YES;
     
-    // set user avatar's boarder to 1px solid #d1d9d2
-    self.avatar.layer.borderWidth = 1.0;
-    self.avatar.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
-    
-    
     if (headerUrl == nil) {
         self.avatar.image = [UIImage imageNamed:@"default_person.png"];
     }
