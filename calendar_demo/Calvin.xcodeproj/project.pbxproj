@@ -42,7 +42,6 @@
 		230DCD4118CE9F4B000FC141 /* pending_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD3318CE9F4B000FC141 /* pending_screen@2x.png */; };
 		230DCD4418CF067B000FC141 /* profile_photo_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD4218CF067B000FC141 /* profile_photo_icon.png */; };
 		230DCD4518CF067B000FC141 /* profile_photo_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 230DCD4318CF067B000FC141 /* profile_photo_icon@2x.png */; };
-		231319781867257C00F076C7 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319761867257C00F076C7 /* circle.png */; };
 		231319791867257C00F076C7 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231319771867257C00F076C7 /* circle@2x.png */; };
 		2313197C1867271A00F076C7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197A1867271A00F076C7 /* people.png */; };
 		2313197D1867271A00F076C7 /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2313197B1867271A00F076C7 /* people@2x.png */; };
@@ -225,7 +224,6 @@
 		3DC2928A186BC204009759C2 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC29287186BC204009759C2 /* libMobClickLibrary_armv6.a */; };
 		3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2F63718CB03AB00E87D56 /* back_button@2x.png */; };
 		3DC372E918D8131F00DFF9E1 /* loader0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E518D8131F00DFF9E1 /* loader0.png */; };
-		3DC372EA18D8131F00DFF9E1 /* loader75.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E618D8131F00DFF9E1 /* loader75.png */; };
 		3DC372EB18D8131F00DFF9E1 /* loader95.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E718D8131F00DFF9E1 /* loader95.png */; };
 		3DC372EC18D8131F00DFF9E1 /* loader100.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372E818D8131F00DFF9E1 /* loader100.png */; };
 		3DC372F018D817C400DFF9E1 /* loading_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC372EF18D817C400DFF9E1 /* loading_bg.png */; };
@@ -426,7 +424,6 @@
 		769AB9EA17DF51340033E677 /* colordot6.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98217DF51340033E677 /* colordot6.png */; };
 		769AB9EB17DF51340033E677 /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98317DF51340033E677 /* dot.png */; };
 		769AB9EC17DF51340033E677 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98417DF51340033E677 /* email@2x.png */; };
-		769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98517DF51340033E677 /* facebook_icon@2x.png */; };
 		769AB9EE17DF51340033E677 /* google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98617DF51340033E677 /* google@2x.png */; };
 		769AB9EF17DF51340033E677 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98717DF51340033E677 /* header.png */; };
 		769AB9F017DF51340033E677 /* header_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 769AB98817DF51340033E677 /* header_mask.png */; };
@@ -522,7 +519,6 @@
 		769ABB7A17DF54000033E677 /* map_my_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB6917DF54000033E677 /* map_my_location.png */; };
 		769ABB7B17DF54000033E677 /* navBar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB6A17DF54000033E677 /* navBar_bg.png */; };
 		769ABB7C17DF54000033E677 /* navBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB6B17DF54000033E677 /* navBtn_bg.png */; };
-		769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB6C17DF54000033E677 /* shadow_ovlerlay_asset.png */; };
 		769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8017DF54290033E677 /* BirthdayEventView.m */; };
 		769ABC7A17DF542A0033E677 /* BirthdayEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769ABB8117DF54290033E677 /* BirthdayEventView.xib */; };
 		769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB8317DF54290033E677 /* EventFilterView.m */; };
@@ -3572,7 +3568,6 @@
 				23B2127318D1F054000FD17C /* back_icon@2x.png in Resources */,
 				765B24FD1802965D00B01A0A /* tokenHighlighted.png in Resources */,
 				769AB9AF17DF51340033E677 /* header1.jpg in Resources */,
-				231319781867257C00F076C7 /* circle.png in Resources */,
 				769AB9B017DF51340033E677 /* header10.jpg in Resources */,
 				769AB9B117DF51340033E677 /* header2.jpg in Resources */,
 				3D4F1E2018C3F63100899CFF /* icon_conformbtn_disable@2x.png in Resources */,
@@ -3662,7 +3657,6 @@
 				769AB9D917DF51340033E677 /* bg_section_header.png in Resources */,
 				769AB9DA17DF51340033E677 /* btn_add@2x.png in Resources */,
 				34B1F1A717F8FCE200AA5C97 /* LegalViewController.xib in Resources */,
-				3DC372EA18D8131F00DFF9E1 /* loader75.png in Resources */,
 				769AB9DB17DF51340033E677 /* btn_login@2x.png in Resources */,
 				769AB9DC17DF51340033E677 /* btn_login_fb@2x.png in Resources */,
 				2313197D1867271A00F076C7 /* people@2x.png in Resources */,
@@ -3706,7 +3700,6 @@
 				23B870FF1868684300F7F62F /* anchal@2x.png in Resources */,
 				230DCD3818CE9F4B000FC141 /* calvin_logo_large.png in Resources */,
 				769AB9EC17DF51340033E677 /* email@2x.png in Resources */,
-				769AB9ED17DF51340033E677 /* facebook_icon@2x.png in Resources */,
 				769AB9EE17DF51340033E677 /* google@2x.png in Resources */,
 				769AB9EF17DF51340033E677 /* header.png in Resources */,
 				769AB9F017DF51340033E677 /* header_mask.png in Resources */,
@@ -3821,7 +3814,6 @@
 				3DC2F63818CB03AC00E87D56 /* back_button@2x.png in Resources */,
 				7662F75917F0761900B64E40 /* login_mainaccess_signin.png in Resources */,
 				76CF7FC718058F6000018B95 /* DetailVoteViewController.xib in Resources */,
-				769ABB7D17DF54000033E677 /* shadow_ovlerlay_asset.png in Resources */,
 				769CB5861886CDC10082400D /* AEOptionentry.xib in Resources */,
 				936DFD3C18BED40B0049EC55 /* add_time_lg@2x.png in Resources */,
 				3D4F1E1718C367B000899CFF /* EventDetailTimeViewItem.xib in Resources */,
@@ -4306,6 +4298,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -4340,6 +4333,7 @@
 				PROVISIONING_PROFILE = "4F904596-19E3-4A13-8845-01BF0B309A97";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
