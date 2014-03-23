@@ -14,6 +14,7 @@
 #import <EventKit/EventKit.h>
 #import "NoEventsCell.h"
 #import "EventViewCell.h"
+#import "EventBirthdayCell.h"
 
 
 @implementation DayFeedEventEntitys
@@ -155,6 +156,8 @@
     [self registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
     
     [self registerNib:[UINib nibWithNibName:@"EventViewCell" bundle:nil] forCellReuseIdentifier:@"EventViewCell"];
+
+    [self registerNib:[UINib nibWithNibName:@"EventBirthdayCell" bundle:nil] forCellReuseIdentifier:@"EventBirthdayCell"];
     
     dayFeedEventEntitysDic = [[NSMutableDictionary alloc] init];
 }
@@ -404,13 +407,17 @@
         BOOL lastForThisDay = (row == (events.count-1));
         
         FeedEventEntity * event = [events objectAtIndex:row];
+        
+        if ([event isBirthdayEvent]) {
+            EventBirthdayCell *cell = (EventBirthdayCell*)[tableView dequeueReusableCellWithIdentifier:@"EventBirthdayCell"];
+            [cell refreshView:event lastForThisDay:lastForThisDay];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
     
         EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
-        
         [cell refreshView:event lastForThisDay:lastForThisDay];
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         return cell;
     }
 }
@@ -439,10 +446,16 @@
         return NO_EVENTS_HEADER_CELL; //No event cell
     }
     else {
+        
         CGFloat height = 95;
         
         int row = indexPath.row;
         FeedEventEntity * event = [events objectAtIndex:row];
+        
+        if ([event isBirthdayEvent]) {
+            return 132/2;
+        }
+        
         eventCellHeightType ht = [EventViewCell cellHeightType:event];
         switch (ht) {
             case eventCellTitle:
