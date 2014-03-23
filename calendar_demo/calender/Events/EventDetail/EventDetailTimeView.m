@@ -154,7 +154,7 @@
         
         if(confilctCount > 0)
         {
-            eventTime.confilctCount = confilctCount;
+            //eventTime.confilctCount = confilctCount;
             item.labelTime.textColor = [UIColor redColor];
         }
 
@@ -356,7 +356,7 @@
 
 -(void) onTimeLabelClicked:(ProposeStart *) time
 {
-    if(time.confilctCount == 0) return;
+    //if(time.confilctCount == 0) return;
     
     if(self.delegate) {
         [self.delegate onVoteTimeClick:time];
