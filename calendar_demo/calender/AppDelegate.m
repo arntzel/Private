@@ -298,8 +298,6 @@
                                                      repeats:YES];
     }
     
-    
-    
     User * loginUser = [[UserModel getInstance] getLoginUser];
     if (loginUser != nil) {
         
@@ -308,13 +306,12 @@
             [[[Model getInstance] getEventModel] updateEventsFromLocalDevice];
         });
     }
+    
+    [self synchronizedDeletedEvent];
 }
 
--(void) synchronizedFromServer
+-(void) synchronizedDeletedEvent
 {
-    //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
-    [[[Model getInstance] getEventModel] checkContactUpdate];
-    
     User * loginUser = [[UserModel getInstance] getLoginUser];
     if (loginUser != nil) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC), dispatch_get_main_queue(),  ^(void) {
@@ -345,6 +342,12 @@
             }];
         });
     }
+}
+
+-(void) synchronizedFromServer
+{
+    //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
 }
 
 -(void) synchronizedEventFromServer
