@@ -463,7 +463,7 @@ static CoreDataModel * instance;
     //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@)) AND (eventType==0))", start,  end, start,  end];
     
     // We should not consider the birthday as conflict
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@) OR (start < %@ AND end > %@) AND (eventType!=4)))", start,  end, start,  end, start, end];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@) OR (start < %@ AND end > %@)) AND (eventType!=4))", start,  end, start,  end, start, end];
     [fetchRequest setPredicate:predicate];
     
 //    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
