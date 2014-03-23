@@ -73,6 +73,8 @@
     [[[Model getInstance] getEventModel] updateEventsFromLocalDevice];
     [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
+    [[[Model getInstance] getEventModel] synchronizedDeletedEvent];
+    
     return self;
 }
 
