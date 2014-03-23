@@ -245,24 +245,6 @@
     }
 }
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (onDisplayFirstDayChangedNotify) {
-                [self changeCalOnDisplayDay];
-            }
-        });
-    });
-    NSIndexPath *indexPath = [self indexPathsForVisibleRows][0];
-    if (_currentSection != indexPath.section){
-        _currentSection = indexPath.section;
-        [self reloadData];
-    }
-}
-
-/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -273,7 +255,6 @@
         });
     });
 }
-*/
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
