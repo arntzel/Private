@@ -68,7 +68,10 @@
     
     UIView *bgview = [[UIView alloc] initWithFrame: table1.frame];
     //    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
-    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
+    
+    //bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
+    bgview.backgroundColor = [UIColor colorWithRed:239/255.0f green:245/255.0f blue:240/255.0f alpha:1.0f];
+    
     table1.backgroundView = bgview;
     
     [self.view addSubview:table1];

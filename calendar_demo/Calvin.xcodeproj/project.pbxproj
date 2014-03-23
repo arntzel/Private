@@ -665,6 +665,9 @@
 		93D7C02218D27852002A2571 /* CalendarFeed_FirstCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D7C02118D27852002A2571 /* CalendarFeed_FirstCell@2x.png */; };
 		93E398CA18C4157D00B75150 /* EventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E398C918C4157D00B75150 /* EventViewCell.m */; };
 		93E398CE18C415AB00B75150 /* EventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93E398CD18C415AB00B75150 /* EventViewCell.xib */; };
+		93E6C14518DE636100F55081 /* fb_birthday_gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E6C14418DE636100F55081 /* fb_birthday_gift.png */; };
+		93E6C14818DE684300F55081 /* EventBirthdayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E6C14718DE684300F55081 /* EventBirthdayCell.m */; };
+		93E6C14A18DE684D00F55081 /* EventBirthdayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93E6C14918DE684D00F55081 /* EventBirthdayCell.xib */; };
 		9416812717EDDA52001A9C06 /* EventDetailFinailzeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */; };
 		9416812A17EDDC3D001A9C06 /* EventDetailFinailzeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */; };
 		942A29BA180A9FCE00548901 /* ContactEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A29B9180A9FCE00548901 /* ContactEntityExtra.m */; };
@@ -1643,6 +1646,10 @@
 		93E398C818C4157D00B75150 /* EventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewCell.h; sourceTree = "<group>"; };
 		93E398C918C4157D00B75150 /* EventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewCell.m; sourceTree = "<group>"; };
 		93E398CD18C415AB00B75150 /* EventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventViewCell.xib; sourceTree = "<group>"; };
+		93E6C14418DE636100F55081 /* fb_birthday_gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_birthday_gift.png; sourceTree = "<group>"; };
+		93E6C14618DE684300F55081 /* EventBirthdayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventBirthdayCell.h; sourceTree = "<group>"; };
+		93E6C14718DE684300F55081 /* EventBirthdayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventBirthdayCell.m; sourceTree = "<group>"; };
+		93E6C14918DE684D00F55081 /* EventBirthdayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventBirthdayCell.xib; sourceTree = "<group>"; };
 		9416812617EDDA52001A9C06 /* EventDetailFinailzeView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailFinailzeView2.xib; sourceTree = "<group>"; };
 		9416812817EDDC3D001A9C06 /* EventDetailFinailzeView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailFinailzeView2.h; sourceTree = "<group>"; };
 		9416812917EDDC3D001A9C06 /* EventDetailFinailzeView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailFinailzeView2.m; sourceTree = "<group>"; };
@@ -2468,6 +2475,7 @@
 				93A8E273189C251D00A3753F /* clock-header@2x.png */,
 				769AB97C17DF51340033E677 /* colordot */,
 				769AB98317DF51340033E677 /* dot.png */,
+				93E6C14418DE636100F55081 /* fb_birthday_gift.png */,
 				769AB98417DF51340033E677 /* email@2x.png */,
 				769AB98517DF51340033E677 /* facebook_icon@2x.png */,
 				769AB98617DF51340033E677 /* google@2x.png */,
@@ -2916,6 +2924,9 @@
 				938B2834189806520074C424 /* NoEventsCell.h */,
 				938B2835189806520074C424 /* NoEventsCell.m */,
 				938B2837189806650074C424 /* NoEventsCell.xib */,
+				93E6C14618DE684300F55081 /* EventBirthdayCell.h */,
+				93E6C14718DE684300F55081 /* EventBirthdayCell.m */,
+				93E6C14918DE684D00F55081 /* EventBirthdayCell.xib */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -3631,6 +3642,7 @@
 				769AB9D517DF51340033E677 /* attendees.png in Resources */,
 				230DCD3618CE9F4B000FC141 /* calvin_icon_large.png in Resources */,
 				7662F74017F075F400B64E40 /* LoginMainAccessView.xib in Resources */,
+				93E6C14A18DE684D00F55081 /* EventBirthdayCell.xib in Resources */,
 				93E398CE18C415AB00B75150 /* EventViewCell.xib in Resources */,
 				3DB1373E18828763005CAEA7 /* invitee_people_bg.png in Resources */,
 				230DCD4118CE9F4B000FC141 /* pending_screen@2x.png in Resources */,
@@ -3786,6 +3798,7 @@
 				76431E0A1806F6BD009DAFFE /* EventNavigationBar.xib in Resources */,
 				76411AF818083AE4001C2125 /* event_detail_invitee_time_cross_black.png in Resources */,
 				769ABB7117DF54000033E677 /* event_palce_arraw.png in Resources */,
+				93E6C14518DE636100F55081 /* fb_birthday_gift.png in Resources */,
 				769ABB7217DF54000033E677 /* eventSetingBg1.png in Resources */,
 				769ABB7317DF54000033E677 /* eventSetingBg2.png in Resources */,
 				769ABB7417DF54000033E677 /* eventSetingBg3.png in Resources */,
@@ -4022,6 +4035,7 @@
 				767822AA187971A000CEF40E /* AddEventViewController.m in Sources */,
 				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
 				769CB5851886CDC10082400D /* AEOptionentry.m in Sources */,
+				93E6C14818DE684300F55081 /* EventBirthdayCell.m in Sources */,
 				769ABC7D17DF542A0033E677 /* EventView.m in Sources */,
 				34B1F1A117F8FCE200AA5C97 /* UIImage+CirCle.m in Sources */,
 				7662F77217F080A800B64E40 /* LoginAccountStore.m in Sources */,
