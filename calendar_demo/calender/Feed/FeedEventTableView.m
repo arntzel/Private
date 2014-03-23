@@ -401,7 +401,7 @@
             return 0;
         }
         
-        return NO_EVENTS_HEADER_CELL; //No event cell
+        return 90 /2; //No event cell
     }
     else {
         
