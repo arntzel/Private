@@ -32,7 +32,7 @@
 //Is the final time of the event
 @property int finalized;
 
-@property int confilctCount;
+//@property int confilctCount;
 
 - (NSString *)parseStartTimeString;
 - (NSString *)parseStartTimeStringWithFirstCapitalized;
