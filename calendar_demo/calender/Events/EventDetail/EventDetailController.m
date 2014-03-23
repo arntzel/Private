@@ -1221,7 +1221,7 @@
                 feedEvt.location.location = location.location;
                 feedEvt.location.photo = location.photo;
                 feedEvt.locationName = location.location;
-                
+                feedEvt.last_modified = [NSDate date];
                 [[CoreDataModel getInstance] saveData];
                 [[CoreDataModel getInstance] notifyEventChange:feedEvt andChangeTyp:EventChangeType_Update];
             }
@@ -1348,6 +1348,7 @@
     FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
+        entity.last_modified = [NSDate date];
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
     }
