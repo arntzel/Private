@@ -132,7 +132,7 @@
 //            if([entity.modified_num compare:maxlastupdatetime] > 0) {
 //                maxlastupdatetime = entity.modified_num;
 //            }
-            LOG_D("modified_num:%@", entity.modified_num);
+            //LOG_D("modified_num:%@", entity.modified_num);
             
             double flat1 = [entity.modified_num doubleValue];
             double flat2 = [maxlastupdatetime doubleValue];
@@ -151,12 +151,17 @@
     
         float progress = (float)loadedEventCount / (float)allEventCount;
         
+        LOG_D(@"toLoadEventData loading event:%f", progress);
+        
+        
         UIImage * image;
-        if(progress >= 100) {
+        if(progress >= 1) {
             
             image = [UIImage imageNamed:@"loader100"];
+            self.indicatorView.hidden = YES;
+            [self.indicatorView stopAnimating];
             
-        } else if(progress >=95) {
+        } else if(progress >=0.85) {
             
             image = [UIImage imageNamed:@"loader95"];
             
