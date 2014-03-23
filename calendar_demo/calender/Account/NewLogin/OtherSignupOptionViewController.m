@@ -75,7 +75,7 @@
     
     labelTitle.text = @"Other sign up options";
     [labelTitle setTextAlignment:NSTextAlignmentCenter];
-    //[labelTitle setFont:[UIFont boldSystemFontOfSize:14]];
+    [labelTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]];
     [navView addSubview:labelTitle];
     [self.view addSubview:navView];
     

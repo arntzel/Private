@@ -64,8 +64,8 @@
     
     textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
     [textLabel setFont:font];
-    [textLabel setTextColor:[UIColor generateUIColorByHexString:@"1f1e1e"]];
-    [textLabel setText:@"More Plans,Less Planning."];
+    [textLabel setTextColor:[UIColor generateUIColorByHexString:@"#1f1e1e"]];
+    [textLabel setText:@"More plans. Less planning."];
     [textLabel sizeToFit];
     [textLabel setTextAlignment:NSTextAlignmentCenter];
     [textLabel setCenter:CGPointMake(self.view.center.x, bannerView.frame.origin.y + BANNER_HEIGHT + 30)];
