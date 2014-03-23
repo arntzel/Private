@@ -71,9 +71,10 @@
     //[feedViewCtr onCoreDataModelStarted];
 
     [[[Model getInstance] getEventModel] updateEventsFromLocalDevice];
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
+    //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
     [[[Model getInstance] getEventModel] synchronizedDeletedEvent];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
     
     return self;
 }

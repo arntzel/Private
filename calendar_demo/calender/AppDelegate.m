@@ -290,7 +290,7 @@
     //[self synchronizedFromServer];
     [[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
-    if(self.timer != nil) {
+    if(self.timer == nil) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:60
                                                       target:self
                                                     selector:@selector(synchronizedFromServer)

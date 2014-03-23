@@ -226,6 +226,10 @@
                 [self.commentArray addObject:cmt];
                 [cmt release];
                 [self refreshViewAnimation:YES];
+        
+                if(self.delegate) {
+                    [self.delegate onNewCommnet];
+                }
             } else {
                 //TODO::
             }

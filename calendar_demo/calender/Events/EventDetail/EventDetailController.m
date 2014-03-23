@@ -549,6 +549,17 @@
     [self layOutSubViews];
 }
 
+-(void) onNewCommnet
+{
+    FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:event.id];
+    
+    if(entity != nil) {
+        entity.last_modified = [NSDate date];
+        [[CoreDataModel getInstance] saveData];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
+    }
+}
+
 -(void) onEventDetailTimeViewFrameChanged {
     LOG_D(@"EventDetail onEventDetailTimeViewFrameChanged");
     [self layOutSubViews];
@@ -563,6 +574,7 @@
     
     if(entity != nil) {
         entity.title = newTitle;
+        entity.last_modified = [NSDate date];
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
     }
@@ -576,6 +588,8 @@
     
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
+        entity.last_modified = [NSDate date];
+        
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:type];
     }
@@ -725,6 +739,8 @@
         [self layOutSubViews];
         
         [eventDate release];
+        
+        [self onEventChanged:event andChangeType:EventChangeType_Update];
     }];
 }
 
