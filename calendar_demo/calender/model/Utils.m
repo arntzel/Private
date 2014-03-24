@@ -82,6 +82,12 @@ static NSTimeZone * userTimeZone;
        return nil;
     }
  
+    if(strDate.length > 19) {
+        NSRange range;
+        range.location = 0;
+        range.length = 19;
+        strDate = [strDate substringWithRange:range];
+    }
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
