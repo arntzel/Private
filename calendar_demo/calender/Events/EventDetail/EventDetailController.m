@@ -369,14 +369,18 @@
         
         switch (buttonIndex) {
             case 0:
-                [self shareOnFacebook];
+                [self onDeclineTime];
                 break;
                 
             case 1:
-                [self shareViaEmail];
+                [self shareOnFacebook];
                 break;
                 
             case 2:
+                [self shareViaEmail];
+                break;
+                
+            case 3:
                 break;
                 
             default:
@@ -475,7 +479,7 @@
                                            initWithTitle:nil
                                            delegate:self
                                            cancelButtonTitle:@"Cancel"
-                                           destructiveButtonTitle:nil
+                                           destructiveButtonTitle:@"Decline Event"
                                            otherButtonTitles:@"Share on Facebook", @"Share via Email", /*@"Edit Event Details",*/ nil];
         moreActionSheet.tag = 4;
         [moreActionSheet showInView:self.view];
@@ -545,6 +549,17 @@
     [self layOutSubViews];
 }
 
+-(void) onNewCommnet
+{
+    FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:event.id];
+    
+    if(entity != nil) {
+        entity.last_modified = [NSDate date];
+        [[CoreDataModel getInstance] saveData];
+        [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
+    }
+}
+
 -(void) onEventDetailTimeViewFrameChanged {
     LOG_D(@"EventDetail onEventDetailTimeViewFrameChanged");
     [self layOutSubViews];
@@ -559,6 +574,7 @@
     
     if(entity != nil) {
         entity.title = newTitle;
+        entity.last_modified = [NSDate date];
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
     }
@@ -572,6 +588,8 @@
     
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
+        entity.last_modified = [NSDate date];
+        
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:type];
     }
@@ -721,6 +739,8 @@
         [self layOutSubViews];
         
         [eventDate release];
+        
+        [self onEventChanged:event andChangeType:EventChangeType_Update];
     }];
 }
 
@@ -1201,7 +1221,7 @@
                 feedEvt.location.location = location.location;
                 feedEvt.location.photo = location.photo;
                 feedEvt.locationName = location.location;
-                
+                feedEvt.last_modified = [NSDate date];
                 [[CoreDataModel getInstance] saveData];
                 [[CoreDataModel getInstance] notifyEventChange:feedEvt andChangeTyp:EventChangeType_Update];
             }
@@ -1328,6 +1348,7 @@
     FeedEventEntity * entity = [[CoreDataModel getInstance] getFeedEventEntity:newEvent.id];
     if(entity != nil) {
         [entity convertFromEvent:newEvent];
+        entity.last_modified = [NSDate date];
         [[CoreDataModel getInstance] saveData];
         [[CoreDataModel getInstance] notifyEventChange:entity andChangeTyp:EventChangeType_Update];
     }

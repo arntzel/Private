@@ -49,10 +49,6 @@
     self.imgUser.layer.cornerRadius = self.imgUser.frame.size.width/2;
     self.imgUser.layer.masksToBounds = YES;
     
-    // set user avatar's boarder to 1px solid #d1d9d2
-    self.imgUser.layer.borderWidth = 1.0;
-    self.imgUser.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
-    
     self.imgEventType.layer.cornerRadius = self.imgEventType.frame.size.width/2;
     self.imgEventType.layer.masksToBounds = YES;
     
@@ -87,7 +83,7 @@
         {
             User *u = [[UserModel getInstance] getLoginUser];
             if ([u.email isEqualToString:attend.email]) {
-                NSLog(@"--------> %@    %@", attend.id, attend.email);
+                //NSLog(@"--------> %@    %@", attend.id, attend.email);
                 continue;
             }
             
@@ -115,8 +111,6 @@
                 v.hidden = NO;
                 v.layer.cornerRadius = self.imgUser.frame.size.width/2;
                 v.layer.masksToBounds = YES;
-                v.layer.borderWidth = 1.0;
-                v.layer.borderColor = [[UIColor generateUIColorByHexString:@"#d1d9d2"] CGColor];
                 
                 if ([headerUrl length] < 1) {
                     v.image = [UIImage imageNamed:@"default_person.png"];
@@ -231,7 +225,7 @@
         {
             User *u = [[UserModel getInstance] getLoginUser];
             if ([u.email isEqualToString:attend.email]) {
-                NSLog(@"--------> %@    %@", attend.id, attend.email);
+                //NSLog(@"--------> %@    %@", attend.id, attend.email);
                 continue;
             }
             heightType = eventCellTitleInvitees;

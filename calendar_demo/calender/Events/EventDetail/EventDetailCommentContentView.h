@@ -14,6 +14,8 @@
 
 -(void) onEventDetailCommentContentViewFrameChanged;
 
+-(void) onNewCommnet;
+
 @end
 
 @interface EventDetailCommentContentView : UIView

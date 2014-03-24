@@ -70,14 +70,11 @@
     
     //[feedViewCtr onCoreDataModelStarted];
 
-    [[[Model getInstance] getEventModel] updateEventsFromLocalDevice:0 onComplete:^(NSInteger success, NSInteger totalCount) {
-        
-        //[feedViewCtr onCoreDataModelChanged];
-        //[pendingEventViewCtr onCoreDataModelChanged];
-        
-    }];
+    [[[Model getInstance] getEventModel] updateEventsFromLocalDevice];
+    //[[[Model getInstance] getEventModel] downloadServerEvents:nil];
     
-    [[[Model getInstance] getEventModel] downloadServerEvents:nil];
+    [[[Model getInstance] getEventModel] synchronizedDeletedEvent];
+    [[[Model getInstance] getEventModel] checkContactUpdate];
     
     return self;
 }

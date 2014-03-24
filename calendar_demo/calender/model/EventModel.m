@@ -16,6 +16,13 @@
     BOOL downloadingServerEvents;
     
     NSMutableArray * delegates;
+    
+    
+    //临时的
+    FeedEventEntity * tempICalFeedEvent;
+    BOOL iCalEventsChanged;
+    BOOL isImportingICal;
+    NSMutableArray * iCalEvents;
 }
 
 -(id) init {
@@ -242,84 +249,151 @@
     }];
 }
 
--(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) synchronizedDeletedEvent
 {
+    User * loginUser = [[UserModel getInstance] getLoginUser];
     
+    if (loginUser != nil) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC), dispatch_get_main_queue(),  ^(void) {
+            
+            [[Model getInstance] getDeletedEvents:^(NSInteger error, NSArray *dic) {
+                
+                if(error == 0)
+                {
+                    BOOL hasEventDeleted = NO;
+                    
+                    for(NSNumber * nsID in dic)
+                    {
+                        int feedEventID =  [nsID intValue];
+                        FeedEventEntity * event = [[CoreDataModel getInstance] getFeedEventEntity:feedEventID];
+                        
+                        if(event != nil) {
+                            LOG_D(@"deleteFeedEventEntity2:%@", event.title);
+                            [[CoreDataModel getInstance] deleteFeedEventEntity2:event];
+                            hasEventDeleted = YES;
+                        }
+                    }
+                    
+                    if(hasEventDeleted) {
+                        [[CoreDataModel getInstance] saveData];
+                        [[CoreDataModel getInstance] notifyModelChange];
+                    }
+                }
+            }];
+        });
+    }
+}
+
+-(void) updateEventsFromLocalDevice
+{   
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        if(![[UserModel getInstance] isLogined]) {
+            return;
+        }
+        
+        if(isImportingICal){
+            return;
+        }
+        
+        isImportingICal = YES;
         
         [[Model getInstance] getEventsFromCalendarApp:^(NSMutableArray *allEvents) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-            BOOL success = NO;
+            if(allEvents == nil) {
+                return;
+            }
             
-            if (allEvents != nil)
-            {
-                success = YES;
+            CoreDataModel * model = [CoreDataModel getInstance];
+            
+            iCalEventsChanged = NO;
+            
+            
+            //检查是否有deleted
+            iCalEvents = nil;
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSDate * now = [NSDate date];
+                NSDate * startDate = [[now cc_dateByMovingToThePreviousDayCout:1] cc_dateByMovingToBeginningOfDay];
+                NSDate * endDate = [now cc_dateByMovingToTheFollowingDayCout:360];
                 
+                NSArray * iCalEventsIDs = [model getAlliCalFeedEventIDs:startDate andEndDate:endDate];
+                iCalEvents = [[NSMutableArray alloc] initWithArray:iCalEventsIDs];
+            });
+            
+            for(FeedEventEntity * feedEventsID in iCalEvents) {
                 
-                CoreDataModel * model = [CoreDataModel getInstance];
+                NSString * ext_event_id = feedEventsID.ext_event_id;
                 
-                //should be opt for performance
-                NSMutableArray *allICalEventsInDB = [NSMutableArray arrayWithArray:[model getAlliCalFeedEvent]];
-                
+                BOOL deleted = YES;
                 for (Event *tmp in allEvents)
                 {
-                    for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
-                    {
-                        if ([tmp.ext_event_id isEqualToString:iCalEventInDB.ext_event_id])
-                        {
-                            [allICalEventsInDB removeObject:iCalEventInDB];
-                            break;
-                        }
+                    if([ext_event_id isEqualToString:tmp.ext_event_id]) {
+                        deleted = NO;
+                        break;
                     }
                 }
                 
-                for (FeedEventEntity *iCalEventInDB in allICalEventsInDB)
-                {
-                    LOG_D(@"have %d event(s) has been deleted!!!",[allICalEventsInDB count]);
-                    FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:iCalEventInDB.ext_event_id];
-                    eventEntity.hasDeleted = @(YES);
+                if(deleted) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        LOG_D(@"ICAL Event deleted:%@", ext_event_id);
+                        
+                        iCalEventsChanged = YES;
+                        FeedEventEntity * entity = [model getFeedEventWithEventType:5 WithExtEventID:ext_event_id];
+                        [model deleteFeedEventEntity2:entity];
+                    });
                 }
-                for (Event *event1 in allEvents)
-                {
-                    FeedEventEntity *eventEntity = [model getFeedEventWithEventType:5 WithExtEventID:event1.ext_event_id];
-                    if (eventEntity)
-                    {
-                        NSTimeInterval entitySec = (int)[eventEntity.last_modified timeIntervalSince1970];
-                        NSTimeInterval eventSec = (int)[event1.last_modified timeIntervalSince1970];
-                        if (entitySec < eventSec)
-                        {
-                            NSNumber *tmpID = eventEntity.id;
-                            [eventEntity convertFromCalendarEvent:event1];
-                            eventEntity.id = tmpID;
-                            eventEntity.hasModified = @(YES);
-                            //新加属性 belongToiCal，因无须同步到服务器，所以不在convertFromCalendarEvent:方法中封装，如果
-                            //封装则可能从服务器获得空值。
-                            eventEntity.belongToiCal = event1.belongToiCal;
-                            [model updateFeedEventEntity:eventEntity];
-                        }
+            }
+        
+            
+            for (Event *tmp in allEvents)
+            {
+                tempICalFeedEvent = nil;
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    tempICalFeedEvent = [model getFeedEventWithEventType:5 WithExtEventID:tmp.ext_event_id];
+                });
+                
+                
+                if(tempICalFeedEvent != nil) {
+                    if(![tempICalFeedEvent.last_modified isEqualToDate:tmp.last_modified]) {
+                        //有更新
+                        iCalEventsChanged = YES;
+                        [tempICalFeedEvent convertFromCalendarEvent:tmp];
+                        
+                        LOG_D(@"ICAL Event updated:%@", tmp.ext_event_id);
+                        
                     }
-                    else
-                    {
+                } else {
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        iCalEventsChanged = YES;
                         FeedEventEntity * entity = [model createEntity:@"FeedEventEntity"];
-                        [entity convertFromCalendarEvent:event1];
-                        entity.belongToiCal = event1.belongToiCal;
+                        [entity convertFromCalendarEvent:tmp];
+                        entity.belongToiCal = tmp.belongToiCal;
                         [model updateFeedEventEntity:entity];
-                    }
+                        
+                        
+                        LOG_D(@"ICAL Event create:%@", tmp.ext_event_id);
+                    });
                 }
-                
-                [model saveData];
-                
-                //[model getFeedEventWithEventType:5];
-                [model notifyModelChange];
             }
             
-            if (completion) {
-                completion(success, [allEvents count]);
+            if(iCalEventsChanged) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [model saveData];
+                    [model notifyModelChange];
+                });
             }
-            });
+            
+            tempICalFeedEvent = nil;
+            iCalEventsChanged = NO;
+            iCalEvents = nil;
         }];
+        
+        isImportingICal = NO;
     });
 }
 

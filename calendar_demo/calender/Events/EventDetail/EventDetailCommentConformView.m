@@ -56,7 +56,8 @@
     [containtView.layer setBorderWidth:1.0f];
 
     
-       
+    
+    /*
     if(isCreator) {
         UIButton * btn = [self createButton:@"Add New Time" andY:0];
         [containtView addSubview:btn];
@@ -94,8 +95,24 @@
             [btn addTarget:self action:@selector(declineEvent:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
+    */
 
-     [self layOutSubViews];
+    UIButton * btn = nil;
+    
+    if(isCreator) {
+        btn = [self createButton:@"Add New Time" andY:0];
+        [containtView addSubview:btn];
+        [btn addTarget:self action:@selector(addNewTime:) forControlEvents:UIControlEventTouchUpInside];
+        
+    } else if(can && proposeTimeCount<3) {
+        
+        btn = [self createButton:@"Propose New Time" andY:0];
+        [containtView addSubview:btn];
+        [btn addTarget:self action:@selector(addNewTime:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    
+    [self layOutSubViews];
 }
 
 - (void)layOutSubViews

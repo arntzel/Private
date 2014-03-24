@@ -12,7 +12,7 @@
 #import "ViewUtils.h"
 
 #define CUSTOM_IMG_HEIGHT 207
-#define DEFAULT_IMG_HEIGHT 85
+#define DEFAULT_IMG_HEIGHT 135
 
 @interface EventDetailPhotoView()<UIActionSheetDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 @end

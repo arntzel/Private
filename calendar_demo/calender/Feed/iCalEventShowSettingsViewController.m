@@ -50,16 +50,26 @@ static NSString *const cellID = @"CellID";
 - (void)setupViews
 {
     
+    CGRect frame = self.navigation.frame;
+    frame.size.height = 64;
+    self.navigation.frame = frame;
+    self.navigation.clipsToBounds = YES;
+    
+    UIColor * greenColor = [UIColor colorWithRed:61/255.0f green:173/255.0f blue:145/255.0f alpha:1];
+    self.navigation.titleLable.textColor = greenColor;
+    
+    
     self.navigation.titleLable.text = @"iCal calendars";
     self.navigation.leftBtn.frame = CGRectMake(8, 29, 67, 26);
     //[self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"settings_detail_cancel_btn"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:@"Back" forState:UIControlStateNormal];
     [self.navigation.leftBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.navigation.leftBtn.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [self.navigation.leftBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     [self.navigation.leftBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    [self.navigation.leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.navigation.leftBtn setTitleColor:greenColor forState:UIControlStateNormal];
     
     self.navigation.rightBtn.hidden = YES;
+    
     
     
 }

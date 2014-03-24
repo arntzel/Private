@@ -61,6 +61,14 @@
             break;
     }
     self.navigation.titleLable.text = title;
+    CGRect frame = self.navigation.frame;
+    frame.size.height = 64;
+    self.navigation.frame = frame;
+    self.navigation.clipsToBounds = YES;
+    
+    UIColor * greenColor = [UIColor colorWithRed:61/255.0f green:173/255.0f blue:145/255.0f alpha:1];
+    self.navigation.titleLable.textColor = greenColor;
+    
     self.navigation.leftBtn.frame = CGRectMake(8, 33, 20, 20);
     [self.navigation.leftBtn setBackgroundImage:[UIImage imageNamed:@"back_button_asset"] forState:UIControlStateNormal];
     [self.navigation.leftBtn setTitle:nil forState:UIControlStateNormal];

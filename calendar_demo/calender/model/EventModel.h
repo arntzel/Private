@@ -30,7 +30,10 @@
 
 -(void) downloadServerEvents:(void(^)(NSInteger success, NSInteger totalCount))completion;
 
--(void) updateEventsFromLocalDevice:(int) unused onComplete:(void(^)(NSInteger success, NSInteger totalCount))completion;
+-(void) synchronizedDeletedEvent;
+
+-(void) updateEventsFromLocalDevice;
+
 
 -(void) checkContactUpdate;
 -(void) checkSettingUpdate;

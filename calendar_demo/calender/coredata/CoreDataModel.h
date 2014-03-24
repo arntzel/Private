@@ -85,7 +85,11 @@ typedef enum
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithID:(int)id WithLimit:(int)limit;
 - (NSArray *)getFeedEventsWithEventType:(int)eventType WithHasModified:(BOOL)hasModified;
 - (NSArray *)getDeletediCalFeedEvents;
+
 - (NSArray *)getAlliCalFeedEvent;
+
+- (NSArray *)getAlliCalFeedEventIDs:(NSDate *) begin andEndDate:(NSDate *) end;
+
 
 
 //GMT date

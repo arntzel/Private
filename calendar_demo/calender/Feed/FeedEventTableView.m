@@ -14,6 +14,7 @@
 #import <EventKit/EventKit.h>
 #import "NoEventsCell.h"
 #import "EventViewCell.h"
+#import "EventBirthdayCell.h"
 
 
 @implementation DayFeedEventEntitys
@@ -155,6 +156,8 @@
     [self registerNib:[UINib nibWithNibName:@"NoEventsCell" bundle:nil] forCellReuseIdentifier:@"NoEventsCell"];
     
     [self registerNib:[UINib nibWithNibName:@"EventViewCell" bundle:nil] forCellReuseIdentifier:@"EventViewCell"];
+
+    [self registerNib:[UINib nibWithNibName:@"EventBirthdayCell" bundle:nil] forCellReuseIdentifier:@"EventBirthdayCell"];
     
     dayFeedEventEntitysDic = [[NSMutableDictionary alloc] init];
 }
@@ -242,24 +245,6 @@
     }
 }
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (onDisplayFirstDayChangedNotify) {
-                [self changeCalOnDisplayDay];
-            }
-        });
-    });
-    NSIndexPath *indexPath = [self indexPathsForVisibleRows][0];
-    if (_currentSection != indexPath.section){
-        _currentSection = indexPath.section;
-        [self reloadData];
-    }
-}
-
-/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -270,7 +255,6 @@
         });
     });
 }
-*/
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -289,47 +273,6 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    //    UIView *s = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 22)];
-    //    [s setBackgroundColor:[UIColor whiteColor]];
-    //    return s;
-    NSTimeInterval day = DAY;
-    NSDate *sectionDate = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
-    NSString *sectionNameKey = [Utils formateDay:sectionDate];
-    UIView *viewSection = [ViewUtils createView:@"FeedEventHeader"];
-    UILabel * dayLabel = (UILabel *)[viewSection viewWithTag:TAG_SECTION_TEXT_LABEL];
-    dayLabel.text = [[Utils dayHeaderMiddle:sectionNameKey] uppercaseString];
-    UILabel * dayLabelLeft = (UILabel *)[viewSection viewWithTag:TAG_SECTION_TEXT_LABEL_LEFT];
-    dayLabelLeft.text = [[Utils dayHeaderLeft:sectionNameKey] uppercaseString];
-    
-    if (_currentSection == section){
-        UIView *view = [[UIView alloc] initWithFrame:viewSection.frame];
-        [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]]];
-        [viewSection addSubview:view];
-        [viewSection sendSubviewToBack: view];
-        [viewSection setBackgroundColor:[UIColor whiteColor]];
-    }
-    //CALayer *layerTop = [CALayer layer];
-    //layerTop.frame = CGRectMake(0, 0, 320, 0.5f);
-    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
-    //layerTop.backgroundColor = [UIColor lightGrayColor].CGColor;
-    //[viewSection.layer addSublayer:layerTop];
-    CALayer *layerBottom = [CALayer layer];
-    layerBottom.frame = CGRectMake(0, HEADER_HEIGHT - 0.5f, 320, 0.5f);
-    //layer.backgroundColor = [UIColor generateUIColorByHexString:@"#d1d9d2" withAlpha:0.8].CGColor;
-    layerBottom.backgroundColor = [UIColor lightGrayColor].CGColor;
-    [viewSection.layer addSublayer:layerBottom];
-    
-    return viewSection;
-}
-
-
-/*
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-//    UIView *s = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 22)];
-//    [s setBackgroundColor:[UIColor whiteColor]];
-//    return s;
-    
     NSTimeInterval day = DAY;
     NSDate *sectionDate = [NSDate dateWithTimeInterval:day * section sinceDate:startDate];
     
@@ -356,7 +299,6 @@
     
     return viewSection;
 }
-*/
 
 -(NSArray *) getEventsOfDay:(NSString *) day
 {
@@ -404,13 +346,17 @@
         BOOL lastForThisDay = (row == (events.count-1));
         
         FeedEventEntity * event = [events objectAtIndex:row];
+        
+        if ([event isBirthdayEvent]) {
+            EventBirthdayCell *cell = (EventBirthdayCell*)[tableView dequeueReusableCellWithIdentifier:@"EventBirthdayCell"];
+            [cell refreshView:event lastForThisDay:lastForThisDay];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
     
         EventViewCell *cell = (EventViewCell*)[tableView dequeueReusableCellWithIdentifier:@"EventViewCell"];
-        
         [cell refreshView:event lastForThisDay:lastForThisDay];
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         return cell;
     }
 }
@@ -436,13 +382,19 @@
             return 0;
         }
         
-        return NO_EVENTS_HEADER_CELL; //No event cell
+        return 90 /2; //No event cell
     }
     else {
+        
         CGFloat height = 95;
         
         int row = indexPath.row;
         FeedEventEntity * event = [events objectAtIndex:row];
+        
+        if ([event isBirthdayEvent]) {
+            return 132/2;
+        }
+        
         eventCellHeightType ht = [EventViewCell cellHeightType:event];
         switch (ht) {
             case eventCellTitle:

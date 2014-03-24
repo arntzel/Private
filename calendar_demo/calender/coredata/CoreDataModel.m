@@ -387,6 +387,34 @@ static CoreDataModel * instance;
     NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return results;
 }
+
+
+- (NSArray *)getAlliCalFeedEventIDs:(NSDate *) begin andEndDate:(NSDate *) end
+{
+    if (!managedObjectContext)
+    {
+        return nil ;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate * predicate;
+    if(end == nil) {
+        predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@)", begin];
+        
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"(eventType=5) AND (start >= %@) AND (start<%@)", begin, end];
+    }
+    
+    [fetchRequest setPredicate:predicate];
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:[[entity propertiesByName] objectForKey:@"ext_event_id"], nil];
+    
+    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return results;
+}
+
 -(DataCache *) getCache
 {
     return cache;
@@ -432,7 +460,10 @@ static CoreDataModel * instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FeedEventEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@)) AND (eventType==0))", start,  end, start,  end];
+    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@)) AND (eventType==0))", start,  end, start,  end];
+    
+    // We should not consider the birthday as conflict
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"((confirmed = true) AND ((start >= %@ AND start <= %@) OR (end >= %@ AND end <= %@) OR (start < %@ AND end > %@)) AND (eventType!=4))", start,  end, start,  end, start, end];
     [fetchRequest setPredicate:predicate];
     
 //    NSArray * results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
