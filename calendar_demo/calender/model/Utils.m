@@ -132,6 +132,15 @@ static NSTimeZone * userTimeZone;
     return [[dateFormatter stringFromDate:time] lowercaseString];
 }
 
++(NSString *) formateDay:(NSDate *) time andTimeZone:(NSTimeZone *) tz
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setTimeZone:tz];
+    
+    return [dateFormatter stringFromDate:time];
+}
 
 +(NSString *) formateDay:(NSDate *) time
 {

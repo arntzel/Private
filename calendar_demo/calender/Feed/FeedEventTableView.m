@@ -470,7 +470,16 @@
     
     for (FeedEventEntity * entity in feedEvents) {
         
-        NSString * day = [Utils formateDay:entity.start];
+        NSString * day = nil;
+        
+        //Facebook birthday event
+        if([entity.eventType intValue] == 4) {
+            NSTimeZone * gmtTimezone = [NSTimeZone timeZoneWithName:@"GMT"];
+            day = [Utils formateDay:entity.start andTimeZone:gmtTimezone];
+        } else {
+            day = [Utils formateDay:entity.start];
+        }
+        
         DayFeedEventEntitys * dayEntity = [dayFeedEventEntitysDic objectForKey:day];
         
         if(dayEntity == nil) {
