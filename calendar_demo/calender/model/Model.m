@@ -597,6 +597,10 @@ static Model * instance;
                 NSDictionary * json = [objects objectAtIndex:i];
                 int eventId = [[json objectForKey:@"id"] intValue];;
                 
+                if(![[UserModel getInstance] isLogined]) {
+                    return;
+                }
+                
                 FeedEventEntity * eventEntity = [[CoreDataModel getInstance] getFeedEventEntity:eventId];
                 if(eventEntity == nil) {
                     eventEntity = [[CoreDataModel getInstance] createEntity:@"FeedEventEntity"];

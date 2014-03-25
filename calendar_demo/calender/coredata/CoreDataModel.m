@@ -118,7 +118,6 @@ static CoreDataModel * instance;
     //NSLog(@"NSFetchRequest: getFeedEventEntity:%d", id);
     
     if (managedObjectContext == nil)
-        
     {
         return nil;
     }
@@ -139,12 +138,22 @@ static CoreDataModel * instance;
 
 -(id) createEntity:(NSString *)entityName
 {
+    if (managedObjectContext == nil)
+    {
+        return nil;
+    }
+    
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
 }
 
 
 -(void) deleteEntity:(NSManagedObject *) entity
 {
+    if (managedObjectContext == nil)
+    {
+        return;
+    }
+    
     [managedObjectContext deleteObject:entity];
 }
 
@@ -627,12 +636,23 @@ static CoreDataModel * instance;
 
 -(void) deleteFeedEventEntity2:(FeedEventEntity *) entity
 {
+    
+    if(managedObjectContext == nil)
+    {
+        return;
+    }
+    
     [cache removeFeedEventEntity:entity];
     [managedObjectContext deleteObject:entity];
 }
 
 -(void) deleteFeedEventEntity:(int) eventID
 {
+    if(managedObjectContext == nil)
+    {
+        return;
+    }
+    
     FeedEventEntity * entity = [self getFeedEventEntity:eventID];
     
     if(entity  != nil) {
@@ -647,6 +667,11 @@ static CoreDataModel * instance;
 //For Message
 -(int) getMessageCount
 {
+    if(managedObjectContext == nil)
+    {
+        return 0;
+    }
+    
     NSFetchRequest * fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MessageEntity"];
     int count = [managedObjectContext countForFetchRequest:fetchRequest error:NULL];
     return count;
@@ -654,6 +679,11 @@ static CoreDataModel * instance;
 
 -(MessageEntity *) getMessage:(int) offset
 {
+    if(managedObjectContext == nil)
+    {
+        return nil;
+    }
+    
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -676,6 +706,11 @@ static CoreDataModel * instance;
 
 -(MessageEntity *) getMessageByID:(int) msgID
 {
+    if(managedObjectContext == nil)
+    {
+        return nil;
+    }
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"MessageEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -695,6 +730,11 @@ static CoreDataModel * instance;
 -(ContactEntity *) getContactEntity:(int) contactid
 {
 
+    if(managedObjectContext == nil)
+    {
+        return nil;
+    }
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ContactEntity" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -897,6 +937,11 @@ static CoreDataModel * instance;
 
 -(void) saveData
 {
+    if(managedObjectContext == nil)
+    {
+        return ;
+    }
+    
     if([managedObjectContext hasChanges]) {
        [managedObjectContext save:nil];
     }
