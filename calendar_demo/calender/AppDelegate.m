@@ -26,7 +26,8 @@
 
 #import "EventDetailController.h"
 #import "CoreDataModel.h"
-
+#import "EAScrollNavigationBar.h"
+#import "DCIntrospect.h"
 
 #define UMENG_APPKEY @"52b9916056240b31ac02ac76"
 
@@ -43,9 +44,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+
 #ifndef DEBUG
     [Crashlytics startWithAPIKey:@"bf0c5f52126e61ccb51c68eecf9a761324301f9a"];
-    [self redirectNSLogToDocumentFolder];
+    //[self redirectNSLogToDocumentFolder];
 #endif
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
@@ -106,9 +109,20 @@
 
     [navController pushViewController:rootController animated:NO];
     
+    NSLog(@"APP DELEGATE");
+
+    if ([rootController isKindOfClass:[MainViewController class]]){
+        MainViewController *mainVC = (MainViewController *)rootController;
+        FeedViewController *feedVC = mainVC.feedViewCtr;
+        [navController setViewControllers:@[feedVC] animated:NO];
+    }
+
+
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
 
+    [[DCIntrospect sharedIntrospector] start];
+    
     if(loginUser!=nil) {
         MessageModel * msgModel = [[Model getInstance] getMessageModel];
         int count = [[UserSetting getInstance] getUnreadmessagecount];

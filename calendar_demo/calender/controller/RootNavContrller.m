@@ -1,5 +1,6 @@
 
 #import "RootNavContrller.h"
+#import "EAScrollNavigationBar.h"
 
 static RootNavContrller* defaultNavController = nil;
 
@@ -12,7 +13,8 @@ static RootNavContrller* defaultNavController = nil;
 + (RootNavContrller *)defaultInstance
 {
     if (defaultNavController == nil) {
-        defaultNavController = [[RootNavContrller alloc] init];
+        defaultNavController = [[RootNavContrller alloc] initWithNavigationBarClass:[EAScrollNavigationBar class] toolbarClass:nil];
+
     }
     return defaultNavController;
 }

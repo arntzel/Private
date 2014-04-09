@@ -19,7 +19,7 @@
     }
 
     CGRect frame = [[UIScreen mainScreen] bounds];
-    frame.size.height -= statusBarHeight;
+    //frame.size.height -= statusBarHeight;
 
     return frame;
 }

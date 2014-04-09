@@ -20,7 +20,6 @@
 #import "UserSetting.h"
 #import "BLRView.h"
 #import "iCalEventShowSettingsViewController.h"
-
 #import "AddEventControllerV2.h"
 
 /*
@@ -67,17 +66,45 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
     //[self playCalendarAnimation];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:NO];
+    
+    //[self.navigationController.navigationBar setHidden:YES];
+    self.navigationController.scrollNavigationBar.scrollView = tableView;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    LOG_D(@"FeedViewController viewDidLoad");
 
+//    self.title = @"Testing";
+    self.navigation = [Navigation createNavigationView];
+    [self.navigation setUpMainNavigationButtons:FEED_PENDING];
+    
+    [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:self.navigation];
+    
+
+
+//    [self.navigation setBackgroundColor:[UIColor clearColor]];
+//    [self.navigation setBarTintColor:[UIColor clearColor]];
+//    [self.navigation setAlpha:0.0];
+//    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+//    [self.navigationController.navigationBar setAlpha:0.0];
+
+    // [self.navigationController.navigationBar addSubview:self.navigation];
+
+    
     User * me = [[UserModel getInstance] getLoginUser];
     if(me.timezone != nil) {
         //[Utils  setUserTimeZone:[NSTimeZone timeZoneWithName:me.timezone]];
@@ -93,36 +120,9 @@
     self.navigation.calPendingSegment.hidden = NO;
     [self.navigation.calPendingSegment addTarget:self.delegate action:@selector(onSegmentPressed:) forControlEvents:UIControlEventValueChanged];
     [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
+//
+//    int y = self.navigation.frame.size.height;
     
-    int y = self.navigation.frame.size.height;
-    
-    CGRect frame = self.view.bounds;
-    frame.origin.y = y;
-    //frame.size.height -=(y + 64);
-    frame.size.height -=y;
-    
-    tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    tableView.feedEventdelegate = self;
-    
-    UIView *bgview = [[UIView alloc] initWithFrame: tableView.frame];
-//    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
-  //  bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
-    bgview.backgroundColor = [UIColor colorWithRed:239/255.0f green:245/255.0f blue:240/255.0f alpha:1.0f];
-    tableView.backgroundView = bgview;
-    
-    [self.view addSubview:tableView];    
-    
-    //Load BLRView
-    blrView = [[BLRView alloc] init];
-    CGRect blurFrame = self.view.bounds;
-    //blurFrame.size.height = self.view.bounds.size.height / 2;
-    blrView.frame = blurFrame;
-    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [blrView setHidden:YES];
-    [self.view addSubview:blrView];
-    isBlured = NO;
     
     NSDate *date = [Utils getCurrentDate];
     logic = [[KalLogic alloc] initForDate:date];
@@ -131,6 +131,24 @@
     [self.calendarView setUserInteractionEnabled:YES];
     [self.calendarView setMultipleTouchEnabled:YES];
     [self.calendarView setKalTileViewDataSource:self];
+    
+    [self.view setAutoresizesSubviews:NO];
+    
+    
+    //    [self.calendarView removeConstraints:self.calendarView.constraints];
+    
+    //    [self.calendarView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //    [self.calendarView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //
+    //
+    //    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.calendarView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem: nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:20.0f];
+    //    //
+    //    [self.calendarView addConstraint:constraint];
+    //
+    //
+    //    [self.calendarView addConstraint:[NSLayoutConstraint constraintWithItem:centerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0]];
+    
     [self.view addSubview:self.calendarView];
     
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
@@ -139,12 +157,12 @@
         animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
         [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:NO];
         //[self playCalendarAnimation];
-//        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
-//        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
+        //        animationTimer= [NSTimer timerWithTimeInterval:6 target:self selector:@selector(playCalendarAnimation) userInfo:nil repeats:YES];
+        //        [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSDefaultRunLoopMode];
         //[self playCalendarAnimation];
     }
     
-
+    
     int filters = [[UserSetting getInstance] getEventfilters];
     LOG_D(@"Read filterVal:0x %x", filters);
     
@@ -159,6 +177,57 @@
     [self.calendarView.filterView setFilter:filters];
     tableView.eventTypeFilters = filters;
     self.calendarView.filterView.filterDelegate = self;
+
+    
+    CGRect frame = self.view.bounds;
+//    frame.origin.y = y;
+//    //frame.size.height -=(y + 64);
+//    frame.size.height -=y;
+    
+    tableView = [[FeedEventTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    tableView.feedEventdelegate = self;
+    
+    UIView *bgview = [[UIView alloc] initWithFrame: tableView.frame];
+//    bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"feed_background_image.png"]];
+  //  bgview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CalendarFeed_Body.png"]];
+    bgview.backgroundColor = [UIColor colorWithRed:239/255.0f green:245/255.0f blue:240/255.0f alpha:1.0f];
+    tableView.backgroundView = bgview;
+    
+//    [tableView setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
+    
+    [tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+
+//    [tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+//    NSLayoutConstraint *makeWidthTheSameAsScrollView =[NSLayoutConstraint
+//    constraintWithItem:tableView
+//                                                       attribute:NSLayoutAttributeWidth
+//                                                       relatedBy:0
+//                                                       toItem:self.view
+//                                                       attribute:NSLayoutAttributeWidth
+//                                                       multiplier:1.0
+//                                                       constant:0];
+    
+//    [tableView addConstraint:makeWidthTheSameAsScrollView];
+
+    
+    
+    [self.view addSubview:tableView];    
+    
+    [self.view bringSubviewToFront:self.calendarView];
+    
+    //Load BLRView
+    blrView = [[BLRView alloc] init];
+    CGRect blurFrame = self.view.bounds;
+    //blurFrame.size.height = self.view.bounds.size.height / 2;
+    blrView.frame = blurFrame;
+    blrView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [blrView setHidden:YES];
+    [self.view addSubview:blrView];
+    isBlured = NO;
+    
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *iCalTypes = [userDefaults objectForKey:@"iCalTypes"];
@@ -211,6 +280,13 @@
     [[[Model getInstance] getEventModel] addDelegate:self];
     
     [self refreshWithDate:[Utils getCurrentDate]];
+    
+    LOG_D(@"FeedViewController viewDidLoad");
+    LOG_D(@"FeedViewController viewDidLoad %@", tableView);
+    
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigation.calPendingSegment setSelectedSegmentIndex:0];
+    self.navigationController.scrollNavigationBar.scrollView = tableView;
 }
 
 -(void) viewDidUnload
@@ -219,6 +295,11 @@
     [[[Model getInstance] getEventModel] removeDelegate:self];
     
     [super viewDidUnload];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.scrollNavigationBar.scrollView = nil;
 }
 
 -(void)playCalendarAnimation
@@ -332,7 +413,6 @@
         
         LoginMainViewController* rootController = [[LoginMainViewController alloc] init];
         [navController pushViewController:rootController animated:NO];
-        
     }
     else {
         
@@ -487,6 +567,12 @@
 
 #pragma mark -
 #pragma mark FeedEventTableViewDelegate
+
+//- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+//{
+//    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
+//}
+
 -(void) onDisplayFirstDayChanged:(NSDate *) firstDay
 {
     //NSLog(@"onDisplayFirstDayChanged: %@", firstDay);

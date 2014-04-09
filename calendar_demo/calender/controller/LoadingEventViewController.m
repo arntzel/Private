@@ -216,6 +216,7 @@
         
         MainViewController * rootController = [[MainViewController alloc] init];
         
+        [[RootNavContrller defaultInstance] setViewControllers:@[rootController.feedViewCtr] animated:NO];
         [[RootNavContrller defaultInstance] popToRootViewControllerAnimated:NO];
         [[RootNavContrller defaultInstance] pushViewController:rootController animated:YES];
     });

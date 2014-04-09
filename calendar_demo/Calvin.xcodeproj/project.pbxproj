@@ -239,6 +239,13 @@
 		3DFF828318C76C51002499E6 /* EventAttendeeEntityExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828218C76C51002499E6 /* EventAttendeeEntityExtra.m */; };
 		3DFF828618C76DCD002499E6 /* FeedEventEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828518C76DCD002499E6 /* FeedEventEntity.m */; };
 		3DFF828918C76DCE002499E6 /* EventAttendeeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF828818C76DCE002499E6 /* EventAttendeeEntity.m */; };
+		6F94B1E618F4CF5400113F4D /* DCIntrospect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1DA18F4CF5400113F4D /* DCIntrospect.m */; };
+		6F94B1E718F4CF5400113F4D /* DCFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1DC18F4CF5400113F4D /* DCFrameView.m */; };
+		6F94B1E818F4CF5400113F4D /* DCCrossHairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1DE18F4CF5400113F4D /* DCCrossHairView.m */; };
+		6F94B1E918F4CF5400113F4D /* UIView+DCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1E018F4CF5400113F4D /* UIView+DCAdditions.m */; };
+		6F94B1EA18F4CF5400113F4D /* DCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1E218F4CF5400113F4D /* DCTextView.m */; };
+		6F94B1EB18F4CF5400113F4D /* DCStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F94B1E418F4CF5400113F4D /* DCStatusBarOverlay.m */; };
+		6F99193A18EC0B29005DA47A /* EAScrollNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99193918EC0B29005DA47A /* EAScrollNavigationBar.m */; };
 		76256CBB1820EBD100BB933F /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 76256CB91820EBD100BB933F /* pinyin.c */; };
 		76318B2A17E09A69000BC88B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2617E09A69000BC88B /* Default-568h@2x.png */; };
 		76318B2B17E09A69000BC88B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76318B2717E09A69000BC88B /* Default.png */; };
@@ -1011,6 +1018,21 @@
 		3DFF828518C76DCD002499E6 /* FeedEventEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedEventEntity.m; path = calender/coredata/FeedEventEntity.m; sourceTree = SOURCE_ROOT; };
 		3DFF828718C76DCE002499E6 /* EventAttendeeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventAttendeeEntity.h; path = calender/coredata/EventAttendeeEntity.h; sourceTree = SOURCE_ROOT; };
 		3DFF828818C76DCE002499E6 /* EventAttendeeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventAttendeeEntity.m; path = calender/coredata/EventAttendeeEntity.m; sourceTree = SOURCE_ROOT; };
+		6F94B1D918F4CF5400113F4D /* DCIntrospectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospectSettings.h; sourceTree = "<group>"; };
+		6F94B1DA18F4CF5400113F4D /* DCIntrospect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIntrospect.m; sourceTree = "<group>"; };
+		6F94B1DB18F4CF5400113F4D /* DCIntrospect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospect.h; sourceTree = "<group>"; };
+		6F94B1DC18F4CF5400113F4D /* DCFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCFrameView.m; sourceTree = "<group>"; };
+		6F94B1DD18F4CF5400113F4D /* DCFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCFrameView.h; sourceTree = "<group>"; };
+		6F94B1DE18F4CF5400113F4D /* DCCrossHairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCrossHairView.m; sourceTree = "<group>"; };
+		6F94B1DF18F4CF5400113F4D /* DCCrossHairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCrossHairView.h; sourceTree = "<group>"; };
+		6F94B1E018F4CF5400113F4D /* UIView+DCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DCAdditions.m"; sourceTree = "<group>"; };
+		6F94B1E118F4CF5400113F4D /* UIView+DCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DCAdditions.h"; sourceTree = "<group>"; };
+		6F94B1E218F4CF5400113F4D /* DCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTextView.m; sourceTree = "<group>"; };
+		6F94B1E318F4CF5400113F4D /* DCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTextView.h; sourceTree = "<group>"; };
+		6F94B1E418F4CF5400113F4D /* DCStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusBarOverlay.m; sourceTree = "<group>"; };
+		6F94B1E518F4CF5400113F4D /* DCStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusBarOverlay.h; sourceTree = "<group>"; };
+		6F99193818EC0B29005DA47A /* EAScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAScrollNavigationBar.h; sourceTree = "<group>"; };
+		6F99193918EC0B29005DA47A /* EAScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAScrollNavigationBar.m; sourceTree = "<group>"; };
 		76256CB91820EBD100BB933F /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		76256CBA1820EBD100BB933F /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		76318B2617E09A69000BC88B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2033,6 +2055,70 @@
 			path = "calender/Third-Party-Libraries/OHAttributedLabel/include/OHAttributedLabel";
 			sourceTree = "<group>";
 		};
+		6F94B1C418F4CD4400113F4D /* DCIntrospect */ = {
+			isa = PBXGroup;
+			children = (
+				6F94B1D918F4CF5400113F4D /* DCIntrospectSettings.h */,
+				6F94B1DA18F4CF5400113F4D /* DCIntrospect.m */,
+				6F94B1DB18F4CF5400113F4D /* DCIntrospect.h */,
+				6F94B1DC18F4CF5400113F4D /* DCFrameView.m */,
+				6F94B1DD18F4CF5400113F4D /* DCFrameView.h */,
+				6F94B1DE18F4CF5400113F4D /* DCCrossHairView.m */,
+				6F94B1DF18F4CF5400113F4D /* DCCrossHairView.h */,
+				6F94B1E018F4CF5400113F4D /* UIView+DCAdditions.m */,
+				6F94B1E118F4CF5400113F4D /* UIView+DCAdditions.h */,
+				6F94B1E218F4CF5400113F4D /* DCTextView.m */,
+				6F94B1E318F4CF5400113F4D /* DCTextView.h */,
+				6F94B1E418F4CF5400113F4D /* DCStatusBarOverlay.m */,
+				6F94B1E518F4CF5400113F4D /* DCStatusBarOverlay.h */,
+			);
+			name = DCIntrospect;
+			sourceTree = "<group>";
+		};
+		6F99193718EC0988005DA47A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F99193818EC0B29005DA47A /* EAScrollNavigationBar.h */,
+				6F99193918EC0B29005DA47A /* EAScrollNavigationBar.m */,
+				769ABB8C17DF54290033E677 /* LoadingProgressView.h */,
+				769ABB8D17DF54290033E677 /* LoadingProgressView.m */,
+				769ABB8E17DF54290033E677 /* LoadingProgressView.xib */,
+				769ABB8F17DF54290033E677 /* Navigation.h */,
+				769ABB9017DF54290033E677 /* Navigation.m */,
+				769ABB9117DF54290033E677 /* Navigation.xib */,
+				938B2834189806520074C424 /* NoEventsCell.h */,
+				938B2835189806520074C424 /* NoEventsCell.m */,
+				938B2837189806650074C424 /* NoEventsCell.xib */,
+				93E6C14618DE684300F55081 /* EventBirthdayCell.h */,
+				93E6C14718DE684300F55081 /* EventBirthdayCell.m */,
+				93E6C14918DE684D00F55081 /* EventBirthdayCell.xib */,
+				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
+				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
+				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
+				769ABB8517DF54290033E677 /* EventView.h */,
+				769ABB8617DF54290033E677 /* EventView.m */,
+				769ABB8717DF54290033E677 /* EventView.xib */,
+				93E398C818C4157D00B75150 /* EventViewCell.h */,
+				93E398C918C4157D00B75150 /* EventViewCell.m */,
+				93E398CD18C415AB00B75150 /* EventViewCell.xib */,
+				93A8E275189C293400A3753F /* FeedEventHeader.xib */,
+				769ABB8817DF54290033E677 /* FeedEventTableView.h */,
+				769ABB8917DF54290033E677 /* FeedEventTableView.m */,
+				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
+				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
+				938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */,
+				769ABB8217DF54290033E677 /* EventFilterView.h */,
+				769ABB8317DF54290033E677 /* EventFilterView.m */,
+				3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */,
+				3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */,
+				3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */,
+				769ABB7F17DF54290033E677 /* BirthdayEventView.h */,
+				769ABB8017DF54290033E677 /* BirthdayEventView.m */,
+				769ABB8117DF54290033E677 /* BirthdayEventView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		76318B2517E09A69000BC88B /* Xcassets */ = {
 			isa = PBXGroup;
 			children = (
@@ -2883,46 +2969,12 @@
 		769ABB7E17DF54290033E677 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				769ABB7F17DF54290033E677 /* BirthdayEventView.h */,
-				769ABB8017DF54290033E677 /* BirthdayEventView.m */,
-				769ABB8117DF54290033E677 /* BirthdayEventView.xib */,
-				769ABB8217DF54290033E677 /* EventFilterView.h */,
-				769ABB8317DF54290033E677 /* EventFilterView.m */,
-				3D272CFA1825EB3700C1AE04 /* EventFilterViewCell.h */,
-				3D272CFB1825EB3700C1AE04 /* EventFilterViewCell.m */,
-				3D272CF81825EA8800C1AE04 /* EventFilterViewCell.xib */,
-				769ABB8517DF54290033E677 /* EventView.h */,
-				769ABB8617DF54290033E677 /* EventView.m */,
-				769ABB8717DF54290033E677 /* EventView.xib */,
-				93E398C818C4157D00B75150 /* EventViewCell.h */,
-				93E398C918C4157D00B75150 /* EventViewCell.m */,
-				93E398CD18C415AB00B75150 /* EventViewCell.xib */,
-				93A8E275189C293400A3753F /* FeedEventHeader.xib */,
-				769ABB8817DF54290033E677 /* FeedEventTableView.h */,
-				769ABB8917DF54290033E677 /* FeedEventTableView.m */,
-				235047C818754E50001DB8EF /* FeedEventTableViewCell.h */,
-				235047C918754E50001DB8EF /* FeedEventTableViewCell.m */,
-				938B2832189803DB0074C424 /* FeedEventTableViewPrev.m */,
+				6F99193718EC0988005DA47A /* Views */,
 				769ABB8A17DF54290033E677 /* FeedViewController.h */,
 				769ABB8B17DF54290033E677 /* FeedViewController.m */,
-				34262E121869C1A300288EA9 /* iCalEventShowSettingsCell.h */,
-				34262E131869C1A300288EA9 /* iCalEventShowSettingsCell.m */,
-				34262E141869C1A300288EA9 /* iCalEventShowSettingsCell.xib */,
 				34262E151869C1A300288EA9 /* iCalEventShowSettingsViewController.h */,
 				34262E161869C1A300288EA9 /* iCalEventShowSettingsViewController.m */,
 				34262E171869C1A300288EA9 /* iCalEventShowSettingsViewController.xib */,
-				769ABB8C17DF54290033E677 /* LoadingProgressView.h */,
-				769ABB8D17DF54290033E677 /* LoadingProgressView.m */,
-				769ABB8E17DF54290033E677 /* LoadingProgressView.xib */,
-				769ABB8F17DF54290033E677 /* Navigation.h */,
-				769ABB9017DF54290033E677 /* Navigation.m */,
-				769ABB9117DF54290033E677 /* Navigation.xib */,
-				938B2834189806520074C424 /* NoEventsCell.h */,
-				938B2835189806520074C424 /* NoEventsCell.m */,
-				938B2837189806650074C424 /* NoEventsCell.xib */,
-				93E6C14618DE684300F55081 /* EventBirthdayCell.h */,
-				93E6C14718DE684300F55081 /* EventBirthdayCell.m */,
-				93E6C14918DE684D00F55081 /* EventBirthdayCell.xib */,
 			);
 			name = Feed;
 			path = calender/Feed;
@@ -2979,6 +3031,7 @@
 		769ABBB417DF54290033E677 /* Third-Party-Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6F94B1C418F4CD4400113F4D /* DCIntrospect */,
 				3DF156851879969E0070A650 /* TestFlightSDK2.1.3 */,
 				3DC29285186BC204009759C2 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				23B16DDC1859A32000650A54 /* OHAttributedLabel */,
@@ -3392,7 +3445,7 @@
 						TestTargetID = 3D61519F1734A391003D72B0;
 					};
 					3D61519F1734A391003D72B0 = {
-						DevelopmentTeam = GGN58EVK65;
+						DevelopmentTeam = AT8N675B65;
 					};
 				};
 			};
@@ -3968,6 +4021,7 @@
 				3DA84B6C18BA194900651379 /* UserEntity.m in Sources */,
 				34B1F1D617F9062E00AA5C97 /* SettingsModel.m in Sources */,
 				769CB58B1886D70C0082400D /* UIView+FrameResize.m in Sources */,
+				6F94B1EA18F4CF5400113F4D /* DCTextView.m in Sources */,
 				3D71D40E17F669D000121A85 /* Invitee.m in Sources */,
 				234585101853688100086FB3 /* UIStopWatch.m in Sources */,
 				769ABB1217DF52090033E677 /* PickerView.m in Sources */,
@@ -3989,6 +4043,7 @@
 				769ABB2C17DF52090033E677 /* EventDetailFinailzeView.m in Sources */,
 				769ABB2E17DF52090033E677 /* EventDetailHeader.m in Sources */,
 				34B1F1A217F8FCE200AA5C97 /* ConnectAccountViewController.m in Sources */,
+				6F94B1E618F4CF5400113F4D /* DCIntrospect.m in Sources */,
 				7662F74117F075F400B64E40 /* LoginMainCreatView.m in Sources */,
 				769CB5811886CDC10082400D /* AEInviteesEntry.m in Sources */,
 				76591A9C17FFB23200DE3AB2 /* EventLocationViewController.m in Sources */,
@@ -4023,6 +4078,7 @@
 				768404BC180104B100C69240 /* DetailDeclinedCell.m in Sources */,
 				769ABC7917DF542A0033E677 /* BirthdayEventView.m in Sources */,
 				76C5129C1888195B00E5A31F /* CPickerCell.m in Sources */,
+				6F99193A18EC0B29005DA47A /* EAScrollNavigationBar.m in Sources */,
 				769ABC7B17DF542A0033E677 /* EventFilterView.m in Sources */,
 				767822AA187971A000CEF40E /* AddEventViewController.m in Sources */,
 				76591A9717FFB12900DE3AB2 /* AddEventInviteViewController.m in Sources */,
@@ -4042,6 +4098,7 @@
 				769ABC8817DF542A0033E677 /* CreateUser.m in Sources */,
 				769ABC8917DF542A0033E677 /* Event.m in Sources */,
 				769ABC8A17DF542A0033E677 /* EventAttendee.m in Sources */,
+				6F94B1E718F4CF5400113F4D /* DCFrameView.m in Sources */,
 				769ABC8C17DF542A0033E677 /* EventModel.m in Sources */,
 				93E398CA18C4157D00B75150 /* EventViewCell.m in Sources */,
 				769ABC8D17DF542A0033E677 /* Location.m in Sources */,
@@ -4071,6 +4128,7 @@
 				76A457F0183CEC4E002127D1 /* SharePhotoMsgObject.m in Sources */,
 				3D1EAC63188ACC1C0002F627 /* AddEventInvitePeopleHeaderView.m in Sources */,
 				7662F76E17F07F2B00B64E40 /* ShareLoginFacebook.m in Sources */,
+				6F94B1E818F4CF5400113F4D /* DCCrossHairView.m in Sources */,
 				76C512A11888195B00E5A31F /* CStartTimeView.m in Sources */,
 				769ABC9817DF542A0033E677 /* ASIDataDecompressor.m in Sources */,
 				769ABC9A17DF542A0033E677 /* ASIFormDataRequest.m in Sources */,
@@ -4092,6 +4150,7 @@
 				7662F76D17F07F2B00B64E40 /* ShareLoginBase.m in Sources */,
 				764C3F8C17F326C30014B8B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				769ABC9E17DF542A0033E677 /* ATMHud.m in Sources */,
+				6F94B1EB18F4CF5400113F4D /* DCStatusBarOverlay.m in Sources */,
 				23B871021868904E00F7F62F /* EventDetailRoundDateView.m in Sources */,
 				769ABC9F17DF542A0033E677 /* ATMHudQueueItem.m in Sources */,
 				3DA84B6018BA194800651379 /* EventTimeVoteEntity.m in Sources */,
@@ -4122,6 +4181,7 @@
 				7662F74317F075F400B64E40 /* LoginMainSignInView.m in Sources */,
 				76431E091806F6BD009DAFFE /* EventNavigationBar.m in Sources */,
 				769CB5671886CD1A0082400D /* AddEventAddTitleBar.m in Sources */,
+				6F94B1E918F4CF5400113F4D /* UIView+DCAdditions.m in Sources */,
 				769ABD3917DF54950033E677 /* KalLogic.m in Sources */,
 				769ABD3A17DF54950033E677 /* KalLogicUtils.m in Sources */,
 				764C3F8617F326960014B8B1 /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -4342,8 +4402,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",
@@ -4375,8 +4435,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pencil Me, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pencil Me, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/calender",

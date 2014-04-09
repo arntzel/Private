@@ -2,6 +2,7 @@
 
 #import "CoreDataModel.h"
 #import "BaseMenuViewController.h"
+#import "EAScrollNavigationBar.h"
 
 @protocol FeedViewControllerDelegate <NSObject>
 
@@ -18,6 +19,5 @@
 -(void)playCalendarAnimation;
 
 @property(assign) id<PopDelegate> popDelegate;
-
 
 @end

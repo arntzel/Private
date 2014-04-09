@@ -23,13 +23,7 @@
 {
     [super viewDidLoad];
     
-    self.navigation = [Navigation createNavigationView];
-    [self.navigation setUpMainNavigationButtons:FEED_PENDING];
-    
-    [self.view addSubview:self.navigation];
-    [self.navigation.leftBtn addTarget:self action:@selector(btnMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.navigation.rightBtn addTarget:self action:@selector(btnAddEvent:) forControlEvents:UIControlEventTouchUpInside];
+
 
     [[[Model getInstance] getMessageModel] addDelegate:self];
     

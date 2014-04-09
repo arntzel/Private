@@ -1,5 +1,6 @@
 #import "DDMenuController.h"
 #import "CoreDataModel.h"
+#import "FeedViewController.h"
 
 @interface MainViewController : DDMenuController <PopDelegate>
 
@@ -8,5 +9,6 @@
 
 -(void)refreshViews;
 
+@property (strong, nonatomic) FeedViewController *feedViewCtr;
 
 @end

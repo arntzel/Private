@@ -58,12 +58,12 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"Navigation" owner:self options:nil];
     Navigation * view = (Navigation*)[nibView objectAtIndex:0];
-    view.frame = CGRectMake(0, 0, 320, 64);
-
-    view.unreadCount.hidden =  YES;
-
-    view.unreadCount.layer.cornerRadius = view.unreadCount.frame.size.height/2;//设置那个圆角的有多圆
-    view.unreadCount.layer.masksToBounds = YES;//设为NO去试试
+//    view.frame = CGRectMake(0, 0, 320, 64);
+//
+//    view.unreadCount.hidden =  YES;
+//
+//    view.unreadCount.layer.cornerRadius = view.unreadCount.frame.size.height/2;//设置那个圆角的有多圆
+//    view.unreadCount.layer.masksToBounds = YES;//设为NO去试试
     
     //[view.calPendingSegment addTarget:self action:@selector(onSegmentPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -72,8 +72,8 @@
 //    image = [image resizableImageWithCapInsets:insets];
 //    view.leftBtn.imageEdgeInsets = insets;
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:15.f],UITextAttributeFont ,nil];
-    [view.calPendingSegment setTitleTextAttributes:dic forState:UIControlStateNormal];
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:15.f],UITextAttributeFont ,nil];
+//    [view.calPendingSegment setTitleTextAttributes:dic forState:UIControlStateNormal];
     return view;
 }
 

@@ -1,5 +1,4 @@
 #import "MainViewController.h"
-#import "FeedViewController.h"
 #import "menuNavigation.h"
 #import "PedingEventViewController.h"
 #import "PedingEventViewControllerNew.h"
@@ -17,7 +16,7 @@
 
 @implementation MainViewController {
 
-    FeedViewController * feedViewCtr;
+//    FeedViewController * feedViewCtr;
     
 //    PedingEventViewController * pendingEventViewCtr;
     PedingEventViewControllerNew * pendingEventViewCtr;
@@ -40,8 +39,10 @@
     menuNavigation *leftController = [[menuNavigation alloc] init];
     leftController.delegate = self;
 
-    feedViewCtr = [[FeedViewController alloc] init];
-    feedViewCtr.popDelegate = self;
+    self.feedViewCtr = [[FeedViewController alloc] init];
+    self.feedViewCtr.popDelegate = self;
+    
+
     
 //    pendingEventViewCtr = [[PedingEventViewController alloc] init];
     pendingEventViewCtr = [[PedingEventViewControllerNew alloc] initWithNibName:@"PedingEventViewControllerNew" bundle:nil];
@@ -53,11 +54,11 @@
     });
     
     
-    self = [super initWithRootViewController:feedViewCtr];
+    self = [super initWithRootViewController:self.feedViewCtr];
     
     self.leftViewController = leftController;
     
-    feedViewCtr.delegate = self;
+    self.feedViewCtr.delegate = self;
     pendingEventViewCtr.delegate = self;
     
     menuNavigationController = leftController;
@@ -75,6 +76,8 @@
     
     [[[Model getInstance] getEventModel] synchronizedDeletedEvent];
     [[[Model getInstance] getEventModel] checkContactUpdate];
+    
+
     
     return self;
 }
@@ -150,7 +153,7 @@
 
     switch (menuIndex) {
         case 0: {
-            [self setRootController:feedViewCtr animated:YES];
+            [self setRootController:self.feedViewCtr animated:YES];
             break;
         }
         case 1: {
@@ -177,7 +180,7 @@
 
 -(void)onLogoButtonTyped
 {
-    if (self.rootViewController == feedViewCtr)
+    if (self.rootViewController == self.feedViewCtr)
         return;
     
     [UIView beginAnimations:nil context:nil];
@@ -185,7 +188,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
-    [self setRootViewController:feedViewCtr];
+    [self setRootViewController:self.feedViewCtr];
     [UIView commitAnimations];
 }
 
@@ -196,7 +199,7 @@
     if (selectedIndex == 0) {
         [UIView animateWithDuration:.1 animations:^{
             
-            [self setRootViewController:feedViewCtr];
+            [self setRootViewController:self.feedViewCtr];
             
         } completion:^(BOOL finished) {
             //[segControl setSelectedSegmentIndex:0];
@@ -246,9 +249,9 @@
     if(type == EventChangeType_Finalize) {
         //To show feedView
         [UIView animateWithDuration:.1 animations:^{
-            [self setRootViewController:feedViewCtr];
+            [self setRootViewController:self.feedViewCtr];
         } completion:^(BOOL finished) {
-            [feedViewCtr.navigation.calPendingSegment setSelectedSegmentIndex:0];
+            [self.feedViewCtr.navigation.calPendingSegment setSelectedSegmentIndex:0];
             [self showRootController:YES];
         }];
         
